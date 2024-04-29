@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   const onClose = () => {
-     tg.close();
+    tg.close();
   };
 
   const sendTonTransaction = async (event: React.FormEvent) => {
