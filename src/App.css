@@ -9,6 +9,27 @@ body{
   color: black;
 }
 
+input {
+  height: 2rem;
+  border-radius: 0.25rem;
+  margin: 5px 5px 5px 5px;
+  padding: 0.5rem;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+button{
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.75rem;
+  margin: 5px 5px 5px 5px;
+
+}
 div{
   display: flex;
   flex-direction: column;
