@@ -8,3 +8,10 @@ body{
   background: white;
   color:var(--tg-theme-text-color);
 }
+
+div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
