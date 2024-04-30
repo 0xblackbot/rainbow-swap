@@ -4,12 +4,12 @@
   "homepage": "./",
   "private": true,
   "scripts": {
+    "ts": "tsc --pretty",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "ts": "tsc --pretty",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
