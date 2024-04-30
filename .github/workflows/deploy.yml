@@ -3,7 +3,6 @@ name: UI deployment
 on:
   push:
     branches: ["main"]
-  workflow_dispatch:
 
 jobs:
   deploy:
