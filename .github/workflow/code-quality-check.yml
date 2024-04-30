@@ -1,9 +1,8 @@
-name: Code quality
+name: Code quality check
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
   code-quality-check:
