@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  code-quality-check:
     runs-on: ubuntu-latest
 
     steps:
