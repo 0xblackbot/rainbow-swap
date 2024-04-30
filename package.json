@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "ts": "tsc --pretty",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "backend:start": "nodemon --exec ts-node index.ts",
+    "frontend:start": "react-scripts start",
+    "frontend:build": "react-scripts build",
+    "frontend:test": "react-scripts test",
+    "frontend:eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +39,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@types/telegram-web-app": "^7.2.1",
+    "node-telegram-bot-api": "^0.65.1",
     "prettier": "^3.2.5",
     "qrcode": "^1.5.3",
     "react": "^18.3.1",
@@ -48,6 +50,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.6",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
