@@ -3,6 +3,7 @@ name: Code quality check
 on:
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   code-quality-check:
