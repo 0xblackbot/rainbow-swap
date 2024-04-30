@@ -9,6 +9,7 @@ import './App.css';
 
 const tg = window.Telegram.WebApp;
 
+// test commit
 function App() {
     const [tonAddress, setTonAddress] = useState('');
     const [tonAmount, setTonAmount] = useState('');
