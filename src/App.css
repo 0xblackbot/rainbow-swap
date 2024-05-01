@@ -4,36 +4,23 @@
   box-sizing: border-box;
 }
 
-body{
-  background: white;
-  color: black;
-}
-
-input {
-  height: 2rem;
-  border-radius: 0.25rem;
-  margin: 5px 5px 5px 5px;
-  padding: 0.5rem;
-}
-
-form{
-  display: flex;
-  flex-direction: column;
-}
-
-button{
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.75rem;
-  margin: 5px 5px 5px 5px;
-
-}
-div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.App{
+  position: relative;
   height: 100%;
+  width: 100%;
+}
+
+body{
+  background: #131313;
+  color: white;
+}
+
+@font-face {
+  font-family: 'Basel';
+  src: url('../src/assets/fonts/Basel-Grotesk-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Basel-book';
+  src: url('../src/assets/fonts/Basel-Grotesk-Book.woff2') format('woff2');
 }

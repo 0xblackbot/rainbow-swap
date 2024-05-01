@@ -1,0 +1,18 @@
+.exchange-info-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding: 8px;
+    font-family: 'Basel-book', sans-serif;
+}
+
+.gas-info-div{
+    display: flex;
+    align-items: center;
+    color: #97979F;
+}
+
+.gas-info-div p{
+    margin-left: 4px;
+}

@@ -1,0 +1,31 @@
+.my-button{
+    background: #311C2D;
+    color: #E491E9;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 16px;
+    margin: 8px;
+    font-family: 'Basel-book', sans-serif;
+  }
+  
+  .my-button-activated{
+    background: #E491E9;
+    color: #311C2D;
+    border-radius: 24px;
+    border: none;
+    padding: 8px 16px;
+    margin: 8px;
+    font-family: 'Basel-book', sans-serif;
+}
+
+.header-logo{
+    width: 100px;
+    margin: 8px;
+}
+
+.header-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px;
+}

@@ -1,0 +1,32 @@
+.body-div{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    margin-top: 48px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.body-button{
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 16px;
+    font-family: 'Basel-book', sans-serif;
+}
+.body-connect-button{
+    background: #311C2D;
+    color: #E491E9;
+}
+
+.body-swap-button{
+    background: #FC72FF;
+    color: white;
+}
+
+.body-select-button{
+    background: #1B1B1B;
+    color: #5F5F5F;
+}
