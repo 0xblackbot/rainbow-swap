@@ -1,6 +1,6 @@
 import {useTonConnectUI, useTonWallet} from '@tonconnect/ui-react';
 
-const useTonUIHooks = () => {
+export const useTonUIHooks = () => {
     const [tonConnectUI] = useTonConnectUI();
 
     const wallet = useTonWallet();
@@ -39,5 +39,3 @@ const useTonUIHooks = () => {
         disconnectWallet
     };
 };
-
-export default useTonUIHooks;

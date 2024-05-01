@@ -1,4 +1,4 @@
-const ChevronLeftIcon = (): JSX.Element => (
+export const ChevronLeftIcon = (): JSX.Element => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -14,5 +14,3 @@ const ChevronLeftIcon = (): JSX.Element => (
         />
     </svg>
 );
-
-export default ChevronLeftIcon;

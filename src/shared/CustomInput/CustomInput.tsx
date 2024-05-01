@@ -1,15 +1,17 @@
-import useTonUIHooks from '../../hooks/useTonUIHooks/useTonUIHooks';
+import {FC} from 'react';
+
+import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
 import {IToken} from '../../interfaces/token.interface';
-import CurrencySelector from '../CurrencySelector/CurrencySelector';
+import {CurrencySelector} from '../CurrencySelector/CurrencySelector';
 import './CustomInput.css';
-interface CustomInputProps {
+interface Props {
     text: string;
     token: IToken | undefined;
     isOutput?: boolean;
     onClick: () => void;
 }
 
-const CustomInput = ({text, token, isOutput, onClick}: CustomInputProps) => {
+export const CustomInput: FC<Props> = ({text, token, isOutput, onClick}) => {
     const {wallet} = useTonUIHooks();
 
     return (
@@ -40,5 +42,3 @@ const CustomInput = ({text, token, isOutput, onClick}: CustomInputProps) => {
         </div>
     );
 };
-
-export default CustomInput;

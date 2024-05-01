@@ -1,17 +1,17 @@
 import {useContext} from 'react';
 
-import {Context} from '../../context/ContextProvider';
-import useTonUIHooks from '../../hooks/useTonUIHooks/useTonUIHooks';
-import CustomInput from '../../shared/CustomInput/CustomInput';
-import ExchangeInfo from '../../shared/ExchangeInfo/ExchangeInfo';
-import FormButton from '../../shared/FormButton/FormButton';
-import InputOutputSelector from '../../shared/InputOutputSelector/InputOutputSelector';
+import {InputOutputContext} from '../../context/input-output.provider';
+import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
+import {CustomInput} from '../../shared/CustomInput/CustomInput';
+import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
+import {FormButton} from '../../shared/FormButton/FormButton';
+import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputSelector';
 import './Body.css';
 
-const Body = () => {
+export const Body = () => {
     const {wallet, connectWallet} = useTonUIHooks();
     const {setOutputModalOpen, setInputModalOpen, inputToken, outputToken} =
-        useContext(Context);
+        useContext(InputOutputContext);
 
     const openOutputModal = () => {
         setOutputModalOpen(true);
@@ -73,5 +73,3 @@ const Body = () => {
         </form>
     );
 };
-
-export default Body;

@@ -17,16 +17,16 @@
     font-family: 'Basel-book', sans-serif;
 }
 .body-connect-button{
-    background: #311C2D;
-    color: #E491E9;
+    background: var(--accent-dark-pink-color);
+    color: var(--accent-neon-pink-color);
 }
 
 .body-swap-button{
-    background: #FC72FF;
+    background: var(--accent-neon-pink-color);
     color: white;
 }
 
 .body-select-button{
-    background: #1B1B1B;
-    color: #5F5F5F;
+    background: var(--accent-black-color);
+    color: var(--accent-dark-grey-color);
 }

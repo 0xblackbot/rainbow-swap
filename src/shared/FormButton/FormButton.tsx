@@ -1,16 +1,14 @@
-interface FormButtonProps {
+import {FC} from 'react';
+
+interface Props {
     text: string;
     onClick?: () => void;
     type: 'submit' | 'button';
     className?: string;
 }
 
-const FormButton = ({text, type, onClick, className}: FormButtonProps) => {
-    return (
-        <button type={type} className={className} onClick={onClick}>
-            {text}
-        </button>
-    );
-};
-
-export default FormButton;
+export const FormButton: FC<Props> = ({text, type, onClick, className}) => (
+    <button type={type} className={className} onClick={onClick}>
+        {text}
+    </button>
+);

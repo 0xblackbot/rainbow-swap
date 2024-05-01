@@ -2,15 +2,15 @@ import {useContext} from 'react';
 import Sheet from 'react-modal-sheet';
 
 import {fakeData} from '../../assets/fake-data';
-import ChevronLeftIcon from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
-import {Context} from '../../context/ContextProvider';
+import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
+import {InputOutputContext} from '../../context/input-output.provider';
 import './OutputTokenModal.css';
 import {IToken} from '../../interfaces/token.interface';
-import SelectListItem from '../../shared/SelectListItem/SelectListItem';
+import {SelectListItem} from '../../shared/SelectListItem/SelectListItem';
 
-const OutputTokenModal = () => {
+export const OutputTokenModal = () => {
     const {modalOutputOpen, setOutputModalOpen, setOutputToken} =
-        useContext(Context);
+        useContext(InputOutputContext);
 
     const closeModal = () => {
         setOutputModalOpen(false);
@@ -62,5 +62,3 @@ const OutputTokenModal = () => {
         </>
     );
 };
-
-export default OutputTokenModal;

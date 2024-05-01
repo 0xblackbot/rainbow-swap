@@ -4,12 +4,12 @@
     align-items: center;
     margin: 0px 16px;
     border-radius: 16px;
-    padding: 8px;
+    padding: var(--default-size);
     font-family: 'Basel-book', sans-serif;
 }
 
 .select-list-item-div:active{
-    background: #F9F9FB;
+    background: var(--accent-light-grey-color);
 }
 
 img{
@@ -32,7 +32,7 @@ img{
 .select-list-item-balance{
     background: #F9F9FB;
     color: #97979F;
-    padding: 4px 8px;
+    padding: 4px var(--default-size);
     border-radius: 16px;
 }
 

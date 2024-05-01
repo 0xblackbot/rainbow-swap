@@ -1,4 +1,4 @@
-const GasIcon = (): JSX.Element => (
+export const GasIcon = (): JSX.Element => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="1em"
@@ -12,5 +12,3 @@ const GasIcon = (): JSX.Element => (
         ></path>
     </svg>
 );
-
-export default GasIcon;

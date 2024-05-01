@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #1B1B1B;
-  border-radius: 8px;
+  background-color: var(--accent-black-color);
+  border-radius: var(--default-size);
   padding: 24px;
   margin-bottom: 4px;
   position: relative;
@@ -11,20 +11,20 @@
 }
 
 .container-label{
-  color:#979797;
+  color: var(--accent-dark-grey-color);
   font-size: 16px;
 }
 
 .input-container{
   display: flex;
-  margin-top: 8px;
+  margin-top: var(--default-size);
   justify-content: space-between;
 }
 
 .input-field {
   border: none;
   background-color: transparent;
-  color: #5F5F5F;
+  color: var(--accent-dark-grey-color);
   font-size: 32px;
   width: 192px;
   outline: none;
@@ -32,9 +32,9 @@
 
 .input-info{
   display: flex;
-  margin-top: 8px;
+  margin-top: var(--default-size);
   justify-content: space-between;
-  color: #979797;
+  color: var(--accent-dark-grey-color);
 }
 
 .input-info button{

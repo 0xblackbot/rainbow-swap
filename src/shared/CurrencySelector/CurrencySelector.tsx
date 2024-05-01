@@ -1,22 +1,18 @@
-import {useContext} from 'react';
+import {FC, useContext} from 'react';
 
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
-import {Context} from '../../context/ContextProvider';
+import {InputOutputContext} from '../../context/input-output.context';
 import {IToken} from '../../interfaces/token.interface';
 import './CurrencySelector.css';
 
-interface CurrencySelectorProps {
+interface Props {
     token: IToken | undefined;
     isOutput?: boolean;
     onClick: () => void;
 }
 
-const CurrencySelector = ({
-    token,
-    isOutput,
-    onClick
-}: CurrencySelectorProps) => {
-    const {inputToken, outputToken} = useContext(Context);
+export const CurrencySelector: FC<Props> = ({token, isOutput, onClick}) => {
+    const {inputToken, outputToken} = useContext(InputOutputContext);
     const tokenSelected = isOutput ? outputToken : inputToken;
 
     return (
@@ -36,5 +32,3 @@ const CurrencySelector = ({
         </>
     );
 };
-
-export default CurrencySelector;

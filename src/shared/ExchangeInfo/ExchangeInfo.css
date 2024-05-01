@@ -2,15 +2,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 8px;
-    padding: 8px;
+    margin-top: var(--default-size);
+    padding: var(--default-size);
     font-family: 'Basel-book', sans-serif;
 }
 
 .gas-info-div{
     display: flex;
     align-items: center;
-    color: #97979F;
+    color: var(--accent-dark-grey-color);
 }
 
 .gas-info-div p{
