@@ -1,0 +1,17 @@
+.currency_selector_button {
+    height: 32px;
+    width: 32px;
+    background-color: var(--accent-black-color);
+    border-radius: var(--default-size);
+    color:white;
+    border: 4px solid;
+    border-color: var(--background-color);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
