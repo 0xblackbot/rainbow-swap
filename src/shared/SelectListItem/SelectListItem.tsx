@@ -11,7 +11,7 @@ interface Props {
 export const SelectListItem: FC<Props> = ({token, onClick}) => (
     <div className={styles.select_list_item_div} onClick={() => onClick(token)}>
         <div className={styles.select_list_item_wrapper}>
-            <img src={token.imagePath} alt="" />
+            <img className={styles.img} src={token.imagePath} alt="" />
             <div className={styles.select_list_item_info}>
                 <p className={styles.select_list_item_ccy}>{token.name}</p>
                 <p className={styles.select_list_item_qty}>0.00 {token.name}</p>

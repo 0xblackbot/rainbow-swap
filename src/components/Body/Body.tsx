@@ -46,18 +46,14 @@ export const Body = () => {
                     <FormButton
                         text="Swap"
                         type="submit"
-                        className={
-                            (styles.body_button, styles.body_swap_button)
-                        }
+                        className={`${styles.body_button} ${styles.swap_button}`}
                     />
                 ) : (
                     <FormButton
                         text="Select a token"
                         type="button"
                         onClick={openOutputModal}
-                        className={
-                            (styles.body_button, styles.body_select_button)
-                        }
+                        className={`${styles.body_button} ${styles.select_button}`}
                     />
                 )
             ) : (
@@ -65,7 +61,7 @@ export const Body = () => {
                     text="Connect Wallet"
                     type="button"
                     onClick={connectWallet}
-                    className={(styles.body_button, styles.body_connect_button)}
+                    className={`${styles.body_button} ${styles.connect_button}`}
                 />
             )}
             {inputToken && outputToken ? (
