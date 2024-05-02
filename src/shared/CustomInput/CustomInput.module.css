@@ -10,18 +10,18 @@
   font-family: 'Basel-book', sans-serif;
 }
 
-.container-label{
+.container_label{
   color: var(--accent-dark-grey-color);
   font-size: 16px;
 }
 
-.input-container{
+.input_container{
   display: flex;
   margin-top: var(--default-size);
   justify-content: space-between;
 }
 
-.input-field {
+.input_field {
   border: none;
   background-color: transparent;
   color: var(--accent-dark-grey-color);
@@ -30,23 +30,23 @@
   outline: none;
 }
 
-.input-info{
+.input_info{
   display: flex;
   margin-top: var(--default-size);
   justify-content: space-between;
   color: var(--accent-dark-grey-color);
 }
 
-.input-info button{
+.input_info_button{
   color: #FC72FF;
   background: none;
   font-size: 16px;
   border: none;
 }
-.input-info-balance{
+.input_info_balance{
   display: flex;
   align-items: center;
 }
-.input-field:not(:placeholder-shown) {
+.input_field:not(:placeholder-shown) {
   color: white;
 }

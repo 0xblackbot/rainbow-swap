@@ -1,4 +1,4 @@
-.select-token-button{
+.select_token_button{
     background: var(--accent-neon-pink-color);
     display: flex;
     align-items: center;
@@ -8,18 +8,18 @@
     padding: var(--default-size);
 }
 
-p{
+.p{
     margin-right: 4px;
 }
 
-img{
+.img{
     width: 24px;
     height: 24px;
     margin-right: 4px;
 }
 
 
-.selected-token-button{
+.selected_token_button{
     display: flex;
     align-items: center;
     background: var(--background-color);

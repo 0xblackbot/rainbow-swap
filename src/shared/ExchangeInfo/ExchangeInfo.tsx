@@ -1,8 +1,8 @@
 import {FC} from 'react';
 
+import styles from './ExchangeInfo.module.css';
 import {GasIcon} from '../../assets/icons/GasIcon/GasIcon';
 import {IToken} from '../../interfaces/token.interface';
-import './ExchangeInfo.css';
 
 interface Props {
     inputToken: IToken;
@@ -10,13 +10,13 @@ interface Props {
 }
 
 export const ExchangeInfo: FC<Props> = ({inputToken, outputToken}) => (
-    <div className="exchange-info-div">
+    <div className={styles.exchange_info_div}>
         <p>
             1 {inputToken.name} = 2 {outputToken.name} ($2.50)
         </p>
-        <div className="gas-info-div">
+        <div className={styles.gas_info_div}>
             <GasIcon />
-            <p>$0.03</p>
+            <p className={styles.gas_info_div_p}>$0.03</p>
         </div>
     </div>
 );

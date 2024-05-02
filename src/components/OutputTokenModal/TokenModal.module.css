@@ -1,4 +1,4 @@
-.modal-window-button {
+.modalButton {
     background: none;
     border: none;
     position: absolute; 
@@ -6,7 +6,7 @@
     left: 1px;
 }
 
-.modal-window-div {
+.modalDiv {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@
     height: 24px; 
 }
 
-.modal-window-input{
+.modalInput{
     border: none;
     background: var(--accent-light-grey-color);
     color: var(--accent-light-grey-color);
@@ -26,6 +26,6 @@
     font-family: 'Basel-book', sans-serif;
 }
 
-.modal-window-p{
+.modalP{
     font-family: 'Basel-book', sans-serif;
 }

@@ -1,4 +1,4 @@
-.exchange-info-div{
+.exchange_info_div{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,12 +7,12 @@
     font-family: 'Basel-book', sans-serif;
 }
 
-.gas-info-div{
+.gas_info_div{
     display: flex;
     align-items: center;
     color: var(--accent-dark-grey-color);
 }
 
-.gas-info-div p{
+.gas_info_div_p{
     margin-left: 4px;
 }

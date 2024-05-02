@@ -4,9 +4,9 @@ import Sheet from 'react-modal-sheet';
 import {fakeData} from '../../assets/fake-data';
 import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
 import {InputOutputContext} from '../../context/input-output.provider';
-import './InputTokenModal.css';
 import {IToken} from '../../interfaces/token.interface';
 import {SelectListItem} from '../../shared/SelectListItem/SelectListItem';
+import styles from '../OutputTokenModal/TokenModal.module.css';
 
 export const InputTokenModal = () => {
     const {modalInputOpen, setInputModalOpen, setInputToken} =
@@ -31,17 +31,17 @@ export const InputTokenModal = () => {
                 <Sheet.Container>
                     <Sheet.Header />
                     <Sheet.Content>
-                        <div className="modal-window-div">
+                        <div className={styles.modalDiv}>
                             <button
-                                className="modal-window-button"
+                                className={styles.modalButton}
                                 onClick={closeModal}
                             >
                                 <ChevronLeftIcon />
                             </button>
-                            <p className="modal-window-p">Choose input token</p>
+                            <p className={styles.modalP}>Choose input token</p>
                         </div>
                         <input
-                            className="modal-window-input"
+                            className={styles.modalInput}
                             placeholder="Search tokens on Etherium"
                         />
                         {fakeData.map(token => {

@@ -1,10 +1,10 @@
 import {useContext} from 'react';
 import Sheet from 'react-modal-sheet';
 
+import styles from './TokenModal.module.css';
 import {fakeData} from '../../assets/fake-data';
 import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
 import {InputOutputContext} from '../../context/input-output.provider';
-import './OutputTokenModal.css';
 import {IToken} from '../../interfaces/token.interface';
 import {SelectListItem} from '../../shared/SelectListItem/SelectListItem';
 
@@ -31,19 +31,17 @@ export const OutputTokenModal = () => {
                 <Sheet.Container>
                     <Sheet.Header />
                     <Sheet.Content>
-                        <div className="modal-window-div">
+                        <div className={styles.modalDiv}>
                             <button
-                                className="modal-window-button"
+                                className={styles.modalButton}
                                 onClick={closeModal}
                             >
                                 <ChevronLeftIcon />
                             </button>
-                            <p className="modal-window-p">
-                                Choose output token
-                            </p>
+                            <p className={styles.modalP}>Choose output token</p>
                         </div>
                         <input
-                            className="modal-window-input"
+                            className={styles.modalInput}
                             placeholder="Search tokens on Etherium"
                         />
                         {fakeData.map(token => {

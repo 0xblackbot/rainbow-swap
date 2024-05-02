@@ -1,12 +1,12 @@
 import {useContext} from 'react';
 
+import styles from './Body.module.css';
 import {InputOutputContext} from '../../context/input-output.provider';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
 import {FormButton} from '../../shared/FormButton/FormButton';
 import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputSelector';
-import './Body.css';
 
 export const Body = () => {
     const {wallet, connectWallet} = useTonUIHooks();
@@ -27,7 +27,7 @@ export const Body = () => {
 
     return (
         <form onSubmit={onSubmit}>
-            <div className="body-div">
+            <div className={styles.body_div}>
                 <CustomInput
                     text="You pay"
                     token={inputToken}
@@ -46,14 +46,18 @@ export const Body = () => {
                     <FormButton
                         text="Swap"
                         type="submit"
-                        className="body-button body-swap-button"
+                        className={
+                            (styles.body_button, styles.body_swap_button)
+                        }
                     />
                 ) : (
                     <FormButton
                         text="Select a token"
                         type="button"
                         onClick={openOutputModal}
-                        className="body-button body-select-button"
+                        className={
+                            (styles.body_button, styles.body_select_button)
+                        }
                     />
                 )
             ) : (
@@ -61,7 +65,7 @@ export const Body = () => {
                     text="Connect Wallet"
                     type="button"
                     onClick={connectWallet}
-                    className="body-button body-connect-button"
+                    className={(styles.body_button, styles.body_connect_button)}
                 />
             )}
             {inputToken && outputToken ? (

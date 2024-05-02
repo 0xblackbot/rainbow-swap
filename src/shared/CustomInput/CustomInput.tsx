@@ -1,9 +1,9 @@
 import {FC} from 'react';
 
+import styles from './CustomInput.module.css';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
 import {IToken} from '../../interfaces/token.interface';
 import {CurrencySelector} from '../CurrencySelector/CurrencySelector';
-import './CustomInput.css';
 interface Props {
     text: string;
     token: IToken | undefined;
@@ -15,12 +15,12 @@ export const CustomInput: FC<Props> = ({text, token, isOutput, onClick}) => {
     const {wallet} = useTonUIHooks();
 
     return (
-        <div className="container">
-            <p className="container-label">{text}</p>
-            <div className="input-container">
+        <div className={styles.container}>
+            <p className={styles.container_label}>{text}</p>
+            <div className={styles.input_container}>
                 <input
                     type="number"
-                    className="input-field"
+                    className={styles.input_field}
                     placeholder="0"
                     disabled={isOutput}
                 />
@@ -31,11 +31,13 @@ export const CustomInput: FC<Props> = ({text, token, isOutput, onClick}) => {
                 />
             </div>
             {wallet ? (
-                <div className="input-info">
+                <div className={styles.input_info}>
                     <p>$0.00</p>
-                    <div className="input-info-balance">
+                    <div className={styles.input_info_balance}>
                         <p>Balance: 0.000</p>
-                        <button>Max</button>
+                        <button className={styles.input_info_button}>
+                            Max
+                        </button>
                     </div>
                 </div>
             ) : null}

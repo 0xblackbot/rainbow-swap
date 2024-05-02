@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
+import styles from './SelectListItem.module.css';
 import {IToken} from '../../interfaces/token.interface';
-import './SelectListItem.css';
 
 interface Props {
     token: IToken;
@@ -9,14 +9,14 @@ interface Props {
 }
 
 export const SelectListItem: FC<Props> = ({token, onClick}) => (
-    <div className="select-list-item-div" onClick={() => onClick(token)}>
-        <div className="select-list-item-wrapper">
+    <div className={styles.select_list_item_div} onClick={() => onClick(token)}>
+        <div className={styles.select_list_item_wrapper}>
             <img src={token.imagePath} alt="" />
-            <div className="select-list-item-info">
-                <p className="select-list-item-ccy">{token.name}</p>
-                <p className="select-list-item-qty">0.00 {token.name}</p>
+            <div className={styles.select_list_item_info}>
+                <p className={styles.select_list_item_ccy}>{token.name}</p>
+                <p className={styles.select_list_item_qty}>0.00 {token.name}</p>
             </div>
         </div>
-        <div className="select-list-item-balance">$0.00</div>
+        <div className={styles.select_list_item_balance}>$0.00</div>
     </div>
 );

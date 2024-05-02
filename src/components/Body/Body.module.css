@@ -1,4 +1,4 @@
-.body-div{
+.body_div{
     display: flex;
     flex-direction: column;
     position: relative;
@@ -8,7 +8,7 @@
     padding-right: 4px;
 }
 
-.body-button{
+.body_button{
     width: 100%;
     padding: 16px;
     font-size: 16px;
@@ -16,17 +16,17 @@
     border-radius: 16px;
     font-family: 'Basel-book', sans-serif;
 }
-.body-connect-button{
+.connect_button{
     background: var(--accent-dark-pink-color);
     color: var(--accent-neon-pink-color);
 }
 
-.body-swap-button{
+.swap_button{
     background: var(--accent-neon-pink-color);
     color: white;
 }
 
-.body-select-button{
+.select_button{
     background: var(--accent-black-color);
     color: var(--accent-dark-grey-color);
 }

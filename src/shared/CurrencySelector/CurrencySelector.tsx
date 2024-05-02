@@ -1,9 +1,9 @@
 import {FC, useContext} from 'react';
 
+import styles from './CurrencySelector.module.css';
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {InputOutputContext} from '../../context/input-output.context';
 import {IToken} from '../../interfaces/token.interface';
-import './CurrencySelector.css';
 
 interface Props {
     token: IToken | undefined;
@@ -18,14 +18,18 @@ export const CurrencySelector: FC<Props> = ({token, isOutput, onClick}) => {
     return (
         <>
             {tokenSelected !== undefined ? (
-                <div className="selected-token-button" onClick={onClick}>
-                    <img src={token?.imagePath} alt="123" />
-                    <p>{token?.name}</p>
+                <div className={styles.selected_token_button} onClick={onClick}>
+                    <img
+                        className={styles.img}
+                        src={token?.imagePath}
+                        alt="123"
+                    />
+                    <p className={styles.p}>{token?.name}</p>
                     <ChevronDownIcon />
                 </div>
             ) : (
-                <div className="select-token-button" onClick={onClick}>
-                    <p>Select token </p>
+                <div className={styles.select_token_button} onClick={onClick}>
+                    <p className={styles.p}>Select token </p>
                     <ChevronDownIcon />
                 </div>
             )}
