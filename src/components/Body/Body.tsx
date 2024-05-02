@@ -7,6 +7,7 @@ import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
 import {FormButton} from '../../shared/FormButton/FormButton';
 import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputSelector';
+import {getClassName} from '../../utils/style.utils';
 
 export const Body = () => {
     const {wallet, connectWallet} = useTonUIHooks();
@@ -46,18 +47,20 @@ export const Body = () => {
                     <FormButton
                         text="Swap"
                         type="submit"
-                        className={
-                            (styles.body_button, styles.body_swap_button)
-                        }
+                        className={getClassName(
+                            styles.body_button,
+                            styles.swap_button
+                        )}
                     />
                 ) : (
                     <FormButton
                         text="Select a token"
                         type="button"
                         onClick={openOutputModal}
-                        className={
-                            (styles.body_button, styles.body_select_button)
-                        }
+                        className={getClassName(
+                            styles.body_button,
+                            styles.select_button
+                        )}
                     />
                 )
             ) : (
@@ -65,7 +68,10 @@ export const Body = () => {
                     text="Connect Wallet"
                     type="button"
                     onClick={connectWallet}
-                    className={(styles.body_button, styles.body_connect_button)}
+                    className={getClassName(
+                        styles.body_button,
+                        styles.connect_button
+                    )}
                 />
             )}
             {inputToken && outputToken ? (
