@@ -18,9 +18,19 @@
     font-family: 'Basel-book', sans-serif;
 }
 
+.logo_div{
+    display: flex;
+    align-items: center;
+}
+
 .header_logo{
     width: 100px;
     margin: var(--default-size);
+}
+
+.header_triangle_logo{
+    width: 50px;
+    height: 50px;   
 }
 
 .header_div{

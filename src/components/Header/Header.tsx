@@ -6,7 +6,18 @@ export const Header = () => {
 
     return (
         <div className={styles.header_div}>
-            <img src="logo.png" alt="1" className={styles.header_logo}></img>
+            <div className={styles.logo_div}>
+                <img
+                    src="triangle-logo.png"
+                    alt="1"
+                    className={styles.header_triangle_logo}
+                ></img>
+                <img
+                    src="logo.png"
+                    alt="1"
+                    className={styles.header_logo}
+                ></img>
+            </div>
             {wallet ? (
                 <button
                     onClick={disconnectWallet}
