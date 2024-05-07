@@ -1,32 +1,22 @@
-import {IToken} from '../interfaces/token.interface';
+import {IAssetsPair} from '../interfaces/assets.interface';
 
-export const fakeData: IToken[] = [
+export const fakeData: IAssetsPair[] = [
     {
-        id: 1,
-        name: 'ETH',
-        imagePath:
-            'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png'
+        dexType: 'DeDust',
+        address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
+        name: 'Tether USD',
+        symbol: 'USD₮',
+        decimals: '6',
+        image: 'https://cache.tonapi.io/imgproxy/T3PB4s7oprNVaJkwqbGg54nexKE0zzKhcrPv8jcWYzU/rs:fill:200:200:1/g:no/aHR0cHM6Ly90ZXRoZXIudG8vaW1hZ2VzL2xvZ29DaXJjbGUucG5n.webp',
+        description: 'Tether Token for Tether USD'
     },
     {
-        id: 3,
-        name: 'TON',
-        imagePath: 'https://cryptologos.cc/logos/toncoin-ton-logo.png'
-    },
-    {
-        id: 4,
-        name: 'BTC',
-        imagePath:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png'
-    },
-    {
-        id: 5,
-        name: 'SOL',
-        imagePath:
-            'https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png'
-    },
-    {
-        id: 6,
-        name: 'BNB',
-        imagePath: 'https://cryptologos.cc/logos/bnb-bnb-logo.png'
+        dexType: 'Ston',
+        address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
+        name: 'Tether USD',
+        symbol: 'USD₮',
+        decimals: '6',
+        image: 'https://cache.tonapi.io/imgproxy/T3PB4s7oprNVaJkwqbGg54nexKE0zzKhcrPv8jcWYzU/rs:fill:200:200:1/g:no/aHR0cHM6Ly90ZXRoZXIudG8vaW1hZ2VzL2xvZ29DaXJjbGUucG5n.webp',
+        description: 'Tether Token for Tether USD'
     }
 ];

@@ -29,3 +29,35 @@
 .modalP{
     font-family: 'Basel-book', sans-serif;
 }
+
+.modalSheet{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+}
+
+@media (min-width: 900px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+}
+
+

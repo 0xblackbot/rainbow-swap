@@ -2,11 +2,11 @@ import {FC} from 'react';
 
 import styles from './ExchangeInfo.module.css';
 import {GasIcon} from '../../assets/icons/GasIcon/GasIcon';
-import {IToken} from '../../interfaces/token.interface';
+import {IAssetsPair} from '../../interfaces/assets.interface';
 
 interface Props {
-    inputToken: IToken;
-    outputToken: IToken;
+    inputToken: IAssetsPair;
+    outputToken: IAssetsPair;
 }
 
 export const ExchangeInfo: FC<Props> = ({inputToken, outputToken}) => (

@@ -2,21 +2,20 @@ import {useContext} from 'react';
 import Sheet from 'react-modal-sheet';
 
 import styles from './TokenModal.module.css';
-import {fakeData} from '../../assets/fake-data';
 import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
 import {InputOutputContext} from '../../context/input-output.provider';
-import {IToken} from '../../interfaces/token.interface';
+import {IAssetsPair} from '../../interfaces/assets.interface';
 import {SelectListItem} from '../../shared/SelectListItem/SelectListItem';
 
 export const OutputTokenModal = () => {
-    const {modalOutputOpen, setOutputModalOpen, setOutputToken} =
+    const {modalOutputOpen, setOutputModalOpen, setOutputToken, assets} =
         useContext(InputOutputContext);
 
     const closeModal = () => {
         setOutputModalOpen(false);
     };
 
-    const selectOutputToken = (token: IToken) => {
+    const selectOutputToken = (token: IAssetsPair) => {
         setOutputToken(token);
     };
 
@@ -25,6 +24,7 @@ export const OutputTokenModal = () => {
             <Sheet
                 isOpen={modalOutputOpen}
                 onClose={closeModal}
+                className={styles.modalSheet}
                 snapPoints={[700]}
                 initialSnap={0}
             >
@@ -44,10 +44,10 @@ export const OutputTokenModal = () => {
                             className={styles.modalInput}
                             placeholder="Search tokens on Etherium"
                         />
-                        {fakeData.map(token => {
+                        {assets.map((token, index) => {
                             return (
                                 <SelectListItem
-                                    key={token.id}
+                                    key={index}
                                     token={token}
                                     onClick={selectOutputToken}
                                 />
