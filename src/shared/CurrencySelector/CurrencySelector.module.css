@@ -1,4 +1,4 @@
-.select_token_button{
+.select_asset_button{
     background: var(--accent-neon-pink-color);
     display: flex;
     align-items: center;
@@ -19,7 +19,7 @@
 }
 
 
-.selected_token_button{
+.selected_asset_button{
     display: flex;
     align-items: center;
     background: var(--background-color);

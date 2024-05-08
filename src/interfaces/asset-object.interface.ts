@@ -1,4 +1,4 @@
-export interface IAssets {
+export interface AssetObject {
     symbol: string;
     name: string;
     address: string;

@@ -2,16 +2,16 @@ import {FC} from 'react';
 
 import styles from './CustomInput.module.css';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
-import {IAssets} from '../../interfaces/assets.interface';
+import {AssetObject} from '../../interfaces/asset-object.interface';
 import {CurrencySelector} from '../CurrencySelector/CurrencySelector';
 interface Props {
     text: string;
-    token: IAssets | undefined;
+    asset: AssetObject | undefined;
     isOutput?: boolean;
     onClick: () => void;
 }
 
-export const CustomInput: FC<Props> = ({text, token, isOutput, onClick}) => {
+export const CustomInput: FC<Props> = ({text, asset, isOutput, onClick}) => {
     const {wallet} = useTonUIHooks();
 
     return (
@@ -25,7 +25,7 @@ export const CustomInput: FC<Props> = ({text, token, isOutput, onClick}) => {
                     disabled={isOutput}
                 />
                 <CurrencySelector
-                    token={token}
+                    asset={asset}
                     isOutput={isOutput}
                     onClick={onClick}
                 />

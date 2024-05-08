@@ -1,62 +1,25 @@
-import {useContext, useEffect, useRef, useState} from 'react';
+import {useContext} from 'react';
 import Sheet from 'react-modal-sheet';
 import {List} from 'react-virtualized';
 
 import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
 import {InputOutputContext} from '../../context/input-output.provider';
-import {IAssets} from '../../interfaces/assets.interface';
-import {SelectListItem} from '../../shared/SelectListItem/SelectListItem';
-import styles from '../OutputTokenModal/TokenModal.module.css';
+import {useModalWidthHook} from '../../hooks/useModalWidthHook/useModalWidthHook';
+import {AssetObject} from '../../interfaces/asset-object.interface';
+import {rowRenderer} from '../../shared/RowRenderer/RowRenderer';
+import styles from '../OutputAssetModal/AssetModal.module.css';
 
-export const InputTokenModal = () => {
-    const {modalInputOpen, setInputModalOpen, setInputToken, assets} =
+export const InputAssetModal = () => {
+    const {modalInputOpen, setInputModalOpen, setInputAsset, assets} =
         useContext(InputOutputContext);
-    const [listWidth, setListWidth] = useState(window.innerWidth);
-    const modalSheetRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (modalSheetRef.current) {
-                setListWidth(modalSheetRef.current.offsetWidth);
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    function rowRenderer({
-        key,
-        index,
-        style
-    }: {
-        key: string;
-        index: number;
-        isScrolling: boolean;
-        isVisible: boolean;
-        style: React.CSSProperties;
-    }) {
-        return (
-            <div key={key} style={style}>
-                <SelectListItem
-                    key={index}
-                    token={assets[index]}
-                    onClick={selectInputToken}
-                />
-            </div>
-        );
-    }
+    const {listWidth, modalSheetRef} = useModalWidthHook(modalInputOpen);
 
     const closeModal = () => {
         setInputModalOpen(false);
     };
 
-    const selectInputToken = (token: IAssets) => {
-        setInputToken(token);
+    const selectInputAsset = (asset: AssetObject) => {
+        setInputAsset(asset);
         closeModal();
     };
 
@@ -79,11 +42,11 @@ export const InputTokenModal = () => {
                             >
                                 <ChevronLeftIcon />
                             </button>
-                            <p className={styles.modalP}>Choose input token</p>
+                            <p className={styles.modalP}>Choose input asset</p>
                         </div>
                         <input
                             className={styles.modalInput}
-                            placeholder="Search tokens on Etherium"
+                            placeholder="Search assets on Etherium"
                         />
 
                         <div ref={modalSheetRef} className={styles.modalList}>
@@ -92,7 +55,9 @@ export const InputTokenModal = () => {
                                 height={600}
                                 rowCount={assets.length}
                                 rowHeight={50}
-                                rowRenderer={rowRenderer}
+                                rowRenderer={props =>
+                                    rowRenderer(props, selectInputAsset, assets)
+                                }
                             />
                         </div>
                     </Sheet.Content>

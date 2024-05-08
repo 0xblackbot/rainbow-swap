@@ -1,6 +1,6 @@
-import {IAssets} from '../interfaces/assets.interface';
+import {AssetObject} from '../interfaces/asset-object.interface';
 
-export const fakeData: IAssets[] = [
+export const fakeData: AssetObject[] = [
     {
         address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
         name: 'Tether USD',
