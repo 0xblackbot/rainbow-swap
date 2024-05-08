@@ -35,6 +35,7 @@ export const OutputTokenModal = () => {
 
     const selectOutputToken = (token: IAssets) => {
         setOutputToken(token);
+        closeModal();
     };
 
     function rowRenderer({
@@ -84,20 +85,15 @@ export const OutputTokenModal = () => {
                             className={styles.modalInput}
                             placeholder="Search tokens on Etherium"
                         />
-                        <Sheet.Scroller>
-                            <div
-                                ref={modalSheetRef}
-                                className={styles.modalList}
-                            >
-                                <List
-                                    width={listWidth}
-                                    height={600}
-                                    rowCount={assets.length}
-                                    rowHeight={50}
-                                    rowRenderer={rowRenderer}
-                                />
-                            </div>
-                        </Sheet.Scroller>
+                        <div ref={modalSheetRef} className={styles.modalList}>
+                            <List
+                                width={listWidth}
+                                height={600}
+                                rowCount={assets.length}
+                                rowHeight={50}
+                                rowRenderer={rowRenderer}
+                            />
+                        </div>
                     </Sheet.Content>
                 </Sheet.Container>
                 <Sheet.Backdrop />

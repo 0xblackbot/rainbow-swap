@@ -57,6 +57,7 @@ export const InputTokenModal = () => {
 
     const selectInputToken = (token: IAssets) => {
         setInputToken(token);
+        closeModal();
     };
 
     return (
@@ -84,20 +85,16 @@ export const InputTokenModal = () => {
                             className={styles.modalInput}
                             placeholder="Search tokens on Etherium"
                         />
-                        <Sheet.Scroller>
-                            <div
-                                ref={modalSheetRef}
-                                className={styles.modalList}
-                            >
-                                <List
-                                    width={listWidth}
-                                    height={600}
-                                    rowCount={assets.length}
-                                    rowHeight={50}
-                                    rowRenderer={rowRenderer}
-                                />
-                            </div>
-                        </Sheet.Scroller>
+
+                        <div ref={modalSheetRef} className={styles.modalList}>
+                            <List
+                                width={listWidth}
+                                height={600}
+                                rowCount={assets.length}
+                                rowHeight={50}
+                                rowRenderer={rowRenderer}
+                            />
+                        </div>
                     </Sheet.Content>
                 </Sheet.Container>
                 <Sheet.Backdrop />
