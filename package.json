@@ -39,6 +39,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@types/telegram-web-app": "^7.2.1",
+    "axios": "^1.6.8",
     "framer-motion": "^11.1.7",
     "prettier": "^3.2.5",
     "qrcode": "^1.5.3",
@@ -46,11 +47,13 @@
     "react-dom": "^18.3.1",
     "react-modal-sheet": "^2.2.0",
     "react-scripts": "5.0.1",
+    "react-virtualized": "^9.22.5",
     "telegram-web-app": "^0.0.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@types/react-virtualized": "^9.21.30",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",

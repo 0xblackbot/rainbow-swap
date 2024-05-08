@@ -18,7 +18,7 @@
 .modalInput{
     border: none;
     background: var(--accent-light-grey-color);
-    color: var(--accent-light-grey-color);
+    color: black;
     border-radius: 24px;
     padding: var(--default-size);
     margin: var(--default-size) 16px;
@@ -29,3 +29,40 @@
 .modalP{
     font-family: 'Basel-book', sans-serif;
 }
+
+.modalSheet{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.modalList{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+}
+
+@media (min-width: 900px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+}
+
+

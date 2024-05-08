@@ -3,33 +3,29 @@ import {FC, useContext} from 'react';
 import styles from './CurrencySelector.module.css';
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {InputOutputContext} from '../../context/input-output.context';
-import {IToken} from '../../interfaces/token.interface';
+import {AssetObject} from '../../interfaces/asset-object.interface';
 
 interface Props {
-    token: IToken | undefined;
+    asset: AssetObject | undefined;
     isOutput?: boolean;
     onClick: () => void;
 }
 
-export const CurrencySelector: FC<Props> = ({token, isOutput, onClick}) => {
-    const {inputToken, outputToken} = useContext(InputOutputContext);
-    const tokenSelected = isOutput ? outputToken : inputToken;
+export const CurrencySelector: FC<Props> = ({asset, isOutput, onClick}) => {
+    const {inputAsset, outputAsset} = useContext(InputOutputContext);
+    const assetSelected = isOutput ? outputAsset : inputAsset;
 
     return (
         <>
-            {tokenSelected !== undefined ? (
-                <div className={styles.selected_token_button} onClick={onClick}>
-                    <img
-                        className={styles.img}
-                        src={token?.imagePath}
-                        alt="123"
-                    />
-                    <p className={styles.p}>{token?.name}</p>
+            {assetSelected !== undefined ? (
+                <div className={styles.selected_asset_button} onClick={onClick}>
+                    <img className={styles.img} src={asset?.image} alt="123" />
+                    <p className={styles.p}>{asset?.symbol}</p>
                     <ChevronDownIcon />
                 </div>
             ) : (
-                <div className={styles.select_token_button} onClick={onClick}>
-                    <p className={styles.p}>Select token </p>
+                <div className={styles.select_asset_button} onClick={onClick}>
+                    <p className={styles.p}>Select asset </p>
                     <ChevronDownIcon />
                 </div>
             )}

@@ -11,7 +11,7 @@ import {getClassName} from '../../utils/style.utils';
 
 export const Body = () => {
     const {wallet, connectWallet} = useTonUIHooks();
-    const {setOutputModalOpen, setInputModalOpen, inputToken, outputToken} =
+    const {setOutputModalOpen, setInputModalOpen, inputAsset, outputAsset} =
         useContext(InputOutputContext);
 
     const openOutputModal = () => {
@@ -31,19 +31,19 @@ export const Body = () => {
             <div className={styles.body_div}>
                 <CustomInput
                     text="You pay"
-                    token={inputToken}
+                    asset={inputAsset}
                     onClick={openInputModal}
                 />
                 <InputOutputSelector />
                 <CustomInput
                     text="You receive"
-                    token={outputToken}
+                    asset={outputAsset}
                     isOutput={true}
                     onClick={openOutputModal}
                 />
             </div>
             {wallet ? (
-                outputToken && inputToken ? (
+                outputAsset && inputAsset ? (
                     <FormButton
                         text="Swap"
                         type="submit"
@@ -54,7 +54,7 @@ export const Body = () => {
                     />
                 ) : (
                     <FormButton
-                        text="Select a token"
+                        text="Select a asset"
                         type="button"
                         onClick={openOutputModal}
                         className={getClassName(
@@ -74,10 +74,10 @@ export const Body = () => {
                     )}
                 />
             )}
-            {inputToken && outputToken ? (
+            {inputAsset && outputAsset ? (
                 <ExchangeInfo
-                    inputToken={inputToken}
-                    outputToken={outputToken}
+                    inputAsset={inputAsset}
+                    outputAsset={outputAsset}
                 />
             ) : null}
         </form>

@@ -2,17 +2,18 @@ import React, {useState, FC, PropsWithChildren} from 'react';
 
 import {InputOutputContext} from './input-output.context';
 import {fakeData} from '../assets/fake-data';
-import {IToken} from '../interfaces/token.interface';
+import {AssetObject} from '../interfaces/asset-object.interface';
 
 export const ContextProvider: FC<PropsWithChildren> = ({children}) => {
     const [modalInputOpen, setInputModalOpen] = useState(false);
     const [modalOutputOpen, setOutputModalOpen] = useState(false);
-    const [outputToken, setOutputToken] = useState<IToken | undefined>(
+    const [outputAsset, setOutputAsset] = useState<AssetObject | undefined>(
         undefined
     );
-    const [inputToken, setInputToken] = useState<IToken | undefined>(
+    const [inputAsset, setInputAsset] = useState<AssetObject | undefined>(
         fakeData[0]
     );
+    const [assets, setAssets] = useState<AssetObject[]>([]);
 
     return (
         <InputOutputContext.Provider
@@ -21,10 +22,12 @@ export const ContextProvider: FC<PropsWithChildren> = ({children}) => {
                 setInputModalOpen,
                 modalOutputOpen,
                 setOutputModalOpen,
-                outputToken,
-                setOutputToken,
-                inputToken,
-                setInputToken
+                outputAsset,
+                setOutputAsset,
+                inputAsset,
+                setInputAsset,
+                assets,
+                setAssets
             }}
         >
             {children}
