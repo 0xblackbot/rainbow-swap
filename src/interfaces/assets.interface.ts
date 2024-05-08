@@ -1,9 +1,8 @@
-export interface IAssetsPair {
-    dexType: string;
-    symbol?: string | undefined;
-    name?: string | undefined;
-    address?: string | undefined;
-    description?: string | undefined;
-    image?: string | undefined;
-    decimals?: string | undefined;
+export interface IAssets {
+    symbol: string;
+    name: string;
+    address: string;
+    description: string;
+    image: string;
+    decimals: string;
 }

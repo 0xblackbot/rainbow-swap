@@ -16,3 +16,27 @@
 .gas_info_div_p{
     margin-left: 4px;
 }
+
+@media (min-width: 768px) {
+    .exchange_info_div{
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+}
+
+@media (min-width: 900px) {
+    .exchange_info_div{
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .exchange_info_div{
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+}

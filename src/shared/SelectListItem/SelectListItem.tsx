@@ -1,11 +1,11 @@
 import {FC} from 'react';
 
 import styles from './SelectListItem.module.css';
-import {IAssetsPair} from '../../interfaces/assets.interface';
+import {IAssets} from '../../interfaces/assets.interface';
 
 interface Props {
-    token: IAssetsPair;
-    onClick: (token: IAssetsPair) => void;
+    token: IAssets;
+    onClick: (token: IAssets) => void;
 }
 
 export const SelectListItem: FC<Props> = ({token, onClick}) => (
@@ -14,7 +14,9 @@ export const SelectListItem: FC<Props> = ({token, onClick}) => (
             <img className={styles.img} src={token.image} alt="" />
             <div className={styles.select_list_item_info}>
                 <p className={styles.select_list_item_ccy}>{token.name}</p>
-                <p className={styles.select_list_item_qty}>0.00 {token.name}</p>
+                <p className={styles.select_list_item_qty}>
+                    0.00 {token.symbol}
+                </p>
             </div>
         </div>
         <div className={styles.select_list_item_balance}>$0.00</div>
