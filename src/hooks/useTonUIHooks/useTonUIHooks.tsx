@@ -12,7 +12,7 @@ export const useTonUIHooks = () => {
     const rawWalletAddress = useTonAddress(false);
 
     const alteredWalletAddress =
-        walletAddress?.slice(0, 6) + '...' + walletAddress?.slice(-4);
+        walletAddress?.slice(0, 4) + '...' + walletAddress?.slice(-4);
 
     const sendTonTransaction = async (
         tonAddress: string,
