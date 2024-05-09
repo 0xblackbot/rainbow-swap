@@ -1,8 +1,29 @@
+import {useEffect, useState} from 'react';
+
 import styles from './Header.module.css';
+import {useAssetsHook} from '../../hooks/useAssetsHook.ts/useAssetsHook';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
+import {getClassName} from '../../utils/style.utils';
 
 export const Header = () => {
-    const {wallet, connectWallet, disconnectWallet} = useTonUIHooks();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const {
+        wallet,
+        walletAddress,
+        alteredWalletAddress,
+        connectWallet,
+        disconnectWallet
+    } = useTonUIHooks();
+
+    const {updateAssetsWithBalances} = useAssetsHook();
+
+    useEffect(() => {
+        updateAssetsWithBalances(walletAddress);
+    }, [wallet]);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(prev => !prev);
+    };
 
     return (
         <div className={styles.header_div}>
@@ -19,12 +40,41 @@ export const Header = () => {
                 ></img>
             </div>
             {wallet ? (
-                <button
-                    onClick={disconnectWallet}
-                    className={styles.disconnect_button}
-                >
-                    Disconnect
-                </button>
+                <div className={styles.dropdown}>
+                    <button
+                        onClick={toggleDropdown}
+                        className={styles.disconnect_button}
+                    >
+                        {alteredWalletAddress}
+                    </button>
+                    {isDropdownOpen && (
+                        <div className={styles.dropdown_content}>
+                            <button
+                                className={getClassName(
+                                    styles.dropdown_explore_button,
+                                    styles.dropdown_button
+                                )}
+                            >
+                                <a
+                                    href={`https://tonviewer.com/${walletAddress}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    View in Explorer
+                                </a>
+                            </button>
+                            <button
+                                className={getClassName(
+                                    styles.dropdown_disconnect_button,
+                                    styles.dropdown_button
+                                )}
+                                onClick={disconnectWallet}
+                            >
+                                Disconnect
+                            </button>
+                        </div>
+                    )}
+                </div>
             ) : (
                 <button
                     onClick={connectWallet}

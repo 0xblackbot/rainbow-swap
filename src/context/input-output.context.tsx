@@ -18,6 +18,8 @@ interface InputOutputValues {
     >;
     assets: AssetObject[];
     setAssets: React.Dispatch<React.SetStateAction<AssetObject[]>>;
+    inputAssetAmount: string;
+    setInputAssetAmount: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const InputOutputContext = createContext<InputOutputValues>({
@@ -30,5 +32,7 @@ export const InputOutputContext = createContext<InputOutputValues>({
     inputAsset: undefined,
     setInputAsset: EMPTY_FN,
     assets: [],
-    setAssets: EMPTY_FN
+    setAssets: EMPTY_FN,
+    inputAssetAmount: '',
+    setInputAssetAmount: EMPTY_FN
 });

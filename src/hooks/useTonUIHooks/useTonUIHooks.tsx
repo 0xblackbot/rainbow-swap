@@ -1,9 +1,18 @@
-import {useTonConnectUI, useTonWallet} from '@tonconnect/ui-react';
+import {
+    useTonAddress,
+    useTonConnectUI,
+    useTonWallet
+} from '@tonconnect/ui-react';
 
 export const useTonUIHooks = () => {
     const [tonConnectUI] = useTonConnectUI();
 
     const wallet = useTonWallet();
+    const walletAddress = useTonAddress();
+    const rawWalletAddress = useTonAddress(false);
+
+    const alteredWalletAddress =
+        walletAddress?.slice(0, 4) + '...' + walletAddress?.slice(-4);
 
     const sendTonTransaction = async (
         tonAddress: string,
@@ -34,6 +43,9 @@ export const useTonUIHooks = () => {
 
     return {
         wallet,
+        walletAddress,
+        rawWalletAddress,
+        alteredWalletAddress,
         sendTonTransaction,
         connectWallet,
         disconnectWallet

@@ -2,6 +2,7 @@ import {useContext} from 'react';
 
 import styles from './Body.module.css';
 import {InputOutputContext} from '../../context/input-output.provider';
+import {useAssetsHook} from '../../hooks/useAssetsHook.ts/useAssetsHook';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
@@ -11,8 +12,17 @@ import {getClassName} from '../../utils/style.utils';
 
 export const Body = () => {
     const {wallet, connectWallet} = useTonUIHooks();
-    const {setOutputModalOpen, setInputModalOpen, inputAsset, outputAsset} =
-        useContext(InputOutputContext);
+    const {getBestRoute} = useAssetsHook();
+    const {
+        setOutputModalOpen,
+        setInputModalOpen,
+        inputAsset,
+        outputAsset,
+        setInputAsset,
+        setOutputAsset,
+        inputAssetAmount,
+        setInputAssetAmount
+    } = useContext(InputOutputContext);
 
     const openOutputModal = () => {
         setOutputModalOpen(true);
@@ -20,6 +30,29 @@ export const Body = () => {
 
     const openInputModal = () => {
         setInputModalOpen(true);
+    };
+
+    const onSwapAssets = () => {
+        setInputAssetAmount('');
+
+        const temp = inputAsset;
+        setInputAsset(outputAsset);
+        setOutputAsset(temp);
+    };
+
+    const sendSwapRequest = () => {
+        if (inputAsset && outputAsset) {
+            const amount = BigInt(parseFloat(inputAssetAmount) * 1e9);
+            getBestRoute(inputAsset.address, outputAsset.address, amount);
+        }
+    };
+
+    const openNeededAssetModal = () => {
+        if (!inputAsset) {
+            openInputModal();
+        } else {
+            openOutputModal();
+        }
     };
 
     const onSubmit = (e: React.FormEvent) => {
@@ -32,9 +65,11 @@ export const Body = () => {
                 <CustomInput
                     text="You pay"
                     asset={inputAsset}
+                    value={inputAssetAmount}
                     onClick={openInputModal}
+                    onChange={setInputAssetAmount}
                 />
-                <InputOutputSelector />
+                <InputOutputSelector onClick={onSwapAssets} />
                 <CustomInput
                     text="You receive"
                     asset={outputAsset}
@@ -47,6 +82,7 @@ export const Body = () => {
                     <FormButton
                         text="Swap"
                         type="submit"
+                        onClick={sendSwapRequest}
                         className={getClassName(
                             styles.body_button,
                             styles.swap_button
@@ -54,9 +90,9 @@ export const Body = () => {
                     />
                 ) : (
                     <FormButton
-                        text="Select a asset"
+                        text="Select an asset"
                         type="button"
-                        onClick={openOutputModal}
+                        onClick={openNeededAssetModal}
                         className={getClassName(
                             styles.body_button,
                             styles.select_button

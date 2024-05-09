@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  height: 130px;
   flex-direction: column;
   justify-content: center;
   background-color: var(--accent-black-color);
