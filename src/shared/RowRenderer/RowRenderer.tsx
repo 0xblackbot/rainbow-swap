@@ -1,4 +1,4 @@
-import {AssetObject} from '../../interfaces/asset-object.interface';
+import {Asset} from '../../interfaces/asset.interface';
 import {SelectListItem} from '../SelectListItem/SelectListItem';
 
 export function rowRenderer(
@@ -11,8 +11,8 @@ export function rowRenderer(
         index: number;
         style: React.CSSProperties;
     },
-    selectInputAsset: (asset: AssetObject) => void,
-    assets: AssetObject[]
+    selectInputAsset: (asset: Asset) => void,
+    assets: Asset[]
 ) {
     return (
         <div key={key} style={style}>

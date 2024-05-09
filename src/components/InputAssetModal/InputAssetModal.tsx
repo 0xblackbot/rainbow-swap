@@ -5,7 +5,7 @@ import {List} from 'react-virtualized';
 import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
 import {InputOutputContext} from '../../context/input-output.provider';
 import {useModalWidthHook} from '../../hooks/useModalWidthHook/useModalWidthHook';
-import {AssetObject} from '../../interfaces/asset-object.interface';
+import {Asset} from '../../interfaces/asset.interface';
 import {rowRenderer} from '../../shared/RowRenderer/RowRenderer';
 import styles from '../OutputAssetModal/AssetModal.module.css';
 
@@ -23,7 +23,7 @@ export const InputAssetModal = () => {
         setInputModalOpen(false);
     };
 
-    const selectInputAsset = (asset: AssetObject) => {
+    const selectInputAsset = (asset: Asset) => {
         setInputAsset(asset);
         setInputAssetAmount('');
         closeModal();

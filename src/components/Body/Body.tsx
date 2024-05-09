@@ -1,8 +1,8 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 
 import styles from './Body.module.css';
 import {InputOutputContext} from '../../context/input-output.provider';
-import {useAssetsHook} from '../../hooks/useAssetsHook.ts/useAssetsHook';
+import {useSwapRoute} from '../../hooks/use-swap-route.hook';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
@@ -12,7 +12,7 @@ import {getClassName} from '../../utils/style.utils';
 
 export const Body = () => {
     const {wallet, connectWallet} = useTonUIHooks();
-    const {getBestRoute} = useAssetsHook();
+    const swapRoute = useSwapRoute();
     const {
         setOutputModalOpen,
         setInputModalOpen,
@@ -43,7 +43,7 @@ export const Body = () => {
     const sendSwapRequest = () => {
         if (inputAsset && outputAsset) {
             const amount = BigInt(parseFloat(inputAssetAmount) * 1e9);
-            getBestRoute(inputAsset.address, outputAsset.address, amount);
+            swapRoute.loadData(amount, inputAsset.address, outputAsset.address);
         }
     };
 
@@ -58,6 +58,15 @@ export const Body = () => {
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
     };
+
+    useEffect(
+        () => console.log('swapRoute.isLoading', swapRoute.isLoading),
+        [swapRoute.isLoading]
+    );
+    useEffect(
+        () => console.log('swapRoute.data', swapRoute.data),
+        [swapRoute.data]
+    );
 
     return (
         <form onSubmit={onSubmit}>

@@ -1,11 +1,11 @@
 import {FC} from 'react';
 
 import styles from './SelectListItem.module.css';
-import {AssetObject} from '../../interfaces/asset-object.interface';
+import {Asset} from '../../interfaces/asset.interface';
 
 interface Props {
-    asset: AssetObject;
-    onClick: (asset: AssetObject) => void;
+    asset: Asset;
+    onClick: (asset: Asset) => void;
 }
 
 export const SelectListItem: FC<Props> = ({asset, onClick}) => (

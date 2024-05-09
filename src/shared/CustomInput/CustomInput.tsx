@@ -2,13 +2,13 @@ import {FC} from 'react';
 
 import styles from './CustomInput.module.css';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
-import {AssetObject} from '../../interfaces/asset-object.interface';
+import {Asset} from '../../interfaces/asset.interface';
 import {CurrencySelector} from '../CurrencySelector/CurrencySelector';
 
 interface Props {
     text: string;
     onClick: () => void;
-    asset: AssetObject | undefined;
+    asset: Asset | undefined;
     value?: string;
     onChange?: (value: string) => void;
     isOutput?: boolean;

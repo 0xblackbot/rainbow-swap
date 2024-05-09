@@ -6,7 +6,7 @@ import styles from './AssetModal.module.css';
 import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
 import {InputOutputContext} from '../../context/input-output.provider';
 import {useModalWidthHook} from '../../hooks/useModalWidthHook/useModalWidthHook';
-import {AssetObject} from '../../interfaces/asset-object.interface';
+import {Asset} from '../../interfaces/asset.interface';
 import {rowRenderer} from '../../shared/RowRenderer/RowRenderer';
 
 export const OutputAssetModal = () => {
@@ -18,7 +18,7 @@ export const OutputAssetModal = () => {
         setOutputModalOpen(false);
     };
 
-    const selectOutputAsset = (asset: AssetObject) => {
+    const selectOutputAsset = (asset: Asset) => {
         setOutputAsset(asset);
         closeModal();
     };

@@ -1,6 +1,6 @@
 import {createContext} from 'react';
 
-import {AssetObject} from '../interfaces/asset-object.interface';
+import {Asset} from '../interfaces/asset.interface';
 import {EMPTY_FN} from '../utils/emptyfn';
 
 interface InputOutputValues {
@@ -8,16 +8,12 @@ interface InputOutputValues {
     setInputModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     modalOutputOpen: boolean;
     setOutputModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    outputAsset: AssetObject | undefined;
-    setOutputAsset: React.Dispatch<
-        React.SetStateAction<AssetObject | undefined>
-    >;
-    inputAsset: AssetObject | undefined;
-    setInputAsset: React.Dispatch<
-        React.SetStateAction<AssetObject | undefined>
-    >;
-    assets: AssetObject[];
-    setAssets: React.Dispatch<React.SetStateAction<AssetObject[]>>;
+    outputAsset: Asset | undefined;
+    setOutputAsset: React.Dispatch<React.SetStateAction<Asset | undefined>>;
+    inputAsset: Asset | undefined;
+    setInputAsset: React.Dispatch<React.SetStateAction<Asset | undefined>>;
+    assets: Asset[];
+    setAssets: React.Dispatch<React.SetStateAction<Asset[]>>;
     inputAssetAmount: string;
     setInputAssetAmount: React.Dispatch<React.SetStateAction<string>>;
 }

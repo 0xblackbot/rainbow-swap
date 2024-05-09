@@ -1,6 +1,6 @@
-import {AssetObject} from '../interfaces/asset-object.interface';
+import {Asset} from '../interfaces/asset.interface';
 
-export const offlineAssetList: AssetObject[] = [
+export const offlineAssetList: Asset[] = [
     {
         name: 'Toncoin',
         symbol: 'TON',

@@ -3,10 +3,10 @@ import {FC, useContext} from 'react';
 import styles from './CurrencySelector.module.css';
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {InputOutputContext} from '../../context/input-output.context';
-import {AssetObject} from '../../interfaces/asset-object.interface';
+import {Asset} from '../../interfaces/asset.interface';
 
 interface Props {
-    asset: AssetObject | undefined;
+    asset: Asset | undefined;
     isOutput?: boolean;
     onClick: () => void;
 }
