@@ -11,6 +11,7 @@ const tg = window.Telegram.WebApp;
 
 function App() {
     const {getAssets} = useAssetsHook();
+
     useEffect(() => {
         tg.ready();
         getAssets();

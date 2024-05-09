@@ -1,8 +1,23 @@
+import {useEffect} from 'react';
+
 import styles from './Header.module.css';
+import {useAssetsHook} from '../../hooks/useAssetsHook.ts/useAssetsHook';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
 
 export const Header = () => {
-    const {wallet, connectWallet, disconnectWallet} = useTonUIHooks();
+    const {
+        wallet,
+        walletAddress,
+        alteredWalletAddress,
+        connectWallet,
+        disconnectWallet
+    } = useTonUIHooks();
+
+    const {updateAssetsWithBalances} = useAssetsHook();
+
+    useEffect(() => {
+        updateAssetsWithBalances(walletAddress);
+    }, [wallet]);
 
     return (
         <div className={styles.header_div}>
@@ -23,7 +38,7 @@ export const Header = () => {
                     onClick={disconnectWallet}
                     className={styles.disconnect_button}
                 >
-                    Disconnect
+                    {alteredWalletAddress}
                 </button>
             ) : (
                 <button

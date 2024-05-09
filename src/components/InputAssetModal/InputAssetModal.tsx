@@ -10,8 +10,13 @@ import {rowRenderer} from '../../shared/RowRenderer/RowRenderer';
 import styles from '../OutputAssetModal/AssetModal.module.css';
 
 export const InputAssetModal = () => {
-    const {modalInputOpen, setInputModalOpen, setInputAsset, assets} =
-        useContext(InputOutputContext);
+    const {
+        modalInputOpen,
+        setInputModalOpen,
+        setInputAsset,
+        assets,
+        setInputAssetAmount
+    } = useContext(InputOutputContext);
     const {listWidth, modalSheetRef} = useModalWidthHook(modalInputOpen);
 
     const closeModal = () => {
@@ -20,6 +25,7 @@ export const InputAssetModal = () => {
 
     const selectInputAsset = (asset: AssetObject) => {
         setInputAsset(asset);
+        setInputAssetAmount('');
         closeModal();
     };
 

@@ -15,7 +15,7 @@ export const SelectListItem: FC<Props> = ({asset, onClick}) => (
             <div className={styles.select_list_item_info}>
                 <p className={styles.select_list_item_ccy}>{asset.name}</p>
                 <p className={styles.select_list_item_qty}>
-                    0.00 {asset.symbol}
+                    {asset.balance ? asset.balance : '0.00'} {asset.symbol}
                 </p>
             </div>
         </div>

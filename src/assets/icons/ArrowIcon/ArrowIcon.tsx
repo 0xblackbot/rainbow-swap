@@ -5,7 +5,7 @@ export const ArrowIcon = (): JSX.Element => (
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-3 h-3"
+        style={{width: '16px', height: '16px'}}
     >
         <path
             strokeLinecap="round"

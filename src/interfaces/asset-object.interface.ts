@@ -5,4 +5,5 @@ export interface AssetObject {
     description: string;
     image: string;
     decimals: string;
+    balance?: string;
 }
