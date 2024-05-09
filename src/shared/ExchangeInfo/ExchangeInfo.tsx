@@ -12,7 +12,7 @@ interface Props {
 export const ExchangeInfo: FC<Props> = ({inputAsset, outputAsset}) => (
     <div className={styles.exchange_info_div}>
         <p>
-            1 {inputAsset.name} = 2 {outputAsset.name} ($2.50)
+            1 {inputAsset.symbol} = 2 {outputAsset.symbol} ($2.50)
         </p>
         <div className={styles.gas_info_div}>
             <GasIcon />

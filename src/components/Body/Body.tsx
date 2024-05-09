@@ -47,6 +47,14 @@ export const Body = () => {
         }
     };
 
+    const openNeededAssetModal = () => {
+        if (!inputAsset) {
+            openInputModal();
+        } else {
+            openOutputModal();
+        }
+    };
+
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
     };
@@ -82,9 +90,9 @@ export const Body = () => {
                     />
                 ) : (
                     <FormButton
-                        text="Select a asset"
+                        text="Select an asset"
                         type="button"
-                        onClick={openOutputModal}
+                        onClick={openNeededAssetModal}
                         className={getClassName(
                             styles.body_button,
                             styles.select_button
