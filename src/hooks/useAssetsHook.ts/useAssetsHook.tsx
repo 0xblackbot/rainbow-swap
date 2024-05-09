@@ -24,27 +24,6 @@ export const useAssetsHook = () => {
         }
     };
 
-    const getBestRoute = async (
-        inputAssetAddress: string,
-        outputAssetAddress: string,
-        inputAssetAmount: bigint
-    ) => {
-        const response = await axios.get(
-            'http://localhost:3000/api/best-route',
-            {
-                params: {
-                    inputAssetAddress,
-                    outputAssetAddress,
-                    inputAssetAmount
-                }
-            }
-        );
-
-        const data = response.data;
-
-        return data;
-    };
-
     const updateAssetsWithBalances = async (walletAddress: string) => {
         try {
             const balancesResponse = await axios.get<BalancesArray>(
@@ -86,7 +65,6 @@ export const useAssetsHook = () => {
 
     return {
         getAssets,
-        getBestRoute,
         updateAssetsWithBalances
     };
 };
