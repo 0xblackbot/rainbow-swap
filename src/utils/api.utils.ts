@@ -4,7 +4,7 @@ import {parseCalculatedSwapRoute} from './calculated-swap-route.utils';
 import {CalculatedSwapRoute} from '../types/calculated-swap-route.type';
 
 const API = axios.create({
-    baseURL: 'http://54.193.135.34:3000/api'
+    baseURL: 'http://93.188.34.207/api'
 });
 
 export const getBestSwapRoute = async (
