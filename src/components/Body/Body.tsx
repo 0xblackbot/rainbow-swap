@@ -7,6 +7,7 @@ import {useAssetsContext} from '../../context/assets/assets.hook';
 import {useModalContext} from '../../context/modal/modal.hook';
 import {useSwapRoute} from '../../hooks/use-swap-route.hook';
 import {useTonUI} from '../../hooks/use-ton-ui.hook';
+import {RouteStepWithCalculation} from '../../interfaces/route-step-with-calculation.interface';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
 import {FormButton} from '../../shared/FormButton/FormButton';
@@ -16,6 +17,9 @@ import {getClassName} from '../../utils/style.utils';
 export const Body = () => {
     const [routeInfoOpen, setRouteInfoOpen] = useState(false);
     const [showRoute, setShowRoute] = useState(false);
+    const [routeSteps, setRouteSteps] = useState<RouteStepWithCalculation[]>(
+        []
+    );
     const {wallet, connectWallet} = useTonUI();
     const swapRoute = useSwapRoute();
     const {setOutputModalOpen, setInputModalOpen} = useModalContext();
@@ -76,7 +80,7 @@ export const Body = () => {
         if (swapRoute.data) {
             swapRoute.data.forEach(route => {
                 const routeStep = route.getRoute();
-                console.log('route step', routeStep);
+                setRouteSteps(routeStep);
             });
         }
     }, [swapRoute.data]);
@@ -165,7 +169,18 @@ export const Body = () => {
                             )}
                         </div>
                     </div>
-                    {showRoute ? <div></div> : null}
+                    {showRoute ? (
+                        <div>
+                            {routeSteps.map((routeSteps, index) => {
+                                return (
+                                    <div key={index}>
+                                        {routeSteps.inputAssetAddress} {'>'}
+                                        {routeSteps.outputAssetAddress}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    ) : null}
                 </div>
             ) : null}
         </>
