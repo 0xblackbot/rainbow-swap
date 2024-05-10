@@ -4,7 +4,7 @@
   "parserOptions": {
     "project": "./tsconfig.eslint.json"
   },
-  "ignorePatterns": [],
+  "ignorePatterns": ["config-overrides.js"],
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended",

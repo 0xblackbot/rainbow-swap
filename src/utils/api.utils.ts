@@ -1,11 +1,6 @@
-import axios from 'axios';
-
 import {parseCalculatedSwapRoute} from './calculated-swap-route.utils';
+import {API} from '../globals';
 import {CalculatedSwapRoute} from '../types/calculated-swap-route.type';
-
-const API = axios.create({
-    baseURL: 'http://93.188.34.207/api'
-});
 
 export const getBestSwapRoute = async (
     inputAssetAmount: bigint,

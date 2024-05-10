@@ -1,8 +1,10 @@
-import {useContext, useEffect} from 'react';
+import {Address} from '@ton/core';
+import {useTonConnectUI} from '@tonconnect/ui-react';
+import {useContext} from 'react';
 
 import styles from './Body.module.css';
 import {InputOutputContext} from '../../context/input-output.provider';
-import {useSwapRoute} from '../../hooks/use-swap-route.hook';
+import {useSwapRouteBatch} from '../../hooks/use-swap-route-batch.hook';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
@@ -11,8 +13,9 @@ import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputS
 import {getClassName} from '../../utils/style.utils';
 
 export const Body = () => {
+    const [tonConnectUI] = useTonConnectUI();
     const {wallet, connectWallet} = useTonUIHooks();
-    const swapRoute = useSwapRoute();
+    const swapRouteBatch = useSwapRouteBatch();
     const {
         setOutputModalOpen,
         setInputModalOpen,
@@ -40,11 +43,31 @@ export const Body = () => {
         setOutputAsset(temp);
     };
 
-    const sendSwapRequest = () => {
+    const handleLoadButtonClick = () => {
         if (inputAsset && outputAsset) {
             const amount = BigInt(parseFloat(inputAssetAmount) * 1e9);
-            swapRoute.loadData(amount, inputAsset.address, outputAsset.address);
+            swapRouteBatch.loadData(
+                amount,
+                inputAsset.address,
+                outputAsset.address
+            );
         }
+    };
+
+    const handleSwapButtonClick = async () => {
+        const senderAddress = tonConnectUI.wallet?.account.address ?? '';
+
+        const messages = await Promise.all(
+            swapRouteBatch.data.map(swapRoute =>
+                swapRoute.getMessage(Address.parse(senderAddress))
+            )
+        );
+
+        tonConnectUI.sendTransaction({
+            validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
+            from: senderAddress,
+            messages
+        });
     };
 
     const openNeededAssetModal = () => {
@@ -58,15 +81,6 @@ export const Body = () => {
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
     };
-
-    useEffect(
-        () => console.log('swapRoute.isLoading', swapRoute.isLoading),
-        [swapRoute.isLoading]
-    );
-    useEffect(
-        () => console.log('swapRoute.data', swapRoute.data),
-        [swapRoute.data]
-    );
 
     return (
         <form onSubmit={onSubmit}>
@@ -88,15 +102,26 @@ export const Body = () => {
             </div>
             {wallet ? (
                 outputAsset && inputAsset ? (
-                    <FormButton
-                        text="Swap"
-                        type="submit"
-                        onClick={sendSwapRequest}
-                        className={getClassName(
-                            styles.body_button,
-                            styles.swap_button
-                        )}
-                    />
+                    <>
+                        <FormButton
+                            text="Load"
+                            type="submit"
+                            onClick={handleLoadButtonClick}
+                            className={getClassName(
+                                styles.body_button,
+                                styles.swap_button
+                            )}
+                        />
+                        <FormButton
+                            text="Swap"
+                            type="submit"
+                            onClick={handleSwapButtonClick}
+                            className={getClassName(
+                                styles.body_button,
+                                styles.swap_button
+                            )}
+                        />
+                    </>
                 ) : (
                     <FormButton
                         text="Select an asset"

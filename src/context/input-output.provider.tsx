@@ -14,7 +14,7 @@ export const ContextProvider: FC<PropsWithChildren> = ({children}) => {
     const [inputAsset, setInputAsset] = useState<Asset | undefined>(
         offlineAssetList[0]
     );
-    const [assets, setAssets] = useState<Asset[]>([]);
+    const [assets, setAssets] = useState<Asset[]>(offlineAssetList);
 
     return (
         <InputOutputContext.Provider

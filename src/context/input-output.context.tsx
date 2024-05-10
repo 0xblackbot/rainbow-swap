@@ -1,5 +1,6 @@
 import {createContext} from 'react';
 
+import {offlineAssetList} from '../assets/offline-asset-list';
 import {Asset} from '../interfaces/asset.interface';
 import {EMPTY_FN} from '../utils/emptyfn';
 
@@ -27,7 +28,7 @@ export const InputOutputContext = createContext<InputOutputValues>({
     setOutputAsset: EMPTY_FN,
     inputAsset: undefined,
     setInputAsset: EMPTY_FN,
-    assets: [],
+    assets: offlineAssetList,
     setAssets: EMPTY_FN,
     inputAssetAmount: '',
     setInputAssetAmount: EMPTY_FN

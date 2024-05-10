@@ -3,7 +3,7 @@ import {useCallback, useMemo, useState} from 'react';
 import {CalculatedSwapRoute} from '../types/calculated-swap-route.type';
 import {getBestSwapRoute} from '../utils/api.utils';
 
-export const useSwapRoute = () => {
+export const useSwapRouteBatch = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState<CalculatedSwapRoute[]>([]);
 
