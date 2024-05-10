@@ -1,4 +1,4 @@
-import React, {useState, FC, PropsWithChildren} from 'react';
+import {useState, FC, PropsWithChildren} from 'react';
 
 import {InputOutputContext} from './input-output.context';
 import {offlineAssetList} from '../assets/offline-asset-list';
@@ -14,7 +14,7 @@ export const ContextProvider: FC<PropsWithChildren> = ({children}) => {
     const [inputAsset, setInputAsset] = useState<Asset | undefined>(
         offlineAssetList[0]
     );
-    const [assets, setAssets] = useState<Asset[]>([]);
+    const [assets, setAssets] = useState<Asset[]>(offlineAssetList);
 
     return (
         <InputOutputContext.Provider

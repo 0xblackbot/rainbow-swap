@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {useContext} from 'react';
 
-import {offlineAssetList} from '../../assets/offline-asset-list';
 import {InputOutputContext} from '../../context/input-output.context';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
 
@@ -20,7 +19,6 @@ export const useAssetsHook = () => {
                 'Failed to fetch assets. Using fallback assets.',
                 error
             );
-            setAssets(offlineAssetList);
         }
     };
 
