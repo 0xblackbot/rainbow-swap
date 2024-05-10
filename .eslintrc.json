@@ -1,38 +1,31 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.eslint.json"
+  "env": {
+    "browser": true,
+    "es2020": true
   },
-  "ignorePatterns": ["config-overrides.js"],
   "extends": [
     "eslint:recommended",
-    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended",
     "plugin:import/typescript"
   ],
-  "plugins": [
-    "prettier",
-    "@typescript-eslint",
-    "import"
+  "ignorePatterns": [
+    "dist",
+    ".eslintrc.cjs"
   ],
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
-  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react-refresh"
+  ],
   "rules": {
-    "newline-before-return": [
-      "error"
+    "react-refresh/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
     ],
-    "comma-dangle": [
-      "error",
-      "never"
-    ],
-    "no-void": "off",
-    "no-shadow": "off",
     "import/order": [
       "error",
       {
@@ -54,11 +47,6 @@
         },
         "newlines-between": "always"
       }
-    ],
-    "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-unnecessary-type-constraint": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    ]
   }
 }

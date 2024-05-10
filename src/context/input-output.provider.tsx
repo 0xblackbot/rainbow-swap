@@ -1,4 +1,4 @@
-import React, {useState, FC, PropsWithChildren} from 'react';
+import {useState, FC, PropsWithChildren} from 'react';
 
 import {InputOutputContext} from './input-output.context';
 import {offlineAssetList} from '../assets/offline-asset-list';

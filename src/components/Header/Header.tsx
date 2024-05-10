@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 
+import logoText from './assets/logo-text.png';
 import styles from './Header.module.css';
 import {useAssetsHook} from '../../hooks/useAssetsHook.ts/useAssetsHook';
 import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
@@ -19,7 +20,7 @@ export const Header = () => {
 
     useEffect(() => {
         updateAssetsWithBalances(walletAddress);
-    }, [wallet]);
+    }, [updateAssetsWithBalances, walletAddress]);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(prev => !prev);
@@ -29,12 +30,12 @@ export const Header = () => {
         <div className={styles.header_div}>
             <div className={styles.logo_div}>
                 <img
-                    src="triangle-logo.png"
+                    src="icons/icon-128x128.png"
                     alt="1"
                     className={styles.header_triangle_logo}
                 ></img>
                 <img
-                    src="logo.png"
+                    src={logoText}
                     alt="1"
                     className={styles.header_logo}
                 ></img>

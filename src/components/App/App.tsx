@@ -1,5 +1,5 @@
 import {TonConnectUIProvider} from '@tonconnect/ui-react';
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 
 import './App.css';
 import {ContextProvider} from '../../context/input-output.provider';
@@ -17,7 +17,7 @@ function App() {
     useEffect(() => {
         tg.ready();
         getAssets();
-    }, []);
+    }, [getAssets]);
 
     return (
         <TonConnectUIProvider manifestUrl="https://0xblackbot.github.io/rainbow-swap/tonconnect-manifest.json">

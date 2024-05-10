@@ -1,13 +1,13 @@
 :root {
-    --background-color: #131313;
-    --accent-black-color:#1B1B1B;
-    --accent-light-black-color: #222222;
-    --accent-light-grey-color: #F9F9FB;
-    --accent-dark-grey-color: #97979F;
-    --accent-neon-pink-color: #FC72F9;
-    --accent-dark-pink-color: #311C2D;
+  --background-color: #131313;
+  --accent-black-color:#1B1B1B;
+  --accent-light-black-color: #222222;
+  --accent-light-grey-color: #F9F9FB;
+  --accent-dark-grey-color: #97979F;
+  --accent-neon-pink-color: #FC72F9;
+  --accent-dark-pink-color: #311C2D;
 
-    --default-size: 8px;
+  --default-size: 8px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
