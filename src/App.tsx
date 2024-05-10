@@ -5,12 +5,12 @@ import {Body} from './components/Body/Body';
 import {Header} from './components/Header/Header';
 import {InputAssetModal} from './components/InputAssetModal/InputAssetModal';
 import {OutputAssetModal} from './components/OutputAssetModal/OutputAssetModal';
-import {useAssetsHook} from './hooks/useAssetsHook.ts/useAssetsHook';
+import {useAssets} from './hooks/use-assets.hook';
 
 const tg = window.Telegram.WebApp;
 
 function App() {
-    const {getAssets} = useAssetsHook();
+    const {getAssets} = useAssets();
 
     useEffect(() => {
         tg.ready();

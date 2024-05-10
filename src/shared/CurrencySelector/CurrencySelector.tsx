@@ -1,8 +1,8 @@
-import {FC, useContext} from 'react';
+import {FC} from 'react';
 
 import styles from './CurrencySelector.module.css';
-import ChevronDownIcon from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
-import {InputOutputContext} from '../../context/input-output.context';
+import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {useAssetsContext} from '../../context/assets/assets.hook';
 import {Asset} from '../../interfaces/asset.interface';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const CurrencySelector: FC<Props> = ({asset, isOutput, onClick}) => {
-    const {inputAsset, outputAsset} = useContext(InputOutputContext);
+    const {inputAsset, outputAsset} = useAssetsContext();
     const assetSelected = isOutput ? outputAsset : inputAsset;
 
     return (

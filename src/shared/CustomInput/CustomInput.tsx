@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 import styles from './CustomInput.module.css';
-import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
+import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {Asset} from '../../interfaces/asset.interface';
 import {CurrencySelector} from '../CurrencySelector/CurrencySelector';
 
@@ -22,7 +22,7 @@ export const CustomInput: FC<Props> = ({
     onClick,
     onChange
 }) => {
-    const {wallet} = useTonUIHooks();
+    const {wallet} = useTonUI();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
@@ -30,8 +30,11 @@ export const CustomInput: FC<Props> = ({
         const regex = new RegExp(`^\\d*(\\.\\d{0,9})?$`);
         if (regex.test(value)) {
             const [integer, decimal] = value.split('.');
-            if (decimal?.length > 9) {
-                e.target.value = integer + '.' + decimal.slice(0, 9);
+            if (asset && decimal?.length > parseFloat(asset?.decimals)) {
+                e.target.value =
+                    integer +
+                    '.' +
+                    decimal.slice(0, parseFloat(asset?.decimals));
                 onChange?.(e.target.value);
             } else {
                 onChange?.(value);
@@ -50,12 +53,13 @@ export const CustomInput: FC<Props> = ({
             <p className={styles.container_label}>{text}</p>
             <div className={styles.input_container}>
                 <input
-                    type="number"
+                    type="tel"
                     className={styles.input_field}
                     onChange={handleInputChange}
                     value={value}
                     placeholder="0"
                     disabled={isOutput}
+                    required={!isOutput}
                 />
                 <CurrencySelector
                     asset={asset}

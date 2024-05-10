@@ -1,12 +1,10 @@
 import React, {useState, FC, PropsWithChildren} from 'react';
 
-import {InputOutputContext} from './input-output.context';
-import {offlineAssetList} from '../assets/offline-asset-list';
-import {Asset} from '../interfaces/asset.interface';
+import {AssetsContext} from './assets.context';
+import {offlineAssetList} from '../../assets/offline-asset-list';
+import {Asset} from '../../interfaces/asset.interface';
 
-export const ContextProvider: FC<PropsWithChildren> = ({children}) => {
-    const [modalInputOpen, setInputModalOpen] = useState(false);
-    const [modalOutputOpen, setOutputModalOpen] = useState(false);
+export const AssetsProvider: FC<PropsWithChildren> = ({children}) => {
     const [inputAssetAmount, setInputAssetAmount] = useState('');
     const [outputAsset, setOutputAsset] = useState<Asset | undefined>(
         undefined
@@ -17,12 +15,8 @@ export const ContextProvider: FC<PropsWithChildren> = ({children}) => {
     const [assets, setAssets] = useState<Asset[]>([]);
 
     return (
-        <InputOutputContext.Provider
+        <AssetsContext.Provider
             value={{
-                modalInputOpen,
-                setInputModalOpen,
-                modalOutputOpen,
-                setOutputModalOpen,
                 outputAsset,
                 setOutputAsset,
                 inputAsset,
@@ -34,8 +28,6 @@ export const ContextProvider: FC<PropsWithChildren> = ({children}) => {
             }}
         >
             {children}
-        </InputOutputContext.Provider>
+        </AssetsContext.Provider>
     );
 };
-
-export {InputOutputContext};
