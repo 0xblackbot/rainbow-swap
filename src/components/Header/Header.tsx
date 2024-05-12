@@ -1,23 +1,23 @@
-import {useState} from 'react';
+import {useTonAddress, useTonConnectUI} from '@tonconnect/ui-react';
+import {useMemo, useState} from 'react';
 
 import logoText from './assets/logo-text.png';
 import styles from './Header.module.css';
-import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {getClassName} from '../../utils/style.utils';
 
 export const Header = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const {
-        wallet,
-        walletAddress,
-        alteredWalletAddress,
-        connectWallet,
-        disconnectWallet
-    } = useTonUI();
+    const walletAddress = useTonAddress();
+    const [tonConnectUI] = useTonConnectUI();
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(prev => !prev);
-    };
+    const shortWalletAddress = useMemo(
+        () => walletAddress.slice(0, 4) + '...' + walletAddress.slice(-4),
+        [walletAddress]
+    );
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const handleDropdownClick = () => setIsDropdownOpen(value => !value);
+    const handleConnectButtonClick = () => tonConnectUI.modal.open();
+    const handleDisconnectButtonClick = () => tonConnectUI.disconnect();
 
     return (
         <div className={styles.header_div}>
@@ -33,13 +33,20 @@ export const Header = () => {
                     className={styles.header_logo}
                 ></img>
             </div>
-            {wallet ? (
+            {walletAddress === '' ? (
+                <button
+                    onClick={handleConnectButtonClick}
+                    className={styles.connect_button}
+                >
+                    Connect
+                </button>
+            ) : (
                 <div className={styles.dropdown}>
                     <button
-                        onClick={toggleDropdown}
+                        onClick={handleDropdownClick}
                         className={styles.disconnect_button}
                     >
-                        {alteredWalletAddress}
+                        {shortWalletAddress}
                     </button>
                     {isDropdownOpen && (
                         <div className={styles.dropdown_content}>
@@ -62,20 +69,13 @@ export const Header = () => {
                                     styles.dropdown_disconnect_button,
                                     styles.dropdown_button
                                 )}
-                                onClick={disconnectWallet}
+                                onClick={handleDisconnectButtonClick}
                             >
                                 Disconnect
                             </button>
                         </div>
                     )}
                 </div>
-            ) : (
-                <button
-                    onClick={connectWallet}
-                    className={styles.connect_button}
-                >
-                    Connect
-                </button>
             )}
         </div>
     );

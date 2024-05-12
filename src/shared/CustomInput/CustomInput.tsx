@@ -1,7 +1,7 @@
+import {useTonWallet} from '@tonconnect/ui-react';
 import {FC} from 'react';
 
 import styles from './CustomInput.module.css';
-import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {Asset} from '../../interfaces/asset.interface';
 import {CurrencySelector} from '../CurrencySelector/CurrencySelector';
 
@@ -22,7 +22,7 @@ export const CustomInput: FC<Props> = ({
     onClick,
     onChange
 }) => {
-    const {wallet} = useTonUI();
+    const wallet = useTonWallet();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;

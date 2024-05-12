@@ -4,7 +4,6 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import styles from './Body.module.css';
 import {useAssetsContext} from '../../context/assets/assets.hook';
 import {useModalContext} from '../../context/modal/modal.hook';
-import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {FormButton} from '../../shared/FormButton/FormButton';
 import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputSelector';
@@ -20,7 +19,7 @@ export const Body = () => {
     const dispatch = useDispatch();
 
     const [tonConnectUI] = useTonConnectUI();
-    const {wallet, connectWallet} = useTonUI();
+
     const {setOutputModalOpen, setInputModalOpen} = useModalContext();
     const {
         inputAsset,
@@ -87,6 +86,8 @@ export const Body = () => {
         }
     };
 
+    const handleConnectWalletButtonClick = () => tonConnectUI.modal.open();
+
     return (
         <>
             <div className={styles.body_div}>
@@ -105,7 +106,7 @@ export const Body = () => {
                     onClick={openOutputModal}
                 />
             </div>
-            {wallet ? (
+            {tonConnectUI.wallet ? (
                 outputAsset && inputAsset ? (
                     <>
                         <FormButton
@@ -142,7 +143,7 @@ export const Body = () => {
                 <FormButton
                     text="Connect Wallet"
                     type="button"
-                    onClick={connectWallet}
+                    onClick={handleConnectWalletButtonClick}
                     className={getClassName(
                         styles.body_button,
                         styles.connect_button
