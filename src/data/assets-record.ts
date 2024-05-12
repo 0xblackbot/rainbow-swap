@@ -1,17 +1,18 @@
+import {TON, USDT} from '../globals.ts';
 import {AssetsRecord} from '../types/assets-record.type';
 
 export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
-    ['ton']: {
+    [TON]: {
         name: 'Toncoin',
         symbol: 'TON',
-        address: 'ton',
+        address: TON,
         image: 'https://assets.dedust.io/images/ton.webp',
         decimals: 9
     },
-    ['EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs']: {
+    [USDT]: {
         name: 'Tether USD',
         symbol: 'USD₮',
-        address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
+        address: USDT,
         image: 'https://cache.tonapi.io/imgproxy/T3PB4s7oprNVaJkwqbGg54nexKE0zzKhcrPv8jcWYzU/rs:fill:200:200:1/g:no/aHR0cHM6Ly90ZXRoZXIudG8vaW1hZ2VzL2xvZ29DaXJjbGUucG5n.webp',
         decimals: 6
     },

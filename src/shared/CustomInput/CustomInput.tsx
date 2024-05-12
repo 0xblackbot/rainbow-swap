@@ -1,75 +1,70 @@
-import {useTonWallet} from '@tonconnect/ui-react';
-import {FC} from 'react';
+import {ChangeEvent, FC} from 'react';
 
 import styles from './CustomInput.module.css';
 import {Asset} from '../../interfaces/asset.interface';
-import {CurrencySelector} from '../CurrencySelector/CurrencySelector';
+import {EMPTY_FN} from '../../utils/emptyfn.ts';
+import {AssetSelector} from '../asset-selector/asset-selector.tsx';
 
 interface Props {
-    text: string;
-    onClick: () => void;
-    asset: Asset | undefined;
-    value?: string;
-    onChange?: (value: string) => void;
-    isOutput?: boolean;
+    label: string;
+    isInputEnabled: boolean;
+    inputValue: string;
+    assetValue: Asset;
+    onInputValueChange?: (newInputValue: string) => void;
+    onAssetValueChange: (newAssetValue: Asset) => void;
 }
 
 export const CustomInput: FC<Props> = ({
-    text,
-    asset,
-    isOutput,
-    value,
-    onClick,
-    onChange
+    label,
+    isInputEnabled,
+    inputValue,
+    assetValue,
+    onInputValueChange = EMPTY_FN,
+    onAssetValueChange
 }) => {
-    const wallet = useTonWallet();
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
         value = value.replace(/,/g, '.');
         const regex = new RegExp(`^\\d*(\\.\\d{0,9})?$`);
         if (regex.test(value)) {
             const [integer, decimal] = value.split('.');
-            if (asset && decimal?.length > asset.decimals) {
+            if (decimal?.length > assetValue.decimals) {
                 e.target.value =
-                    integer + '.' + decimal.slice(0, asset.decimals);
-                onChange?.(e.target.value);
+                    integer + '.' + decimal.slice(0, assetValue.decimals);
+                onInputValueChange(e.target.value);
             } else {
-                onChange?.(value);
+                onInputValueChange(value);
             }
         }
     };
 
     const setMaxAssetAmount = () => {
-        if (wallet) {
-            onChange?.(asset?.balance?.toString() || '0');
-        }
+        onInputValueChange(assetValue.balance?.toString() || '0');
     };
 
     return (
         <div className={styles.container}>
-            <p className={styles.container_label}>{text}</p>
+            <p className={styles.container_label}>{label}</p>
             <div className={styles.input_container}>
                 <input
                     type="tel"
                     className={styles.input_field}
                     onChange={handleInputChange}
-                    value={value}
+                    value={inputValue}
                     placeholder="0"
-                    disabled={isOutput}
-                    required={!isOutput}
+                    disabled={!isInputEnabled}
+                    required={isInputEnabled}
                 />
-                <CurrencySelector
-                    asset={asset}
-                    isOutput={isOutput}
-                    onClick={onClick}
+                <AssetSelector
+                    value={assetValue}
+                    onChange={onAssetValueChange}
                 />
             </div>
-            {wallet && !isOutput ? (
+            {isInputEnabled ? (
                 <div className={styles.input_info}>
                     <p>$0.00</p>
                     <div className={styles.input_info_balance}>
-                        <p>Balance: {asset?.balance ? asset.balance : '0'}</p>
+                        <p>Balance: {assetValue?.balance ?? '0'}</p>
                         <button
                             className={styles.input_info_button}
                             onClick={setMaxAssetAmount}

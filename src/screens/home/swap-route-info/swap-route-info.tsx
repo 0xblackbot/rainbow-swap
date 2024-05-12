@@ -1,18 +1,16 @@
 import {FC, useMemo, useState} from 'react';
 
-import {ExchangeInfo} from './ExchangeInfo/ExchangeInfo';
-import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
-import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon';
-import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
-import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type.ts';
-import {mapSwapRouteToRoute} from '../../swap-routes/shared/calculated-swap-route.utils.ts';
-import styles from '../Body/Body.module.css';
+import {ExchangeInfo} from './exchange-info/exchange-info.tsx';
+import styles from './swap-route-info.module.css';
+import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon.tsx';
+import {ChevronUpIcon} from '../../../assets/icons/ChevronUpIcon/ChevronUpIcon.tsx';
+import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
+import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
+import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 
-interface Props {
-    swapRoutes: CalculatedSwapRoute[];
-}
+export const SwapRouteInfo: FC = () => {
+    const swapRoutes = useSwapRoutesSelector();
 
-export const SwapRouteInfo: FC<Props> = ({swapRoutes}) => {
     const [showRoutes, setShowRoutes] = useState(false);
     const routes = useMemo(
         () => swapRoutes.map(mapSwapRouteToRoute),

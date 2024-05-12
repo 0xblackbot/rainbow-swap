@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
-import styles from './ExchangeInfo.module.css';
-import {GasIcon} from '../../../assets/icons/GasIcon/GasIcon';
+import styles from './exchange-info.module.css';
+import {GasIcon} from '../../../../assets/icons/GasIcon/GasIcon';
 
 interface Props {
     inputAssetSymbol: string;
