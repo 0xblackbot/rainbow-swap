@@ -2,8 +2,8 @@ import {useEffect, useState} from 'react';
 
 import logoText from './assets/logo-text.png';
 import styles from './Header.module.css';
-import {useAssetsHook} from '../../hooks/useAssetsHook.ts/useAssetsHook';
-import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
+import {useAssets} from '../../hooks/use-assets.hook';
+import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {getClassName} from '../../utils/style.utils';
 
 export const Header = () => {
@@ -14,9 +14,9 @@ export const Header = () => {
         alteredWalletAddress,
         connectWallet,
         disconnectWallet
-    } = useTonUIHooks();
+    } = useTonUI();
 
-    const {updateAssetsWithBalances} = useAssetsHook();
+    const {updateAssetsWithBalances} = useAssets();
 
     useEffect(() => {
         updateAssetsWithBalances(walletAddress);

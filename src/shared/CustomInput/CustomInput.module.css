@@ -27,7 +27,7 @@
   background-color: transparent;
   color: var(--accent-dark-grey-color);
   font-size: 32px;
-  width: 192px;
+  width: 60%;
   outline: none;
 }
 
@@ -54,4 +54,46 @@
 }
 .input_field:not(:placeholder-shown) {
   color: white;
+}
+
+@media (min-width: 300px) {
+  .input_field{
+      width: 50%;
+  }
+}
+
+@media (min-width: 400px) {
+  .input_field{
+      width: 60%;
+  }
+}
+
+@media (min-width: 500px) {
+  .input_field{
+      width: 70%;
+  }
+}
+
+@media (min-width: 768px) {
+  .input_field{
+      width: 65%;
+  }
+}
+
+@media (min-width: 900px) {
+  .input_field{
+      width: 60%;
+  }
+}
+
+@media (min-width: 1100px) {
+  .input_field{
+      width: 65%;
+  }
+}
+
+@media (min-width: 1500px) {
+  .input_field{
+      width: 70%;
+  }
 }

@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 
-export const useModalWidthHook = (modalWindowOpen: boolean) => {
+export const useModalWidth = (modalWindowOpen: boolean) => {
     const [listWidth, setListWidth] = useState(0);
     const modalSheetRef = useRef<HTMLDivElement>(null);
 
@@ -11,7 +11,7 @@ export const useModalWidthHook = (modalWindowOpen: boolean) => {
             }
         };
 
-        handleResize(); // Set initial width
+        handleResize();
 
         window.addEventListener('resize', handleResize);
 

@@ -1,23 +1,18 @@
-import {useContext} from 'react';
 import Sheet from 'react-modal-sheet';
 import {List} from 'react-virtualized';
 
 import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon';
-import {InputOutputContext} from '../../context/input-output.provider';
-import {useModalWidthHook} from '../../hooks/useModalWidthHook/useModalWidthHook';
+import {useAssetsContext} from '../../context/assets/assets.hook';
+import {useModalContext} from '../../context/modal/modal.hook';
+import {useModalWidth} from '../../hooks/use-modal-width.hook';
 import {Asset} from '../../interfaces/asset.interface';
 import {rowRenderer} from '../../shared/RowRenderer/RowRenderer';
 import styles from '../OutputAssetModal/AssetModal.module.css';
 
 export const InputAssetModal = () => {
-    const {
-        modalInputOpen,
-        setInputModalOpen,
-        setInputAsset,
-        assets,
-        setInputAssetAmount
-    } = useContext(InputOutputContext);
-    const {listWidth, modalSheetRef} = useModalWidthHook(modalInputOpen);
+    const {modalInputOpen, setInputModalOpen} = useModalContext();
+    const {setInputAsset, assets, setInputAssetAmount} = useAssetsContext();
+    const {listWidth, modalSheetRef} = useModalWidth(modalInputOpen);
 
     const closeModal = () => {
         setInputModalOpen(false);

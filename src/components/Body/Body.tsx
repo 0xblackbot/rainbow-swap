@@ -1,11 +1,13 @@
-import {Address} from '@ton/core';
-import {useTonConnectUI} from '@tonconnect/ui-react';
-import {useContext} from 'react';
+import {useEffect, useState} from 'react';
 
 import styles from './Body.module.css';
-import {InputOutputContext} from '../../context/input-output.provider';
-import {useSwapRouteBatch} from '../../hooks/use-swap-route-batch.hook';
-import {useTonUIHooks} from '../../hooks/useTonUIHooks/useTonUIHooks';
+import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon';
+import {useAssetsContext} from '../../context/assets/assets.hook';
+import {useModalContext} from '../../context/modal/modal.hook';
+import {useSwapRoute} from '../../hooks/use-swap-route.hook';
+import {useTonUI} from '../../hooks/use-ton-ui.hook';
+import {RouteStepWithCalculation} from '../../interfaces/route-step-with-calculation.interface';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
 import {FormButton} from '../../shared/FormButton/FormButton';
@@ -13,22 +15,29 @@ import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputS
 import {getClassName} from '../../utils/style.utils';
 
 export const Body = () => {
-    const [tonConnectUI] = useTonConnectUI();
-    const {wallet, connectWallet} = useTonUIHooks();
-    const swapRouteBatch = useSwapRouteBatch();
+    const [routeInfoOpen, setRouteInfoOpen] = useState(false);
+    const [showRoute, setShowRoute] = useState(false);
+    const [routeSteps, setRouteSteps] = useState<RouteStepWithCalculation[]>(
+        []
+    );
+    const {wallet, connectWallet} = useTonUI();
+    const swapRoute = useSwapRoute();
+    const {setOutputModalOpen, setInputModalOpen} = useModalContext();
     const {
-        setOutputModalOpen,
-        setInputModalOpen,
         inputAsset,
         outputAsset,
+        inputAssetAmount,
         setInputAsset,
         setOutputAsset,
-        inputAssetAmount,
         setInputAssetAmount
-    } = useContext(InputOutputContext);
+    } = useAssetsContext();
 
     const openOutputModal = () => {
         setOutputModalOpen(true);
+    };
+
+    const openShowRoute = () => {
+        setShowRoute(prev => !prev);
     };
 
     const openInputModal = () => {
@@ -37,12 +46,21 @@ export const Body = () => {
 
     const onSwapAssets = () => {
         setInputAssetAmount('');
+        setRouteInfoOpen(false);
 
         const temp = inputAsset;
         setInputAsset(outputAsset);
         setOutputAsset(temp);
     };
 
+    const sendSwapRequest = () => {
+        setRouteInfoOpen(true);
+        if (inputAsset && outputAsset && inputAssetAmount !== '') {
+            const amount = BigInt(
+                parseFloat(inputAssetAmount) *
+                    10 ** parseFloat(inputAsset.decimals)
+            );
+            swapRoute.loadData(amount, inputAsset.address, outputAsset.address);
     const handleLoadButtonClick = () => {
         if (inputAsset && outputAsset) {
             const amount = BigInt(parseFloat(inputAssetAmount) * 1e9);
@@ -78,12 +96,21 @@ export const Body = () => {
         }
     };
 
-    const onSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-    };
+    useEffect(() => {
+        console.log('swapRoute.isLoading', swapRoute.isLoading);
+    }, [swapRoute.isLoading]);
+
+    useEffect(() => {
+        if (swapRoute.data) {
+            swapRoute.data.forEach(route => {
+                const routeStep = route.getRoute();
+                setRouteSteps(routeStep);
+            });
+        }
+    }, [swapRoute.data]);
 
     return (
-        <form onSubmit={onSubmit}>
+        <>
             <div className={styles.body_div}>
                 <CustomInput
                     text="You pay"
@@ -105,7 +132,7 @@ export const Body = () => {
                     <>
                         <FormButton
                             text="Load"
-                            type="submit"
+                            type="button"
                             onClick={handleLoadButtonClick}
                             className={getClassName(
                                 styles.body_button,
@@ -114,7 +141,7 @@ export const Body = () => {
                         />
                         <FormButton
                             text="Swap"
-                            type="submit"
+                            type="button"
                             onClick={handleSwapButtonClick}
                             className={getClassName(
                                 styles.body_button,
@@ -150,6 +177,47 @@ export const Body = () => {
                     outputAsset={outputAsset}
                 />
             ) : null}
-        </form>
+            {routeInfoOpen && swapRoute.data ? (
+                <div className={styles.route_info_div}>
+                    <div className={styles.route_info_inside_div}>
+                        <p>{inputAsset?.symbol} sell price</p>
+                        <p>
+                            {inputAssetAmount} {inputAsset?.symbol}
+                        </p>
+                    </div>
+                    <div className={styles.route_info_inside_div}>
+                        <p>{outputAsset?.symbol} sell price</p>
+                        <p>??? {outputAsset?.symbol}</p>
+                    </div>
+                    <div className={styles.route_info_inside_div}>
+                        <p>Network fee</p>
+                        <p>??? {outputAsset?.symbol} ($?.??)</p>
+                    </div>
+                    <div className={styles.route_info_inside_div}>
+                        <p>Swap route</p>
+                        <div onClick={openShowRoute}>
+                            <p>? chains/? dexes</p>
+                            {showRoute ? (
+                                <ChevronUpIcon width="19px" height="19px" />
+                            ) : (
+                                <ChevronDownIcon width="19px" height="19px" />
+                            )}
+                        </div>
+                    </div>
+                    {showRoute ? (
+                        <div>
+                            {routeSteps.map((routeSteps, index) => {
+                                return (
+                                    <div key={index}>
+                                        {routeSteps.inputAssetAddress} {'>'}
+                                        {routeSteps.outputAssetAddress}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    ) : null}
+                </div>
+            ) : null}
+        </>
     );
 };

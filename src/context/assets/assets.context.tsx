@@ -1,14 +1,10 @@
 import {createContext} from 'react';
 
 import {offlineAssetList} from '../assets/offline-asset-list';
-import {Asset} from '../interfaces/asset.interface';
-import {EMPTY_FN} from '../utils/emptyfn';
+import {Asset} from '../../interfaces/asset.interface';
+import {EMPTY_FN} from '../../utils/emptyfn';
 
-interface InputOutputValues {
-    modalInputOpen: boolean;
-    setInputModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    modalOutputOpen: boolean;
-    setOutputModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+interface Assets {
     outputAsset: Asset | undefined;
     setOutputAsset: React.Dispatch<React.SetStateAction<Asset | undefined>>;
     inputAsset: Asset | undefined;
@@ -19,11 +15,7 @@ interface InputOutputValues {
     setInputAssetAmount: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const InputOutputContext = createContext<InputOutputValues>({
-    modalInputOpen: false,
-    setInputModalOpen: EMPTY_FN,
-    modalOutputOpen: false,
-    setOutputModalOpen: EMPTY_FN,
+export const AssetsContext = createContext<Assets>({
     outputAsset: undefined,
     setOutputAsset: EMPTY_FN,
     inputAsset: undefined,
