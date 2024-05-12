@@ -4,18 +4,19 @@ import {ExchangeInfo} from './ExchangeInfo/ExchangeInfo';
 import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon';
 import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
-import {CalculatedSwapRoute} from '../../types/calculated-swap-route.type';
+import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type.ts';
+import {mapSwapRouteToRoute} from '../../swap-routes/shared/calculated-swap-route.utils.ts';
 import styles from '../Body/Body.module.css';
 
 interface Props {
-    swapRouteBatch: CalculatedSwapRoute[];
+    swapRoutes: CalculatedSwapRoute[];
 }
 
-export const SwapRouteInfo: FC<Props> = ({swapRouteBatch}) => {
+export const SwapRouteInfo: FC<Props> = ({swapRoutes}) => {
     const [showRoutes, setShowRoutes] = useState(false);
     const routes = useMemo(
-        () => swapRouteBatch.map(swapRoute => swapRoute.getRoute()),
-        [swapRouteBatch]
+        () => swapRoutes.map(mapSwapRouteToRoute),
+        [swapRoutes]
     );
     const assetsRecord = useAssetsRecordSelector();
 

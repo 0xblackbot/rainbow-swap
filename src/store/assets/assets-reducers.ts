@@ -11,13 +11,10 @@ export const assetsReducers = createReducer<AssetsState>(
             ...state,
             record: createEntity(state.record.data, true)
         }));
-        builder.addCase(
-            loadAssetsActions.success,
-            (state, {payload: activePromotion}) => ({
-                ...state,
-                record: createEntity(activePromotion, false)
-            })
-        );
+        builder.addCase(loadAssetsActions.success, (state, {payload}) => ({
+            ...state,
+            record: createEntity(payload, false)
+        }));
         builder.addCase(loadAssetsActions.fail, (state, {payload: error}) => ({
             ...state,
             record: createEntity(state.record.data, false, error)

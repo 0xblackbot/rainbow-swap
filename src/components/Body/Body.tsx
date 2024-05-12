@@ -4,19 +4,23 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import styles from './Body.module.css';
 import {useAssetsContext} from '../../context/assets/assets.hook';
 import {useModalContext} from '../../context/modal/modal.hook';
-import {useSwapRouteBatch} from '../../hooks/use-swap-route-batch.hook';
 import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {FormButton} from '../../shared/FormButton/FormButton';
 import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputSelector';
+import {useDispatch} from '../../store';
+import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions.ts';
+import {useSwapRoutesSelector} from '../../store/swap-routes/swap-routes-selectors.ts';
+import {getSwapRouteMessage} from '../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../utils/big-int.utils';
 import {getClassName} from '../../utils/style.utils';
 import {SwapRouteInfo} from '../SwapRouteInfo/SwapRouteInfo';
 
 export const Body = () => {
+    const dispatch = useDispatch();
+
     const [tonConnectUI] = useTonConnectUI();
     const {wallet, connectWallet} = useTonUI();
-    const swapRouteBatch = useSwapRouteBatch();
     const {setOutputModalOpen, setInputModalOpen} = useModalContext();
     const {
         inputAsset,
@@ -26,6 +30,7 @@ export const Body = () => {
         setOutputAsset,
         setInputAssetAmount
     } = useAssetsContext();
+    const swapRoutes = useSwapRoutesSelector();
 
     const openOutputModal = () => {
         setOutputModalOpen(true);
@@ -45,11 +50,15 @@ export const Body = () => {
 
     const handleLoadButtonClick = () => {
         if (inputAsset && outputAsset && inputAssetAmount !== '') {
-            const amount = toNano(inputAssetAmount, inputAsset.decimals);
-            swapRouteBatch.loadData(
-                amount,
-                inputAsset.address,
-                outputAsset.address
+            dispatch(
+                loadSwapRoutesActions.submit({
+                    inputAssetAmount: toNano(
+                        inputAssetAmount,
+                        inputAsset.decimals
+                    ).toString(),
+                    inputAssetAddress: inputAsset.address,
+                    outputAssetAddress: outputAsset.address
+                })
             );
         }
     };
@@ -58,8 +67,8 @@ export const Body = () => {
         const senderAddress = tonConnectUI.wallet?.account.address ?? '';
 
         const messages = await Promise.all(
-            swapRouteBatch.data.map(swapRoute =>
-                swapRoute.getMessage(Address.parse(senderAddress))
+            swapRoutes.map(swapRoute =>
+                getSwapRouteMessage(swapRoute, Address.parse(senderAddress))
             )
         );
 
@@ -141,7 +150,7 @@ export const Body = () => {
                 />
             )}
 
-            <SwapRouteInfo swapRouteBatch={swapRouteBatch.data} />
+            <SwapRouteInfo swapRoutes={swapRoutes} />
         </>
     );
 };

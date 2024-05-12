@@ -107,7 +107,7 @@ export const rainbow_getTransferParams = async (
             value: firstChunk_transferParams.value + JETTON_TRANSFER_GAS_AMOUNT,
             body: getJettonTransferBody({
                 queryId,
-                amount: firstChunk[0].inputAssetAmount,
+                amount: BigInt(firstChunk[0].inputAssetAmount),
                 destination: rainbowWalletAddress,
                 responseDestination: senderAddress,
                 forwardTonAmount: firstChunk_transferParams.value,

@@ -20,7 +20,7 @@ export const ston_getTransferParams = async (
     applyMinOutputAmount: boolean
 ): Promise<TransferParams> => {
     const minOutputAmount = applyMinOutputAmount
-        ? routeStep.outputAssetAmount
+        ? BigInt(routeStep.outputAssetAmount)
         : 0n;
 
     if (routeStep.inputAssetAddress === TON) {
@@ -43,10 +43,10 @@ export const ston_getTransferParams = async (
 
         return {
             to: stonRouterProxyTonWalletAddress,
-            value: gasAmount + routeStep.inputAssetAmount,
+            value: gasAmount + BigInt(routeStep.inputAssetAmount),
             body: getJettonTransferBody({
                 queryId,
-                amount: routeStep.inputAssetAmount,
+                amount: BigInt(routeStep.inputAssetAmount),
                 destination: STON_ROUTER_ADDRESS,
                 responseDestination: responseDestination,
                 forwardTonAmount: gasAmount,
@@ -76,7 +76,7 @@ export const ston_getTransferParams = async (
             value: gasAmount + JETTON_TRANSFER_GAS_AMOUNT,
             body: getJettonTransferBody({
                 queryId,
-                amount: routeStep.inputAssetAmount,
+                amount: BigInt(routeStep.inputAssetAmount),
                 destination: STON_ROUTER_ADDRESS,
                 responseDestination: responseDestination,
                 forwardTonAmount: gasAmount,

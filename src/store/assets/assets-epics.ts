@@ -1,6 +1,6 @@
-import {Action} from '@reduxjs/toolkit';
 import {combineEpics} from 'redux-observable';
 import {catchError, from, map, Observable, of, switchMap} from 'rxjs';
+import {Action} from 'ts-action';
 import {ofType} from 'ts-action-operators';
 
 import {loadAssetsActions} from './assets-actions';

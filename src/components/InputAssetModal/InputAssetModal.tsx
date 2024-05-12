@@ -60,7 +60,11 @@ export const InputAssetModal: FC = () => {
                                 rowCount={assetsList.length}
                                 rowHeight={50}
                                 rowRenderer={props =>
-                                    rowRenderer(props, selectInputAsset, assetsList)
+                                    rowRenderer(
+                                        props,
+                                        selectInputAsset,
+                                        assetsList
+                                    )
                                 }
                             />
                         </div>
