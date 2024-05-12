@@ -58,6 +58,6 @@ export const getSwapRouteMessage = async (
     return {
         address: transferParams.to.toRawString(),
         amount: transferParams.value.toString(),
-        payload: transferParams.body.toString()
+        payload: transferParams.body.toBoc().toString('base64')
     };
 };
