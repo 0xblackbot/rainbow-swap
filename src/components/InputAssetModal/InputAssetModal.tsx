@@ -8,13 +8,11 @@ import {useModalContext} from '../../context/modal/modal.hook';
 import {useModalWidth} from '../../hooks/use-modal-width.hook';
 import {Asset} from '../../interfaces/asset.interface';
 import {rowRenderer} from '../../shared/RowRenderer/RowRenderer';
+import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
 import styles from '../OutputAssetModal/AssetModal.module.css';
 
-interface Props {
-    assets: Asset[];
-}
-
-export const InputAssetModal: FC<Props> = ({assets}) => {
+export const InputAssetModal: FC = () => {
+    const assetsList = useAssetsListSelector();
     const {modalInputOpen, setInputModalOpen} = useModalContext();
     const {setInputAsset, setInputAssetAmount} = useAssetsContext();
     const {listWidth, modalSheetRef} = useModalWidth(modalInputOpen);
@@ -59,10 +57,10 @@ export const InputAssetModal: FC<Props> = ({assets}) => {
                             <List
                                 width={listWidth}
                                 height={600}
-                                rowCount={assets.length}
+                                rowCount={assetsList.length}
                                 rowHeight={50}
                                 rowRenderer={props =>
-                                    rowRenderer(props, selectInputAsset, assets)
+                                    rowRenderer(props, selectInputAsset, assetsList)
                                 }
                             />
                         </div>

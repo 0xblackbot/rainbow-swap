@@ -3,6 +3,7 @@ import {FC, useMemo, useState} from 'react';
 import {ExchangeInfo} from './ExchangeInfo/ExchangeInfo';
 import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon';
+import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
 import {CalculatedSwapRoute} from '../../types/calculated-swap-route.type';
 import styles from '../Body/Body.module.css';
 
@@ -16,16 +17,20 @@ export const SwapRouteInfo: FC<Props> = ({swapRouteBatch}) => {
         () => swapRouteBatch.map(swapRoute => swapRoute.getRoute()),
         [swapRouteBatch]
     );
+    const assetsRecord = useAssetsRecordSelector();
 
     const {inputAssetSymbol, outputAssetSymbol} = useMemo(() => {
         const inputAssetAddress = routes[0]?.[0]?.inputAssetAddress;
         const outputAssetAddress = routes[0]?.[0]?.outputAssetAddress;
 
+        const inputAsset = assetsRecord[inputAssetAddress];
+        const outputAsset = assetsRecord[outputAssetAddress];
+
         return {
-            inputAssetSymbol: inputAssetAddress, // TODO: get asset symbol from assetsRecord
-            outputAssetSymbol: outputAssetAddress // TODO: get asset symbol from assetsRecord
+            inputAssetSymbol: inputAsset?.symbol ?? 'input_asset_not_found',
+            outputAssetSymbol: outputAsset?.symbol ?? 'output_asset_not_found'
         };
-    }, [routes]);
+    }, [routes, assetsRecord]);
 
     const handleChevronClick = () => setShowRoutes(value => !value);
 
