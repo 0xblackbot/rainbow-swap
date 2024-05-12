@@ -57,6 +57,27 @@
 .swap_button{
     background: var(--accent-neon-pink-color);
     color: white;
+    margin-top: 4px;
+}
+
+.route{
+    display: flex;
+    align-items: center;
+    width:100%;
+    margin-top: var(--default-size);
+    justify-content: space-evenly;
+}
+
+.dots {
+    height: 1em;
+    overflow: hidden; 
+    word-wrap: break-word; 
+    color: white;
+    letter-spacing: 5px;
+}
+  
+.dots:after {
+    content: '.............';
 }
 
 .select_button{

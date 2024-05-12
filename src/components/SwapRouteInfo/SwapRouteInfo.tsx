@@ -3,6 +3,7 @@ import {FC, useMemo, useState} from 'react';
 import {ExchangeInfo} from './ExchangeInfo/ExchangeInfo';
 import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon';
+import {SingleRouteStep} from '../../shared/SingleRouteStep/SingleRouteStep.tsx';
 import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
 import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type.ts';
 import {mapSwapRouteToRoute} from '../../swap-routes/shared/calculated-swap-route.utils.ts';
@@ -22,7 +23,8 @@ export const SwapRouteInfo: FC<Props> = ({swapRoutes}) => {
 
     const {inputAssetSymbol, outputAssetSymbol} = useMemo(() => {
         const inputAssetAddress = routes[0]?.[0]?.inputAssetAddress;
-        const outputAssetAddress = routes[0]?.[0]?.outputAssetAddress;
+        const outputAssetAddress =
+            routes[0]?.[routes.length]?.outputAssetAddress;
 
         const inputAsset = assetsRecord[inputAssetAddress];
         const outputAsset = assetsRecord[outputAssetAddress];
@@ -69,12 +71,20 @@ export const SwapRouteInfo: FC<Props> = ({swapRoutes}) => {
                 {showRoutes && (
                     <div>
                         {routes.map((route, index) => (
-                            <div key={`route-${index}`}>
+                            <div
+                                key={`route-${index}`}
+                                className={styles.route}
+                            >
                                 {route.map(routeStep => (
-                                    <p key={routeStep.dexPairAddress}>
-                                        {routeStep.inputAssetAddress} {'>'}
-                                        {routeStep.outputAssetAddress}
-                                    </p>
+                                    <>
+                                        {index === 0 ? (
+                                            <div className={styles.dots}></div>
+                                        ) : null}
+                                        <SingleRouteStep
+                                            routeStep={routeStep}
+                                        />
+                                        <div className={styles.dots}></div>
+                                    </>
                                 ))}
                             </div>
                         ))}
