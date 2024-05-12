@@ -7,16 +7,15 @@ import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIco
 import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon';
 import {useAssetsContext} from '../../context/assets/assets.hook';
 import {useModalContext} from '../../context/modal/modal.hook';
-import {useSwapRouteBatch} from "../../hooks/use-swap-route-batch.hook.ts";
+import {useSwapRouteBatch} from '../../hooks/use-swap-route-batch.hook.ts';
 import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {RouteStepWithCalculation} from '../../interfaces/route-step-with-calculation.interface';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
 import {FormButton} from '../../shared/FormButton/FormButton';
 import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputSelector';
-import {toNano} from "../../utils/big-int.utils.ts";
+import {toNano} from '../../utils/big-int.utils.ts';
 import {getClassName} from '../../utils/style.utils';
-
 
 export const Body = () => {
     const [tonConnectUI] = useTonConnectUI();
@@ -61,7 +60,7 @@ export const Body = () => {
     const handleLoadButtonClick = () => {
         setRouteInfoOpen(true);
         if (inputAsset && outputAsset && inputAssetAmount !== '') {
-            const amount = toNano(inputAssetAmount, inputAsset.decimals)
+            const amount = toNano(inputAssetAmount, inputAsset.decimals);
             swapRouteBatch.loadData(
                 amount,
                 inputAsset.address,
@@ -117,7 +116,7 @@ export const Body = () => {
                     onClick={openInputModal}
                     onChange={setInputAssetAmount}
                 />
-                <InputOutputSelector onClick={onSwapAssets}/>
+                <InputOutputSelector onClick={onSwapAssets} />
                 <CustomInput
                     text="You receive"
                     asset={outputAsset}
@@ -196,9 +195,9 @@ export const Body = () => {
                         <div onClick={openShowRoute}>
                             <p>? chains/? dexes</p>
                             {showRoute ? (
-                                <ChevronUpIcon width="19px" height="19px"/>
+                                <ChevronUpIcon width="19px" height="19px" />
                             ) : (
-                                <ChevronDownIcon width="19px" height="19px"/>
+                                <ChevronDownIcon width="19px" height="19px" />
                             )}
                         </div>
                     </div>

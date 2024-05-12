@@ -1,6 +1,6 @@
 import {Asset} from '../interfaces/asset.interface';
 
-export const offlineAssetList: Asset[] = [
+export const DEFAULT_ASSETS_LIST: Asset[] = [
     {
         name: 'Toncoin',
         symbol: 'TON',

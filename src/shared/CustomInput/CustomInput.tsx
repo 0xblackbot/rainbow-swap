@@ -32,9 +32,7 @@ export const CustomInput: FC<Props> = ({
             const [integer, decimal] = value.split('.');
             if (asset && decimal?.length > asset.decimals) {
                 e.target.value =
-                    integer +
-                    '.' +
-                    decimal.slice(0, asset.decimals);
+                    integer + '.' + decimal.slice(0, asset.decimals);
                 onChange?.(e.target.value);
             } else {
                 onChange?.(value);

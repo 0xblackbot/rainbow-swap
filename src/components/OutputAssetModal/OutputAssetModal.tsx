@@ -1,3 +1,4 @@
+import {FC} from 'react';
 import Sheet from 'react-modal-sheet';
 import {List} from 'react-virtualized';
 
@@ -9,9 +10,13 @@ import {useModalWidth} from '../../hooks/use-modal-width.hook';
 import {Asset} from '../../interfaces/asset.interface';
 import {rowRenderer} from '../../shared/RowRenderer/RowRenderer';
 
-export const OutputAssetModal = () => {
+interface Props {
+    assets: Asset[];
+}
+
+export const OutputAssetModal: FC<Props> = ({assets}) => {
     const {modalOutputOpen, setOutputModalOpen} = useModalContext();
-    const {setOutputAsset, assets} = useAssetsContext();
+    const {setOutputAsset} = useAssetsContext();
     const {listWidth, modalSheetRef} = useModalWidth(modalOutputOpen);
 
     const closeModal = () => {

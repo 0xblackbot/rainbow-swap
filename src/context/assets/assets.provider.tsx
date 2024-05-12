@@ -1,7 +1,7 @@
 import {useState, FC, PropsWithChildren} from 'react';
 
 import {AssetsContext} from './assets.context';
-import {offlineAssetList} from '../../assets/offline-asset-list';
+import {DEFAULT_ASSETS_LIST} from '../../assets/default-asset-list.ts';
 import {Asset} from '../../interfaces/asset.interface';
 
 export const AssetsProvider: FC<PropsWithChildren> = ({children}) => {
@@ -10,9 +10,8 @@ export const AssetsProvider: FC<PropsWithChildren> = ({children}) => {
         undefined
     );
     const [inputAsset, setInputAsset] = useState<Asset | undefined>(
-        offlineAssetList[0]
+        DEFAULT_ASSETS_LIST[0]
     );
-    const [assets, setAssets] = useState<Asset[]>(offlineAssetList);
 
     return (
         <AssetsContext.Provider
@@ -21,8 +20,6 @@ export const AssetsProvider: FC<PropsWithChildren> = ({children}) => {
                 setOutputAsset,
                 inputAsset,
                 setInputAsset,
-                assets,
-                setAssets,
                 inputAssetAmount,
                 setInputAssetAmount
             }}

@@ -1,8 +1,7 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 import logoText from './assets/logo-text.png';
 import styles from './Header.module.css';
-import {useAssets} from '../../hooks/use-assets.hook';
 import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {getClassName} from '../../utils/style.utils';
 
@@ -15,12 +14,6 @@ export const Header = () => {
         connectWallet,
         disconnectWallet
     } = useTonUI();
-
-    const {updateAssetsWithBalances} = useAssets();
-
-    useEffect(() => {
-        updateAssetsWithBalances(walletAddress);
-    }, [updateAssetsWithBalances, walletAddress]);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(prev => !prev);

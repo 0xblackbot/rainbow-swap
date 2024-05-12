@@ -1,4 +1,5 @@
 import {parseCalculatedSwapRoute} from './calculated-swap-route.utils';
+import {DEFAULT_ASSETS_LIST} from '../assets/default-asset-list.ts';
 import {API} from '../globals';
 import {CalculatedSwapRoute} from '../types/calculated-swap-route.type';
 
@@ -19,4 +20,13 @@ export const getBestSwapRoute = async (
             console.log('Error while loading /best-route', error);
 
             return [];
+        });
+
+export const getAssetsList = async () =>
+    API.get('/assets')
+        .then(response => response.data)
+        .catch(error => {
+            console.log('Error while loading /assets', error);
+
+            return DEFAULT_ASSETS_LIST;
         });
