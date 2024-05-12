@@ -4,17 +4,16 @@ import {ListRowProps} from 'react-virtualized';
 import styles from './asset-list-item.module.css';
 import {Asset} from '../../../interfaces/asset.interface';
 
-interface Props extends ListRowProps {
+interface Props extends Pick<ListRowProps, 'style'> {
     asset: Asset;
     onClick: (asset: Asset) => void;
 }
 
-export const AssetListItem: FC<Props> = ({key, style, asset, onClick}) => {
+export const AssetListItem: FC<Props> = ({style, asset, onClick}) => {
     const handleClick = () => onClick(asset);
 
     return (
         <div
-            key={key}
             style={style}
             className={styles.select_list_item_div}
             onClick={handleClick}

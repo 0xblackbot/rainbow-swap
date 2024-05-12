@@ -1,45 +1,60 @@
 import {Address} from '@ton/core';
-import {useTonConnectUI} from '@tonconnect/ui-react';
-import {useState} from 'react';
+import {
+    useTonConnectModal,
+    useTonConnectUI,
+    useTonWallet
+} from '@tonconnect/ui-react';
+import {useEffect, useState} from 'react';
 
+import styles from './swap-form.module.css';
+import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
 import {DEFAULT_ASSETS_RECORD} from '../../../data/assets-record.ts';
 import {TON, USDT} from '../../../globals.ts';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
-import {InputOutputSelector} from '../../../shared/InputOutputSelector/InputOutputSelector.tsx';
+import {useDispatch} from '../../../store';
+import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
+import {toNano} from '../../../utils/big-int.utils.ts';
 import {getClassName} from '../../../utils/style.utils.ts';
-import styles from '../home.module.css';
 
 export const SwapForm = () => {
+    const wallet = useTonWallet();
+    const connectModal = useTonConnectModal();
     const [tonConnectUI] = useTonConnectUI();
 
+    const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
 
     const [inputAssetAmount, setInputAssetAmount] = useState('');
     const [inputAsset, setInputAsset] = useState(DEFAULT_ASSETS_RECORD[TON]);
     const [outputAsset, setOutputAsset] = useState(DEFAULT_ASSETS_RECORD[USDT]);
 
-    // const handleLoadButtonClick = () => {
-    //     if (inputAsset && outputAsset && inputAssetAmount !== '') {
-    //         dispatch(
-    //             loadSwapRoutesActions.submit({
-    //                 inputAssetAmount: toNano(
-    //                     inputAssetAmount,
-    //                     inputAsset.decimals
-    //                 ).toString(),
-    //                 inputAssetAddress: inputAsset.address,
-    //                 outputAssetAddress: outputAsset.address
-    //             })
-    //         );
-    //     }
-    // };
+    useEffect(() => {
+        if (inputAssetAmount === '') {
+            dispatch(loadSwapRoutesActions.success([]));
+        } else {
+            dispatch(
+                loadSwapRoutesActions.submit({
+                    inputAssetAmount: toNano(
+                        inputAssetAmount,
+                        inputAsset.decimals
+                    ).toString(),
+                    inputAssetAddress: inputAsset.address,
+                    outputAssetAddress: outputAsset.address
+                })
+            );
+        }
+    }, [inputAssetAmount, inputAsset, outputAsset, dispatch]);
 
-    const handleConnectWalletButtonClick = () => tonConnectUI.modal.open();
-
+    const handleConnectWalletButtonClick = () => connectModal.open();
+    const handleToggleAssetsClick = () => {
+        setInputAsset(outputAsset);
+        setOutputAsset(inputAsset);
+    };
     const handleSwapButtonClick = async () => {
-        const senderAddress = tonConnectUI.wallet?.account.address ?? '';
+        const senderAddress = wallet?.account.address ?? '';
 
         const messages = await Promise.all(
             swapRoutes.map(swapRoute =>
@@ -65,7 +80,7 @@ export const SwapForm = () => {
                     onInputValueChange={setInputAssetAmount}
                     onAssetValueChange={setInputAsset}
                 />
-                <InputOutputSelector onClick={() => 0} />
+                <ToggleAssetsButton onClick={handleToggleAssetsClick} />
                 <CustomInput
                     label="You receive"
                     isInputEnabled={false}
@@ -75,7 +90,7 @@ export const SwapForm = () => {
                 />
             </div>
 
-            {tonConnectUI.wallet ? (
+            {wallet ? (
                 <>
                     <FormButton
                         text="Swap"

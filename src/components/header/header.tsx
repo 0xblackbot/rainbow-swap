@@ -1,4 +1,8 @@
-import {useTonAddress, useTonConnectUI} from '@tonconnect/ui-react';
+import {
+    useTonAddress,
+    useTonConnectModal,
+    useTonConnectUI
+} from '@tonconnect/ui-react';
 import {useMemo, useState} from 'react';
 
 import logoText from './assets/logo-text.png';
@@ -7,6 +11,7 @@ import {getClassName} from '../../utils/style.utils';
 
 export const Header = () => {
     const walletAddress = useTonAddress();
+    const connectModal = useTonConnectModal();
     const [tonConnectUI] = useTonConnectUI();
 
     const shortWalletAddress = useMemo(
@@ -16,7 +21,7 @@ export const Header = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleDropdownClick = () => setIsDropdownOpen(value => !value);
-    const handleConnectButtonClick = () => tonConnectUI.modal.open();
+    const handleConnectButtonClick = () => connectModal.open();
     const handleDisconnectButtonClick = () => tonConnectUI.disconnect();
 
     return (

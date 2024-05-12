@@ -71,7 +71,8 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                 rowHeight={50}
                                 rowRenderer={props => (
                                     <AssetListItem
-                                        {...props}
+                                        key={props.key}
+                                        style={props.style}
                                         asset={assetsList[props.index]}
                                         onClick={handleAssetClick}
                                     />

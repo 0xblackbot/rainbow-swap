@@ -1,3 +1,4 @@
+import {useIsConnectionRestored} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
 
 import styles from './app.module.css';
@@ -10,6 +11,7 @@ const tg = window.Telegram.WebApp;
 
 export const App = () => {
     const dispatch = useDispatch();
+    const connectionRestored = useIsConnectionRestored();
 
     useEffect(() => {
         tg.ready();
@@ -19,7 +21,7 @@ export const App = () => {
     return (
         <div className={styles.App}>
             <Header />
-            <Home />
+            {connectionRestored && <Home />}
         </div>
     );
 };
