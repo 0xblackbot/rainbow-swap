@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.4",
     "@rnw-community/shared": "^0.67.0",
     "@ton/core": "^0.56.3",
     "@ton/crypto": "^3.2.0",
@@ -22,7 +23,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal-sheet": "^2.2.0",
-    "react-virtualized": "^9.22.5"
+    "react-redux": "^9.1.2",
+    "react-virtualized": "^9.22.5",
+    "redux-observable": "^3.0.0-rc.2",
+    "redux-persist": "^6.0.0",
+    "rxjs": "^7.8.1",
+    "ts-action-operators": "^9.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

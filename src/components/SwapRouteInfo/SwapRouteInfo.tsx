@@ -1,9 +1,9 @@
 import {FC, useMemo, useState} from 'react';
 
-import {ExchangeInfo} from './ExchangeInfo/ExchangeInfo.tsx';
-import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon.tsx';
-import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon.tsx';
-import {CalculatedSwapRoute} from '../../types/calculated-swap-route.type.ts';
+import {ExchangeInfo} from './ExchangeInfo/ExchangeInfo';
+import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon';
+import {CalculatedSwapRoute} from '../../types/calculated-swap-route.type';
 import styles from '../Body/Body.module.css';
 
 interface Props {

@@ -1,6 +1,6 @@
 import {useCallback, useMemo, useState} from 'react';
 
-import {DEFAULT_ASSETS_LIST} from '../assets/default-asset-list.ts';
+import {DEFAULT_ASSETS_LIST} from '../data/default-asset-list.ts';
 import {getAssetsList} from '../utils/api.utils.ts';
 
 export const useAssets = () => {

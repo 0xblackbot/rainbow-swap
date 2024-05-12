@@ -1,5 +1,5 @@
 import {parseCalculatedSwapRoute} from './calculated-swap-route.utils';
-import {DEFAULT_ASSETS_LIST} from '../assets/default-asset-list.ts';
+import {DEFAULT_ASSETS_LIST} from '../data/default-asset-list';
 import {API} from '../globals';
 import {CalculatedSwapRoute} from '../types/calculated-swap-route.type';
 

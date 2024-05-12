@@ -1,7 +1,7 @@
 import {useState, FC, PropsWithChildren} from 'react';
 
 import {AssetsContext} from './assets.context';
-import {DEFAULT_ASSETS_LIST} from '../../assets/default-asset-list.ts';
+import {DEFAULT_ASSETS_LIST} from '../../data/default-asset-list';
 import {Asset} from '../../interfaces/asset.interface';
 
 export const AssetsProvider: FC<PropsWithChildren> = ({children}) => {

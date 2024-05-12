@@ -4,14 +4,14 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import styles from './Body.module.css';
 import {useAssetsContext} from '../../context/assets/assets.hook';
 import {useModalContext} from '../../context/modal/modal.hook';
-import {useSwapRouteBatch} from '../../hooks/use-swap-route-batch.hook.ts';
+import {useSwapRouteBatch} from '../../hooks/use-swap-route-batch.hook';
 import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {FormButton} from '../../shared/FormButton/FormButton';
 import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputSelector';
-import {toNano} from '../../utils/big-int.utils.ts';
+import {toNano} from '../../utils/big-int.utils';
 import {getClassName} from '../../utils/style.utils';
-import {SwapRouteInfo} from '../SwapRouteInfo/SwapRouteInfo.tsx';
+import {SwapRouteInfo} from '../SwapRouteInfo/SwapRouteInfo';
 
 export const Body = () => {
     const [tonConnectUI] = useTonConnectUI();
