@@ -1,3 +1,5 @@
+import {Address} from '@ton/core';
+import {useTonConnectUI} from '@tonconnect/ui-react';
 import {useEffect, useState} from 'react';
 
 import styles from './Body.module.css';
@@ -5,23 +7,26 @@ import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIco
 import {ChevronUpIcon} from '../../assets/icons/ChevronUpIcon/ChevronUpIcon';
 import {useAssetsContext} from '../../context/assets/assets.hook';
 import {useModalContext} from '../../context/modal/modal.hook';
-import {useSwapRoute} from '../../hooks/use-swap-route.hook';
+import {useSwapRouteBatch} from "../../hooks/use-swap-route-batch.hook.ts";
 import {useTonUI} from '../../hooks/use-ton-ui.hook';
 import {RouteStepWithCalculation} from '../../interfaces/route-step-with-calculation.interface';
 import {CustomInput} from '../../shared/CustomInput/CustomInput';
 import {ExchangeInfo} from '../../shared/ExchangeInfo/ExchangeInfo';
 import {FormButton} from '../../shared/FormButton/FormButton';
 import {InputOutputSelector} from '../../shared/InputOutputSelector/InputOutputSelector';
+import {toNano} from "../../utils/big-int.utils.ts";
 import {getClassName} from '../../utils/style.utils';
 
+
 export const Body = () => {
+    const [tonConnectUI] = useTonConnectUI();
     const [routeInfoOpen, setRouteInfoOpen] = useState(false);
     const [showRoute, setShowRoute] = useState(false);
     const [routeSteps, setRouteSteps] = useState<RouteStepWithCalculation[]>(
         []
     );
     const {wallet, connectWallet} = useTonUI();
-    const swapRoute = useSwapRoute();
+    const swapRouteBatch = useSwapRouteBatch();
     const {setOutputModalOpen, setInputModalOpen} = useModalContext();
     const {
         inputAsset,
@@ -53,17 +58,10 @@ export const Body = () => {
         setOutputAsset(temp);
     };
 
-    const sendSwapRequest = () => {
+    const handleLoadButtonClick = () => {
         setRouteInfoOpen(true);
         if (inputAsset && outputAsset && inputAssetAmount !== '') {
-            const amount = BigInt(
-                parseFloat(inputAssetAmount) *
-                    10 ** parseFloat(inputAsset.decimals)
-            );
-            swapRoute.loadData(amount, inputAsset.address, outputAsset.address);
-    const handleLoadButtonClick = () => {
-        if (inputAsset && outputAsset) {
-            const amount = BigInt(parseFloat(inputAssetAmount) * 1e9);
+            const amount = toNano(inputAssetAmount, inputAsset.decimals)
             swapRouteBatch.loadData(
                 amount,
                 inputAsset.address,
@@ -97,17 +95,17 @@ export const Body = () => {
     };
 
     useEffect(() => {
-        console.log('swapRoute.isLoading', swapRoute.isLoading);
-    }, [swapRoute.isLoading]);
+        console.log('swapRouteBatch.isLoading', swapRouteBatch.isLoading);
+    }, [swapRouteBatch.isLoading]);
 
     useEffect(() => {
-        if (swapRoute.data) {
-            swapRoute.data.forEach(route => {
+        if (swapRouteBatch.data) {
+            swapRouteBatch.data.forEach(route => {
                 const routeStep = route.getRoute();
                 setRouteSteps(routeStep);
             });
         }
-    }, [swapRoute.data]);
+    }, [swapRouteBatch.data]);
 
     return (
         <>
@@ -119,7 +117,7 @@ export const Body = () => {
                     onClick={openInputModal}
                     onChange={setInputAssetAmount}
                 />
-                <InputOutputSelector onClick={onSwapAssets} />
+                <InputOutputSelector onClick={onSwapAssets}/>
                 <CustomInput
                     text="You receive"
                     asset={outputAsset}
@@ -177,7 +175,7 @@ export const Body = () => {
                     outputAsset={outputAsset}
                 />
             ) : null}
-            {routeInfoOpen && swapRoute.data ? (
+            {routeInfoOpen && swapRouteBatch.data ? (
                 <div className={styles.route_info_div}>
                     <div className={styles.route_info_inside_div}>
                         <p>{inputAsset?.symbol} sell price</p>
@@ -198,9 +196,9 @@ export const Body = () => {
                         <div onClick={openShowRoute}>
                             <p>? chains/? dexes</p>
                             {showRoute ? (
-                                <ChevronUpIcon width="19px" height="19px" />
+                                <ChevronUpIcon width="19px" height="19px"/>
                             ) : (
-                                <ChevronDownIcon width="19px" height="19px" />
+                                <ChevronDownIcon width="19px" height="19px"/>
                             )}
                         </div>
                     </div>

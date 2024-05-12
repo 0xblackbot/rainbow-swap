@@ -1,6 +1,6 @@
 import {createContext} from 'react';
 
-import {offlineAssetList} from '../assets/offline-asset-list';
+import {offlineAssetList} from "../../assets/offline-asset-list.ts";
 import {Asset} from '../../interfaces/asset.interface';
 import {EMPTY_FN} from '../../utils/emptyfn';
 

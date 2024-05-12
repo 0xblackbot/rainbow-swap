@@ -1,4 +1,4 @@
-import React, {useState, FC, PropsWithChildren} from 'react';
+import {useState, FC, PropsWithChildren} from 'react';
 
 import {ModalContext} from './modal.context';
 

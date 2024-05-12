@@ -4,6 +4,6 @@ export interface Asset {
     address: string;
     description: string;
     image: string;
-    decimals: string;
+    decimals: number;
     balance?: string;
 }

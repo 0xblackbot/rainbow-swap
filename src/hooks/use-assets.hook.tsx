@@ -4,6 +4,7 @@ import {useCallback, useMemo} from 'react';
 import {offlineAssetList} from '../assets/offline-asset-list';
 import {useAssetsContext} from '../context/assets/assets.hook';
 import {BalancesArray} from '../interfaces/balance-object.interface';
+import {fromNano} from "../utils/big-int.utils.ts";
 
 export const useAssets = () => {
     const {setAssets} = useAssetsContext();
@@ -41,12 +42,7 @@ export const useAssets = () => {
 
                         return {
                             ...asset,
-                            balance: balance
-                                ? (
-                                      parseFloat(balance.balance) /
-                                      10 ** parseFloat(asset.decimals)
-                                  ).toString()
-                                : '0'
+                            balance: fromNano(balance?.balance ?? 0n, asset.decimals)
                         };
                     });
                     updatedAssets.sort((a, b) => {

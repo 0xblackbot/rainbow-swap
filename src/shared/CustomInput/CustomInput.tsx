@@ -30,11 +30,11 @@ export const CustomInput: FC<Props> = ({
         const regex = new RegExp(`^\\d*(\\.\\d{0,9})?$`);
         if (regex.test(value)) {
             const [integer, decimal] = value.split('.');
-            if (asset && decimal?.length > parseFloat(asset?.decimals)) {
+            if (asset && decimal?.length > asset.decimals) {
                 e.target.value =
                     integer +
                     '.' +
-                    decimal.slice(0, parseFloat(asset?.decimals));
+                    decimal.slice(0, asset.decimals);
                 onChange?.(e.target.value);
             } else {
                 onChange?.(value);
