@@ -1,40 +1,60 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-body{
-  background: var(--background-color);
-  color: white;
+body {
+    padding: var(--default-size);
+    background: var(--background-color);
+    color: white;
+}
+
+div:not(#tc-widget-root div) {
+    display: flex;
+}
+
+button:not(#tc-widget-root button) {
+    display: flex;
+}
+
+#root {
+    justify-content: center;
+}
+
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 @font-face {
-  font-family: 'Basel';
-  src: url('./assets/fonts/Basel-Grotesk-Medium.woff2') format('woff2');
+    font-family: 'Basel';
+    src: url('./assets/fonts/Basel-Grotesk-Medium.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Basel-book';
-  src: url('./assets/fonts/Basel-Grotesk-Book.woff2') format('woff2');
+    font-family: 'Basel-book';
+    src: url('./assets/fonts/Basel-Grotesk-Book.woff2') format('woff2');
 }
 
 
 :root {
-  --background-color: #131313;
-  --accent-black-color:#1B1B1B;
-  --accent-light-black-color: #222222;
-  --accent-light-grey-color: #F9F9FB;
-  --accent-dark-grey-color: #97979F;
-  --accent-neon-pink-color: #FC72F9;
-  --accent-dark-pink-color: #311C2D;
+    --background-color: #131313;
+    --accent-black-color: #1B1B1B;
+    --accent-light-black-color: #222222;
+    --accent-light-grey-color: #F9F9FB;
+    --accent-dark-grey-color: #97979F;
+    --accent-neon-pink-color: #FC72F9;
+    --accent-dark-pink-color: #311C2D;
 
-  --default-size: 8px;
+    --default-size: 8px;
+
+    --app-min-width: 320px;
+    --app-max-width: 540px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 

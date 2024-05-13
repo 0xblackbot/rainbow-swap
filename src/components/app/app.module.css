@@ -1,5 +1,6 @@
-.App{
-  position: relative;
-  height: 100%;
-  width: 100%;
+.App {
+    width: 100%;
+    min-width: var(--app-min-width);
+    max-width: var(--app-max-width);
+    flex-direction: column;
 }

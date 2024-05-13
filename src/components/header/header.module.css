@@ -4,7 +4,6 @@
     border: none;
     border-radius: 24px;
     padding: var(--default-size) 16px;
-    margin: var(--default-size);
     font-family: 'Basel-book', sans-serif;
   }
   
@@ -14,37 +13,31 @@
     border-radius: 24px;
     border: none;
     padding: var(--default-size) 16px;
-    margin: var(--default-size);
     font-family: 'Basel-book', sans-serif;
 }
 
 .dropdown {
     position: relative;
-    display: flex;
   }
 
 .dropdown_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid !important;
+    gap: var(--default-size);
     position: absolute;
-    margin-right: 8px;
     background-color: var(--accent-light-black-color);
     min-width: 160px;
     border-color: var(--accent-light-black-color);
     z-index: 10;
     right: 0;
-    top: 110%;
-    padding: 12px;
+    top: 120%;
+    padding: var(--default-size);
     border-radius: 16px;
   }
 
 .dropdown_button {
-    width: 100%;
     padding: 8px;
     border: none;
     border-radius: 24px;
-    margin-top: 8px;
     cursor: pointer;
   }
 
@@ -65,7 +58,6 @@
 }
 
 .logo_div{
-    display: flex;
     align-items: center;
 }
 
@@ -79,8 +71,6 @@
 }
 
 .header_div{
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: var(--default-size);
 }

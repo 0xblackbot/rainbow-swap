@@ -1,6 +1,5 @@
-.select_asset_button{
+.select_asset_button {
     background: var(--accent-neon-pink-color);
-    display: flex;
     align-items: center;
     color: white;
     border-radius: 24px;
@@ -8,19 +7,23 @@
     padding: var(--default-size);
 }
 
-.p{
+.modalSheet {
+    min-width: var(--app-min-width);
+    max-width: var(--app-max-width);
+}
+
+.p {
     margin-right: 4px;
 }
 
-.img{
+.img {
     width: 24px;
     height: 24px;
     margin-right: 4px;
 }
 
 
-.selected_asset_button{
-    display: flex;
+.selected_asset_button {
     align-items: center;
     background: var(--background-color);
     color: white;

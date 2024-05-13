@@ -1,6 +1,4 @@
 .container {
-  display: flex;
-  height: 130px;
   flex-direction: column;
   justify-content: center;
   background-color: var(--accent-black-color);
@@ -17,7 +15,6 @@
 }
 
 .input_container{
-  display: flex;
   margin-top: var(--default-size);
   justify-content: space-between;
 }
@@ -27,19 +24,18 @@
   background-color: transparent;
   color: var(--accent-dark-grey-color);
   font-size: 32px;
-  width: 60%;
   outline: none;
+  width: 69%; /* Any width required to make flex: 1 work*/
+  flex: 1;
 }
 
 .input_info{
-  display: flex;
   margin-top: var(--default-size);
   justify-content: space-between;
   color: var(--accent-dark-grey-color);
 }
 
 .input_info_button{
-  display: flex;
   color: #FC72FF;
   background: none;
   font-size: 16px;
@@ -49,51 +45,8 @@
   
 }
 .input_info_balance{
-  display: flex;
   align-items: center;
 }
 .input_field:not(:placeholder-shown) {
   color: white;
-}
-
-@media (min-width: 300px) {
-  .input_field{
-      width: 50%;
-  }
-}
-
-@media (min-width: 400px) {
-  .input_field{
-      width: 60%;
-  }
-}
-
-@media (min-width: 500px) {
-  .input_field{
-      width: 70%;
-  }
-}
-
-@media (min-width: 768px) {
-  .input_field{
-      width: 65%;
-  }
-}
-
-@media (min-width: 900px) {
-  .input_field{
-      width: 60%;
-  }
-}
-
-@media (min-width: 1100px) {
-  .input_field{
-      width: 65%;
-  }
-}
-
-@media (min-width: 1500px) {
-  .input_field{
-      width: 70%;
-  }
 }

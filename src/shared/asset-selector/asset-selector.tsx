@@ -41,12 +41,12 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
 
             <Sheet
                 isOpen={isOpen}
-                className={styles.modalSheet}
+                // className={styles.modalSheet}
                 snapPoints={[700]}
                 initialSnap={0}
                 onClose={handleClose}
             >
-                <Sheet.Container>
+                <Sheet.Container className={styles.modalSheet}>
                     <Sheet.Header />
                     <Sheet.Content>
                         <div className={styles.modalDiv}>
@@ -69,6 +69,9 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                 height={600}
                                 rowCount={assetsList.length}
                                 rowHeight={50}
+                                containerStyle={{
+                                    width: listWidth
+                                }}
                                 rowRenderer={props => (
                                     <AssetListItem
                                         key={props.key}
