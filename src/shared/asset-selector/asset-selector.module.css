@@ -7,7 +7,7 @@
     padding: var(--default-size);
 }
 
-.modalSheet {
+.modalSheetContainer {
     min-width: var(--app-min-width);
     max-width: var(--app-max-width);
 }
