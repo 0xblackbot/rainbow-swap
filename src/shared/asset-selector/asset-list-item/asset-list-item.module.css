@@ -31,7 +31,7 @@
 .select_list_item_balance {
     background: #F9F9FB;
     color: #97979F;
-    padding: 4px var(--default-size);
+    padding: 4px var(--step);
     border-radius: 16px;
 }
 

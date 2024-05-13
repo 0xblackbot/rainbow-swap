@@ -2,7 +2,7 @@
     height: 32px;
     width: 32px;
     background-color: var(--accent-black-color);
-    border-radius: var(--default-size);
+    border-radius: var(--step);
     color:white;
     border: 4px solid;
     border-color: var(--background-color);

@@ -2,7 +2,7 @@
   flex-direction: column;
   justify-content: center;
   background-color: var(--accent-black-color);
-  border-radius: var(--default-size);
+  border-radius: var(--step);
   padding: 24px;
   margin-bottom: 4px;
   position: relative;
@@ -15,7 +15,7 @@
 }
 
 .input_container{
-  margin-top: var(--default-size);
+  margin-top: var(--step);
   justify-content: space-between;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .input_info{
-  margin-top: var(--default-size);
+  margin-top: var(--step);
   justify-content: space-between;
   color: var(--accent-dark-grey-color);
 }

@@ -1,6 +1,6 @@
 .route_info_div {
     background-color: var(--accent-light-black-color);
-    border-radius: var(--default-size);
+    border-radius: var(--step);
     flex-direction: column;
     padding: 16px;
     font-family: 'Basel-book', sans-serif;

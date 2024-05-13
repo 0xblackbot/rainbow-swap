@@ -4,7 +4,7 @@
     color: white;
     border-radius: 24px;
     border: none;
-    padding: var(--default-size);
+    padding: var(--step);
 }
 
 .modalSheetContainer {
@@ -30,5 +30,5 @@
     border-radius: 24px;
     border: 0.1px solid;
     border-color: var(--accent-light-black-color);
-    padding: 4px var(--default-size);
+    padding: 4px var(--step);
 }
