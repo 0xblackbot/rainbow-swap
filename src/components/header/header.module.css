@@ -1,46 +1,46 @@
-.connect_button{
+.connect_button {
     background: var(--accent-dark-pink-color);
     color: var(--accent-neon-pink-color);
     border: none;
-    border-radius: 24px;
-    padding: var(--default-size) 16px;
+    border-radius: var(--4-step);
+    padding: var(--step) var(--2-step);
     font-family: 'Basel-book', sans-serif;
-  }
-  
-.disconnect_button{
+}
+
+.disconnect_button {
     background: var(--accent-neon-pink-color);
     color: var(--accent-dark-pink-color);
-    border-radius: 24px;
+    border-radius: var(--4-step);
     border: none;
-    padding: var(--default-size) 16px;
+    padding: var(--step) var(--2-step);
     font-family: 'Basel-book', sans-serif;
 }
 
 .dropdown {
     position: relative;
-  }
+}
 
 .dropdown_content {
     display: grid !important;
-    gap: var(--default-size);
+    gap: var(--step);
     position: absolute;
     background-color: var(--accent-light-black-color);
-    min-width: 160px;
+    min-width: calc(20 * var(--step));
     border-color: var(--accent-light-black-color);
     z-index: 10;
     right: 0;
     top: 120%;
-    padding: var(--default-size);
-    border-radius: 16px;
-  }
+    padding: var(--step);
+    border-radius: var(--2-step);
+}
 
 .dropdown_button {
     justify-content: center;
-    padding: 8px;
+    padding: var(--step);
     border: none;
-    border-radius: 24px;
+    border-radius: var(--3-step);
     cursor: pointer;
-  }
+}
 
 .dropdown_disconnect_button {
     background: var(--accent-neon-pink-color);
@@ -53,25 +53,25 @@
     background: none;
 }
 
-.dropdown_explore_button a{
+.dropdown_explore_button a {
     text-decoration: none;
     color: white;
 }
 
-.logo_div{
+.logo_div {
     align-items: center;
 }
 
-.header_logo{
-    width: 60px;
-    margin: var(--default-size);
+.header_logo {
+    width: calc(8 * var(--step));
+    margin: var(--step);
 }
 
-.header_triangle_logo{
-    width: 40px;
+.header_triangle_logo {
+    width: calc(4 * var(--step));
 }
 
-.header_div{
+.header_div {
     justify-content: space-between;
     align-items: center;
 }

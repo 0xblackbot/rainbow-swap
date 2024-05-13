@@ -1,8 +1,8 @@
 .exchange_info_div{
     justify-content: space-between;
     align-items: center;
-    margin-top: var(--default-size);
-    padding: var(--default-size);
+    margin-top: var(--step);
+    padding: var(--step);
     font-family: 'Basel-book', sans-serif;
 }
 
