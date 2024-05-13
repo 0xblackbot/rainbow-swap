@@ -21,9 +21,9 @@ export const App = () => {
 
     return (
         <div className={styles.App}>
-            <TestContainer />
             <Header />
             {connectionRestored && <Home />}
+            <TestContainer />
         </div>
     );
 };
