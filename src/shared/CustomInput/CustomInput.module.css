@@ -1,7 +1,7 @@
 .container {
     flex-direction: column;
     justify-content: center;
-    background-color: var(--bg-color);
+    background-color: var(--secondary-bg-color);
     border-radius: var(--step);
     padding: 24px;
     margin-bottom: 4px;
