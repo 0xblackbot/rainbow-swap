@@ -1,0 +1,42 @@
+.exchange_info_div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--default-size);
+    padding: var(--default-size);
+    font-family: 'Basel-book', sans-serif;
+}
+
+.gas_info_div{
+    display: flex;
+    align-items: center;
+    color: var(--accent-dark-grey-color);
+}
+
+.gas_info_div_p{
+    margin-left: 4px;
+}
+
+@media (min-width: 768px) {
+    .exchange_info_div{
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+}
+
+@media (min-width: 900px) {
+    .exchange_info_div{
+        margin-left: auto;
+        margin-right: auto;
+        width: 45%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .exchange_info_div{
+        margin-left: auto;
+        margin-right: auto;
+        width: 35%;
+    }
+}

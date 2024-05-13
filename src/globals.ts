@@ -4,6 +4,7 @@ import axios from 'axios';
 import {toNano} from './utils/big-int.utils';
 
 export const TON = 'ton';
+export const USDT = 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs';
 export const WORKCHAIN = 0;
 
 export const GAS_AMOUNT = toNano('0.255', 9);

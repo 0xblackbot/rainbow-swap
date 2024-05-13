@@ -1,11 +1,21 @@
-const ChevronDownIcon = (): JSX.Element => (
+import {FC} from 'react';
+
+interface Props {
+    width?: string;
+    height?: string;
+}
+
+export const ChevronDownIcon: FC<Props> = ({
+    width = '16px',
+    height = '16px'
+}): JSX.Element => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        style={{width: '16px', height: '16px'}}
+        style={{width, height}}
     >
         <path
             strokeLinecap="round"
@@ -14,5 +24,3 @@ const ChevronDownIcon = (): JSX.Element => (
         />
     </svg>
 );
-
-export default ChevronDownIcon;

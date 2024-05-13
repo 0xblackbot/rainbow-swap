@@ -52,7 +52,7 @@ export const dedust_getTransferParams = async (
 
     const poolAddress = Address.parse(firstRouteStep.dexPairAddress);
     const minOutputAmount = applyMinOutputAmount
-        ? firstRouteStep.outputAssetAmount
+        ? BigInt(firstRouteStep.outputAssetAmount)
         : 0n;
     const nextSwapStep = createNextSwapStepPayload(route.slice(1));
     const swapParams: SwapParams = {recipientAddress: receiverAddress};
@@ -60,10 +60,10 @@ export const dedust_getTransferParams = async (
     if (firstRouteStep.inputAssetAddress === TON) {
         return {
             to: vaultAddress,
-            value: gasAmount + firstRouteStep.inputAssetAmount,
+            value: gasAmount + BigInt(firstRouteStep.inputAssetAmount),
             body: packTonSwap({
                 queryId,
-                inputAmount: firstRouteStep.inputAssetAmount,
+                inputAmount: BigInt(firstRouteStep.inputAssetAmount),
                 poolAddress,
                 minOutputAmount,
                 nextSwapStep,
@@ -88,7 +88,7 @@ export const dedust_getTransferParams = async (
             value: gasAmount + JETTON_TRANSFER_GAS_AMOUNT,
             body: getJettonTransferBody({
                 queryId,
-                amount: firstRouteStep.inputAssetAmount,
+                amount: BigInt(firstRouteStep.inputAssetAmount),
                 destination: vaultAddress,
                 responseDestination: responseDestination,
                 forwardTonAmount: gasAmount,
