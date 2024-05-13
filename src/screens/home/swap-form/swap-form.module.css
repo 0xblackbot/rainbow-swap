@@ -12,14 +12,6 @@
     border: none;
     border-radius: 16px;
     font-family: 'Basel-book', sans-serif;
-}
-
-.connect_button {
-    background: var(--accent-dark-pink-color);
-    color: var(--accent-neon-pink-color);
-}
-
-.swap_button {
-    background: var(--accent-neon-pink-color);
-    color: white;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
 }

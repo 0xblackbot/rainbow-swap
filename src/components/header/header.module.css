@@ -1,6 +1,6 @@
 .connect_button {
-    background: var(--accent-dark-pink-color);
-    color: var(--accent-neon-pink-color);
+    background-color: var(--button-color);
+    color: var(--button-text-color);
     border: none;
     border-radius: var(--4-step);
     padding: var(--step) var(--2-step);
@@ -8,8 +8,8 @@
 }
 
 .disconnect_button {
-    background: var(--accent-neon-pink-color);
-    color: var(--accent-dark-pink-color);
+    background-color: var(--button-color);
+    color: var(--button-text-color);
     border-radius: var(--4-step);
     border: none;
     padding: var(--step) var(--2-step);
@@ -43,13 +43,13 @@
 }
 
 .dropdown_disconnect_button {
-    background: var(--accent-neon-pink-color);
-    color: var(--accent-dark-pink-color);
+    background-color: var(--button-color);
+    color: var(--button-text-color);
 }
 
 .dropdown_explore_button {
     border: 1px solid;
-    border-color: black;
+    border-color: var(--button-color);
     background: none;
 }
 

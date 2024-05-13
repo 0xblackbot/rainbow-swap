@@ -5,7 +5,7 @@
 
 body {
     padding: var(--2-step);
-    background: var(--background-color);
+    background: var(--secondary-bg-color);
     color: white;
 }
 
@@ -45,6 +45,15 @@ p {
     --accent-dark-grey-color: #97979F;
     --accent-neon-pink-color: #FC72F9;
     --accent-dark-pink-color: #311C2D;
+
+    --bg-color: var(--tg-theme-bg-color, #000000);
+    --secondary-bg-color: var(--tg-theme-secondary-bg-color, #1c1c1d);
+    --text-color: var(--tg-theme-text-color, #ffffff);
+    --section-bg-color: var(--tg-theme-section-bg-color, #2c2c2e);
+    --section-text-color: var(--tg-theme-section-header-text-color, #8d8e93);
+    --button-color: var(--tg-theme-button-color, #3e88f7);
+    --button-text-color: var(--tg-theme-button-text-color, #ffffff);
+
 
     --step: 8px;
     --2-step: calc(2 * var(--step));

@@ -17,7 +17,6 @@ import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-acti
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
-import {getClassName} from '../../../utils/style.utils.ts';
 
 export const SwapForm = () => {
     const wallet = useTonWallet();
@@ -96,10 +95,7 @@ export const SwapForm = () => {
                         text="Swap"
                         type="button"
                         onClick={handleSwapClick}
-                        className={getClassName(
-                            styles.body_button,
-                            styles.swap_button
-                        )}
+                        className={styles.body_button}
                     />
                 </>
             ) : (
@@ -107,10 +103,7 @@ export const SwapForm = () => {
                     text="Connect Wallet"
                     type="button"
                     onClick={handleConnectClick}
-                    className={getClassName(
-                        styles.body_button,
-                        styles.connect_button
-                    )}
+                    className={styles.body_button}
                 />
             )}
         </>
