@@ -1,0 +1,31 @@
+.route_step_div{
+    display: flex;
+    width: 5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--accent-light-black-color);
+    border: 2px solid;
+    border-color: var(--accent-dark-grey-color);
+    border-radius: var(--default-size);
+    padding: 4px;
+}
+
+.route_step_direction_div{
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.route_step_div p{
+    font-size: 16px;
+    color: var(--accent-dark-grey-color);
+}
+
+.route_step_direction_div img{
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    border-radius: 50%;
+    object-fit: cover;
+}

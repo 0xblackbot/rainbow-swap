@@ -1,0 +1,26 @@
+.route_info_div {
+    background-color: var(--accent-light-black-color);
+    border-radius: var(--default-size);
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    font-family: 'Basel-book', sans-serif;
+}
+
+.route_info_inside_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.route_info_inside_div p {
+    font-size: 16px;
+    color: var(--accent-dark-grey-color)
+}
+
+.route_info_inside_div div {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+}

@@ -1,3 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background: var(--background-color);
+  color: white;
+}
+
+@font-face {
+  font-family: 'Basel';
+  src: url('./assets/fonts/Basel-Grotesk-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Basel-book';
+  src: url('./assets/fonts/Basel-Grotesk-Book.woff2') format('woff2');
+}
+
+
 :root {
   --background-color: #131313;
   --accent-black-color:#1B1B1B;
@@ -15,3 +37,4 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+

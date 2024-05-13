@@ -2,10 +2,15 @@ import {Epic, StateObservable, combineEpics} from 'redux-observable';
 import {Observable, catchError} from 'rxjs';
 
 import {assetsEpics} from '../assets/assets-epics.ts';
+import {loadBalancesEpics} from '../balances/balances-epics.ts';
 import {swapRoutesEpics} from '../swap-routes/swap-routes-epics.ts';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const rootStateEpics: Epic<any>[] = [assetsEpics, swapRoutesEpics];
+const rootStateEpics: Epic<any>[] = [
+    assetsEpics,
+    swapRoutesEpics,
+    loadBalancesEpics
+];
 
 export const rootEpic = (
     action$: Observable<any>,
