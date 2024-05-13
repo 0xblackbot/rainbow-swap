@@ -10,7 +10,7 @@
 }
 
 .container_label {
-    color: var(--text-color);
+    color: var(--section-text-color);
     font-size: 16px;
 }
 
@@ -32,7 +32,7 @@
 .input_info {
     margin-top: var(--step);
     justify-content: space-between;
-    color: var(--text-color);
+    color: var(--section-text-color);
 }
 
 .input_info_button {
@@ -47,8 +47,4 @@
 
 .input_info_balance {
     align-items: center;
-}
-
-.input_field {
-    color: var(--text-color);
 }

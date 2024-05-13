@@ -2,6 +2,7 @@
     flex-direction: column;
     position: relative;
     margin-top: 48px;
+    margin-bottom: var(--step);
 }
 
 .body_button {

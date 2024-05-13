@@ -8,7 +8,7 @@
 }
 
 .disconnect_button {
-    background-color: var(--button-color);
+    background-color: rgb(from var(--button-color) r g b / 0.5);
     color: var(--button-text-color);
     border-radius: var(--4-step);
     border: none;
