@@ -1,0 +1,52 @@
+#include "stdlib.fc";
+#include "utils/dict.utils.fc";
+
+;; storage variables
+
+global slice storage::owner_address;
+global cell storage::effects_dict;
+
+() load_storage() impure {
+    slice cs::storage = get_data().begin_parse();
+
+    storage::owner_address = cs::storage~load_msg_addr();
+    storage::effects_dict = cs::storage~load_dict();
+
+    cs::storage.end_parse();
+}
+
+() save_storage() impure {
+    set_data(
+        begin_cell()
+            .store_slice(storage::owner_address)
+            .store_dict(storage::effects_dict)
+            .end_cell()
+    );
+}
+
+(slice, cell) get_storage() method_id {
+    load_storage();
+
+    return (
+        storage::owner_address,
+        storage::effects_dict
+    );
+}
+
+(slice, int) get_effect_dict(slice jetton_sender_address_to_listen, int query_id) method_id {
+    load_storage();
+
+    int key_len = 267 + 64;
+    slice index = begin_cell()
+        .store_slice(jetton_sender_address_to_listen)
+        .store_uint(query_id, 64)
+        .end_cell()
+        .begin_parse();
+
+    var (value, success?) = storage::effects_dict.dict_get?(key_len, index);
+
+    return (
+        value,
+        success?
+    );
+}

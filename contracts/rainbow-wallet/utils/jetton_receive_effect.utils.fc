@@ -1,0 +1,43 @@
+#include "../stdlib.fc";
+#include "../constants.fc";
+
+const int effect_type::jetton_transfer = 0;
+const int effect_type::dedust_ton_swap = 1;
+
+(cell) get_jetton_receive_effect_body(slice jetton_receive_effect, int query_id, int amount) impure inline {
+    int effect_type = jetton_receive_effect~load_uint(1);
+    slice effect_body_slice = jetton_receive_effect~load_ref().begin_parse();
+
+    if (effect_type == effect_type::jetton_transfer) {
+        return begin_cell()
+            .store_uint(op::jetton_transfer, 32)
+            .store_uint(query_id, 64)
+            .store_coins(amount)
+            .store_slice(effect_body_slice)
+        ;; All this data is stored inside jetton_receive_effect
+        ;; .store_slice(destination)
+        ;; .store_slice(responseDestination) // address where to return fee (diff between input fee and forwardAmount)
+        ;; .store_maybe_ref(customPayload)
+        ;; .store_coins(forwardTonAmount) // forward_ton_amount
+        ;; .store_maybe_ref(forwardPayload)
+            .end_cell();
+    } elseif (effect_type == effect_type::dedust_ton_swap) {
+        return begin_cell()
+            .store_uint(op::dedust_ton_swap, 32)
+            .store_uint(query_id, 64)
+            .store_coins(amount)
+            .store_slice(effect_body_slice)
+        ;; All this data is stored inside jetton_receive_effect
+        ;; .store_slice(poolAddress)
+        ;; .store_uint(0, 1)
+        ;; .store_coins(minOutputAmount)
+        ;; .store_maybe_ref(packNextSwapStep(nextSwapStep))
+        ;; .store_ref(packSwapParams(swapParams))
+            .end_cell();
+    } else {
+        throw(error::unknown_jetton_receive_effect_body_type);
+
+        return begin_cell().end_cell();
+    }
+
+}

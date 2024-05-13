@@ -1,0 +1,31 @@
+#include "../stdlib.fc";
+#include "../storage.fc";
+
+() handle_owner_jetton_transfer_notification(int query_id, slice in_msg_body) impure inline {
+    slice forward_payload = in_msg_body~load_maybe_ref().begin_parse();
+
+    slice destination = forward_payload~load_msg_addr();
+    cell body = forward_payload~load_ref();
+    slice jetton_sender_address_to_listen = forward_payload~load_msg_addr();
+    cell jetton_receive_effect = forward_payload~load_ref();
+
+    int key_len = 267 + 64;
+    slice index = begin_cell()
+        .store_slice(jetton_sender_address_to_listen)
+        .store_uint(query_id, 64)
+        .end_cell()
+        .begin_parse();
+
+    storage::effects_dict~dict_set(key_len, index, jetton_receive_effect.begin_parse());
+    save_storage();
+
+    cell message = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(destination)
+        .store_coins(0)
+        .store_uint(1, 107)
+        .store_ref(body)
+        .end_cell();
+
+    send_raw_message(message, 64);
+}

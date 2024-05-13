@@ -1,0 +1,71 @@
+#include "stdlib.fc";
+#include "constants.fc";
+#include "storage.fc";
+
+#include "handlers/jetton_transfer_notification.fc";
+#include "handlers/owner_jetton_transfer_notification.fc";
+#include "handlers/owner_make_a_swap_op.fc";
+#include "handlers/owner_withdraw_jetton_op.fc";
+#include "handlers/owner_withdraw_ton_op.fc";
+
+#include "utils/messaging.utils.fc";
+
+;; Rainbow routing wallet smart contract
+
+() recv_internal(int msg_value, cell in_msg, slice in_msg_body) impure {
+    ;; ignore empty messages
+    if (in_msg_body.slice_empty?()) {
+        return ();
+    }
+
+    load_storage();
+
+    int op = in_msg_body~load_uint(32);
+    int query_id = in_msg_body~load_uint(64);
+
+    if (op == op::excesses) {
+        forward_message_op(op, query_id);
+        return ();
+    }
+
+    if (op == op::bounce) {
+        forward_message_op(op, query_id);
+        return ();
+    }
+
+    var cs::in_msg = in_msg.begin_parse();
+    var flags = cs::in_msg~load_uint(4);
+    slice msg_sender_address = cs::in_msg~load_msg_addr();
+
+    if (equal_slices(storage::owner_address, msg_sender_address)) {
+        if (op == op::make_a_swap) {
+            handle_owner_make_a_swap_op(query_id, in_msg_body);
+            return ();
+        }
+
+        if (op == op::withdraw_ton) {
+            handle_owner_withdraw_ton_op(query_id, in_msg_body);
+            return ();
+        }
+
+        if (op == op::withdraw_jetton) {
+            handle_owner_withdraw_jetton_op(query_id, in_msg_body);
+            return ();
+        }
+    } else {
+        if (op == op::jetton_transfer_notification) {
+            int jetton_received_amount = in_msg_body~load_coins();
+            slice jetton_sender = in_msg_body~load_msg_addr();
+
+            if (equal_slices(storage::owner_address, jetton_sender)) {
+                handle_owner_jetton_transfer_notification(query_id, in_msg_body);
+                return ();
+            } else {
+                handle_jetton_transfer_notification(query_id, jetton_received_amount, jetton_sender);
+                return ();
+            }
+        }
+    }
+
+    throw(error::unknown_op);
+}

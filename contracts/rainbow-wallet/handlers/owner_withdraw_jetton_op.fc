@@ -1,0 +1,29 @@
+#include "../stdlib.fc";
+#include "../constants.fc";
+#include "../storage.fc";
+
+() handle_owner_withdraw_jetton_op(int query_id, slice in_msg_body) impure inline {
+    slice destination = in_msg_body~load_msg_addr();
+    int amount = in_msg_body~load_coins();
+
+    cell message_body = begin_cell()
+        .store_uint(op::jetton_transfer, 32)
+        .store_uint(query_id, 64)
+        .store_coins(amount)
+        .store_slice(storage::owner_address)
+        .store_slice(storage::owner_address)
+        .store_maybe_ref(null())
+        .store_coins(0)
+        .store_maybe_ref(null())
+        .end_cell();
+
+    cell message = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(destination)
+        .store_coins(0)
+        .store_uint(1, 107)
+        .store_ref(message_body)
+        .end_cell();
+
+    send_raw_message(message, 64);
+}

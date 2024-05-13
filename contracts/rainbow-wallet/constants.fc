@@ -1,0 +1,13 @@
+const int op::bounce = 0xffffffff;
+const int op::excesses = 0xd53276db;
+const int op::jetton_transfer = 0xf8a7ea5;
+const int op::jetton_transfer_notification = 0x7362d09c;
+
+const int op::make_a_swap = 430800;
+const int op::withdraw_ton = 430801;
+const int op::withdraw_jetton = 430802;
+
+const int op::dedust_ton_swap = 3926267997;
+
+const int error::unknown_op = 808800;
+const int error::unknown_jetton_receive_effect_body_type = 808801;

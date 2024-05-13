@@ -1,0 +1,19 @@
+#include "../stdlib.fc";
+#include "../storage.fc";
+
+() forward_message_op(int op, int query_id) impure inline {
+    cell message_body = begin_cell()
+        .store_uint(op, 32)
+        .store_uint(query_id, 64)
+        .end_cell();
+
+    cell message = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(storage::owner_address)
+        .store_coins(0)
+        .store_uint(1, 107)
+        .store_ref(message_body)
+        .end_cell();
+
+    send_raw_message(message, 64);
+}

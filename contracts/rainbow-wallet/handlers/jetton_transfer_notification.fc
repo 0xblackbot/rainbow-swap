@@ -1,0 +1,33 @@
+#include "../stdlib.fc";
+#include "../storage.fc";
+#include "../utils/jetton_receive_effect.utils.fc";
+
+() handle_jetton_transfer_notification(int query_id, int jetton_received_amount, slice jetton_sender) impure inline {
+
+    int key_len = 267 + 64;
+    slice index = begin_cell()
+        .store_slice(jetton_sender)
+        .store_uint(query_id, 64)
+        .end_cell()
+        .begin_parse();
+
+    var (jetton_receive_effect, success?) = storage::effects_dict.dict_get?(key_len, index);
+
+    if (success?) {
+        slice destination = jetton_receive_effect~load_msg_addr();
+        cell body = get_jetton_receive_effect_body(jetton_receive_effect, query_id, jetton_received_amount);
+
+        cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_slice(destination)
+            .store_coins(0)
+            .store_uint(1, 107)
+            .store_ref(body)
+            .end_cell();
+
+        send_raw_message(message, 64);
+
+        storage::effects_dict~dict_delete?(key_len, index);
+        save_storage();
+    }
+}
