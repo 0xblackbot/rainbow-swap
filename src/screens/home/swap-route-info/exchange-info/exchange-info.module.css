@@ -4,11 +4,11 @@
     margin-top: var(--step);
     padding: var(--step);
     font-family: 'Basel-book', sans-serif;
+    color: var(--hint-color);
 }
 
 .gas_info_div{
     align-items: center;
-    color: var(--accent-dark-grey-color);
 }
 
 .gas_info_div_p{

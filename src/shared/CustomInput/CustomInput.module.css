@@ -10,7 +10,7 @@
 }
 
 .container_label {
-    color: var(--section-text-color);
+    color: var(--hint-color);
     font-size: 16px;
 }
 
@@ -32,7 +32,7 @@
 .input_info {
     margin-top: var(--step);
     justify-content: space-between;
-    color: var(--section-text-color);
+    color: var(--hint-color);
 }
 
 .input_info_button {

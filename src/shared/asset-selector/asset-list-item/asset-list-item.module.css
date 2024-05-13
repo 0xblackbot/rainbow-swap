@@ -8,7 +8,7 @@
 }
 
 .select_list_item_div:active {
-    background: var(--accent-light-grey-color);
+    background: var(--button-color);
 }
 
 .img {

@@ -38,18 +38,11 @@ p {
 
 
 :root {
-    --background-color: #131313;
-    --accent-black-color: #1B1B1B;
-    --accent-light-black-color: #222222;
-    --accent-light-grey-color: #F9F9FB;
-    --accent-dark-grey-color: #97979F;
-    --accent-neon-pink-color: #FC72F9;
-    --accent-dark-pink-color: #311C2D;
-
     --bg-color: var(--tg-theme-bg-color, #000000);
     --secondary-bg-color: var(--tg-theme-secondary-bg-color, #1c1c1d);
-    --text-color: var(--tg-theme-text-color, #ffffff);
     --button-color: var(--tg-theme-button-color, #3e88f7);
+    --text-color: var(--tg-theme-text-color, #ffffff);
+    --hint-color: var(--tg-theme-hint-color, #98989e);
     --button-text-color: var(--tg-theme-button-text-color, #ffffff);
 
 

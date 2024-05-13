@@ -8,7 +8,7 @@
 }
 
 .disconnect_button {
-    background-color: rgb(from var(--button-color) r g b / 0.5);
+    background-color: var(--button-color);
     color: var(--button-text-color);
     border-radius: var(--4-step);
     border: none;
@@ -24,9 +24,8 @@
     display: grid !important;
     gap: var(--step);
     position: absolute;
-    background-color: var(--accent-light-black-color);
+    background-color: var(--secondary-bg-color);
     min-width: calc(20 * var(--step));
-    border-color: var(--accent-light-black-color);
     z-index: 10;
     right: 0;
     top: 120%;
@@ -55,7 +54,7 @@
 
 .dropdown_explore_button a {
     text-decoration: none;
-    color: white;
+    color: var(--button-text-color);
 }
 
 .logo_div {

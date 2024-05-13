@@ -1,5 +1,5 @@
 .route_info_div {
-    background-color: var(--accent-light-black-color);
+    background-color: var(--secondary-bg-color);
     border-radius: var(--step);
     flex-direction: column;
     padding: 16px;
@@ -14,7 +14,7 @@
 
 .route_info_inside_div p {
     font-size: 16px;
-    color: var(--accent-dark-grey-color)
+    color: var(--hint-color)
 }
 
 .route_info_inside_div div {
