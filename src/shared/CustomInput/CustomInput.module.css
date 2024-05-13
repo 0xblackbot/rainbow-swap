@@ -10,7 +10,7 @@
 }
 
 .container_label {
-    color: var(--section-text-color);
+    color: var(--text-color);
     font-size: 16px;
 }
 
@@ -22,7 +22,7 @@
 .input_field {
     border: none;
     background-color: transparent;
-    color: var(--section-text-color);
+    color: var(--text-color);
     font-size: 32px;
     outline: none;
     width: 69%; /* Any width required to make flex: 1 work*/
@@ -32,7 +32,7 @@
 .input_info {
     margin-top: var(--step);
     justify-content: space-between;
-    color: var(--section-text-color);
+    color: var(--text-color);
 }
 
 .input_info_button {
