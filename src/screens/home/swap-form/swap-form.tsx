@@ -48,12 +48,12 @@ export const SwapForm = () => {
         }
     }, [inputAssetAmount, inputAsset, outputAsset, dispatch]);
 
-    const handleConnectWalletButtonClick = () => connectModal.open();
+    const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
         setInputAsset(outputAsset);
         setOutputAsset(inputAsset);
     };
-    const handleSwapButtonClick = async () => {
+    const handleSwapClick = async () => {
         const senderAddress = wallet?.account.address ?? '';
 
         const messages = await Promise.all(
@@ -95,7 +95,7 @@ export const SwapForm = () => {
                     <FormButton
                         text="Swap"
                         type="button"
-                        onClick={handleSwapButtonClick}
+                        onClick={handleSwapClick}
                         className={getClassName(
                             styles.body_button,
                             styles.swap_button
@@ -106,7 +106,7 @@ export const SwapForm = () => {
                 <FormButton
                     text="Connect Wallet"
                     type="button"
-                    onClick={handleConnectWalletButtonClick}
+                    onClick={handleConnectClick}
                     className={getClassName(
                         styles.body_button,
                         styles.connect_button

@@ -21,8 +21,8 @@ export const Header = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleDropdownClick = () => setIsDropdownOpen(value => !value);
-    const handleConnectButtonClick = () => connectModal.open();
-    const handleDisconnectButtonClick = () => tonConnectUI.disconnect();
+    const handleConnectClick = () => connectModal.open();
+    const handleDisconnectClick = () => tonConnectUI.disconnect();
 
     return (
         <div className={styles.header_div}>
@@ -35,7 +35,7 @@ export const Header = () => {
             </div>
             {walletAddress === '' ? (
                 <button
-                    onClick={handleConnectButtonClick}
+                    onClick={handleConnectClick}
                     className={styles.connect_button}
                 >
                     Connect
@@ -69,7 +69,7 @@ export const Header = () => {
                                     styles.dropdown_disconnect_button,
                                     styles.dropdown_button
                                 )}
-                                onClick={handleDisconnectButtonClick}
+                                onClick={handleDisconnectClick}
                             >
                                 Disconnect
                             </button>
