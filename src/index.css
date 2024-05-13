@@ -5,7 +5,7 @@
 
 body {
     padding: var(--2-step);
-    background: var(--bg-color);
+    background: var(--secondary-bg-color);
     color: white;
 }
 
