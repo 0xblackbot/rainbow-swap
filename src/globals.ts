@@ -14,10 +14,10 @@ export const GAS_AMOUNT = toNano('0.255', 9);
 export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);
 
 export const API = axios.create({
-    baseURL: 'http://93.188.34.207/api'
+    baseURL: 'https://api.blackbot.technology/api'
 });
 export const TON_CLIENT = new TonClient({
-    endpoint: `http://65.109.108.204:8088/jsonRPC`
+    endpoint: `https://toncenter.com/api/v2/jsonRPC`
 });
 
 export const TON_API_CLIENT = new Api(

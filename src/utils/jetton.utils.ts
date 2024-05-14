@@ -6,7 +6,7 @@ export const getJettonWalletAddress = async (
     jettonMasterAddress: string,
     ownerAddress: Address
 ) => {
-    const wallerAddressResponse = await TON_CLIENT.runMethod(
+    const walletAddressResponse = await TON_CLIENT.runMethod(
         Address.parse(jettonMasterAddress),
         'get_wallet_address',
         [
@@ -17,7 +17,7 @@ export const getJettonWalletAddress = async (
         ]
     );
 
-    return wallerAddressResponse.stack.readAddress();
+    return walletAddressResponse.stack.readAddress();
 };
 
 enum Operation {
