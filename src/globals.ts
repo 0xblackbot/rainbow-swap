@@ -17,3 +17,5 @@ export const API = axios.create({
 export const TON_CLIENT = new TonClient({
     endpoint: `http://65.109.108.204:8088/jsonRPC`
 });
+
+export const DEBOUNCE_DUE_TIME = 300;
