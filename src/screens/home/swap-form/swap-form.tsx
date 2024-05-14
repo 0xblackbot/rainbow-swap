@@ -4,8 +4,9 @@ import {
     useTonConnectUI,
     useTonWallet
 } from '@tonconnect/ui-react';
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
+import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
 import {DEFAULT_ASSETS_RECORD} from '../../../data/assets-record.ts';
@@ -15,6 +16,7 @@ import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
 import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
+import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
 
@@ -25,10 +27,18 @@ export const SwapForm = () => {
 
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
+    const routes = useMemo(
+        () => swapRoutes.map(mapSwapRouteToRoute),
+        [swapRoutes]
+    );
 
     const [inputAssetAmount, setInputAssetAmount] = useState('');
     const [inputAsset, setInputAsset] = useState(DEFAULT_ASSETS_RECORD[TON]);
     const [outputAsset, setOutputAsset] = useState(DEFAULT_ASSETS_RECORD[USDT]);
+    const outputAssetAmount = useOutputAssetAmount(
+        routes,
+        outputAsset.decimals
+    );
 
     useEffect(() => {
         if (inputAssetAmount === '') {
@@ -83,7 +93,7 @@ export const SwapForm = () => {
                 <CustomInput
                     label="You receive"
                     isInputEnabled={false}
-                    inputValue={''}
+                    inputValue={outputAssetAmount}
                     assetValue={outputAsset}
                     onAssetValueChange={setOutputAsset}
                 />
