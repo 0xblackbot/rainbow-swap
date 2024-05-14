@@ -29,6 +29,7 @@
     "redux-observable": "^3.0.0-rc.2",
     "redux-persist": "^6.0.0",
     "rxjs": "^7.8.1",
+    "tonapi-sdk-js": "^1.0.9",
     "ts-action": "^11.0.0",
     "ts-action-operators": "^9.1.2"
   },

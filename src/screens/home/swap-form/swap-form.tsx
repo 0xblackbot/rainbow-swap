@@ -1,3 +1,4 @@
+import {isDefined} from '@rnw-community/shared';
 import {Address} from '@ton/core';
 import {
     useTonConnectModal,
@@ -14,11 +15,18 @@ import {TON, USDT} from '../../../globals.ts';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
-import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
-import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
+import {
+    addPendingSwapTransactionActions,
+    loadSwapRoutesActions
+} from '../../../store/swap-routes/swap-routes-actions.ts';
+import {
+    useIsProcessingSwapTransactionSelector,
+    useSwapRoutesSelector
+} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
+import {bocToHash} from '../../../utils/boc.utils.ts';
 
 export const SwapForm = () => {
     const wallet = useTonWallet();
@@ -27,6 +35,8 @@ export const SwapForm = () => {
 
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
+    const isProcessingSwapTransaction =
+        useIsProcessingSwapTransactionSelector();
     const routes = useMemo(
         () => swapRoutes.map(mapSwapRouteToRoute),
         [swapRoutes]
@@ -63,20 +73,40 @@ export const SwapForm = () => {
         setOutputAsset(inputAsset);
     };
     const handleSwapClick = async () => {
-        const senderAddress = wallet?.account.address ?? '';
+        const walletAddress = wallet?.account.address;
+
+        if (!isDefined(walletAddress)) {
+            throw new Error('Wallet address is not defined');
+        }
+
+        const senderAddress = Address.parse(walletAddress);
+        const senderRawAddress = senderAddress.toRawString();
 
         const messages = await Promise.all(
             swapRoutes.map(swapRoute =>
-                getSwapRouteMessage(swapRoute, Address.parse(senderAddress))
+                getSwapRouteMessage(swapRoute, senderAddress)
             )
         );
 
-        tonConnectUI.sendTransaction({
-            validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
-            from: senderAddress,
-            messages
-        });
+        const response = await tonConnectUI
+            .sendTransaction({
+                validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
+                from: senderRawAddress,
+                messages
+            })
+            .catch(() => undefined);
+
+        if (isDefined(response)) {
+            dispatch(
+                addPendingSwapTransactionActions.submit({
+                    senderRawAddress,
+                    bocHash: bocToHash(response.boc)
+                })
+            );
+        }
     };
+
+    console.log('isProcessingSwapTransaction', isProcessingSwapTransaction);
 
     return (
         <>

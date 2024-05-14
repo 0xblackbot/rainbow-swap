@@ -3455,6 +3455,11 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
+tonapi-sdk-js@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-1.0.9.tgz#846671e4ff96ea5a35680f22e6ed541e7a4a983e"
+  integrity sha512-4zv7KwepqGvaCHksccAQ1lO8ERLiOmsVgzuPhUWwaqmmXcjXyrWkGoh0RX/XBHnOGxHEAxsyG5aT3Qjtasy7EQ==
+
 tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
