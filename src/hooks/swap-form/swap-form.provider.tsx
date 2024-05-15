@@ -12,9 +12,20 @@ export const SwapFormProvider: FC<PropsWithChildren> = ({children}) => {
     const [outputAsset, setOutputAsset] = useState<Asset>(
         DEFAULT_ASSETS_RECORD[USDT]
     );
+    const [inputAssetAmount, setInputAssetAmount] = useState('');
+    const [outputAssetAmount, setOutputAssetAmount] = useState('');
     return (
         <SwapFormContext.Provider
-            value={{inputAsset, outputAsset, setInputAsset, setOutputAsset}}
+            value={{
+                inputAsset,
+                outputAsset,
+                inputAssetAmount,
+                outputAssetAmount,
+                setInputAsset,
+                setOutputAsset,
+                setInputAssetAmount,
+                setOutputAssetAmount
+            }}
         >
             {children}
         </SwapFormContext.Provider>

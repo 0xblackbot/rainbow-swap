@@ -10,11 +10,19 @@ interface SwapFormContextValues {
     setOutputAsset: React.Dispatch<React.SetStateAction<Asset>>;
     inputAsset: Asset;
     setInputAsset: React.Dispatch<React.SetStateAction<Asset>>;
+    inputAssetAmount: string;
+    setInputAssetAmount: React.Dispatch<React.SetStateAction<string>>;
+    outputAssetAmount: string;
+    setOutputAssetAmount: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const SwapFormContext = createContext<SwapFormContextValues>({
     outputAsset: DEFAULT_ASSETS_RECORD[USDT],
     setOutputAsset: EMPTY_FN,
     inputAsset: DEFAULT_ASSETS_RECORD[TON],
-    setInputAsset: EMPTY_FN
+    setInputAsset: EMPTY_FN,
+    inputAssetAmount: '',
+    setInputAssetAmount: EMPTY_FN,
+    outputAssetAmount: '',
+    setOutputAssetAmount: EMPTY_FN
 });
