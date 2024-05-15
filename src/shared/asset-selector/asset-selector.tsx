@@ -47,6 +47,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                 snapPoints={[700]}
                 initialSnap={0}
             >
+                <Sheet.Backdrop onTap={handleClose} />
                 <Sheet.Container className={styles.modalSheetContainer}>
                     <Sheet.Header />
                     <Sheet.Content>
