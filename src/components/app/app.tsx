@@ -18,7 +18,12 @@ export const App = () => {
     useEffect(() => {
         tg.ready();
         dispatch(loadAssetsActions.submit());
-        dispatch(balancesActions.submit({walletAddress}));
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (walletAddress) {
+            dispatch(balancesActions.submit({walletAddress}));
+        }
     }, [dispatch, walletAddress]);
 
     return (

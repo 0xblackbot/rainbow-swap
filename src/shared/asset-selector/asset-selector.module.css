@@ -33,7 +33,7 @@
   
   .modalInput {
     border: none;
-    background: var(--light-gray-color);
+    background: var(--tg-theme-hint-color);
     color: black;
     border-radius: var(--3-step);
     padding: var(--step) var(--2-step);
