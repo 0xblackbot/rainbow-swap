@@ -14,7 +14,7 @@ const balancesEpic = (action$: Observable<Action>) =>
         switchMap(payload =>
             from(
                 axios.get<BalancesArray>(
-                    `https://tonapi.io/v2/accounts/${payload.walletAddress}/jettons`
+                    `https://tonapi.io/v2/accounts/${payload}/jettons`
                 )
             ).pipe(
                 map(response => response.data.balances),
