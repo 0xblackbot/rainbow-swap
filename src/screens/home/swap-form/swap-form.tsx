@@ -52,8 +52,6 @@ export const SwapForm = () => {
         setOutputAssetAmount
     } = useContext(SwapFormContext);
 
-    console.log(inputAssetAmount);
-
     setOutputAssetAmount(useOutputAssetAmount(routes, outputAsset.decimals));
 
     useEffect(() => {
