@@ -7,6 +7,7 @@ import {ChevronUpIcon} from '../../../assets/icons/ChevronUpIcon/ChevronUpIcon.t
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
+import {SwapRouteStep} from '../swap-route-step/swap-route-step.tsx';
 
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
@@ -65,14 +66,20 @@ export const SwapRouteInfo: FC = () => {
                     </div>
                 </div>
                 {showRoutes && (
-                    <div>
+                    <div className={styles.routes_container}>
                         {routes.map((route, index) => (
-                            <div key={`route-${index}`}>
-                                {route.map(routeStep => (
-                                    <p key={routeStep.dexPairAddress}>
-                                        {routeStep.inputAssetAddress} {'>'}
-                                        {routeStep.outputAssetAddress}
-                                    </p>
+                            <div
+                                key={`route-${index}`}
+                                className={styles.route}
+                            >
+                                {route.map((routeStep, index) => (
+                                    <>
+                                        {index === 0 ? (
+                                            <div className={styles.dots}></div>
+                                        ) : null}
+                                        <SwapRouteStep routeStep={routeStep} />
+                                        <div className={styles.dots}></div>
+                                    </>
                                 ))}
                             </div>
                         ))}
