@@ -22,7 +22,7 @@ export const App = () => {
 
     useEffect(() => {
         if (walletAddress) {
-            dispatch(balancesActions.submit({walletAddress}));
+            dispatch(balancesActions.submit(walletAddress));
         }
     }, [dispatch, walletAddress]);
 
