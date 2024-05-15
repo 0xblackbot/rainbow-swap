@@ -44,6 +44,7 @@ p {
     --text-color: var(--tg-theme-text-color, #ffffff);
     --hint-color: var(--tg-theme-hint-color, #98989e);
     --button-text-color: var(--tg-theme-button-text-color, #ffffff);
+    --light-gray-color: #F9F9FB;
 
 
     --step: 8px;

@@ -6,6 +6,7 @@ import {AssetListItem} from './asset-list-item/asset-list-item.tsx';
 import styles from './asset-selector.module.css';
 import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon.tsx';
+import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
 import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
@@ -41,9 +42,10 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
 
             <Sheet
                 isOpen={isOpen}
+                onClose={handleClose}
+                className={styles.modalSheet}
                 snapPoints={[700]}
                 initialSnap={0}
-                onClose={handleClose}
             >
                 <Sheet.Container className={styles.modalSheetContainer}>
                     <Sheet.Header />
@@ -57,11 +59,17 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                             </button>
                             <p className={styles.modalP}>Choose input asset</p>
                         </div>
-                        <input
-                            className={styles.modalInput}
-                            placeholder="Search assets on Etherium"
-                        />
-
+                        <div className={styles.modalInputContainer}>
+                            <input
+                                className={styles.modalInput}
+                                placeholder="Search assets on Etherium"
+                            />
+                            <SearchIcon
+                                className={styles.searchIcon}
+                                width="18px"
+                                height="18px"
+                            />
+                        </div>
                         <div ref={modalSheetRef} className={styles.modalList}>
                             <List
                                 width={listWidth}
