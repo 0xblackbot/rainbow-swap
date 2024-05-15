@@ -6,6 +6,7 @@
 .modalSheet{
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
 }
 
 
@@ -17,6 +18,15 @@
     left: 1px;
 }
 
+.modalSheet :global(.react-modal-sheet-container) {
+    background: var(--secondary-bg-color) !important;
+  }
+  
+  .modalSheet :global(.react-modal-sheet-backdrop) {
+   background-color: var(--secondary-bg-color) !important;
+   opacity: 0.7 !important;
+  }
+  
 .modalDiv {
     justify-content: center;
     align-items: center;
@@ -33,13 +43,18 @@
   
   .modalInput {
     border: none;
-    background: var(--tg-theme-hint-color);
-    color: black;
-    border-radius: var(--3-step);
+    background: var(--section);
+    color: var(--text-color);
+    border-radius: var(--step);
     padding: var(--step) var(--2-step);
     padding-left: var(--4-step);
+    font-size: var(--2-step);
     font-family: 'Basel-book', sans-serif;
     width: 100%;
+  }
+
+  .modalInput::placeholder {
+    color: var(--text-color);
   }
   
   .searchIcon {
@@ -47,23 +62,33 @@
     left: var(--step);
     top: 50%;
     transform: translateY(-50%);
-    color: black;
+    color: var(--text-color);
+  }
+  
+  .chevronIcon{
+    color: var(--hint-color);
   }
 
 .modalP{
     font-family: 'Basel-book', sans-serif;
-    color: var(--bg-color);
-}
-
-.modalSheet{
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+    color: var(--hint-color);
 }
 
 .modalList{
+    margin-top: var(--step);
+    flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.modalList button{
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    border: none;
+    height: 10%;
+    color: var(--hint-color);
+    font-size: var(--2-step);
 }
 
 .p {

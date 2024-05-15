@@ -1,4 +1,10 @@
-export const ChevronLeftIcon = (): JSX.Element => (
+import {FC} from 'react';
+
+interface Props {
+    className?: string;
+}
+
+export const ChevronLeftIcon: FC<Props> = ({className = ''}): JSX.Element => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -6,6 +12,7 @@ export const ChevronLeftIcon = (): JSX.Element => (
         strokeWidth={1.5}
         stroke="currentColor"
         style={{width: '24px', height: '24px'}}
+        className={className}
     >
         <path
             strokeLinecap="round"
