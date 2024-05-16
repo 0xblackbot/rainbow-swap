@@ -5,7 +5,7 @@ import styles from './app.module.css';
 import {Home} from '../../screens/home/home.tsx';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
-import {walletActions} from '../../store/balances/wallet-actions.ts';
+import {loadBalancesActions} from '../../store/wallet/wallet-actions.ts';
 import {Header} from '../header/header.tsx';
 
 const tg = window.Telegram.WebApp;
@@ -21,7 +21,7 @@ export const App = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(walletActions.submit(walletAddress));
+        dispatch(loadBalancesActions.submit(walletAddress));
     }, [dispatch, walletAddress]);
 
     return (

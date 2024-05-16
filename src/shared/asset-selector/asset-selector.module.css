@@ -80,6 +80,11 @@
     overflow-x: hidden;
 }
 
+.listWrapDiv{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .p {
     margin-right: 4px;
 }

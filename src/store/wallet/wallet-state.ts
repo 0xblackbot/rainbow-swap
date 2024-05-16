@@ -1,9 +1,10 @@
 import {TransactionInfo} from '../../interfaces/transaction-info.interface.ts';
-import {LoadableEntityState} from '../types';
-import {createEntity} from '../utils/create-entity';
+import {BalancesRecord} from '../../types/balances-record.type.ts';
+import {LoadableEntityState} from '../types.ts';
+import {createEntity} from '../utils/create-entity.ts';
 
 export interface WalletState {
-    balances: LoadableEntityState<Record<string, string>>;
+    balances: LoadableEntityState<BalancesRecord>;
     pendingSwapTransaction: LoadableEntityState<TransactionInfo | undefined>;
 }
 

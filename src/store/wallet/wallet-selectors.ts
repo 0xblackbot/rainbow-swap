@@ -1,7 +1,7 @@
 import {useSelector} from '../index.ts';
 
 export const useWalletSelector = () =>
-    useSelector(({balances}) => balances.balances.data);
+    useSelector(({wallet}) => wallet.balances.data);
 
 export const useIsProcessingSwapTransactionSelector = () =>
-    useSelector(({balances}) => balances.pendingSwapTransaction.isLoading);
+    useSelector(({wallet}) => wallet.pendingSwapTransaction.isLoading);

@@ -1,7 +1,8 @@
 import {TransactionInfo} from '../../interfaces/transaction-info.interface';
+import {BalancesRecord} from '../../types/balances-record.type';
 import {createActions} from '../utils/create-actions';
 
-export const walletActions = createActions<string, Record<string, string>>(
+export const loadBalancesActions = createActions<string, BalancesRecord>(
     'wallet/LOAD_BALANCES'
 );
 

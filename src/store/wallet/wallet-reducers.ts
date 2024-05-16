@@ -2,26 +2,29 @@ import {createReducer} from '@reduxjs/toolkit';
 
 import {
     addPendingSwapTransactionActions,
-    walletActions
+    loadBalancesActions
 } from './wallet-actions.ts';
 import {walletInitialState, WalletState} from './wallet-state.ts';
-import {createEntity} from '../utils/create-entity';
+import {createEntity} from '../utils/create-entity.ts';
 
 export const walletReducers = createReducer<WalletState>(
     walletInitialState,
     builder => {
-        builder.addCase(walletActions.submit, state => ({
+        builder.addCase(loadBalancesActions.submit, state => ({
             ...state,
             balances: createEntity(state.balances.data, true)
         }));
-        builder.addCase(walletActions.success, (state, {payload}) => ({
+        builder.addCase(loadBalancesActions.success, (state, {payload}) => ({
             ...state,
             balances: createEntity(payload, false)
         }));
-        builder.addCase(walletActions.fail, (state, {payload: error}) => ({
-            ...state,
-            balances: createEntity(state.balances.data, false, error)
-        }));
+        builder.addCase(
+            loadBalancesActions.fail,
+            (state, {payload: error}) => ({
+                ...state,
+                balances: createEntity(state.balances.data, false, error)
+            })
+        );
 
         builder.addCase(
             addPendingSwapTransactionActions.submit,

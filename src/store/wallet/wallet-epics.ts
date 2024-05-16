@@ -7,14 +7,16 @@ import {toPayload, ofType} from 'ts-action-operators';
 
 import {
     addPendingSwapTransactionActions,
-    walletActions
+    loadBalancesActions
 } from './wallet-actions';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
+import {BalancesRecord} from '../../types/balances-record.type';
+import {fromNano} from '../../utils/big-int.utils';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
 
 const walletEpic = (action$: Observable<Action>) =>
     action$.pipe(
-        ofType(walletActions.submit),
+        ofType(loadBalancesActions.submit),
         toPayload(),
         switchMap(payload =>
             from(
@@ -23,22 +25,24 @@ const walletEpic = (action$: Observable<Action>) =>
                 )
             ).pipe(
                 map(response => {
-                    const balancesRecord: Record<string, string> = {};
+                    const balancesRecord: BalancesRecord = {};
                     response.data.balances.forEach(balanceObject => {
                         const parsedAddress = Address.parse(
                             balanceObject.jetton.address
                         ).toString();
 
-                        balancesRecord[parsedAddress] = (
-                            parseFloat(balanceObject.balance) /
-                            10 ** balanceObject.jetton.decimals
-                        ).toString();
+                        balancesRecord[parsedAddress] = fromNano(
+                            balanceObject.balance,
+                            balanceObject.jetton.decimals
+                        );
                     });
 
                     return balancesRecord;
                 }),
-                map(balancesRecord => walletActions.success(balancesRecord)),
-                catchError(error => of(walletActions.fail(error.message)))
+                map(balancesRecord =>
+                    loadBalancesActions.success(balancesRecord)
+                ),
+                catchError(error => of(loadBalancesActions.fail(error.message)))
             )
         )
     );

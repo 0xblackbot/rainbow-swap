@@ -11,7 +11,7 @@ import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
 import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
-import {useWalletSelector} from '../../store/balances/wallet-selectors.ts';
+import {useWalletSelector} from '../../store/wallet/wallet-selectors.ts';
 
 interface Props {
     value: Asset;
@@ -107,32 +107,36 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                             />
                         </div>
                         <div ref={modalSheetRef} className={styles.modalList}>
-                            <List
-                                // How can we avoid hardcoding this? Need it for margin purposes
-                                width={listWidth - 32}
-                                height={600}
-                                rowCount={filteredAssetsList.length}
-                                rowHeight={70}
-                                className={styles.list}
-                                containerStyle={{
-                                    width: listWidth
-                                }}
-                                rowRenderer={props => (
-                                    <AssetListItem
-                                        key={props.key}
-                                        style={props.style}
-                                        asset={filteredAssetsList[props.index]}
-                                        onClick={handleAssetClick}
-                                        selectedAsset={value}
-                                        balance={
-                                            balances[
+                            <div className={styles.listWrapDiv}>
+                                <List
+                                    width={listWidth}
+                                    height={600}
+                                    rowCount={filteredAssetsList.length}
+                                    rowHeight={70}
+                                    className={styles.list}
+                                    containerStyle={{
+                                        width: listWidth
+                                    }}
+                                    rowRenderer={props => (
+                                        <AssetListItem
+                                            key={props.key}
+                                            style={props.style}
+                                            asset={
                                                 filteredAssetsList[props.index]
-                                                    .address
-                                            ]
-                                        }
-                                    />
-                                )}
-                            />
+                                            }
+                                            onClick={handleAssetClick}
+                                            selectedAsset={value}
+                                            balance={
+                                                balances[
+                                                    filteredAssetsList[
+                                                        props.index
+                                                    ].address
+                                                ]
+                                            }
+                                        />
+                                    )}
+                                />
+                            </div>
                             <div className={styles.modalButtonConatiner}>
                                 <button onClick={handleClose}>Cancel</button>
                             </div>

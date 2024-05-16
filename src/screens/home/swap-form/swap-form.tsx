@@ -14,13 +14,13 @@ import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
-import {addPendingSwapTransactionActions} from '../../../store/balances/wallet-actions.ts';
+import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
+import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
+import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions.ts';
 import {
     useIsProcessingSwapTransactionSelector,
     useWalletSelector
-} from '../../../store/balances/wallet-selectors.ts';
-import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
-import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
+} from '../../../store/wallet/wallet-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
