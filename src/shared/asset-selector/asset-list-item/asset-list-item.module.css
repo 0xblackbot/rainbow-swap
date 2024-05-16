@@ -36,7 +36,6 @@
 .select_list_item_balance {
     flex-direction: column;
     align-items: flex-end;
-    background: var(--bg-color);
     padding: 4px var(--step);
     border-radius: 16px;
 }

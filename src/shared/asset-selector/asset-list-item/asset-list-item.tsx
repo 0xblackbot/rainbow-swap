@@ -9,13 +9,15 @@ interface Props extends Pick<ListRowProps, 'style'> {
     asset: Asset;
     onClick: (asset: Asset) => void;
     selectedAsset: Asset;
+    balance: string;
 }
 
 export const AssetListItem: FC<Props> = ({
     style,
     asset,
     onClick,
-    selectedAsset
+    selectedAsset,
+    balance
 }) => {
     const handleClick = () => onClick(asset);
     const isSelected = asset.address === selectedAsset.address;
@@ -45,9 +47,7 @@ export const AssetListItem: FC<Props> = ({
                 </div>
                 <div className={styles.select_list_item_balance}>
                     <p className={styles.coin_balance}>
-                        {asset.balance
-                            ? Number(asset.balance) / 10 ** asset.decimals
-                            : '0.00'}
+                        {balance ? balance : '0.00'}
                     </p>
                     <p className={styles.dollar_balance}>≈0.00$</p>
                 </div>

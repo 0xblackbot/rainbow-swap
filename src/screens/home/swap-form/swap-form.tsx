@@ -14,6 +14,7 @@ import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
+import {useWalletSelector} from '../../../store/balances/wallet-selectors.ts';
 import {
     addPendingSwapTransactionActions,
     loadSwapRoutesActions
@@ -34,6 +35,7 @@ export const SwapForm = () => {
 
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
+    const balances = useWalletSelector();
     const isProcessingSwapTransaction =
         useIsProcessingSwapTransactionSelector();
     const routes = useMemo(
@@ -121,6 +123,7 @@ export const SwapForm = () => {
                     isInputEnabled={true}
                     inputValue={inputAssetAmount}
                     assetValue={inputAsset}
+                    balance={balances[inputAsset.address]}
                     onInputValueChange={setInputAssetAmount}
                     onAssetValueChange={setInputAsset}
                 />

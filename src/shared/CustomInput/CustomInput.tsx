@@ -10,6 +10,7 @@ interface Props {
     isInputEnabled: boolean;
     inputValue: string;
     assetValue: Asset;
+    balance?: string;
     onInputValueChange?: (newInputValue: string) => void;
     onAssetValueChange: (newAssetValue: Asset) => void;
 }
@@ -19,6 +20,7 @@ export const CustomInput: FC<Props> = ({
     isInputEnabled,
     inputValue,
     assetValue,
+    balance,
     onInputValueChange = EMPTY_FN,
     onAssetValueChange
 }) => {
@@ -39,7 +41,7 @@ export const CustomInput: FC<Props> = ({
     };
 
     const setMaxAssetAmount = () => {
-        onInputValueChange(assetValue.balance?.toString() || '0');
+        onInputValueChange(balance || '0');
     };
 
     return (
@@ -64,7 +66,7 @@ export const CustomInput: FC<Props> = ({
                 <div className={styles.input_info}>
                     <p>$0.00</p>
                     <div className={styles.input_info_balance}>
-                        <p>Balance: {assetValue?.balance ?? '0'}</p>
+                        <p>Balance: {balance ?? '0'}</p>
                         <button
                             className={styles.input_info_button}
                             onClick={setMaxAssetAmount}
