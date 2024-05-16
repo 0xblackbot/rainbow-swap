@@ -47,12 +47,13 @@ export const SwapForm = () => {
         outputAsset,
         setOutputAsset,
         inputAssetAmount,
-        setInputAssetAmount,
-        outputAssetAmount,
-        setOutputAssetAmount
+        setInputAssetAmount
     } = useContext(SwapFormContext);
 
-    setOutputAssetAmount(useOutputAssetAmount(routes, outputAsset.decimals));
+    const outputAssetAmount = useOutputAssetAmount(
+        routes,
+        outputAsset.decimals
+    );
 
     useEffect(() => {
         if (inputAssetAmount === '') {
