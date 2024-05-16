@@ -1,6 +1,6 @@
 import {useSelector} from '../index.ts';
 
-export const useWalletSelector = () =>
+export const useBalancesSelector = () =>
     useSelector(({wallet}) => wallet.balances.data);
 
 export const useIsProcessingSwapTransactionSelector = () =>

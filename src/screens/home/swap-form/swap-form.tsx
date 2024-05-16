@@ -19,7 +19,7 @@ import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-sele
 import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions.ts';
 import {
     useIsProcessingSwapTransactionSelector,
-    useWalletSelector
+    useBalancesSelector
 } from '../../../store/wallet/wallet-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
@@ -33,7 +33,7 @@ export const SwapForm = () => {
 
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
-    const balances = useWalletSelector();
+    const balances = useBalancesSelector();
     const isProcessingSwapTransaction =
         useIsProcessingSwapTransactionSelector();
     const routes = useMemo(

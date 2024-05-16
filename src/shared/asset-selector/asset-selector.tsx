@@ -11,7 +11,7 @@ import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
 import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
-import {useWalletSelector} from '../../store/wallet/wallet-selectors.ts';
+import {useBalancesSelector} from '../../store/wallet/wallet-selectors.ts';
 
 interface Props {
     value: Asset;
@@ -20,7 +20,7 @@ interface Props {
 
 export const AssetSelector: FC<Props> = ({value, onChange}) => {
     const assetsList = useAssetsListSelector();
-    const balances = useWalletSelector();
+    const balances = useBalancesSelector();
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
