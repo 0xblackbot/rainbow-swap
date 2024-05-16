@@ -4,13 +4,9 @@ import {catchError, debounceTime, map, switchMap} from 'rxjs/operators';
 import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
-import {
-    addPendingSwapTransactionActions,
-    loadSwapRoutesActions
-} from './swap-routes-actions.ts';
+import {loadSwapRoutesActions} from './swap-routes-actions.ts';
 import {API, DEBOUNCE_DUE_TIME} from '../../globals';
 import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type.ts';
-import {waitTransactionConfirmation} from '../../utils/tonapi.utils.ts';
 
 const loadSwapRoutesEpic: Epic<Action> = action$ =>
     action$.pipe(
@@ -29,26 +25,4 @@ const loadSwapRoutesEpic: Epic<Action> = action$ =>
         )
     );
 
-const addPendingSwapTransactionEpic: Epic<Action> = action$ =>
-    action$.pipe(
-        ofType(addPendingSwapTransactionActions.submit),
-        toPayload(),
-        switchMap(payload =>
-            from(
-                waitTransactionConfirmation(
-                    payload.senderRawAddress,
-                    payload.bocHash
-                )
-            ).pipe(
-                map(() => addPendingSwapTransactionActions.success()),
-                catchError(err =>
-                    of(addPendingSwapTransactionActions.fail(err.message))
-                )
-            )
-        )
-    );
-
-export const swapRoutesEpics = combineEpics(
-    loadSwapRoutesEpic,
-    addPendingSwapTransactionEpic
-);
+export const swapRoutesEpics = combineEpics(loadSwapRoutesEpic);

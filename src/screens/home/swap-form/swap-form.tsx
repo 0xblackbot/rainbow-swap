@@ -14,14 +14,13 @@ import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
-import {
-    addPendingSwapTransactionActions,
-    loadSwapRoutesActions
-} from '../../../store/swap-routes/swap-routes-actions.ts';
+import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
+import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
+import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions.ts';
 import {
     useIsProcessingSwapTransactionSelector,
-    useSwapRoutesSelector
-} from '../../../store/swap-routes/swap-routes-selectors.ts';
+    useBalancesSelector
+} from '../../../store/wallet/wallet-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
@@ -34,6 +33,7 @@ export const SwapForm = () => {
 
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
+    const balances = useBalancesSelector();
     const isProcessingSwapTransaction =
         useIsProcessingSwapTransactionSelector();
     const routes = useMemo(
@@ -117,16 +117,17 @@ export const SwapForm = () => {
         <>
             <div className={styles.body_div}>
                 <CustomInput
-                    label="You pay"
+                    label="Send"
                     isInputEnabled={true}
                     inputValue={inputAssetAmount}
                     assetValue={inputAsset}
+                    balance={balances[inputAsset.address]}
                     onInputValueChange={setInputAssetAmount}
                     onAssetValueChange={setInputAsset}
                 />
                 <ToggleAssetsButton onClick={handleToggleAssetsClick} />
                 <CustomInput
-                    label="You receive"
+                    label="Receive"
                     isInputEnabled={false}
                     inputValue={outputAssetAmount}
                     assetValue={outputAsset}

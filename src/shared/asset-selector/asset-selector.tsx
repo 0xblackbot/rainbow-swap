@@ -5,11 +5,13 @@ import {List} from 'react-virtualized';
 
 import {AssetListItem} from './asset-list-item/asset-list-item.tsx';
 import styles from './asset-selector.module.css';
-import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {sortAssets} from './utils/sort-assets.utils.ts';
+import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
 import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
 import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
+import {useBalancesSelector} from '../../store/wallet/wallet-selectors.ts';
 
 interface Props {
     value: Asset;
@@ -18,10 +20,13 @@ interface Props {
 
 export const AssetSelector: FC<Props> = ({value, onChange}) => {
     const assetsList = useAssetsListSelector();
+    const balances = useBalancesSelector();
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [filteredAssetsList, setFilteredAssetsList] = useState(assetsList);
+    const [filteredAssetsList, setFilteredAssetsList] = useState(
+        sortAssets(assetsList, balances)
+    );
     const {listWidth, modalSheetRef} = useModalWidth(isOpen);
 
     const handleOpenClick = () => setIsOpen(true);
@@ -35,21 +40,26 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
     const filterAssets = useMemo(
         () =>
             debounce((searchTerm: string) => {
+                const lowercaseSearchTerm = searchTerm.toLowerCase();
+
                 const filteredAssets = assetsList.filter(
                     asset =>
                         asset.symbol
                             .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ||
+                            .includes(lowercaseSearchTerm) ||
                         asset.name
                             .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ||
+                            .includes(lowercaseSearchTerm) ||
                         asset.address
                             .toLowerCase()
-                            .includes(searchTerm.toLowerCase())
+                            .includes(lowercaseSearchTerm)
                 );
-                setFilteredAssetsList(filteredAssets);
+
+                const sortedAssets = sortAssets(filteredAssets, balances);
+
+                setFilteredAssetsList(sortedAssets);
             }, 1000),
-        [assetsList]
+        [assetsList, balances]
     );
 
     const handleSearchChange = (value: string) => {
@@ -65,7 +75,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
             >
                 <img className={styles.img} src={value.image} />
                 <p className={styles.p}>{value.symbol}</p>
-                <ChevronDownIcon />
+                <ChevronRightIcon />
             </div>
 
             <Sheet
@@ -97,25 +107,39 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                             />
                         </div>
                         <div ref={modalSheetRef} className={styles.modalList}>
-                            <List
-                                width={listWidth}
-                                height={600}
-                                rowCount={filteredAssetsList.length}
-                                rowHeight={70}
-                                containerStyle={{
-                                    width: listWidth
-                                }}
-                                rowRenderer={props => (
-                                    <AssetListItem
-                                        key={props.key}
-                                        style={props.style}
-                                        asset={filteredAssetsList[props.index]}
-                                        onClick={handleAssetClick}
-                                        selectedAsset={value}
-                                    />
-                                )}
-                            />
-                            <button onClick={handleClose}>Cancel</button>
+                            <div className={styles.listWrapDiv}>
+                                <List
+                                    width={listWidth}
+                                    height={600}
+                                    rowCount={filteredAssetsList.length}
+                                    rowHeight={70}
+                                    className={styles.list}
+                                    containerStyle={{
+                                        width: listWidth
+                                    }}
+                                    rowRenderer={props => (
+                                        <AssetListItem
+                                            key={props.key}
+                                            style={props.style}
+                                            asset={
+                                                filteredAssetsList[props.index]
+                                            }
+                                            onClick={handleAssetClick}
+                                            selectedAsset={value}
+                                            balance={
+                                                balances[
+                                                    filteredAssetsList[
+                                                        props.index
+                                                    ].address
+                                                ]
+                                            }
+                                        />
+                                    )}
+                                />
+                            </div>
+                            <div className={styles.modalButtonConatiner}>
+                                <button onClick={handleClose}>Cancel</button>
+                            </div>
                         </div>
                     </Sheet.Content>
                 </Sheet.Container>

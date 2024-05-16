@@ -9,7 +9,6 @@
     width: 100%;
 }
 
-
 .modalButton {
     background: none;
     border: none;
@@ -19,7 +18,7 @@
 }
 
 .modalSheet :global(.react-modal-sheet-container) {
-    background: var(--secondary-bg-color) !important;
+    background: var(--bg-color) !important;
   }
   
   .modalSheet :global(.react-modal-sheet-backdrop) {
@@ -43,7 +42,7 @@
   
   .modalInput {
     border: none;
-    background: var(--section);
+    background: var(--secondary-bg-color);
     color: var(--text-color);
     border-radius: var(--step);
     padding: var(--step) var(--2-step);
@@ -54,7 +53,7 @@
   }
 
   .modalInput::placeholder {
-    color: var(--text-color);
+    color: var(--hint-color);
   }
   
   .searchIcon {
@@ -62,7 +61,7 @@
     left: var(--step);
     top: 50%;
     transform: translateY(-50%);
-    color: var(--text-color);
+    color: var(--hint-color);
   }
   
   .chevronIcon{
@@ -71,7 +70,7 @@
 
 .modalP{
     font-family: 'Basel-book', sans-serif;
-    color: var(--hint-color);
+    color: var(--text-color);
 }
 
 .modalList{
@@ -81,14 +80,9 @@
     overflow-x: hidden;
 }
 
-.modalList button{
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-color);
-    border: none;
-    height: 10%;
-    color: var(--hint-color);
-    font-size: var(--2-step);
+.listWrapDiv{
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .p {
@@ -98,18 +92,54 @@
 .img {
     width: 24px;
     height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
     margin-right: 4px;
 }
 
 
 .selected_asset_button {
     align-items: center;
-    background: var(--bg-color);
     color: var(--text-color);
     border-radius: 24px;
-    padding: 4px var(--step);
+    font-size: var(--3-step);
 }
 
+.modalButtonConatiner{
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    border: none;
+    height: 15%;
+    margin: 0 var(--2-step);
+}
+
+.modalButtonConatiner button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: var(--2-step);
+    width: 100%;
+    color: var(--text-color);
+    font-size: var(--2-step);
+    padding: var(--2-step) var(--3-step);   
+}
+
+.list{
+    border-radius: var(--2-step);
+    background-color: var(--secondary-bg-color);
+    margin: var(--step) var(--2-step);
+}
+
+@media (min-width: 530px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 75%;
+    }
+}
 
 @media (min-width: 768px) {
     .modalSheet{
@@ -132,5 +162,13 @@
         margin-left: auto;
         margin-right: auto;
         width: 35%;
+    }
+}
+
+@media (min-width: 1500px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
     }
 }
