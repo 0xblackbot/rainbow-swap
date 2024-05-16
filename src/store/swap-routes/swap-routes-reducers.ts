@@ -1,9 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {
-    addPendingSwapTransactionActions,
-    loadSwapRoutesActions
-} from './swap-routes-actions.ts';
+import {loadSwapRoutesActions} from './swap-routes-actions.ts';
 import {swapRouteInitialState, SwapRoutesState} from './swap-routes-state.ts';
 import {createEntity} from '../utils/create-entity';
 
@@ -23,25 +20,6 @@ export const swapRoutesReducers = createReducer<SwapRoutesState>(
             (state, {payload: error}) => ({
                 ...state,
                 batch: createEntity([], false, error)
-            })
-        );
-
-        builder.addCase(
-            addPendingSwapTransactionActions.submit,
-            (state, {payload}) => ({
-                ...state,
-                pendingSwapTransaction: createEntity(payload, true)
-            })
-        );
-        builder.addCase(addPendingSwapTransactionActions.success, state => ({
-            ...state,
-            pendingSwapTransaction: createEntity(undefined, false)
-        }));
-        builder.addCase(
-            addPendingSwapTransactionActions.fail,
-            (state, {payload: error}) => ({
-                ...state,
-                pendingSwapTransaction: createEntity(undefined, false, error)
             })
         );
     }
