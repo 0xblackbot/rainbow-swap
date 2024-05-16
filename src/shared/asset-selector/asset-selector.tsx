@@ -1,11 +1,12 @@
-import {FC, useState} from 'react';
+import {debounce} from 'lodash-es';
+import {FC, useMemo, useState} from 'react';
 import Sheet from 'react-modal-sheet';
 import {List} from 'react-virtualized';
 
 import {AssetListItem} from './asset-list-item/asset-list-item.tsx';
 import styles from './asset-selector.module.css';
 import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
-import {ChevronLeftIcon} from '../../assets/icons/ChevronLeftIcon/ChevronLeftIcon.tsx';
+import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
 import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
@@ -19,13 +20,41 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
     const assetsList = useAssetsListSelector();
 
     const [isOpen, setIsOpen] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+    const [filteredAssetsList, setFilteredAssetsList] = useState(assetsList);
     const {listWidth, modalSheetRef} = useModalWidth(isOpen);
 
     const handleOpenClick = () => setIsOpen(true);
     const handleClose = () => setIsOpen(false);
     const handleAssetClick = (newValue: Asset) => {
         setIsOpen(false);
+        setSearchValue('');
         onChange(newValue);
+    };
+
+    const filterAssets = useMemo(
+        () =>
+            debounce((searchTerm: string) => {
+                const filteredAssets = assetsList.filter(
+                    asset =>
+                        asset.symbol
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase()) ||
+                        asset.name
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase()) ||
+                        asset.address
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase())
+                );
+                setFilteredAssetsList(filteredAssets);
+            }, 1000),
+        [assetsList]
+    );
+
+    const handleSearchChange = (value: string) => {
+        setSearchValue(value);
+        filterAssets(value);
     };
 
     return (
@@ -41,33 +70,38 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
 
             <Sheet
                 isOpen={isOpen}
+                onClose={handleClose}
+                className={styles.modalSheet}
                 snapPoints={[700]}
                 initialSnap={0}
-                onClose={handleClose}
             >
                 <Sheet.Container className={styles.modalSheetContainer}>
                     <Sheet.Header />
                     <Sheet.Content>
                         <div className={styles.modalDiv}>
-                            <button
-                                className={styles.modalButton}
-                                onClick={handleClose}
-                            >
-                                <ChevronLeftIcon />
-                            </button>
-                            <p className={styles.modalP}>Choose input asset</p>
+                            <p className={styles.modalP}>Assets</p>
                         </div>
-                        <input
-                            className={styles.modalInput}
-                            placeholder="Search assets on Etherium"
-                        />
-
+                        <div className={styles.modalInputContainer}>
+                            <input
+                                className={styles.modalInput}
+                                placeholder="Search assets"
+                                value={searchValue}
+                                onChange={e =>
+                                    handleSearchChange(e.target.value)
+                                }
+                            />
+                            <SearchIcon
+                                className={styles.searchIcon}
+                                width="18px"
+                                height="18px"
+                            />
+                        </div>
                         <div ref={modalSheetRef} className={styles.modalList}>
                             <List
                                 width={listWidth}
                                 height={600}
-                                rowCount={assetsList.length}
-                                rowHeight={50}
+                                rowCount={filteredAssetsList.length}
+                                rowHeight={70}
                                 containerStyle={{
                                     width: listWidth
                                 }}
@@ -75,15 +109,17 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                     <AssetListItem
                                         key={props.key}
                                         style={props.style}
-                                        asset={assetsList[props.index]}
+                                        asset={filteredAssetsList[props.index]}
                                         onClick={handleAssetClick}
+                                        selectedAsset={value}
                                     />
                                 )}
                             />
+                            <button onClick={handleClose}>Cancel</button>
                         </div>
                     </Sheet.Content>
                 </Sheet.Container>
-                <Sheet.Backdrop />
+                <Sheet.Backdrop onTap={handleClose} />
             </Sheet>
         </>
     );

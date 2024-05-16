@@ -1,53 +1,41 @@
-import {FC, useMemo, useState} from 'react';
+import {FC, useContext, useMemo, useState} from 'react';
 
 import {ExchangeInfo} from './exchange-info/exchange-info.tsx';
 import styles from './swap-route-info.module.css';
 import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon.tsx';
 import {ChevronUpIcon} from '../../../assets/icons/ChevronUpIcon/ChevronUpIcon.tsx';
-import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
+import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
+import {SwapRouteStep} from '../swap-route-step/swap-route-step.tsx';
 
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
+    const {inputAsset, outputAsset} = useContext(SwapFormContext);
 
     const [showRoutes, setShowRoutes] = useState(false);
     const routes = useMemo(
         () => swapRoutes.map(mapSwapRouteToRoute),
         [swapRoutes]
     );
-    const assetsRecord = useAssetsRecordSelector();
-
-    const {inputAssetSymbol, outputAssetSymbol} = useMemo(() => {
-        const inputAssetAddress = routes[0]?.[0]?.inputAssetAddress;
-        const outputAssetAddress = routes[0]?.[0]?.outputAssetAddress;
-
-        const inputAsset = assetsRecord[inputAssetAddress];
-        const outputAsset = assetsRecord[outputAssetAddress];
-
-        return {
-            inputAssetSymbol: inputAsset?.symbol ?? 'input_asset_not_found',
-            outputAssetSymbol: outputAsset?.symbol ?? 'output_asset_not_found'
-        };
-    }, [routes, assetsRecord]);
 
     const handleChevronClick = () => setShowRoutes(value => !value);
 
     return routes.length === 0 ? null : (
         <>
             <ExchangeInfo
-                inputAssetSymbol={inputAssetSymbol}
-                outputAssetSymbol={outputAssetSymbol}
+                inputAssetSymbol={inputAsset.symbol}
+                outputAssetSymbol={outputAsset.symbol}
             />
 
             <div className={styles.route_info_div}>
                 <div className={styles.route_info_inside_div}>
-                    <p>{inputAssetSymbol} sell price</p>
-                    <p>??? {inputAssetSymbol}</p>
+                    <p>{inputAsset.symbol} sell price</p>
+                    <p>??? {inputAsset.symbol}</p>
                 </div>
                 <div className={styles.route_info_inside_div}>
-                    <p>{outputAssetSymbol} sell price</p>
-                    <p>??? {outputAssetSymbol}</p>
+                    <p>{outputAsset.symbol} sell price</p>
+                    <p>??? {outputAsset.symbol}</p>
                 </div>
                 <div className={styles.route_info_inside_div}>
                     <p>Network fee</p>
@@ -65,14 +53,20 @@ export const SwapRouteInfo: FC = () => {
                     </div>
                 </div>
                 {showRoutes && (
-                    <div>
+                    <div className={styles.routes_container}>
                         {routes.map((route, index) => (
-                            <div key={`route-${index}`}>
-                                {route.map(routeStep => (
-                                    <p key={routeStep.dexPairAddress}>
-                                        {routeStep.inputAssetAddress} {'>'}
-                                        {routeStep.outputAssetAddress}
-                                    </p>
+                            <div
+                                key={`route-${index}`}
+                                className={styles.route}
+                            >
+                                {route.map((routeStep, index) => (
+                                    <>
+                                        {index === 0 ? (
+                                            <div className={styles.dots}></div>
+                                        ) : null}
+                                        <SwapRouteStep routeStep={routeStep} />
+                                        <div className={styles.dots}></div>
+                                    </>
                                 ))}
                             </div>
                         ))}

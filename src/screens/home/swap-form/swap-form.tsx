@@ -5,13 +5,12 @@ import {
     useTonConnectUI,
     useTonWallet
 } from '@tonconnect/ui-react';
-import {useEffect, useMemo, useState} from 'react';
+import {useContext, useEffect, useMemo} from 'react';
 
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
-import {DEFAULT_ASSETS_RECORD} from '../../../data/assets-record.ts';
-import {TON, USDT} from '../../../globals.ts';
+import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
@@ -42,9 +41,15 @@ export const SwapForm = () => {
         [swapRoutes]
     );
 
-    const [inputAssetAmount, setInputAssetAmount] = useState('');
-    const [inputAsset, setInputAsset] = useState(DEFAULT_ASSETS_RECORD[TON]);
-    const [outputAsset, setOutputAsset] = useState(DEFAULT_ASSETS_RECORD[USDT]);
+    const {
+        inputAsset,
+        setInputAsset,
+        outputAsset,
+        setOutputAsset,
+        inputAssetAmount,
+        setInputAssetAmount
+    } = useContext(SwapFormContext);
+
     const outputAssetAmount = useOutputAssetAmount(
         routes,
         outputAsset.decimals

@@ -3,6 +3,94 @@
     max-width: var(--app-max-width);
 }
 
+.modalSheet{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+.modalButton {
+    background: none;
+    border: none;
+    position: absolute; 
+    top: 1px; 
+    left: 1px;
+}
+
+.modalSheet :global(.react-modal-sheet-container) {
+    background: var(--secondary-bg-color) !important;
+  }
+  
+  .modalSheet :global(.react-modal-sheet-backdrop) {
+   background-color: var(--secondary-bg-color) !important;
+   opacity: 0.7 !important;
+  }
+  
+.modalDiv {
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    width: 100%;
+    height: var(--3-step);
+}
+
+.modalInputContainer {
+    position: relative;
+    margin: var(--step) var(--2-step);
+    margin-top: var(--2-step);
+  }
+  
+  .modalInput {
+    border: none;
+    background: var(--section);
+    color: var(--text-color);
+    border-radius: var(--step);
+    padding: var(--step) var(--2-step);
+    padding-left: var(--4-step);
+    font-size: var(--2-step);
+    font-family: 'Basel-book', sans-serif;
+    width: 100%;
+  }
+
+  .modalInput::placeholder {
+    color: var(--text-color);
+  }
+  
+  .searchIcon {
+    position: absolute;
+    left: var(--step);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+  }
+  
+  .chevronIcon{
+    color: var(--hint-color);
+  }
+
+.modalP{
+    font-family: 'Basel-book', sans-serif;
+    color: var(--hint-color);
+}
+
+.modalList{
+    margin-top: var(--step);
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.modalList button{
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    border: none;
+    height: 10%;
+    color: var(--hint-color);
+    font-size: var(--2-step);
+}
+
 .p {
     margin-right: 4px;
 }
@@ -20,4 +108,29 @@
     color: var(--text-color);
     border-radius: 24px;
     padding: 4px var(--step);
+}
+
+
+@media (min-width: 768px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+}
+
+@media (min-width: 900px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 45%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 35%;
+    }
 }
