@@ -128,6 +128,14 @@
     margin: var(--step) var(--2-step);
 }
 
+@media (min-width: 530px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 75%;
+    }
+}
+
 @media (min-width: 768px) {
     .modalSheet{
         margin-left: auto;
@@ -149,5 +157,13 @@
         margin-left: auto;
         margin-right: auto;
         width: 35%;
+    }
+}
+
+@media (min-width: 1500px) {
+    .modalSheet{
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
     }
 }
