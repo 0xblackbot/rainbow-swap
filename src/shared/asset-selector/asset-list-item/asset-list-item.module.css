@@ -2,12 +2,9 @@
     flex: 1;
     justify-content: space-between;
     align-items: center;
-    margin: 0 16px;
-    margin-top: var(--step);
     border-radius: 16px;
     font-family: 'Basel-book', sans-serif;
-    background: var(--bg-color);
-    padding: var(--step) var(--step);
+    padding: var(--step) var(--2-step);
 }
 .selected{
     border: 1px solid var(--button-color);
@@ -22,7 +19,7 @@
     height: 40px;
     margin-right: var(--step);
     align-self: center;
-    border-radius: 50%;
+    border-radius: 10px;
     object-fit: cover;
 }
 

@@ -48,6 +48,10 @@ export const CustomInput: FC<Props> = ({
         <div className={styles.container}>
             <p className={styles.container_label}>{label}</p>
             <div className={styles.input_container}>
+                <AssetSelector
+                    value={assetValue}
+                    onChange={onAssetValueChange}
+                />
                 <input
                     type="tel"
                     className={styles.input_field}
@@ -57,25 +61,22 @@ export const CustomInput: FC<Props> = ({
                     disabled={!isInputEnabled}
                     required={isInputEnabled}
                 />
-                <AssetSelector
-                    value={assetValue}
-                    onChange={onAssetValueChange}
-                />
             </div>
-            {isInputEnabled ? (
-                <div className={styles.input_info}>
-                    <p>$0.00</p>
-                    <div className={styles.input_info_balance}>
-                        <p>Balance: {balance ?? '0'}</p>
+
+            <div className={styles.input_info}>
+                <div className={styles.input_info_balance}>
+                    <p>Balance: {balance ?? '0.00'}</p>
+                    {isInputEnabled ? (
                         <button
                             className={styles.input_info_button}
                             onClick={setMaxAssetAmount}
                         >
                             Max
                         </button>
-                    </div>
+                    ) : null}
                 </div>
-            ) : null}
+                <p>$0.00</p>
+            </div>
         </div>
     );
 };

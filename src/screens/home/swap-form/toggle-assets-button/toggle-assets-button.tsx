@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 import styles from './toggle-assets-button.module.css';
-import {ArrowIcon} from '../../../../assets/icons/ArrowIcon/ArrowIcon.tsx';
+import {ArrowUpDownIcon} from '../../../../assets/icons/ArrowUpDownIcon/ArrowUpDownIcon.tsx';
 
 interface Props {
     onClick: () => void;
@@ -9,6 +9,6 @@ interface Props {
 
 export const ToggleAssetsButton: FC<Props> = ({onClick}) => (
     <button className={styles.currency_selector_button} onClick={onClick}>
-        <ArrowIcon />
+        <ArrowUpDownIcon height="20px" width="20px" className={styles.icon} />
     </button>
 );

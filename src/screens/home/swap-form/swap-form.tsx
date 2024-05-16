@@ -117,7 +117,7 @@ export const SwapForm = () => {
         <>
             <div className={styles.body_div}>
                 <CustomInput
-                    label="You pay"
+                    label="Send"
                     isInputEnabled={true}
                     inputValue={inputAssetAmount}
                     assetValue={inputAsset}
@@ -127,7 +127,7 @@ export const SwapForm = () => {
                 />
                 <ToggleAssetsButton onClick={handleToggleAssetsClick} />
                 <CustomInput
-                    label="You receive"
+                    label="Receive"
                     isInputEnabled={false}
                     inputValue={outputAssetAmount}
                     assetValue={outputAsset}

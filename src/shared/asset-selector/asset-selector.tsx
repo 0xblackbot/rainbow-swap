@@ -6,7 +6,7 @@ import {List} from 'react-virtualized';
 import {AssetListItem} from './asset-list-item/asset-list-item.tsx';
 import styles from './asset-selector.module.css';
 import {sortAssets} from './utils/sort-assets.utils.ts';
-import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
 import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
@@ -75,7 +75,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
             >
                 <img className={styles.img} src={value.image} />
                 <p className={styles.p}>{value.symbol}</p>
-                <ChevronDownIcon />
+                <ChevronRightIcon />
             </div>
 
             <Sheet
@@ -108,10 +108,12 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                         </div>
                         <div ref={modalSheetRef} className={styles.modalList}>
                             <List
-                                width={listWidth}
+                                // How can we avoid hardcoding this? Need it for margin purposes
+                                width={listWidth - 32}
                                 height={600}
                                 rowCount={filteredAssetsList.length}
                                 rowHeight={70}
+                                className={styles.list}
                                 containerStyle={{
                                     width: listWidth
                                 }}
@@ -131,7 +133,9 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                     />
                                 )}
                             />
-                            <button onClick={handleClose}>Cancel</button>
+                            <div className={styles.modalButtonConatiner}>
+                                <button onClick={handleClose}>Cancel</button>
+                            </div>
                         </div>
                     </Sheet.Content>
                 </Sheet.Container>
