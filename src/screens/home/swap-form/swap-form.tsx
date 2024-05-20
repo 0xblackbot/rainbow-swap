@@ -76,7 +76,7 @@ export const SwapForm = () => {
     const handleToggleAssetsClick = () => {
         setInputAsset(outputAsset);
         setOutputAsset(inputAsset);
-        window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
     };
     const handleSwapClick = async () => {
         const walletAddress = wallet?.account.address;
