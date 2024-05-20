@@ -76,8 +76,7 @@ export const SwapForm = () => {
     const handleToggleAssetsClick = () => {
         setInputAsset(outputAsset);
         setOutputAsset(inputAsset);
-        // @ts-expect-error problems with types for Telegram WebApp
-        window.Telegram.WebApp?.notificationOccurred?.('success');
+        window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
     };
     const handleSwapClick = async () => {
         const walletAddress = wallet?.account.address;
