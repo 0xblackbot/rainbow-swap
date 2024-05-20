@@ -9,7 +9,7 @@ import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
 import {loadBalancesActions} from '../../store/wallet/wallet-actions.ts';
 import {Header} from '../header/header.tsx';
 
-const tg = window.Telegram.WebApp;
+export const telegramWebApp = window.Telegram.WebApp;
 
 export const App = () => {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export const App = () => {
     const walletAddress = useTonAddress();
 
     useEffect(() => {
-        tg.ready();
+        telegramWebApp.ready();
         dispatch(loadAssetsActions.submit());
     }, [dispatch]);
 
