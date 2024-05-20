@@ -25,7 +25,6 @@ import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-r
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
 import {bocToHash} from '../../../utils/boc.utils.ts';
-import {telegramWebApp} from "../../../components/app/app.tsx";
 
 export const SwapForm = () => {
     const wallet = useTonWallet();
@@ -77,8 +76,8 @@ export const SwapForm = () => {
     const handleToggleAssetsClick = () => {
         setInputAsset(outputAsset);
         setOutputAsset(inputAsset);
-        // @ts-ignore
-        telegramWebApp?.notificationOccurred?.('success');
+        // @ts-expect-error problems with types for Telegram WebApp
+        window.Telegram.WebApp?.notificationOccurred?.('success');
     };
     const handleSwapClick = async () => {
         const walletAddress = wallet?.account.address;

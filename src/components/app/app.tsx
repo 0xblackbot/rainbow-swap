@@ -9,15 +9,13 @@ import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
 import {loadBalancesActions} from '../../store/wallet/wallet-actions.ts';
 import {Header} from '../header/header.tsx';
 
-export const telegramWebApp = window.Telegram.WebApp;
-
 export const App = () => {
     const dispatch = useDispatch();
     const connectionRestored = useIsConnectionRestored();
     const walletAddress = useTonAddress();
 
     useEffect(() => {
-        telegramWebApp.ready();
+        window.Telegram.WebApp.ready();
         dispatch(loadAssetsActions.submit());
     }, [dispatch]);
 
