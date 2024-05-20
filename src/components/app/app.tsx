@@ -1,3 +1,4 @@
+import {isNotEmptyString} from '@rnw-community/shared';
 import {useIsConnectionRestored, useTonAddress} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
 
@@ -21,7 +22,9 @@ export const App = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(loadBalancesActions.submit(walletAddress));
+        if (isNotEmptyString(walletAddress)) {
+            dispatch(loadBalancesActions.submit(walletAddress));
+        }
     }, [dispatch, walletAddress]);
 
     return (
