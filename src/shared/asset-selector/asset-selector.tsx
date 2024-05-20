@@ -8,6 +8,7 @@ import styles from './asset-selector.module.css';
 import {sortAssets} from './utils/sort-assets.utils.ts';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
 import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
+import {XCircleIcon} from '../../assets/icons/XCircleIcon/XCircleIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
 import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
@@ -19,14 +20,12 @@ interface Props {
 }
 
 export const AssetSelector: FC<Props> = ({value, onChange}) => {
-    const assetsList = useAssetsListSelector();
     const balances = useBalancesSelector();
+    const assetsList = sortAssets(useAssetsListSelector(), balances);
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [filteredAssetsList, setFilteredAssetsList] = useState(
-        sortAssets(assetsList, balances)
-    );
+    const [filteredAssetsList, setFilteredAssetsList] = useState(assetsList);
     const {listWidth, modalSheetRef} = useModalWidth(isOpen);
 
     const handleOpenClick = () => setIsOpen(true);
@@ -36,7 +35,10 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
         setSearchValue('');
         onChange(newValue);
     };
-
+    const handleClearInput = () => {
+        setSearchValue('');
+        setFilteredAssetsList(assetsList);
+    };
     const filterAssets = useMemo(
         () =>
             debounce((searchTerm: string) => {
@@ -105,6 +107,14 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                 width="18px"
                                 height="18px"
                             />
+                            {searchValue && (
+                                <XCircleIcon
+                                    className={styles.xcircleIcon}
+                                    width="20px"
+                                    onClick={handleClearInput}
+                                    height="20px"
+                                />
+                            )}
                         </div>
                         <div ref={modalSheetRef} className={styles.modalList}>
                             <div className={styles.listWrapDiv}>

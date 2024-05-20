@@ -63,6 +63,13 @@
     transform: translateY(-50%);
     color: var(--hint-color);
   }
+
+  .xcircleIcon{
+    position: absolute;
+    right: var(--step);
+    transform: translateY(40%);
+    color: var(--hint-color);
+  }
   
   .chevronIcon{
     color: var(--hint-color);
