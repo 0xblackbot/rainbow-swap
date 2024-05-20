@@ -33,8 +33,8 @@ export const Header = () => {
                 ></img>
                 <LogoText
                     className={styles.logo_text}
-                    width="100px"
-                    height="50px"
+                    width="96px"
+                    height="32px"
                 ></LogoText>
             </div>
             {walletAddress === '' ? (

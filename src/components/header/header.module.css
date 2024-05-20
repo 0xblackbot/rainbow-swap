@@ -66,8 +66,8 @@
     margin: var(--step);
 }
 
-.logo_text {
-    color: var(--text-color);
+.logo_text path {
+    fill: var(--text-color);
 }
 
 .header_triangle_logo {
