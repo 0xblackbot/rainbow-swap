@@ -3,7 +3,7 @@ import {
     useTonConnectModal,
     useTonConnectUI
 } from '@tonconnect/ui-react';
-import {useMemo, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 
 import {LogoText} from './assets/LogoText';
 import styles from './header.module.css';
@@ -12,17 +12,35 @@ import {getClassName} from '../../utils/style.utils';
 export const Header = () => {
     const walletAddress = useTonAddress();
     const connectModal = useTonConnectModal();
+    const dropdownRef = useRef<HTMLDivElement>(null);
     const [tonConnectUI] = useTonConnectUI();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const shortWalletAddress = useMemo(
         () => walletAddress.slice(0, 4) + '...' + walletAddress.slice(-4),
         [walletAddress]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleDropdownClick = () => setIsDropdownOpen(value => !value);
     const handleConnectClick = () => connectModal.open();
     const handleDisconnectClick = () => tonConnectUI.disconnect();
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     return (
         <div className={styles.header_div}>
@@ -45,7 +63,7 @@ export const Header = () => {
                     Connect
                 </button>
             ) : (
-                <div className={styles.dropdown}>
+                <div className={styles.dropdown} ref={dropdownRef}>
                     <button
                         onClick={handleDropdownClick}
                         className={styles.disconnect_button}
