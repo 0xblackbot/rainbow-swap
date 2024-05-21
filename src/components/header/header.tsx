@@ -49,31 +49,40 @@ export const Header = () => {
                         {shortWalletAddress}
                     </button>
                     {isDropdownOpen && (
-                        <div className={styles.dropdown_content}>
-                            <button
-                                className={getClassName(
-                                    styles.dropdown_explore_button,
-                                    styles.dropdown_button
-                                )}
-                            >
-                                <a
-                                    href={`https://tonviewer.com/${walletAddress}`}
-                                    target="_blank"
-                                    rel="noreferrer"
+                        <>
+                            <div className={styles.dropdown_content}>
+                                <button
+                                    className={getClassName(
+                                        styles.dropdown_explore_button,
+                                        styles.dropdown_button
+                                    )}
                                 >
-                                    View in Explorer
-                                </a>
-                            </button>
-                            <button
+                                    <a
+                                        href={`https://tonviewer.com/${walletAddress}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        View in Explorer
+                                    </a>
+                                </button>
+                                <button
+                                    className={getClassName(
+                                        styles.dropdown_disconnect_button,
+                                        styles.dropdown_button
+                                    )}
+                                    onClick={handleDisconnectClick}
+                                >
+                                    Disconnect
+                                </button>
+                            </div>
+                            <div
                                 className={getClassName(
-                                    styles.dropdown_disconnect_button,
-                                    styles.dropdown_button
+                                    styles.overlay,
+                                    isDropdownOpen ? styles.visible : ''
                                 )}
-                                onClick={handleDisconnectClick}
-                            >
-                                Disconnect
-                            </button>
-                        </div>
+                                onClick={handleDropdownClick}
+                            ></div>
+                        </>
                     )}
                 </div>
             )}
