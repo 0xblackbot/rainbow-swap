@@ -53,7 +53,8 @@ export const CustomInput: FC<Props> = ({
                     onChange={onAssetValueChange}
                 />
                 <input
-                    type="tel"
+                    type="text"
+                    inputMode="decimal"
                     className={styles.input_field}
                     onChange={handleInputChange}
                     value={inputValue}

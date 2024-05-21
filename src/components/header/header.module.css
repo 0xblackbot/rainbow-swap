@@ -53,9 +53,9 @@
     background: none;
 }
 
-.dropdown_explore_button a {
+.a_button {
     text-decoration: none;
-    color: var(--button-text-color);
+    color: var(--button-color) !important;
 }
 
 .logo_div {
@@ -87,6 +87,10 @@
 .header_logo {
     width: calc(8 * var(--step));
     margin: var(--step);
+}
+
+.logo_text path {
+    fill: var(--text-color);
 }
 
 .header_triangle_logo {
