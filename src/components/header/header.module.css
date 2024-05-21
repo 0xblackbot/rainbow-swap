@@ -66,6 +66,10 @@
     margin: var(--step);
 }
 
+.logo_text path {
+    fill: var(--text-color);
+}
+
 .header_triangle_logo {
     width: calc(4 * var(--step));
 }

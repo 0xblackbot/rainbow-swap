@@ -5,7 +5,7 @@ import {
 } from '@tonconnect/ui-react';
 import {useMemo, useState} from 'react';
 
-import logoText from './assets/logo-text.png';
+import {LogoText} from './assets/LogoText';
 import styles from './header.module.css';
 import {getClassName} from '../../utils/style.utils';
 
@@ -31,7 +31,11 @@ export const Header = () => {
                     className={styles.header_triangle_logo}
                     src="./icons/icon-128x128.png"
                 ></img>
-                <img className={styles.header_logo} src={logoText}></img>
+                <LogoText
+                    className={styles.logo_text}
+                    width="96px"
+                    height="32px"
+                ></LogoText>
             </div>
             {walletAddress === '' ? (
                 <button
