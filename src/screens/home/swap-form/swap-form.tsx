@@ -5,7 +5,7 @@ import {
     useTonConnectUI,
     useTonWallet
 } from '@tonconnect/ui-react';
-import {useContext, useEffect, useMemo} from 'react';
+import {useContext, useEffect, useMemo, useRef} from 'react';
 
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import styles from './swap-form.module.css';
@@ -28,6 +28,7 @@ import {bocToHash} from '../../../utils/boc.utils.ts';
 
 export const SwapForm = () => {
     const wallet = useTonWallet();
+    const inputRef = useRef<HTMLInputElement>(null);
     const connectModal = useTonConnectModal();
     const [tonConnectUI] = useTonConnectUI();
 
@@ -79,6 +80,13 @@ export const SwapForm = () => {
         setOutputAsset(inputAsset);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
     };
+
+    const handleEnterSendAmountClick = async () => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    };
+
     const handleSwapClick = async () => {
         const walletAddress = wallet?.account.address;
 
@@ -126,6 +134,7 @@ export const SwapForm = () => {
                     balance={balances[inputAsset.address]}
                     onInputValueChange={setInputAssetAmount}
                     onAssetValueChange={setInputAsset}
+                    ref={inputRef}
                 />
                 <ToggleAssetsButton onClick={handleToggleAssetsClick} />
                 <CustomInput
@@ -137,14 +146,25 @@ export const SwapForm = () => {
                 />
 
                 {wallet ? (
-                    <>
-                        <FormButton
-                            text="Swap"
-                            type="button"
-                            onClick={handleSwapClick}
-                            className={styles.body_button}
-                        />
-                    </>
+                    outputAssetAmount === '' ? (
+                        <>
+                            <FormButton
+                                text="Enter send amount"
+                                type="button"
+                                onClick={handleEnterSendAmountClick}
+                                className={styles.body_button}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <FormButton
+                                text="Swap"
+                                type="button"
+                                onClick={handleSwapClick}
+                                className={styles.body_button}
+                            />
+                        </>
+                    )
                 ) : (
                     <FormButton
                         text="Connect Wallet"
