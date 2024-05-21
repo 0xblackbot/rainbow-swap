@@ -110,7 +110,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                             <div className={styles.listWrapDiv}>
                                 <List
                                     width={listWidth}
-                                    height={600}
+                                    height={490}
                                     rowCount={filteredAssetsList.length}
                                     rowHeight={70}
                                     className={styles.list}

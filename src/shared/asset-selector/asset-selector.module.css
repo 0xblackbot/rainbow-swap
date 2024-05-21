@@ -81,8 +81,7 @@
 }
 
 .listWrapDiv{
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .p {
@@ -110,7 +109,7 @@
     justify-content: center;
     background-color: var(--bg-color);
     border: none;
-    height: 15%;
+    height: 70px;
     margin: 0 var(--2-step);
 }
 
