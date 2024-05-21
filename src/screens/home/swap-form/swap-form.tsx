@@ -145,34 +145,34 @@ export const SwapForm = () => {
                     onAssetValueChange={setOutputAsset}
                 />
 
-            {wallet ? (
-                outputAssetAmount === '' ? (
-                    <>
-                        <FormButton
-                            text="Enter send amount"
-                            type="button"
-                            onClick={handleEnterSendAmountClick}
-                            className={styles.body_button}
-                        />
-                    </>
+                {wallet ? (
+                    outputAssetAmount === '' ? (
+                        <>
+                            <FormButton
+                                text="Enter send amount"
+                                type="button"
+                                onClick={handleEnterSendAmountClick}
+                                className={styles.body_button}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <FormButton
+                                text="Swap"
+                                type="button"
+                                onClick={handleSwapClick}
+                                className={styles.body_button}
+                            />
+                        </>
+                    )
                 ) : (
-                    <>
-                        <FormButton
-                            text="Swap"
-                            type="button"
-                            onClick={handleSwapClick}
-                            className={styles.body_button}
-                        />
-                    </>
-                )
-            ) : (
-                <FormButton
-                    text="Connect Wallet"
-                    type="button"
-                    onClick={handleConnectClick}
-                    className={styles.body_button}
-                />
-            )}
+                    <FormButton
+                        text="Connect Wallet"
+                        type="button"
+                        onClick={handleConnectClick}
+                        className={styles.body_button}
+                    />
+                )}
             </div>
         </>
     );
