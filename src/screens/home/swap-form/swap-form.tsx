@@ -74,6 +74,7 @@ export const SwapForm = () => {
 
     const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
+        setInputAssetAmount('');
         setInputAsset(outputAsset);
         setOutputAsset(inputAsset);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
