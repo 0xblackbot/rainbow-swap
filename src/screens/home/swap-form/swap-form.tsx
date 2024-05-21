@@ -75,6 +75,7 @@ export const SwapForm = () => {
 
     const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
+        setInputAssetAmount('');
         setInputAsset(outputAsset);
         setOutputAsset(inputAsset);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
@@ -143,7 +144,6 @@ export const SwapForm = () => {
                     assetValue={outputAsset}
                     onAssetValueChange={setOutputAsset}
                 />
-            </div>
 
             {wallet ? (
                 outputAssetAmount === '' ? (
@@ -173,6 +173,7 @@ export const SwapForm = () => {
                     className={styles.body_button}
                 />
             )}
+            </div>
         </>
     );
 };

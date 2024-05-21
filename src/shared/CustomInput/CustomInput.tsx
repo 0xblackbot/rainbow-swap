@@ -59,6 +59,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                     />
                     <input
                         type="tel"
+                        inputMode="decimal"
                         className={styles.input_field}
                         onChange={handleInputChange}
                         value={inputValue}
