@@ -52,9 +52,9 @@
     background: none;
 }
 
-.dropdown_explore_button a {
+.a_button {
     text-decoration: none;
-    color: var(--button-text-color);
+    color: var(--button-color) !important;
 }
 
 .logo_div {
