@@ -1,11 +1,12 @@
-.route_info_div {
-    background-color: var(--secondary-bg-color);
-    border-radius: var(--step);
-    max-height: 156px;
+.route_info_wrapper{
+    margin-bottom: calc(51px + var(--iphone-bottom-line));
     flex-direction: column;
-    padding: 16px;
+}
+
+.route_info_div {
+    border-radius: var(--step);
+    flex-direction: column;
     font-family: 'Basel-book', sans-serif;
-    overflow-y: auto;
 }
 
 .route_info_inside_div {
@@ -18,24 +19,6 @@
     flex-direction: column;
     margin-top: var(--default-size);
     justify-content: space-evenly;
-}
-
-.route{
-    margin-top: var(--step);
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.dots {
-    height: 1em;
-    overflow: hidden; 
-    word-wrap: break-word; 
-    color: white;
-    letter-spacing: 5px;
-}
-  
-.dots:after {
-    content: '..................................................';
 }
 
 .route_info_inside_div p {
