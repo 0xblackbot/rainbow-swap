@@ -1,0 +1,40 @@
+.route{
+    margin-top: var(--step);
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.dots {
+    overflow: hidden;
+    word-wrap: break-word;
+    color: white;
+    letter-spacing: 5px;
+    position: relative;
+    top: 20%;
+    transform: translateY(-50%);
+  }
+  
+.dots:after {
+    content: '..................................................';
+    color: var(--text-color);
+}
+
+
+.route_info{
+    flex-direction: column;
+    color: var(--hint-color);
+}
+
+.route_info :last-child{
+    color: var(--button-color);
+}
+
+.route > :first-child {
+    margin-right: var(--step);
+    align-items: flex-start;
+  }
+  
+  .route > :last-child {
+    margin-left: var(--step);
+    align-items: flex-end;
+  }
