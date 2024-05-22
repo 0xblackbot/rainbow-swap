@@ -25,71 +25,69 @@ export const Header = () => {
     const handleDisconnectClick = () => tonConnectUI.disconnect();
 
     return (
-        <>
-            <div className={styles.header_div}>
-                <div className={styles.logo_div}>
-                    <img
-                        className={styles.header_triangle_logo}
-                        src="./icons/icon-128x128.png"
-                    ></img>
-                    <LogoText
-                        className={styles.logo_text}
-                        width="64px"
-                        height="25px"
-                    ></LogoText>
-                </div>
-                {walletAddress === '' ? (
-                    <button
-                        onClick={handleConnectClick}
-                        className={styles.connect_button}
-                    >
-                        Connect
-                    </button>
-                ) : (
-                    <div className={styles.dropdown}>
-                        <button
-                            onClick={handleDropdownClick}
-                            className={styles.disconnect_button}
-                        >
-                            {shortWalletAddress}
-                        </button>
-                        {isDropdownOpen && (
-                            <>
-                                <div className={styles.dropdown_content}>
-                                    <button
-                                        className={getClassName(
-                                            styles.dropdown_explore_button,
-                                            styles.dropdown_button
-                                        )}
-                                    >
-                                        <a
-                                            href={`https://tonviewer.com/${walletAddress}`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            View in Explorer
-                                        </a>
-                                    </button>
-                                    <button
-                                        className={getClassName(
-                                            styles.dropdown_disconnect_button,
-                                            styles.dropdown_button
-                                        )}
-                                        onClick={handleDisconnectClick}
-                                    >
-                                        Disconnect
-                                    </button>
-                                </div>
-
-                                <div
-                                    className={getClassName(styles.overlay)}
-                                    onClick={handleDropdownClick}
-                                ></div>
-                            </>
-                        )}
-                    </div>
-                )}
+        <div className={styles.header_div}>
+            <div className={styles.logo_div}>
+                <img
+                    className={styles.header_triangle_logo}
+                    src="./icons/icon-128x128.png"
+                ></img>
+                <LogoText
+                    className={styles.logo_text}
+                    width="64px"
+                    height="25px"
+                ></LogoText>
             </div>
-        </>
+            {walletAddress === '' ? (
+                <button
+                    onClick={handleConnectClick}
+                    className={styles.connect_button}
+                >
+                    Connect
+                </button>
+            ) : (
+                <div className={styles.dropdown}>
+                    <button
+                        onClick={handleDropdownClick}
+                        className={styles.disconnect_button}
+                    >
+                        {shortWalletAddress}
+                    </button>
+                    {isDropdownOpen && (
+                        <>
+                            <div className={styles.dropdown_content}>
+                                <button
+                                    className={getClassName(
+                                        styles.dropdown_explore_button,
+                                        styles.dropdown_button
+                                    )}
+                                >
+                                    <a
+                                        href={`https://tonviewer.com/${walletAddress}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        View in Explorer
+                                    </a>
+                                </button>
+                                <button
+                                    className={getClassName(
+                                        styles.dropdown_disconnect_button,
+                                        styles.dropdown_button
+                                    )}
+                                    onClick={handleDisconnectClick}
+                                >
+                                    Disconnect
+                                </button>
+                            </div>
+
+                            <div
+                                className={getClassName(styles.overlay)}
+                                onClick={handleDropdownClick}
+                            ></div>
+                        </>
+                    )}
+                </div>
+            )}
+        </div>
     );
 };
