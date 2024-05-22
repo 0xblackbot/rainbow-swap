@@ -16,6 +16,7 @@ export const App = () => {
 
     useEffect(() => {
         window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
         dispatch(loadAssetsActions.submit());
     }, [dispatch]);
 

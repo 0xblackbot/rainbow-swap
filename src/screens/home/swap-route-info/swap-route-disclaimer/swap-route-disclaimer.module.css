@@ -1,0 +1,19 @@
+.disclaimer_container{
+ background: #FBEEE5;
+ border: none;
+ border-radius: var(--2-step);
+ color: black;
+ margin-top: var(--step);
+ padding: 12px;
+}
+
+.disclaimer_text{
+ margin-left: var(--step);
+ font-family: 'Basel-book', sans-serif;
+ font-weight: 200;
+ flex-direction: column;
+}
+
+.disclaimer_text :first-child{
+ font-weight: bold;
+}

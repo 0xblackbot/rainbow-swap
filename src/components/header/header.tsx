@@ -5,7 +5,7 @@ import {
 } from '@tonconnect/ui-react';
 import {useMemo, useState} from 'react';
 
-import logoText from './assets/logo-text.png';
+import {LogoText} from './assets/LogoText';
 import styles from './header.module.css';
 import {getClassName} from '../../utils/style.utils';
 
@@ -13,12 +13,12 @@ export const Header = () => {
     const walletAddress = useTonAddress();
     const connectModal = useTonConnectModal();
     const [tonConnectUI] = useTonConnectUI();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const shortWalletAddress = useMemo(
         () => walletAddress.slice(0, 4) + '...' + walletAddress.slice(-4),
         [walletAddress]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleDropdownClick = () => setIsDropdownOpen(value => !value);
     const handleConnectClick = () => connectModal.open();
@@ -41,6 +41,7 @@ export const Header = () => {
                     >
                         Connect
                     </button>
+
                 ) : (
                     <div className={styles.dropdown}>
                         <button
