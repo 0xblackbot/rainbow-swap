@@ -1,11 +1,10 @@
 .route_info_div {
     background-color: var(--secondary-bg-color);
     border-radius: var(--step);
-    max-height: 156px;
     flex-direction: column;
     padding: 16px;
     font-family: 'Basel-book', sans-serif;
-    overflow-y: auto;
+    margin-bottom: calc(51px + var(--iphone-bottom-line));
 }
 
 .route_info_inside_div {
