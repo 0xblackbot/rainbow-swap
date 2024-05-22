@@ -13,12 +13,12 @@ export const Header = () => {
     const walletAddress = useTonAddress();
     const connectModal = useTonConnectModal();
     const [tonConnectUI] = useTonConnectUI();
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const shortWalletAddress = useMemo(
         () => walletAddress.slice(0, 4) + '...' + walletAddress.slice(-4),
         [walletAddress]
     );
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleDropdownClick = () => setIsDropdownOpen(value => !value);
     const handleConnectClick = () => connectModal.open();
@@ -32,7 +32,11 @@ export const Header = () => {
                         className={styles.header_triangle_logo}
                         src="./icons/icon-128x128.png"
                     ></img>
-                    <img className={styles.header_logo} src={logoText}></img>
+                    <LogoText
+                        className={styles.logo_text}
+                        width="64px"
+                        height="25px"
+                    ></LogoText>
                 </div>
                 {walletAddress === '' ? (
                     <button
@@ -41,7 +45,6 @@ export const Header = () => {
                     >
                         Connect
                     </button>
-
                 ) : (
                     <div className={styles.dropdown}>
                         <button
