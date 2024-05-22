@@ -32,6 +32,11 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
         const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
             let value = e.target.value;
             value = value.replace(/,/g, '.');
+
+            if (value.charAt(0) === '.' || value.charAt(0) === ',') {
+                return;
+            }
+
             const regex = new RegExp(`^\\d*(\\.\\d{0,9})?$`);
             if (regex.test(value)) {
                 const [integer, decimal] = value.split('.');
