@@ -89,7 +89,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
             >
                 <Sheet.Container className={styles.modalSheetContainer}>
                     <Sheet.Header />
-                    <Sheet.Content>
+                    <Sheet.Content disableDrag={true}>
                         <div className={styles.modalDiv}>
                             <p className={styles.modalP}>Assets</p>
                         </div>
