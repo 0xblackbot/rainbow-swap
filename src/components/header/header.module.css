@@ -68,7 +68,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--secondary-bg-color);
+    background-color: #707070;
     z-index: 10000;
     opacity: 0;
     animation: fadeIn 0.3s ease-in-out forwards;
@@ -79,7 +79,7 @@
       opacity: 0;
     }
     100% {
-      opacity: 0.7;
+      opacity: 0.6;
     }
   }
   
