@@ -75,6 +75,11 @@ export const SwapForm = () => {
         }
     }, [inputAssetAmount, inputAsset, outputAsset, dispatch]);
 
+    useEffect(() => {
+        setInputAssetAmount('');
+        dispatch(loadSwapRoutesActions.success([]));
+    }, [inputAsset, dispatch, setInputAssetAmount]);
+
     const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
         setInputAssetAmount('');
@@ -145,7 +150,7 @@ export const SwapForm = () => {
                     isInputEnabled={false}
                     inputValue={outputAssetAmount}
                     assetValue={outputAsset}
-                    assetExchangeRate={assets[inputAsset.address].exchangeRate}
+                    assetExchangeRate={assets[outputAsset.address].exchangeRate}
                     onAssetValueChange={setOutputAsset}
                 />
 
