@@ -21,6 +21,7 @@ export const AssetListItem: FC<Props> = ({
 }) => {
     const handleClick = () => onClick(asset);
     const isSelected = asset.address === selectedAsset.address;
+    const usdAmount = parseFloat(balance) * parseFloat(asset.exchangeRate);
 
     return (
         <div style={style} onClick={handleClick}>
@@ -47,7 +48,9 @@ export const AssetListItem: FC<Props> = ({
                 </div>
                 <div className={styles.select_list_item_balance}>
                     <p className={styles.coin_balance}>{balance}</p>
-                    <p className={styles.dollar_balance}>≈0.00$</p>
+                    <p className={styles.dollar_balance}>
+                        ≈{usdAmount !== 0 ? usdAmount.toFixed(5) : '0.00'}$
+                    </p>
                 </div>
             </div>
         </div>

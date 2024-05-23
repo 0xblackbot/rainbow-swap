@@ -18,7 +18,8 @@
 
 .dropdown {
     position: relative;
-}
+    z-index: 20;
+  }
 
 .dropdown_content {
     display: grid !important;
@@ -26,7 +27,7 @@
     position: absolute;
     background-color: var(--secondary-bg-color);
     min-width: calc(20 * var(--step));
-    z-index: 10001;
+    z-index: 20;
     right: 0;
     top: 120%;
     padding: var(--step);
@@ -60,6 +61,7 @@
 
 .logo_div {
     align-items: center;
+    z-index: 3;
 }
 
 .overlay {
@@ -97,6 +99,34 @@
 }
 
 .header_div {
+    position: fixed;
+    top: 0;
+    min-width: var(--app-min-width);
+    max-width: var(--app-max-width);
+    width: calc(100% - 2 * var(--2-step));
     justify-content: space-between;
     align-items: center;
-}
+    padding: var(--step);
+    z-index: 10;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #707070;
+    z-index: 9;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.6;
+    }
+  }

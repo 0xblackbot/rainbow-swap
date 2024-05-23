@@ -7,13 +7,10 @@ import {toPayload, ofType} from 'ts-action-operators';
 
 import {
     addPendingSwapTransactionActions,
-    loadBalancesActions,
-    loadExchangeRates
+    loadBalancesActions
 } from './wallet-actions';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
-import {RateInfoArray} from '../../interfaces/rates-object.interface';
 import {BalancesRecord} from '../../types/balances-record.type';
-import {ExchangeRateRecord} from '../../types/exchange-rate-record.type';
 import {fromNano} from '../../utils/big-int.utils';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
 
@@ -69,31 +66,7 @@ const addPendingSwapTransactionEpic: Epic<Action> = action$ =>
         )
     );
 
-const loadExchangeRatesEpic: Epic<Action> = action$ =>
-    action$.pipe(
-        ofType(loadExchangeRates.submit),
-        toPayload(),
-        switchMap(payload =>
-            from(axios.get<RateInfoArray>(`${payload}`)).pipe(
-                map(response => {
-                    const exchangeRates: ExchangeRateRecord = {};
-                    Object.entries(response.data.rates).forEach(
-                        ([key, rateInfo]) => {
-                            exchangeRates[key] = {
-                                prices: rateInfo.prices
-                            };
-                        }
-                    );
-                    return exchangeRates;
-                }),
-                map(exchangeRates => loadExchangeRates.success(exchangeRates)),
-                catchError(error => of(loadExchangeRates.fail(error.message)))
-            )
-        )
-    );
-
 export const walletEpics = combineEpics(
     walletEpic,
-    addPendingSwapTransactionEpic,
-    loadExchangeRatesEpic
+    addPendingSwapTransactionEpic
 );

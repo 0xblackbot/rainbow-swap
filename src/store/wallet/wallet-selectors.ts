@@ -5,6 +5,3 @@ export const useBalancesSelector = () =>
 
 export const useIsProcessingSwapTransactionSelector = () =>
     useSelector(({wallet}) => wallet.pendingSwapTransaction.isLoading);
-
-export const useExchangeRatesSelector = () =>
-    useSelector(({wallet}) => wallet.exchangeRates.data);

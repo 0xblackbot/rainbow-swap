@@ -13,12 +13,12 @@ export const Header = () => {
     const walletAddress = useTonAddress();
     const connectModal = useTonConnectModal();
     const [tonConnectUI] = useTonConnectUI();
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const shortWalletAddress = useMemo(
         () => walletAddress.slice(0, 4) + '...' + walletAddress.slice(-4),
         [walletAddress]
     );
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleDropdownClick = () => setIsDropdownOpen(value => !value);
     const handleConnectClick = () => connectModal.open();
@@ -33,8 +33,8 @@ export const Header = () => {
                 ></img>
                 <LogoText
                     className={styles.logo_text}
-                    width="96px"
-                    height="32px"
+                    width="64px"
+                    height="25px"
                 ></LogoText>
             </div>
             {walletAddress === '' ? (
@@ -65,7 +65,6 @@ export const Header = () => {
                                         href={`https://tonviewer.com/${walletAddress}`}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className={styles.a_button}
                                     >
                                         View in Explorer
                                     </a>
@@ -80,11 +79,9 @@ export const Header = () => {
                                     Disconnect
                                 </button>
                             </div>
+
                             <div
-                                className={getClassName(
-                                    styles.overlay,
-                                    isDropdownOpen ? styles.visible : ''
-                                )}
+                                className={getClassName(styles.overlay)}
                                 onClick={handleDropdownClick}
                             ></div>
                         </>

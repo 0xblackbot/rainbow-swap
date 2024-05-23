@@ -1,28 +1,30 @@
-.route_step_div{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: var(--secondary-bg-color);
-    border: 2px solid;
-    border-color: var( --hint-color);
-    border-radius: var(--step);
-    padding: 4px;
+.route_step_div {
+  justify-content: center;
+  align-items: center;
+  background: var(--secondary-bg-color);
+  border-radius: var(--step);
+  padding: 4px;
+  box-shadow: 0 2px 2px black;
 }
 
-.route_step_direction_div{
-    align-items: center;
-    margin-top: 4px;
+.route_step_direction_div {
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
 }
 
-.route_step_div p{
-    font-size: 16px;
-    color: var( --hint-color);
+.route_step_direction_div img {
+  width: 24px;
+  align-self: center;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.route_step_direction_div img{
-    width: 24px;
-    height: 24px;
-    align-self: center;
-    border-radius: 50%;
-    object-fit: cover;
+.route_step_direction_div :first-child {
+  margin-right: 4px;
+}
+
+.route_step_direction_div :last-child {
+  margin-left: -7%;
 }

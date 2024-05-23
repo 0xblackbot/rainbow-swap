@@ -10,6 +10,7 @@ interface Props {
     isInputEnabled: boolean;
     inputValue: string;
     assetValue: Asset;
+    assetExchangeRate: string;
     balance?: string | undefined;
     ref?: ForwardedRef<HTMLInputElement>;
     onInputValueChange?: (newInputValue: string) => void;
@@ -23,6 +24,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             isInputEnabled,
             inputValue,
             assetValue,
+            assetExchangeRate,
             balance = '0',
             onInputValueChange = EMPTY_FN,
             onAssetValueChange
@@ -32,6 +34,11 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
         const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
             let value = e.target.value;
             value = value.replace(/,/g, '.');
+
+            if (value.charAt(0) === '.' || value.charAt(0) === ',') {
+                return;
+            }
+
             const regex = new RegExp(`^\\d*(\\.\\d{0,9})?$`);
             if (regex.test(value)) {
                 const [integer, decimal] = value.split('.');
@@ -44,6 +51,8 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 }
             }
         };
+        const usdAmount =
+            parseFloat(inputValue) * parseFloat(assetExchangeRate);
 
         const setMaxAssetAmount = () => {
             onInputValueChange(balance);
@@ -82,7 +91,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             </button>
                         ) : null}
                     </div>
-                    <p>$0.00</p>
+                    <p>${!isNaN(usdAmount) ? usdAmount.toFixed(3) : '0.00'}</p>
                 </div>
             </div>
         );

@@ -14,6 +14,7 @@ import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
+import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions.ts';
@@ -33,6 +34,7 @@ export const SwapForm = () => {
     const [tonConnectUI] = useTonConnectUI();
 
     const dispatch = useDispatch();
+    const assets = useAssetsRecordSelector();
     const swapRoutes = useSwapRoutesSelector();
     const balances = useBalancesSelector();
     const isProcessingSwapTransaction =
@@ -132,6 +134,7 @@ export const SwapForm = () => {
                     inputValue={inputAssetAmount}
                     assetValue={inputAsset}
                     balance={balances[inputAsset.address]}
+                    assetExchangeRate={assets[inputAsset.address].exchangeRate}
                     onInputValueChange={setInputAssetAmount}
                     onAssetValueChange={setInputAsset}
                     ref={inputRef}
@@ -142,6 +145,7 @@ export const SwapForm = () => {
                     isInputEnabled={false}
                     inputValue={outputAssetAmount}
                     assetValue={outputAsset}
+                    assetExchangeRate={assets[inputAsset.address].exchangeRate}
                     onAssetValueChange={setOutputAsset}
                 />
 
