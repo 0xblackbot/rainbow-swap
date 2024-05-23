@@ -22,7 +22,10 @@ export const Header = () => {
 
     const handleDropdownClick = () => setIsDropdownOpen(value => !value);
     const handleConnectClick = () => connectModal.open();
-    const handleDisconnectClick = () => tonConnectUI.disconnect();
+    const handleDisconnectClick = () => {
+        tonConnectUI.disconnect();
+        setIsDropdownOpen(false);
+    };
 
     return (
         <div className={styles.header_div}>
