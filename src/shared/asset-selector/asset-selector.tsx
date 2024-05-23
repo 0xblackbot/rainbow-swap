@@ -85,7 +85,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                 isOpen={isOpen}
                 onClose={handleClose}
                 className={styles.modalSheet}
-                snapPoints={[700]}
+                snapPoints={[730]}
                 initialSnap={0}
             >
                 <Sheet.Container className={styles.modalSheetContainer}>
@@ -149,7 +149,12 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                 />
                             </div>
                             <div className={styles.modalButtonConatiner}>
-                                <button onClick={handleClose}>Cancel</button>
+                                <button
+                                    className={styles.modalButtonCancel}
+                                    onClick={handleClose}
+                                >
+                                    Cancel
+                                </button>
                             </div>
                         </div>
                     </Sheet.Content>

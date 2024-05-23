@@ -7,6 +7,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    padding-bottom: var(--iphone-bottom-line);
 }
 
 .modalButton {
@@ -119,15 +120,15 @@
     margin: 0 var(--2-step);
 }
 
-.modalButtonConatiner button{
+.modalButtonCancel{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--button-color);
     border: none;
     border-radius: var(--2-step);
+    color: var(--button-text-color);
     width: 100%;
-    color: var(--text-color);
     font-size: var(--2-step);
     padding: var(--2-step) var(--3-step);   
 }
