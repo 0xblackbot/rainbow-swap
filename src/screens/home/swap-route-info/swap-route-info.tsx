@@ -5,12 +5,15 @@ import styles from './swap-route-info.module.css';
 import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon.tsx';
 import {ChevronUpIcon} from '../../../assets/icons/ChevronUpIcon/ChevronUpIcon.tsx';
 import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
+import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
+import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.utils.ts';
 
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
+    const assets = useAssetsRecordSelector();
     const {inputAsset, outputAsset} = useContext(SwapFormContext);
     const [showRoutes, setShowRoutes] = useState(true);
     const routes = useMemo(
@@ -21,6 +24,9 @@ export const SwapRouteInfo: FC = () => {
         () => getRoutesStepCount(routes),
         [routes]
     );
+    const exchangeRate =
+        parseFloat(assets[inputAsset.address].exchangeRate) /
+        parseFloat(assets[outputAsset.address].exchangeRate);
 
     const handleChevronClick = () => setShowRoutes(value => !value);
 
@@ -36,7 +42,8 @@ export const SwapRouteInfo: FC = () => {
                 <div className={styles.route_info_inside_div}>
                     <p>Exchange rate</p>
                     <p>
-                        ? {inputAsset.symbol} = ? {outputAsset.symbol} ($?.??)
+                        1 {inputAsset.symbol} = {formatNumber(exchangeRate, 5)}{' '}
+                        {outputAsset.symbol}
                     </p>
                 </div>
                 <div className={styles.route_info_inside_div}>

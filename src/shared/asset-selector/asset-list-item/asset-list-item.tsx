@@ -3,6 +3,7 @@ import {ListRowProps} from 'react-virtualized';
 
 import styles from './asset-list-item.module.css';
 import {Asset} from '../../../interfaces/asset.interface';
+import {formatNumber} from '../../../utils/format-number.utils';
 import {getClassName} from '../../../utils/style.utils';
 
 interface Props extends Pick<ListRowProps, 'style'> {
@@ -21,6 +22,7 @@ export const AssetListItem: FC<Props> = ({
 }) => {
     const handleClick = () => onClick(asset);
     const isSelected = asset.address === selectedAsset.address;
+    const usdAmount = parseFloat(balance) * parseFloat(asset.exchangeRate);
 
     return (
         <div style={style} onClick={handleClick}>
@@ -47,7 +49,9 @@ export const AssetListItem: FC<Props> = ({
                 </div>
                 <div className={styles.select_list_item_balance}>
                     <p className={styles.coin_balance}>{balance}</p>
-                    <p className={styles.dollar_balance}>≈0.00$</p>
+                    <p className={styles.dollar_balance}>
+                        ≈{formatNumber(usdAmount, 5)}$
+                    </p>
                 </div>
             </div>
         </div>

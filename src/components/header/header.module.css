@@ -106,7 +106,7 @@
     width: calc(100% - 2 * var(--2-step));
     justify-content: space-between;
     align-items: center;
-    padding: var(--step);
+    padding: var(--step) 0;
     z-index: 10;
   }
 

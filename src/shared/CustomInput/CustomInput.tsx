@@ -3,6 +3,7 @@ import {ChangeEvent, ForwardedRef, forwardRef} from 'react';
 import styles from './CustomInput.module.css';
 import {Asset} from '../../interfaces/asset.interface';
 import {EMPTY_FN} from '../../utils/emptyfn.ts';
+import {formatNumber} from '../../utils/format-number.utils.ts';
 import {AssetSelector} from '../asset-selector/asset-selector.tsx';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
     isInputEnabled: boolean;
     inputValue: string;
     assetValue: Asset;
+    assetExchangeRate: string;
     balance?: string | undefined;
     ref?: ForwardedRef<HTMLInputElement>;
     onInputValueChange?: (newInputValue: string) => void;
@@ -23,6 +25,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             isInputEnabled,
             inputValue,
             assetValue,
+            assetExchangeRate,
             balance = '0',
             onInputValueChange = EMPTY_FN,
             onAssetValueChange
@@ -49,6 +52,8 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 }
             }
         };
+        const usdAmount =
+            parseFloat(inputValue) * parseFloat(assetExchangeRate);
 
         const setMaxAssetAmount = () => {
             onInputValueChange(balance);
@@ -87,7 +92,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             </button>
                         ) : null}
                     </div>
-                    <p>$0.00</p>
+                    <p>${formatNumber(usdAmount, 3)}</p>
                 </div>
             </div>
         );

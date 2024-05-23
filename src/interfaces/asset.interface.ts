@@ -4,5 +4,5 @@ export interface Asset {
     address: string;
     image: string;
     decimals: number;
-    balance?: string;
+    exchangeRate: string;
 }
