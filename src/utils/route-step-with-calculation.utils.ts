@@ -21,3 +21,13 @@ export const getRouteInputAssetAmount = (route: RouteStepWithCalculation[]) =>
 
 export const getRouteOutputAssetAmount = (route: RouteStepWithCalculation[]) =>
     BigInt(getRouteOutputStep(route)?.outputAssetAmount ?? 0);
+
+export const getRoutesStepCount = (routes: RouteStepWithCalculation[][]) => {
+    const chainsAmount = routes.length;
+    const poolsAmount = routes.reduce(
+        (totalPools, route) => totalPools + route.length,
+        0
+    );
+
+    return {chainsAmount, poolsAmount};
+};

@@ -36,7 +36,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             value = value.replace(/,/g, '.');
 
             if (value.charAt(0) === '.' || value.charAt(0) === ',') {
-                return;
+                value = '0.';
             }
 
             const regex = new RegExp(`^\\d*(\\.\\d{0,9})?$`);

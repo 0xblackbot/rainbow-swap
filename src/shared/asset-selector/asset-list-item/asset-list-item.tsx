@@ -49,7 +49,7 @@ export const AssetListItem: FC<Props> = ({
                 <div className={styles.select_list_item_balance}>
                     <p className={styles.coin_balance}>{balance}</p>
                     <p className={styles.dollar_balance}>
-                        ≈{usdAmount !== 0 ? usdAmount.toFixed(5) : '0.00'}$
+                        ≈{!isNaN(usdAmount) ? usdAmount.toFixed(5) : '0.00'}$
                     </p>
                 </div>
             </div>

@@ -65,6 +65,7 @@ export const Header = () => {
                                         href={`https://tonviewer.com/${walletAddress}`}
                                         target="_blank"
                                         rel="noreferrer"
+                                        className={styles.a_button}
                                     >
                                         View in Explorer
                                     </a>
