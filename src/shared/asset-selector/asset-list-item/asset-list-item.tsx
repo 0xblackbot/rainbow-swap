@@ -3,6 +3,7 @@ import {ListRowProps} from 'react-virtualized';
 
 import styles from './asset-list-item.module.css';
 import {Asset} from '../../../interfaces/asset.interface';
+import {formatNumber} from '../../../utils/format-number.utils';
 import {getClassName} from '../../../utils/style.utils';
 
 interface Props extends Pick<ListRowProps, 'style'> {
@@ -49,7 +50,7 @@ export const AssetListItem: FC<Props> = ({
                 <div className={styles.select_list_item_balance}>
                     <p className={styles.coin_balance}>{balance}</p>
                     <p className={styles.dollar_balance}>
-                        ≈{!isNaN(usdAmount) ? usdAmount.toFixed(5) : '0.00'}$
+                        ≈{formatNumber(usdAmount, 5)}$
                     </p>
                 </div>
             </div>

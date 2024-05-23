@@ -8,6 +8,7 @@ import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
+import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.utils.ts';
 
 export const SwapRouteInfo: FC = () => {
@@ -41,10 +42,7 @@ export const SwapRouteInfo: FC = () => {
                 <div className={styles.route_info_inside_div}>
                     <p>Exchange rate</p>
                     <p>
-                        1 {inputAsset.symbol} ={' '}
-                        {!isNaN(exchangeRate)
-                            ? exchangeRate.toFixed(5)
-                            : '0.00'}{' '}
+                        1 {inputAsset.symbol} = {formatNumber(exchangeRate, 5)}{' '}
                         {outputAsset.symbol}
                     </p>
                 </div>

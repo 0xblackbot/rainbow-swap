@@ -3,6 +3,7 @@ import {ChangeEvent, ForwardedRef, forwardRef} from 'react';
 import styles from './CustomInput.module.css';
 import {Asset} from '../../interfaces/asset.interface';
 import {EMPTY_FN} from '../../utils/emptyfn.ts';
+import {formatNumber} from '../../utils/format-number.utils.ts';
 import {AssetSelector} from '../asset-selector/asset-selector.tsx';
 
 interface Props {
@@ -91,7 +92,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             </button>
                         ) : null}
                     </div>
-                    <p>${!isNaN(usdAmount) ? usdAmount.toFixed(3) : '0.00'}</p>
+                    <p>${formatNumber(usdAmount, 3)}</p>
                 </div>
             </div>
         );
