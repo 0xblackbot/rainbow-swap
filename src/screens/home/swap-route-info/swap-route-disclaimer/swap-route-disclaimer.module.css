@@ -1,10 +1,11 @@
 .disclaimer_container{
- background: rgba(255, 91, 0, 0.3);
+ background: rgba(255, 91, 0, 0.1);
  border: none;
  border-radius: var(--2-step);
  color: var(--text-color);
  margin-top: var(--step);
  padding: 12px;
+ margin-bottom: calc(51px + var(--iphone-bottom-line));
 }
 
 .disclaimer_text{

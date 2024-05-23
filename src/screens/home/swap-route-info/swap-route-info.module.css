@@ -1,7 +1,14 @@
 .route_info_wrapper{
-    margin-bottom: calc(51px + var(--iphone-bottom-line));
     flex-direction: column;
 }
+
+.show_routes_chevron{
+    color: var(--text-color);
+}
+
+.crossed_out {
+    text-decoration: line-through;
+  }
 
 .route_info_div {
     border-radius: var(--step);
