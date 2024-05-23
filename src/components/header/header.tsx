@@ -19,10 +19,14 @@ export const Header = () => {
         [walletAddress]
     );
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    console.log(isDropdownOpen);
 
     const handleDropdownClick = () => setIsDropdownOpen(value => !value);
     const handleConnectClick = () => connectModal.open();
-    const handleDisconnectClick = () => tonConnectUI.disconnect();
+    const handleDisconnectClick = () => {
+        tonConnectUI.disconnect();
+        setIsDropdownOpen(false);
+    };
 
     return (
         <div className={styles.header_div}>
