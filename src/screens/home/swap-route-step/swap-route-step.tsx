@@ -1,16 +1,16 @@
 import {FC} from 'react';
 
 import styles from './swap-route-step.module.css';
-import {ChevronRightIcon} from '../../../assets/icons/ChevronRightIcon/ChevronRightIcon';
+import {DEFAULT_DEXES_RECORD} from '../../../data/dexes-record';
 import {RouteStep} from '../../../interfaces/route-step.interface';
-import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors';
+import {AssetsRecord} from '../../../types/assets-record.type';
 
 interface Props {
     routeStep: RouteStep;
+    assetsRecord: AssetsRecord;
 }
 
-export const SwapRouteStep: FC<Props> = ({routeStep}) => {
-    const assetsRecord = useAssetsRecordSelector();
+export const SwapRouteStep: FC<Props> = ({routeStep, assetsRecord}) => {
     const {inputAsset, outputAsset} = {
         inputAsset: assetsRecord[routeStep.inputAssetAddress],
         outputAsset: assetsRecord[routeStep.outputAssetAddress]
@@ -18,10 +18,9 @@ export const SwapRouteStep: FC<Props> = ({routeStep}) => {
 
     return (
         <div className={styles.route_step_div}>
-            <p>{routeStep.dexType}</p>
             <div className={styles.route_step_direction_div}>
+                <img src={DEFAULT_DEXES_RECORD[routeStep.dexType].image} />
                 <img src={inputAsset.image}></img>
-                <ChevronRightIcon />
                 <img src={outputAsset.image}></img>
             </div>
         </div>

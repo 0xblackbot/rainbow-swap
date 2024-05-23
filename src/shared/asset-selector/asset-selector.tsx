@@ -5,9 +5,11 @@ import {List} from 'react-virtualized';
 
 import {AssetListItem} from './asset-list-item/asset-list-item.tsx';
 import styles from './asset-selector.module.css';
+import {SheetBackdrop} from './sheet-backdrop/sheet-backdrop.tsx';
 import {sortAssets} from './utils/sort-assets.utils.ts';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
 import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
+import {XCircleIcon} from '../../assets/icons/XCircleIcon/XCircleIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
 import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
@@ -19,14 +21,12 @@ interface Props {
 }
 
 export const AssetSelector: FC<Props> = ({value, onChange}) => {
-    const assetsList = useAssetsListSelector();
     const balances = useBalancesSelector();
+    const assetsList = sortAssets(useAssetsListSelector(), balances);
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [filteredAssetsList, setFilteredAssetsList] = useState(
-        sortAssets(assetsList, balances)
-    );
+    const [filteredAssetsList, setFilteredAssetsList] = useState(assetsList);
     const {listWidth, modalSheetRef} = useModalWidth(isOpen);
 
     const handleOpenClick = () => setIsOpen(true);
@@ -36,7 +36,10 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
         setSearchValue('');
         onChange(newValue);
     };
-
+    const handleClearInput = () => {
+        setSearchValue('');
+        setFilteredAssetsList(assetsList);
+    };
     const filterAssets = useMemo(
         () =>
             debounce((searchTerm: string) => {
@@ -87,7 +90,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
             >
                 <Sheet.Container className={styles.modalSheetContainer}>
                     <Sheet.Header />
-                    <Sheet.Content>
+                    <Sheet.Content disableDrag={true}>
                         <div className={styles.modalDiv}>
                             <p className={styles.modalP}>Assets</p>
                         </div>
@@ -105,12 +108,20 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                 width="18px"
                                 height="18px"
                             />
+                            {searchValue && (
+                                <XCircleIcon
+                                    className={styles.xcircleIcon}
+                                    width="20px"
+                                    onClick={handleClearInput}
+                                    height="20px"
+                                />
+                            )}
                         </div>
                         <div ref={modalSheetRef} className={styles.modalList}>
                             <div className={styles.listWrapDiv}>
                                 <List
                                     width={listWidth}
-                                    height={600}
+                                    height={490}
                                     rowCount={filteredAssetsList.length}
                                     rowHeight={70}
                                     className={styles.list}
@@ -143,7 +154,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                         </div>
                     </Sheet.Content>
                 </Sheet.Container>
-                <Sheet.Backdrop onTap={handleClose} />
+                <SheetBackdrop onTap={handleClose} />
             </Sheet>
         </>
     );

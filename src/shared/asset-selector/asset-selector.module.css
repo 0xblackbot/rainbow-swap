@@ -22,10 +22,9 @@
   }
   
   .modalSheet :global(.react-modal-sheet-backdrop) {
-   background-color: var(--secondary-bg-color) !important;
-   opacity: 0.7 !important;
-  }
-  
+    background-color: var(--secondary-bg-color) !important;
+   }
+
 .modalDiv {
     justify-content: center;
     align-items: center;
@@ -63,6 +62,13 @@
     transform: translateY(-50%);
     color: var(--hint-color);
   }
+
+  .xcircleIcon{
+    position: absolute;
+    right: var(--step);
+    transform: translateY(40%);
+    color: var(--hint-color);
+  }
   
   .chevronIcon{
     color: var(--hint-color);
@@ -81,8 +87,7 @@
 }
 
 .listWrapDiv{
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .p {
@@ -110,7 +115,7 @@
     justify-content: center;
     background-color: var(--bg-color);
     border: none;
-    height: 15%;
+    height: 70px;
     margin: 0 var(--2-step);
 }
 

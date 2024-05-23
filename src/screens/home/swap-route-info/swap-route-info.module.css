@@ -1,8 +1,11 @@
+.route_info_wrapper{
+    margin-bottom: calc(51px + var(--iphone-bottom-line));
+    flex-direction: column;
+}
+
 .route_info_div {
-    background-color: var(--secondary-bg-color);
     border-radius: var(--step);
     flex-direction: column;
-    padding: 16px;
     font-family: 'Basel-book', sans-serif;
 }
 
@@ -16,24 +19,6 @@
     flex-direction: column;
     margin-top: var(--default-size);
     justify-content: space-evenly;
-}
-
-.route{
-    margin-top: var(--step);
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.dots {
-    height: 1em;
-    overflow: hidden; 
-    word-wrap: break-word; 
-    color: white;
-    letter-spacing: 5px;
-}
-  
-.dots:after {
-    content: '..................................................';
 }
 
 .route_info_inside_div p {
