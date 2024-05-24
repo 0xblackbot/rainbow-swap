@@ -148,35 +148,32 @@ export const SwapForm = () => {
                     assetExchangeRate={assets[outputAsset.address].exchangeRate}
                     onAssetValueChange={setOutputAsset}
                 />
-
-                {wallet ? (
-                    outputAssetAmount === '' ? (
-                        <>
+                <div className={styles.body_button_wrapper}>
+                    {wallet ? (
+                        outputAssetAmount === '' ? (
                             <FormButton
                                 text="Enter send amount"
                                 type="button"
                                 onClick={handleEnterSendAmountClick}
                                 className={styles.body_button}
                             />
-                        </>
-                    ) : (
-                        <>
+                        ) : (
                             <FormButton
                                 text="Swap"
                                 type="button"
                                 onClick={handleSwapClick}
                                 className={styles.body_button}
                             />
-                        </>
-                    )
-                ) : (
-                    <FormButton
-                        text="Connect Wallet"
-                        type="button"
-                        onClick={handleConnectClick}
-                        className={styles.body_button}
-                    />
-                )}
+                        )
+                    ) : (
+                        <FormButton
+                            text="Connect Wallet"
+                            type="button"
+                            onClick={handleConnectClick}
+                            className={styles.body_button}
+                        />
+                    )}
+                </div>
             </div>
         </>
     );
