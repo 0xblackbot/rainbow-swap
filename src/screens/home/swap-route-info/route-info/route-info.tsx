@@ -43,7 +43,7 @@ export const RouteInfo: FC<Props> = ({route}) => {
     return (
         <div className={styles.route}>
             <div className={styles.route_info}>
-                <p>{routeInputAssetAmount.slice(0, 4) + '..'}</p>
+                <p>{routeInputAssetAmount}</p>
                 <p>{routeInputAssetPercantage + '%'}</p>
             </div>
             {route.map((routeStep, index) => (
@@ -57,7 +57,7 @@ export const RouteInfo: FC<Props> = ({route}) => {
                 </Fragment>
             ))}
             <div className={styles.route_info}>
-                <p>{routeOutputAssetAmount.slice(0, 4) + '..'}</p>
+                <p>{routeOutputAssetAmount}</p>
                 <p>{routeInputAssetPercantage + '%'}</p>
             </div>
         </div>

@@ -20,9 +20,18 @@
 }
 
 
-.route_info{
-    flex-direction: column;
-    color: var(--hint-color);
+.route_info {
+  width: 48px !important;
+  flex-direction: column;
+  color: var(--hint-color);
+  flex-shrink: 0;
+}
+
+.route_info p {
+  width: 48px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .route_info :last-child{
