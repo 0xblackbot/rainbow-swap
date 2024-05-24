@@ -129,7 +129,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                     containerStyle={{
                                         width: listWidth
                                     }}
-                                    noRowsRenderer={() => <AssetNoResult />}
+                                    noRowsRenderer={AssetNoResult}
                                     rowRenderer={props => (
                                         <AssetListItem
                                             key={props.key}
