@@ -5,7 +5,6 @@
 
 body {
     padding: var(--2-step);
-    padding-bottom: 0;
     background: var(--bg-color);
     color: white;
     overflow: hidden;
@@ -47,7 +46,8 @@ p {
     --hint-color: var(--tg-theme-hint-color, #98989e);
     --button-text-color: var(--tg-theme-button-text-color, #ffffff);
     --section: var(--tg-theme-section-bg-color, #8C8D91);
-    --iphone-bottom-line: calc(max(env(safe-area-inset-bottom), 34px));
+    --safe-area-inset-bottom: calc(100vh - var(--tg-viewport-stable-height, 100vh));
+    --iphone-bottom-line: max(var(--safe-area-inset-bottom, 0), 8px);
 
     --step: 8px;
     --2-step: calc(2 * var(--step));
