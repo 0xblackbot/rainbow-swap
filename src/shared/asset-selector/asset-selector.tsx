@@ -4,6 +4,7 @@ import Sheet from 'react-modal-sheet';
 import {List} from 'react-virtualized';
 
 import {AssetListItem} from './asset-list-item/asset-list-item.tsx';
+import {AssetNoResult} from './asset-no-result/asset-no-result.tsx';
 import styles from './asset-selector.module.css';
 import {SheetBackdrop} from './sheet-backdrop/sheet-backdrop.tsx';
 import {sortAssets} from './utils/sort-assets.utils.ts';
@@ -128,6 +129,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                     containerStyle={{
                                         width: listWidth
                                     }}
+                                    noRowsRenderer={AssetNoResult}
                                     rowRenderer={props => (
                                         <AssetListItem
                                             key={props.key}
