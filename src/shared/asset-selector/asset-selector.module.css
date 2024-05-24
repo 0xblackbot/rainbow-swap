@@ -128,10 +128,7 @@
   flex: 1;
   font-size: var(--2-step);
   color: var(--hint-color);
-}
-
-.noResultDiv{
-    font-family: 'Basel', sans-serif;
+  font-family: 'Basel', sans-serif;
 }
 
 .modalButtonConatiner button{
