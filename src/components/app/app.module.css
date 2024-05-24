@@ -4,5 +4,5 @@
     max-width: var(--app-max-width);
     flex-direction: column;
     height: 100dvh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }

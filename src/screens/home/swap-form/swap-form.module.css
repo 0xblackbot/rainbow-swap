@@ -3,7 +3,6 @@
     position: relative; 
     margin-top: 48px; 
     margin-bottom: var(--step); 
-    flex: 1;
     border:none;
  }
  
