@@ -21,20 +21,17 @@ export const AssetListItem: FC<Props> = ({
     balance = '0'
 }) => {
     const handleClick = () => onClick(asset);
+
     const isSelected = asset.address === selectedAsset.address;
     const usdAmount = parseFloat(balance) * parseFloat(asset.exchangeRate);
 
     return (
         <div style={style} onClick={handleClick}>
             <div
-                className={
-                    isSelected
-                        ? getClassName(
-                              styles.select_list_item_div,
-                              styles.selected
-                          )
-                        : styles.select_list_item_div
-                }
+                className={getClassName(
+                    styles.select_list_item_div,
+                    isSelected ? styles.selected : ''
+                )}
             >
                 <div className={styles.select_list_item_wrapper}>
                     <img className={styles.img} src={asset.image} />
