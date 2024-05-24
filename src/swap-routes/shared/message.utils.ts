@@ -4,7 +4,7 @@ import {CalculatedSwapRoute} from './calculated-swap-route.type.ts';
 import {SwapRouteType} from '../../enums/swap-route-type.enum.ts';
 import {GAS_AMOUNT} from '../../globals.ts';
 import {Message} from '../../types/message.type.ts';
-import {getQueryId} from '../../utils/transfer-params.utils.ts';
+import {getQueryId, getStateInit} from '../../utils/transfer-params.utils.ts';
 import {dedust_getTransferParams} from '../dedust/transfer-params.utils.ts';
 import {rainbow_getTransferParams} from '../rainbow/transfer-params.utils.ts';
 import {ston_getTransferParams} from '../ston/transfer-params.utils.ts';
@@ -58,6 +58,7 @@ export const getSwapRouteMessage = async (
     return {
         address: transferParams.to.toRawString(),
         amount: transferParams.value.toString(),
-        payload: transferParams.body.toBoc().toString('base64')
+        payload: transferParams.body.toBoc().toString('base64'),
+        stateInit: getStateInit(transferParams.init)
     };
 };

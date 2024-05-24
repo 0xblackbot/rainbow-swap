@@ -1,4 +1,5 @@
 import {Cell} from '@ton/core';
+import {Base64} from '@tonconnect/protocol';
 import {Buffer} from 'buffer';
 
 export const bocToCell = (boc: string) =>
@@ -6,3 +7,5 @@ export const bocToCell = (boc: string) =>
 
 export const bocToHash = (boc: string) =>
     bocToCell(boc).hash(0).toString('hex');
+
+export const cellToBase64 = (cell: Cell) => Base64.encode(cell.toBoc());

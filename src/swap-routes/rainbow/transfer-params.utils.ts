@@ -26,10 +26,10 @@ export const rainbow_getTransferParams = async (
     gasAmount: bigint,
     senderAddress: Address
 ): Promise<TransferParams> => {
-    const rainbowWalletAddress = RainbowWalletContract.create({
+    const rainbowWalletContract = RainbowWalletContract.create({
         workchain: WORKCHAIN,
         ownerAddress: senderAddress
-    }).address;
+    });
 
     const inputAssetAddress = firstChunk[0].inputAssetAddress;
 
@@ -37,7 +37,7 @@ export const rainbow_getTransferParams = async (
         secondChunk,
         queryId,
         gasAmount,
-        rainbowWalletAddress,
+        rainbowWalletContract.address,
         senderAddress,
         senderAddress,
         false
@@ -71,15 +71,15 @@ export const rainbow_getTransferParams = async (
         firstChunk,
         queryId,
         gasAmount + jettonReceiveEffectGasAmount,
-        rainbowWalletAddress,
-        rainbowWalletAddress,
+        rainbowWalletContract.address,
+        rainbowWalletContract.address,
         senderAddress,
         false // implement minOutputAmount support by contract TODO: BB-38
     );
 
     if (inputAssetAddress === TON) {
         return {
-            to: rainbowWalletAddress,
+            to: rainbowWalletContract.address,
             value: firstChunk_transferParams.value,
             body: packTonSwap({
                 queryId,
@@ -87,7 +87,8 @@ export const rainbow_getTransferParams = async (
                 body: firstChunk_transferParams.body,
                 jettonSenderAddressToListen,
                 jettonReceiveEffect
-            })
+            }),
+            init: rainbowWalletContract.init
         };
     } else {
         const inputJettonWalletAddress = await getJettonWalletAddress(
@@ -108,7 +109,7 @@ export const rainbow_getTransferParams = async (
             body: getJettonTransferBody({
                 queryId,
                 amount: BigInt(firstChunk[0].inputAssetAmount),
-                destination: rainbowWalletAddress,
+                destination: rainbowWalletContract.address,
                 responseDestination: senderAddress,
                 forwardTonAmount: firstChunk_transferParams.value,
                 forwardPayload: jettonSwapPayload
