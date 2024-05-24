@@ -17,7 +17,7 @@ export const API = axios.create({
     baseURL: 'https://api.blackbot.technology/rainbow/api'
 });
 export const TON_CLIENT = new TonClient({
-    endpoint: `https://scalable-api.tonwhales.com/jsonRPC`
+    endpoint: `https://api.blackbot.technology/ton-http-api/jsonRPC`
 });
 
 export const TON_API_CLIENT = new Api(
