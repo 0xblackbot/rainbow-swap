@@ -50,7 +50,7 @@ export const AssetListItem: FC<Props> = ({
                 <div className={styles.select_list_item_balance}>
                     <p className={styles.coin_balance}>{balance}</p>
                     <p className={styles.dollar_balance}>
-                        ≈{formatNumber(usdAmount, 5)}$
+                        ≈{formatNumber(usdAmount, 2)}$
                     </p>
                 </div>
             </div>
