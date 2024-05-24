@@ -4,11 +4,11 @@ import Sheet from 'react-modal-sheet';
 import {List} from 'react-virtualized';
 
 import {AssetListItem} from './asset-list-item/asset-list-item.tsx';
+import {AssetNoResult} from './asset-no-result/asset-no-result.tsx';
 import styles from './asset-selector.module.css';
 import {SheetBackdrop} from './sheet-backdrop/sheet-backdrop.tsx';
 import {sortAssets} from './utils/sort-assets.utils.ts';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
-import {NoResultsIcon} from '../../assets/icons/NoResultIcon/NoResultIcon.tsx';
 import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {XCircleIcon} from '../../assets/icons/XCircleIcon/XCircleIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
@@ -129,15 +129,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                     containerStyle={{
                                         width: listWidth
                                     }}
-                                    noRowsRenderer={() => (
-                                        <div className={styles.noResultDiv}>
-                                            <NoResultsIcon
-                                                width="120px"
-                                                height="120px"
-                                            />
-                                            <p>No assets found.</p>
-                                        </div>
-                                    )}
+                                    noRowsRenderer={() => <AssetNoResult />}
                                     rowRenderer={props => (
                                         <AssetListItem
                                             key={props.key}
