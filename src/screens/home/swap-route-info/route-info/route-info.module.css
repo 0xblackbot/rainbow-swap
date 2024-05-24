@@ -12,6 +12,7 @@
     position: relative;
     top: 20%;
     transform: translateY(-50%);
+    z-index: 1;
   }
   
 .dots:after {
@@ -20,9 +21,13 @@
 }
 
 
-.route_info{
-    flex-direction: column;
-    color: var(--hint-color);
+.route_info {
+  width: 48px !important;
+  flex-direction: column;
+  color: var(--hint-color);
+  flex-shrink: 0;
+  background-color: var(--bg-color);
+  z-index: 2;
 }
 
 .route_info :last-child{

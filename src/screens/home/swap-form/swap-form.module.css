@@ -6,8 +6,6 @@
     flex: 1;
     border:none;
  }
-
-
  
  .body_button {
    justify-content: center;
@@ -33,4 +31,5 @@
    max-width: var(--app-max-width);
    width: calc(100% - 2 * var(--2-step));
    transform: translateX(-50%);
+   z-index: 1000;
 }
