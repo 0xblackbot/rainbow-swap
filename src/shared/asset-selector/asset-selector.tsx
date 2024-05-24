@@ -8,6 +8,7 @@ import styles from './asset-selector.module.css';
 import {SheetBackdrop} from './sheet-backdrop/sheet-backdrop.tsx';
 import {sortAssets} from './utils/sort-assets.utils.ts';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
+import {NoResultsIcon} from '../../assets/icons/NoResultIcon/NoResultIcon.tsx';
 import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {XCircleIcon} from '../../assets/icons/XCircleIcon/XCircleIcon.tsx';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
@@ -119,34 +120,46 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                         </div>
                         <div ref={modalSheetRef} className={styles.modalList}>
                             <div className={styles.listWrapDiv}>
-                                <List
-                                    width={listWidth}
-                                    height={460}
-                                    rowCount={filteredAssetsList.length}
-                                    rowHeight={70}
-                                    className={styles.list}
-                                    containerStyle={{
-                                        width: listWidth
-                                    }}
-                                    rowRenderer={props => (
-                                        <AssetListItem
-                                            key={props.key}
-                                            style={props.style}
-                                            asset={
-                                                filteredAssetsList[props.index]
-                                            }
-                                            onClick={handleAssetClick}
-                                            selectedAsset={value}
-                                            balance={
-                                                balances[
+                                {filteredAssetsList.length > 0 ? (
+                                    <List
+                                        width={listWidth}
+                                        height={490}
+                                        rowCount={filteredAssetsList.length}
+                                        rowHeight={70}
+                                        className={styles.list}
+                                        containerStyle={{
+                                            width: listWidth
+                                        }}
+                                        rowRenderer={props => (
+                                            <AssetListItem
+                                                key={props.key}
+                                                style={props.style}
+                                                asset={
                                                     filteredAssetsList[
                                                         props.index
-                                                    ].address
-                                                ]
-                                            }
+                                                    ]
+                                                }
+                                                onClick={handleAssetClick}
+                                                selectedAsset={value}
+                                                balance={
+                                                    balances[
+                                                        filteredAssetsList[
+                                                            props.index
+                                                        ].address
+                                                    ]
+                                                }
+                                            />
+                                        )}
+                                    />
+                                ) : (
+                                    <div className={styles.noResultDiv}>
+                                        <NoResultsIcon
+                                            width="120px"
+                                            height="120px"
                                         />
-                                    )}
-                                />
+                                        <p>No assets found.</p>
+                                    </div>
+                                )}
                             </div>
                             <div className={styles.modalButtonConatiner}>
                                 <button onClick={handleClose}>Cancel</button>
