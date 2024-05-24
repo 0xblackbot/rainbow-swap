@@ -4,7 +4,6 @@
   background: var(--secondary-bg-color);
   border-radius: var(--step);
   padding: 4px;
-  box-shadow: 0 2px 2px black;
 }
 
 .route_step_direction_div {
