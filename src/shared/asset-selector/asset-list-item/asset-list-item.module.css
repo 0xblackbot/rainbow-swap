@@ -6,11 +6,12 @@
     font-family: 'Basel-book', sans-serif;
     padding: var(--step) var(--2-step);
 }
+
 .selected{
     border: 1px solid var(--button-color);
 }
 
-.select_list_item_div:active {
+.clicked{
     background: var(--button-color);
 }
 
