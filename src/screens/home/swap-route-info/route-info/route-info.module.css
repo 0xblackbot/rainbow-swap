@@ -8,10 +8,10 @@
     overflow: hidden;
     word-wrap: break-word;
     color: white;
+    flex:1;
+    margin-bottom: 7px;
     letter-spacing: 5px;
-    position: relative;
-    top: 20%;
-    transform: translateY(-50%);
+    z-index: 1;
   }
   
 .dots:after {
@@ -19,6 +19,15 @@
     color: var(--text-color);
 }
 
+
+.route_info {
+  width: 48px !important;
+  flex-direction: column;
+  color: var(--hint-color);
+  flex-shrink: 0;
+  background-color: var(--bg-color);
+  z-index: 2;
+}
 
 .route_info {
   width: 48px !important;

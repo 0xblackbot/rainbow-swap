@@ -114,6 +114,7 @@
     align-items: center;
     justify-content: center;
     background-color: var(--bg-color);
+    padding-bottom: var(--iphone-bottom-line);
     border: none;
     height: 70px;
     margin: 0 var(--2-step);
@@ -127,7 +128,7 @@
     border: none;
     border-radius: var(--2-step);
     width: 100%;
-    color: var(--text-color);
+    color: var(--button-text-color);
     font-size: var(--2-step);
     padding: var(--2-step) var(--3-step);   
 }

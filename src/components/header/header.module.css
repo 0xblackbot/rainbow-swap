@@ -101,6 +101,7 @@
 .header_div {
     position: fixed;
     top: 0;
+    background-color: var(--bg-color);
     min-width: var(--app-min-width);
     max-width: var(--app-max-width);
     width: calc(100% - 2 * var(--2-step));
