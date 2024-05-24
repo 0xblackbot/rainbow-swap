@@ -22,7 +22,9 @@
 .body_button_wrapper{
    background-color: var(--bg-color);
    margin-top: var(--2-step);
+   padding-top: var(--step);
    padding-bottom: var(--iphone-bottom-line);
+   margin-bottom: 4px;
    position: fixed;
    bottom: 0;
    left: 50%;
