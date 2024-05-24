@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC} from 'react';
 import {ListRowProps} from 'react-virtualized';
 
 import styles from './asset-list-item.module.css';
@@ -20,12 +20,7 @@ export const AssetListItem: FC<Props> = ({
     selectedAsset,
     balance = '0'
 }) => {
-    const [isClicked, setIsClicked] = useState(false);
-
-    const handleClick = () => {
-        setIsClicked(true);
-        onClick(asset);
-    };
+    const handleClick = () => onClick(asset);
 
     const isSelected = asset.address === selectedAsset.address;
     const usdAmount = parseFloat(balance) * parseFloat(asset.exchangeRate);
@@ -35,7 +30,6 @@ export const AssetListItem: FC<Props> = ({
             <div
                 className={getClassName(
                     styles.select_list_item_div,
-                    isClicked ? styles.clicked : '',
                     isSelected ? styles.selected : ''
                 )}
             >

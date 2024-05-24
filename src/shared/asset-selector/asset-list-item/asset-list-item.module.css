@@ -11,10 +11,6 @@
     border: 1px solid var(--button-color);
 }
 
-.clicked{
-    background: var(--button-color);
-}
-
 .img {
     width: 40px;
     height: 40px;
