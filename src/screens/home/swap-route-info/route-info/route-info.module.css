@@ -27,6 +27,13 @@
   flex-shrink: 0;
 }
 
+.route_info p {
+  width: 48px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .route_info :last-child{
     color: var(--button-color);
 }

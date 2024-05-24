@@ -9,7 +9,6 @@ import {
     getRouteInputStep,
     getRouteOutputStep
 } from '../../../../utils/route-step-with-calculation.utils';
-import {truncateNumber} from '../../../../utils/truncate-number.utils';
 import {SwapRouteStep} from '../../swap-route-step/swap-route-step';
 
 interface Props {
@@ -45,7 +44,7 @@ export const RouteInfo: FC<Props> = ({route, index}) => {
     return (
         <div key={`route-${index}`} className={styles.route}>
             <div className={styles.route_info}>
-                <p>{truncateNumber(routeInputAssetAmount, 4)}</p>
+                <p>{routeInputAssetAmount}</p>
                 <p>{routeInputAssetPercantage + '%'}</p>
             </div>
             {route.map((routeStep, index) => (
@@ -59,7 +58,7 @@ export const RouteInfo: FC<Props> = ({route, index}) => {
                 </>
             ))}
             <div className={styles.route_info}>
-                <p>{truncateNumber(routeOutputAssetAmount, 4)}</p>
+                <p>{routeOutputAssetAmount}</p>
                 <p>{routeInputAssetPercantage + '%'}</p>
             </div>
         </div>
