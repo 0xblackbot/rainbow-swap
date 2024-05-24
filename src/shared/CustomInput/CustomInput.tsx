@@ -92,7 +92,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             </button>
                         ) : null}
                     </div>
-                    <p>${formatNumber(usdAmount, 3)}</p>
+                    <p>${formatNumber(usdAmount, 2)}</p>
                 </div>
             </div>
         );
