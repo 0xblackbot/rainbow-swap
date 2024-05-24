@@ -1,4 +1,4 @@
-import {FC, useContext, useMemo, useState} from 'react';
+import {FC, Fragment, useContext, useMemo, useState} from 'react';
 
 import {RouteInfo} from './route-info/route-info.tsx';
 import styles from './swap-route-info.module.css';
@@ -73,7 +73,9 @@ export const SwapRouteInfo: FC = () => {
                 {showRoutes && (
                     <div className={styles.routes_container}>
                         {routes.map((route, index) => (
-                            <RouteInfo index={index} route={route} />
+                            <Fragment key={`route-${index}`}>
+                                <RouteInfo route={route} />
+                            </Fragment>
                         ))}
                     </div>
                 )}

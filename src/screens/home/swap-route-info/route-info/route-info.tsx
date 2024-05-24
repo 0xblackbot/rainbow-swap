@@ -1,4 +1,4 @@
-import {FC, useContext} from 'react';
+import {FC, Fragment, useContext} from 'react';
 
 import styles from './route-info.module.css';
 import {SwapFormContext} from '../../../../hooks/swap-form/swap-form.context';
@@ -13,10 +13,9 @@ import {SwapRouteStep} from '../../swap-route-step/swap-route-step';
 
 interface Props {
     route: RouteStepWithCalculation[];
-    index: number;
 }
 
-export const RouteInfo: FC<Props> = ({route, index}) => {
+export const RouteInfo: FC<Props> = ({route}) => {
     const assetsRecord = useAssetsRecordSelector();
     const routeInputStep = getRouteInputStep(route);
     const routeOutputStep = getRouteOutputStep(route);
@@ -42,20 +41,20 @@ export const RouteInfo: FC<Props> = ({route, index}) => {
     ).toFixed(1);
 
     return (
-        <div key={`route-${index}`} className={styles.route}>
+        <div className={styles.route}>
             <div className={styles.route_info}>
                 <p>{routeInputAssetAmount.slice(0, 4) + '..'}</p>
                 <p>{routeInputAssetPercantage + '%'}</p>
             </div>
             {route.map((routeStep, index) => (
-                <>
+                <Fragment key={`route-step-${index}`}>
                     {index === 0 ? <div className={styles.dots}></div> : null}
                     <SwapRouteStep
                         assetsRecord={assetsRecord}
                         routeStep={routeStep}
                     />
                     <div className={styles.dots}></div>
-                </>
+                </Fragment>
             ))}
             <div className={styles.route_info}>
                 <p>{routeOutputAssetAmount.slice(0, 4) + '..'}</p>
