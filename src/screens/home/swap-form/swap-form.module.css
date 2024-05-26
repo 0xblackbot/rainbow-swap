@@ -33,4 +33,5 @@
    width: calc(100% - 2 * var(--2-step));
    transform: translateX(-50%);
    z-index: 1000;
+   transition: all 0.3s ease-in-out;
 }
