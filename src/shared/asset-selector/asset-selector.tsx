@@ -11,9 +11,10 @@ import {sortAssets} from './utils/sort-assets.utils.ts';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
 import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {XCircleIcon} from '../../assets/icons/XCircleIcon/XCircleIcon.tsx';
+import {TON} from '../../globals.ts';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
-import {useAssetsListSelector} from '../../store/assets/assets-selectors.ts';
+import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
 import {useBalancesSelector} from '../../store/wallet/wallet-selectors.ts';
 
 interface Props {
@@ -23,7 +24,8 @@ interface Props {
 
 export const AssetSelector: FC<Props> = ({value, onChange}) => {
     const balances = useBalancesSelector();
-    const assetsList = sortAssets(useAssetsListSelector(), balances);
+    const assets = useAssetsRecordSelector();
+    const assetsList = sortAssets(Object.values(assets), balances);
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -134,6 +136,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                         <AssetListItem
                                             key={props.key}
                                             style={props.style}
+                                            tonPrice={assets[TON].usdPrice}
                                             asset={
                                                 filteredAssetsList[props.index]
                                             }

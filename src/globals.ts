@@ -2,6 +2,7 @@ import {TonClient} from '@ton/ton';
 import axios from 'axios';
 import {Api, HttpClient} from 'tonapi-sdk-js';
 
+import {COIN_GECKO_API_KEY} from './secrets';
 import {toNano} from './utils/big-int.utils';
 
 export const TON = 'ton';
@@ -18,6 +19,13 @@ export const API = axios.create({
 });
 export const TON_CLIENT = new TonClient({
     endpoint: `https://api.blackbot.technology/ton-http-api/jsonRPC`
+});
+
+export const COIN_GECKO_API = axios.create({
+    baseURL: 'https://api.coingecko.com/api/v3',
+    headers: {
+        'x-cg-demo-api-key': COIN_GECKO_API_KEY
+    }
 });
 
 export const TON_API_CLIENT = new Api(

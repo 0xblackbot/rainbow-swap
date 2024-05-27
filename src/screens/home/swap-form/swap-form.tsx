@@ -10,6 +10,7 @@ import {useContext, useEffect, useMemo, useRef} from 'react';
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
+import {TON} from '../../../globals.ts';
 import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
@@ -135,6 +136,7 @@ export const SwapForm = () => {
                     assetValue={inputAsset}
                     balance={balances[inputAsset.address]}
                     assetExchangeRate={assets[inputAsset.address].exchangeRate}
+                    tonPrice={assets[TON].usdPrice}
                     onInputValueChange={setInputAssetAmount}
                     onAssetValueChange={setInputAsset}
                     ref={inputRef}
@@ -144,7 +146,9 @@ export const SwapForm = () => {
                     label="Receive"
                     isInputEnabled={false}
                     inputValue={outputAssetAmount}
+                    balance={balances[outputAsset.address]}
                     assetValue={outputAsset}
+                    tonPrice={assets[TON].usdPrice}
                     assetExchangeRate={assets[outputAsset.address].exchangeRate}
                     onAssetValueChange={setOutputAsset}
                 />

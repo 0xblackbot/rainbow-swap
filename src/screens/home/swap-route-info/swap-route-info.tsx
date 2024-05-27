@@ -8,6 +8,7 @@ import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
+import {fromNano} from '../../../utils/big-int.utils.ts';
 import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.utils.ts';
 
@@ -25,8 +26,18 @@ export const SwapRouteInfo: FC = () => {
         [routes]
     );
     const exchangeRate =
-        parseFloat(assets[inputAsset.address].exchangeRate) /
-        parseFloat(assets[outputAsset.address].exchangeRate);
+        parseFloat(
+            fromNano(
+                BigInt(assets[inputAsset.address].exchangeRate),
+                inputAsset.decimals
+            )
+        ) /
+        parseFloat(
+            fromNano(
+                BigInt(assets[outputAsset.address].exchangeRate),
+                outputAsset.decimals
+            )
+        );
 
     const handleChevronClick = () => setShowRoutes(value => !value);
 
