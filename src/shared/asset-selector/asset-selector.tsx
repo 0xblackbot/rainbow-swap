@@ -25,7 +25,8 @@ interface Props {
 export const AssetSelector: FC<Props> = ({value, onChange}) => {
     const balances = useBalancesSelector();
     const assets = useAssetsRecordSelector();
-    const assetsList = sortAssets(Object.values(assets), balances);
+    const tonPrice = assets[TON].usdPrice;
+    const assetsList = sortAssets(Object.values(assets), balances, tonPrice);
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -61,11 +62,15 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                             .includes(lowercaseSearchTerm)
                 );
 
-                const sortedAssets = sortAssets(filteredAssets, balances);
+                const sortedAssets = sortAssets(
+                    filteredAssets,
+                    balances,
+                    tonPrice
+                );
 
                 setFilteredAssetsList(sortedAssets);
             }, 1000),
-        [assetsList, balances]
+        [assetsList, balances, tonPrice]
     );
 
     const handleSearchChange = (value: string) => {
@@ -136,7 +141,7 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                         <AssetListItem
                                             key={props.key}
                                             style={props.style}
-                                            tonPrice={assets[TON].usdPrice}
+                                            tonPrice={tonPrice}
                                             asset={
                                                 filteredAssetsList[props.index]
                                             }

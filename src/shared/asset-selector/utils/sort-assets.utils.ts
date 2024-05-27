@@ -1,19 +1,31 @@
+import {TON} from '../../../globals';
 import {Asset} from '../../../interfaces/asset.interface';
+import {BalancesRecord} from '../../../types/balances-record.type';
+import {getUsdValue} from '../../../utils/get-usd-value.utils';
 
 export const sortAssets = (
     assets: Asset[],
-    balances: Record<string, string>
-) => {
-    const assetsWithBalances: Asset[] = [];
-    const assetsWithoutBalances: Asset[] = [];
+    balances: BalancesRecord,
+    tonPrice: number | undefined
+): Asset[] => {
+    const ton = assets.find(asset => asset.address === TON);
+    const otherAssets = assets.filter(asset => asset.address !== TON);
 
-    assets.forEach(asset => {
-        if (balances[asset.address]) {
-            assetsWithBalances.push(asset);
-        } else {
-            assetsWithoutBalances.push(asset);
-        }
+    const sortedAssets = otherAssets.sort((a, b) => {
+        const aUsdValue = getUsdValue(
+            balances[a.address] || '0',
+            tonPrice ?? 0,
+            a.exchangeRate,
+            a.decimals
+        );
+        const bUsdValue = getUsdValue(
+            balances[b.address] || '0',
+            tonPrice ?? 0,
+            b.exchangeRate,
+            b.decimals
+        );
+        return bUsdValue - aUsdValue;
     });
 
-    return [...assetsWithBalances, ...assetsWithoutBalances];
+    return ton ? [ton, ...sortedAssets] : sortedAssets;
 };
