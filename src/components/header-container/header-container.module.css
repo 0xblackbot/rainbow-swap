@@ -1,0 +1,17 @@
+.container {
+    background-color: var(--bg-color);
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--header-bg-color);
+}
+
+.inner_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--step) var(--2-step);
+}

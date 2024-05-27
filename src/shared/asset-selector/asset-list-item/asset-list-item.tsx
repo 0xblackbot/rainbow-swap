@@ -1,51 +1,40 @@
 import {FC} from 'react';
-import {ListRowProps} from 'react-virtualized';
+import {ListChildComponentProps} from 'react-window';
 
 import styles from './asset-list-item.module.css';
-import {Asset} from '../../../interfaces/asset.interface';
+import {AssetListItemProps} from './asset-list-item.props.ts';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getClassName} from '../../../utils/style.utils';
 
-interface Props extends Pick<ListRowProps, 'style'> {
-    asset: Asset;
-    onClick: (asset: Asset) => void;
-    selectedAsset: Asset;
-    balance: string | undefined;
-}
+export const AssetListItem: FC<
+    ListChildComponentProps<AssetListItemProps[]>
+> = ({index, style, data}) => {
+    const item = data[index];
 
-export const AssetListItem: FC<Props> = ({
-    style,
-    asset,
-    onClick,
-    selectedAsset,
-    balance = '0'
-}) => {
-    const handleClick = () => onClick(asset);
-
-    const isSelected = asset.address === selectedAsset.address;
-    const usdAmount = parseFloat(balance) * parseFloat(asset.exchangeRate);
+    const usdAmount =
+        parseFloat(item.balance) * parseFloat(item.asset.exchangeRate);
 
     return (
-        <div style={style} onClick={handleClick}>
+        <div style={style} onClick={item.onClick}>
             <div
                 className={getClassName(
                     styles.select_list_item_div,
-                    isSelected ? styles.selected : ''
+                    item.isSelected ? styles.selected : ''
                 )}
             >
                 <div className={styles.select_list_item_wrapper}>
-                    <img className={styles.img} src={asset.image} />
+                    <img className={styles.img} src={item.asset.image} />
                     <div className={styles.select_list_item_info}>
                         <p className={styles.select_list_item_ccy}>
-                            {asset.symbol}
+                            {item.asset.symbol}
                         </p>
                         <p className={styles.select_list_item_qty}>
-                            {asset.name}
+                            {item.asset.name}
                         </p>
                     </div>
                 </div>
                 <div className={styles.select_list_item_balance}>
-                    <p className={styles.coin_balance}>{balance}</p>
+                    <p className={styles.coin_balance}>{item.balance}</p>
                     <p className={styles.dollar_balance}>
                         ≈{formatNumber(usdAmount, 2)}$
                     </p>

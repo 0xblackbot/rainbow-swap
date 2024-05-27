@@ -10,6 +10,7 @@ import {useContext, useEffect, useMemo, useRef} from 'react';
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
+import {ContentContainer} from '../../../components/content-container/content-container.tsx';
 import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
@@ -26,8 +27,10 @@ import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-r
 import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
 import {bocToHash} from '../../../utils/boc.utils.ts';
+import {SwapRouteDisclaimer} from '../swap-route-info/swap-route-disclaimer/swap-route-disclaimer.tsx';
+import {SwapRouteInfo} from '../swap-route-info/swap-route-info.tsx';
 
-export const SwapForm = () => {
+export const SwapScreen = () => {
     const wallet = useTonWallet();
     const inputRef = useRef<HTMLInputElement>(null);
     const connectModal = useTonConnectModal();
@@ -80,7 +83,7 @@ export const SwapForm = () => {
         setInputAssetAmount('');
         setInputAsset(outputAsset);
         setOutputAsset(inputAsset);
-        window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
 
     const handleEnterSendAmountClick = async () => {
@@ -127,28 +130,37 @@ export const SwapForm = () => {
 
     return (
         <>
-            <div className={styles.body_div}>
-                <CustomInput
-                    label="Send"
-                    isInputEnabled={true}
-                    inputValue={inputAssetAmount}
-                    assetValue={inputAsset}
-                    balance={balances[inputAsset.address]}
-                    assetExchangeRate={assets[inputAsset.address].exchangeRate}
-                    onInputValueChange={setInputAssetAmount}
-                    onAssetValueChange={setInputAsset}
-                    ref={inputRef}
-                />
-                <ToggleAssetsButton onClick={handleToggleAssetsClick} />
-                <CustomInput
-                    label="Receive"
-                    isInputEnabled={false}
-                    inputValue={outputAssetAmount}
-                    assetValue={outputAsset}
-                    assetExchangeRate={assets[outputAsset.address].exchangeRate}
-                    onAssetValueChange={setOutputAsset}
-                />
-                <div className={styles.body_button_wrapper}>
+            <ContentContainer>
+                <div className={styles.body_div}>
+                    <div className={styles.input_asset_container}>
+                        <CustomInput
+                            ref={inputRef}
+                            label="You send"
+                            isInputEnabled={true}
+                            inputValue={inputAssetAmount}
+                            assetValue={inputAsset}
+                            balance={balances[inputAsset.address]}
+                            assetExchangeRate={
+                                assets[inputAsset.address].exchangeRate
+                            }
+                            onInputValueChange={setInputAssetAmount}
+                            onAssetValueChange={setInputAsset}
+                        />
+                        <ToggleAssetsButton onClick={handleToggleAssetsClick} />
+                    </div>
+                    <CustomInput
+                        label="You receive"
+                        isInputEnabled={false}
+                        inputValue={outputAssetAmount}
+                        assetValue={outputAsset}
+                        assetExchangeRate={
+                            assets[outputAsset.address].exchangeRate
+                        }
+                        onAssetValueChange={setOutputAsset}
+                    />
+                    <SwapRouteDisclaimer />
+                    <SwapRouteInfo />
+
                     {wallet ? (
                         outputAssetAmount === '' ? (
                             <FormButton
@@ -167,14 +179,14 @@ export const SwapForm = () => {
                         )
                     ) : (
                         <FormButton
-                            text="Connect Wallet"
+                            text="Continue"
                             type="button"
                             onClick={handleConnectClick}
                             className={styles.body_button}
                         />
                     )}
                 </div>
-            </div>
+            </ContentContainer>
         </>
     );
 };

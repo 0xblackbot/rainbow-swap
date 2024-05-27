@@ -3,7 +3,7 @@ import {useIsConnectionRestored, useTonAddress} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
 
 import styles from './app.module.css';
-import {Home} from '../../screens/home/home.tsx';
+import {SwapScreen} from '../../screens/home/swap-form/swap-form.tsx';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
 import {loadBalancesActions} from '../../store/wallet/wallet-actions.ts';
@@ -17,7 +17,10 @@ export const App = () => {
     useEffect(() => {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
+        window.Telegram.WebApp.enableClosingConfirmation();
         dispatch(loadAssetsActions.submit());
+        window.Telegram.WebApp.MainButton.show();
+        window.Telegram.WebApp.MainButton.showProgress();
     }, [dispatch]);
 
     useEffect(() => {
@@ -28,8 +31,12 @@ export const App = () => {
 
     return (
         <div className={styles.App}>
-            <Header />
-            {connectionRestored && <Home />}
+            {connectionRestored && (
+                <>
+                    <Header />
+                    <SwapScreen />
+                </>
+            )}
         </div>
     );
 };

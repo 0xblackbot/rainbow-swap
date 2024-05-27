@@ -1,37 +1,24 @@
-.body_div { 
-    flex-direction: column; 
-    position: relative; 
-    margin-top: 48px; 
-    margin-bottom: var(--step); 
-    border:none;
- }
- 
- .body_button {
-   justify-content: center;
-   padding-top: 16px;
-   padding-bottom: 16px;
-   font-size: 16px;
-   border: none;
-   border-radius: 16px;
-   font-family: 'Basel-book', sans-serif;
-   background-color: var(--button-color);
-   color: var(--button-text-color);
-   width: 100%;
- }
+.body_div {
+    display: flex;
+    flex-direction: column;
+    margin: var(--2-step) var(--2-step) var(--step);
+}
 
-.body_button_wrapper{
-   background-color: var(--bg-color);
-   margin-top: var(--2-step);
-   padding-top: var(--step);
-   padding-bottom: var(--iphone-bottom-line);
-   margin-bottom: 4px;
-   position: fixed;
-   bottom: 0;
-   left: 50%;
-   min-width: var(--app-min-width);
-   max-width: var(--app-max-width);
-   width: calc(100% - 2 * var(--2-step));
-   transform: translateX(-50%);
-   z-index: 1000;
-   transition: all 0.3s ease-in-out;
+.body_button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: var(--2-step);
+    padding-bottom: var(--2-step);
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Basel-book', sans-serif;
+}
+
+.input_asset_container {
+    position: relative;
 }

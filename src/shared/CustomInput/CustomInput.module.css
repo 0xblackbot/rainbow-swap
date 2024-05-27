@@ -1,9 +1,9 @@
 .container {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    background-color: var(--secondary-bg-color);
-    border-radius: var(--2-step);
-    padding: 24px;
+    background-color: var(--header-bg-color);
+    border-radius: var(--border-radius);
+    padding:var(--2-step);
     margin-bottom: var(--step);
     position: relative;
     font-family: 'Basel-book', sans-serif;
@@ -22,6 +22,7 @@
 }
 
 .input_container {
+    display: flex;
     margin-top: var(--step);
     justify-content: space-between;
 }
@@ -38,8 +39,9 @@
 }
 
 .input_info {
-    margin-top: var(--step);
+    display: flex;
     justify-content: space-between;
+    margin-top: var(--step);
     color: var(--hint-color);
 }
 
@@ -54,5 +56,6 @@
 }
 
 .input_info_balance {
+    display: flex;
     align-items: center;
 }
