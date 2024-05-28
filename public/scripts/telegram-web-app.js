@@ -171,10 +171,17 @@
             !curEventHandlers.length) {
             return;
         }
-        for (var i = 0; i < curEventHandlers.length; i++) {
+        // Call only last eventHandler for mainButtonClicked event
+        if (eventType === 'webview:mainButtonClicked') {
             try {
-                func(curEventHandlers[i]);
+                func(curEventHandlers[curEventHandlers.length -1]);
             } catch (e) {}
+        } else {
+            for (var i = 0; i < curEventHandlers.length; i++) {
+                try {
+                    func(curEventHandlers[i]);
+                } catch (e) {}
+            }
         }
     }
 
