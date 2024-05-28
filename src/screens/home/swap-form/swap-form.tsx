@@ -1,13 +1,8 @@
-import {isDefined} from '@rnw-community/shared';
-import {Address} from '@ton/core';
-import {
-    useTonConnectModal,
-    useTonConnectUI,
-    useTonWallet
-} from '@tonconnect/ui-react';
+import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
 import {useContext, useEffect, useMemo, useRef} from 'react';
 
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
+import {SwapButton} from './swap-button/swap-button.tsx';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
 import {ContentContainer} from '../../../components/content-container/content-container.tsx';
@@ -18,23 +13,17 @@ import {useDispatch} from '../../../store';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
-import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions.ts';
 import {
-    useIsProcessingSwapTransactionSelector,
-    useBalancesSelector
+    useBalancesSelector,
+    useIsProcessingSwapTransactionSelector
 } from '../../../store/wallet/wallet-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
-import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
-import {bocToHash} from '../../../utils/boc.utils.ts';
-import {SwapRouteDisclaimer} from '../swap-route-info/swap-route-disclaimer/swap-route-disclaimer.tsx';
-import {SwapRouteInfo} from '../swap-route-info/swap-route-info.tsx';
 
 export const SwapScreen = () => {
     const wallet = useTonWallet();
     const inputRef = useRef<HTMLInputElement>(null);
     const connectModal = useTonConnectModal();
-    const [tonConnectUI] = useTonConnectUI();
 
     const dispatch = useDispatch();
     const assets = useAssetsRecordSelector();
@@ -92,40 +81,6 @@ export const SwapScreen = () => {
         }
     };
 
-    const handleSwapClick = async () => {
-        const walletAddress = wallet?.account.address;
-
-        if (!isDefined(walletAddress)) {
-            throw new Error('Wallet address is not defined');
-        }
-
-        const senderAddress = Address.parse(walletAddress);
-        const senderRawAddress = senderAddress.toRawString();
-
-        const messages = await Promise.all(
-            swapRoutes.map(swapRoute =>
-                getSwapRouteMessage(swapRoute, senderAddress)
-            )
-        );
-
-        const response = await tonConnectUI
-            .sendTransaction({
-                validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
-                from: senderRawAddress,
-                messages
-            })
-            .catch(() => undefined);
-
-        if (isDefined(response)) {
-            dispatch(
-                addPendingSwapTransactionActions.submit({
-                    senderRawAddress,
-                    bocHash: bocToHash(response.boc)
-                })
-            );
-        }
-    };
-
     console.log('isProcessingSwapTransaction', isProcessingSwapTransaction);
 
     return (
@@ -160,8 +115,6 @@ export const SwapScreen = () => {
                             onAssetValueChange={setOutputAsset}
                         />
                     </div>
-                    <SwapRouteDisclaimer />
-                    <SwapRouteInfo />
 
                     {wallet ? (
                         outputAssetAmount === '' ? (
@@ -170,7 +123,7 @@ export const SwapScreen = () => {
                                 onClick={handleEnterSendAmountClick}
                             />
                         ) : (
-                            <FormButton text="Swap" onClick={handleSwapClick} />
+                            <SwapButton />
                         )
                     ) : (
                         <FormButton
