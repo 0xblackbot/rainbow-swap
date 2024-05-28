@@ -4,11 +4,7 @@ export const useDivHeight = () => {
     const ref = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
 
-    useEffect(() => {
-        if (ref.current) {
-            setHeight(ref.current.offsetHeight);
-        }
-    }, []);
+    useEffect(() => setHeight(ref.current?.offsetHeight ?? 0), []);
 
     return useMemo(
         () => ({

@@ -1,12 +1,12 @@
 import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
-import {useContext, useEffect, useMemo, useRef} from 'react';
+import {useEffect, useMemo, useRef} from 'react';
 
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import {SwapButton} from './swap-button/swap-button.tsx';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
 import {ContentContainer} from '../../../components/content-container/content-container.tsx';
-import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
+import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
@@ -43,7 +43,7 @@ export const SwapScreen = () => {
         setOutputAsset,
         inputAssetAmount,
         setInputAssetAmount
-    } = useContext(SwapFormContext);
+    } = useSwapForm();
 
     const outputAssetAmount = useOutputAssetAmount(
         routes,
@@ -75,11 +75,8 @@ export const SwapScreen = () => {
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
 
-    const handleEnterSendAmountClick = async () => {
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
-    };
+    const handleEnterSendAmount = () => inputRef.current?.focus();
+    const handleSwap = () => inputRef.current?.blur();
 
     console.log('isProcessingSwapTransaction', isProcessingSwapTransaction);
 
@@ -120,10 +117,10 @@ export const SwapScreen = () => {
                         outputAssetAmount === '' ? (
                             <FormButton
                                 text="Enter amount"
-                                onClick={handleEnterSendAmountClick}
+                                onClick={handleEnterSendAmount}
                             />
                         ) : (
-                            <SwapButton />
+                            <SwapButton onSwap={handleSwap} />
                         )
                     ) : (
                         <FormButton

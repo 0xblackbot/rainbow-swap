@@ -1,7 +1,7 @@
 import {isDefined} from '@rnw-community/shared';
 import {Address} from '@ton/core';
 import {useTonConnectUI, useTonWallet} from '@tonconnect/ui-react';
-import {useState} from 'react';
+import {FC, useState} from 'react';
 
 import styles from './swap-button.module.css';
 import {BottomSheet} from '../../../../components/bottom-sheet/bottom-sheet.tsx';
@@ -14,7 +14,11 @@ import {bocToHash} from '../../../../utils/boc.utils.ts';
 import {SwapRouteDisclaimer} from '../../swap-route-info/swap-route-disclaimer/swap-route-disclaimer.tsx';
 import {SwapRouteInfo} from '../../swap-route-info/swap-route-info.tsx';
 
-export const SwapButton = () => {
+interface Props {
+    onSwap: () => void;
+}
+
+export const SwapButton: FC<Props> = ({onSwap}) => {
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
 
@@ -23,7 +27,10 @@ export const SwapButton = () => {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleSwap = () => setIsOpen(true);
+    const handleSwap = () => {
+        setIsOpen(true);
+        onSwap();
+    };
     const handleClose = () => setIsOpen(false);
 
     const handleSwapClick2 = async () => {

@@ -1,9 +1,9 @@
-import {FC, Fragment, useContext, useMemo} from 'react';
+import {FC, Fragment, useMemo} from 'react';
 
 import {RouteInfo} from './route-info/route-info.tsx';
 import styles from './swap-route-info.module.css';
 import {InfoIcon} from '../../../assets/icons/InfoIcon/InfoIcon.tsx';
-import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
+import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
@@ -13,7 +13,7 @@ import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.uti
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
     const assets = useAssetsRecordSelector();
-    const {inputAsset, outputAsset} = useContext(SwapFormContext);
+    const {inputAsset, outputAsset} = useSwapForm();
     const routes = useMemo(
         () => swapRoutes.map(mapSwapRouteToRoute),
         [swapRoutes]
