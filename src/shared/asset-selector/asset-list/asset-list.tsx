@@ -3,7 +3,7 @@ import {FixedSizeList} from 'react-window';
 
 import {SearchIcon} from '../../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {XCircleIcon} from '../../../assets/icons/XCircleIcon/XCircleIcon.tsx';
-import {useDivHeight} from '../../../hooks/use-div-height.hook.tsx';
+import {useDivHeight} from '../../../hooks/use-div-height.hook.ts';
 import {Asset} from '../../../interfaces/asset.interface.ts';
 import {useAssetsListSelector} from '../../../store/assets/assets-selectors.ts';
 import {useBalancesSelector} from '../../../store/wallet/wallet-selectors.ts';

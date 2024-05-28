@@ -1,7 +1,7 @@
 import {FC, PropsWithChildren} from 'react';
 
 import styles from './header-container.module.css';
-import {useDivHeight} from '../../hooks/use-div-height.hook.tsx';
+import {useDivHeight} from '../../hooks/use-div-height.hook.ts';
 import {ContentContainer} from '../content-container/content-container.tsx';
 
 export const HeaderContainer: FC<PropsWithChildren> = ({children}) => {
