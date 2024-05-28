@@ -68,7 +68,7 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
             <div className={styles.modalInputContainer}>
                 <input
                     className={styles.modalInput}
-                    placeholder="Search assets"
+                    placeholder="Search"
                     value={searchValue}
                     onChange={handleInputChange}
                 />

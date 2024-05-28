@@ -114,7 +114,7 @@ export const SwapScreen = () => {
                     </div>
 
                     {wallet ? (
-                        outputAssetAmount === '' ? (
+                        Number(inputAssetAmount) === 0 ? (
                             <FormButton
                                 text="Enter amount"
                                 onClick={handleEnterSendAmount}
