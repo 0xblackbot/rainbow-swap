@@ -5,7 +5,6 @@
     border-radius: var(--border-radius);
     margin-bottom: var(--2-step);
     padding: var(--2-step);
-    color: var(--text-color);
     font-size: 16px;
 }
 
@@ -23,8 +22,8 @@
 .header_text {
     margin-left: var(--step);
     font-family: 'Basel', sans-serif;
+    color: rgba(255, 91, 0);
 }
-
 
 .chevron {
     transition: transform 0.3s ease;
@@ -45,4 +44,8 @@
     max-height: 200px;
     opacity: 1;
     padding-top: var(--2-step);
+}
+
+.text {
+    opacity: var(--text-opacity);
 }

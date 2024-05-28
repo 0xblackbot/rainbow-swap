@@ -22,7 +22,7 @@
 }
 
 .route_info_header_logo {
-    fill: var(--hint-color);
+    fill: var(--text-color);
 }
 
 .route_info_header_text {
@@ -35,6 +35,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: var(--step);
+    opacity: var(--text-opacity);
 }
 
 .routes_container {

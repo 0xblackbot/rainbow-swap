@@ -1,4 +1,3 @@
 export const SwapConfirmation = () => {
-    return (<>
-    </>);
+    return <></>;
 };

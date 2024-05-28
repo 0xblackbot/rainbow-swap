@@ -5,7 +5,6 @@
     border-radius: var(--border-radius);
     margin-bottom: var(--2-step);
     padding: var(--2-step);
-    color: var(--text-color);
     font-size: 16px;
 }
 
@@ -16,10 +15,15 @@
 }
 
 .route_info_header_logo {
-    fill: var(--hint-color);
+    fill: var(--button-color);
 }
 
 .header_text {
     margin-left: var(--step);
     font-family: 'Basel', sans-serif;
+    color: var(--button-color);
+}
+
+.text {
+    opacity: var(--text-opacity);
 }

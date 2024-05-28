@@ -18,6 +18,7 @@
 .dots:after {
     content: '..................................................';
     color: var(--text-color);
+    opacity: var(--text-opacity);
 }
 
 
@@ -34,6 +35,10 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.route_info :first-child {
+    opacity: var(--text-opacity);
 }
 
 .route_info :last-child {
