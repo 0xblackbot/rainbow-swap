@@ -6,7 +6,10 @@ import {Header} from '../../components/header/header.tsx';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
-import {loadBalancesActions} from '../../store/wallet/wallet-actions.ts';
+import {
+    checkIsRainbowWalletActiveActions,
+    loadBalancesActions
+} from '../../store/wallet/wallet-actions.ts';
 import {SwapScreen} from '../home/swap-form/swap-form.tsx';
 
 export const HomeScreen = () => {
@@ -23,7 +26,13 @@ export const HomeScreen = () => {
 
     useEffect(() => {
         if (isNotEmptyString(walletAddress)) {
+            // load wallet related data
             dispatch(loadBalancesActions.submit(walletAddress));
+            dispatch(checkIsRainbowWalletActiveActions.submit(walletAddress));
+        } else {
+            // reset wallet related data
+            dispatch(loadBalancesActions.success({}));
+            dispatch(checkIsRainbowWalletActiveActions.success(false));
         }
     }, [dispatch, walletAddress]);
 

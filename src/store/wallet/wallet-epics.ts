@@ -7,9 +7,12 @@ import {toPayload, ofType} from 'ts-action-operators';
 
 import {
     addPendingSwapTransactionActions,
+    checkIsRainbowWalletActiveActions,
     loadBalancesActions
 } from './wallet-actions';
+import {TON_CLIENT, WORKCHAIN} from '../../globals.ts';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
+import {RainbowWalletContract} from '../../swap-routes/rainbow/rainbow-wallet.contract.ts';
 import {BalancesRecord} from '../../types/balances-record.type';
 import {fromNano} from '../../utils/big-int.utils';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
@@ -66,7 +69,35 @@ const addPendingSwapTransactionEpic: Epic<Action> = action$ =>
         )
     );
 
+const checkIsRainbowWalletActiveEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(checkIsRainbowWalletActiveActions.submit),
+        toPayload(),
+        switchMap(payload => {
+            const walletAddress = Address.parse(payload);
+
+            const rainbowWallet = RainbowWalletContract.create({
+                workchain: WORKCHAIN,
+                ownerAddress: walletAddress
+            });
+
+            const contractProvider = TON_CLIENT.provider(rainbowWallet.address);
+
+            return from(contractProvider.getState()).pipe(
+                map(state =>
+                    checkIsRainbowWalletActiveActions.success(
+                        state.state.type === 'active'
+                    )
+                ),
+                catchError(err =>
+                    of(checkIsRainbowWalletActiveActions.fail(err.message))
+                )
+            );
+        })
+    );
+
 export const walletEpics = combineEpics(
     walletEpic,
-    addPendingSwapTransactionEpic
+    addPendingSwapTransactionEpic,
+    checkIsRainbowWalletActiveEpic
 );

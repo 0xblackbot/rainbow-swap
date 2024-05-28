@@ -9,3 +9,7 @@ export const loadBalancesActions = createActions<string, BalancesRecord>(
 export const addPendingSwapTransactionActions = createActions<TransactionInfo>(
     'wallet/ADD_PENDING_SWAP_TRANSACTION'
 );
+
+export const checkIsRainbowWalletActiveActions = createActions<string, boolean>(
+    'wallet/IS_RAINBOW_WALLET_ACTIVE'
+);
