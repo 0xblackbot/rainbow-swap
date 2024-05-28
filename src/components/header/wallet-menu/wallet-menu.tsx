@@ -1,5 +1,5 @@
 import {useTonConnectUI} from '@tonconnect/ui-react';
-import {FC, useMemo, useState} from 'react';
+import {FC, useEffect, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
 import {getClassName} from '../../../utils/style.utils.ts';
@@ -7,6 +7,8 @@ import {getClassName} from '../../../utils/style.utils.ts';
 interface Props {
     walletAddress: string;
 }
+
+const DEFAULT_HINT_COLOR = '#3e3e42';
 
 export const WalletMenu: FC<Props> = ({walletAddress}) => {
     const [tonConnectUI] = useTonConnectUI();
@@ -17,6 +19,22 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
         () => walletAddress.slice(0, 4) + '...' + walletAddress.slice(-4),
         [walletAddress]
     );
+
+    useEffect(() => {
+        if (isOpen) {
+            const prevMainButtonColor = window.Telegram.WebApp.MainButton.color;
+
+            window.Telegram.WebApp.MainButton.disable();
+            window.Telegram.WebApp.MainButton.color =
+                window.Telegram.WebApp.themeParams.hint_color ??
+                DEFAULT_HINT_COLOR;
+
+            return () => {
+                window.Telegram.WebApp.MainButton.enable();
+                window.Telegram.WebApp.MainButton.color = prevMainButtonColor;
+            };
+        }
+    }, [isOpen]);
 
     const handleMenuClick = () => setIsOpen(value => !value);
     const handleClose = () => setIsOpen(false);
