@@ -2,7 +2,7 @@ import {FC, Fragment, useMemo} from 'react';
 
 import {RouteInfo} from './route-info/route-info.tsx';
 import styles from './swap-route-info.module.css';
-import {InfoIcon} from '../../../assets/icons/InfoIcon/InfoIcon.tsx';
+import {SwapIcon} from '../../../assets/icons/SwapIcon/SwapIcon.tsx';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
@@ -29,7 +29,7 @@ export const SwapRouteInfo: FC = () => {
     return routes.length === 0 ? null : (
         <div className={styles.route_info_wrapper}>
             <div className={styles.route_info_header}>
-                <InfoIcon className={styles.route_info_header_logo} />
+                <SwapIcon className={styles.route_info_header_logo} />
                 <p className={styles.route_info_header_text}>Route info</p>
             </div>
             <div className={styles.route_info_inside_div}>
