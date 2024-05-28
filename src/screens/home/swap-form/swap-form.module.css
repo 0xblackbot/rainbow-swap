@@ -1,24 +1,15 @@
 .body_div {
     display: flex;
     flex-direction: column;
-    margin: var(--2-step) var(--2-step) var(--step);
-}
-
-.body_button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: var(--2-step);
-    padding-bottom: var(--2-step);
-    border: none;
-    border-radius: var(--border-radius);
-    background-color: var(--button-color);
-    color: var(--button-text-color);
-    font-size: 16px;
-    font-weight: 600;
-    font-family: 'Basel-book', sans-serif;
+    margin: var(--2-step);
 }
 
 .input_asset_container {
     position: relative;
+    margin-bottom: var(--step);
+}
+
+.output_asset_container {
+    position: relative;
+    margin-bottom: var(--2-step);
 }

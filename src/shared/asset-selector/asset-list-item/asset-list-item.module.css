@@ -6,7 +6,6 @@
     background-color: var(--header-bg-color);
     border-radius: var(--border-radius);
     border: 2px solid var(--header-bg-color);
-    font-family: 'Basel-book', sans-serif;
     padding: var(--step);
     margin: var(--half-step) var(--2-step);
 }

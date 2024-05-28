@@ -1,14 +1,14 @@
 import {FC} from 'react';
 
+import styles from './FormButton.module.css';
+
 interface Props {
     text: string;
-    onClick?: () => void;
-    type: 'submit' | 'button';
-    className?: string;
+    onClick: () => void;
 }
 
-export const FormButton: FC<Props> = ({text, type, onClick, className}) => (
-    <button type={type} className={className} onClick={onClick}>
+export const FormButton: FC<Props> = ({text, onClick}) => (
+    <button className={styles.button} onClick={onClick}>
         {text}
     </button>
 );

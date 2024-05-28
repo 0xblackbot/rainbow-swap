@@ -1,44 +1,47 @@
 .route_info_wrapper {
     display: flex;
     flex-direction: column;
-}
-
-.show_routes_chevron {
+    background-color: var(--header-bg-color);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--2-step);
+    padding: var(--2-step);
     color: var(--text-color);
+    font-size: 16px;
 }
 
 .crossed_out {
     text-decoration: line-through;
 }
 
-.route_info_div {
+.route_info_header {
     display: flex;
-    border-radius: var(--step);
-    flex-direction: column;
-    font-family: 'Basel-book', sans-serif;
+    align-items: center;
+    margin-bottom: var(--2-step);
+}
+
+.route_info_header_logo {
+    fill: var(--hint-color);
+}
+
+.route_info_header_text {
+    margin-left: var(--step);
+    font-family: 'Basel', sans-serif;
 }
 
 .route_info_inside_div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 12px;
+    margin-bottom: var(--step);
 }
 
 .routes_container {
     display: flex;
     flex-direction: column;
-    margin-top: var(--step);
     justify-content: space-evenly;
-}
-
-.route_info_inside_div p {
-    font-size: 16px;
-    color: var(--hint-color)
 }
 
 .route_info_inside_div div {
     display: flex;
     align-items: center;
-    margin-top: 0px;
 }

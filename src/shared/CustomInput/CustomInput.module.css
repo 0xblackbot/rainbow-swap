@@ -4,9 +4,7 @@
     background-color: var(--header-bg-color);
     border-radius: var(--border-radius);
     padding:var(--2-step);
-    margin-bottom: var(--step);
     position: relative;
-    font-family: 'Basel-book', sans-serif;
 }
 
 .container_label {
@@ -28,7 +26,6 @@
 }
 
 .input_field {
-    border: none;
     background-color: transparent;
     color: var(--text-color);
     font-size: 32px;
@@ -50,8 +47,6 @@
     background: none;
     font-size: 16px;
     margin-left: 4px;
-    border: none;
-    font-family: 'Basel-book', sans-serif;
 
 }
 

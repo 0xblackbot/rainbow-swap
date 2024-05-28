@@ -148,16 +148,18 @@ export const SwapScreen = () => {
                         />
                         <ToggleAssetsButton onClick={handleToggleAssetsClick} />
                     </div>
-                    <CustomInput
-                        label="You receive"
-                        isInputEnabled={false}
-                        inputValue={outputAssetAmount}
-                        assetValue={outputAsset}
-                        assetExchangeRate={
-                            assets[outputAsset.address].exchangeRate
-                        }
-                        onAssetValueChange={setOutputAsset}
-                    />
+                    <div className={styles.output_asset_container}>
+                        <CustomInput
+                            label="You receive"
+                            isInputEnabled={false}
+                            inputValue={outputAssetAmount}
+                            assetValue={outputAsset}
+                            assetExchangeRate={
+                                assets[outputAsset.address].exchangeRate
+                            }
+                            onAssetValueChange={setOutputAsset}
+                        />
+                    </div>
                     <SwapRouteDisclaimer />
                     <SwapRouteInfo />
 
@@ -165,24 +167,15 @@ export const SwapScreen = () => {
                         outputAssetAmount === '' ? (
                             <FormButton
                                 text="Enter amount"
-                                type="button"
                                 onClick={handleEnterSendAmountClick}
-                                className={styles.body_button}
                             />
                         ) : (
-                            <FormButton
-                                text="Swap"
-                                type="button"
-                                onClick={handleSwapClick}
-                                className={styles.body_button}
-                            />
+                            <FormButton text="Swap" onClick={handleSwapClick} />
                         )
                     ) : (
                         <FormButton
                             text="Connect Wallet"
-                            type="button"
                             onClick={handleConnectClick}
-                            className={styles.body_button}
                         />
                     )}
                 </div>

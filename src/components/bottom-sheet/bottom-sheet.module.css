@@ -55,7 +55,6 @@
 
 .header_text {
     text-align: center;
-    font-family: 'Basel-book', sans-serif;
     font-size: 16px;
     color: var(--hint-color);
 }

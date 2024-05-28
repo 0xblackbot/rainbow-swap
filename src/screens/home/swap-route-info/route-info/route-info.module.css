@@ -1,15 +1,15 @@
 .route {
-    margin-top: var(--step);
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-bottom: var(--step);
 }
 
 .dots {
     display: flex;
     overflow: hidden;
     word-wrap: break-word;
-    color: white;
+    color: var(--text-color);
     flex: 1;
     margin-bottom: 7px;
     letter-spacing: 5px;
@@ -25,7 +25,7 @@
     display: flex;
     width: 48px !important;
     flex-direction: column;
-    color: var(--hint-color);
+    color: var(--text-color);
     flex-shrink: 0;
 }
 

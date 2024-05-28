@@ -1,23 +1,21 @@
 .container {
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    gap: var(--step);
+    display: flex;
     flex-direction: column;
     background: rgba(255, 91, 0, 0.1);
-    border: none;
     border-radius: var(--border-radius);
-    margin-bottom: var(--step);
+    margin-bottom: var(--2-step);
     padding: var(--2-step);
-    font-family: 'Basel-book', sans-serif;
+    color: var(--text-color);
     font-size: 16px;
 }
 
-.header_text {
-    color: var(--text-color);
-    font-weight: 600;
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--2-step);
 }
 
-.text {
-    color: var(--hint-color);
-    font-weight: 400;
+.header_text {
+    margin-left: var(--step);
+    font-family: 'Basel', sans-serif;
 }
