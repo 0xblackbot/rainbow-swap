@@ -32,7 +32,7 @@ export const SwapScreen = () => {
     const isProcessingSwapTransaction =
         useIsProcessingSwapTransactionSelector();
     const routes = useMemo(
-        () => swapRoutes.map(mapSwapRouteToRoute),
+        () => swapRoutes.data.map(mapSwapRouteToRoute),
         [swapRoutes]
     );
 

@@ -9,14 +9,15 @@ import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-sele
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.utils.ts';
+import {getClassName} from '../../../utils/style.utils.ts';
 
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
     const assets = useAssetsRecordSelector();
     const {inputAsset, outputAsset} = useSwapForm();
     const routes = useMemo(
-        () => swapRoutes.map(mapSwapRouteToRoute),
-        [swapRoutes]
+        () => swapRoutes.data.map(mapSwapRouteToRoute),
+        [swapRoutes.data]
     );
     const {chainsAmount, poolsAmount} = useMemo(
         () => getRoutesStepCount(routes),
@@ -26,8 +27,16 @@ export const SwapRouteInfo: FC = () => {
         parseFloat(assets[inputAsset.address].exchangeRate) /
         parseFloat(assets[outputAsset.address].exchangeRate);
 
-    return routes.length === 0 ? null : (
+    return (
         <div className={styles.route_info_wrapper}>
+            <div
+                className={getClassName(
+                    styles.loader_overlay,
+                    swapRoutes.isLoading ? styles.show : ''
+                )}
+            >
+                <div className={styles.loader_spinner}></div>
+            </div>
             <div className={styles.route_info_header}>
                 <SwapIcon className={styles.route_info_header_logo} />
                 <p className={styles.route_info_header_text}>Route info</p>
