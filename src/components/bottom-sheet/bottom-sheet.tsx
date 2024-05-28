@@ -49,7 +49,7 @@ export const BottomSheet: FC<Props> = ({
                     {isVisible && (
                         <>
                             <div className={styles.header_container}>
-                                <div className={styles.empty_container}/>
+                                <div className={styles.empty_container} />
                                 <p className={styles.header_text}>
                                     {headerTitle}
                                 </p>
@@ -61,12 +61,11 @@ export const BottomSheet: FC<Props> = ({
                                 />
                             </div>
                             {children}
-                            <div className={styles.footer_container}>
-                                <FormButton
-                                    text="Close"
-                                    onClick={onClose}
-                                ></FormButton>
-                            </div>
+                            <FormButton
+                                text="Close"
+                                containerClassName={styles.footer_container}
+                                onClick={onClose}
+                            ></FormButton>
                         </>
                     )}
                 </div>

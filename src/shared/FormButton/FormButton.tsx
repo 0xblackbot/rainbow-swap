@@ -1,37 +1,39 @@
 import {FC, useEffect, useMemo} from 'react';
-import terminal from 'virtual:terminal';
 
 import styles from './FormButton.module.css';
+import {useIsTMA} from '../../hooks/is-tma.hook.ts';
 
 interface Props {
     text: string;
+    containerClassName?: string;
     onClick: () => void;
 }
 
-export const FormButton: FC<Props> = ({text, onClick}) => {
+export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
+    const isTMA = useIsTMA();
+
     const prevMainButtonText = useMemo(
         () => window.Telegram.WebApp.MainButton.text,
         []
     );
 
     useEffect(() => {
-        const handleClick = () => {
-            terminal.log(text, 'button click');
-            onClick();
-        };
-
         window.Telegram.WebApp.MainButton.setText(text);
-        window.Telegram.WebApp.MainButton.onClick(handleClick);
+        window.Telegram.WebApp.MainButton.onClick(onClick);
 
         return () => {
             window.Telegram.WebApp.MainButton.setText(prevMainButtonText);
-            window.Telegram.WebApp.MainButton.offClick(handleClick);
+            window.Telegram.WebApp.MainButton.offClick(onClick);
         };
     }, [text, onClick, prevMainButtonText]);
 
     return (
-        <button className={styles.button} onClick={onClick}>
-            {text}
-        </button>
+        !isTMA && (
+            <div className={containerClassName}>
+                <button className={styles.button} onClick={onClick}>
+                    {text}
+                </button>
+            </div>
+        )
     );
 };

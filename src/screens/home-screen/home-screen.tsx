@@ -1,7 +1,6 @@
 import {isNotEmptyString} from '@rnw-community/shared';
 import {useTonAddress} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
-import terminal from 'virtual:terminal';
 
 import {Header} from '../../components/header/header.tsx';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
@@ -20,10 +19,7 @@ export const HomeScreen = () => {
 
         dispatch(loadAssetsActions.submit());
 
-        window.Telegram.WebApp.MainButton.setText('HomeScreen');
-        window.Telegram.WebApp.MainButton.onClick(() => {
-            terminal.log('HomeScreen click', Math.random());
-        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, viewportHeight.updateValue]);
 
     useEffect(() => {

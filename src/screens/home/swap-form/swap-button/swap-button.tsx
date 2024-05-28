@@ -33,6 +33,7 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
     };
     const handleClose = () => setIsOpen(false);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleSwapClick2 = async () => {
         const walletAddress = wallet?.account.address;
 
