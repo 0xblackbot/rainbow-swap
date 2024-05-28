@@ -18,8 +18,6 @@ export const HomeScreen = () => {
         viewportHeight.updateValue();
 
         dispatch(loadAssetsActions.submit());
-
-        window.Telegram.WebApp.MainButton.hideProgress();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, viewportHeight.updateValue]);
 
