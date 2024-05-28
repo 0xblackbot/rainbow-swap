@@ -164,7 +164,7 @@ export const SwapScreen = () => {
                     {wallet ? (
                         outputAssetAmount === '' ? (
                             <FormButton
-                                text="Enter send amount"
+                                text="Enter amount"
                                 type="button"
                                 onClick={handleEnterSendAmountClick}
                                 className={styles.body_button}
@@ -179,7 +179,7 @@ export const SwapScreen = () => {
                         )
                     ) : (
                         <FormButton
-                            text="Continue"
+                            text="Connect Wallet"
                             type="button"
                             onClick={handleConnectClick}
                             className={styles.body_button}
