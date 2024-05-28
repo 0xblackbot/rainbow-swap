@@ -70,6 +70,11 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
                 <div className={styles.content_container}>
                     <SwapRouteDisclaimer />
                     <SwapRouteInfo />
+                    <FormButton
+                        text="Close"
+                        containerClassName={styles.main_button}
+                        onClick={handleClose}
+                    ></FormButton>
                 </div>
             </BottomSheet>
         </>

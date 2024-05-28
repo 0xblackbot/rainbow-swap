@@ -3,7 +3,6 @@ import {FC, PropsWithChildren, useEffect, useState} from 'react';
 import styles from './bottom-sheet.module.css';
 import {XCircleIcon} from '../../assets/icons/XCircleIcon/XCircleIcon.tsx';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
-import {FormButton} from '../../shared/FormButton/FormButton.tsx';
 import {getClassName} from '../../utils/style.utils.ts';
 import {ContentContainer} from '../content-container/content-container.tsx';
 
@@ -61,11 +60,6 @@ export const BottomSheet: FC<Props> = ({
                                 />
                             </div>
                             {children}
-                            <FormButton
-                                text="Close"
-                                containerClassName={styles.footer_container}
-                                onClick={onClose}
-                            ></FormButton>
                         </>
                     )}
                 </div>

@@ -5,6 +5,7 @@ import styles from './asset-selector.module.css';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
 import {BottomSheet} from '../../components/bottom-sheet/bottom-sheet.tsx';
 import {Asset} from '../../interfaces/asset.interface';
+import {FormButton} from '../FormButton/FormButton.tsx';
 
 interface Props {
     value: Asset;
@@ -37,6 +38,11 @@ export const AssetSelector: FC<Props> = ({value, headerTitle, onChange}) => {
                 onClose={handleDismiss}
             >
                 <AssetList value={value} onChange={handleChange} />
+                <FormButton
+                    text="Close"
+                    containerClassName={styles.footer_container}
+                    onClick={handleDismiss}
+                ></FormButton>
             </BottomSheet>
         </>
     );
