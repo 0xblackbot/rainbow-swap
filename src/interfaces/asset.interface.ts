@@ -5,5 +5,4 @@ export interface Asset {
     image: string;
     decimals: number;
     exchangeRate: string;
-    usdPrice?: number;
 }
