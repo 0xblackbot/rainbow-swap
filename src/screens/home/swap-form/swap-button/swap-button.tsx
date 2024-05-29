@@ -2,6 +2,7 @@ import {isDefined} from '@rnw-community/shared';
 import {Address} from '@ton/core';
 import {useTonWallet} from '@tonconnect/ui-react';
 import {FC, useEffect, useState} from 'react';
+import {toast} from 'react-toastify';
 
 import styles from './swap-button.module.css';
 import {BottomSheet} from '../../../../components/bottom-sheet/bottom-sheet.tsx';
@@ -21,6 +22,10 @@ import {
     getRainbowWalletActivationTransferParams,
     getSwapRouteTransferParams
 } from '../../../../swap-routes/shared/transfer-params.utils.ts';
+import {
+    showLoadingToast,
+    showSuccessToast
+} from '../../../../utils/toast.utils.ts';
 import {RainbowWalletInfo} from '../../swap-route-info/rainbow-wallet-info/rainbow-wallet-info.tsx';
 import {SwapRouteDisclaimer} from '../../swap-route-info/swap-route-disclaimer/swap-route-disclaimer.tsx';
 import {SwapRouteInfo} from '../../swap-route-info/swap-route-info.tsx';
@@ -57,6 +62,19 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
         pendingActivationTransaction.isLoading
     ]);
 
+    useEffect(() => {
+        if (isDefined(pendingActivationTransaction.data)) {
+            const toastId = showLoadingToast(
+                'Activation transaction sent, please wait...'
+            );
+
+            return () => {
+                toast.dismiss(toastId);
+                showSuccessToast('Success, you can do the swap.');
+            };
+        }
+    }, [pendingActivationTransaction.data]);
+
     const handleSwap = () => {
         setIsOpen(true);
         onSwap();
@@ -78,6 +96,7 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
 
         if (isDefined(transactionInfo)) {
             dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
+            showSuccessToast('Swap sent, please wait...');
         }
     };
     const handleActivateContract = async () => {
