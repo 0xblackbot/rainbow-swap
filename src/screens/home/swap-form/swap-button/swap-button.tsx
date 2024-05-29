@@ -1,14 +1,31 @@
 import {isDefined} from '@rnw-community/shared';
-import {Address, beginCell} from '@ton/core';
-import {useTonConnectUI, useTonWallet} from '@tonconnect/ui-react';
+import {Address} from '@ton/core';
+import {useTonWallet} from '@tonconnect/ui-react';
 import {FC, useEffect, useState} from 'react';
+import {toast} from 'react-toastify';
 
 import styles from './swap-button.module.css';
 import {BottomSheet} from '../../../../components/bottom-sheet/bottom-sheet.tsx';
-import {TransferParams} from '../../../../interfaces/transfer-params.interface.ts';
+import {useSendTransaction} from '../../../../hooks/use-send-transaction.hook.ts';
 import {FormButton} from '../../../../shared/FormButton/FormButton.tsx';
-import {useIsRainbowWalletActiveSelector} from '../../../../store/wallet/wallet-selectors.ts';
-import {transferParamsToMessages} from '../../../../swap-routes/shared/message.utils.ts';
+import {useDispatch} from '../../../../store';
+import {useSwapRoutesSelector} from '../../../../store/swap-routes/swap-routes-selectors.ts';
+import {
+    addPendingActivationTransactionActions,
+    addPendingSwapTransactionActions
+} from '../../../../store/wallet/wallet-actions.ts';
+import {
+    useIsRainbowWalletActiveSelector,
+    usePendingActivationTransactionSelector
+} from '../../../../store/wallet/wallet-selectors.ts';
+import {
+    getRainbowWalletActivationTransferParams,
+    getSwapRouteTransferParams
+} from '../../../../swap-routes/shared/transfer-params.utils.ts';
+import {
+    showLoadingToast,
+    showSuccessToast
+} from '../../../../utils/toast.utils.ts';
 import {RainbowWalletInfo} from '../../swap-route-info/rainbow-wallet-info/rainbow-wallet-info.tsx';
 import {SwapRouteDisclaimer} from '../../swap-route-info/swap-route-disclaimer/swap-route-disclaimer.tsx';
 import {SwapRouteInfo} from '../../swap-route-info/swap-route-info.tsx';
@@ -18,22 +35,45 @@ interface Props {
 }
 
 export const SwapButton: FC<Props> = ({onSwap}) => {
-    // const dispatch = useDispatch();
-    // const swapRoutes = useSwapRoutesSelector();
+    const dispatch = useDispatch();
+    const swapRoutes = useSwapRoutesSelector();
     const isRainbowWalletActive = useIsRainbowWalletActiveSelector();
+    const pendingActivationTransaction =
+        usePendingActivationTransactionSelector();
 
     const wallet = useTonWallet();
-    const [tonConnectUI] = useTonConnectUI();
+    const sendTransaction = useSendTransaction();
 
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        // const walletAddress = wallet?.account.address ?? '';
-        // const senderAddress = Address.parse(
-        //     'EQCT70SehkXbtL9yUg0HbM-pm1uV7FLi6IVbqpbf9CqlFEjj'
-        // );
-        // terminal.log('isRainbowWalletActive', isRainbowWalletActive);
-    }, [isRainbowWalletActive]);
+        if (
+            isRainbowWalletActive.isLoading ||
+            pendingActivationTransaction.isLoading
+        ) {
+            window.Telegram.WebApp.MainButton.showProgress();
+
+            return () => {
+                window.Telegram.WebApp.MainButton.hideProgress();
+            };
+        }
+    }, [
+        isRainbowWalletActive.isLoading,
+        pendingActivationTransaction.isLoading
+    ]);
+
+    useEffect(() => {
+        if (isDefined(pendingActivationTransaction.data)) {
+            const toastId = showLoadingToast(
+                'Activation transaction sent, please wait...'
+            );
+
+            return () => {
+                toast.dismiss(toastId);
+                showSuccessToast('Success, you can do the swap.');
+            };
+        }
+    }, [pendingActivationTransaction.data]);
 
     const handleSwap = () => {
         setIsOpen(true);
@@ -41,75 +81,40 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
     };
     const handleClose = () => setIsOpen(false);
 
-    // const handleSwapClick2 = async () => {
-    //     const walletAddress = wallet?.account.address ?? '';
-    //
-    //     const senderAddress = Address.parse(walletAddress);
-    //     const senderRawAddress = senderAddress.toRawString();
-    //
-    //     const transferParams = await getSwapRouteTransferParams(
-    //          swapRoute,
-    //          senderAddress
-    //     );
-    //     const messages = await Promise.all(
-    //         swapRoutes.map(swapRoute =>
-    //             getSwapRouteMessage(swapRoute, senderAddress)
-    //         )
-    //     );
-    //
-    //     const response = await tonConnectUI
-    //         .sendTransaction({
-    //             validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
-    //             from: senderRawAddress,
-    //             messages
-    //         })
-    //         .catch(() => undefined);
-    //
-    //     if (isDefined(response)) {
-    //         dispatch(
-    //             addPendingSwapTransactionActions.submit({
-    //                 senderRawAddress,
-    //                 bocHash: bocToHash(response.boc)
-    //             })
-    //         );
-    //     }
-    // };
+    const handleConfirm = async () => {
+        const senderAddress = Address.parse(wallet?.account.address ?? '');
+        const transferParams = await Promise.all(
+            swapRoutes.data.map(swapRoute =>
+                getSwapRouteTransferParams(swapRoute, senderAddress)
+            )
+        );
 
-    const handleConfirm = () => {
-        console.log('handleConfirm');
+        const transactionInfo = await sendTransaction(
+            transferParams,
+            senderAddress
+        );
+
+        if (isDefined(transactionInfo)) {
+            dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
+            showSuccessToast('Swap sent, please wait...');
+            setIsOpen(false);
+        }
     };
     const handleActivateContract = async () => {
-        console.log('handleActivateContract');
-        const walletAddress = wallet?.account.address ?? '';
+        const senderAddress = Address.parse(wallet?.account.address ?? '');
+        const transferParams = [
+            getRainbowWalletActivationTransferParams(senderAddress)
+        ];
 
-        const senderAddress = Address.parse(walletAddress);
-        const senderRawAddress = senderAddress.toRawString();
+        const transactionInfo = await sendTransaction(
+            transferParams,
+            senderAddress
+        );
 
-        const transferParams: TransferParams = {
-            to: Address.parse(
-                'UQAlQ9Ht7rRtziR2LcQ2Glr9_6TSI5ODlH-h8ZSE6qFfLFQ7'
-            ),
-            value: 12n,
-            body: beginCell().endCell()
-        };
-
-        const messages = transferParamsToMessages([transferParams]);
-
-        const response = await tonConnectUI
-            .sendTransaction({
-                validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
-                from: senderRawAddress,
-                messages
-            })
-            .catch(() => undefined);
-
-        if (isDefined(response)) {
-            // dispatch(
-            //     addPendingSwapTransactionActions.submit({
-            //         senderRawAddress,
-            //         bocHash: bocToHash(response.boc)
-            //     })
-            // );
+        if (isDefined(transactionInfo)) {
+            dispatch(
+                addPendingActivationTransactionActions.submit(transactionInfo)
+            );
         }
     };
 
@@ -122,10 +127,10 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
                 onClose={handleClose}
             >
                 <div className={styles.content_container}>
-                    {!isRainbowWalletActive && <RainbowWalletInfo />}
+                    {isRainbowWalletActive.data && <RainbowWalletInfo />}
                     <SwapRouteInfo />
                     <SwapRouteDisclaimer />
-                    {!isRainbowWalletActive ? (
+                    {isRainbowWalletActive.data ? (
                         <FormButton
                             text="Confirm"
                             containerClassName={styles.main_button}

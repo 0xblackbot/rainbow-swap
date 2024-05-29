@@ -1,0 +1,45 @@
+.Toastify__toast-container {
+    padding: var(--2-step);
+}
+
+.Toastify__toast {
+    margin-bottom: var(--step);
+    border-radius: var(--step);
+    min-height: unset;
+    color: var(--button-text-color);
+}
+
+.Toastify__toast--success {
+    background-color: #34CC4E;
+}
+
+.Toastify__toast--error {
+    background-color: #FF3B30;
+}
+
+.Toastify__toast--default {
+    background-color: var(--button-color);
+}
+
+.Toastify__toast-body {
+    margin: 0;
+    padding: 0;
+}
+
+.Toastify__close-button {
+    display: none;
+}
+
+.Toastify__spinner {
+    border-color: var(--spinner-color-empty-area);
+    border-right-color: var(--spinner-color);
+}
+
+.Toastify__progress-bar--wrp {
+    height: 3px;
+}
+
+:root {
+    --toastify-color-progress-success: white;
+    --toastify-color-progress-error: white;
+}

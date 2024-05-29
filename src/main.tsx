@@ -8,6 +8,8 @@ import {SwapFormProvider} from './hooks/swap-form/swap-form.provider.tsx';
 import {ViewportHeightProvider} from './hooks/viewport-height/viewport-height.provider.tsx';
 import {persistor, store} from './store';
 
+import 'react-toastify/dist/ReactToastify.css';
+import './ReactToastify.css';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

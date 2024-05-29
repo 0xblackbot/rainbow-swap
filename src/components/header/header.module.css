@@ -5,7 +5,12 @@
     padding: var(--step) var(--2-step);
 }
 
-.logo_div {
+.left_div {
+    display: flex;
+    align-items: center;
+}
+
+.right_div {
     display: flex;
     align-items: center;
 }

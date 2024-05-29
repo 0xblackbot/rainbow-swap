@@ -2,6 +2,7 @@ import {useTonAddress, useTonConnectModal} from '@tonconnect/ui-react';
 
 import {LogoText} from './assets/LogoText';
 import styles from './header.module.css';
+import {PendingSwap} from './pending-swap/pending-swap.tsx';
 import {WalletMenu} from './wallet-menu/wallet-menu.tsx';
 import {HeaderContainer} from '../header-container/header-container.tsx';
 
@@ -13,7 +14,7 @@ export const Header = () => {
 
     return (
         <HeaderContainer>
-            <div className={styles.logo_div}>
+            <div className={styles.left_div}>
                 <img
                     className={styles.header_triangle_logo}
                     src="./icons/icon-128x128.png"
@@ -24,16 +25,20 @@ export const Header = () => {
                     height="25px"
                 ></LogoText>
             </div>
-            {walletAddress === '' ? (
-                <button
-                    className={styles.connect_button}
-                    onClick={handleConnect}
-                >
-                    Connect
-                </button>
-            ) : (
-                <WalletMenu walletAddress={walletAddress} />
-            )}
+
+            <div className={styles.right_div}>
+                <PendingSwap />
+                {walletAddress === '' ? (
+                    <button
+                        className={styles.connect_button}
+                        onClick={handleConnect}
+                    >
+                        Connect
+                    </button>
+                ) : (
+                    <WalletMenu walletAddress={walletAddress} />
+                )}
+            </div>
         </HeaderContainer>
     );
 };
