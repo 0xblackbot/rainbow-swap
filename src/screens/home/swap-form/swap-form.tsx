@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
 import {useEffect, useMemo, useRef} from 'react';
 
@@ -50,18 +51,29 @@ export const SwapScreen = () => {
         assets[outputAssetAddress].decimals
     );
 
+    const nanoInputAssetAmount = useMemo(() => {
+        if (inputAssetAmount === '') {
+            return '';
+        }
+        return toNano(
+            inputAssetAmount,
+            assets[inputAssetAddress].decimals
+        ).toString();
+    }, [
+        inputAssetAmount,
+        inputAssetAddress,
+        assets[inputAssetAddress].decimals
+    ]);
+
     useEffect(() => {
         if (inputAssetAmount === '') {
             dispatch(loadSwapRoutesActions.success([]));
         } else {
             dispatch(
                 loadSwapRoutesActions.submit({
-                    inputAssetAmount: toNano(
-                        inputAssetAmount,
-                        assets[inputAssetAddress].decimals
-                    ).toString(),
-                    inputAssetAddress: assets[inputAssetAddress].address,
-                    outputAssetAddress: assets[outputAssetAddress].address
+                    inputAssetAmount: nanoInputAssetAmount,
+                    inputAssetAddress,
+                    outputAssetAddress
                 })
             );
         }
@@ -69,8 +81,8 @@ export const SwapScreen = () => {
         inputAssetAmount,
         inputAssetAddress,
         outputAssetAddress,
-        dispatch,
-        assets
+        nanoInputAssetAmount,
+        dispatch
     ]);
 
     const handleConnectClick = () => connectModal.open();
@@ -85,7 +97,6 @@ export const SwapScreen = () => {
     const handleSwap = () => inputRef.current?.blur();
 
     console.log('isProcessingSwapTransaction', isProcessingSwapTransaction);
-
     return (
         <>
             <ContentContainer>
