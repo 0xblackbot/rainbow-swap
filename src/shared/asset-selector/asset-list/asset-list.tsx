@@ -14,12 +14,11 @@ import {sortAssets} from '../utils/sort-assets.utils.ts';
 
 interface Props {
     value: Asset;
-    onChange: (newValueAddress: string) => void;
+    onChange: (newValue: Asset) => void;
 }
 
 export const AssetList: FC<Props> = ({value, onChange}) => {
     const divHeight = useDivHeight();
-
     const [searchValue, setSearchValue] = useState('');
 
     const balances = useBalancesSelector();
@@ -53,7 +52,7 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
                 isSelected: asset.address === value.address,
                 onClick: () => {
                     setSearchValue('');
-                    onChange(asset.address);
+                    onChange(asset);
                 }
             })),
         [balances, filteredAssetsList, onChange, value.address]

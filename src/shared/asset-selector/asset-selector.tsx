@@ -10,7 +10,7 @@ import {FormButton} from '../FormButton/FormButton.tsx';
 interface Props {
     value: Asset;
     headerTitle: string;
-    onChange: (newValueAddress: string) => void;
+    onChange: (newValue: Asset) => void;
 }
 
 export const AssetSelector: FC<Props> = ({value, headerTitle, onChange}) => {
@@ -19,9 +19,9 @@ export const AssetSelector: FC<Props> = ({value, headerTitle, onChange}) => {
     const handleOpen = () => setIsOpen(true);
     const handleDismiss = () => setIsOpen(false);
 
-    const handleChange = (newValueAddress: string) => {
+    const handleChange = (newValue: Asset) => {
         setIsOpen(false);
-        onChange(newValueAddress);
+        onChange(newValue);
     };
 
     return (

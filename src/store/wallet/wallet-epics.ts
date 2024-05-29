@@ -21,6 +21,7 @@ import {
 } from './wallet-actions';
 import {TON_CLIENT, WORKCHAIN} from '../../globals.ts';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
+import {TonBalanceArray} from '../../interfaces/ton-balance-response.interface.ts';
 import {RainbowWalletContract} from '../../swap-routes/rainbow/rainbow-wallet.contract.ts';
 import {getBalances} from '../../utils/get-balances.utils.ts';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
@@ -35,7 +36,9 @@ const walletEpic = (action$: Observable<Action>) =>
                     axios.get<BalancesArray>(
                         `https://tonapi.io/v2/accounts/${payload}/jettons`
                     ),
-                    axios.get(`https://tonapi.io/v2/accounts/${payload}`)
+                    axios.get<TonBalanceArray>(
+                        `https://tonapi.io/v2/accounts/${payload}`
+                    )
                 ])
             ).pipe(
                 map(([jettonsResponse, accountResponse]) =>

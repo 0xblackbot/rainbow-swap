@@ -4,14 +4,14 @@ import {AxiosResponse} from 'axios';
 import {fromNano} from './big-int.utils';
 import {TON} from '../globals';
 import {BalancesArray} from '../interfaces/balance-object.interface';
+import {TonBalanceArray} from '../interfaces/ton-balance-response.interface';
 import {BalancesRecord} from '../types/balances-record.type';
 
 const TON_DECIMALS = 9;
 
 export const getBalances = (
     jettonsResponse: AxiosResponse<BalancesArray>,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    accountResponse: AxiosResponse<any>
+    accountResponse: AxiosResponse<TonBalanceArray>
 ) => {
     const balancesRecord: BalancesRecord = {};
 

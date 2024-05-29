@@ -1,4 +1,4 @@
-import {ChangeEvent, ForwardedRef, forwardRef} from 'react';
+import {ChangeEvent, forwardRef} from 'react';
 
 import styles from './CustomInput.module.css';
 import {Asset} from '../../interfaces/asset.interface';
@@ -12,9 +12,8 @@ interface Props {
     inputValue: string;
     assetValue: Asset;
     balance?: string | undefined;
-    ref?: ForwardedRef<HTMLInputElement>;
     onInputValueChange?: (newInputValue: string) => void;
-    onAssetValueChange: (newAssetValue: string) => void;
+    onAssetValueChange: (newAssetValue: Asset) => void;
 }
 
 export const CustomInput = forwardRef<HTMLInputElement, Props>(

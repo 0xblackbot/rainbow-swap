@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
 import {useEffect, useMemo, useRef} from 'react';
 
@@ -46,45 +45,31 @@ export const SwapScreen = () => {
         assets[outputAssetAddress].decimals
     );
 
+    const inputAssetDecimals = assets[inputAssetAddress].decimals;
+
     const nanoInputAssetAmount = useMemo(() => {
         if (inputAssetAmount === '') {
+            dispatch(loadSwapRoutesActions.success([]));
             return '';
         }
-        return toNano(
-            inputAssetAmount,
-            assets[inputAssetAddress].decimals
-        ).toString();
-    }, [
-        inputAssetAmount,
-        inputAssetAddress,
-        assets[inputAssetAddress].decimals
-    ]);
+        return toNano(inputAssetAmount, inputAssetDecimals).toString();
+    }, [inputAssetAmount, inputAssetDecimals, dispatch]);
 
     useEffect(() => {
-        if (inputAssetAmount === '') {
-            dispatch(loadSwapRoutesActions.success([]));
-        } else {
-            dispatch(
-                loadSwapRoutesActions.submit({
-                    inputAssetAmount: nanoInputAssetAmount,
-                    inputAssetAddress,
-                    outputAssetAddress
-                })
-            );
-        }
-    }, [
-        inputAssetAmount,
-        inputAssetAddress,
-        outputAssetAddress,
-        nanoInputAssetAmount,
-        dispatch
-    ]);
+        dispatch(
+            loadSwapRoutesActions.submit({
+                inputAssetAmount: nanoInputAssetAmount,
+                inputAssetAddress,
+                outputAssetAddress
+            })
+        );
+    }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);
 
     const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
         setInputAssetAmount('');
-        setInputAssetAddress(outputAssetAddress);
-        setOutputAssetAddress(inputAssetAddress);
+        setInputAssetAddress(assets[outputAssetAddress]);
+        setOutputAssetAddress(assets[inputAssetAddress]);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
 
@@ -104,7 +89,6 @@ export const SwapScreen = () => {
                             balance={balances[inputAssetAddress]}
                             onInputValueChange={setInputAssetAmount}
                             onAssetValueChange={setInputAssetAddress}
-                            ref={inputRef}
                         />
                         <ToggleAssetsButton onClick={handleToggleAssetsClick} />
                     </div>
