@@ -1,7 +1,7 @@
 import {TON_API_CLIENT} from '../globals';
 
-const CHECK_INTERVAL = 1500;
-const TRANSACTION_CONFIRMATION_TIMEOUT = 5 * 1000;
+const CHECK_INTERVAL = 2500;
+const TRANSACTION_CONFIRMATION_TIMEOUT = 5 * 60 * 1000;
 
 export const waitTransactionConfirmation = async (
     senderRawAddress: string,

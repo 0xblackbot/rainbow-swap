@@ -1,11 +1,20 @@
 import {Address} from '@ton/ton';
 import axios from 'axios';
 import {Epic, combineEpics} from 'redux-observable';
-import {Observable, switchMap, from, map, catchError, of} from 'rxjs';
+import {
+    Observable,
+    switchMap,
+    from,
+    map,
+    catchError,
+    of,
+    concatMap
+} from 'rxjs';
 import {Action} from 'ts-action';
 import {toPayload, ofType} from 'ts-action-operators';
 
 import {
+    addPendingActivationTransactionActions,
     addPendingSwapTransactionActions,
     checkIsRainbowWalletActiveActions,
     loadBalancesActions
@@ -74,6 +83,7 @@ const checkIsRainbowWalletActiveEpic: Epic<Action> = action$ =>
         ofType(checkIsRainbowWalletActiveActions.submit),
         toPayload(),
         switchMap(payload => {
+            console.log('checkIsRainbowWalletActiveEpic');
             const walletAddress = Address.parse(payload);
 
             const rainbowWallet = RainbowWalletContract.create({
@@ -96,8 +106,33 @@ const checkIsRainbowWalletActiveEpic: Epic<Action> = action$ =>
         })
     );
 
+const addPendingActivationTransactionEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(addPendingActivationTransactionActions.submit),
+        toPayload(),
+        switchMap(payload =>
+            from(
+                waitTransactionConfirmation(
+                    payload.senderRawAddress,
+                    payload.bocHash
+                )
+            ).pipe(
+                concatMap(() => [
+                    addPendingActivationTransactionActions.success(),
+                    checkIsRainbowWalletActiveActions.submit(
+                        payload.senderRawAddress
+                    )
+                ]),
+                catchError(err =>
+                    of(addPendingActivationTransactionActions.fail(err.message))
+                )
+            )
+        )
+    );
+
 export const walletEpics = combineEpics(
     walletEpic,
     addPendingSwapTransactionEpic,
-    checkIsRainbowWalletActiveEpic
+    checkIsRainbowWalletActiveEpic,
+    addPendingActivationTransactionEpic
 );

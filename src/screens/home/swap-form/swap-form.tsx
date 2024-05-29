@@ -13,10 +13,7 @@ import {useDispatch} from '../../../store';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
-import {
-    useBalancesSelector,
-    useIsProcessingSwapTransactionSelector
-} from '../../../store/wallet/wallet-selectors.ts';
+import {useBalancesSelector} from '../../../store/wallet/wallet-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
 
@@ -29,8 +26,6 @@ export const SwapScreen = () => {
     const assets = useAssetsRecordSelector();
     const swapRoutes = useSwapRoutesSelector();
     const balances = useBalancesSelector();
-    const isProcessingSwapTransaction =
-        useIsProcessingSwapTransactionSelector();
     const routes = useMemo(
         () => swapRoutes.data.map(mapSwapRouteToRoute),
         [swapRoutes]
@@ -77,8 +72,6 @@ export const SwapScreen = () => {
 
     const handleEnterSendAmount = () => inputRef.current?.focus();
     const handleSwap = () => inputRef.current?.blur();
-
-    console.log('isProcessingSwapTransaction', isProcessingSwapTransaction);
 
     return (
         <>
