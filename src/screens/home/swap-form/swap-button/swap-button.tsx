@@ -97,6 +97,7 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
         if (isDefined(transactionInfo)) {
             dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
             showSuccessToast('Swap sent, please wait...');
+            setIsOpen(false);
         }
     };
     const handleActivateContract = async () => {
@@ -126,7 +127,7 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
                 onClose={handleClose}
             >
                 <div className={styles.content_container}>
-                    {!isRainbowWalletActive.data && <RainbowWalletInfo />}
+                    {isRainbowWalletActive.data && <RainbowWalletInfo />}
                     <SwapRouteInfo />
                     <SwapRouteDisclaimer />
                     {isRainbowWalletActive.data ? (

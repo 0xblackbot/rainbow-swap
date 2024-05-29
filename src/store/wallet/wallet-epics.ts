@@ -83,7 +83,6 @@ const checkIsRainbowWalletActiveEpic: Epic<Action> = action$ =>
         ofType(checkIsRainbowWalletActiveActions.submit),
         toPayload(),
         switchMap(payload => {
-            console.log('checkIsRainbowWalletActiveEpic');
             const walletAddress = Address.parse(payload);
 
             const rainbowWallet = RainbowWalletContract.create({
