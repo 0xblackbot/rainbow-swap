@@ -14,7 +14,5 @@ export const checkIsRainbowWalletActiveActions = createActions<string, boolean>(
     'wallet/IS_RAINBOW_WALLET_ACTIVE'
 );
 
-export const addPendingRainbowWalletActivationTransactionActions =
-    createActions<TransactionInfo>(
-        'wallet/ADD_PENDING_RAINBOW_WALLET_ACTIVATION_TRANSACTION'
-    );
+export const addPendingActivationTransactionActions =
+    createActions<TransactionInfo>('wallet/ADD_PENDING_ACTIVATION_TRANSACTION');

@@ -1,6 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 
 import {
+    addPendingActivationTransactionActions,
     addPendingSwapTransactionActions,
     checkIsRainbowWalletActiveActions,
     loadBalancesActions
@@ -65,6 +66,32 @@ export const walletReducers = createReducer<WalletState>(
             (state, {payload: error}) => ({
                 ...state,
                 isRainbowWalletActive: createEntity(false, false, error)
+            })
+        );
+
+        builder.addCase(
+            addPendingActivationTransactionActions.submit,
+            (state, {payload}) => ({
+                ...state,
+                pendingActivationTransaction: createEntity(payload, true)
+            })
+        );
+        builder.addCase(
+            addPendingActivationTransactionActions.success,
+            state => ({
+                ...state,
+                pendingActivationTransaction: createEntity(undefined, false)
+            })
+        );
+        builder.addCase(
+            addPendingActivationTransactionActions.fail,
+            (state, {payload: error}) => ({
+                ...state,
+                pendingActivationTransaction: createEntity(
+                    undefined,
+                    false,
+                    error
+                )
             })
         );
     }

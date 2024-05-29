@@ -5,7 +5,6 @@ import {packJettonSwap, packTonSwap} from './transfer-params-pack.utils';
 import {dedust_getVaultAddress} from './vault.utils';
 import {JETTON_TRANSFER_GAS_AMOUNT, TON} from '../../globals';
 import {RouteStepWithCalculation} from '../../interfaces/route-step-with-calculation.interface';
-import {TransferParams} from '../../interfaces/transfer-params.interface';
 import {
     getJettonTransferBody,
     getJettonWalletAddress
@@ -39,7 +38,7 @@ export const dedust_getTransferParams = async (
     receiverAddress: Address,
     responseDestination: Address,
     applyMinOutputAmount: boolean
-): Promise<TransferParams> => {
+) => {
     if (route.length === 0) {
         throw new Error('Empty route');
     }
