@@ -6,7 +6,6 @@ import {SwapButton} from './swap-button/swap-button.tsx';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
 import {ContentContainer} from '../../../components/content-container/content-container.tsx';
-import {TON, USDT} from '../../../globals.ts';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
@@ -27,8 +26,8 @@ export const SwapScreen = () => {
     const connectModal = useTonConnectModal();
 
     const dispatch = useDispatch();
-    const swapRoutes = useSwapRoutesSelector();
     const assets = useAssetsRecordSelector();
+    const swapRoutes = useSwapRoutesSelector();
     const balances = useBalancesSelector();
     const isProcessingSwapTransaction =
         useIsProcessingSwapTransactionSelector();
@@ -38,17 +37,17 @@ export const SwapScreen = () => {
     );
 
     const {
-        inputAsset,
-        setInputAsset,
-        outputAsset,
-        setOutputAsset,
+        inputAssetAddress,
+        setInputAssetAddress,
+        outputAssetAddress,
+        setOutputAssetAddress,
         inputAssetAmount,
         setInputAssetAmount
     } = useSwapForm();
 
     const outputAssetAmount = useOutputAssetAmount(
         routes,
-        outputAsset.decimals
+        assets[outputAssetAddress].decimals
     );
 
     useEffect(() => {
@@ -59,27 +58,26 @@ export const SwapScreen = () => {
                 loadSwapRoutesActions.submit({
                     inputAssetAmount: toNano(
                         inputAssetAmount,
-                        inputAsset.decimals
+                        assets[inputAssetAddress].decimals
                     ).toString(),
-                    inputAssetAddress: inputAsset.address,
-                    outputAssetAddress: outputAsset.address
+                    inputAssetAddress: assets[inputAssetAddress].address,
+                    outputAssetAddress: assets[outputAssetAddress].address
                 })
             );
         }
-    }, [inputAssetAmount, inputAsset, outputAsset, dispatch]);
-
-    useEffect(() => {
-        if (assets[TON] && assets[USDT]) {
-            setInputAsset(assets[TON]);
-            setOutputAsset(assets[USDT]);
-        }
-    }, [assets, setInputAsset, setOutputAsset]);
+    }, [
+        inputAssetAmount,
+        inputAssetAddress,
+        outputAssetAddress,
+        dispatch,
+        assets
+    ]);
 
     const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
         setInputAssetAmount('');
-        setInputAsset(outputAsset);
-        setOutputAsset(inputAsset);
+        setInputAssetAddress(outputAssetAddress);
+        setOutputAssetAddress(inputAssetAddress);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
 
@@ -97,10 +95,10 @@ export const SwapScreen = () => {
                             label="You send"
                             isInputEnabled={true}
                             inputValue={inputAssetAmount}
-                            assetValue={inputAsset}
-                            balance={balances[inputAsset.address]}
+                            assetValue={assets[inputAssetAddress]}
+                            balance={balances[inputAssetAddress]}
                             onInputValueChange={setInputAssetAmount}
-                            onAssetValueChange={setInputAsset}
+                            onAssetValueChange={setInputAssetAddress}
                             ref={inputRef}
                         />
                         <ToggleAssetsButton onClick={handleToggleAssetsClick} />
@@ -110,9 +108,9 @@ export const SwapScreen = () => {
                             label="You receive"
                             isInputEnabled={false}
                             inputValue={outputAssetAmount}
-                            balance={balances[outputAsset.address]}
-                            assetValue={outputAsset}
-                            onAssetValueChange={setOutputAsset}
+                            balance={balances[outputAssetAddress]}
+                            assetValue={assets[outputAssetAddress]}
+                            onAssetValueChange={setOutputAssetAddress}
                         />
                     </div>
 

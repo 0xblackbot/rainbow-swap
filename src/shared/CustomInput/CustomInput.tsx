@@ -14,7 +14,7 @@ interface Props {
     balance?: string | undefined;
     ref?: ForwardedRef<HTMLInputElement>;
     onInputValueChange?: (newInputValue: string) => void;
-    onAssetValueChange: (newAssetValue: Asset) => void;
+    onAssetValueChange: (newAssetValue: string) => void;
 }
 
 export const CustomInput = forwardRef<HTMLInputElement, Props>(

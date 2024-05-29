@@ -14,7 +14,7 @@ import {getClassName} from '../../../utils/style.utils.ts';
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
     const assets = useAssetsRecordSelector();
-    const {inputAsset, outputAsset} = useSwapForm();
+    const {inputAssetAddress, outputAssetAddress} = useSwapForm();
     const routes = useMemo(
         () => swapRoutes.data.map(mapSwapRouteToRoute),
         [swapRoutes.data]
@@ -24,8 +24,8 @@ export const SwapRouteInfo: FC = () => {
         [routes]
     );
     const exchangeRate =
-        parseFloat(assets[inputAsset.address].exchangeRate) /
-        parseFloat(assets[outputAsset.address].exchangeRate);
+        parseFloat(assets[inputAssetAddress].exchangeRate) /
+        parseFloat(assets[outputAssetAddress].exchangeRate);
 
     return (
         <div className={styles.route_info_wrapper}>
@@ -50,8 +50,9 @@ export const SwapRouteInfo: FC = () => {
             <div className={styles.route_info_inside_div}>
                 <p>Exchange rate</p>
                 <p>
-                    1 {inputAsset.symbol} = {formatNumber(exchangeRate, 5)}{' '}
-                    {outputAsset.symbol}
+                    1 {assets[inputAssetAddress].symbol} ={' '}
+                    {formatNumber(exchangeRate, 5)}{' '}
+                    {assets[outputAssetAddress].symbol}
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>

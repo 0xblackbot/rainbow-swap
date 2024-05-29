@@ -1,7 +1,7 @@
 import {Address} from '@ton/ton';
 import axios from 'axios';
 import {Epic, combineEpics} from 'redux-observable';
-import {Observable, switchMap, from, map, catchError, of, forkJoin} from 'rxjs';
+import {Observable, switchMap, from, map, catchError, of} from 'rxjs';
 import {Action} from 'ts-action';
 import {toPayload, ofType} from 'ts-action-operators';
 
@@ -10,48 +10,28 @@ import {
     checkIsRainbowWalletActiveActions,
     loadBalancesActions
 } from './wallet-actions';
-import {TON, TON_CLIENT, WORKCHAIN} from '../../globals.ts';
+import {TON_CLIENT, WORKCHAIN} from '../../globals.ts';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
 import {RainbowWalletContract} from '../../swap-routes/rainbow/rainbow-wallet.contract.ts';
-import {BalancesRecord} from '../../types/balances-record.type';
-import {fromNano} from '../../utils/big-int.utils';
+import {getBalances} from '../../utils/get-balances.utils.ts';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
-
-const TON_DECIMALS = 9;
 
 const walletEpic = (action$: Observable<Action>) =>
     action$.pipe(
         ofType(loadBalancesActions.submit),
         toPayload(),
         switchMap(payload =>
-            forkJoin([
-                from(
+            from(
+                Promise.all([
                     axios.get<BalancesArray>(
                         `https://tonapi.io/v2/accounts/${payload}/jettons`
-                    )
+                    ),
+                    axios.get(`https://tonapi.io/v2/accounts/${payload}`)
+                ])
+            ).pipe(
+                map(([jettonsResponse, accountResponse]) =>
+                    getBalances(jettonsResponse, accountResponse)
                 ),
-                from(axios.get(`https://tonapi.io/v2/accounts/${payload}`))
-            ]).pipe(
-                map(([jettonsResponse, accountResponse]) => {
-                    const balancesRecord: BalancesRecord = {};
-
-                    jettonsResponse.data.balances.forEach(balanceObject => {
-                        const parsedAddress = Address.parse(
-                            balanceObject.jetton.address
-                        ).toString();
-                        balancesRecord[parsedAddress] = fromNano(
-                            balanceObject.balance,
-                            balanceObject.jetton.decimals
-                        );
-                    });
-
-                    balancesRecord[TON] = fromNano(
-                        BigInt(accountResponse.data.balance),
-                        TON_DECIMALS
-                    );
-
-                    return balancesRecord;
-                }),
                 map(balancesRecord =>
                     loadBalancesActions.success(balancesRecord)
                 ),

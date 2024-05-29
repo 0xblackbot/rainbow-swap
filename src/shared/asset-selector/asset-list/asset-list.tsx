@@ -14,7 +14,7 @@ import {sortAssets} from '../utils/sort-assets.utils.ts';
 
 interface Props {
     value: Asset;
-    onChange: (newValue: Asset) => void;
+    onChange: (newValueAddress: string) => void;
 }
 
 export const AssetList: FC<Props> = ({value, onChange}) => {
@@ -53,7 +53,7 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
                 isSelected: asset.address === value.address,
                 onClick: () => {
                     setSearchValue('');
-                    onChange(asset);
+                    onChange(asset.address);
                 }
             })),
         [balances, filteredAssetsList, onChange, value.address]
