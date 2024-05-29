@@ -10,7 +10,7 @@ import {useContext, useEffect, useMemo, useRef} from 'react';
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
-import {TON} from '../../../globals.ts';
+import {TON, USDT} from '../../../globals.ts';
 import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
@@ -35,8 +35,8 @@ export const SwapForm = () => {
     const [tonConnectUI] = useTonConnectUI();
 
     const dispatch = useDispatch();
-    const assets = useAssetsRecordSelector();
     const swapRoutes = useSwapRoutesSelector();
+    const assets = useAssetsRecordSelector();
     const balances = useBalancesSelector();
     const isProcessingSwapTransaction =
         useIsProcessingSwapTransactionSelector();
@@ -75,6 +75,13 @@ export const SwapForm = () => {
             );
         }
     }, [inputAssetAmount, inputAsset, outputAsset, dispatch]);
+
+    useEffect(() => {
+        if (assets[TON] && assets[USDT]) {
+            setInputAsset(assets[TON]);
+            setOutputAsset(assets[USDT]);
+        }
+    }, [assets, setInputAsset, setOutputAsset]);
 
     const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
@@ -135,8 +142,6 @@ export const SwapForm = () => {
                     inputValue={inputAssetAmount}
                     assetValue={inputAsset}
                     balance={balances[inputAsset.address]}
-                    assetExchangeRate={assets[inputAsset.address].exchangeRate}
-                    tonPrice={assets[TON].usdPrice}
                     onInputValueChange={setInputAssetAmount}
                     onAssetValueChange={setInputAsset}
                     ref={inputRef}
@@ -148,8 +153,6 @@ export const SwapForm = () => {
                     inputValue={outputAssetAmount}
                     balance={balances[outputAsset.address]}
                     assetValue={outputAsset}
-                    tonPrice={assets[TON].usdPrice}
-                    assetExchangeRate={assets[outputAsset.address].exchangeRate}
                     onAssetValueChange={setOutputAsset}
                 />
                 <div className={styles.body_button_wrapper}>

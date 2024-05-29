@@ -4,7 +4,6 @@ import styles from './CustomInput.module.css';
 import {Asset} from '../../interfaces/asset.interface';
 import {EMPTY_FN} from '../../utils/emptyfn.ts';
 import {formatNumber} from '../../utils/format-number.utils.ts';
-import {getUsdValue} from '../../utils/get-usd-value.utils.ts';
 import {AssetSelector} from '../asset-selector/asset-selector.tsx';
 
 interface Props {
@@ -12,8 +11,6 @@ interface Props {
     isInputEnabled: boolean;
     inputValue: string;
     assetValue: Asset;
-    assetExchangeRate: string;
-    tonPrice: number | undefined;
     balance?: string | undefined;
     ref?: ForwardedRef<HTMLInputElement>;
     onInputValueChange?: (newInputValue: string) => void;
@@ -27,8 +24,6 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             isInputEnabled,
             inputValue,
             assetValue,
-            assetExchangeRate,
-            tonPrice = 0,
             balance = '0',
             onInputValueChange = EMPTY_FN,
             onAssetValueChange
@@ -55,12 +50,8 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 }
             }
         };
-        const usdAmount = getUsdValue(
-            inputValue,
-            tonPrice,
-            assetExchangeRate,
-            assetValue.decimals
-        );
+        const usdAmount =
+            parseFloat(inputValue) * parseFloat(assetValue.exchangeRate);
 
         const setMaxAssetAmount = () => {
             onInputValueChange(balance);

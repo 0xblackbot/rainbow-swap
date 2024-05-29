@@ -11,7 +11,6 @@ import {sortAssets} from './utils/sort-assets.utils.ts';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
 import {SearchIcon} from '../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {XCircleIcon} from '../../assets/icons/XCircleIcon/XCircleIcon.tsx';
-import {TON} from '../../globals.ts';
 import {useModalWidth} from '../../hooks/use-modal-width.hook.tsx';
 import {Asset} from '../../interfaces/asset.interface';
 import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
@@ -25,8 +24,7 @@ interface Props {
 export const AssetSelector: FC<Props> = ({value, onChange}) => {
     const balances = useBalancesSelector();
     const assets = useAssetsRecordSelector();
-    const tonPrice = assets[TON].usdPrice;
-    const assetsList = sortAssets(Object.values(assets), balances, tonPrice);
+    const assetsList = sortAssets(Object.values(assets), balances);
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -62,15 +60,11 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                             .includes(lowercaseSearchTerm)
                 );
 
-                const sortedAssets = sortAssets(
-                    filteredAssets,
-                    balances,
-                    tonPrice
-                );
+                const sortedAssets = sortAssets(filteredAssets, balances);
 
                 setFilteredAssetsList(sortedAssets);
             }, 1000),
-        [assetsList, balances, tonPrice]
+        [assetsList, balances]
     );
 
     const handleSearchChange = (value: string) => {
@@ -141,7 +135,6 @@ export const AssetSelector: FC<Props> = ({value, onChange}) => {
                                         <AssetListItem
                                             key={props.key}
                                             style={props.style}
-                                            tonPrice={tonPrice}
                                             asset={
                                                 filteredAssetsList[props.index]
                                             }
