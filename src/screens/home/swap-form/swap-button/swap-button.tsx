@@ -127,7 +127,7 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
                 onClose={handleClose}
             >
                 <div className={styles.content_container}>
-                    {isRainbowWalletActive.data && <RainbowWalletInfo />}
+                    {!isRainbowWalletActive.data && <RainbowWalletInfo />}
                     <SwapRouteInfo />
                     <SwapRouteDisclaimer />
                     {isRainbowWalletActive.data ? (
