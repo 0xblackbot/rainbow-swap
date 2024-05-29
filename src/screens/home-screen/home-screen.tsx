@@ -1,6 +1,7 @@
 import {isNotEmptyString} from '@rnw-community/shared';
 import {useTonAddress} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
+import {ToastContainer} from 'react-toastify';
 
 import {Header} from '../../components/header/header.tsx';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
@@ -38,6 +39,11 @@ export const HomeScreen = () => {
 
     return (
         <>
+            <ToastContainer
+                position="top-center"
+                pauseOnFocusLoss={false}
+                draggablePercent={40}
+            />
             <Header />
             <SwapScreen />
         </>
