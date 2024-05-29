@@ -1,30 +1,41 @@
 * {
+    border: none;
     margin: 0;
     padding: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: 'Basel-book', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+    outline: none;
+}
+
+html {
+    height: -webkit-fill-available;
+    overflow-x: hidden;
+    overflow-y: initial;
+    overscroll-behavior-x: none;
 }
 
 body {
-    padding: var(--2-step);
+    width: 100%;
+    height: 100%;
+    min-height: -webkit-fill-available;
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: none;
     background: var(--bg-color);
     color: var(--text-color);
-    overflow: hidden;
 }
 
-div:not(#tc-widget-root div) {
-    display: flex;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
 }
 
-button:not(#tc-widget-root button) {
-    display: flex;
-}
-
-#root {
-    justify-content: center;
-}
-
-p {
-    margin-block-start: 0;
-    margin-block-end: 0;
+[data-tc-wallets-modal-container="true"] {
+    background-color: var(--backdrop-color);
 }
 
 @font-face {
@@ -37,30 +48,27 @@ p {
     src: url('./assets/fonts/Basel-Grotesk-Book.woff2') format('woff2');
 }
 
-
 :root {
-    --bg-color: var(--tg-theme-bg-color, #000000);
-    --secondary-bg-color: var(--tg-theme-secondary-bg-color, #1c1c1d);
-    --button-color: var(--tg-theme-button-color, #3e88f7);
+    --bg-color: var(--tg-theme-bg-color, #010101);
     --text-color: var(--tg-theme-text-color, #ffffff);
-    --hint-color: var(--tg-theme-hint-color, #98989e);
+    --hint-color: var(--tg-theme-hint-color, #3e3e42);
+    --button-color: var(--tg-theme-button-color, #3e88f7);
     --button-text-color: var(--tg-theme-button-text-color, #ffffff);
-    --section: var(--tg-theme-section-bg-color, #8C8D91);
-    --safe-area-inset-bottom: calc(100vh - var(--tg-viewport-stable-height, 100vh));
-    --iphone-bottom-line: max(var(--safe-area-inset-bottom, 0), 8px);
+    --secondary-bg-color: var(--tg-theme-secondary-bg-color, #1c1c1d);
+    --header-bg-color: var(--tg-theme-header-bg-color, #1a1a1a);
+
+    --backdrop-color: rgba(70, 70, 70, 0.7);
+    --text-opacity: 0.8;
 
     --step: 8px;
+    --half-step: calc(0.5 * var(--step));
     --2-step: calc(2 * var(--step));
     --3-step: calc(3 * var(--step));
     --4-step: calc(4 * var(--step));
 
+    --header-height: 50px;
+    --border-radius: calc(1.5 * var(--step));
+
     --app-min-width: 320px;
-    --app-max-width: 540px;
+    --app-max-width: 480px;
 }
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-

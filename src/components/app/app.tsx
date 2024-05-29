@@ -1,35 +1,21 @@
-import {isNotEmptyString} from '@rnw-community/shared';
-import {useIsConnectionRestored, useTonAddress} from '@tonconnect/ui-react';
+import {useIsConnectionRestored} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
 
 import styles from './app.module.css';
-import {Home} from '../../screens/home/home.tsx';
-import {useDispatch} from '../../store';
-import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
-import {loadBalancesActions} from '../../store/wallet/wallet-actions.ts';
-import {Header} from '../header/header.tsx';
+import {HomeScreen} from '../../screens/home-screen/home-screen.tsx';
 
 export const App = () => {
-    const dispatch = useDispatch();
     const connectionRestored = useIsConnectionRestored();
-    const walletAddress = useTonAddress();
 
     useEffect(() => {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
-        dispatch(loadAssetsActions.submit());
-    }, [dispatch]);
-
-    useEffect(() => {
-        if (isNotEmptyString(walletAddress)) {
-            dispatch(loadBalancesActions.submit(walletAddress));
-        }
-    }, [dispatch, walletAddress]);
+        window.Telegram.WebApp.enableClosingConfirmation();
+        window.Telegram.WebApp.MainButton.setText('Loading...');
+        window.Telegram.WebApp.MainButton.show();
+    }, []);
 
     return (
-        <div className={styles.App}>
-            <Header />
-            {connectionRestored && <Home />}
-        </div>
+        <div className={styles.App}>{connectionRestored && <HomeScreen />}</div>
     );
 };

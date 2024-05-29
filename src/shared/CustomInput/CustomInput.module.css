@@ -1,12 +1,10 @@
 .container {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    background-color: var(--secondary-bg-color);
-    border-radius: var(--2-step);
-    padding: 24px;
-    margin-bottom: var(--step);
+    background-color: var(--header-bg-color);
+    border-radius: var(--border-radius);
+    padding:var(--2-step);
     position: relative;
-    font-family: 'Basel-book', sans-serif;
 }
 
 .container_label {
@@ -22,12 +20,12 @@
 }
 
 .input_container {
+    display: flex;
     margin-top: var(--step);
     justify-content: space-between;
 }
 
 .input_field {
-    border: none;
     background-color: transparent;
     color: var(--text-color);
     font-size: 32px;
@@ -38,8 +36,9 @@
 }
 
 .input_info {
-    margin-top: var(--step);
+    display: flex;
     justify-content: space-between;
+    margin-top: var(--step);
     color: var(--hint-color);
 }
 
@@ -48,11 +47,10 @@
     background: none;
     font-size: 16px;
     margin-left: 4px;
-    border: none;
-    font-family: 'Basel-book', sans-serif;
 
 }
 
 .input_info_balance {
+    display: flex;
     align-items: center;
 }

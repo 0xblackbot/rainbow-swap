@@ -1,0 +1,60 @@
+.modal_backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--backdrop-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+.modal_backdrop.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal_content {
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    overflow: hidden;
+    transform: translateY(100%);
+    transition: transform 0.4s ease-in-out;
+}
+
+.modal_backdrop.open .modal_content {
+    transform: translateY(0);
+}
+
+.modal_backdrop.close .modal_content {
+    transform: translateY(100%);
+}
+
+.header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--2-step);
+    border-bottom: 1px solid var(--secondary-bg-color);
+}
+
+.empty_container {
+    width: 32px;
+}
+
+.xcircleIcon {
+    color: var(--hint-color);
+}
+
+.header_text {
+    text-align: center;
+    font-size: 16px;
+    color: var(--hint-color);
+}

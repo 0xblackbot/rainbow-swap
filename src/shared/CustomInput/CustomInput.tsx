@@ -63,6 +63,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 <div className={styles.input_container}>
                     <AssetSelector
                         value={assetValue}
+                        headerTitle="Select asset"
                         onChange={onAssetValueChange}
                     />
                     <input

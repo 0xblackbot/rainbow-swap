@@ -1,12 +1,14 @@
 .route_step_div {
+  display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--secondary-bg-color);
+  background: var(--bg-color);
   border-radius: var(--step);
-  padding: 4px;
+  padding: 8px;
 }
 
 .route_step_direction_div {
+  display: flex;
   justify-content: center;
   align-items: center;
   position: relative;

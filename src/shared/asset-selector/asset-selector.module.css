@@ -3,7 +3,7 @@
     max-width: var(--app-max-width);
 }
 
-.modalSheet{
+.modalSheet {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -11,171 +11,82 @@
 
 .modalButton {
     background: none;
-    border: none;
-    position: absolute; 
-    top: 1px; 
+    position: absolute;
+    top: 1px;
     left: 1px;
-}
-
-.modalSheet :global(.react-modal-sheet-container) {
-    background: var(--bg-color) !important;
-  }
-  
-  .modalSheet :global(.react-modal-sheet-backdrop) {
-    background-color: #707070 !important;
-   }
-
-.modalDiv {
-    justify-content: center;
-    align-items: center;
-    position: relative; 
-    width: 100%;
-    height: var(--3-step);
 }
 
 .modalInputContainer {
     position: relative;
+    display: flex;
+    flex-direction: column;
     margin: var(--step) var(--2-step);
-    margin-top: var(--2-step);
-  }
-  
-  .modalInput {
-    border: none;
-    background: var(--secondary-bg-color);
-    color: var(--text-color);
-    border-radius: var(--step);
-    padding: var(--step) var(--2-step);
-    padding-left: var(--4-step);
-    font-size: var(--2-step);
-    font-family: 'Basel-book', sans-serif;
-    width: 100%;
-  }
+}
 
-  .modalInput::placeholder {
+.modalInput {
+    background: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+    padding: var(--step) var(--2-step) var(--step) var(--4-step);
+    color: var(--text-color);
+    font-size: var(--2-step);
+}
+
+.modalInput::placeholder {
     color: var(--hint-color);
-  }
-  
-  .searchIcon {
+}
+
+.searchIcon {
     position: absolute;
     left: var(--step);
     top: 50%;
     transform: translateY(-50%);
     color: var(--hint-color);
-  }
+}
 
-  .xcircleIcon{
+.xcircleIcon {
     position: absolute;
     right: var(--step);
     transform: translateY(40%);
     color: var(--hint-color);
-  }
-  
-  .chevronIcon{
-    color: var(--hint-color);
-  }
-
-.modalP{
-    font-family: 'Basel-book', sans-serif;
-    color: var(--text-color);
-}
-
-.modalList{
-    margin-top: var(--step);
-    flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.listWrapDiv{
-    overflow-y: hidden;
 }
 
 .p {
-    margin-right: 4px;
+    margin: 0 var(--step);
 }
 
 .img {
-    width: 24px;
-    height: 24px;
+    width: var(--4-step);
+    height: var(--4-step);
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 4px;
 }
 
 
 .selected_asset_button {
+    display: flex;
     align-items: center;
-    color: var(--text-color);
-    border-radius: 24px;
     font-size: var(--3-step);
 }
 
-.modalButtonConatiner{
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-color);
-    padding-bottom: var(--iphone-bottom-line);
-    border: none;
-    height: 70px;
-    margin: 0 var(--2-step);
-}
-
-
-.modalButtonConatiner button{
+.modalButtonConatiner button {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--button-color);
-    border: none;
     border-radius: var(--2-step);
     width: 100%;
     color: var(--button-text-color);
     font-size: var(--2-step);
-    padding: var(--2-step) var(--3-step);   
+    padding: var(--2-step) var(--3-step);
 }
 
-.list{
-    border-radius: var(--2-step);
-    background-color: var(--secondary-bg-color);
-    margin: var(--step) var(--2-step);
+.assets_list {
+    height: 100%;
 }
 
-@media (min-width: 530px) {
-    .modalSheet{
-        margin-left: auto;
-        margin-right: auto;
-        width: 75%;
-    }
-}
-
-@media (min-width: 768px) {
-    .modalSheet{
-        margin-left: auto;
-        margin-right: auto;
-        width: 60%;
-    }
-}
-
-@media (min-width: 900px) {
-    .modalSheet{
-        margin-left: auto;
-        margin-right: auto;
-        width: 45%;
-    }
-}
-
-@media (min-width: 1200px) {
-    .modalSheet{
-        margin-left: auto;
-        margin-right: auto;
-        width: 35%;
-    }
-}
-
-@media (min-width: 1500px) {
-    .modalSheet{
-        margin-left: auto;
-        margin-right: auto;
-        width: 30%;
-    }
+.footer_container {
+    margin-top: auto;
+    padding: var(--2-step);
+    background-color: var(--header-bg-color);
+    border-top: 1px solid var(--secondary-bg-color);
 }

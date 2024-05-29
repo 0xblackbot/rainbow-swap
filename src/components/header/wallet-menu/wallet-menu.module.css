@@ -1,0 +1,74 @@
+.wallet_button {
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    border-radius: var(--4-step);
+    padding: var(--step) var(--2-step);
+
+    position: relative;
+    z-index: 11;
+}
+
+.menu_backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--backdrop-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.menu_backdrop.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu_content {
+    position: absolute;
+    top: var(--header-height);
+    right: var(--2-step);
+    display: grid;
+    gap: var(--step);
+    background-color: var(--secondary-bg-color);
+    min-width: calc(20 * var(--step));
+    padding: var(--step);
+    border-radius: var(--2-step);
+    box-shadow: 0 2px 2px black;
+    transform: translateX(125%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu_backdrop.open .menu_content {
+    transform: translateX(0);
+}
+
+.menu_backdrop.close .menu_content {
+    transform: translateX(125%);
+}
+.menu_button {
+    justify-content: center;
+    padding: var(--step);
+    border-radius: var(--3-step);
+    cursor: pointer;
+}
+
+.menu_disconnect_button {
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+}
+
+.menu_explore_button {
+    border: 1px solid var(--button-color);
+    background: none;
+}
+
+.a_button {
+    text-decoration: none;
+    color: var(--button-color) !important;
+}

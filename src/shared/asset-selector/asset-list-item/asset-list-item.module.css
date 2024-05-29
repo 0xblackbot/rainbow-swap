@@ -1,14 +1,21 @@
 .select_list_item_div {
-    flex: 1;
+    height: 38px;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 16px;
-    font-family: 'Basel-book', sans-serif;
-    padding: var(--step) var(--2-step);
+    background-color: var(--header-bg-color);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--header-bg-color);
+    padding: var(--step);
+    margin: var(--half-step) var(--2-step);
 }
 
 .selected{
-    border: 1px solid var(--button-color);
+    border-color: var(--button-color);
+}
+
+.select_list_item_wrapper {
+    display: flex;
 }
 
 .img {
@@ -22,12 +29,14 @@
 
 
 .select_list_item_info {
+    display: flex;
     font-size: 16px;
     flex-direction: column;
     justify-content: center;
 }
 
 .select_list_item_balance {
+    display: flex;
     flex-direction: column;
     align-items: flex-end;
     padding: 4px var(--step);

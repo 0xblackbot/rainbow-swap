@@ -1,4 +1,4 @@
 import {useSelector} from '../index.ts';
 
 export const useSwapRoutesSelector = () =>
-    useSelector(({swapRoutes}) => swapRoutes.batch.data);
+    useSelector(({swapRoutes}) => swapRoutes.batch);

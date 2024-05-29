@@ -1,7 +1,7 @@
-import {FC, Fragment, useContext} from 'react';
+import {FC, Fragment} from 'react';
 
 import styles from './route-info.module.css';
-import {SwapFormContext} from '../../../../hooks/swap-form/swap-form.context';
+import {useSwapForm} from '../../../../hooks/swap-form/swap-form.hook.ts';
 import {RouteStepWithCalculation} from '../../../../interfaces/route-step-with-calculation.interface';
 import {useAssetsRecordSelector} from '../../../../store/assets/assets-selectors';
 import {fromNano} from '../../../../utils/big-int.utils';
@@ -19,7 +19,7 @@ export const RouteInfo: FC<Props> = ({route}) => {
     const assetsRecord = useAssetsRecordSelector();
     const routeInputStep = getRouteInputStep(route);
     const routeOutputStep = getRouteOutputStep(route);
-    const {inputAssetAmount} = useContext(SwapFormContext);
+    const {inputAssetAmount} = useSwapForm();
     const {inputAsset, outputAsset} = {
         inputAsset: assetsRecord[routeInputStep?.inputAssetAddress ?? ''],
         outputAsset: assetsRecord[routeOutputStep?.outputAssetAddress ?? '']

@@ -1,38 +1,30 @@
-import {isDefined} from '@rnw-community/shared';
-import {Address} from '@ton/core';
-import {
-    useTonConnectModal,
-    useTonConnectUI,
-    useTonWallet
-} from '@tonconnect/ui-react';
-import {useContext, useEffect, useMemo, useRef} from 'react';
+import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
+import {useEffect, useMemo, useRef} from 'react';
 
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
+import {SwapButton} from './swap-button/swap-button.tsx';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
+import {ContentContainer} from '../../../components/content-container/content-container.tsx';
 import {TON, USDT} from '../../../globals.ts';
-import {SwapFormContext} from '../../../hooks/swap-form/swap-form.context.tsx';
+import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
 import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
-import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions.ts';
 import {
-    useIsProcessingSwapTransactionSelector,
-    useBalancesSelector
+    useBalancesSelector,
+    useIsProcessingSwapTransactionSelector
 } from '../../../store/wallet/wallet-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
-import {getSwapRouteMessage} from '../../../swap-routes/shared/message.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
-import {bocToHash} from '../../../utils/boc.utils.ts';
 
-export const SwapForm = () => {
+export const SwapScreen = () => {
     const wallet = useTonWallet();
     const inputRef = useRef<HTMLInputElement>(null);
     const connectModal = useTonConnectModal();
-    const [tonConnectUI] = useTonConnectUI();
 
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
@@ -41,7 +33,7 @@ export const SwapForm = () => {
     const isProcessingSwapTransaction =
         useIsProcessingSwapTransactionSelector();
     const routes = useMemo(
-        () => swapRoutes.map(mapSwapRouteToRoute),
+        () => swapRoutes.data.map(mapSwapRouteToRoute),
         [swapRoutes]
     );
 
@@ -52,7 +44,7 @@ export const SwapForm = () => {
         setOutputAsset,
         inputAssetAmount,
         setInputAssetAmount
-    } = useContext(SwapFormContext);
+    } = useSwapForm();
 
     const outputAssetAmount = useOutputAssetAmount(
         routes,
@@ -88,100 +80,59 @@ export const SwapForm = () => {
         setInputAssetAmount('');
         setInputAsset(outputAsset);
         setOutputAsset(inputAsset);
-        window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
 
-    const handleEnterSendAmountClick = async () => {
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
-    };
-
-    const handleSwapClick = async () => {
-        const walletAddress = wallet?.account.address;
-
-        if (!isDefined(walletAddress)) {
-            throw new Error('Wallet address is not defined');
-        }
-
-        const senderAddress = Address.parse(walletAddress);
-        const senderRawAddress = senderAddress.toRawString();
-
-        const messages = await Promise.all(
-            swapRoutes.map(swapRoute =>
-                getSwapRouteMessage(swapRoute, senderAddress)
-            )
-        );
-
-        const response = await tonConnectUI
-            .sendTransaction({
-                validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
-                from: senderRawAddress,
-                messages
-            })
-            .catch(() => undefined);
-
-        if (isDefined(response)) {
-            dispatch(
-                addPendingSwapTransactionActions.submit({
-                    senderRawAddress,
-                    bocHash: bocToHash(response.boc)
-                })
-            );
-        }
-    };
+    const handleEnterSendAmount = () => inputRef.current?.focus();
+    const handleSwap = () => inputRef.current?.blur();
 
     console.log('isProcessingSwapTransaction', isProcessingSwapTransaction);
 
     return (
         <>
-            <div className={styles.body_div}>
-                <CustomInput
-                    label="Send"
-                    isInputEnabled={true}
-                    inputValue={inputAssetAmount}
-                    assetValue={inputAsset}
-                    balance={balances[inputAsset.address]}
-                    onInputValueChange={setInputAssetAmount}
-                    onAssetValueChange={setInputAsset}
-                    ref={inputRef}
-                />
-                <ToggleAssetsButton onClick={handleToggleAssetsClick} />
-                <CustomInput
-                    label="Receive"
-                    isInputEnabled={false}
-                    inputValue={outputAssetAmount}
-                    balance={balances[outputAsset.address]}
-                    assetValue={outputAsset}
-                    onAssetValueChange={setOutputAsset}
-                />
-                <div className={styles.body_button_wrapper}>
+            <ContentContainer>
+                <div className={styles.body_div}>
+                    <div className={styles.input_asset_container}>
+                        <CustomInput
+                            label="You send"
+                            isInputEnabled={true}
+                            inputValue={inputAssetAmount}
+                            assetValue={inputAsset}
+                            balance={balances[inputAsset.address]}
+                            onInputValueChange={setInputAssetAmount}
+                            onAssetValueChange={setInputAsset}
+                            ref={inputRef}
+                        />
+                        <ToggleAssetsButton onClick={handleToggleAssetsClick} />
+                    </div>
+                    <div className={styles.output_asset_container}>
+                        <CustomInput
+                            label="You receive"
+                            isInputEnabled={false}
+                            inputValue={outputAssetAmount}
+                            balance={balances[outputAsset.address]}
+                            assetValue={outputAsset}
+                            onAssetValueChange={setOutputAsset}
+                        />
+                    </div>
+
                     {wallet ? (
-                        outputAssetAmount === '' ? (
+                        Number(inputAssetAmount) === 0 ? (
                             <FormButton
-                                text="Enter send amount"
-                                type="button"
-                                onClick={handleEnterSendAmountClick}
-                                className={styles.body_button}
+                                text="Enter amount"
+                                onClick={handleEnterSendAmount}
                             />
                         ) : (
-                            <FormButton
-                                text="Swap"
-                                type="button"
-                                onClick={handleSwapClick}
-                                className={styles.body_button}
-                            />
+                            <SwapButton onSwap={handleSwap} />
                         )
                     ) : (
                         <FormButton
                             text="Connect Wallet"
-                            type="button"
                             onClick={handleConnectClick}
-                            className={styles.body_button}
                         />
                     )}
                 </div>
-            </div>
+            </ContentContainer>
         </>
     );
 };

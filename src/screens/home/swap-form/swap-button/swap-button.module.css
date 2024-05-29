@@ -1,0 +1,11 @@
+.content_container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--2-step);
+    overflow-y: scroll;
+}
+
+.main_button {
+    margin-top: auto;
+}

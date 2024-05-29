@@ -1,17 +1,17 @@
 import {TonConnectUIProvider} from '@tonconnect/ui-react';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import {App} from './components/app/app.tsx';
 import {SwapFormProvider} from './hooks/swap-form/swap-form.provider.tsx';
+import {ViewportHeightProvider} from './hooks/viewport-height/viewport-height.provider.tsx';
 import {persistor, store} from './store';
 
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
+    <ViewportHeightProvider>
         <SwapFormProvider>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
@@ -21,5 +21,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 </PersistGate>
             </Provider>
         </SwapFormProvider>
-    </React.StrictMode>
+    </ViewportHeightProvider>
 );

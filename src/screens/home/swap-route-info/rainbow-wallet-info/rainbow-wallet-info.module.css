@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background: rgba(62, 136, 247, 0.1);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--2-step);
+    padding: var(--2-step);
+    font-size: 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--2-step);
+}
+
+.route_info_header_logo {
+    fill: var(--button-color);
+}
+
+.header_text {
+    margin-left: var(--step);
+    font-family: 'Basel', sans-serif;
+    color: var(--button-color);
+}
+
+.text {
+    opacity: var(--text-opacity);
+}

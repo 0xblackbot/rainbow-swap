@@ -5,3 +5,6 @@ export const useBalancesSelector = () =>
 
 export const useIsProcessingSwapTransactionSelector = () =>
     useSelector(({wallet}) => wallet.pendingSwapTransaction.isLoading);
+
+export const useIsRainbowWalletActiveSelector = () =>
+    useSelector(({wallet}) => wallet.isRainbowWalletActive.data);

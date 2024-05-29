@@ -1,34 +1,18 @@
-import {
-    useTonAddress,
-    useTonConnectModal,
-    useTonConnectUI
-} from '@tonconnect/ui-react';
-import {useMemo, useState} from 'react';
+import {useTonAddress, useTonConnectModal} from '@tonconnect/ui-react';
 
 import {LogoText} from './assets/LogoText';
 import styles from './header.module.css';
-import {getClassName} from '../../utils/style.utils';
+import {WalletMenu} from './wallet-menu/wallet-menu.tsx';
+import {HeaderContainer} from '../header-container/header-container.tsx';
 
 export const Header = () => {
     const walletAddress = useTonAddress();
     const connectModal = useTonConnectModal();
-    const [tonConnectUI] = useTonConnectUI();
 
-    const shortWalletAddress = useMemo(
-        () => walletAddress.slice(0, 4) + '...' + walletAddress.slice(-4),
-        [walletAddress]
-    );
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const handleDropdownClick = () => setIsDropdownOpen(value => !value);
-    const handleConnectClick = () => connectModal.open();
-    const handleDisconnectClick = () => {
-        tonConnectUI.disconnect();
-        setIsDropdownOpen(false);
-    };
+    const handleConnect = () => connectModal.open();
 
     return (
-        <div className={styles.header_div}>
+        <HeaderContainer>
             <div className={styles.logo_div}>
                 <img
                     className={styles.header_triangle_logo}
@@ -42,56 +26,14 @@ export const Header = () => {
             </div>
             {walletAddress === '' ? (
                 <button
-                    onClick={handleConnectClick}
                     className={styles.connect_button}
+                    onClick={handleConnect}
                 >
                     Connect
                 </button>
             ) : (
-                <div className={styles.dropdown}>
-                    <button
-                        onClick={handleDropdownClick}
-                        className={styles.disconnect_button}
-                    >
-                        {shortWalletAddress}
-                    </button>
-                    {isDropdownOpen && (
-                        <>
-                            <div className={styles.dropdown_content}>
-                                <button
-                                    className={getClassName(
-                                        styles.dropdown_explore_button,
-                                        styles.dropdown_button
-                                    )}
-                                >
-                                    <a
-                                        href={`https://tonviewer.com/${walletAddress}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className={styles.a_button}
-                                    >
-                                        View in Explorer
-                                    </a>
-                                </button>
-                                <button
-                                    className={getClassName(
-                                        styles.dropdown_disconnect_button,
-                                        styles.dropdown_button
-                                    )}
-                                    onClick={handleDisconnectClick}
-                                >
-                                    Disconnect
-                                </button>
-                            </div>
-
-                            <div
-                                className={getClassName(styles.overlay)}
-                                onClick={handleDropdownClick}
-                            ></div>
-                        </>
-                    )}
-                </div>
+                <WalletMenu walletAddress={walletAddress} />
             )}
-        </div>
+        </HeaderContainer>
     );
 };

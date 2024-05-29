@@ -1,58 +1,56 @@
-.route{
-    margin-top: var(--step);
+.route {
+    display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-bottom: var(--step);
 }
 
 .dots {
+    display: flex;
     overflow: hidden;
     word-wrap: break-word;
-    color: white;
-    flex:1;
+    color: var(--text-color);
+    flex: 1;
     margin-bottom: 7px;
     letter-spacing: 5px;
-    z-index: 1;
-  }
-  
+}
+
 .dots:after {
     content: '..................................................';
     color: var(--text-color);
+    opacity: var(--text-opacity);
 }
 
 
 .route_info {
-  width: 48px !important;
-  flex-direction: column;
-  color: var(--hint-color);
-  flex-shrink: 0;
-  background-color: var(--bg-color);
-  z-index: 2;
-}
-
-.route_info {
-  width: 48px !important;
-  flex-direction: column;
-  color: var(--hint-color);
-  flex-shrink: 0;
+    display: flex;
+    width: 48px !important;
+    flex-direction: column;
+    color: var(--text-color);
+    flex-shrink: 0;
 }
 
 .route_info p {
-  width: 48px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+    width: 48px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.route_info :last-child{
+.route_info :first-child {
+    opacity: var(--text-opacity);
+}
+
+.route_info :last-child {
     color: var(--button-color);
 }
 
 .route > :first-child {
     margin-right: var(--step);
     align-items: flex-start;
-  }
-  
-  .route > :last-child {
+}
+
+.route > :last-child {
     margin-left: var(--step);
     align-items: flex-end;
-  }
+}

@@ -3,7 +3,6 @@
     align-items: center;
     margin-top: var(--step);
     margin-bottom: var(--step);
-    font-family: 'Basel-book', sans-serif;
     color: var(--hint-color);
 }
 

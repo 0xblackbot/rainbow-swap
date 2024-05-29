@@ -1,6 +1,6 @@
 import {FC, PropsWithChildren, useState} from 'react';
 
-import {SwapFormContext} from './swap-form.context';
+import {SwapFormContext} from './swap-form.context.ts';
 import {DEFAULT_ASSETS_RECORD} from '../../data/assets-record';
 import {TON, USDT} from '../../globals';
 import {Asset} from '../../interfaces/asset.interface';
@@ -13,6 +13,7 @@ export const SwapFormProvider: FC<PropsWithChildren> = ({children}) => {
         DEFAULT_ASSETS_RECORD[USDT]
     );
     const [inputAssetAmount, setInputAssetAmount] = useState('');
+
     return (
         <SwapFormContext.Provider
             value={{

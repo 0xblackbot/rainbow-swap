@@ -2,6 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 
 import {
     addPendingSwapTransactionActions,
+    checkIsRainbowWalletActiveActions,
     loadBalancesActions
 } from './wallet-actions.ts';
 import {walletInitialState, WalletState} from './wallet-state.ts';
@@ -42,6 +43,28 @@ export const walletReducers = createReducer<WalletState>(
             (state, {payload: error}) => ({
                 ...state,
                 pendingSwapTransaction: createEntity(undefined, false, error)
+            })
+        );
+
+        builder.addCase(checkIsRainbowWalletActiveActions.submit, state => ({
+            ...state,
+            isRainbowWalletActive: createEntity(
+                state.isRainbowWalletActive.data,
+                true
+            )
+        }));
+        builder.addCase(
+            checkIsRainbowWalletActiveActions.success,
+            (state, {payload}) => ({
+                ...state,
+                isRainbowWalletActive: createEntity(payload, false)
+            })
+        );
+        builder.addCase(
+            checkIsRainbowWalletActiveActions.fail,
+            (state, {payload: error}) => ({
+                ...state,
+                isRainbowWalletActive: createEntity(false, false, error)
             })
         );
     }
