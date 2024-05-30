@@ -21,9 +21,9 @@ import {
 } from './wallet-actions';
 import {TON_CLIENT, WORKCHAIN} from '../../globals.ts';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
+import {TonBalanceArray} from '../../interfaces/ton-balance-response.interface.ts';
 import {RainbowWalletContract} from '../../swap-routes/rainbow/rainbow-wallet.contract.ts';
-import {BalancesRecord} from '../../types/balances-record.type';
-import {fromNano} from '../../utils/big-int.utils';
+import {getBalancesRecord} from '../../utils/balances-record.utils.ts';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
 
 const walletEpic = (action$: Observable<Action>) =>
@@ -32,28 +32,23 @@ const walletEpic = (action$: Observable<Action>) =>
         toPayload(),
         switchMap(payload =>
             from(
-                axios.get<BalancesArray>(
-                    `https://tonapi.io/v2/accounts/${payload}/jettons`
-                )
+                Promise.all([
+                    axios.get<BalancesArray>(
+                        `https://tonapi.io/v2/accounts/${payload}/jettons`
+                    ),
+                    axios.get<TonBalanceArray>(
+                        `https://tonapi.io/v2/accounts/${payload}`
+                    )
+                ])
             ).pipe(
-                map(response => {
-                    const balancesRecord: BalancesRecord = {};
-                    response.data.balances.forEach(balanceObject => {
-                        const parsedAddress = Address.parse(
-                            balanceObject.jetton.address
-                        ).toString();
+                map(([jettonsResponse, accountResponse]) => {
+                    const balancesRecord = getBalancesRecord(
+                        jettonsResponse,
+                        accountResponse
+                    );
 
-                        balancesRecord[parsedAddress] = fromNano(
-                            balanceObject.balance,
-                            balanceObject.jetton.decimals
-                        );
-                    });
-
-                    return balancesRecord;
+                    return loadBalancesActions.success(balancesRecord);
                 }),
-                map(balancesRecord =>
-                    loadBalancesActions.success(balancesRecord)
-                ),
                 catchError(error => of(loadBalancesActions.fail(error.message)))
             )
         )
