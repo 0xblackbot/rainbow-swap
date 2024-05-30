@@ -50,7 +50,7 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
         () =>
             filteredAssetsList.map(asset => ({
                 asset,
-                balance: balances[asset.address],
+                balance: balances[asset.address] ?? '0',
                 isSelected: asset.address === value.address,
                 onClick: () => {
                     setSearchValue('');
