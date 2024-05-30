@@ -7,6 +7,7 @@ import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
 import {ContentContainer} from '../../../components/content-container/content-container.tsx';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
+import {Asset} from '../../../interfaces/asset.interface.ts';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
@@ -32,44 +33,56 @@ export const SwapScreen = () => {
     );
 
     const {
-        inputAsset,
-        setInputAsset,
-        outputAsset,
-        setOutputAsset,
+        inputAssetAddress,
+        setInputAssetAddress,
+        outputAssetAddress,
+        setOutputAssetAddress,
         inputAssetAmount,
         setInputAssetAmount
     } = useSwapForm();
+
+    const inputAsset = assets[inputAssetAddress];
+    const outputAsset = assets[outputAssetAddress];
 
     const outputAssetAmount = useOutputAssetAmount(
         routes,
         outputAsset.decimals
     );
 
+    const nanoInputAssetAmount = useMemo(
+        () =>
+            inputAssetAmount === ''
+                ? '0'
+                : toNano(inputAssetAmount, inputAsset.decimals).toString(),
+        [inputAssetAmount, inputAsset.decimals]
+    );
+
     useEffect(() => {
-        if (inputAssetAmount === '') {
+        if (nanoInputAssetAmount === '0') {
             dispatch(loadSwapRoutesActions.success([]));
         } else {
             dispatch(
                 loadSwapRoutesActions.submit({
-                    inputAssetAmount: toNano(
-                        inputAssetAmount,
-                        inputAsset.decimals
-                    ).toString(),
-                    inputAssetAddress: inputAsset.address,
-                    outputAssetAddress: outputAsset.address
+                    inputAssetAmount: nanoInputAssetAmount,
+                    inputAssetAddress,
+                    outputAssetAddress
                 })
             );
         }
-    }, [inputAssetAmount, inputAsset, outputAsset, dispatch]);
+    }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);
 
     const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
         setInputAssetAmount('');
-        setInputAsset(outputAsset);
-        setOutputAsset(inputAsset);
+        setInputAssetAddress(outputAssetAddress);
+        setOutputAssetAddress(inputAssetAddress);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
 
+    const handleInputAssetValueChange = (newValue: Asset) =>
+        setInputAssetAddress(newValue.address);
+    const handleOutputAssetValueChange = (newValue: Asset) =>
+        setOutputAssetAddress(newValue.address);
     const handleEnterSendAmount = () => inputRef.current?.focus();
     const handleSwap = () => inputRef.current?.blur();
 
@@ -81,28 +94,23 @@ export const SwapScreen = () => {
                         <CustomInput
                             ref={inputRef}
                             label="You send"
+                            balance={balances[inputAssetAddress]}
                             isInputEnabled={true}
                             inputValue={inputAssetAmount}
-                            assetValue={inputAsset}
-                            balance={balances[inputAsset.address]}
-                            assetExchangeRate={
-                                assets[inputAsset.address].exchangeRate
-                            }
                             onInputValueChange={setInputAssetAmount}
-                            onAssetValueChange={setInputAsset}
+                            assetValue={inputAsset}
+                            onAssetValueChange={handleInputAssetValueChange}
                         />
                         <ToggleAssetsButton onClick={handleToggleAssetsClick} />
                     </div>
                     <div className={styles.output_asset_container}>
                         <CustomInput
                             label="You receive"
+                            balance={balances[outputAssetAddress]}
                             isInputEnabled={false}
                             inputValue={outputAssetAmount}
                             assetValue={outputAsset}
-                            assetExchangeRate={
-                                assets[outputAsset.address].exchangeRate
-                            }
-                            onAssetValueChange={setOutputAsset}
+                            onAssetValueChange={handleOutputAssetValueChange}
                         />
                     </div>
 
