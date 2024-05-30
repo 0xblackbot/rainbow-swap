@@ -11,7 +11,15 @@ import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.utils.ts';
 import {getClassName} from '../../../utils/style.utils.ts';
 
-export const SwapRouteInfo: FC = () => {
+interface Props {
+    inputAssetAmount: string;
+    outputAssetAmount: string;
+}
+
+export const SwapRouteInfo: FC<Props> = ({
+    inputAssetAmount,
+    outputAssetAmount
+}) => {
     const swapRoutes = useSwapRoutesSelector();
     const assets = useAssetsRecordSelector();
     const {inputAsset, outputAsset} = useSwapForm();
@@ -42,9 +50,15 @@ export const SwapRouteInfo: FC = () => {
                 <p className={styles.route_info_header_text}>Route info</p>
             </div>
             <div className={styles.route_info_inside_div}>
-                <p>Routing fee</p>
+                <p>You send</p>
                 <p>
-                    0% <span className={styles.crossed_out}>0.1%</span>
+                    {inputAssetAmount} {inputAsset.symbol}
+                </p>
+            </div>
+            <div className={styles.route_info_inside_div}>
+                <p>You receive</p>
+                <p>
+                    {outputAssetAmount} {outputAsset.symbol}
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>
@@ -52,6 +66,12 @@ export const SwapRouteInfo: FC = () => {
                 <p>
                     1 {inputAsset.symbol} = {formatNumber(exchangeRate, 5)}{' '}
                     {outputAsset.symbol}
+                </p>
+            </div>
+            <div className={styles.route_info_inside_div}>
+                <p>Routing fee</p>
+                <p>
+                    0% <span className={styles.crossed_out}>0.1%</span>
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>

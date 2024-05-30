@@ -32,9 +32,15 @@ import {SwapRouteInfo} from '../../swap-route-info/swap-route-info.tsx';
 
 interface Props {
     onSwap: () => void;
+    inputAssetAmount: string;
+    outputAssetAmount: string;
 }
 
-export const SwapButton: FC<Props> = ({onSwap}) => {
+export const SwapButton: FC<Props> = ({
+    onSwap,
+    inputAssetAmount,
+    outputAssetAmount
+}) => {
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
     const isRainbowWalletActive = useIsRainbowWalletActiveSelector();
@@ -128,7 +134,10 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
             >
                 <div className={styles.content_container}>
                     {!isRainbowWalletActive.data && <RainbowWalletInfo />}
-                    <SwapRouteInfo />
+                    <SwapRouteInfo
+                        inputAssetAmount={inputAssetAmount}
+                        outputAssetAmount={outputAssetAmount}
+                    />
                     <SwapRouteDisclaimer />
                     {isRainbowWalletActive.data ? (
                         <FormButton
