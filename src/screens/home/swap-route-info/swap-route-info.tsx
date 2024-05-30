@@ -10,22 +10,19 @@ import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-r
 import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.utils.ts';
 import {getClassName} from '../../../utils/style.utils.ts';
+import {useOutputAssetAmount} from '../swap-form/hooks/use-output-asset-amount.hook.ts';
 
-interface Props {
-    inputAssetAmount: string;
-    outputAssetAmount: string;
-}
-
-export const SwapRouteInfo: FC<Props> = ({
-    inputAssetAmount,
-    outputAssetAmount
-}) => {
+export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
     const assets = useAssetsRecordSelector();
-    const {inputAsset, outputAsset} = useSwapForm();
+    const {inputAsset, outputAsset, inputAssetAmount} = useSwapForm();
     const routes = useMemo(
         () => swapRoutes.data.map(mapSwapRouteToRoute),
         [swapRoutes.data]
+    );
+    const outputAssetAmount = useOutputAssetAmount(
+        routes,
+        outputAsset.decimals
     );
     const {chainsAmount, poolsAmount} = useMemo(
         () => getRoutesStepCount(routes),
