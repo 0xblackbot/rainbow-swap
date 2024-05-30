@@ -9,7 +9,7 @@ import {BalancesRecord} from '../types/balances-record.type';
 
 const TON_DECIMALS = 9;
 
-export const getBalances = (
+export const getBalancesRecord = (
     jettonsResponse: AxiosResponse<BalancesArray>,
     accountResponse: AxiosResponse<TonBalanceArray>
 ) => {

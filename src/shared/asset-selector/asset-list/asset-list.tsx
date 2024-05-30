@@ -19,6 +19,7 @@ interface Props {
 
 export const AssetList: FC<Props> = ({value, onChange}) => {
     const divHeight = useDivHeight();
+
     const [searchValue, setSearchValue] = useState('');
 
     const balances = useBalancesSelector();

@@ -4,7 +4,7 @@ import {AssetList} from './asset-list/asset-list.tsx';
 import styles from './asset-selector.module.css';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
 import {BottomSheet} from '../../components/bottom-sheet/bottom-sheet.tsx';
-import {Asset} from '../../interfaces/asset.interface.ts';
+import {Asset} from '../../interfaces/asset.interface';
 import {FormButton} from '../FormButton/FormButton.tsx';
 
 interface Props {

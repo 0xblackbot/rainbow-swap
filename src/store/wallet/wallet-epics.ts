@@ -23,7 +23,7 @@ import {TON_CLIENT, WORKCHAIN} from '../../globals.ts';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
 import {TonBalanceArray} from '../../interfaces/ton-balance-response.interface.ts';
 import {RainbowWalletContract} from '../../swap-routes/rainbow/rainbow-wallet.contract.ts';
-import {getBalances} from '../../utils/get-balances.utils.ts';
+import {getBalancesRecord} from '../../utils/balances-record.utils.ts';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
 
 const walletEpic = (action$: Observable<Action>) =>
@@ -41,12 +41,14 @@ const walletEpic = (action$: Observable<Action>) =>
                     )
                 ])
             ).pipe(
-                map(([jettonsResponse, accountResponse]) =>
-                    getBalances(jettonsResponse, accountResponse)
-                ),
-                map(balancesRecord =>
-                    loadBalancesActions.success(balancesRecord)
-                ),
+                map(([jettonsResponse, accountResponse]) => {
+                    const balancesRecord = getBalancesRecord(
+                        jettonsResponse,
+                        accountResponse
+                    );
+
+                    return loadBalancesActions.success(balancesRecord);
+                }),
                 catchError(error => of(loadBalancesActions.fail(error.message)))
             )
         )

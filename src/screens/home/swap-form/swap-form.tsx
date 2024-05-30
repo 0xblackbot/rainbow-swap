@@ -49,15 +49,16 @@ export const SwapScreen = () => {
         outputAsset.decimals
     );
 
-    const nanoInputAssetAmount = useMemo(() => {
-        if (inputAssetAmount === '') {
-            return '';
-        }
-        return toNano(inputAssetAmount, inputAsset.decimals).toString();
-    }, [inputAssetAmount, inputAsset.decimals]);
+    const nanoInputAssetAmount = useMemo(
+        () =>
+            inputAssetAmount === ''
+                ? '0'
+                : toNano(inputAssetAmount, inputAsset.decimals).toString(),
+        [inputAssetAmount, inputAsset.decimals]
+    );
 
     useEffect(() => {
-        if (nanoInputAssetAmount === '') {
+        if (nanoInputAssetAmount === '0') {
             dispatch(loadSwapRoutesActions.success([]));
         } else {
             dispatch(
@@ -91,6 +92,7 @@ export const SwapScreen = () => {
                 <div className={styles.body_div}>
                     <div className={styles.input_asset_container}>
                         <CustomInput
+                            ref={inputRef}
                             label="You send"
                             balance={balances[inputAssetAddress]}
                             isInputEnabled={true}

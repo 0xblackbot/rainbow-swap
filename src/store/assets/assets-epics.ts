@@ -6,7 +6,7 @@ import {ofType} from 'ts-action-operators';
 import {loadAssetsActions} from './assets-actions';
 import {API, COIN_GECKO_API} from '../../globals';
 import {AssetsRecord} from '../../types/assets-record.type';
-import {getExchangeRates} from '../../utils/get-exchange-rates.utils';
+import {mapAssetsRecordWithExchangeRate} from '../../utils/assets-record.ts';
 
 const TON_COINGECKO_ID = 'the-open-network';
 
@@ -21,15 +21,12 @@ const loadAssetsEpic = (action$: Observable<Action>) =>
                 ])
             ).pipe(
                 map(([tonPriceResponse, assetsResponse]) => {
-                    const tonPrice =
-                        tonPriceResponse.data.market_data.current_price.usd;
-
-                    const assetsWithExchangeRate = getExchangeRates(
-                        tonPrice,
+                    const assetsRecord = mapAssetsRecordWithExchangeRate(
+                        tonPriceResponse.data.market_data.current_price.usd,
                         assetsResponse.data
                     );
 
-                    return loadAssetsActions.success(assetsWithExchangeRate);
+                    return loadAssetsActions.success(assetsRecord);
                 }),
                 catchError(err => of(loadAssetsActions.fail(err.message)))
             )
