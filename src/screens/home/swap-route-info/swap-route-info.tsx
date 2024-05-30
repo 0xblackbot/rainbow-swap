@@ -32,8 +32,7 @@ export const SwapRouteInfo: FC = () => {
         [routes]
     );
     const exchangeRate =
-        parseFloat(assets[inputAssetAddress].exchangeRate) /
-        parseFloat(assets[outputAssetAddress].exchangeRate);
+        parseFloat(outputAssetAmount) / parseFloat(inputAssetAmount);
 
     return (
         <div className={styles.route_info_wrapper}>
