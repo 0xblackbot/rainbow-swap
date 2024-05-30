@@ -13,6 +13,8 @@ export const DEBOUNCE_DUE_TIME = 300;
 export const GAS_AMOUNT = toNano('0.255', 9);
 export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);
 
+export const DEFAULT_HINT_COLOR = '#3e3e42';
+
 export const API = axios.create({
     baseURL: 'https://api.blackbot.technology/rainbow/api'
 });
