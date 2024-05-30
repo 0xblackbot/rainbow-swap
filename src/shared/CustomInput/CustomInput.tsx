@@ -1,7 +1,7 @@
 import {ChangeEvent, forwardRef} from 'react';
 
 import styles from './CustomInput.module.css';
-import {Asset} from '../../interfaces/asset.interface';
+import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
 import {EMPTY_FN} from '../../utils/emptyfn.ts';
 import {formatNumber} from '../../utils/format-number.utils.ts';
 import {AssetSelector} from '../asset-selector/asset-selector.tsx';
@@ -10,10 +10,10 @@ interface Props {
     label: string;
     isInputEnabled: boolean;
     inputValue: string;
-    assetValue: Asset;
+    assetAddressValue: string;
     balance?: string | undefined;
     onInputValueChange?: (newInputValue: string) => void;
-    onAssetValueChange: (newAssetValue: Asset) => void;
+    onAssetValueChange: (newAssetValue: string) => void;
 }
 
 export const CustomInput = forwardRef<HTMLInputElement, Props>(
@@ -22,13 +22,15 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             label,
             isInputEnabled,
             inputValue,
-            assetValue,
+            assetAddressValue,
             balance = '0',
             onInputValueChange = EMPTY_FN,
             onAssetValueChange
         },
         ref
     ) => {
+        const assets = useAssetsRecordSelector();
+        const assetValue = assets[assetAddressValue];
         const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
             let value = e.target.value;
             value = value.replace(/,/g, '.');
@@ -61,7 +63,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 <p className={styles.container_label}>{label}</p>
                 <div className={styles.input_container}>
                     <AssetSelector
-                        value={assetValue}
+                        value={assetAddressValue}
                         headerTitle="Select asset"
                         onChange={onAssetValueChange}
                     />

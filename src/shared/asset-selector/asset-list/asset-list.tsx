@@ -4,8 +4,10 @@ import {FixedSizeList} from 'react-window';
 import {SearchIcon} from '../../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {XCircleIcon} from '../../../assets/icons/XCircleIcon/XCircleIcon.tsx';
 import {useDivHeight} from '../../../hooks/use-div-height.hook.ts';
-import {Asset} from '../../../interfaces/asset.interface.ts';
-import {useAssetsListSelector} from '../../../store/assets/assets-selectors.ts';
+import {
+    useAssetsListSelector,
+    useAssetsRecordSelector
+} from '../../../store/assets/assets-selectors.ts';
 import {useBalancesSelector} from '../../../store/wallet/wallet-selectors.ts';
 import {AssetListItemProps} from '../asset-list-item/asset-list-item.props.ts';
 import {AssetListItem} from '../asset-list-item/asset-list-item.tsx';
@@ -13,14 +15,15 @@ import styles from '../asset-selector.module.css';
 import {sortAssets} from '../utils/sort-assets.utils.ts';
 
 interface Props {
-    value: Asset;
-    onChange: (newValue: Asset) => void;
+    value: string;
+    onChange: (newValue: string) => void;
 }
 
 export const AssetList: FC<Props> = ({value, onChange}) => {
     const divHeight = useDivHeight();
     const [searchValue, setSearchValue] = useState('');
-
+    const assets = useAssetsRecordSelector();
+    const assetValue = assets[value];
     const balances = useBalancesSelector();
     const assetsList = useAssetsListSelector();
 
@@ -49,13 +52,13 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
             filteredAssetsList.map(asset => ({
                 asset,
                 balance: balances[asset.address],
-                isSelected: asset.address === value.address,
+                isSelected: asset.address === assetValue.address,
                 onClick: () => {
                     setSearchValue('');
-                    onChange(asset);
+                    onChange(asset.address);
                 }
             })),
-        [balances, filteredAssetsList, onChange, value.address]
+        [balances, filteredAssetsList, onChange, assetValue.address]
     );
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>

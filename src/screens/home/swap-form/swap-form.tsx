@@ -49,27 +49,30 @@ export const SwapScreen = () => {
 
     const nanoInputAssetAmount = useMemo(() => {
         if (inputAssetAmount === '') {
-            dispatch(loadSwapRoutesActions.success([]));
             return '';
         }
         return toNano(inputAssetAmount, inputAssetDecimals).toString();
-    }, [inputAssetAmount, inputAssetDecimals, dispatch]);
+    }, [inputAssetAmount, inputAssetDecimals]);
 
     useEffect(() => {
-        dispatch(
-            loadSwapRoutesActions.submit({
-                inputAssetAmount: nanoInputAssetAmount,
-                inputAssetAddress,
-                outputAssetAddress
-            })
-        );
+        if (nanoInputAssetAmount === '') {
+            dispatch(loadSwapRoutesActions.success([]));
+        } else {
+            dispatch(
+                loadSwapRoutesActions.submit({
+                    inputAssetAmount: nanoInputAssetAmount,
+                    inputAssetAddress,
+                    outputAssetAddress
+                })
+            );
+        }
     }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);
 
     const handleConnectClick = () => connectModal.open();
     const handleToggleAssetsClick = () => {
         setInputAssetAmount('');
-        setInputAssetAddress(assets[outputAssetAddress]);
-        setOutputAssetAddress(assets[inputAssetAddress]);
+        setInputAssetAddress(outputAssetAddress);
+        setOutputAssetAddress(inputAssetAddress);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
 
@@ -85,7 +88,7 @@ export const SwapScreen = () => {
                             label="You send"
                             isInputEnabled={true}
                             inputValue={inputAssetAmount}
-                            assetValue={assets[inputAssetAddress]}
+                            assetAddressValue={inputAssetAddress}
                             balance={balances[inputAssetAddress]}
                             onInputValueChange={setInputAssetAmount}
                             onAssetValueChange={setInputAssetAddress}
@@ -97,8 +100,8 @@ export const SwapScreen = () => {
                             label="You receive"
                             isInputEnabled={false}
                             inputValue={outputAssetAmount}
+                            assetAddressValue={outputAssetAddress}
                             balance={balances[outputAssetAddress]}
-                            assetValue={assets[outputAssetAddress]}
                             onAssetValueChange={setOutputAssetAddress}
                         />
                     </div>

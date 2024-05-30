@@ -1,14 +1,13 @@
 import {Dispatch, SetStateAction, createContext} from 'react';
 
 import {TON, USDT} from '../../globals';
-import {Asset} from '../../interfaces/asset.interface';
 import {EMPTY_FN} from '../../utils/emptyfn';
 
 interface SwapFormContextValues {
     outputAssetAddress: string;
-    setOutputAssetAddress: Dispatch<SetStateAction<Asset>>;
+    setOutputAssetAddress: Dispatch<SetStateAction<string>>;
     inputAssetAddress: string;
-    setInputAssetAddress: Dispatch<SetStateAction<Asset>>;
+    setInputAssetAddress: Dispatch<SetStateAction<string>>;
     inputAssetAmount: string;
     setInputAssetAmount: Dispatch<SetStateAction<string>>;
 }
