@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
 
-import {DEFAULT_HINT_COLOR} from '../globals';
+const DEFAULT_HINT_COLOR = '#3e3e42';
 
-export const useDisableMainButton = (condition: unknown) => {
+export const useDisableMainButton = (condition: boolean) => {
     useEffect(() => {
         if (condition) {
             const prevMainButtonColor = window.Telegram.WebApp.MainButton.color;
