@@ -83,7 +83,7 @@
 }
 
 .input_usd_balance{
-    width: 150px;
+    width: 120px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
