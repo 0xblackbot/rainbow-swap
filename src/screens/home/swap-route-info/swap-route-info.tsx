@@ -10,14 +10,22 @@ import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-r
 import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.utils.ts';
 import {getClassName} from '../../../utils/style.utils.ts';
+import {useOutputAssetAmount} from '../swap-form/hooks/use-output-asset-amount.hook.ts';
 
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
     const assets = useAssetsRecordSelector();
-    const {inputAssetAddress, outputAssetAddress} = useSwapForm();
+
+    const {inputAssetAddress, outputAssetAddress, inputAssetAmount} =
+        useSwapForm();
+
     const routes = useMemo(
         () => swapRoutes.data.map(mapSwapRouteToRoute),
         [swapRoutes.data]
+    );
+    const outputAssetAmount = useOutputAssetAmount(
+        routes,
+        assets[outputAssetAddress].decimals
     );
     const {chainsAmount, poolsAmount} = useMemo(
         () => getRoutesStepCount(routes),
@@ -42,9 +50,15 @@ export const SwapRouteInfo: FC = () => {
                 <p className={styles.route_info_header_text}>Route info</p>
             </div>
             <div className={styles.route_info_inside_div}>
-                <p>Routing fee</p>
+                <p>You send</p>
                 <p>
-                    0% <span className={styles.crossed_out}>0.1%</span>
+                    {inputAssetAmount} {assets[inputAssetAddress].symbol}
+                </p>
+            </div>
+            <div className={styles.route_info_inside_div}>
+                <p>You receive</p>
+                <p>
+                    {outputAssetAmount} {assets[outputAssetAddress].symbol}
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>
@@ -53,6 +67,12 @@ export const SwapRouteInfo: FC = () => {
                     1 {assets[inputAssetAddress].symbol} ={' '}
                     {formatNumber(exchangeRate, 5)}{' '}
                     {assets[outputAssetAddress].symbol}
+                </p>
+            </div>
+            <div className={styles.route_info_inside_div}>
+                <p>Routing fee</p>
+                <p>
+                    0% <span className={styles.crossed_out}>0.1%</span>
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>
