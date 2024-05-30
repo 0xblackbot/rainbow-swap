@@ -6,7 +6,6 @@ import {toast} from 'react-toastify';
 
 import styles from './swap-button.module.css';
 import {BottomSheet} from '../../../../components/bottom-sheet/bottom-sheet.tsx';
-import {useDisableMainButton} from '../../../../hooks/use-disable-main-button.hook.ts';
 import {useSendTransaction} from '../../../../hooks/use-send-transaction.hook.ts';
 import {FormButton} from '../../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../../store';
@@ -36,7 +35,6 @@ interface Props {
 }
 
 export const SwapButton: FC<Props> = ({onSwap}) => {
-    const [tonConnectUIOpen, setTonConnectUIOpen] = useState(false);
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
     const isRainbowWalletActive = useIsRainbowWalletActiveSelector();
@@ -47,8 +45,6 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
     const sendTransaction = useSendTransaction();
 
     const [isOpen, setIsOpen] = useState(false);
-
-    useDisableMainButton(tonConnectUIOpen);
 
     useEffect(() => {
         if (
@@ -86,7 +82,6 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
     const handleClose = () => setIsOpen(false);
 
     const handleConfirm = async () => {
-        setTonConnectUIOpen(true);
         const senderAddress = Address.parse(wallet?.account.address ?? '');
         const transferParams = await Promise.all(
             swapRoutes.data.map(swapRoute =>
@@ -104,10 +99,8 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
             showSuccessToast('Swap sent, please wait...');
             setIsOpen(false);
         }
-        setTonConnectUIOpen(false);
     };
     const handleActivateContract = async () => {
-        setTonConnectUIOpen(true);
         const senderAddress = Address.parse(wallet?.account.address ?? '');
         const transferParams = [
             getRainbowWalletActivationTransferParams(senderAddress)
@@ -123,7 +116,6 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
                 addPendingActivationTransactionActions.submit(transactionInfo)
             );
         }
-        setTonConnectUIOpen(false);
     };
 
     return (
