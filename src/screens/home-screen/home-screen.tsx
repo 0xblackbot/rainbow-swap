@@ -68,6 +68,7 @@ export const HomeScreen = () => {
         <>
             <ToastContainer
                 position="top-center"
+                pauseOnHover={false}
                 pauseOnFocusLoss={false}
                 draggablePercent={40}
             />

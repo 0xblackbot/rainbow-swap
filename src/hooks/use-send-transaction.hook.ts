@@ -27,15 +27,8 @@ export const useSendTransaction = () => {
                         bocHash: bocToHash(response.boc)
                     })
                 )
-                .catch(error => {
-                    if (
-                        error?.message ===
-                        '[TON_CONNECT_SDK_ERROR] _TonConnectUIError\nTransaction was not sent'
-                    ) {
-                        // user close popup inside app
-                    } else {
-                        showErrorToast('Transaction cancelled, try again...');
-                    }
+                .catch(() => {
+                    showErrorToast('Transaction cancelled, try again...');
 
                     return undefined;
                 });
