@@ -26,6 +26,7 @@ export const SwapScreen = () => {
     const dispatch = useDispatch();
     const assets = useAssetsRecordSelector();
     const swapRoutes = useSwapRoutesSelector();
+    const isLoading = swapRoutes.isLoading;
     const balances = useBalancesSelector();
     const routes = useMemo(
         () => swapRoutes.data.map(mapSwapRouteToRoute),
@@ -110,6 +111,7 @@ export const SwapScreen = () => {
                             isInputEnabled={false}
                             inputValue={outputAssetAmount}
                             assetValue={outputAsset}
+                            isLoading={isLoading}
                             onAssetValueChange={handleOutputAssetValueChange}
                         />
                     </div>
