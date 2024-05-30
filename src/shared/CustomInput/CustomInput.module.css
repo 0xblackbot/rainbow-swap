@@ -30,9 +30,15 @@
     color: var(--text-color);
     font-size: 32px;
     outline: none;
-    width: 69%; /* Any width required to make flex: 1 work*/
-    flex: 1;
+    width: 100%;
     text-align: right;
+}
+
+.input_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 69%; /* Any width required to make flex: 1 work*/
+  flex: 1;
 }
 
 .input_info {
@@ -56,8 +62,8 @@
 }
 
 .loader_spinner {
-    border: 2px solid var(--spinner-color-empty-area);
-    border-top: 2px solid var(--spinner-color);
+    border: 2px solid var(--text-color);
+    border-top: 2px solid var(--hint-color);
     border-radius: 50%;
     width: 16px;
     height: 16px;
@@ -74,4 +80,12 @@
     align-items: center;
     justify-content: center;
     width: 32px;
+}
+
+.input_usd_balance{
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: right;
 }

@@ -67,22 +67,24 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         headerTitle="Select asset"
                         onChange={onAssetValueChange}
                     />
-                    <div className={styles.empty_container}>
-                        {isLoading ? (
-                            <div className={styles.loader_spinner} />
-                        ) : null}
+                    <div className={styles.input_wrapper}>
+                        <div className={styles.empty_container}>
+                            {isLoading ? (
+                                <div className={styles.loader_spinner} />
+                            ) : null}
+                        </div>
+                        <input
+                            type="tel"
+                            inputMode="decimal"
+                            className={styles.input_field}
+                            onChange={handleInputChange}
+                            value={inputValue}
+                            placeholder="0"
+                            disabled={!isInputEnabled}
+                            required={isInputEnabled}
+                            ref={ref}
+                        />
                     </div>
-                    <input
-                        type="tel"
-                        inputMode="decimal"
-                        className={styles.input_field}
-                        onChange={handleInputChange}
-                        value={inputValue}
-                        placeholder="0"
-                        disabled={!isInputEnabled}
-                        required={isInputEnabled}
-                        ref={ref}
-                    />
                 </div>
 
                 <div className={styles.input_info}>
@@ -97,7 +99,9 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             </button>
                         ) : null}
                     </div>
-                    <p>${formatNumber(usdAmount, 2)}</p>
+                    <p className={styles.input_usd_balance}>
+                        ${formatNumber(usdAmount, 2)}
+                    </p>
                 </div>
             </div>
         );
