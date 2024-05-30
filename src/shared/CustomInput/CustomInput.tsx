@@ -14,6 +14,7 @@ interface Props {
     onInputValueChange?: (newInputValue: string) => void;
     assetValue: Asset;
     onAssetValueChange: (newAssetValue: Asset) => void;
+    isLoading?: boolean;
 }
 
 export const CustomInput = forwardRef<HTMLInputElement, Props>(
@@ -23,6 +24,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             isInputEnabled,
             inputValue,
             assetValue,
+            isLoading,
             balance = '0',
             onInputValueChange = EMPTY_FN,
             onAssetValueChange
@@ -65,6 +67,11 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         headerTitle="Select asset"
                         onChange={onAssetValueChange}
                     />
+                    <div className={styles.empty_container}>
+                        {isLoading ? (
+                            <div className={styles.loader_spinner} />
+                        ) : null}
+                    </div>
                     <input
                         type="tel"
                         inputMode="decimal"
