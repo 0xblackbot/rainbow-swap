@@ -9,6 +9,7 @@ import {useAssetsListSelector} from '../../../store/assets/assets-selectors.ts';
 import {useBalancesSelector} from '../../../store/wallet/wallet-selectors.ts';
 import {AssetListItemProps} from '../asset-list-item/asset-list-item.props.ts';
 import {AssetListItem} from '../asset-list-item/asset-list-item.tsx';
+import {AssetNoResult} from '../asset-no-result/asset-no-result.tsx';
 import styles from '../asset-selector.module.css';
 import {sortAssets} from '../utils/sort-assets.utils.ts';
 
@@ -87,15 +88,19 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
                 )}
             </div>
             <div ref={divHeight.ref} className={styles.assets_list}>
-                <FixedSizeList
-                    height={divHeight.height}
-                    width="100%"
-                    itemSize={66}
-                    itemCount={listProps.length}
-                    itemData={listProps}
-                >
-                    {AssetListItem}
-                </FixedSizeList>
+                {listProps.length === 0 ? (
+                    <AssetNoResult />
+                ) : (
+                    <FixedSizeList
+                        height={divHeight.height}
+                        width="100%"
+                        itemSize={66}
+                        itemCount={listProps.length}
+                        itemData={listProps}
+                    >
+                        {AssetListItem}
+                    </FixedSizeList>
+                )}
             </div>
         </>
     );

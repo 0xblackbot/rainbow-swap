@@ -52,12 +52,16 @@ export const BottomSheet: FC<Props> = ({
                                 <p className={styles.header_text}>
                                     {headerTitle}
                                 </p>
-                                <XCircleIcon
-                                    className={styles.xcircleIcon}
-                                    width="32px"
-                                    height="32px"
+                                <button
+                                    className={styles.header_button}
                                     onClick={onClose}
-                                />
+                                >
+                                    <XCircleIcon
+                                        className={styles.xcircleIcon}
+                                        width="16px"
+                                        height="16px"
+                                    />
+                                </button>
                             </div>
                             {children}
                         </>

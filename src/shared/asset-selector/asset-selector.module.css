@@ -82,6 +82,8 @@
 
 .assets_list {
     height: 100%;
+    justify-content: center;
+    display: flex;
 }
 
 .footer_container {
