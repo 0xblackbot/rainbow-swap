@@ -68,7 +68,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         onChange={onAssetValueChange}
                     />
                     <div className={styles.empty_container}>
-                        {isLoading && !isInputEnabled ? (
+                        {isLoading ? (
                             <div className={styles.loader_spinner} />
                         ) : null}
                     </div>
