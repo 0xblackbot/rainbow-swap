@@ -1,7 +1,7 @@
 import {FC, PropsWithChildren, useEffect, useState} from 'react';
 
 import styles from './bottom-sheet.module.css';
-import {XCircleIcon} from '../../assets/icons/XCircleIcon/XCircleIcon.tsx';
+import {XIcon} from '../../assets/icons/XIcon/XIcon.tsx';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {getClassName} from '../../utils/style.utils.ts';
 import {ContentContainer} from '../content-container/content-container.tsx';
@@ -56,8 +56,8 @@ export const BottomSheet: FC<Props> = ({
                                     className={styles.header_button}
                                     onClick={onClose}
                                 >
-                                    <XCircleIcon
-                                        className={styles.xcircleIcon}
+                                    <XIcon
+                                        className={styles.xIcon}
                                         width="16px"
                                         height="16px"
                                     />
