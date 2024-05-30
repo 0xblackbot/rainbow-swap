@@ -2,7 +2,7 @@ import {ChangeEvent, FC, useMemo, useState} from 'react';
 import {FixedSizeList} from 'react-window';
 
 import {SearchIcon} from '../../../assets/icons/SearchIcon/SearchIcon.tsx';
-import {XCircleIcon} from '../../../assets/icons/XCircleIcon/XCircleIcon.tsx';
+import {XCircledIcon} from '../../../assets/icons/XCircledIcon/XCircledIcon.tsx';
 import {useDivHeight} from '../../../hooks/use-div-height.hook.ts';
 import {Asset} from '../../../interfaces/asset.interface.ts';
 import {useAssetsListSelector} from '../../../store/assets/assets-selectors.ts';
@@ -79,7 +79,7 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
                     height="18px"
                 />
                 {searchValue && (
-                    <XCircleIcon
+                    <XCircledIcon
                         className={styles.xcircleIcon}
                         width="20px"
                         height="20px"
