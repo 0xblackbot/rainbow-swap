@@ -8,7 +8,6 @@ import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {formatNumber} from '../../../utils/format-number.utils.ts';
-import {getRoutesStepCount} from '../../../utils/route-step-with-calculation.utils.ts';
 import {getClassName} from '../../../utils/style.utils.ts';
 import {useOutputAssetAmount} from '../swap-form/hooks/use-output-asset-amount.hook.ts';
 
@@ -27,10 +26,6 @@ export const SwapRouteInfo: FC = () => {
         routes,
         assets[outputAssetAddress].decimals
     );
-    const {chainsAmount, poolsAmount} = useMemo(
-        () => getRoutesStepCount(routes),
-        [routes]
-    );
     const exchangeRate =
         parseFloat(outputAssetAmount) / parseFloat(inputAssetAmount);
 
@@ -48,13 +43,23 @@ export const SwapRouteInfo: FC = () => {
                 <SwapIcon className={styles.route_info_header_logo} />
                 <p className={styles.route_info_header_text}>Route info</p>
             </div>
-            <div className={styles.route_info_inside_div}>
+            <div
+                className={getClassName(
+                    styles.route_info_inside_div,
+                    styles.route_info_inside_div_big
+                )}
+            >
                 <p>You send</p>
                 <p>
                     {inputAssetAmount} {assets[inputAssetAddress].symbol}
                 </p>
             </div>
-            <div className={styles.route_info_inside_div}>
+            <div
+                className={getClassName(
+                    styles.route_info_inside_div,
+                    styles.route_info_inside_div_big
+                )}
+            >
                 <p>You receive</p>
                 <p>
                     {outputAssetAmount} {assets[outputAssetAddress].symbol}
@@ -76,9 +81,6 @@ export const SwapRouteInfo: FC = () => {
             </div>
             <div className={styles.route_info_inside_div}>
                 <p>Swap route</p>
-                <p>
-                    {chainsAmount} chains/{poolsAmount} pools
-                </p>
             </div>
             <div className={styles.routes_container}>
                 {routes.map((route, index) => (
