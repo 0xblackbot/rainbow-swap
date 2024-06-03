@@ -22,12 +22,21 @@ export const BottomSheet: FC<Props> = ({
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        const htmlElement = document.documentElement;
+        const originalOverflowY = htmlElement.style.overflowY;
+
         if (isOpen) {
+            htmlElement.style.overflowY = 'hidden';
             setIsVisible(true);
         } else {
+            htmlElement.style.overflowY = originalOverflowY;
             const timer = setTimeout(() => setIsVisible(false), 400);
             return () => clearTimeout(timer);
         }
+
+        return () => {
+            htmlElement.style.overflowY = originalOverflowY;
+        };
     }, [isOpen]);
 
     return (
