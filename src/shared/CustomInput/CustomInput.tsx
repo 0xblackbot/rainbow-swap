@@ -31,8 +31,8 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
         },
         ref
     ) => {
-        const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-            let value = e.target.value;
+        const handleInputChange = (e: ChangeEvent<HTMLSpanElement>) => {
+            let value = e.target.textContent || '';
             value = value.replace(/,/g, '.');
 
             if (value.charAt(0) === '.' || value.charAt(0) === ',') {
@@ -43,13 +43,21 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             if (regex.test(value)) {
                 const [integer, decimal] = value.split('.');
                 if (decimal?.length > assetValue.decimals) {
-                    e.target.value =
+                    value =
                         integer + '.' + decimal.slice(0, assetValue.decimals);
-                    onInputValueChange(e.target.value);
-                } else {
-                    onInputValueChange(value);
                 }
+                onInputValueChange(value);
+                e.target.textContent = value;
+            } else {
+                e.target.textContent = inputValue;
             }
+
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(e.target);
+            range.collapse(false);
+            selection?.removeAllRanges();
+            selection?.addRange(range);
         };
         const usdAmount =
             parseFloat(inputValue) * parseFloat(assetValue.exchangeRate);
@@ -67,22 +75,23 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         headerTitle="Select asset"
                         onChange={onAssetValueChange}
                     />
-                    <div className={styles.empty_container}>
-                        {isLoading ? (
-                            <div className={styles.loader_spinner} />
-                        ) : null}
+                    <div className={styles.input_wrapper}>
+                        <div className={styles.empty_container}>
+                            {isLoading ? (
+                                <div className={styles.loader_spinner} />
+                            ) : null}
+                        </div>
+                        <span
+                            contentEditable={isInputEnabled}
+                            suppressContentEditableWarning={true}
+                            className={styles.input_field}
+                            onInput={handleInputChange}
+                            ref={ref}
+                            inputMode="decimal"
+                        >
+                            {inputValue}
+                        </span>
                     </div>
-                    <input
-                        type="tel"
-                        inputMode="decimal"
-                        className={styles.input_field}
-                        onChange={handleInputChange}
-                        value={inputValue}
-                        placeholder="0"
-                        disabled={!isInputEnabled}
-                        required={isInputEnabled}
-                        ref={ref}
-                    />
                 </div>
 
                 <div className={styles.input_info}>
@@ -97,7 +106,9 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             </button>
                         ) : null}
                     </div>
-                    <p>${formatNumber(usdAmount, 2)}</p>
+                    <p className={styles.input_usd_balance}>
+                        ${formatNumber(usdAmount, 2)}
+                    </p>
                 </div>
             </div>
         );

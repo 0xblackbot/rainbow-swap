@@ -30,9 +30,29 @@
     color: var(--text-color);
     font-size: 32px;
     outline: none;
-    width: 69%; /* Any width required to make flex: 1 work*/
-    flex: 1;
+    width: auto;
     text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 30px; 
+}
+
+.input_field:focus {
+    outline: none;
+}
+
+.input_field:empty::before {
+    content: '0';
+    color: var(--hint-color);
+}
+
+
+.input_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 69%; /* Any width required to make flex: 1 work*/
+  flex: 1;
+  overflow: hidden;
 }
 
 .input_info {
@@ -56,8 +76,8 @@
 }
 
 .loader_spinner {
-    border: 2px solid var(--spinner-color-empty-area);
-    border-top: 2px solid var(--spinner-color);
+    border: 2px solid var(--text-color);
+    border-top: 2px solid var(--hint-color);
     border-radius: 50%;
     width: 16px;
     height: 16px;
@@ -73,5 +93,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
+    width: 20px;
+    margin-right: 4px;
+}
+
+.input_usd_balance{
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: right;
 }
