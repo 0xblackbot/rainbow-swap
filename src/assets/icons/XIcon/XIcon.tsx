@@ -7,7 +7,7 @@ interface Props {
     onClick?: () => void;
 }
 
-export const XCircleIcon: FC<Props> = ({
+export const XIcon: FC<Props> = ({
     width = '16px',
     height = '16px',
     className = '',

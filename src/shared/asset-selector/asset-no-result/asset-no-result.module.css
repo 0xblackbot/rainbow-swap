@@ -1,9 +1,9 @@
 .noResultDiv{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     font-size: var(--2-step);
+    margin-top: 48px;
     color: var(--hint-color);
     font-family: 'Basel', sans-serif;
   }
