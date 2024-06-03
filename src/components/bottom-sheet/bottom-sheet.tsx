@@ -2,6 +2,7 @@ import {FC, PropsWithChildren, useEffect, useState} from 'react';
 
 import styles from './bottom-sheet.module.css';
 import {XIcon} from '../../assets/icons/XIcon/XIcon.tsx';
+import {usePreventScroll} from '../../hooks/use-prevent-scrolling.hook.ts';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {getClassName} from '../../utils/style.utils.ts';
 import {ContentContainer} from '../content-container/content-container.tsx';
@@ -20,6 +21,8 @@ export const BottomSheet: FC<Props> = ({
 }) => {
     const viewportHeight = useViewportHeight();
     const [isVisible, setIsVisible] = useState(false);
+
+    usePreventScroll(isOpen);
 
     useEffect(() => {
         if (isOpen) {
