@@ -17,7 +17,7 @@ interface Props {
     isLoading?: boolean;
 }
 
-export const CustomInput = forwardRef<HTMLInputElement, Props>(
+export const CustomInput = forwardRef<HTMLSpanElement, Props>(
     (
         {
             label,
@@ -66,6 +66,12 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             onInputValueChange(balance);
         };
 
+        const handleSpanFocus = () => {
+            if (ref && typeof ref !== 'function' && ref.current) {
+                ref.current.focus();
+            }
+        };
+
         return (
             <div className={styles.container}>
                 <p className={styles.container_label}>{label}</p>
@@ -75,7 +81,10 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         headerTitle="Select asset"
                         onChange={onAssetValueChange}
                     />
-                    <div className={styles.input_wrapper}>
+                    <div
+                        className={styles.input_wrapper}
+                        onClick={handleSpanFocus}
+                    >
                         <div className={styles.empty_container}>
                             {isLoading ? (
                                 <div className={styles.loader_spinner} />
@@ -88,6 +97,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             onInput={handleInputChange}
                             ref={ref}
                             inputMode="decimal"
+                            tabIndex={0}
                         >
                             {inputValue}
                         </span>

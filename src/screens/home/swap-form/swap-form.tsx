@@ -22,7 +22,7 @@ import {toNano} from '../../../utils/big-int.utils.ts';
 
 export const SwapScreen = () => {
     const wallet = useTonWallet();
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLSpanElement>(null);
     const connectModal = useTonConnectModal();
 
     const dispatch = useDispatch();
