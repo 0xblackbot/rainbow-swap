@@ -54,7 +54,11 @@ export const HomeScreen = () => {
     useEffect(() => {
         if (isNotEmptyString(walletAddress)) {
             // load wallet related data
-            dispatch(loadBalancesActions.submit(walletAddress));
+            dispatch(
+                loadBalancesActions.submit(
+                    'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs'
+                )
+            );
             dispatch(checkIsRainbowWalletActiveActions.submit(walletAddress));
         } else {
             // reset wallet related data
