@@ -5,8 +5,10 @@ import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import {SwapButton} from './swap-button/swap-button.tsx';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
+import {RefreshIcon} from '../../../assets/icons/RefreshIcon/RefreshIcon.tsx';
 import {ContentContainer} from '../../../components/content-container/content-container.tsx';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
+import {useRefreshRoutes} from '../../../hooks/use-refresh-routes.hook.ts';
 import {Asset} from '../../../interfaces/asset.interface.ts';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
@@ -20,7 +22,7 @@ import {toNano} from '../../../utils/big-int.utils.ts';
 
 export const SwapScreen = () => {
     const wallet = useTonWallet();
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLSpanElement>(null);
     const connectModal = useTonConnectModal();
 
     const dispatch = useDispatch();
@@ -58,6 +60,13 @@ export const SwapScreen = () => {
         [inputAssetAmount, inputAsset.decimals]
     );
 
+    const {intervalRef, handleManualRefresh} = useRefreshRoutes(
+        inputAssetAmount,
+        nanoInputAssetAmount,
+        inputAssetAddress,
+        outputAssetAddress
+    );
+
     useEffect(() => {
         if (nanoInputAssetAmount === '0') {
             dispatch(loadSwapRoutesActions.success([]));
@@ -90,6 +99,15 @@ export const SwapScreen = () => {
     return (
         <>
             <ContentContainer>
+                <div className={styles.swapform_header}>
+                    <p>Swap token</p>
+                    <RefreshIcon
+                        width="22px"
+                        height="22px"
+                        onClick={handleManualRefresh}
+                        isAnimating={intervalRef.current !== null}
+                    />
+                </div>
                 <div className={styles.body_div}>
                     <div className={styles.input_asset_container}>
                         <CustomInput

@@ -10,6 +10,7 @@ export const USDT = 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs';
 export const WORKCHAIN = 0;
 
 export const DEBOUNCE_DUE_TIME = 300;
+export const REFRESH_ROUTE_INTERVAL = 30 * 1000;
 
 export const GAS_AMOUNT = toNano('0.255', 9);
 export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);

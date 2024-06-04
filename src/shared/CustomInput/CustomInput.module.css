@@ -26,6 +26,7 @@
 }
 
 .input_field {
+    display: inline-block;
     background-color: transparent;
     color: var(--text-color);
     font-size: 32px;

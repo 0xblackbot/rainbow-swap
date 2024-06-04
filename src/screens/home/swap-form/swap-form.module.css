@@ -13,3 +13,13 @@
     position: relative;
     margin-bottom: var(--2-step);
 }
+
+.swapform_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--2-step);
+    margin-bottom: var(--step);
+    color: var(--text-color);
+    font-size: 22px;
+} 
