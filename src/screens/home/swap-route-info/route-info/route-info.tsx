@@ -5,10 +5,7 @@ import {useSwapForm} from '../../../../hooks/swap-form/swap-form.hook.ts';
 import {RouteStepWithCalculation} from '../../../../interfaces/route-step-with-calculation.interface';
 import {useAssetsRecordSelector} from '../../../../store/assets/assets-selectors';
 import {fromNano} from '../../../../utils/big-int.utils';
-import {
-    getRouteInputStep,
-    getRouteOutputStep
-} from '../../../../utils/route-step-with-calculation.utils';
+import {getRouteInputStep} from '../../../../utils/route-step-with-calculation.utils';
 import {SwapRouteStep} from '../../swap-route-step/swap-route-step';
 
 interface Props {
@@ -18,24 +15,14 @@ interface Props {
 export const RouteInfo: FC<Props> = ({route}) => {
     const assetsRecord = useAssetsRecordSelector();
     const routeInputStep = getRouteInputStep(route);
-    const routeOutputStep = getRouteOutputStep(route);
     const {inputAssetAmount} = useSwapForm();
-    const {inputAsset, outputAsset} = {
-        inputAsset: assetsRecord[routeInputStep?.inputAssetAddress ?? ''],
-        outputAsset: assetsRecord[routeOutputStep?.outputAssetAddress ?? '']
-    };
-    const {routeInputAssetAmount, routeOutputAssetAmount} = {
-        routeInputAssetAmount: fromNano(
-            BigInt(routeInputStep?.inputAssetAmount ?? ''),
-            inputAsset.decimals
-        ),
-        routeOutputAssetAmount: fromNano(
-            BigInt(routeOutputStep?.outputAssetAmount ?? ''),
-            outputAsset.decimals
-        )
-    };
+    const inputAsset = assetsRecord[routeInputStep?.inputAssetAddress ?? ''];
+    const routeInputAssetAmount = fromNano(
+        BigInt(routeInputStep?.inputAssetAmount ?? ''),
+        inputAsset.decimals
+    );
 
-    const routeInputAssetPercantage = (
+    const routeInputAssetPercentage = (
         (parseFloat(routeInputAssetAmount) / parseFloat(inputAssetAmount)) *
         100
     ).toFixed(1);
@@ -43,8 +30,7 @@ export const RouteInfo: FC<Props> = ({route}) => {
     return (
         <div className={styles.route}>
             <div className={styles.route_info}>
-                <p>{routeInputAssetAmount}</p>
-                <p>{routeInputAssetPercantage + '%'}</p>
+                <p>{routeInputAssetPercentage + '%'}</p>
             </div>
             {route.map((routeStep, index) => (
                 <Fragment key={`route-step-${index}`}>
@@ -57,8 +43,7 @@ export const RouteInfo: FC<Props> = ({route}) => {
                 </Fragment>
             ))}
             <div className={styles.route_info}>
-                <p>{routeOutputAssetAmount}</p>
-                <p>{routeInputAssetPercantage + '%'}</p>
+                <p>{routeInputAssetPercentage + '%'}</p>
             </div>
         </div>
     );

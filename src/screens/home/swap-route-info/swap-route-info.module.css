@@ -7,7 +7,6 @@
     border-radius: var(--border-radius);
     margin-bottom: var(--2-step);
     padding: var(--2-step);
-    color: var(--text-color);
     font-size: 16px;
 }
 
@@ -36,6 +35,11 @@
     justify-content: space-between;
     margin-bottom: var(--step);
     opacity: var(--text-opacity);
+    color: var(--hint-color);
+}
+
+.route_info_inside_div_big {
+    color: var(--text-color);
 }
 
 .routes_container {
