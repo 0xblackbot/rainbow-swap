@@ -96,7 +96,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
 
                 <div className={styles.input_info}>
                     <div className={styles.input_info_balance}>
-                        <p>Balance: {balance}</p>
+                        <p>Balance: {formatNumber(parseFloat(balance), 2)}</p>
                         {isInputEnabled ? (
                             <button
                                 className={styles.input_info_button}
