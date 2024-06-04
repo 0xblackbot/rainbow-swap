@@ -61,7 +61,7 @@ export const SwapScreen = () => {
     );
 
     const {intervalRef, handleManualRefresh} = useRefreshRoutes(
-        inputAssetAddress,
+        inputAssetAmount,
         nanoInputAssetAmount,
         inputAssetAddress,
         outputAssetAddress
