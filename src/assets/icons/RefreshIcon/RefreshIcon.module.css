@@ -1,0 +1,85 @@
+.refresh_icon_div{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.refresh_icon_div svg{
+    position: absolute;
+    right: 0;
+    color: var(--hint-color);
+    z-index: 1;
+}
+
+.refresh_icon_path_animated path {
+    color: var(--text-color);
+    animation: fillAnimation 30s linear infinite;
+    z-index: 10;
+  } 
+
+.refresh_icon_path_pulsating path{
+    animation: pulsatingAnimation 2s linear infinite;
+    color: var(--text-color);
+    z-index: 10;
+}
+
+.refresh_icon_path_static path {
+    color: var(--hint-color);
+    z-index: 1;
+}
+
+
+@keyframes pulsatingAnimation {
+    0% {
+        color: var(--hint-color);
+    }
+
+    50% {
+        color: var(--text-color);
+    }
+
+    to {
+        color: var(--hint-color);
+    }
+}
+
+@keyframes fillAnimation {
+    0% {
+        clip-path: polygon(50% 50%,150% 50%,150% 50%)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%,150% 50%,50% 150%)
+    }
+
+    25.000001% {
+        clip-path: polygon(50% 50%,150% 50%,50% 150%,50% 150%)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%)
+    }
+
+    50.000001% {
+        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,-50% 50%)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,50% -50%)
+    }
+
+    75.000001% {
+        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,50% -50%,50% -50%)
+    }
+
+    97.5% {
+        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,50% -50%,150% 50%);
+        fill: var(--text-color)
+    }
+
+    to {
+        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,50% -50%,150% 50%);
+        fill: var(--text-color)
+    }
+}
