@@ -17,7 +17,7 @@ interface Props {
     isLoading?: boolean;
 }
 
-export const CustomInput = forwardRef<HTMLInputElement, Props>(
+export const CustomInput = forwardRef<HTMLSpanElement, Props>(
     (
         {
             label,
