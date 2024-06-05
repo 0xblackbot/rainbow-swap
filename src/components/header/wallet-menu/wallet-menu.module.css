@@ -3,7 +3,7 @@
     color: var(--button-text-color);
     border-radius: var(--4-step);
     padding: var(--step) var(--2-step);
-
+    cursor: pointer;
     position: relative;
     z-index: 11;
 }

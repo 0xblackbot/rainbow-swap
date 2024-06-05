@@ -2,6 +2,7 @@ import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
 import {useEffect, useMemo, useRef} from 'react';
 
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
+import {SettingsButton} from './settings-button/settings-button.tsx';
 import {SwapButton} from './swap-button/swap-button.tsx';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.tsx';
@@ -101,12 +102,15 @@ export const SwapScreen = () => {
             <ContentContainer>
                 <div className={styles.swapform_header}>
                     <p>Swap token</p>
-                    <RefreshIcon
-                        width="22px"
-                        height="22px"
-                        onClick={handleManualRefresh}
-                        isAnimating={intervalRef.current !== null}
-                    />
+                    <div className={styles.icons_div}>
+                        <RefreshIcon
+                            width="22px"
+                            height="22px"
+                            onClick={handleManualRefresh}
+                            isAnimating={intervalRef.current !== null}
+                        />
+                        <SettingsButton />
+                    </div>
                 </div>
                 <div className={styles.body_div}>
                     <div className={styles.input_asset_container}>

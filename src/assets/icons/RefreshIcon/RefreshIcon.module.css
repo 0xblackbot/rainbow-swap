@@ -1,6 +1,7 @@
 .refresh_icon_div{
     position: relative;
     display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
 }

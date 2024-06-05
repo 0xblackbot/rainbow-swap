@@ -61,6 +61,7 @@
 }
 
 .xIcon {
+    cursor: pointer;
     color: var(--hint-color);
 }
 

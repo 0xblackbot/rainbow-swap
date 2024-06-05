@@ -4,6 +4,7 @@
     background-color: var(--bg-color);
     border-radius: 50%;
     position: absolute;
+    cursor: pointer;
     right: var(--2-step);
     bottom: calc(-1 * var(--half-step));
     transform: translate(0, 50%);
