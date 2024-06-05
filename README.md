@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+# Rainbow Swap 🌈
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![main banner.png](docs%2Fassets%2Fmain%20banner.png)
 
-Currently, two official plugins are available:
+**Problem**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+TON DEXes have fragmented liquidity, each with its own set of liquid tokens. As the TON ecosystem grows, this uneven distribution worsens, leading to inefficient trades and arbitrage opportunities. Users often lose money due to the high price impact when swapping tokens on a single DEX.
 
-## Expanding the ESLint configuration
+**Solution**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Rainbow Swap aggregates liquidity from multiple TON DEXes, distributing trade volume across optimal routes to minimize price impact and slippage. This ensures users get the best possible prices in a single transaction.
 
-- Configure the top-level `parserOptions` property like this:
+**Examples**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+![not example.png](docs%2Fassets%2Fnot%20example.png)
+![usdt example.png](docs%2Fassets%2Fusdt%20example.png)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**Results**
+
+Our user-friendly interface allows seamless swaps with the most efficient routes, considering swap distribution and gas costs.
