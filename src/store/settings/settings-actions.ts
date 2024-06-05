@@ -1,5 +1,5 @@
-import {createActions} from '../utils/create-actions.ts';
+import {createAction} from '@reduxjs/toolkit';
 
-export const setSlippageToleranceActions = createActions<string, string>(
-    'settings/SET_SLIPPAGE_TOLERANCE_ACTIONS'
+export const setSlippageToleranceAction = createAction<string>(
+    'settings/SET_SLIPPAGE_TOLERANCE'
 );

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 import styles from './settings-button.module.css';
 import {ToleranceButton} from './ToleranceButton/ToleranceButton';
@@ -6,17 +6,15 @@ import {SettingsIcon} from '../../../../assets/icons/SettingsIcon/SettingsIcon';
 import {BottomSheet} from '../../../../components/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../../shared/FormButton/FormButton';
 import {useDispatch} from '../../../../store';
-import {setSlippageToleranceActions} from '../../../../store/settings/settings-actions';
+import {setSlippageToleranceAction} from '../../../../store/settings/settings-actions';
 import {useSlippageToleranceSelector} from '../../../../store/settings/settings-selectors';
 
 export const SettingsButton = () => {
     const dispatch = useDispatch();
     const slippageTolerance = useSlippageToleranceSelector();
     const [isOpen, setIsOpen] = useState(false);
-    const [slippageToleranceValue, setSlippageToleranceValue] =
-        useState(slippageTolerance);
 
-    const toleranceValues = ['0.1', '0.5', '1'];
+    const toleranceValues = ['1', '5', '10'];
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -24,7 +22,7 @@ export const SettingsButton = () => {
     const handleClose = () => setIsOpen(false);
 
     const handleToleranceClick = (value: string) => {
-        setSlippageToleranceValue(value);
+        dispatch(setSlippageToleranceAction(value));
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +30,7 @@ export const SettingsButton = () => {
         value = value.replace(/,/g, '.');
 
         if (value === '' || value === '0') {
-            setSlippageToleranceValue(value);
+            dispatch(setSlippageToleranceAction(value));
             return;
         }
 
@@ -44,14 +42,10 @@ export const SettingsButton = () => {
         if (regex.test(value)) {
             const numericValue = parseFloat(value);
             if (numericValue >= 0 && numericValue <= 100) {
-                setSlippageToleranceValue(value);
+                dispatch(setSlippageToleranceAction(value));
             }
         }
     };
-
-    useEffect(() => {
-        dispatch(setSlippageToleranceActions.submit(slippageToleranceValue));
-    }, [slippageToleranceValue, dispatch]);
 
     return (
         <>

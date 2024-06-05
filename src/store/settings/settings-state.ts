@@ -3,5 +3,5 @@ export interface SettingsState {
 }
 
 export const settingsInitialState: SettingsState = {
-    slippageTolerance: '0.5'
+    slippageTolerance: '5'
 };
