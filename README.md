@@ -19,7 +19,7 @@ Rainbow Swap aggregates liquidity from multiple TON DEXes, distributing trade vo
 
 Our user-friendly interface allows seamless swaps with the most efficient routes, considering swap distribution and gas costs.
 
-## Getting Started
+# Getting Started
 
 1. Clone repository
 ```
@@ -43,3 +43,7 @@ If you want to contribute your code, before making a pull request - ensure, that
 yarn ts
 yarn lint
 ```
+
+### License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
