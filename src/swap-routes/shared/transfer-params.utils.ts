@@ -25,8 +25,7 @@ export const getSwapRouteTransferParams = (
             senderAddress,
             senderAddress,
             senderAddress,
-            slippageTolerance,
-            true
+            slippageTolerance
         );
     }
     if (swapRoute.type === SwapRouteType.Ston) {
@@ -37,8 +36,7 @@ export const getSwapRouteTransferParams = (
             senderAddress,
             senderAddress,
             senderAddress,
-            slippageTolerance,
-            true
+            slippageTolerance
         );
     }
 

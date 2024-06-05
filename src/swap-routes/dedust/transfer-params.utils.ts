@@ -5,6 +5,7 @@ import {packJettonSwap, packTonSwap} from './transfer-params-pack.utils';
 import {dedust_getVaultAddress} from './vault.utils';
 import {JETTON_TRANSFER_GAS_AMOUNT, TON} from '../../globals';
 import {RouteStepWithCalculation} from '../../interfaces/route-step-with-calculation.interface';
+import {applySlippageTolerance} from '../../utils/apply-slippage-tolerance.utils';
 import {
     getJettonTransferBody,
     getJettonWalletAddress
@@ -21,10 +22,11 @@ const createNextSwapStepPayload = (
     const routeStep = remainingRoute[0];
 
     const poolAddress = Address.parse(routeStep.dexPairAddress);
-    const limit =
-        (BigInt(routeStep.outputAssetAmount) *
-            BigInt(100 - parseFloat(slippageTolerance))) /
-        100n;
+    const limit = applySlippageTolerance(
+        routeStep.outputAssetAmount,
+        slippageTolerance
+    );
+
     const next = createNextSwapStepPayload(
         remainingRoute.slice(1),
         slippageTolerance
@@ -44,8 +46,7 @@ export const dedust_getTransferParams = async (
     senderAddress: Address,
     receiverAddress: Address,
     responseDestination: Address,
-    slippageTolerance: string,
-    applyMinOutputAmount: boolean
+    slippageTolerance: string
 ) => {
     if (route.length === 0) {
         throw new Error('Empty route');
@@ -58,11 +59,11 @@ export const dedust_getTransferParams = async (
     );
 
     const poolAddress = Address.parse(firstRouteStep.dexPairAddress);
-    const minOutputAmount = applyMinOutputAmount
-        ? (BigInt(firstRouteStep.outputAssetAmount) *
-              BigInt(100 - parseFloat(slippageTolerance))) /
-          100n
-        : 0n;
+    const minOutputAmount = applySlippageTolerance(
+        firstRouteStep.outputAssetAmount,
+        slippageTolerance
+    );
+
     const nextSwapStep = createNextSwapStepPayload(
         route.slice(1),
         slippageTolerance

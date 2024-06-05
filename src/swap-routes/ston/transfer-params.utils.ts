@@ -4,6 +4,7 @@ import {PROXY_TON_MASTER_ADDRESS, STON_ROUTER_ADDRESS} from './sdk';
 import {packSwapParams} from './transfer-params-pack.utils';
 import {JETTON_TRANSFER_GAS_AMOUNT, TON} from '../../globals';
 import {RouteStepWithCalculation} from '../../interfaces/route-step-with-calculation.interface';
+import {applySlippageTolerance} from '../../utils/apply-slippage-tolerance.utils';
 import {
     getJettonTransferBody,
     getJettonWalletAddress
@@ -16,14 +17,12 @@ export const ston_getTransferParams = async (
     senderAddress: Address,
     receiverAddress: Address,
     responseDestination: Address,
-    slippageTolerance: string,
-    applyMinOutputAmount: boolean
+    slippageTolerance: string
 ) => {
-    const minOutputAmount = applyMinOutputAmount
-        ? (BigInt(routeStep.outputAssetAmount) *
-              BigInt(100 - parseFloat(slippageTolerance))) /
-          100n
-        : 0n;
+    const minOutputAmount = applySlippageTolerance(
+        routeStep.outputAssetAmount,
+        slippageTolerance
+    );
 
     if (routeStep.inputAssetAddress === TON) {
         const stonRouterProxyTonWalletAddress = await getJettonWalletAddress(
