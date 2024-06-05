@@ -11,7 +11,8 @@ import {
 } from '../../utils/jetton.utils';
 
 const createNextSwapStepPayload = (
-    remainingRoute: RouteStepWithCalculation[]
+    remainingRoute: RouteStepWithCalculation[],
+    slippageTolerance: string
 ): SwapStep | undefined => {
     if (remainingRoute.length === 0) {
         return undefined;
@@ -20,8 +21,14 @@ const createNextSwapStepPayload = (
     const routeStep = remainingRoute[0];
 
     const poolAddress = Address.parse(routeStep.dexPairAddress);
-    const limit = undefined;
-    const next = createNextSwapStepPayload(remainingRoute.slice(1));
+    const limit =
+        (BigInt(routeStep.outputAssetAmount) *
+            BigInt(100 - parseFloat(slippageTolerance))) /
+        100n;
+    const next = createNextSwapStepPayload(
+        remainingRoute.slice(1),
+        slippageTolerance
+    );
 
     return {
         poolAddress,
@@ -37,6 +44,7 @@ export const dedust_getTransferParams = async (
     senderAddress: Address,
     receiverAddress: Address,
     responseDestination: Address,
+    slippageTolerance: string,
     applyMinOutputAmount: boolean
 ) => {
     if (route.length === 0) {
@@ -51,9 +59,14 @@ export const dedust_getTransferParams = async (
 
     const poolAddress = Address.parse(firstRouteStep.dexPairAddress);
     const minOutputAmount = applyMinOutputAmount
-        ? BigInt(firstRouteStep.outputAssetAmount)
+        ? (BigInt(firstRouteStep.outputAssetAmount) *
+              BigInt(100 - parseFloat(slippageTolerance))) /
+          100n
         : 0n;
-    const nextSwapStep = createNextSwapStepPayload(route.slice(1));
+    const nextSwapStep = createNextSwapStepPayload(
+        route.slice(1),
+        slippageTolerance
+    );
     const swapParams: SwapParams = {recipientAddress: receiverAddress};
 
     if (firstRouteStep.inputAssetAddress === TON) {

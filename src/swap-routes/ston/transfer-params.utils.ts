@@ -16,10 +16,13 @@ export const ston_getTransferParams = async (
     senderAddress: Address,
     receiverAddress: Address,
     responseDestination: Address,
+    slippageTolerance: string,
     applyMinOutputAmount: boolean
 ) => {
     const minOutputAmount = applyMinOutputAmount
-        ? BigInt(routeStep.outputAssetAmount)
+        ? (BigInt(routeStep.outputAssetAmount) *
+              BigInt(100 - parseFloat(slippageTolerance))) /
+          100n
         : 0n;
 
     if (routeStep.inputAssetAddress === TON) {

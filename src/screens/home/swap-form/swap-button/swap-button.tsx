@@ -9,6 +9,7 @@ import {BottomSheet} from '../../../../components/bottom-sheet/bottom-sheet.tsx'
 import {useSendTransaction} from '../../../../hooks/use-send-transaction.hook.ts';
 import {FormButton} from '../../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../../store';
+import {useSlippageToleranceSelector} from '../../../../store/settings/settings-selectors.ts';
 import {useSwapRoutesSelector} from '../../../../store/swap-routes/swap-routes-selectors.ts';
 import {
     addPendingActivationTransactionActions,
@@ -37,6 +38,7 @@ interface Props {
 export const SwapButton: FC<Props> = ({onSwap}) => {
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
+    const slippageTolerance = useSlippageToleranceSelector();
     const isRainbowWalletActive = useIsRainbowWalletActiveSelector();
     const pendingActivationTransaction =
         usePendingActivationTransactionSelector();
@@ -85,7 +87,11 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
         const senderAddress = Address.parse(wallet?.account.address ?? '');
         const transferParams = await Promise.all(
             swapRoutes.data.map(swapRoute =>
-                getSwapRouteTransferParams(swapRoute, senderAddress)
+                getSwapRouteTransferParams(
+                    swapRoute,
+                    senderAddress,
+                    slippageTolerance
+                )
             )
         );
 
