@@ -19,7 +19,12 @@ export const SettingsButton = () => {
     const handleOpen = () => {
         setIsOpen(true);
     };
-    const handleClose = () => setIsOpen(false);
+    const handleClose = () => {
+        if (slippageTolerance === '') {
+            dispatch(setSlippageToleranceAction('5'));
+        }
+        setIsOpen(false);
+    };
 
     const handleToleranceClick = (value: string) => {
         dispatch(setSlippageToleranceAction(value));
