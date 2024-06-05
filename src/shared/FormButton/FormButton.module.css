@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    cursor: pointer;
     padding-top: var(--2-step);
     padding-bottom: var(--2-step);
     border-radius: var(--border-radius);

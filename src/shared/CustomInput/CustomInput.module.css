@@ -50,6 +50,7 @@
 .input_wrapper {
   display: flex;
   justify-content: flex-end;
+  cursor: text;
   width: 69%; /* Any width required to make flex: 1 work*/
   flex: 1;
   overflow: hidden;
@@ -65,6 +66,7 @@
 .input_info_button {
     color: var(--button-color);
     background: none;
+    cursor: pointer;
     font-size: 16px;
     margin-left: 4px;
 

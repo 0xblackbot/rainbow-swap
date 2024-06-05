@@ -1,0 +1,101 @@
+.content_container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--2-step);
+    overflow-y: scroll;
+}
+
+.settings_icon{
+    margin-left: var(--step);
+    color: var(--text-color);
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.content_name_p{
+    color: var(--text-color);
+    font-size: 16px;
+    margin-top: var(--step);
+}
+.content_text_p{
+    color: var(--hint-color);
+    font-size: 16px;
+    margin-top: var(--step);
+}
+
+.settings_icon:hover{
+    color: var(--hint-color);
+}
+
+.input_container {
+    position: relative;
+    display: flex;
+}
+
+.content_input {
+    margin-top: var(--2-step);
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    padding: 18px 15px;
+    border-radius: 12px;
+    border: 1px solid var(--hint-color);
+    font-size: 16px;
+    outline: none;
+    transition: border 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    flex:1;
+    column-gap: 8px;
+}
+
+.content_input:hover,
+.content_input:focus {
+    border: 1px solid var(--button-color);
+}
+
+.percent_symbol {
+    position: absolute;
+    right: var(--2-step);
+    top: 47.5%;
+    color: var(--hint-color);
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+.tolerance_buttons_container {
+    display: flex;
+    gap: 0.75rem; 
+    justify-content: space-between;
+    margin-top: var(--2-step);
+}
+
+.tolerance_button{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border: 1px solid var(--hint-color); 
+    border-radius: 12px;
+    background-color: transparent; 
+    cursor: pointer;
+    height: 48px;
+    width: 100%;
+    transition: border 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tolerance_button_active{
+    border: 1px solid var(--button-color);
+}
+
+.tolerance_button p{
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: var(--text-color);
+}
+
+.tolerance_button:hover{
+    background-color: var(--secondary-bg-color);
+}
+
+.main_button {
+    margin-top: auto;
+}

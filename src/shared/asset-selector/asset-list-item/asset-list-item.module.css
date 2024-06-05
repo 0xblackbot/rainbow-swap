@@ -1,6 +1,7 @@
 .select_list_item_div {
     height: 38px;
     display: flex;
+    cursor: pointer;
     justify-content: space-between;
     align-items: center;
     background-color: var(--header-bg-color);

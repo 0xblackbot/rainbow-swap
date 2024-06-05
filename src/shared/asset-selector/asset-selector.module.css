@@ -45,6 +45,7 @@
 
 .xcircleIcon {
     position: absolute;
+    cursor: pointer;
     right: var(--step);
     transform: translateY(40%);
     color: var(--hint-color);
@@ -64,6 +65,7 @@
 
 .selected_asset_button {
     display: flex;
+    cursor: pointer;
     align-items: center;
     font-size: var(--3-step);
 }
