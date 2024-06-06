@@ -75,7 +75,6 @@ export const rainbow_getTransferParams = async (
         rainbowWallet.address,
         rainbowWallet.address,
         senderAddress,
-        // implement minOutputAmount support by contract TODO: BB-38
         slippageTolerance
     );
 
