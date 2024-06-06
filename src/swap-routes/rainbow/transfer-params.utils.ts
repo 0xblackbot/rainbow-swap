@@ -68,6 +68,12 @@ export const rainbow_getTransferParams = async (
         fullBody: secondChunk_transferParams.body
     });
 
+    const tweakedSlippageTolerance =
+        firstChunk[0].dexType === DexTypeEnum.Ston &&
+        firstChunk[0].inputAssetAmount !== TON
+            ? '100' // We could not handle Ston.fi returned jettons
+            : slippageTolerance;
+
     const firstChunk_transferParams = await getDexTransferParams(
         firstChunk,
         queryId,
@@ -75,7 +81,7 @@ export const rainbow_getTransferParams = async (
         rainbowWallet.address,
         rainbowWallet.address,
         senderAddress,
-        slippageTolerance
+        tweakedSlippageTolerance
     );
 
     if (inputAssetAddress === TON) {
