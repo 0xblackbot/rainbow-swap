@@ -24,7 +24,7 @@
     height: 40px;
     margin-right: var(--step);
     align-self: center;
-    border-radius: 10px;
+    border-radius: 50%;
     object-fit: cover;
 }
 

@@ -42,6 +42,15 @@
     color: var(--text-color);
 }
 
+.asset_image {
+    margin-left: var(--step);
+    width: var(--3-step);
+    height: var(--3-step);
+    align-self: center;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .routes_container {
     display: flex;
     flex-direction: column;

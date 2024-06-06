@@ -100,19 +100,19 @@ export const SwapScreen = () => {
     return (
         <>
             <ContentContainer>
-                <div className={styles.swapform_header}>
-                    <p>Swap token</p>
-                    <div className={styles.icons_div}>
-                        <RefreshIcon
-                            width="22px"
-                            height="22px"
-                            onClick={handleManualRefresh}
-                            isAnimating={intervalRef.current !== null}
-                        />
-                        <SettingsButton />
-                    </div>
-                </div>
                 <div className={styles.body_div}>
+                    <div className={styles.swapform_header}>
+                        <p />
+                        <div className={styles.icons_div}>
+                            <RefreshIcon
+                                width="22px"
+                                height="22px"
+                                onClick={handleManualRefresh}
+                                isAnimating={intervalRef.current !== null}
+                            />
+                            <SettingsButton />
+                        </div>
+                    </div>
                     <div className={styles.input_asset_container}>
                         <CustomInput
                             ref={inputRef}

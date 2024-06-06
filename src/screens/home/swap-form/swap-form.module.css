@@ -18,9 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: var(--2-step);
-    margin-bottom: var(--step);
-    color: var(--text-color);
+    margin-bottom: var(--2-step);
     font-size: 22px;
 } 
 

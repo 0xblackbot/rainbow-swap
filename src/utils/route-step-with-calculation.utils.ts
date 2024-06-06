@@ -22,12 +22,26 @@ export const getRouteInputAssetAmount = (route: RouteStepWithCalculation[]) =>
 export const getRouteOutputAssetAmount = (route: RouteStepWithCalculation[]) =>
     BigInt(getRouteOutputStep(route)?.outputAssetAmount ?? 0);
 
-export const getRoutesStepCount = (routes: RouteStepWithCalculation[][]) => {
-    const chainsAmount = routes.length;
-    const poolsAmount = routes.reduce(
-        (totalPools, route) => totalPools + route.length,
-        0
-    );
+export const getSwapInputAssetAmount = (
+    routes: RouteStepWithCalculation[][]
+) => {
+    let result = 0n;
 
-    return {chainsAmount, poolsAmount};
+    for (const route of routes) {
+        result += getRouteInputAssetAmount(route);
+    }
+
+    return result;
+};
+
+export const getSwapOutputAssetAmount = (
+    routes: RouteStepWithCalculation[][]
+) => {
+    let result = 0n;
+
+    for (const route of routes) {
+        result += getRouteOutputAssetAmount(route);
+    }
+
+    return result;
 };

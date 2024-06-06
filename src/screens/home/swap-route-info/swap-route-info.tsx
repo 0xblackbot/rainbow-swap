@@ -5,29 +5,34 @@ import styles from './swap-route-info.module.css';
 import {SwapIcon} from '../../../assets/icons/SwapIcon/SwapIcon.tsx';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
+import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {getClassName} from '../../../utils/style.utils.ts';
-import {useOutputAssetAmount} from '../swap-form/hooks/use-output-asset-amount.hook.ts';
+import {useSwapInfo} from '../swap-form/hooks/use-swap-info.hook.ts';
 
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();
     const assets = useAssetsRecordSelector();
+    const slippageTolerance = useSlippageToleranceSelector();
 
-    const {inputAssetAddress, outputAssetAddress, inputAssetAmount} =
-        useSwapForm();
+    const {inputAssetAddress, outputAssetAddress} = useSwapForm();
 
     const routes = useMemo(
         () => swapRoutes.data.map(mapSwapRouteToRoute),
         [swapRoutes.data]
     );
-    const outputAssetAmount = useOutputAssetAmount(
-        routes,
-        assets[outputAssetAddress].decimals
+
+    const inputAsset = assets[inputAssetAddress];
+    const outputAsset = assets[outputAssetAddress];
+
+    const swapInfo = useSwapInfo(
+        inputAsset.decimals,
+        outputAsset.decimals,
+        slippageTolerance,
+        routes
     );
-    const exchangeRate =
-        parseFloat(outputAssetAmount) / parseFloat(inputAssetAmount);
 
     return (
         <div className={styles.route_info_wrapper}>
@@ -50,9 +55,15 @@ export const SwapRouteInfo: FC = () => {
                 )}
             >
                 <p>You send</p>
-                <p>
-                    {inputAssetAmount} {assets[inputAssetAddress].symbol}
-                </p>
+                <div>
+                    <p>
+                        {swapInfo.inputAssetAmount} {inputAsset.symbol}
+                    </p>
+                    <img
+                        className={styles.asset_image}
+                        src={inputAsset.image}
+                    />
+                </div>
             </div>
             <div
                 className={getClassName(
@@ -61,20 +72,32 @@ export const SwapRouteInfo: FC = () => {
                 )}
             >
                 <p>You receive</p>
+                <div>
+                    <p>
+                        {swapInfo.outputAssetAmount} {outputAsset.symbol}
+                    </p>
+                    <img
+                        className={styles.asset_image}
+                        src={outputAsset.image}
+                    />
+                </div>
+            </div>
+            <div className={styles.route_info_inside_div}>
+                <p>Rate</p>
                 <p>
-                    {outputAssetAmount} {assets[outputAssetAddress].symbol}
+                    {`1 ${inputAsset.symbol} = ${formatNumber(swapInfo.exchangeRate, 5)} ${outputAsset.symbol}`}
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>
-                <p>Exchange rate</p>
-                <p>
-                    1 {assets[inputAssetAddress].symbol} ={' '}
-                    {formatNumber(exchangeRate, 5)}{' '}
-                    {assets[outputAssetAddress].symbol}
-                </p>
+                <p>Max. slippage</p>
+                <p>{slippageTolerance}%</p>
             </div>
             <div className={styles.route_info_inside_div}>
-                <p>Routing fee</p>
+                <p>Receive at least</p>
+                <p>{`${swapInfo.minOutputAssetAmount} ${outputAsset.symbol}`}</p>
+            </div>
+            <div className={styles.route_info_inside_div}>
+                <p>Fee</p>
                 <p>
                     0% <span className={styles.crossed_out}>0.1%</span>
                 </p>
