@@ -8,6 +8,7 @@ const int op::withdraw_ton = 430801;
 const int op::withdraw_jetton = 430802;
 
 const int op::dedust_ton_swap = 3926267997;
+const int op::dedust_payout = 0x474f86cf;
 
-const int error::unknown_op = 808800;
-const int error::unknown_jetton_receive_effect_body_type = 808801;
+const int error::unknown_op = 8800;
+const int error::unknown_jetton_receive_effect_body_type = 8801;

@@ -61,9 +61,14 @@
                 handle_owner_jetton_transfer_notification(query_id, in_msg_body);
                 return ();
             } else {
-                handle_jetton_transfer_notification(query_id, jetton_received_amount, jetton_sender);
+                handle_jetton_transfer_notification(query_id, msg_sender_address, jetton_received_amount, jetton_sender);
                 return ();
             }
+        }
+
+        if (op == op::dedust_payout) {
+            forward_message_op(op, query_id);
+            return ();
         }
     }
 
