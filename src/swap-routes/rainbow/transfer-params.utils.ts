@@ -24,7 +24,8 @@ export const rainbow_getTransferParams = async (
     secondChunk: RouteStepWithCalculation[],
     queryId: number,
     gasAmount: bigint,
-    senderAddress: Address
+    senderAddress: Address,
+    slippageTolerance: string
 ): Promise<TransferParams> => {
     const rainbowWallet = RainbowWalletContract.create({
         workchain: WORKCHAIN,
@@ -40,7 +41,7 @@ export const rainbow_getTransferParams = async (
         rainbowWallet.address,
         senderAddress,
         senderAddress,
-        false
+        slippageTolerance
     );
 
     const jettonSenderAddressToListen =
@@ -74,7 +75,7 @@ export const rainbow_getTransferParams = async (
         rainbowWallet.address,
         rainbowWallet.address,
         senderAddress,
-        false // implement minOutputAmount support by contract TODO: BB-38
+        slippageTolerance
     );
 
     if (inputAssetAddress === TON) {

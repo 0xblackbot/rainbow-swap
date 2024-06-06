@@ -64,7 +64,7 @@ export const getDexTransferParams = (
     senderAddress: Address,
     receiverAddress: Address,
     responseDestination: Address,
-    applyMinOutputAmount: boolean
+    slippageTolerance: string
 ) => {
     const dexType = route[0].dexType;
 
@@ -76,7 +76,7 @@ export const getDexTransferParams = (
             senderAddress,
             receiverAddress,
             responseDestination,
-            applyMinOutputAmount
+            slippageTolerance
         );
     }
 
@@ -92,7 +92,7 @@ export const getDexTransferParams = (
             senderAddress,
             receiverAddress,
             responseDestination,
-            applyMinOutputAmount
+            slippageTolerance
         );
     }
 

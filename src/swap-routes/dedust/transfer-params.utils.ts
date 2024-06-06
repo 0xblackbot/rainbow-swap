@@ -5,13 +5,15 @@ import {packJettonSwap, packTonSwap} from './transfer-params-pack.utils';
 import {dedust_getVaultAddress} from './vault.utils';
 import {JETTON_TRANSFER_GAS_AMOUNT, TON} from '../../globals';
 import {RouteStepWithCalculation} from '../../interfaces/route-step-with-calculation.interface';
+import {applySlippageTolerance} from '../../utils/apply-slippage-tolerance.utils';
 import {
     getJettonTransferBody,
     getJettonWalletAddress
 } from '../../utils/jetton.utils';
 
 const createNextSwapStepPayload = (
-    remainingRoute: RouteStepWithCalculation[]
+    remainingRoute: RouteStepWithCalculation[],
+    slippageTolerance: string
 ): SwapStep | undefined => {
     if (remainingRoute.length === 0) {
         return undefined;
@@ -20,8 +22,15 @@ const createNextSwapStepPayload = (
     const routeStep = remainingRoute[0];
 
     const poolAddress = Address.parse(routeStep.dexPairAddress);
-    const limit = undefined;
-    const next = createNextSwapStepPayload(remainingRoute.slice(1));
+    const limit = applySlippageTolerance(
+        routeStep.outputAssetAmount,
+        slippageTolerance
+    );
+
+    const next = createNextSwapStepPayload(
+        remainingRoute.slice(1),
+        slippageTolerance
+    );
 
     return {
         poolAddress,
@@ -37,7 +46,7 @@ export const dedust_getTransferParams = async (
     senderAddress: Address,
     receiverAddress: Address,
     responseDestination: Address,
-    applyMinOutputAmount: boolean
+    slippageTolerance: string
 ) => {
     if (route.length === 0) {
         throw new Error('Empty route');
@@ -50,10 +59,15 @@ export const dedust_getTransferParams = async (
     );
 
     const poolAddress = Address.parse(firstRouteStep.dexPairAddress);
-    const minOutputAmount = applyMinOutputAmount
-        ? BigInt(firstRouteStep.outputAssetAmount)
-        : 0n;
-    const nextSwapStep = createNextSwapStepPayload(route.slice(1));
+    const minOutputAmount = applySlippageTolerance(
+        firstRouteStep.outputAssetAmount,
+        slippageTolerance
+    );
+
+    const nextSwapStep = createNextSwapStepPayload(
+        route.slice(1),
+        slippageTolerance
+    );
     const swapParams: SwapParams = {recipientAddress: receiverAddress};
 
     if (firstRouteStep.inputAssetAddress === TON) {
