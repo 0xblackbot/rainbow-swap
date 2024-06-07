@@ -2,7 +2,7 @@ import {Address} from '@ton/ton';
 import {AxiosResponse} from 'axios';
 
 import {fromNano} from './big-int.utils';
-import {TON} from '../globals';
+import {GAS_AMOUNT, TON} from '../globals';
 import {BalancesArray} from '../interfaces/balance-object.interface';
 import {TonBalanceArray} from '../interfaces/ton-balance-response.interface';
 import {BalancesRecord} from '../types/balances-record.type';
@@ -26,9 +26,12 @@ export const getBalancesRecord = (
     });
 
     balancesRecord[TON] = fromNano(
-        BigInt(accountResponse.data.balance),
+        BigInt(accountResponse.data.balance) - GAS_AMOUNT * 4n,
         TON_DECIMALS
     );
 
+    if (parseFloat(balancesRecord[TON]) < 0) {
+        balancesRecord[TON] = '0';
+    }
     return balancesRecord;
 };
