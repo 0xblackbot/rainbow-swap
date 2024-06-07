@@ -1,11 +1,11 @@
 import {ChangeEvent, forwardRef} from 'react';
 
 import styles from './CustomInput.module.css';
-import {GAS_AMOUNT, TON, TON_DECIMALS} from '../../globals.ts';
+import {TON} from '../../globals.ts';
 import {Asset} from '../../interfaces/asset.interface.ts';
-import {fromNano} from '../../utils/big-int.utils.ts';
 import {EMPTY_FN} from '../../utils/emptyfn.ts';
 import {formatNumber} from '../../utils/format-number.utils.ts';
+import {getMaxSentAmount} from '../../utils/get-max-sent-amount.utils.ts';
 import {AssetSelector} from '../asset-selector/asset-selector.tsx';
 
 interface Props {
@@ -66,13 +66,9 @@ export const CustomInput = forwardRef<HTMLSpanElement, Props>(
 
         const setMaxAssetAmount = () => {
             if (assetValue.address === TON) {
-                const tonBalanceWithFee =
-                    parseFloat(balance) -
-                    parseFloat(fromNano(GAS_AMOUNT, TON_DECIMALS)) * 4;
+                const tonBalance = getMaxSentAmount(balance);
 
-                const tonBalance = Math.max(tonBalanceWithFee, 0);
-
-                onInputValueChange(tonBalance.toString());
+                onInputValueChange(tonBalance);
             } else {
                 onInputValueChange(balance);
             }
