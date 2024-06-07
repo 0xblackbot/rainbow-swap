@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 
 import styles from './settings-button.module.css';
 import {ToleranceButton} from './ToleranceButton/ToleranceButton';
@@ -19,12 +19,12 @@ export const SettingsButton = () => {
     const handleOpen = () => {
         setIsOpen(true);
     };
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         if (slippageTolerance === '') {
             dispatch(setSlippageToleranceAction('5'));
         }
         setIsOpen(false);
-    };
+    }, [slippageTolerance, dispatch]);
 
     const handleToleranceClick = (value: string) => {
         dispatch(setSlippageToleranceAction(value));

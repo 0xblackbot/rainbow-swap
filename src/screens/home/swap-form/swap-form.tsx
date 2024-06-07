@@ -1,5 +1,5 @@
 import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
-import {useEffect, useMemo, useRef} from 'react';
+import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import {SettingsButton} from './settings-button/settings-button.tsx';
@@ -82,7 +82,12 @@ export const SwapScreen = () => {
         }
     }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);
 
-    const handleConnectClick = () => connectModal.open();
+    const handleConnectClick = useCallback(() => {
+        connectModal.open();
+        // Connect modal constantly changes between re-renders causing this function to be recreated on every re-render
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const handleToggleAssetsClick = () => {
         setInputAssetAmount('');
         setInputAssetAddress(outputAssetAddress);
@@ -94,9 +99,13 @@ export const SwapScreen = () => {
         setInputAssetAddress(newValue.address);
     const handleOutputAssetValueChange = (newValue: Asset) =>
         setOutputAssetAddress(newValue.address);
-    const handleEnterSendAmount = () => inputRef.current?.focus();
-    const handleSwap = () => inputRef.current?.blur();
+    const handleEnterSendAmount = useCallback(() => {
+        inputRef.current?.focus();
+    }, []);
 
+    const handleSwap = useCallback(() => {
+        inputRef.current?.blur();
+    }, []);
     return (
         <>
             <ContentContainer>

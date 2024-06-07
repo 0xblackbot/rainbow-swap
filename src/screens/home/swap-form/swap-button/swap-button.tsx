@@ -1,7 +1,7 @@
 import {isDefined} from '@rnw-community/shared';
 import {Address} from '@ton/core';
 import {useTonWallet} from '@tonconnect/ui-react';
-import {FC, useEffect, useState} from 'react';
+import {FC, useCallback, useEffect, useState} from 'react';
 import {toast} from 'react-toastify';
 
 import styles from './swap-button.module.css';
@@ -77,10 +77,10 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
         }
     }, [pendingActivationTransaction.data]);
 
-    const handleSwap = () => {
+    const handleSwap = useCallback(() => {
         setIsOpen(true);
         onSwap();
-    };
+    }, [setIsOpen, onSwap]);
     const handleClose = () => setIsOpen(false);
 
     const handleConfirm = async () => {
