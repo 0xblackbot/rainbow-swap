@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useMemo, useState} from 'react';
+import {ChangeEvent, FC, useEffect, useMemo, useRef, useState} from 'react';
 import {FixedSizeList} from 'react-window';
 
 import {SearchIcon} from '../../../assets/icons/SearchIcon/SearchIcon.tsx';
@@ -21,6 +21,7 @@ interface Props {
 
 export const AssetList: FC<Props> = ({value, onChange}) => {
     const divHeight = useDivHeight();
+    const listRef = useRef<FixedSizeList>(null);
 
     const [searchValue, setSearchValue] = useState('');
 
@@ -62,6 +63,14 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
         [balances, filteredAssetsList, onChange, value.address]
     );
 
+    const selectedAsset = listProps.findIndex(item => item.isSelected);
+
+    useEffect(() => {
+        if (listRef.current) {
+            listRef.current.scrollToItem(selectedAsset, 'start');
+        }
+    }, [selectedAsset]);
+
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
         setSearchValue(event.target.value);
     const handleInputClear = () => setSearchValue('');
@@ -94,6 +103,7 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
                     <AssetNoResult />
                 ) : (
                     <FixedSizeList
+                        ref={listRef}
                         height={divHeight.height}
                         width="100%"
                         itemSize={66}
