@@ -10,7 +10,12 @@
     position: absolute;
     right: 0;
     color: var(--hint-color);
+    transition: color 0.2s ease-in-out;
     z-index: 1;
+}
+
+.refresh_icon_div:hover svg {
+    color: var(--text-color);
 }
 
 .refresh_icon_path_animated path {
