@@ -9,5 +9,9 @@ export function formatNumber(number: number, fixedValue: number): string {
         return number.toString();
     }
 
-    return number.toFixed(fixedValue);
+    const decimalsMultiplier = Math.pow(10, fixedValue);
+    const roundedNumber =
+        Math.floor(number * decimalsMultiplier) / decimalsMultiplier;
+
+    return roundedNumber.toFixed(fixedValue);
 }
