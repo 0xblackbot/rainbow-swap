@@ -32,7 +32,9 @@ Rainbow Swap aggregates liquidity from multiple TON DEXes, distributing trade vo
 
 Our user-friendly interface allows seamless swaps with the most efficient routes, considering swap distribution and gas costs.
 
-# Getting Started
+# Development info
+
+### Getting Started
 
 1. Clone repository
 ```
