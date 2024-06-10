@@ -71,12 +71,6 @@ export const SwapScreen = () => {
     );
 
     useEffect(() => {
-        setInputAssetAmount(
-            formatNumber(Number(inputAssetAmount), inputAsset.decimals)
-        );
-    }, [inputAsset.decimals, inputAssetAmount, setInputAssetAmount]);
-
-    useEffect(() => {
         if (nanoInputAssetAmount === '0') {
             dispatch(loadSwapRoutesActions.success([]));
         } else {
@@ -102,7 +96,10 @@ export const SwapScreen = () => {
         setOutputAssetAddress(inputAssetAddress);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
-
+    const handleInputAssetAmountChange = (newValue: string) => {
+        const amount = formatNumber(Number(newValue), inputAsset.decimals);
+        setInputAssetAmount(amount);
+    };
     const handleInputAssetValueChange = (newValue: Asset) => {
         swapAssets(
             newValue.address,
@@ -110,6 +107,11 @@ export const SwapScreen = () => {
             setInputAssetAddress,
             handleToggleAssetsClick
         );
+        const valueAmount = formatNumber(
+            Number(inputAssetAmount),
+            newValue.decimals
+        );
+        setInputAssetAmount(valueAmount);
     };
     const handleOutputAssetValueChange = (newValue: Asset) => {
         swapAssets(
@@ -149,7 +151,7 @@ export const SwapScreen = () => {
                             balance={balances[inputAssetAddress]}
                             isInputEnabled={true}
                             inputValue={inputAssetAmount}
-                            onInputValueChange={setInputAssetAmount}
+                            onInputValueChange={handleInputAssetAmountChange}
                             assetValue={inputAsset}
                             onAssetValueChange={handleInputAssetValueChange}
                         />
