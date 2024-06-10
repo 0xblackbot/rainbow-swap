@@ -1,6 +1,19 @@
 # Rainbow Swap 🌈
 
+An open source repository for Rainbow Swap front end interface and smart contracts maintained by [Blackbot](https://blackbot.technology/). Rainbow Swap is the Next Gen DEX Aggregator on TON 💎.
+
 ![main banner.png](docs%2Fassets%2Fmain%20banner.png)
+
+### Interfaces
+
+- TMA: [@rainbow_swap_bot](https://t.me/rainbow_swap_bot)
+- Web: [https://0xblackbot.github.io/rainbow-swap/](https://0xblackbot.github.io/rainbow-swap/)
+
+### Socials / Contact
+
+- Telegram Channel: [@rainbow_swap](https://t.me/rainbow_swap)
+- Community Chat: [@rainbow_swap_chat](https://t.me/rainbow_swap_chat)
+- Email: [info.blackbot@gmail.com](mailto:info.blackbot@gmail.com)
 
 ### Problem
 
@@ -42,6 +55,15 @@ If you want to contribute your code, before making a pull request - ensure, that
 ```
 yarn ts
 yarn lint
+```
+
+### Smart contracts
+
+Smart contract are written using [FunC](https://docs.ton.org/develop/func/overview) language.  
+All code could be found in [contracts](contracts) folder.  
+To build `Rainbow routing wallet` smart contract run
+```
+yarn build:contract
 ```
 
 ### License
