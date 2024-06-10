@@ -1,6 +1,7 @@
 .route_info_wrapper {
     position: relative;
     overflow: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     background-color: var(--header-bg-color);
