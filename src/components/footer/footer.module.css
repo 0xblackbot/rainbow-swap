@@ -19,10 +19,10 @@
     transition: color 0.3s ease-in-out;
 }
 
-.container_a:hover {
-    color: var(--text-color)
-}
-
 .container_a:visited {
     color: var(--hint-color)
+}
+
+.container_a:hover {
+    color: var(--text-color)
 }
