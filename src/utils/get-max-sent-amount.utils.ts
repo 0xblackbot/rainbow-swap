@@ -1,4 +1,5 @@
 import {fromNano} from './big-int.utils';
+import {formatNumber} from './format-number.utils';
 import {
     GAS_AMOUNT,
     JETTON_TRANSFER_GAS_AMOUNT,
@@ -15,12 +16,11 @@ export const getMaxSentAmount = (balance: string, address: string) => {
         const totalGasAmount = gasAmount + jettonGasAmount;
 
         const tonBalanceWithFee =
-            (parseFloat(balance) -
-                parseFloat(fromNano(totalGasAmount, TON_DECIMALS))) *
-            MAX_BATCH_SIZE;
+            parseFloat(balance) -
+            parseFloat(fromNano(totalGasAmount, TON_DECIMALS)) * MAX_BATCH_SIZE;
 
         const tonBalance = Math.max(tonBalanceWithFee, 0);
-        return tonBalance.toFixed(TON_DECIMALS);
+        return formatNumber(tonBalance, TON_DECIMALS);
     }
 
     return balance;
