@@ -20,6 +20,7 @@ import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-sele
 import {useBalancesSelector} from '../../../store/wallet/wallet-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
+import {swapAssets} from '../../../utils/swap-assets.utils.ts';
 
 export const SwapScreen = () => {
     const wallet = useTonWallet();
@@ -95,10 +96,22 @@ export const SwapScreen = () => {
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
 
-    const handleInputAssetValueChange = (newValue: Asset) =>
-        setInputAssetAddress(newValue.address);
-    const handleOutputAssetValueChange = (newValue: Asset) =>
-        setOutputAssetAddress(newValue.address);
+    const handleInputAssetValueChange = (newValue: Asset) => {
+        swapAssets(
+            newValue.address,
+            outputAssetAddress,
+            setInputAssetAddress,
+            handleToggleAssetsClick
+        );
+    };
+    const handleOutputAssetValueChange = (newValue: Asset) => {
+        swapAssets(
+            newValue.address,
+            inputAssetAddress,
+            setOutputAssetAddress,
+            handleToggleAssetsClick
+        );
+    };
     const handleEnterSendAmount = useCallback(() => {
         inputRef.current?.focus();
     }, []);
