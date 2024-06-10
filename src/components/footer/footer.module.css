@@ -1,0 +1,28 @@
+.container {
+    position: absolute;
+    font-size: 10px;
+    color: var(--hint-color);
+}
+
+.container_row {
+    display: flex;
+    justify-content: center;
+}
+
+.container_text {
+    padding: var(--half-step);
+    text-transform: uppercase;
+}
+
+.container_a {
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.container_a:hover {
+    color: var(--text-color)
+}
+
+.container_a:visited {
+    color: var(--hint-color)
+}

@@ -3,6 +3,7 @@ import {useTonAddress} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
 import {ToastContainer} from 'react-toastify';
 
+import {Footer} from '../../components/footer/footer.tsx';
 import {Header} from '../../components/header/header.tsx';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {useDispatch} from '../../store';
@@ -75,6 +76,7 @@ export const HomeScreen = () => {
             />
             <Header />
             <SwapScreen />
+            <Footer />
         </>
     );
 };
