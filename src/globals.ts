@@ -35,3 +35,5 @@ export const TON_API_CLIENT = new Api(
         baseUrl: 'https://tonapi.io'
     })
 );
+
+export const GA_MEASUREMENT_ID = 'G-BY9LWCELFX';

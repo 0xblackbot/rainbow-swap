@@ -2,6 +2,7 @@ import {FC, PropsWithChildren, useEffect, useState} from 'react';
 
 import styles from './bottom-sheet.module.css';
 import {XIcon} from '../../assets/icons/XIcon/XIcon.tsx';
+import {useTrackPageView} from '../../hooks/use-analytics.hook.ts';
 import {usePreventScroll} from '../../hooks/use-prevent-scrolling.hook.ts';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {getClassName} from '../../utils/style.utils.ts';
@@ -23,6 +24,7 @@ export const BottomSheet: FC<Props> = ({
     const [isVisible, setIsVisible] = useState(false);
 
     usePreventScroll(isOpen);
+    useTrackPageView(headerTitle, isOpen);
 
     useEffect(() => {
         if (isOpen) {

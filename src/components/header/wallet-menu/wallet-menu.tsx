@@ -2,6 +2,7 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import {FC, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
+import {trackButtonClick} from '../../../hooks/use-analytics.hook.ts';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook.ts';
 import {getClassName} from '../../../utils/style.utils.ts';
 
@@ -21,9 +22,16 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
 
     useDisableMainButton(isOpen);
 
-    const handleMenuClick = () => setIsOpen(value => !value);
-    const handleClose = () => setIsOpen(false);
+    const handleMenuClick = () => {
+        trackButtonClick('Header Menu');
+        setIsOpen(value => !value);
+    };
+    const handleClose = () => {
+        trackButtonClick('Header Menu Backdrop');
+        setIsOpen(false);
+    };
     const handleDisconnect = () => {
+        trackButtonClick('Header Disconnect');
         tonConnectUI.disconnect();
         setIsOpen(false);
     };

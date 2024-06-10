@@ -4,6 +4,7 @@ import {LogoText} from './assets/LogoText';
 import styles from './header.module.css';
 import {PendingSwap} from './pending-swap/pending-swap.tsx';
 import {WalletMenu} from './wallet-menu/wallet-menu.tsx';
+import {trackButtonClick} from '../../hooks/use-analytics.hook.ts';
 import {useDisableMainButton} from '../../hooks/use-disable-main-button.hook.ts';
 import {HeaderContainer} from '../header-container/header-container.tsx';
 
@@ -12,6 +13,7 @@ export const Header = () => {
     const connectModal = useTonConnectModal();
 
     const handleConnect = () => {
+        trackButtonClick('Header Connect');
         connectModal.open();
     };
 

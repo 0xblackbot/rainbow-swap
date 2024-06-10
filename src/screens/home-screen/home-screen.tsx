@@ -5,6 +5,7 @@ import {ToastContainer} from 'react-toastify';
 
 import {Footer} from '../../components/footer/footer.tsx';
 import {Header} from '../../components/header/header.tsx';
+import {useTrackPageView} from '../../hooks/use-analytics.hook.ts';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
@@ -28,6 +29,8 @@ export const HomeScreen = () => {
 
     const walletAddress = useTonAddress();
     const viewportHeight = useViewportHeight();
+
+    useTrackPageView('Home');
 
     useEffect(() => {
         viewportHeight.updateValue();

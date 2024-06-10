@@ -6,6 +6,7 @@ import {toast} from 'react-toastify';
 
 import styles from './swap-button.module.css';
 import {BottomSheet} from '../../../../components/bottom-sheet/bottom-sheet.tsx';
+import {trackButtonClick} from '../../../../hooks/use-analytics.hook.ts';
 import {useSendTransaction} from '../../../../hooks/use-send-transaction.hook.ts';
 import {FormButton} from '../../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../../store';
@@ -84,6 +85,7 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
     const handleClose = () => setIsOpen(false);
 
     const handleConfirm = async () => {
+        trackButtonClick('Confirm');
         const senderAddress = Address.parse(wallet?.account.address ?? '');
         const transferParams = await Promise.all(
             swapRoutes.data.map(swapRoute =>
@@ -107,6 +109,7 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
         }
     };
     const handleActivateContract = async () => {
+        trackButtonClick('Activate contract');
         const senderAddress = Address.parse(wallet?.account.address ?? '');
         const transferParams = [
             getRainbowWalletActivationTransferParams(senderAddress)

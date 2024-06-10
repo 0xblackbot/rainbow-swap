@@ -16,6 +16,7 @@ interface Props {
     assetValue: Asset;
     onAssetValueChange: (newAssetValue: Asset) => void;
     isLoading?: boolean;
+    assetSelectorHeaderTitle: string;
 }
 
 export const CustomInput = forwardRef<HTMLSpanElement, Props>(
@@ -28,7 +29,8 @@ export const CustomInput = forwardRef<HTMLSpanElement, Props>(
             isLoading,
             balance = '0',
             onInputValueChange = EMPTY_FN,
-            onAssetValueChange
+            onAssetValueChange,
+            assetSelectorHeaderTitle
         },
         ref
     ) => {
@@ -84,7 +86,7 @@ export const CustomInput = forwardRef<HTMLSpanElement, Props>(
                 <div className={styles.input_container}>
                     <AssetSelector
                         value={assetValue}
-                        headerTitle="Select asset"
+                        headerTitle={assetSelectorHeaderTitle}
                         onChange={onAssetValueChange}
                     />
                     <div

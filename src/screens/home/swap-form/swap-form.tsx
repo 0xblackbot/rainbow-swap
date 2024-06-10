@@ -9,6 +9,7 @@ import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button.ts
 import {RefreshIcon} from '../../../assets/icons/RefreshIcon/RefreshIcon.tsx';
 import {ContentContainer} from '../../../components/content-container/content-container.tsx';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook.ts';
+import {trackButtonClick} from '../../../hooks/use-analytics.hook.ts';
 import {useRefreshRoutes} from '../../../hooks/use-refresh-routes.hook.ts';
 import {Asset} from '../../../interfaces/asset.interface.ts';
 import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
@@ -83,12 +84,15 @@ export const SwapScreen = () => {
     }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);
 
     const handleConnectClick = useCallback(() => {
+        trackButtonClick('Connect');
+        inputRef.current?.blur();
         connectModal.open();
         // Connect modal constantly changes between re-renders causing this function to be recreated on every re-render
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleToggleAssetsClick = () => {
+        trackButtonClick('Toggle Assets');
         setInputAssetAmount('');
         setInputAssetAddress(outputAssetAddress);
         setOutputAssetAddress(inputAssetAddress);
@@ -100,12 +104,15 @@ export const SwapScreen = () => {
     const handleOutputAssetValueChange = (newValue: Asset) =>
         setOutputAssetAddress(newValue.address);
     const handleEnterSendAmount = useCallback(() => {
+        trackButtonClick('Enter amount');
         inputRef.current?.focus();
     }, []);
 
     const handleSwap = useCallback(() => {
+        trackButtonClick('Swap');
         inputRef.current?.blur();
     }, []);
+
     return (
         <>
             <ContentContainer>
@@ -126,6 +133,7 @@ export const SwapScreen = () => {
                         <CustomInput
                             ref={inputRef}
                             label="You send"
+                            assetSelectorHeaderTitle="Select input asset"
                             balance={balances[inputAssetAddress]}
                             isInputEnabled={true}
                             inputValue={inputAssetAmount}
@@ -138,6 +146,7 @@ export const SwapScreen = () => {
                     <div className={styles.output_asset_container}>
                         <CustomInput
                             label="You receive"
+                            assetSelectorHeaderTitle="Select output asset"
                             balance={balances[outputAssetAddress]}
                             isInputEnabled={false}
                             inputValue={outputAssetAmount}
