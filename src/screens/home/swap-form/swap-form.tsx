@@ -20,6 +20,7 @@ import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-sele
 import {useBalancesSelector} from '../../../store/wallet/wallet-selectors.ts';
 import {mapSwapRouteToRoute} from '../../../swap-routes/shared/calculated-swap-route.utils.ts';
 import {toNano} from '../../../utils/big-int.utils.ts';
+import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {swapAssets} from '../../../utils/swap-assets.utils.ts';
 
 export const SwapScreen = () => {
@@ -68,6 +69,12 @@ export const SwapScreen = () => {
         inputAssetAddress,
         outputAssetAddress
     );
+
+    useEffect(() => {
+        setInputAssetAmount(
+            formatNumber(Number(inputAssetAmount), inputAsset.decimals)
+        );
+    }, [inputAsset.decimals, inputAssetAmount, setInputAssetAmount]);
 
     useEffect(() => {
         if (nanoInputAssetAmount === '0') {
