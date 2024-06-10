@@ -2,12 +2,10 @@ import {Address} from '@ton/ton';
 import {AxiosResponse} from 'axios';
 
 import {fromNano} from './big-int.utils';
-import {TON} from '../globals';
+import {TON, TON_DECIMALS} from '../globals';
 import {BalancesArray} from '../interfaces/balance-object.interface';
 import {TonBalanceArray} from '../interfaces/ton-balance-response.interface';
 import {BalancesRecord} from '../types/balances-record.type';
-
-const TON_DECIMALS = 9;
 
 export const getBalancesRecord = (
     jettonsResponse: AxiosResponse<BalancesArray>,

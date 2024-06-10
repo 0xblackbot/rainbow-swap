@@ -4,6 +4,7 @@ import styles from './CustomInput.module.css';
 import {Asset} from '../../interfaces/asset.interface.ts';
 import {EMPTY_FN} from '../../utils/emptyfn.ts';
 import {formatNumber} from '../../utils/format-number.utils.ts';
+import {getMaxSentAmount} from '../../utils/get-max-sent-amount.utils.ts';
 import {AssetSelector} from '../asset-selector/asset-selector.tsx';
 
 interface Props {
@@ -63,7 +64,12 @@ export const CustomInput = forwardRef<HTMLSpanElement, Props>(
             parseFloat(inputValue) * parseFloat(assetValue.exchangeRate);
 
         const setMaxAssetAmount = () => {
-            onInputValueChange(balance);
+            const checkedBalance = getMaxSentAmount(
+                balance,
+                assetValue.address
+            );
+
+            onInputValueChange(checkedBalance);
         };
 
         const handleSpanFocus = () => {

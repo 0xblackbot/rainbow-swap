@@ -6,6 +6,7 @@ import {COIN_GECKO_API_KEY} from './secrets';
 import {toNano} from './utils/big-int.utils';
 
 export const TON = 'ton';
+export const TON_DECIMALS = 9;
 export const USDT = 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs';
 export const WORKCHAIN = 0;
 
