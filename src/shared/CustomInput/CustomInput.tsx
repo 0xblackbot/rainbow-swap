@@ -1,7 +1,6 @@
 import {ChangeEvent, forwardRef} from 'react';
 
 import styles from './CustomInput.module.css';
-import {TON} from '../../globals.ts';
 import {Asset} from '../../interfaces/asset.interface.ts';
 import {EMPTY_FN} from '../../utils/emptyfn.ts';
 import {formatNumber} from '../../utils/format-number.utils.ts';
@@ -65,13 +64,12 @@ export const CustomInput = forwardRef<HTMLSpanElement, Props>(
             parseFloat(inputValue) * parseFloat(assetValue.exchangeRate);
 
         const setMaxAssetAmount = () => {
-            if (assetValue.address === TON) {
-                const tonBalance = getMaxSentAmount(balance);
+            const checkedBalance = getMaxSentAmount(
+                balance,
+                assetValue.address
+            );
 
-                onInputValueChange(tonBalance);
-            } else {
-                onInputValueChange(balance);
-            }
+            onInputValueChange(checkedBalance);
         };
 
         const handleSpanFocus = () => {
