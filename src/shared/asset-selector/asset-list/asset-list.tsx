@@ -63,13 +63,13 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
         [balances, filteredAssetsList, onChange, value.address]
     );
 
-    const selectedAsset = listProps.findIndex(item => item.isSelected);
+    const selectedAssetIndex = listProps.findIndex(item => item.isSelected);
 
     useEffect(() => {
         if (listRef.current) {
-            listRef.current.scrollToItem(selectedAsset, 'start');
+            listRef.current.scrollToItem(selectedAssetIndex, 'center');
         }
-    }, [selectedAsset]);
+    }, [selectedAssetIndex, divHeight.height]);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
         setSearchValue(event.target.value);
@@ -106,6 +106,7 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
                         ref={listRef}
                         height={divHeight.height}
                         width="100%"
+                        className={styles.fixed_size_list}
                         itemSize={66}
                         itemCount={listProps.length}
                         itemData={listProps}

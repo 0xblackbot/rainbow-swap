@@ -88,6 +88,10 @@
     display: flex;
 }
 
+.fixed_size_list{
+    scroll-behavior: smooth !important;
+}
+
 .footer_container {
     margin-top: auto;
     padding: var(--2-step);
