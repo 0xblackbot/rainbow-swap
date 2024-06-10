@@ -31,6 +31,7 @@ export const HomeScreen = () => {
     useEffect(() => {
         viewportHeight.updateValue();
         dispatch(loadAssetsActions.submit());
+        window.Telegram.WebApp.MainButton.hideProgress();
 
         // restore waitTransactionConfirmation for swap & activation transactions
         if (isDefined(pendingSwapTransaction.data)) {

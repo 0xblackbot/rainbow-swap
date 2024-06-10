@@ -12,6 +12,7 @@ export const App = () => {
         window.Telegram.WebApp.expand();
         window.Telegram.WebApp.enableClosingConfirmation();
         window.Telegram.WebApp.MainButton.setText('Loading...');
+        window.Telegram.WebApp.MainButton.showProgress();
         window.Telegram.WebApp.MainButton.show();
     }, []);
 
