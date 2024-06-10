@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import {App} from './components/app/app.tsx';
-import {GA_MEASUREMENT_ID} from './globals.ts';
+import {GA_MEASUREMENT_ID, isProd} from './globals.ts';
 import {SwapFormProvider} from './hooks/swap-form/swap-form.provider.tsx';
 import {ViewportHeightProvider} from './hooks/viewport-height/viewport-height.provider.tsx';
 import {persistor, store} from './store';
@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './ReactToastify.css';
 import './index.css';
 
-ReactGA.initialize(GA_MEASUREMENT_ID);
+isProd && ReactGA.initialize(GA_MEASUREMENT_ID);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <ViewportHeightProvider>

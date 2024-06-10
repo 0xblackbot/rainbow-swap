@@ -1,9 +1,11 @@
 import {useEffect} from 'react';
 import ReactGA from 'react-ga4';
 
+import {isProd} from '../globals.ts';
+
 export const useTrackPageView = (name: string, isOpen = true) =>
     useEffect(() => {
-        if (isOpen) {
+        if (isProd && isOpen) {
             ReactGA.send({
                 hitType: 'pageview',
                 page: '/' + name.toLowerCase().replace(/\s+/g, '-'),
@@ -13,6 +15,7 @@ export const useTrackPageView = (name: string, isOpen = true) =>
     }, [name, isOpen]);
 
 export const trackButtonClick = (name: string) =>
+    isProd &&
     ReactGA.event({
         category: 'General',
         action: 'Clicked ' + name,
