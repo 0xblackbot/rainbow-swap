@@ -43,7 +43,7 @@ export const SettingsButton = () => {
             value = '0.';
         }
 
-        const regex = /^(\d+(\.\d*)?)?$/;
+        const regex = /^(\d+(\.\d{0,2})?)?$/;
         if (regex.test(value)) {
             const numericValue = parseFloat(value);
             if (numericValue >= 0 && numericValue <= 100) {
