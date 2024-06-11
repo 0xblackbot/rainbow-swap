@@ -1,6 +1,6 @@
 import {isDefined} from '@rnw-community/shared';
 import {Address} from '@ton/core';
-import {useTonAddress, useTonWallet} from '@tonconnect/ui-react';
+import {useTonWallet} from '@tonconnect/ui-react';
 import {FC, useCallback, useState} from 'react';
 
 import styles from './swap-button.module.css';
@@ -15,7 +15,6 @@ import {useSwapRoutesSelector} from '../../../../store/swap-routes/swap-routes-s
 import {addPendingSwapTransactionActions} from '../../../../store/wallet/wallet-actions.ts';
 import {getSwapRouteTransferParams} from '../../../../swap-routes/shared/transfer-params.utils.ts';
 import {showSuccessToast} from '../../../../utils/toast.utils.ts';
-import {updateBalances} from '../../../../utils/update-balances.utils.ts';
 import {RainbowWalletInfo} from '../../swap-route-info/rainbow-wallet-info/rainbow-wallet-info.tsx';
 import {SwapRouteDisclaimer} from '../../swap-route-info/swap-route-disclaimer/swap-route-disclaimer.tsx';
 import {SwapRouteInfo} from '../../swap-route-info/swap-route-info.tsx';
@@ -30,7 +29,6 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
     const slippageTolerance = useSlippageToleranceSelector();
 
     const wallet = useTonWallet();
-    const walletAddress = useTonAddress();
     const sendTransaction = useSendTransaction();
     const rainbowWallet = useRainbowWallet(swapRoutes.data);
 
@@ -63,7 +61,6 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
         if (isDefined(transactionInfo)) {
             dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
             showSuccessToast('Swap sent, please wait...');
-            updateBalances(dispatch, walletAddress);
             setIsOpen(false);
         }
     };

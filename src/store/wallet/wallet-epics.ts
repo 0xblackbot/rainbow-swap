@@ -65,7 +65,12 @@ const addPendingSwapTransactionEpic: Epic<Action> = action$ =>
                     payload.bocHash
                 )
             ).pipe(
-                map(() => addPendingSwapTransactionActions.success()),
+                concatMap(() => [
+                    addPendingSwapTransactionActions.success(),
+                    loadBalancesActions.submit(
+                        Address.parse(payload.senderRawAddress).toString()
+                    )
+                ]),
                 catchError(err =>
                     of(addPendingSwapTransactionActions.fail(err.message))
                 )
@@ -113,6 +118,9 @@ const addPendingActivationTransactionEpic: Epic<Action> = action$ =>
             ).pipe(
                 concatMap(() => [
                     addPendingActivationTransactionActions.success(),
+                    loadBalancesActions.submit(
+                        Address.parse(payload.senderRawAddress).toString()
+                    ),
                     checkIsRainbowWalletActiveActions.submit(
                         payload.senderRawAddress
                     )

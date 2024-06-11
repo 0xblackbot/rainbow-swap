@@ -1,9 +1,12 @@
 import {isNotEmptyString} from '@rnw-community/shared';
 
+import {AppDispatch} from '../store';
 import {loadBalancesActions} from '../store/wallet/wallet-actions';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const updateBalances = (dispatch: any, walletAddress: string) => {
+export const updateBalances = (
+    dispatch: AppDispatch,
+    walletAddress: string
+) => {
     if (isNotEmptyString(walletAddress)) {
         dispatch(loadBalancesActions.submit(walletAddress));
     } else {

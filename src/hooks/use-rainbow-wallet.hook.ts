@@ -1,6 +1,6 @@
 import {isDefined} from '@rnw-community/shared';
 import {Address} from '@ton/core';
-import {useTonAddress, useTonWallet} from '@tonconnect/ui-react';
+import {useTonWallet} from '@tonconnect/ui-react';
 import {useEffect, useMemo} from 'react';
 import {toast} from 'react-toastify';
 
@@ -16,13 +16,11 @@ import {
 import {CalculatedSwapRoute} from '../swap-routes/shared/calculated-swap-route.type.ts';
 import {getRainbowWalletActivationTransferParams} from '../swap-routes/shared/transfer-params.utils.ts';
 import {showLoadingToast, showSuccessToast} from '../utils/toast.utils.ts';
-import {updateBalances} from '../utils/update-balances.utils.ts';
 
 export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
     const dispatch = useDispatch();
 
     const wallet = useTonWallet();
-    const walletAddress = useTonAddress();
     const sendTransaction = useSendTransaction();
 
     const isRainbowWalletActive = useIsRainbowWalletActiveSelector();
@@ -62,10 +60,9 @@ export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
             return () => {
                 toast.dismiss(toastId);
                 showSuccessToast('Success, you can do the swap.');
-                updateBalances(dispatch, walletAddress);
             };
         }
-    }, [pendingActivationTransaction.data, dispatch, walletAddress]);
+    }, [pendingActivationTransaction.data]);
 
     const activateContract = async () => {
         trackButtonClick('Activate contract');
