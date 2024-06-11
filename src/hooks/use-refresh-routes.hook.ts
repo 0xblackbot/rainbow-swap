@@ -1,8 +1,11 @@
+import {isNotEmptyString} from '@rnw-community/shared';
+import {useTonAddress} from '@tonconnect/ui-react';
 import {useCallback, useEffect, useRef} from 'react';
 
 import {REFRESH_ROUTE_INTERVAL} from '../globals.ts';
 import {useDispatch} from '../store/index.ts';
 import {loadSwapRoutesActions} from '../store/swap-routes/swap-routes-actions.ts';
+import {loadBalancesActions} from '../store/wallet/wallet-actions.ts';
 
 export const useRefreshRoutes = (
     inputAssetAmount: string,
@@ -11,6 +14,7 @@ export const useRefreshRoutes = (
     outputAssetAddress: string
 ) => {
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const walletAddress = useTonAddress();
     const dispatch = useDispatch();
 
     const handleRefreshRoutes = useCallback(() => {
@@ -23,7 +27,13 @@ export const useRefreshRoutes = (
                 })
             );
         }
+        if (isNotEmptyString(walletAddress)) {
+            dispatch(loadBalancesActions.submit(walletAddress));
+        } else {
+            dispatch(loadBalancesActions.success({}));
+        }
     }, [
+        walletAddress,
         inputAssetAmount,
         nanoInputAssetAmount,
         inputAssetAddress,
