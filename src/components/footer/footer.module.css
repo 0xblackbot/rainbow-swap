@@ -19,6 +19,10 @@
     transition: color 0.3s ease-in-out;
 }
 
+.container_a:-webkit-any-link {
+    color: var(--hint-color)
+}
+
 .container_a:visited {
     color: var(--hint-color)
 }
