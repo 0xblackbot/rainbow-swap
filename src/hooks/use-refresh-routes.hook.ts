@@ -1,8 +1,10 @@
+import {useTonAddress} from '@tonconnect/ui-react';
 import {useCallback, useEffect, useRef} from 'react';
 
 import {REFRESH_ROUTE_INTERVAL} from '../globals.ts';
 import {useDispatch} from '../store/index.ts';
 import {loadSwapRoutesActions} from '../store/swap-routes/swap-routes-actions.ts';
+import {updateBalances} from '../utils/update-balances.utils.ts';
 
 export const useRefreshRoutes = (
     inputAssetAmount: string,
@@ -11,6 +13,7 @@ export const useRefreshRoutes = (
     outputAssetAddress: string
 ) => {
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const walletAddress = useTonAddress();
     const dispatch = useDispatch();
 
     const handleRefreshRoutes = useCallback(() => {
@@ -22,8 +25,11 @@ export const useRefreshRoutes = (
                     outputAssetAddress
                 })
             );
+
+            updateBalances(dispatch, walletAddress);
         }
     }, [
+        walletAddress,
         inputAssetAmount,
         nanoInputAssetAmount,
         inputAssetAddress,
