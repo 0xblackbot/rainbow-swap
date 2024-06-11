@@ -1,6 +1,5 @@
-import {useMemo} from 'react';
-
 import styles from './footer.module.css';
+import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {getClassName} from '../../utils/style.utils.ts';
 
 const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';
@@ -10,13 +9,12 @@ const CONTAINER_HEIGHT = 40;
 const CONTAINER_MARGIN_BOTTOM = 20;
 
 export const Footer = () => {
-    const top = useMemo(() => window.Telegram.WebApp.viewportStableHeight, []);
+    const viewportHeight = useViewportHeight();
+    const top =
+        viewportHeight.value - (CONTAINER_HEIGHT + CONTAINER_MARGIN_BOTTOM);
 
     return (
-        <div
-            className={styles.container}
-            style={{top: top - (CONTAINER_HEIGHT + CONTAINER_MARGIN_BOTTOM)}}
-        >
+        <div className={styles.container} style={{top}}>
             <div className={styles.container_row}>
                 <a
                     className={getClassName(

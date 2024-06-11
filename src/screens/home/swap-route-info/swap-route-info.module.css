@@ -1,6 +1,5 @@
 .route_info_wrapper {
     position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     background-color: var(--header-bg-color);
@@ -69,6 +68,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(128, 128, 128, 0.5);
+    border-radius: var(--border-radius);
     display: flex;
     justify-content: center;
     align-items: center;
