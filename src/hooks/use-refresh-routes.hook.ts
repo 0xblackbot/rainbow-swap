@@ -25,9 +25,8 @@ export const useRefreshRoutes = (
                     outputAssetAddress
                 })
             );
-
-            updateBalances(dispatch, walletAddress);
         }
+        updateBalances(dispatch, walletAddress);
     }, [
         walletAddress,
         inputAssetAmount,
