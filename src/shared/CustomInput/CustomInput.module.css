@@ -26,6 +26,19 @@
 }
 
 .input_field {
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: 32px;
+    outline: none;
+    width: 69%;
+    flex: 1;
+    text-align: right;
+}
+.input_field::placeholder{
+    color: var(--hint-color);
+}
+
+.span_field {
     display: inline-block;
     background-color: transparent;
     color: var(--text-color);
@@ -38,11 +51,11 @@
     min-width: 30px; 
 }
 
-.input_field:focus {
+.span_field:focus {
     outline: none;
 }
 
-.input_field:empty::before {
+.span_field:empty::before {
     content: '0';
     color: var(--hint-color);
 }
@@ -96,7 +109,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
+    min-width: 20px;
     margin-right: 4px;
 }
 

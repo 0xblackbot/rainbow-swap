@@ -26,7 +26,7 @@ import {swapAssets} from '../../../utils/swap-assets.utils.ts';
 
 export const SwapScreen = () => {
     const wallet = useTonWallet();
-    const inputRef = useRef<HTMLSpanElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const connectModal = useTonConnectModal();
 
     const dispatch = useDispatch();
@@ -92,7 +92,6 @@ export const SwapScreen = () => {
         // Connect modal constantly changes between re-renders causing this function to be recreated on every re-render
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
     const handleToggleAssetsClick = () => {
         trackButtonClick('Toggle Assets');
         setInputAssetAmount('');
@@ -100,10 +99,7 @@ export const SwapScreen = () => {
         setOutputAssetAddress(inputAssetAddress);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
-    const handleInputAssetAmountChange = (newValue: string) => {
-        const amount = formatNumber(Number(newValue), inputAsset.decimals);
-        setInputAssetAmount(amount);
-    };
+
     const handleInputAssetValueChange = (newValue: Asset) => {
         swapAssets(
             newValue.address,
@@ -159,7 +155,7 @@ export const SwapScreen = () => {
                             balance={balances[inputAssetAddress]}
                             isInputEnabled={true}
                             inputValue={inputAssetAmount}
-                            onInputValueChange={handleInputAssetAmountChange}
+                            onInputValueChange={setInputAssetAmount}
                             assetValue={inputAsset}
                             onAssetValueChange={handleInputAssetValueChange}
                         />

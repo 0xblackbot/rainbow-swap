@@ -19,7 +19,7 @@ interface Props {
     assetSelectorHeaderTitle: string;
 }
 
-export const CustomInput = forwardRef<HTMLSpanElement, Props>(
+export const CustomInput = forwardRef<HTMLInputElement, Props>(
     (
         {
             label,
@@ -34,34 +34,26 @@ export const CustomInput = forwardRef<HTMLSpanElement, Props>(
         },
         ref
     ) => {
-        const handleInputChange = (e: ChangeEvent<HTMLSpanElement>) => {
-            let value = e.target.textContent || '';
+        const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+            let value = e.target.value;
             value = value.replace(/,/g, '.');
 
             if (value.charAt(0) === '.' || value.charAt(0) === ',') {
                 value = '0.';
             }
-
             const regex = new RegExp(`^\\d*(\\.\\d{0,9})?$`);
             if (regex.test(value)) {
                 const [integer, decimal] = value.split('.');
                 if (decimal?.length > assetValue.decimals) {
-                    value =
+                    e.target.value =
                         integer + '.' + decimal.slice(0, assetValue.decimals);
+                    onInputValueChange(e.target.value);
+                } else {
+                    onInputValueChange(value);
                 }
-                onInputValueChange(value);
-                e.target.textContent = value;
-            } else {
-                e.target.textContent = inputValue;
             }
-
-            const selection = window.getSelection();
-            const range = document.createRange();
-            range.selectNodeContents(e.target);
-            range.collapse(false);
-            selection?.removeAllRanges();
-            selection?.addRange(range);
         };
+
         const usdAmount =
             parseFloat(inputValue) * parseFloat(assetValue.exchangeRate);
 
@@ -74,12 +66,6 @@ export const CustomInput = forwardRef<HTMLSpanElement, Props>(
             onInputValueChange(checkedBalance);
         };
 
-        const handleSpanFocus = () => {
-            if (ref && typeof ref !== 'function' && ref.current) {
-                ref.current.focus();
-            }
-        };
-
         return (
             <div className={styles.container}>
                 <p className={styles.container_label}>{label}</p>
@@ -89,26 +75,29 @@ export const CustomInput = forwardRef<HTMLSpanElement, Props>(
                         headerTitle={assetSelectorHeaderTitle}
                         onChange={onAssetValueChange}
                     />
-                    <div
-                        className={styles.input_wrapper}
-                        onClick={handleSpanFocus}
-                    >
+                    <div className={styles.input_wrapper}>
                         <div className={styles.empty_container}>
                             {isLoading ? (
                                 <div className={styles.loader_spinner} />
                             ) : null}
                         </div>
-                        <span
-                            contentEditable={isInputEnabled}
-                            suppressContentEditableWarning={true}
-                            className={styles.input_field}
-                            onInput={handleInputChange}
-                            ref={ref}
-                            inputMode="decimal"
-                            tabIndex={0}
-                        >
-                            {inputValue}
-                        </span>
+                        {isInputEnabled ? (
+                            <input
+                                type="tel"
+                                inputMode="decimal"
+                                className={styles.input_field}
+                                onChange={handleInputChange}
+                                value={inputValue}
+                                placeholder="0"
+                                disabled={!isInputEnabled}
+                                required={isInputEnabled}
+                                ref={ref}
+                            />
+                        ) : (
+                            <span className={styles.span_field}>
+                                {inputValue}
+                            </span>
+                        )}
                     </div>
                 </div>
 
