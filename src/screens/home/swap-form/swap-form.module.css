@@ -22,6 +22,15 @@
     font-size: 22px;
 } 
 
+.rate_div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: var(--2-step);
+    color: var(--hint-color);
+    min-height: 19px;
+}
+
 .icons_div{
     display: flex;
     justify-content: space-between;
