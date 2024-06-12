@@ -95,12 +95,12 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         onChange={onAssetValueChange}
                     />
                     <div className={styles.input_wrapper}>
-                        {!isFocused ? (
+                        {!isFocused && (
                             <div
                                 className={styles.input_overlay}
                                 onClick={handleOverlayClick}
                             />
-                        ) : null}
+                        )}
                         <div className={styles.empty_container}>
                             {isLoading ? (
                                 <div className={styles.loader_spinner} />
