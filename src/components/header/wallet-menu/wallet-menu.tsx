@@ -38,17 +38,14 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
 
     return (
         <>
-            <button className={styles.wallet_button} onClick={handleMenuClick}>
-                {shortWalletAddress}
-            </button>
-
-            <div
+            <button
                 className={getClassName(
-                    styles.menu_backdrop,
+                    styles.wallet_button,
                     isOpen ? styles.open : styles.close
                 )}
-                onClick={handleClose}
+                onClick={handleMenuClick}
             >
+                {shortWalletAddress}
                 <div className={styles.menu_content}>
                     <button
                         className={getClassName(
@@ -75,7 +72,15 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         Disconnect
                     </button>
                 </div>
-            </div>
+            </button>
+
+            <div
+                className={getClassName(
+                    styles.menu_backdrop,
+                    isOpen ? styles.open : styles.close
+                )}
+                onClick={handleClose}
+            ></div>
         </>
     );
 };
