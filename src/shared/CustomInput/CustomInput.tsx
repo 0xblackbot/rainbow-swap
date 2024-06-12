@@ -1,4 +1,4 @@
-import {ChangeEvent, forwardRef} from 'react';
+import {ChangeEvent, forwardRef, useState} from 'react';
 
 import styles from './CustomInput.module.css';
 import {Asset} from '../../interfaces/asset.interface.ts';
@@ -34,6 +34,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
         },
         ref
     ) => {
+        const [isFocused, setIsFocused] = useState(false);
         const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
             let value = e.target.value;
             value = value.replace(/,/g, '.');
@@ -66,6 +67,24 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             onInputValueChange(checkedBalance);
         };
 
+        const handleOverlayClick = () => {
+            if (
+                ref &&
+                typeof ref !== 'function' &&
+                document.activeElement !== ref.current
+            ) {
+                (ref as React.RefObject<HTMLInputElement>).current?.focus();
+            }
+        };
+
+        const handleFocus = () => {
+            setIsFocused(true);
+        };
+
+        const handleBlur = () => {
+            setIsFocused(false);
+        };
+
         return (
             <div className={styles.container}>
                 <p className={styles.container_label}>{label}</p>
@@ -76,23 +95,33 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         onChange={onAssetValueChange}
                     />
                     <div className={styles.input_wrapper}>
+                        {!isFocused && (
+                            <div
+                                className={styles.input_overlay}
+                                onClick={handleOverlayClick}
+                            />
+                        )}
                         <div className={styles.empty_container}>
                             {isLoading ? (
                                 <div className={styles.loader_spinner} />
                             ) : null}
                         </div>
                         {isInputEnabled ? (
-                            <input
-                                type="tel"
-                                inputMode="decimal"
-                                className={styles.input_field}
-                                onChange={handleInputChange}
-                                value={inputValue}
-                                placeholder="0"
-                                disabled={!isInputEnabled}
-                                required={isInputEnabled}
-                                ref={ref}
-                            />
+                            <>
+                                <input
+                                    type="tel"
+                                    inputMode="decimal"
+                                    className={styles.input_field}
+                                    onChange={handleInputChange}
+                                    value={inputValue}
+                                    placeholder="0"
+                                    disabled={!isInputEnabled}
+                                    required={isInputEnabled}
+                                    ref={ref}
+                                    onFocus={handleFocus}
+                                    onBlur={handleBlur}
+                                />
+                            </>
                         ) : (
                             <span className={styles.span_field}>
                                 {inputValue}
