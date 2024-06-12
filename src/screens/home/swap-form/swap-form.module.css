@@ -28,6 +28,7 @@
     justify-content: flex-end;
     margin-bottom: var(--2-step);
     color: var(--hint-color);
+    min-height: 19px;
 }
 
 .icons_div{
