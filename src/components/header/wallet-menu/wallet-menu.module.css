@@ -32,7 +32,7 @@
 .menu_content {
     position: absolute;
     top: var(--header-height);
-    right: var(--2-step);
+    right: 0;
     display: grid;
     gap: var(--step);
     background-color: var(--secondary-bg-color);
@@ -40,16 +40,16 @@
     padding: var(--step);
     border-radius: var(--2-step);
     box-shadow: 0 2px 2px black;
-    transform: translateX(125%);
+    transform: translateX(500%);
     transition: transform 0.3s ease-in-out;
 }
 
-.menu_backdrop.open .menu_content {
+.wallet_button.open .menu_content {
     transform: translateX(0);
 }
 
-.menu_backdrop.close .menu_content {
-    transform: translateX(125%);
+.wallet_button.close .menu_content {
+    transform: translateX(500%);
 }
 .menu_button {
     justify-content: center;
