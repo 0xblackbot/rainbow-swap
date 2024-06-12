@@ -2,6 +2,7 @@ import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
+import {useSwapInfo} from './hooks/use-swap-info.hook.ts';
 import {SettingsButton} from './settings-button/settings-button.tsx';
 import {SwapButton} from './swap-button/swap-button.tsx';
 import styles from './swap-form.module.css';
@@ -16,6 +17,7 @@ import {CustomInput} from '../../../shared/CustomInput/CustomInput.tsx';
 import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
 import {useDispatch} from '../../../store';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors.ts';
+import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors.ts';
 import {loadSwapRoutesActions} from '../../../store/swap-routes/swap-routes-actions.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
 import {useBalancesSelector} from '../../../store/wallet/wallet-selectors.ts';
@@ -31,6 +33,7 @@ export const SwapScreen = () => {
 
     const dispatch = useDispatch();
     const assets = useAssetsRecordSelector();
+    const slippageTolerance = useSlippageToleranceSelector();
     const swapRoutes = useSwapRoutesSelector();
     const isLoading = swapRoutes.isLoading;
     const balances = useBalancesSelector();
@@ -50,6 +53,13 @@ export const SwapScreen = () => {
 
     const inputAsset = assets[inputAssetAddress];
     const outputAsset = assets[outputAssetAddress];
+
+    const swapInfo = useSwapInfo(
+        inputAsset.decimals,
+        outputAsset.decimals,
+        slippageTolerance,
+        routes
+    );
 
     const outputAssetAmount = useOutputAssetAmount(
         routes,
@@ -173,6 +183,12 @@ export const SwapScreen = () => {
                             onAssetValueChange={handleOutputAssetValueChange}
                         />
                     </div>
+
+                    {routes.length > 0 && (
+                        <div className={styles.rate_div}>
+                            {`1 ${inputAsset.symbol} = ${formatNumber(swapInfo.exchangeRate, 5)} ${outputAsset.symbol}`}
+                        </div>
+                    )}
 
                     {wallet ? (
                         Number(inputAssetAmount) === 0 ? (
