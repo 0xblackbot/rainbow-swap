@@ -109,7 +109,6 @@ export const SwapScreen = () => {
         setOutputAssetAddress(inputAssetAddress);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     };
-
     const handleInputAssetValueChange = (newValue: Asset) => {
         swapAssets(
             newValue.address,
@@ -183,13 +182,13 @@ export const SwapScreen = () => {
                             onAssetValueChange={handleOutputAssetValueChange}
                         />
                     </div>
-
                     <div className={styles.rate_div}>
-                        {routes.length > 0
-                            ? `1 ${inputAsset.symbol} = ${formatNumber(swapInfo.exchangeRate, 5)} ${outputAsset.symbol}`
-                            : 'No routes available'}
+                        {inputAssetAmount.length !== 0 && !isLoading
+                            ? routes.length > 0
+                                ? `1 ${inputAsset.symbol} = ${formatNumber(swapInfo.exchangeRate, 5)} ${outputAsset.symbol}`
+                                : 'No routes available'
+                            : null}
                     </div>
-
                     {wallet ? (
                         Number(inputAssetAmount) === 0 ? (
                             <FormButton
