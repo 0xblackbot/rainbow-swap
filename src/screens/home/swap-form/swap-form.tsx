@@ -117,11 +117,13 @@ export const SwapScreen = () => {
             setInputAssetAddress,
             handleToggleAssetsClick
         );
-        const valueAmount = formatNumber(
-            Number(inputAssetAmount),
-            newValue.decimals
-        );
-        setInputAssetAmount(valueAmount);
+        if (inputAssetAmount !== '') {
+            const valueAmount = formatNumber(
+                Number(inputAssetAmount),
+                newValue.decimals
+            );
+            setInputAssetAmount(valueAmount);
+        }
     };
     const handleOutputAssetValueChange = (newValue: Asset) => {
         swapAssets(
