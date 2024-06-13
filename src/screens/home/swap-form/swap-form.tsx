@@ -185,8 +185,9 @@ export const SwapScreen = () => {
                     </div>
 
                     <div className={styles.rate_div}>
-                        {routes.length > 0 &&
-                            `1 ${inputAsset.symbol} = ${formatNumber(swapInfo.exchangeRate, 5)} ${outputAsset.symbol}`}
+                        {routes.length > 0
+                            ? `1 ${inputAsset.symbol} = ${formatNumber(swapInfo.exchangeRate, 5)} ${outputAsset.symbol}`
+                            : 'No routes available'}
                     </div>
 
                     {wallet ? (
