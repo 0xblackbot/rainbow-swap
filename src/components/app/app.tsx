@@ -13,7 +13,7 @@ export const App = () => {
         window.Telegram.WebApp.enableClosingConfirmation();
         window.Telegram.WebApp.MainButton.show();
         // We wait for MainButton to be initialized
-        setTimeout(() => viewportHeight.updateValue(), 0);
+        setTimeout(() => viewportHeight.updateValue(), 100);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
