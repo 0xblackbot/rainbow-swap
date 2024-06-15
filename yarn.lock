@@ -712,10 +712,10 @@
     jssha "3.2.0"
     tweetnacl "1.0.3"
 
-"@ton/ton@^13.11.1":
-  version "13.11.1"
-  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-13.11.1.tgz#d72169a6a5bf7fce6e556126c56391139442b1e2"
-  integrity sha512-tcLdHzwhS5bmS0EGstcmfYK0ZeRrNz1AUIzUGKq/Xh0MGEwfP1qZBMloGGHLQnyZdRQ1D7Wx4g4mBKNrvG6DcQ==
+"@ton/ton@^13.11.2":
+  version "13.11.2"
+  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-13.11.2.tgz#e40204df6a663fdf1b862dfe8ba2a91be3c0dddc"
+  integrity sha512-EPqW+ZTe0MmfqguJEIGMuAqTAFRKMEce95HlDx8h6CGn2y3jiMgV1/oO+WpDIOiX+1wnTu+xtajk8JTWr8nKRQ==
   dependencies:
     axios "^1.6.7"
     dataloader "^2.0.0"
@@ -745,28 +745,28 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tonconnect/sdk@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-3.0.2.tgz#013bbfda9ec11e907bff0291cef046250fecc534"
-  integrity sha512-TEPIoczYZhJcXu9pixYJimGlYKLWLSkgJZgC2vwHLObwuqoiOa06BTOlooaxoNFgZ0LOgIzt+QRs8tF8jyYsSw==
+"@tonconnect/sdk@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-3.0.3.tgz#0cc6a570817194c648193f7a1db525419c570e3f"
+  integrity sha512-ElVre1DPixzQLgLtQIa8Wu5xS8nozlgblZTJhFFPrk82M2rZ+sawyF+LAVwt9wZRN7+htWnJrNz0+bBr4b3geA==
   dependencies:
     "@tonconnect/isomorphic-eventsource" "^0.0.2"
     "@tonconnect/isomorphic-fetch" "^0.0.3"
     "@tonconnect/protocol" "^2.2.6"
 
-"@tonconnect/ui-react@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui-react/-/ui-react-2.0.2.tgz#917956381c66ab3a1f891a9291e4ec760cc6a841"
-  integrity sha512-nNsaB8DzQsVfBRtKli4KTC4Nj1WwJ+gHP4j9FOgjqNylf+VRYH5mpDkpRw/vRVwOYNMsZ4k8ZznreccWqFJRXg==
+"@tonconnect/ui-react@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui-react/-/ui-react-2.0.5.tgz#8e733d41b89273fd258d693599734605a89cd2d3"
+  integrity sha512-phK8nZpjdASyuwWZmw6Qj5tqVag83cfgSpgy7OW6cq8ftJrELiPQD0hCbcWb9iSqgf6eYpGz3s+4I0Gq/YJxww==
   dependencies:
-    "@tonconnect/ui" "2.0.2"
+    "@tonconnect/ui" "2.0.5"
 
-"@tonconnect/ui@2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.0.2.tgz#dd3e5719ab582af14d726f4e5f7da0baf7614eb7"
-  integrity sha512-x/iI7yX8yMvs7HKZ1wm3Quz5yg8mJJwZQlg+DYHGBvqdx0JMqXbF8YOcvGdh/Lhmrq92ahE8QIwX+85cS80vjQ==
+"@tonconnect/ui@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.0.5.tgz#2855ee944ba47502de51d4b88ef98dc5ba6b424f"
+  integrity sha512-AuVtBqX450lJyJtrJDhBPwPzkhm10QCsnS1/p2CLkzzcMH5b5o50oVp5yuRWw/1eIwJZSLjVplkgA/JjMAlmsA==
   dependencies:
-    "@tonconnect/sdk" "3.0.2"
+    "@tonconnect/sdk" "3.0.3"
     classnames "^2.3.2"
     deepmerge "^4.2.2"
     ua-parser-js "^1.0.35"
@@ -3503,10 +3503,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-tonapi-sdk-js@^1.0.9:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-1.0.10.tgz#dd2e8c1cb1b3205527185664b422c190578e5012"
-  integrity sha512-fwVRzQyq1igox3NiP/uYgFwH9dVC+ky01VTG64MiGL57q8vBlM/iJZpcmm4/0CmKyGf0Z/y4ox0sykJEaNlP2A==
+tonapi-sdk-js@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-1.0.11.tgz#0aa7807ed818bea819f30807925852813b0a0ac5"
+  integrity sha512-6/oHFpfD5GcVppxPUEbXgEfx0YwD2yCwqjeVyEwMsASu7J+UXYQPBGqQupcw51K7OYHE6JTom6/xG0ztYImLgQ==
 
 totalist@^3.0.0:
   version "3.0.1"
