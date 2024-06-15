@@ -30,7 +30,7 @@ Rainbow Swap aggregates liquidity from multiple TON DEXes, distributing trade vo
 
 ### Results
 
-Our user-friendly interface allows seamless swaps with the most efficient routes, considering swap distribution and gas costs.
+Our user-friendly interface allows seamless swaps with the most efficient routes, considering swap distribution and gas costs. Swap now with our bot  [@rainbow_swap_bot](https://t.me/rainbow_swap_bot) and share your thoughts and suggestions in [Community Chat](https://t.me/@rainbow_swap_chat)! 🌈🚀
 
 # Development info
 
