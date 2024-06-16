@@ -89,18 +89,16 @@ export const SwapRouteInfo: FC = () => {
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>
+                <p>Fee</p>
+                <p>0%</p>
+            </div>
+            <div className={styles.route_info_inside_div}>
                 <p>Max. slippage</p>
                 <p>{slippageTolerance}%</p>
             </div>
             <div className={styles.route_info_inside_div}>
                 <p>Receive at least</p>
                 <p>{`${swapInfo.minOutputAssetAmount} ${outputAsset.symbol}`}</p>
-            </div>
-            <div className={styles.route_info_inside_div}>
-                <p>Fee</p>
-                <p>
-                    0% <span className={styles.crossed_out}>0.1%</span>
-                </p>
             </div>
             <div className={styles.route_info_inside_div}>
                 <p>Swap route</p>
