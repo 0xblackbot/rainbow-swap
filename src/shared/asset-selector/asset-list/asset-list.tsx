@@ -7,7 +7,6 @@ import {useDivHeight} from '../../../hooks/use-div-height.hook.ts';
 import {Asset} from '../../../interfaces/asset.interface.ts';
 import {useAssetsListSelector} from '../../../store/assets/assets-selectors.ts';
 import {useBalancesSelector} from '../../../store/wallet/wallet-selectors.ts';
-import {formatNumber} from '../../../utils/format-number.utils.ts';
 import {AssetListItemProps} from '../asset-list-item/asset-list-item.props.ts';
 import {AssetListItem} from '../asset-list-item/asset-list-item.tsx';
 import {AssetNoResult} from '../asset-no-result/asset-no-result.tsx';
@@ -52,8 +51,7 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
         () =>
             filteredAssetsList.map(asset => ({
                 asset,
-                balance:
-                    formatNumber(parseFloat(balances[asset.address]), 2) ?? '0',
+                balance: balances[asset.address] ?? '0',
                 isSelected: asset.address === value.address,
                 onClick: () => {
                     setSearchValue('');
