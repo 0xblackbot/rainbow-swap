@@ -1,5 +1,5 @@
 export const toNano = (src: string, decimals: number) => {
-    const precision = 10n * BigInt(decimals);
+    const precision = 10n ** BigInt(decimals);
 
     // Check sign
     let neg = false;
