@@ -1,7 +1,6 @@
 import {TON} from '../../../globals';
 import {Asset} from '../../../interfaces/asset.interface';
 import {BalancesRecord} from '../../../types/balances-record.type';
-import {parseBalance} from '../../../utils/balance-parse.utils';
 
 export const sortAssets = (
     assets: Asset[],
@@ -13,14 +12,10 @@ export const sortAssets = (
     const sortedAssets = otherAssets.sort((a, b) => {
         const aBalance = balances[a.address] || '0';
         const bBalance = balances[b.address] || '0';
-        const aDecimals = a.decimals;
-        const bDecimals = b.decimals;
 
-        const aUsdValue =
-            parseBalance(aBalance, aDecimals) * parseFloat(a.exchangeRate);
+        const aUsdValue = parseFloat(aBalance) * parseFloat(a.exchangeRate);
 
-        const bUsdValue =
-            parseBalance(bBalance, bDecimals) * parseFloat(b.exchangeRate);
+        const bUsdValue = parseFloat(bBalance) * parseFloat(b.exchangeRate);
 
         return bUsdValue - aUsdValue;
     });

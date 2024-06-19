@@ -1,7 +1,8 @@
 import {Address} from '@ton/ton';
 import {AxiosResponse} from 'axios';
 
-import {TON} from '../globals';
+import {fromNano} from './big-int.utils';
+import {TON, TON_DECIMALS} from '../globals';
 import {BalancesArray} from '../interfaces/balance-object.interface';
 import {TonBalanceArray} from '../interfaces/ton-balance-response.interface';
 import {BalancesRecord} from '../types/balances-record.type';
@@ -16,10 +17,16 @@ export const getBalancesRecord = (
         const parsedAddress = Address.parse(
             balanceObject.jetton.address
         ).toString();
-        balancesRecord[parsedAddress] = balanceObject.balance;
+        balancesRecord[parsedAddress] = fromNano(
+            balanceObject.balance,
+            balanceObject.jetton.decimals
+        );
     });
 
-    balancesRecord[TON] = accountResponse.data.balance;
+    balancesRecord[TON] = fromNano(
+        BigInt(accountResponse.data.balance),
+        TON_DECIMALS
+    );
 
     return balancesRecord;
 };

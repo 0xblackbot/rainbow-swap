@@ -1,5 +1,5 @@
 export interface BalanceObject {
-    balance: string;
+    balance: bigint;
     wallet_address: {
         address: string;
         is_scam: boolean;

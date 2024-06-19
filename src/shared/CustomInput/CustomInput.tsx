@@ -2,7 +2,6 @@ import {ChangeEvent, forwardRef, useState} from 'react';
 
 import styles from './CustomInput.module.css';
 import {Asset} from '../../interfaces/asset.interface.ts';
-import {parseBalance} from '../../utils/balance-parse.utils.ts';
 import {EMPTY_FN} from '../../utils/emptyfn.ts';
 import {formatNumber} from '../../utils/format-number.utils.ts';
 import {getMaxSentAmount} from '../../utils/get-max-sent-amount.utils.ts';
@@ -36,7 +35,6 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
         ref
     ) => {
         const [isFocused, setIsFocused] = useState(false);
-        const parsedBalance = parseBalance(balance, assetValue.decimals);
         const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
             let value = e.target.value;
             value = value.replace(/,/g, '.');
@@ -66,9 +64,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 assetValue.address
             );
 
-            onInputValueChange(
-                parseBalance(checkedBalance, assetValue.decimals).toString()
-            );
+            onInputValueChange(checkedBalance);
         };
 
         const handleOverlayClick = () => {
@@ -136,7 +132,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
 
                 <div className={styles.input_info}>
                     <div className={styles.input_info_balance}>
-                        <p>Balance: {formatNumber(parsedBalance, 2)}</p>
+                        <p>Balance: {formatNumber(parseFloat(balance), 2)}</p>
                         {isInputEnabled ? (
                             <button
                                 className={styles.input_info_button}
