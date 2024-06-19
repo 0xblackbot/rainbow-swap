@@ -24,10 +24,10 @@ export const toNano = (src: string, decimals: number) => {
     if (!frac) {
         frac = '0';
     }
-    if (frac.length > 9) {
+    if (frac.length > decimals) {
         throw Error('Invalid number');
     }
-    while (frac.length < 9) {
+    while (frac.length < decimals) {
         frac += '0';
     }
     // Convert
