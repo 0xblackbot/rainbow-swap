@@ -44,11 +44,11 @@
 }
 
 .route > :first-child {
-    margin-right: var(--step);
+    margin-right: var(--half-step);
     align-items: flex-start;
 }
 
 .route > :last-child {
-    margin-left: var(--step);
+    margin-left: var(--half-step);
     align-items: flex-end;
 }
