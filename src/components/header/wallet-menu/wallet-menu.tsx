@@ -38,7 +38,7 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
 
     return (
         <>
-            <button
+            <div
                 className={getClassName(
                     styles.wallet_button,
                     isOpen ? styles.open : styles.close
@@ -72,7 +72,7 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         Disconnect
                     </button>
                 </div>
-            </button>
+            </div>
 
             <div
                 className={getClassName(
