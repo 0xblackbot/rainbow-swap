@@ -14,12 +14,11 @@ export const App = () => {
     const dispatch = useDispatch();
     const stateVersion = useDevVersionSelector();
 
-    if (stateVersion !== PROD_STATE_VERSION) {
-        dispatch(resetState());
-        dispatch(setDevVersionAction(PROD_STATE_VERSION));
-    }
-
     useEffect(() => {
+        if (stateVersion !== PROD_STATE_VERSION) {
+            dispatch(resetState());
+            dispatch(setDevVersionAction(PROD_STATE_VERSION));
+        }
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
         window.Telegram.WebApp.enableClosingConfirmation();
