@@ -5,6 +5,7 @@ import {PROD_STATE_VERSION} from '../../globals.ts';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {HomeScreen} from '../../screens/home-screen/home-screen.tsx';
 import {resetState} from '../../store/actions.ts';
+import {setDevVersionAction} from '../../store/dev/dev-actions.ts';
 import {useDevVersionSelector} from '../../store/dev/dev-selectors.ts';
 import {useDispatch} from '../../store/index.ts';
 
@@ -15,6 +16,7 @@ export const App = () => {
 
     if (stateVersion !== PROD_STATE_VERSION) {
         dispatch(resetState());
+        dispatch(setDevVersionAction(PROD_STATE_VERSION));
     }
 
     useEffect(() => {
