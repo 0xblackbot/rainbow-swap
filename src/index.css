@@ -56,13 +56,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 :root {
-    --bg-color: var(--tg-theme-bg-color, #010101);
-    --text-color: var(--tg-theme-text-color, #ffffff);
-    --hint-color: var(--tg-theme-hint-color, #3e3e42);
+    --bg-color: #010101;
+    --text-color: #ffffff;
+    --hint-color:  #3e3e42;
     --button-color: var(--tg-theme-button-color, #3e88f7);
     --button-text-color: var(--tg-theme-button-text-color, #ffffff);
-    --secondary-bg-color: var(--tg-theme-secondary-bg-color, #1c1c1d);
-    --header-bg-color: var(--tg-theme-header-bg-color, #1a1a1a);
+    --secondary-bg-color:  #1c1c1d;
+    --header-bg-color: #1a1a1a;
 
     --attention-color: 62, 136, 247;
     --backdrop-color: rgba(70, 70, 70, 0.7);
@@ -81,4 +81,12 @@ input[type=number]::-webkit-outer-spin-button {
 
     --app-min-width: 320px;
     --app-max-width: 480px;
+}
+
+:root[data-theme='light'] {
+    --bg-color: #FFFFFF;
+    --text-color: #000000;
+    --hint-color:  #848484;
+    --secondary-bg-color:  #EFEEF4;
+    --header-bg-color: #F8F8F8;
 }

@@ -1,15 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icons/icon-72x72.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rainbow Swap 🌈</title>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/icons/icon-72x72.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rainbow Swap 🌈</title>
 
-    <script src="/scripts/telegram-web-app.js"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        <script src="/scripts/telegram-web-app.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="module" src="/src/main.tsx"></script>
+        <script>
+            const isLightTheme =
+                window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches;
+            if (isLightTheme) {
+              console.log('123');
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        </script>
+    </body>
 </html>
