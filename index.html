@@ -12,12 +12,22 @@
         <div id="root"></div>
         <script type="module" src="/src/main.tsx"></script>
         <script>
-            const isLightTheme =
-                window.matchMedia &&
-                window.matchMedia('(prefers-color-scheme: light)').matches;
-            if (isLightTheme) {
-                document.documentElement.setAttribute('data-theme', 'light');
+            const isLightTheme = window.matchMedia('(prefers-color-scheme: light)');
+
+            function handleColorSchemeChange(event) {
+                if (event.matches) {
+                    document.documentElement.setAttribute(
+                        'data-theme',
+                        'light'
+                    );
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
             }
+
+            handleColorSchemeChange(isLightTheme);
+
+            isLightTheme.addEventListener('change', handleColorSchemeChange);
         </script>
     </body>
 </html>
