@@ -1,11 +1,21 @@
 import {useEffect} from 'react';
 
 import styles from './app.module.css';
+import {PROD_STATE_VERSION} from '../../globals.ts';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
 import {HomeScreen} from '../../screens/home-screen/home-screen.tsx';
+import {resetState} from '../../store/actions.ts';
+import {useDevVersionSelector} from '../../store/dev/dev-selectors.ts';
+import {useDispatch} from '../../store/index.ts';
 
 export const App = () => {
     const viewportHeight = useViewportHeight();
+    const dispatch = useDispatch();
+    const stateVersion = useDevVersionSelector();
+
+    if (stateVersion !== PROD_STATE_VERSION) {
+        dispatch(resetState());
+    }
 
     useEffect(() => {
         window.Telegram.WebApp.ready();

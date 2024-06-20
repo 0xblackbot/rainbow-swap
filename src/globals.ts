@@ -6,6 +6,7 @@ import {COIN_GECKO_API_KEY} from './secrets';
 import {toNano} from './utils/big-int.utils';
 
 export const isProd = import.meta.env.PROD;
+export const PROD_STATE_VERSION = 1;
 
 export const TON = 'ton';
 export const TON_DECIMALS = 9;
