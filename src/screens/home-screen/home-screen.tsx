@@ -5,6 +5,7 @@ import {ToastContainer} from 'react-toastify';
 
 import {Footer} from '../../components/footer/footer.tsx';
 import {Header} from '../../components/header/header.tsx';
+import {SwapScreen} from '../../components/swap-form/swap-form.tsx';
 import {useTrackPageView} from '../../hooks/use-analytics.hook.ts';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
@@ -18,7 +19,6 @@ import {
     usePendingActivationTransactionSelector,
     usePendingSwapTransactionSelector
 } from '../../store/wallet/wallet-selectors.ts';
-import {SwapScreen} from '../home/swap-form/swap-form.tsx';
 
 export const HomeScreen = () => {
     const dispatch = useDispatch();

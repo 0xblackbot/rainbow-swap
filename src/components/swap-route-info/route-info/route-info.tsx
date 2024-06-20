@@ -1,0 +1,50 @@
+import {FC, Fragment} from 'react';
+
+import styles from './route-info.module.css';
+import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
+import {RouteStepWithCalculation} from '../../../interfaces/route-step-with-calculation.interface';
+import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors';
+import {fromNano} from '../../../utils/big-int.utils';
+import {getRouteInputStep} from '../../../utils/route-step-with-calculation.utils';
+import {SwapRouteStep} from '../swap-route-step/swap-route-step';
+
+interface Props {
+    route: RouteStepWithCalculation[];
+}
+
+export const RouteInfo: FC<Props> = ({route}) => {
+    const assetsRecord = useAssetsRecordSelector();
+    const routeInputStep = getRouteInputStep(route);
+    const {inputAssetAmount} = useSwapForm();
+    const inputAsset = assetsRecord[routeInputStep?.inputAssetAddress ?? ''];
+    const routeInputAssetAmount = fromNano(
+        BigInt(routeInputStep?.inputAssetAmount ?? ''),
+        inputAsset.decimals
+    );
+
+    const routeInputAssetPercentage = (
+        (parseFloat(routeInputAssetAmount) / parseFloat(inputAssetAmount)) *
+        100
+    ).toFixed(1);
+
+    return (
+        <div className={styles.route}>
+            <div className={styles.route_info}>
+                <p>{routeInputAssetPercentage + '%'}</p>
+            </div>
+            {route.map((routeStep, index) => (
+                <Fragment key={`route-step-${index}`}>
+                    {index === 0 ? <div className={styles.dots}></div> : null}
+                    <SwapRouteStep
+                        assetsRecord={assetsRecord}
+                        routeStep={routeStep}
+                    />
+                    <div className={styles.dots}></div>
+                </Fragment>
+            ))}
+            <div className={styles.route_info}>
+                <p>{routeInputAssetPercentage + '%'}</p>
+            </div>
+        </div>
+    );
+};
