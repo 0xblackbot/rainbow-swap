@@ -4,7 +4,7 @@ import ReactGA from 'react-ga4';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
-import {App} from './components/app/app.tsx';
+import {App} from './app/app.tsx';
 import {GA_MEASUREMENT_ID, isProd} from './globals.ts';
 import {SwapFormProvider} from './hooks/swap-form/swap-form.provider.tsx';
 import {ViewportHeightProvider} from './hooks/viewport-height/viewport-height.provider.tsx';
