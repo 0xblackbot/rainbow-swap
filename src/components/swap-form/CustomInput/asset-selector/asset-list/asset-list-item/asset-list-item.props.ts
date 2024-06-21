@@ -1,4 +1,4 @@
-import {Asset} from '../../../../../interfaces/asset.interface';
+import {Asset} from '../../../../../../interfaces/asset.interface';
 
 export interface AssetListItemProps {
     asset: Asset;

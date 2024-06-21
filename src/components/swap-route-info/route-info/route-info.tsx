@@ -1,12 +1,12 @@
 import {FC, Fragment} from 'react';
 
 import styles from './route-info.module.css';
+import {SwapRouteStep} from './swap-route-step/swap-route-step';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
 import {RouteStepWithCalculation} from '../../../interfaces/route-step-with-calculation.interface';
 import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors';
 import {fromNano} from '../../../utils/big-int.utils';
 import {getRouteInputStep} from '../../../utils/route-step-with-calculation.utils';
-import {SwapRouteStep} from '../swap-route-step/swap-route-step';
 
 interface Props {
     route: RouteStepWithCalculation[];

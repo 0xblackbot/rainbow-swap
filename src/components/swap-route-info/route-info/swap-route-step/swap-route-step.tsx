@@ -1,9 +1,9 @@
 import {FC} from 'react';
 
 import styles from './swap-route-step.module.css';
-import {DEFAULT_DEXES_RECORD} from '../../../data/dexes-record';
-import {RouteStep} from '../../../interfaces/route-step.interface';
-import {AssetsRecord} from '../../../types/assets-record.type';
+import {DEFAULT_DEXES_RECORD} from '../../../../data/dexes-record';
+import {RouteStep} from '../../../../interfaces/route-step.interface';
+import {AssetsRecord} from '../../../../types/assets-record.type';
 
 interface Props {
     routeStep: RouteStep;

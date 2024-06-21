@@ -3,8 +3,8 @@ import {ListChildComponentProps} from 'react-window';
 
 import styles from './asset-list-item.module.css';
 import {AssetListItemProps} from './asset-list-item.props.ts';
-import {formatNumber} from '../../../../../utils/format-number.utils.ts';
-import {getClassName} from '../../../../../utils/style.utils.ts';
+import {formatNumber} from '../../../../../../utils/format-number.utils.ts';
+import {getClassName} from '../../../../../../utils/style.utils.ts';
 
 export const AssetListItem: FC<
     ListChildComponentProps<AssetListItemProps[]>

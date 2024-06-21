@@ -1,6 +1,8 @@
 import {ChangeEvent, FC, useEffect, useMemo, useRef, useState} from 'react';
 import {FixedSizeList} from 'react-window';
 
+import {AssetListItemProps} from './asset-list-item/asset-list-item.props.ts';
+import {AssetListItem} from './asset-list-item/asset-list-item.tsx';
 import {SearchIcon} from '../../../../../assets/icons/SearchIcon/SearchIcon.tsx';
 import {XCircledIcon} from '../../../../../assets/icons/XCircledIcon/XCircledIcon.tsx';
 import {useDivHeight} from '../../../../../hooks/use-div-height.hook.ts';
@@ -8,8 +10,6 @@ import {Asset} from '../../../../../interfaces/asset.interface.ts';
 import {useAssetsListSelector} from '../../../../../store/assets/assets-selectors.ts';
 import {useBalancesSelector} from '../../../../../store/wallet/wallet-selectors.ts';
 import {formatNumber} from '../../../../../utils/format-number.utils.ts';
-import {AssetListItemProps} from '../asset-list-item/asset-list-item.props.ts';
-import {AssetListItem} from '../asset-list-item/asset-list-item.tsx';
 import {AssetNoResult} from '../asset-no-result/asset-no-result.tsx';
 import styles from '../asset-selector.module.css';
 import {sortAssets} from '../utils/sort-assets.utils.ts';
