@@ -1,7 +1,7 @@
 import {toast} from 'react-toastify';
 
-import {ToastErrorIcon} from '../assets/icons/toast-error-icon/toast-error-icon.tsx';
-import {ToastSuccessIcon} from '../assets/icons/toast-success-icon/toast-success-icon.tsx';
+import {ToastErrorIcon} from '../assets/icons/toast-error-icon/toast-error-icon';
+import {ToastSuccessIcon} from '../assets/icons/toast-success-icon/toast-success-icon';
 
 export const showSuccessToast = (text: string) =>
     toast.success(text, {icon: ToastSuccessIcon});

@@ -1,6 +1,6 @@
 import styles from './footer.module.css';
-import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
-import {getClassName} from '../../utils/style.utils.ts';
+import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook';
+import {getClassName} from '../../utils/style.utils';
 
 const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';
 const COMMUNITY_CHAT_LINK = 'https://t.me/rainbow_swap_chat';

@@ -1,8 +1,8 @@
 import {useMemo} from 'react';
 
-import {RouteStepWithCalculation} from '../../../interfaces/route-step-with-calculation.interface.ts';
-import {fromNano} from '../../../utils/big-int.utils.ts';
-import {getRouteOutputAssetAmount} from '../../../utils/route-step-with-calculation.utils.ts';
+import {RouteStepWithCalculation} from '../../../interfaces/route-step-with-calculation.interface';
+import {fromNano} from '../../../utils/big-int.utils';
+import {getRouteOutputAssetAmount} from '../../../utils/route-step-with-calculation.utils';
 
 export const useOutputAssetAmount = (
     routes: RouteStepWithCalculation[][],

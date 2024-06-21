@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 import styles from './toggle-assets-button.module.css';
-import {ArrowUpDownIcon} from '../../../assets/icons/ArrowUpDownIcon/ArrowUpDownIcon.tsx';
+import {ArrowUpDownIcon} from '../../../assets/icons/ArrowUpDownIcon/ArrowUpDownIcon';
 
 interface Props {
     onClick: () => void;

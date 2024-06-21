@@ -1,4 +1,4 @@
-import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type.ts';
+import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type';
 import {LoadableEntityState} from '../types';
 import {createEntity} from '../utils/create-entity';
 

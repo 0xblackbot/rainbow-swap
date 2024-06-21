@@ -49,6 +49,14 @@
         },
         "newlines-between": "always"
       }
+    ],
+    "import/extensions": [
+      "error",
+      "never",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
     ]
   }
 }

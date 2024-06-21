@@ -1,4 +1,4 @@
-import {RouteStepWithCalculation} from '../interfaces/route-step-with-calculation.interface.ts';
+import {RouteStepWithCalculation} from '../interfaces/route-step-with-calculation.interface';
 
 export const getRouteInputStep = (route: RouteStepWithCalculation[]) => {
     if (route.length > 0) {

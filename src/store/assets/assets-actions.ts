@@ -1,5 +1,5 @@
-import {AssetsRecord} from '../../types/assets-record.type.ts';
-import {createActions} from '../utils/create-actions.ts';
+import {AssetsRecord} from '../../types/assets-record.type';
+import {createActions} from '../utils/create-actions';
 
 export const loadAssetsActions = createActions<void, AssetsRecord>(
     'assets/LOAD_ASSETS'

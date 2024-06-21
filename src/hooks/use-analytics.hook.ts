@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import ReactGA from 'react-ga4';
 
-import {isProd} from '../globals.ts';
+import {isProd} from '../globals';
 
 export const useTrackPageView = (name: string, isOpen = true) =>
     useEffect(() => {

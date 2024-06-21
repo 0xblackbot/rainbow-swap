@@ -1,7 +1,7 @@
-import {TransactionInfo} from '../../interfaces/transaction-info.interface.ts';
-import {BalancesRecord} from '../../types/balances-record.type.ts';
-import {LoadableEntityState} from '../types.ts';
-import {createEntity} from '../utils/create-entity.ts';
+import {TransactionInfo} from '../../interfaces/transaction-info.interface';
+import {BalancesRecord} from '../../types/balances-record.type';
+import {LoadableEntityState} from '../types';
+import {createEntity} from '../utils/create-entity';
 
 export interface WalletState {
     balances: LoadableEntityState<BalancesRecord>;

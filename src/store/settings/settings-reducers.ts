@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {setSlippageToleranceAction} from './settings-actions.ts';
-import {settingsInitialState, SettingsState} from './settings-state.ts';
+import {setSlippageToleranceAction} from './settings-actions';
+import {settingsInitialState, SettingsState} from './settings-state';
 
 export const settingsReducers = createReducer<SettingsState>(
     settingsInitialState,

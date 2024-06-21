@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {loadSwapRoutesActions} from './swap-routes-actions.ts';
-import {swapRouteInitialState, SwapRoutesState} from './swap-routes-state.ts';
+import {loadSwapRoutesActions} from './swap-routes-actions';
+import {swapRouteInitialState, SwapRoutesState} from './swap-routes-state';
 import {createEntity} from '../utils/create-entity';
 
 export const swapRoutesReducers = createReducer<SwapRoutesState>(

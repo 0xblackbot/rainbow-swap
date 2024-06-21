@@ -2,12 +2,12 @@ import {Address} from '@ton/core';
 import {useTonConnectUI} from '@tonconnect/ui-react';
 import {useCallback, useState} from 'react';
 
-import {useDisableMainButton} from './use-disable-main-button.hook.ts';
-import {TransactionInfo} from '../interfaces/transaction-info.interface.ts';
-import {TransferParams} from '../interfaces/transfer-params.interface.ts';
-import {transferParamsToMessages} from '../swap-routes/shared/message.utils.ts';
-import {bocToHash} from '../utils/boc.utils.ts';
-import {showErrorToast} from '../utils/toast.utils.ts';
+import {useDisableMainButton} from './use-disable-main-button.hook';
+import {TransactionInfo} from '../interfaces/transaction-info.interface';
+import {TransferParams} from '../interfaces/transfer-params.interface';
+import {transferParamsToMessages} from '../swap-routes/shared/message.utils';
+import {bocToHash} from '../utils/boc.utils';
+import {showErrorToast} from '../utils/toast.utils';
 
 export const useSendTransaction = () => {
     const [tonConnectUI] = useTonConnectUI();

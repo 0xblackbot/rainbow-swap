@@ -5,9 +5,9 @@ import {
     addPendingSwapTransactionActions,
     checkIsRainbowWalletActiveActions,
     loadBalancesActions
-} from './wallet-actions.ts';
-import {walletInitialState, WalletState} from './wallet-state.ts';
-import {createEntity} from '../utils/create-entity.ts';
+} from './wallet-actions';
+import {walletInitialState, WalletState} from './wallet-state';
+import {createEntity} from '../utils/create-entity';
 
 export const walletReducers = createReducer<WalletState>(
     walletInitialState,

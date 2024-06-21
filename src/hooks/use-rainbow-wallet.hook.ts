@@ -4,18 +4,18 @@ import {useTonWallet} from '@tonconnect/ui-react';
 import {useEffect, useMemo} from 'react';
 import {toast} from 'react-toastify';
 
-import {trackButtonClick} from './use-analytics.hook.ts';
-import {useSendTransaction} from './use-send-transaction.hook.ts';
-import {SwapRouteType} from '../enums/swap-route-type.enum.ts';
+import {trackButtonClick} from './use-analytics.hook';
+import {useSendTransaction} from './use-send-transaction.hook';
+import {SwapRouteType} from '../enums/swap-route-type.enum';
 import {useDispatch} from '../store';
-import {addPendingActivationTransactionActions} from '../store/wallet/wallet-actions.ts';
+import {addPendingActivationTransactionActions} from '../store/wallet/wallet-actions';
 import {
     useIsRainbowWalletActiveSelector,
     usePendingActivationTransactionSelector
-} from '../store/wallet/wallet-selectors.ts';
-import {CalculatedSwapRoute} from '../swap-routes/shared/calculated-swap-route.type.ts';
-import {getRainbowWalletActivationTransferParams} from '../swap-routes/shared/transfer-params.utils.ts';
-import {showLoadingToast, showSuccessToast} from '../utils/toast.utils.ts';
+} from '../store/wallet/wallet-selectors';
+import {CalculatedSwapRoute} from '../swap-routes/shared/calculated-swap-route.type';
+import {getRainbowWalletActivationTransferParams} from '../swap-routes/shared/transfer-params.utils';
+import {showLoadingToast, showSuccessToast} from '../utils/toast.utils';
 
 export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
     const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import {useMemo} from 'react';
 
-import {useSelector} from '../index.ts';
+import {useSelector} from '../index';
 
 export const useAssetsRecordSelector = () =>
     useSelector(({assets}) => assets.record.data);

@@ -3,22 +3,22 @@ import {useTonAddress} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
 import {ToastContainer} from 'react-toastify';
 
-import {Footer} from '../../components/footer/footer.tsx';
-import {Header} from '../../components/header/header.tsx';
-import {SwapScreen} from '../../components/swap-form/swap-form.tsx';
-import {useTrackPageView} from '../../hooks/use-analytics.hook.ts';
+import {Footer} from '../../components/footer/footer';
+import {Header} from '../../components/header/header';
+import {SwapScreen} from '../../components/swap-form/swap-form';
+import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useDispatch} from '../../store';
-import {loadAssetsActions} from '../../store/assets/assets-actions.ts';
+import {loadAssetsActions} from '../../store/assets/assets-actions';
 import {
     addPendingActivationTransactionActions,
     addPendingSwapTransactionActions,
     checkIsRainbowWalletActiveActions,
     loadBalancesActions
-} from '../../store/wallet/wallet-actions.ts';
+} from '../../store/wallet/wallet-actions';
 import {
     usePendingActivationTransactionSelector,
     usePendingSwapTransactionSelector
-} from '../../store/wallet/wallet-selectors.ts';
+} from '../../store/wallet/wallet-selectors';
 
 export const HomeScreen = () => {
     const dispatch = useDispatch();

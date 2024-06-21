@@ -1,16 +1,16 @@
 import {FC, Fragment, useMemo} from 'react';
 
-import {RouteInfo} from './route-info/route-info.tsx';
+import {RouteInfo} from './route-info/route-info';
 import styles from './swap-route-info.module.css';
-import {SwapIcon} from '../../assets/icons/SwapIcon/SwapIcon.tsx';
-import {useSwapForm} from '../../hooks/swap-form/swap-form.hook.ts';
-import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
-import {useSlippageToleranceSelector} from '../../store/settings/settings-selectors.ts';
-import {useSwapRoutesSelector} from '../../store/swap-routes/swap-routes-selectors.ts';
-import {mapSwapRouteToRoute} from '../../swap-routes/shared/calculated-swap-route.utils.ts';
-import {formatNumber} from '../../utils/format-number.utils.ts';
-import {getClassName} from '../../utils/style.utils.ts';
-import {useSwapInfo} from '../swap-form/hooks/use-swap-info.hook.ts';
+import {SwapIcon} from '../../assets/icons/SwapIcon/SwapIcon';
+import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
+import {useAssetsRecordSelector} from '../../store/assets/assets-selectors';
+import {useSlippageToleranceSelector} from '../../store/settings/settings-selectors';
+import {useSwapRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
+import {mapSwapRouteToRoute} from '../../swap-routes/shared/calculated-swap-route.utils';
+import {formatNumber} from '../../utils/format-number.utils';
+import {getClassName} from '../../utils/style.utils';
+import {useSwapInfo} from '../swap-form/hooks/use-swap-info.hook';
 
 export const SwapRouteInfo: FC = () => {
     const swapRoutes = useSwapRoutesSelector();

@@ -1,5 +1,5 @@
 import {useContext} from 'react';
 
-import {SwapFormContext} from './swap-form.context.ts';
+import {SwapFormContext} from './swap-form.context';
 
 export const useSwapForm = () => useContext(SwapFormContext);

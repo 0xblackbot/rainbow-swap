@@ -1,12 +1,12 @@
 import {useTonAddress, useTonConnectModal} from '@tonconnect/ui-react';
 
 import {LogoText} from './assets/LogoText';
-import {HeaderContainer} from './header-container/header-container.tsx';
+import {HeaderContainer} from './header-container/header-container';
 import styles from './header.module.css';
-import {PendingSwap} from './pending-swap/pending-swap.tsx';
-import {WalletMenu} from './wallet-menu/wallet-menu.tsx';
-import {trackButtonClick} from '../../hooks/use-analytics.hook.ts';
-import {useDisableMainButton} from '../../hooks/use-disable-main-button.hook.ts';
+import {PendingSwap} from './pending-swap/pending-swap';
+import {WalletMenu} from './wallet-menu/wallet-menu';
+import {trackButtonClick} from '../../hooks/use-analytics.hook';
+import {useDisableMainButton} from '../../hooks/use-disable-main-button.hook';
 
 export const Header = () => {
     const walletAddress = useTonAddress();

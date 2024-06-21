@@ -4,20 +4,20 @@ import {useTonWallet} from '@tonconnect/ui-react';
 import {FC, useCallback, useState} from 'react';
 
 import styles from './swap-button.module.css';
-import {trackButtonClick} from '../../../hooks/use-analytics.hook.ts';
-import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook.ts';
-import {useSendTransaction} from '../../../hooks/use-send-transaction.hook.ts';
-import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet.tsx';
-import {FormButton} from '../../../shared/form-button/form-button.tsx';
-import {useDispatch} from '../../../store/index.ts';
-import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors.ts';
-import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';
-import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions.ts';
-import {getSwapRouteTransferParams} from '../../../swap-routes/shared/transfer-params.utils.ts';
-import {showSuccessToast} from '../../../utils/toast.utils.ts';
-import {RainbowWalletInfo} from '../../swap-route-info/rainbow-wallet-info/rainbow-wallet-info.tsx';
-import {SwapRouteDisclaimer} from '../../swap-route-info/swap-route-disclaimer/swap-route-disclaimer.tsx';
-import {SwapRouteInfo} from '../../swap-route-info/swap-route-info.tsx';
+import {trackButtonClick} from '../../../hooks/use-analytics.hook';
+import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook';
+import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
+import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
+import {FormButton} from '../../../shared/form-button/form-button';
+import {useDispatch} from '../../../store/index';
+import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
+import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors';
+import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions';
+import {getSwapRouteTransferParams} from '../../../swap-routes/shared/transfer-params.utils';
+import {showSuccessToast} from '../../../utils/toast.utils';
+import {RainbowWalletInfo} from '../../swap-route-info/rainbow-wallet-info/rainbow-wallet-info';
+import {SwapRouteDisclaimer} from '../../swap-route-info/swap-route-disclaimer/swap-route-disclaimer';
+import {SwapRouteInfo} from '../../swap-route-info/swap-route-info';
 
 interface Props {
     onSwap: () => void;
