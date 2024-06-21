@@ -1,7 +1,7 @@
 import {ChangeEvent, forwardRef, useState} from 'react';
 
 import {AssetSelector} from './asset-selector/asset-selector.tsx';
-import styles from './CustomInput.module.css';
+import styles from './custom-input.module.css';
 import {Asset} from '../../../interfaces/asset.interface.ts';
 import {EMPTY_FN} from '../../../utils/emptyfn.ts';
 import {formatNumber} from '../../../utils/format-number.utils.ts';

@@ -8,7 +8,7 @@ import {trackButtonClick} from '../../../hooks/use-analytics.hook.ts';
 import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook.ts';
 import {useSendTransaction} from '../../../hooks/use-send-transaction.hook.ts';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet.tsx';
-import {FormButton} from '../../../shared/FormButton/FormButton.tsx';
+import {FormButton} from '../../../shared/form-button/form-button.tsx';
 import {useDispatch} from '../../../store/index.ts';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors.ts';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors.ts';

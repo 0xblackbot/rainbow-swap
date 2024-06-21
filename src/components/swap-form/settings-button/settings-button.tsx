@@ -1,10 +1,10 @@
 import {useCallback, useState} from 'react';
 
 import styles from './settings-button.module.css';
-import {ToleranceButton} from './ToleranceButton/ToleranceButton';
+import {ToleranceButton} from './tolerance-button/tolerance-button';
 import {SettingsIcon} from '../../../assets/icons/SettingsIcon/SettingsIcon';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
-import {FormButton} from '../../../shared/FormButton/FormButton';
+import {FormButton} from '../../../shared/form-button/form-button';
 import {useDispatch} from '../../../store';
 import {setSlippageToleranceAction} from '../../../store/settings/settings-actions';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';

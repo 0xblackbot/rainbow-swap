@@ -1,7 +1,7 @@
 import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
-import {CustomInput} from './CustomInput/CustomInput.tsx';
+import {CustomInput} from './custom-input/custom-input.tsx';
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook.ts';
 import {useSwapInfo} from './hooks/use-swap-info.hook.ts';
 import {SettingsButton} from './settings-button/settings-button.tsx';
@@ -14,7 +14,7 @@ import {trackButtonClick} from '../../hooks/use-analytics.hook.ts';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook.ts';
 import {Asset} from '../../interfaces/asset.interface.ts';
 import {ContentContainer} from '../../shared/content-container/content-container.tsx';
-import {FormButton} from '../../shared/FormButton/FormButton.tsx';
+import {FormButton} from '../../shared/form-button/form-button.tsx';
 import {useAssetsRecordSelector} from '../../store/assets/assets-selectors.ts';
 import {useDispatch} from '../../store/index.ts';
 import {useSlippageToleranceSelector} from '../../store/settings/settings-selectors.ts';
