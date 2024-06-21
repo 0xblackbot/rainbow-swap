@@ -1,11 +1,14 @@
 import {useEffect} from 'react';
 
 import styles from './app.module.css';
+import {useStateVersionCheck} from '../hooks/use-state-version-check.hook';
 import {useViewportHeight} from '../hooks/viewport-height/viewport-height.hook';
 import {HomeScreen} from '../screens/home-screen/home-screen';
 
 export const App = () => {
     const viewportHeight = useViewportHeight();
+
+    useStateVersionCheck();
 
     useEffect(() => {
         window.Telegram.WebApp.ready();
