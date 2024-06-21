@@ -11,7 +11,7 @@ import {settingsReducers} from '../settings/settings-reducers.ts';
 import {swapRoutesReducers} from '../swap-routes/swap-routes-reducers.ts';
 import {walletReducers} from '../wallet/wallet-reducers.ts';
 
-export const appReducer = combineReducers({
+export const rootReducer = combineReducers({
     assets: assetsReducers,
     swapRoutes: swapRoutesReducers,
     wallet: walletReducers,
@@ -19,11 +19,11 @@ export const appReducer = combineReducers({
     dev: devReducers
 });
 
-const rootReducer = (state: RootState | undefined, action: Action) => {
+const resetableRootReducer = (state: RootState | undefined, action: Action) => {
     if (resetState.match(action)) {
-        state = undefined;
+        return rootReducer(undefined, action);
     }
-    return appReducer(state, action);
+    return rootReducer(state, action);
 };
 
 const persistConfig = {
@@ -35,4 +35,7 @@ const persistConfig = {
     stateReconciler: autoMergeLevel2 as any
 };
 
-export const persistedReducer = persistReducer(persistConfig, rootReducer);
+export const persistedReducer = persistReducer(
+    persistConfig,
+    resetableRootReducer
+);

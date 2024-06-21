@@ -4,11 +4,11 @@ import {
 } from 'react-redux';
 
 import {createStore} from './create-store';
-import {appReducer} from './root-state/root-state.reducers';
+import {rootReducer} from './root-state/root-state.reducers';
 
 export const {store, persistor} = createStore();
 
-export type RootState = ReturnType<typeof appReducer>;
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 
 export const useDispatch = useRawDispatch.withTypes<AppDispatch>();
