@@ -1,8 +1,8 @@
 import {isDefined} from '@rnw-community/shared';
 import {beginCell, storeStateInit} from '@ton/core';
 
-import {TransferParams} from '../../interfaces/transfer-params.interface.ts';
-import {Message} from '../../types/message.type.ts';
+import {TransferParams} from '../../interfaces/transfer-params.interface';
+import {Message} from '../../types/message.type';
 
 export const transferParamsToMessages = (
     transferParamsArray: TransferParams[]

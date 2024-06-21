@@ -1,11 +1,11 @@
 import {FC, useState} from 'react';
 
-import {AssetList} from './asset-list/asset-list.tsx';
+import {AssetList} from './asset-list/asset-list';
 import styles from './asset-selector.module.css';
-import {ChevronRightIcon} from '../../../../assets/icons/ChevronRightIcon/ChevronRightIcon.tsx';
-import {Asset} from '../../../../interfaces/asset.interface.ts';
-import {BottomSheet} from '../../../../shared/bottom-sheet/bottom-sheet.tsx';
-import {FormButton} from '../../../../shared/form-button/form-button.tsx';
+import {ChevronRightIcon} from '../../../../assets/icons/ChevronRightIcon/ChevronRightIcon';
+import {Asset} from '../../../../interfaces/asset.interface';
+import {BottomSheet} from '../../../../shared/bottom-sheet/bottom-sheet';
+import {FormButton} from '../../../../shared/form-button/form-button';
 
 interface Props {
     value: Asset;

@@ -1,6 +1,6 @@
 import {FC, PropsWithChildren, useState} from 'react';
 
-import {SwapFormContext} from './swap-form.context.ts';
+import {SwapFormContext} from './swap-form.context';
 import {TON, USDT} from '../../globals';
 
 export const SwapFormProvider: FC<PropsWithChildren> = ({children}) => {

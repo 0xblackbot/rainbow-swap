@@ -1,5 +1,5 @@
 import styles from './pending-swap.module.css';
-import {usePendingSwapTransactionSelector} from '../../../store/wallet/wallet-selectors.ts';
+import {usePendingSwapTransactionSelector} from '../../../store/wallet/wallet-selectors';
 
 export const PendingSwap = () => {
     const pendingSwapTransaction = usePendingSwapTransactionSelector();

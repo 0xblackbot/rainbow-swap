@@ -19,11 +19,11 @@ import {
     checkIsRainbowWalletActiveActions,
     loadBalancesActions
 } from './wallet-actions';
-import {TON_CLIENT, WORKCHAIN} from '../../globals.ts';
+import {TON_CLIENT, WORKCHAIN} from '../../globals';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
-import {TonBalanceArray} from '../../interfaces/ton-balance-response.interface.ts';
-import {RainbowWalletContract} from '../../swap-routes/rainbow/rainbow-wallet.contract.ts';
-import {getBalancesRecord} from '../../utils/balances-record.utils.ts';
+import {TonBalanceArray} from '../../interfaces/ton-balance-response.interface';
+import {RainbowWalletContract} from '../../swap-routes/rainbow/rainbow-wallet.contract';
+import {getBalancesRecord} from '../../utils/balances-record.utils';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
 
 const walletEpic = (action$: Observable<Action>) =>

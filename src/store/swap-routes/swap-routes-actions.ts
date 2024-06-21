@@ -1,5 +1,5 @@
-import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type.ts';
-import {createActions} from '../utils/create-actions.ts';
+import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type';
+import {createActions} from '../utils/create-actions';
 
 export const loadSwapRoutesActions = createActions<
     {

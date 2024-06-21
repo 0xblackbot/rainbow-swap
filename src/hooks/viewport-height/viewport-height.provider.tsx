@@ -1,6 +1,6 @@
 import {FC, PropsWithChildren, useState} from 'react';
 
-import {ViewportHeightContext} from './viewport-height.context.ts';
+import {ViewportHeightContext} from './viewport-height.context';
 
 export const ViewportHeightProvider: FC<PropsWithChildren> = ({children}) => {
     const [value, setValue] = useState<number>(0);

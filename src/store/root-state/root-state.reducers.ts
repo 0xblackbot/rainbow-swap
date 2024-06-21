@@ -3,13 +3,13 @@ import {persistReducer} from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 import storage from 'redux-persist/es/storage';
 
-import {resetState} from '../actions.ts';
-import {assetsReducers} from '../assets/assets-reducers.ts';
-import {devReducers} from '../dev/dev-reducers.ts';
-import {RootState} from '../index.ts';
-import {settingsReducers} from '../settings/settings-reducers.ts';
-import {swapRoutesReducers} from '../swap-routes/swap-routes-reducers.ts';
-import {walletReducers} from '../wallet/wallet-reducers.ts';
+import {resetState} from '../actions';
+import {assetsReducers} from '../assets/assets-reducers';
+import {devReducers} from '../dev/dev-reducers';
+import {RootState} from '../index';
+import {settingsReducers} from '../settings/settings-reducers';
+import {swapRoutesReducers} from '../swap-routes/swap-routes-reducers';
+import {walletReducers} from '../wallet/wallet-reducers';
 
 export const rootReducer = combineReducers({
     assets: assetsReducers,

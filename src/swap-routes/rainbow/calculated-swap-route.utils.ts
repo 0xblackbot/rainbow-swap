@@ -1,4 +1,4 @@
-import {RainbowCalculatedSwapRoute} from './calculated-swap-route.interface.ts';
+import {RainbowCalculatedSwapRoute} from './calculated-swap-route.interface';
 
 export const rainbow_mapSwapRouteToRoute = (
     swapRoute: RainbowCalculatedSwapRoute

@@ -2,10 +2,10 @@ import {isNotEmptyString} from '@rnw-community/shared';
 import {useTonAddress} from '@tonconnect/ui-react';
 import {useCallback, useEffect, useRef} from 'react';
 
-import {REFRESH_ROUTE_INTERVAL} from '../globals.ts';
-import {useDispatch} from '../store/index.ts';
-import {loadSwapRoutesActions} from '../store/swap-routes/swap-routes-actions.ts';
-import {loadBalancesActions} from '../store/wallet/wallet-actions.ts';
+import {REFRESH_ROUTE_INTERVAL} from '../globals';
+import {useDispatch} from '../store/index';
+import {loadSwapRoutesActions} from '../store/swap-routes/swap-routes-actions';
+import {loadBalancesActions} from '../store/wallet/wallet-actions';
 
 export const useRefreshRoutes = (
     inputAssetAmount: string,

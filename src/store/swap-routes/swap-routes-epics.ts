@@ -4,9 +4,9 @@ import {catchError, debounceTime, map, switchMap} from 'rxjs/operators';
 import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
-import {loadSwapRoutesActions} from './swap-routes-actions.ts';
+import {loadSwapRoutesActions} from './swap-routes-actions';
 import {API, DEBOUNCE_DUE_TIME} from '../../globals';
-import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type.ts';
+import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type';
 
 const loadSwapRoutesEpic: Epic<Action> = action$ =>
     action$.pipe(

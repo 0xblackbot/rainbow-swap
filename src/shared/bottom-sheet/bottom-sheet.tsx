@@ -1,12 +1,12 @@
 import {FC, PropsWithChildren, useEffect, useState} from 'react';
 
 import styles from './bottom-sheet.module.css';
-import {XIcon} from '../../assets/icons/XIcon/XIcon.tsx';
-import {useTrackPageView} from '../../hooks/use-analytics.hook.ts';
-import {usePreventScroll} from '../../hooks/use-prevent-scrolling.hook.ts';
-import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook.ts';
-import {getClassName} from '../../utils/style.utils.ts';
-import {ContentContainer} from '../content-container/content-container.tsx';
+import {XIcon} from '../../assets/icons/XIcon/XIcon';
+import {useTrackPageView} from '../../hooks/use-analytics.hook';
+import {usePreventScroll} from '../../hooks/use-prevent-scrolling.hook';
+import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook';
+import {getClassName} from '../../utils/style.utils';
+import {ContentContainer} from '../content-container/content-container';
 
 interface Props extends PropsWithChildren {
     isOpen: boolean;

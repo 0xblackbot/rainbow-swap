@@ -1,11 +1,11 @@
 import {ChangeEvent, forwardRef, useState} from 'react';
 
-import {AssetSelector} from './asset-selector/asset-selector.tsx';
+import {AssetSelector} from './asset-selector/asset-selector';
 import styles from './custom-input.module.css';
-import {Asset} from '../../../interfaces/asset.interface.ts';
-import {EMPTY_FN} from '../../../utils/emptyfn.ts';
-import {formatNumber} from '../../../utils/format-number.utils.ts';
-import {getMaxSentAmount} from '../../../utils/get-max-sent-amount.utils.ts';
+import {Asset} from '../../../interfaces/asset.interface';
+import {EMPTY_FN} from '../../../utils/emptyfn';
+import {formatNumber} from '../../../utils/format-number.utils';
+import {getMaxSentAmount} from '../../../utils/get-max-sent-amount.utils';
 
 interface Props {
     label: string;

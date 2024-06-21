@@ -1,7 +1,7 @@
 import {FC, useEffect, useMemo} from 'react';
 
 import styles from './form-button.module.css';
-import {useIsTMA} from '../../hooks/is-tma.hook.ts';
+import {useIsTMA} from '../../hooks/is-tma.hook';
 
 interface Props {
     text: string;

@@ -1,4 +1,4 @@
-import {TON, USDT} from '../globals.ts';
+import {TON, USDT} from '../globals';
 import {AssetsRecord} from '../types/assets-record.type';
 
 export const DEFAULT_ASSETS_RECORD: AssetsRecord = {

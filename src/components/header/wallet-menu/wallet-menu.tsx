@@ -2,9 +2,9 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import {FC, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
-import {trackButtonClick} from '../../../hooks/use-analytics.hook.ts';
-import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook.ts';
-import {getClassName} from '../../../utils/style.utils.ts';
+import {trackButtonClick} from '../../../hooks/use-analytics.hook';
+import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
+import {getClassName} from '../../../utils/style.utils';
 
 interface Props {
     walletAddress: string;

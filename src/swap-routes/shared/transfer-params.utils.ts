@@ -1,15 +1,15 @@
 import {Address} from '@ton/core';
 
-import {CalculatedSwapRoute} from './calculated-swap-route.type.ts';
-import {SwapRouteType} from '../../enums/swap-route-type.enum.ts';
-import {GAS_AMOUNT, WORKCHAIN} from '../../globals.ts';
-import {TransferParams} from '../../interfaces/transfer-params.interface.ts';
-import {toNano} from '../../utils/big-int.utils.ts';
-import {getQueryId} from '../../utils/transfer-params.utils.ts';
-import {dedust_getTransferParams} from '../dedust/transfer-params.utils.ts';
-import {RainbowWalletContract} from '../rainbow/rainbow-wallet.contract.ts';
-import {rainbow_getTransferParams} from '../rainbow/transfer-params.utils.ts';
-import {ston_getTransferParams} from '../ston/transfer-params.utils.ts';
+import {CalculatedSwapRoute} from './calculated-swap-route.type';
+import {SwapRouteType} from '../../enums/swap-route-type.enum';
+import {GAS_AMOUNT, WORKCHAIN} from '../../globals';
+import {TransferParams} from '../../interfaces/transfer-params.interface';
+import {toNano} from '../../utils/big-int.utils';
+import {getQueryId} from '../../utils/transfer-params.utils';
+import {dedust_getTransferParams} from '../dedust/transfer-params.utils';
+import {RainbowWalletContract} from '../rainbow/rainbow-wallet.contract';
+import {rainbow_getTransferParams} from '../rainbow/transfer-params.utils';
+import {ston_getTransferParams} from '../ston/transfer-params.utils';
 
 export const getSwapRouteTransferParams = (
     swapRoute: CalculatedSwapRoute,

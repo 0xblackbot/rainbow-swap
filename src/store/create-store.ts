@@ -10,7 +10,7 @@ import {
     REHYDRATE
 } from 'redux-persist';
 
-import {rootEpic} from './root-state/root-state-epics.ts';
+import {rootEpic} from './root-state/root-state-epics';
 import {persistedReducer} from './root-state/root-state.reducers';
 
 const epicMiddleware = createEpicMiddleware();
