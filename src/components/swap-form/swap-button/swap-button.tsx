@@ -4,11 +4,13 @@ import {useTonWallet} from '@tonconnect/ui-react';
 import {FC, useCallback, useState} from 'react';
 
 import styles from './swap-button.module.css';
+import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook';
 import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../shared/form-button/form-button';
+import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors';
 import {useDispatch} from '../../../store/index';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors';
@@ -21,12 +23,16 @@ import {SwapRouteInfo} from '../../swap-route-info/swap-route-info';
 
 interface Props {
     onSwap: () => void;
+    outputAssetAmount: string;
 }
 
-export const SwapButton: FC<Props> = ({onSwap}) => {
+export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
     const slippageTolerance = useSlippageToleranceSelector();
+    const assets = useAssetsRecordSelector();
+    const {inputAssetAddress, outputAssetAddress, inputAssetAmount} =
+        useSwapForm();
 
     const wallet = useTonWallet();
     const sendTransaction = useSendTransaction();
@@ -41,7 +47,12 @@ export const SwapButton: FC<Props> = ({onSwap}) => {
     const handleClose = () => setIsOpen(false);
 
     const handleConfirm = async () => {
-        trackButtonClick('Confirm');
+        trackButtonClick('Confirm', {
+            inputAsset: assets[inputAssetAddress].symbol,
+            outputAsset: assets[outputAssetAddress].symbol,
+            inputAssetAmount,
+            outputAssetAmount
+        });
         const senderAddress = Address.parse(wallet?.account.address ?? '');
         const transferParams = await Promise.all(
             swapRoutes.data.map(swapRoute =>

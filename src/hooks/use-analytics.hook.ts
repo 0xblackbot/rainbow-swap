@@ -14,10 +14,17 @@ export const useTrackPageView = (name: string, isOpen = true) =>
         }
     }, [name, isOpen]);
 
-export const trackButtonClick = (name: string) =>
-    isProd &&
-    ReactGA.event({
-        category: 'General',
-        action: 'Clicked ' + name,
-        label: name
-    });
+export const trackButtonClick = (
+    name: string,
+    data?: Record<string, string>
+) => {
+    if (isProd) {
+        const eventParams = {
+            category: 'General',
+            label: name,
+            ...data
+        };
+
+        ReactGA.event(`Clicked ${name}`, eventParams);
+    }
+};
