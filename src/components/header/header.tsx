@@ -5,11 +5,12 @@ import {HeaderContainer} from './header-container/header-container';
 import styles from './header.module.css';
 import {PendingSwap} from './pending-swap/pending-swap';
 import {WalletMenu} from './wallet-menu/wallet-menu';
-import {trackButtonClick} from '../../hooks/use-analytics.hook';
+import {useAnalytics} from '../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../hooks/use-disable-main-button.hook';
 
 export const Header = () => {
     const walletAddress = useTonAddress();
+    const {trackButtonClick} = useAnalytics();
     const connectModal = useTonConnectModal();
 
     const handleConnect = () => {

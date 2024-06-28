@@ -2,7 +2,7 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import {FC, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
-import {trackButtonClick} from '../../../hooks/use-analytics.hook';
+import {useAnalytics} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
 import {getClassName} from '../../../utils/style.utils';
 
@@ -12,7 +12,7 @@ interface Props {
 
 export const WalletMenu: FC<Props> = ({walletAddress}) => {
     const [tonConnectUI] = useTonConnectUI();
-
+    const {trackButtonClick} = useAnalytics();
     const [isOpen, setIsOpen] = useState(false);
 
     const shortWalletAddress = useMemo(

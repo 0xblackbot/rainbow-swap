@@ -10,7 +10,7 @@ import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
 import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
-import {trackButtonClick} from '../../hooks/use-analytics.hook';
+import {useAnalytics} from '../../hooks/use-analytics.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {Asset} from '../../interfaces/asset.interface';
 import {ContentContainer} from '../../shared/content-container/content-container';
@@ -32,6 +32,7 @@ export const SwapScreen = () => {
     const connectModal = useTonConnectModal();
 
     const dispatch = useDispatch();
+    const {trackButtonClick} = useAnalytics();
     const assets = useAssetsRecordSelector();
     const slippageTolerance = useSlippageToleranceSelector();
     const swapRoutes = useSwapRoutesSelector();
@@ -135,12 +136,12 @@ export const SwapScreen = () => {
     const handleEnterSendAmount = useCallback(() => {
         trackButtonClick('Enter amount');
         inputRef.current?.focus();
-    }, []);
+    }, [trackButtonClick]);
 
     const handleSwap = useCallback(() => {
         trackButtonClick('Swap');
         inputRef.current?.blur();
-    }, []);
+    }, [trackButtonClick]);
 
     return (
         <>
