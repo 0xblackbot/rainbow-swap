@@ -6,7 +6,7 @@ import {ofType, toPayload} from 'ts-action-operators';
 
 import {loadSwapRoutesActions} from './swap-routes-actions';
 import {API, DEBOUNCE_DUE_TIME} from '../../globals';
-import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type';
+import {BestRouteResponse} from '../../types/best-route-response.type';
 
 const loadSwapRoutesEpic: Epic<Action> = action$ =>
     action$.pipe(
@@ -15,7 +15,7 @@ const loadSwapRoutesEpic: Epic<Action> = action$ =>
         toPayload(),
         switchMap(payload =>
             from(
-                API.get<CalculatedSwapRoute[]>('/best-route', {
+                API.get<BestRouteResponse>('/best-route', {
                     params: payload
                 })
             ).pipe(

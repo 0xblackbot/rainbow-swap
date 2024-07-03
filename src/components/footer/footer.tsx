@@ -39,7 +39,7 @@ export const Footer = () => {
             </div>
             <div className={styles.container_row}>
                 <p className={styles.container_text}>
-                    Copyright © 2024 Blackbot.
+                    Copyright © 2024 Blackbot
                 </p>
             </div>
         </div>

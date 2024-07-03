@@ -4,8 +4,10 @@ import {createEntity} from '../utils/create-entity';
 
 export interface SwapRoutesState {
     batch: LoadableEntityState<CalculatedSwapRoute[]>;
+    priceImprovement: number;
 }
 
 export const swapRouteInitialState: SwapRoutesState = {
-    batch: createEntity([])
+    batch: createEntity([]),
+    priceImprovement: 0
 };

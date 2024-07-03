@@ -1,4 +1,4 @@
-import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type';
+import {BestRouteResponse} from '../../types/best-route-response.type';
 import {createActions} from '../utils/create-actions';
 
 export const loadSwapRoutesActions = createActions<
@@ -7,5 +7,5 @@ export const loadSwapRoutesActions = createActions<
         inputAssetAddress: string;
         outputAssetAddress: string;
     },
-    CalculatedSwapRoute[]
+    BestRouteResponse
 >('swap-route/LOAD_SWAP_ROUTES');
