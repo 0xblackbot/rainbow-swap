@@ -3,7 +3,7 @@ import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {CustomInput} from './custom-input/custom-input';
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook';
-import {useSwapInfo} from './hooks/use-swap-info.hook';
+import {RateInfo} from './rate-info/rate-info';
 import {SettingsButton} from './settings-button/settings-button';
 import {SwapButton} from './swap-button/swap-button';
 import styles from './swap-form.module.css';
@@ -15,9 +15,8 @@ import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {Asset} from '../../interfaces/asset.interface';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
+import {useDispatch} from '../../store';
 import {useAssetsRecordSelector} from '../../store/assets/assets-selectors';
-import {useDispatch} from '../../store/index';
-import {useSlippageToleranceSelector} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {useSwapRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
 import {useBalancesSelector} from '../../store/wallet/wallet-selectors';
@@ -33,9 +32,7 @@ export const SwapScreen = () => {
 
     const dispatch = useDispatch();
     const assets = useAssetsRecordSelector();
-    const slippageTolerance = useSlippageToleranceSelector();
     const swapRoutes = useSwapRoutesSelector();
-    const isLoading = swapRoutes.isLoading;
     const balances = useBalancesSelector();
     const routes = useMemo(
         () => swapRoutes.data.map(mapSwapRouteToRoute),
@@ -53,13 +50,6 @@ export const SwapScreen = () => {
 
     const inputAsset = assets[inputAssetAddress];
     const outputAsset = assets[outputAssetAddress];
-
-    const swapInfo = useSwapInfo(
-        inputAsset.decimals,
-        outputAsset.decimals,
-        slippageTolerance,
-        routes
-    );
 
     const outputAssetAmount = useOutputAssetAmount(
         routes,
@@ -185,20 +175,17 @@ export const SwapScreen = () => {
                             isInputEnabled={false}
                             inputValue={outputAssetAmount}
                             assetValue={outputAsset}
-                            isLoading={isLoading}
+                            isLoading={swapRoutes.isLoading}
                             onAssetValueChange={handleOutputAssetValueChange}
                         />
                     </div>
-                    <div className={styles.rate_div}>
-                        {inputAssetAmount.length !== 0 && !isLoading
-                            ? routes.length > 0
-                                ? `1 ${inputAsset.symbol} = ${formatNumber(
-                                      swapInfo.exchangeRate,
-                                      5
-                                  )} ${outputAsset.symbol}`
-                                : 'No routes available'
-                            : null}
-                    </div>
+                    <RateInfo
+                        inputAsset={inputAsset}
+                        outputAsset={outputAsset}
+                        inputAssetAmount={inputAssetAmount}
+                        routes={routes}
+                        isLoading={swapRoutes.isLoading}
+                    />
                     {wallet ? (
                         Number(inputAssetAmount) === 0 ? (
                             <FormButton
