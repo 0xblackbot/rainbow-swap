@@ -11,20 +11,17 @@ export const swapRoutesReducers = createReducer<SwapRoutesState>(
             ...state,
             batch: createEntity(state.batch.data, true)
         }));
-        builder.addCase(loadSwapRoutesActions.success, (state, {payload}) => {
-            const newBestRoute =
-                'bestRoute' in payload ? payload.bestRoute : payload;
-
-            return {
-                ...state,
-                batch: createEntity(newBestRoute, false)
-            };
-        });
+        builder.addCase(loadSwapRoutesActions.success, (state, {payload}) => ({
+            ...state,
+            batch: createEntity(payload.bestRoute, false),
+            priceImprovement: payload.priceImprovement
+        }));
         builder.addCase(
             loadSwapRoutesActions.fail,
             (state, {payload: error}) => ({
                 ...state,
-                batch: createEntity([], false, error)
+                batch: createEntity([], false, error),
+                priceImprovement: 0
             })
         );
     }

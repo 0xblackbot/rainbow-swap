@@ -83,7 +83,12 @@ export const SwapScreen = () => {
 
     useEffect(() => {
         if (nanoInputAssetAmount === '0') {
-            dispatch(loadSwapRoutesActions.success([]));
+            dispatch(
+                loadSwapRoutesActions.success({
+                    bestRoute: [],
+                    priceImprovement: 0
+                })
+            );
         } else {
             dispatch(
                 loadSwapRoutesActions.submit({
@@ -187,7 +192,10 @@ export const SwapScreen = () => {
                     <div className={styles.rate_div}>
                         {inputAssetAmount.length !== 0 && !isLoading
                             ? routes.length > 0
-                                ? `1 ${inputAsset.symbol} = ${formatNumber(swapInfo.exchangeRate, 5)} ${outputAsset.symbol}`
+                                ? `1 ${inputAsset.symbol} = ${formatNumber(
+                                      swapInfo.exchangeRate,
+                                      5
+                                  )} ${outputAsset.symbol}`
                                 : 'No routes available'
                             : null}
                     </div>
