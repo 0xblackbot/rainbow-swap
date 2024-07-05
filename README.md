@@ -61,8 +61,7 @@ yarn lint
 
 ### Smart contracts
 
-This smart contract acts as a middleman, enabling seamless swaps between two different decentralized exchanges (DEXes) in a single transaction.  
-It also allows users to withdraw TON or jettons, similar to a Jetton Wallet contract.
+This smart contract acts as a middleman, enabling seamless swaps between two different decentralized exchanges (DEXes) in a single transaction. It also allows users to withdraw TON or jettons, similar to a Jetton Wallet contract.
 
 ![smart-contract-events-diagram.svg](docs%2Fassets%2Fsmart-contract-events-diagram.svg)
 
