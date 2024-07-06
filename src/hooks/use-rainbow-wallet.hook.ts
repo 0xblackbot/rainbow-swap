@@ -4,7 +4,7 @@ import {useTonWallet} from '@tonconnect/ui-react';
 import {useEffect, useMemo} from 'react';
 import {toast} from 'react-toastify';
 
-import {trackButtonClick} from './use-analytics.hook';
+import {useAnalytics} from './use-analytics.hook';
 import {useSendTransaction} from './use-send-transaction.hook';
 import {SwapRouteType} from '../enums/swap-route-type.enum';
 import {useDispatch} from '../store';
@@ -19,7 +19,7 @@ import {showLoadingToast, showSuccessToast} from '../utils/toast.utils';
 
 export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
     const dispatch = useDispatch();
-
+    const {trackButtonClick} = useAnalytics();
     const wallet = useTonWallet();
     const sendTransaction = useSendTransaction();
 

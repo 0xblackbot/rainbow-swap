@@ -5,7 +5,7 @@ import {FC, useCallback, useState} from 'react';
 
 import styles from './swap-button.module.css';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
-import {trackButtonClick} from '../../../hooks/use-analytics.hook';
+import {useAnalytics} from '../../../hooks/use-analytics.hook';
 import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook';
 import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
@@ -28,6 +28,7 @@ interface Props {
 
 export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
     const dispatch = useDispatch();
+    const {trackButtonClick} = useAnalytics();
     const swapRoutes = useSwapRoutesSelector();
     const slippageTolerance = useSlippageToleranceSelector();
     const assets = useAssetsRecordSelector();

@@ -8,6 +8,10 @@ import {toNano} from './utils/big-int.utils';
 export const isProd = import.meta.env.PROD;
 export const PROD_STATE_VERSION = 1;
 
+export const TELEMETREE_PROJECT_ID = '9c1d05ed-9d31-47c2-867b-8439928dc80e';
+export const TELEMETREE_API_KEY = 'c72dec3a-c0de-4ec0-b1fa-5b110e4227a5';
+export const TELEMETREE_APP_NAME = 'shared.blackbot';
+
 export const TON = 'ton';
 export const TON_DECIMALS = 9;
 export const USDT = 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs';

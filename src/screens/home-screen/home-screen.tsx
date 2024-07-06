@@ -6,7 +6,7 @@ import {ToastContainer} from 'react-toastify';
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
 import {SwapScreen} from '../../components/swap-form/swap-form';
-import {useTrackPageView} from '../../hooks/use-analytics.hook';
+import {useAnalytics} from '../../hooks/use-analytics.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
 import {
@@ -22,6 +22,7 @@ import {
 
 export const HomeScreen = () => {
     const dispatch = useDispatch();
+    const {useTrackPageView} = useAnalytics();
     const pendingSwapTransaction = usePendingSwapTransactionSelector();
     const pendingActivationTransaction =
         usePendingActivationTransactionSelector();
