@@ -39,6 +39,7 @@ export const trackSwapConfirmation = (
                     item_id: outputAssetAddress,
                     item_name: outputAssetSymbol,
                     item_category: 'output_asset',
+                    price: usdValue,
                     quantity: outputAssetAmount
                 }
             ]
