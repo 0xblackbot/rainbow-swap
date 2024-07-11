@@ -1,6 +1,5 @@
 import {FC} from 'react';
 
-import GuaranteeBg from './guarantee-bg.svg';
 import styles from './rate-info.module.css';
 import {Asset} from '../../../interfaces/asset.interface';
 import {RouteStepWithCalculation} from '../../../interfaces/route-step-with-calculation.interface';
@@ -49,11 +48,6 @@ export const RateInfo: FC<Props> = ({
                 href={GUARANTEE_MESSAGE_LINK}
                 target="_blank"
             >
-                <img
-                    src={GuaranteeBg}
-                    alt="Guarantee"
-                    className={styles.guarantee_image}
-                />
                 <div className={styles.guarantee_text_container}>
                     <p className={styles.guarantee_text_1}>The Best</p>
                     <p className={styles.guarantee_text_2}>Price</p>

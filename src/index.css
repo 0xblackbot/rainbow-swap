@@ -59,8 +59,8 @@ input[type=number]::-webkit-outer-spin-button {
     --bg-color: #010101;
     --text-color: #ffffff;
     --hint-color:  #3e3e42;
-    --button-color: var(--tg-theme-button-color, #3e88f7);
-    --button-text-color: var(--tg-theme-button-text-color, #ffffff);
+    --button-color: #3e88f7;
+    --button-text-color: #ffffff;
     --secondary-bg-color:  #1c1c1d;
     --header-bg-color: #1a1a1a;
 
