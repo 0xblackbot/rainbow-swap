@@ -4,7 +4,7 @@
     padding: 0;
     margin-block-start: 0;
     margin-block-end: 0;
-    font-family: 'Basel-book', sans-serif;
+    font-family: 'Basel', sans-serif;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -47,12 +47,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 @font-face {
     font-family: 'Basel';
-    src: url('./assets/fonts/Basel-Grotesk-Medium.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Basel-book';
-    src: url('./assets/fonts/Basel-Grotesk-Book.woff2') format('woff2');
+    src: url('./assets/fonts/sf-pro-text-regular-webfont.woff2') format("woff2"), url('./assets/fonts/sf-pro-text-regular-webfont.woff') format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
 :root {
