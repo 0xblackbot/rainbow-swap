@@ -5,7 +5,7 @@
     justify-content: flex-end;
     margin-bottom: var(--2-step);
     color: var(--hint-color);
-    min-height: 22px;
+    min-height: 23px;
 }
 
 .guarantee_container {
