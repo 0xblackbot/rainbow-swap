@@ -5,7 +5,10 @@ import {FC, useCallback, useState} from 'react';
 
 import styles from './swap-button.module.css';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
-import {trackButtonClick} from '../../../hooks/use-analytics.hook';
+import {
+    trackButtonClick,
+    trackSwapConfirmation
+} from '../../../hooks/use-analytics.hook';
 import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook';
 import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
@@ -47,12 +50,7 @@ export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
     const handleClose = () => setIsOpen(false);
 
     const handleConfirm = async () => {
-        trackButtonClick('Confirm', {
-            inputAsset: assets[inputAssetAddress].symbol,
-            outputAsset: assets[outputAssetAddress].symbol,
-            inputAssetAmount,
-            outputAssetAmount
-        });
+        trackButtonClick('Confirm');
         const senderAddress = Address.parse(wallet?.account.address ?? '');
         const transferParams = await Promise.all(
             swapRoutes.data.map(swapRoute =>
@@ -70,6 +68,21 @@ export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
         );
 
         if (isDefined(transactionInfo)) {
+            const inputAsset = assets[inputAssetAddress];
+            const outputAsset = assets[outputAssetAddress];
+
+            const usdAmount =
+                parseFloat(inputAssetAmount) *
+                parseFloat(inputAsset.exchangeRate);
+
+            trackSwapConfirmation(
+                transactionInfo.bocHash,
+                usdAmount,
+                outputAssetAddress,
+                outputAsset.symbol,
+                Number(outputAssetAmount) ?? 0
+            );
+
             dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
             showSuccessToast('Swap sent, please wait...');
             setIsOpen(false);

@@ -14,17 +14,34 @@ export const useTrackPageView = (name: string, isOpen = true) =>
         }
     }, [name, isOpen]);
 
-export const trackButtonClick = (
-    name: string,
-    data?: Record<string, string>
+export const trackButtonClick = (name: string) =>
+    isProd &&
+    ReactGA.event({
+        category: 'General',
+        action: 'Clicked ' + name,
+        label: name
+    });
+
+export const trackSwapConfirmation = (
+    bocHash: string,
+    usdValue: number,
+    outputAssetAddress: string,
+    outputAssetSymbol: string,
+    outputAssetAmount: number
 ) => {
     if (isProd) {
-        const eventParams = {
-            category: 'General',
-            label: name,
-            ...data
-        };
-
-        ReactGA.event(`Clicked ${name}`, eventParams);
+        ReactGA.gtag('event', 'purchase', {
+            transaction_id: bocHash,
+            value: usdValue,
+            currency: 'USD',
+            items: [
+                {
+                    item_id: outputAssetAddress,
+                    item_name: outputAssetSymbol,
+                    item_category: 'output_asset',
+                    quantity: outputAssetAmount
+                }
+            ]
+        });
     }
 };
