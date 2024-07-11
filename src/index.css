@@ -41,9 +41,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 440px) {
     [data-tc-actions-modal-container="true"] > div > div {
-      border-radius: 24px 24px 0px 0px;
+        border-radius: 24px 24px 0px 0px;
     }
-  }
+}
 
 @font-face {
     font-family: 'Basel';
@@ -56,13 +56,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 :root {
-    --bg-color: #010101;
-    --text-color: #ffffff;
-    --hint-color:  #3e3e42;
+    --bg-color: #000000;
+    --text-color: #f6f6f6;
+    --hint-color: #96969d;
     --button-color: #3e88f7;
-    --button-text-color: #ffffff;
-    --secondary-bg-color:  #1c1c1d;
-    --header-bg-color: #1a1a1a;
+    --button-text-color: #f6f6f6;
+    --secondary-bg-color: #1c1c1d;
+    --header-bg-color: #1c1c1d;
 
     --attention-color: 62, 136, 247;
     --backdrop-color: rgba(70, 70, 70, 0.7);
@@ -84,9 +84,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 :root[data-theme='light'] {
-    --bg-color: #FFFFFF;
-    --text-color: #000000;
-    --hint-color:  #848484;
-    --secondary-bg-color:  #EFEEF4;
-    --header-bg-color: #F8F8F8;
+    --bg-color: #f2f2f6;
+    --text-color: #090909;
+    --hint-color: #8a8a8d;
+    --secondary-bg-color: #e3e3e8;
+    --header-bg-color: #ffffff;
 }

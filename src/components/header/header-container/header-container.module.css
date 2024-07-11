@@ -12,7 +12,7 @@
     align-items: center;
     top: 0;
     z-index: 10;
-    border-bottom: 1px solid var(--header-bg-color);
+    border-bottom: 1px solid var(--secondary-bg-color);
 }
 
 .inner_container {

@@ -68,5 +68,5 @@
 .header_text {
     text-align: center;
     font-size: 16px;
-    color: var(--hint-color);
+    color: var(--text-color);
 }
