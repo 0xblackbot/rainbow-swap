@@ -78,8 +78,8 @@ export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
             trackSwapConfirmation(
                 transactionInfo.bocHash,
                 usdAmount,
-                outputAssetAddress,
-                outputAsset.symbol,
+                inputAsset,
+                outputAsset,
                 Number(outputAssetAmount) ?? 0
             );
 

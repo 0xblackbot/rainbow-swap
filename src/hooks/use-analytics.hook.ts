@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import ReactGA from 'react-ga4';
 
 import {isProd} from '../globals';
+import {Asset} from '../interfaces/asset.interface';
 
 export const useTrackPageView = (name: string, isOpen = true) =>
     useEffect(() => {
@@ -25,8 +26,8 @@ export const trackButtonClick = (name: string) =>
 export const trackSwapConfirmation = (
     bocHash: string,
     usdValue: number,
-    outputAssetAddress: string,
-    outputAssetSymbol: string,
+    inputAsset: Asset,
+    outputAsset: Asset,
     outputAssetAmount: number
 ) => {
     if (isProd) {
@@ -36,8 +37,8 @@ export const trackSwapConfirmation = (
             currency: 'USD',
             items: [
                 {
-                    item_id: outputAssetAddress,
-                    item_name: outputAssetSymbol,
+                    item_id: `${inputAsset.address}_${outputAsset.address}`,
+                    item_name: `${inputAsset.symbol} - ${outputAsset.symbol}`,
                     item_category: 'output_asset',
                     price: usdValue,
                     quantity: outputAssetAmount
