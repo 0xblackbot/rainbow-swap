@@ -3,7 +3,7 @@ import {Address} from '@ton/core';
 import {useTonWallet} from '@tonconnect/ui-react';
 import {
     CalculatedSwapRoute,
-    SwapRouteType,
+    getIsActivationRequired,
     getRainbowWalletActivationMessages
 } from 'rainbow-swap-sdk';
 import {useEffect, useMemo} from 'react';
@@ -29,13 +29,10 @@ export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
     const pendingActivationTransaction =
         usePendingActivationTransactionSelector();
 
-    const isRequired = useMemo(() => {
-        const isRainbowContractCalled = swapRoutes.some(
-            swapRoute => swapRoute.type === SwapRouteType.Rainbow
-        );
-
-        return isRainbowContractCalled && !isRainbowWalletActive.data;
-    }, [swapRoutes, isRainbowWalletActive.data]);
+    const isRequired = useMemo(
+        () => getIsActivationRequired(swapRoutes, isRainbowWalletActive.data),
+        [swapRoutes, isRainbowWalletActive.data]
+    );
 
     useEffect(() => {
         if (

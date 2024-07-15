@@ -3141,10 +3141,10 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-rainbow-swap-sdk@^1.1.11:
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.1.11.tgz#4436551cf6fc4e951c09746a4438ad1aa718ee9f"
-  integrity sha512-PxYi+y8PJlRs8SSIMe9/Ws5bpFmfSd4KkBYUpFmniyna6S87XnvBfileOGG1cu0lEDgUoSkUDUX6+FTzE2fbKg==
+rainbow-swap-sdk@^1.1.15:
+  version "1.1.15"
+  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.1.15.tgz#59bb94b6d2cf5297acc67570d8290a896a477511"
+  integrity sha512-61axYlEP9Qko8wn1ZE5kFj0LA4D+0gMXFy3/Y6aRySADssDXhaqSqQ8wIQt/FfnYweD6SLSjqeHrvrvo6S77bA==
   dependencies:
     "@rnw-community/shared" "^0.73.0"
     "@ton/core" "^0.56.3"
