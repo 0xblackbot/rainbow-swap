@@ -1,11 +1,11 @@
+import {getAssetsRecord} from 'rainbow-swap-sdk';
 import {combineEpics} from 'redux-observable';
 import {catchError, from, map, Observable, of, switchMap} from 'rxjs';
 import {Action} from 'ts-action';
 import {ofType} from 'ts-action-operators';
 
 import {loadAssetsActions} from './assets-actions';
-import {API, COIN_GECKO_API} from '../../globals';
-import {AssetsRecord} from '../../types/assets-record.type';
+import {COIN_GECKO_API} from '../../globals';
 import {mapAssetsRecordWithExchangeRate} from '../../utils/assets-record';
 
 const TON_COINGECKO_ID = 'the-open-network';
@@ -17,16 +17,16 @@ const loadAssetsEpic = (action$: Observable<Action>) =>
             from(
                 Promise.all([
                     COIN_GECKO_API.get(`/coins/${TON_COINGECKO_ID}`),
-                    API.get<AssetsRecord>('/assets-record')
+                    getAssetsRecord()
                 ])
             ).pipe(
-                map(([tonPriceResponse, assetsResponse]) => {
-                    const assetsRecord = mapAssetsRecordWithExchangeRate(
+                map(([tonPriceResponse, assetsRecord]) => {
+                    const assetsWithRates = mapAssetsRecordWithExchangeRate(
                         tonPriceResponse.data.market_data.current_price.usd,
-                        assetsResponse.data
+                        assetsRecord
                     );
 
-                    return loadAssetsActions.success(assetsRecord);
+                    return loadAssetsActions.success(assetsWithRates);
                 }),
                 catchError(err => of(loadAssetsActions.fail(err.message)))
             )

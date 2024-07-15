@@ -569,6 +569,11 @@
   resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.67.0.tgz#5df28e58c2181f93f323927310884997a437ea65"
   integrity sha512-CajG7XgglDd1OJ9ctsFkfnYix6NReX8wxek+QOO3e9h0lPENHSbOIqz3L1VcEiSs7BFlCnFvXFXukozEx3S/cg==
 
+"@rnw-community/shared@^0.73.0":
+  version "0.73.0"
+  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.73.0.tgz#3e49109b83aa61507fb315be4e3d63e4fee03934"
+  integrity sha512-7tD7uImOUyJ63gTL7hEZSj7oME/1vi5cFxKW6NfwGb2FBz/ERqIGYESpi/q9uPDHGxqVzsb+v7ba/MzGkKSQeA==
+
 "@rollup/plugin-inject@^5.0.5":
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-inject/-/plugin-inject-5.0.5.tgz#616f3a73fe075765f91c5bec90176608bed277a3"
@@ -1149,7 +1154,7 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios@^1.6.7, axios@^1.6.8:
+axios@^1.6.7, axios@^1.6.8, axios@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
   integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
@@ -3034,6 +3039,17 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+rainbow-swap-sdk@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.0.1.tgz#73e87332bd12c5b3dfd2da80ed8dd1fad941f3f6"
+  integrity sha512-jg+FT6Qwqm3jYQcCXUkZFMUISaO8M7Rg/ahD3MaLYXbPb6ro/focAZyYN6DNX0sDroEYm2tdZjQ6k/1dCluBHw==
+  dependencies:
+    "@rnw-community/shared" "^0.73.0"
+    "@ton/core" "^0.56.3"
+    "@ton/ton" "^13.11.2"
+    axios "^1.7.2"
+    buffer "^6.0.3"
 
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.1.0"
