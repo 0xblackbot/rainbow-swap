@@ -4,8 +4,7 @@ import {useCallback, useState} from 'react';
 
 import {useDisableMainButton} from './use-disable-main-button.hook';
 import {TransactionInfo} from '../interfaces/transaction-info.interface';
-import {TransferParams} from '../interfaces/transfer-params.interface';
-import {transferParamsToMessages} from '../swap-routes/shared/message.utils';
+import {Message} from '../types/message.type';
 import {bocToHash} from '../utils/boc.utils';
 import {showErrorToast} from '../utils/toast.utils';
 
@@ -15,7 +14,7 @@ export const useSendTransaction = () => {
 
     useDisableMainButton(isOpen);
     return useCallback(
-        (transferParams: TransferParams[], senderAddress: Address) => {
+        (senderAddress: Address, messages: Message[]) => {
             setIsOpen(true);
             const senderRawAddress = senderAddress.toRawString();
 
@@ -23,7 +22,7 @@ export const useSendTransaction = () => {
                 .sendTransaction({
                     validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
                     from: senderRawAddress,
-                    messages: transferParamsToMessages(transferParams)
+                    messages
                 })
                 .then(
                     (response): TransactionInfo => ({

@@ -1,4 +1,4 @@
-export interface BalanceObject {
+interface BalanceObject {
     balance: bigint;
     wallet_address: {
         address: string;

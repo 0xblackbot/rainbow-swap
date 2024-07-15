@@ -9,7 +9,8 @@
     "start": "vite --host",
     "build": "tsc && vite build",
     "build:contract": "node --no-warnings=ExperimentalWarning --loader ts-node/esm contracts/build.ts",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "find-deadcode": "ts-prune --error"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.4",
@@ -55,6 +56,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
+    "ts-prune": "^0.10.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-mkcert": "^1.17.5",

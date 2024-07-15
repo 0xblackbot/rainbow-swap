@@ -8,7 +8,7 @@ export const getRouteInputStep = (route: RouteStepWithCalculation[]) => {
     return undefined;
 };
 
-export const getRouteOutputStep = (route: RouteStepWithCalculation[]) => {
+const getRouteOutputStep = (route: RouteStepWithCalculation[]) => {
     if (route.length > 0) {
         return route[route.length - 1];
     }
@@ -16,7 +16,7 @@ export const getRouteOutputStep = (route: RouteStepWithCalculation[]) => {
     return undefined;
 };
 
-export const getRouteInputAssetAmount = (route: RouteStepWithCalculation[]) =>
+const getRouteInputAssetAmount = (route: RouteStepWithCalculation[]) =>
     BigInt(getRouteInputStep(route)?.inputAssetAmount ?? 0);
 
 export const getRouteOutputAssetAmount = (route: RouteStepWithCalculation[]) =>

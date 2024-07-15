@@ -1,6 +1,7 @@
 import {isDefined} from '@rnw-community/shared';
 import {Address} from '@ton/core';
 import {useTonWallet} from '@tonconnect/ui-react';
+import {getRainbowWalletActivationMessages} from 'rainbow-swap-sdk';
 import {useEffect, useMemo} from 'react';
 import {toast} from 'react-toastify';
 
@@ -14,7 +15,6 @@ import {
     usePendingActivationTransactionSelector
 } from '../store/wallet/wallet-selectors';
 import {CalculatedSwapRoute} from '../swap-routes/shared/calculated-swap-route.type';
-import {getRainbowWalletActivationTransferParams} from '../swap-routes/shared/transfer-params.utils';
 import {showLoadingToast, showSuccessToast} from '../utils/toast.utils';
 
 export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
@@ -67,14 +67,11 @@ export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
     const activateContract = async () => {
         trackButtonClick('Activate contract');
         const senderAddress = Address.parse(wallet?.account.address ?? '');
-        const transferParams = [
-            getRainbowWalletActivationTransferParams(senderAddress)
-        ];
-
-        const transactionInfo = await sendTransaction(
-            transferParams,
-            senderAddress
+        const messages = getRainbowWalletActivationMessages(
+            senderAddress.toString()
         );
+
+        const transactionInfo = await sendTransaction(senderAddress, messages);
 
         if (isDefined(transactionInfo)) {
             dispatch(
