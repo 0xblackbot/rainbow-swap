@@ -1,4 +1,5 @@
-import {CalculatedSwapRoute} from '../../swap-routes/shared/calculated-swap-route.type';
+import {CalculatedSwapRoute} from 'rainbow-swap-sdk';
+
 import {LoadableEntityState} from '../types';
 import {createEntity} from '../utils/create-entity';
 

@@ -1,5 +1,6 @@
+import {Asset} from 'rainbow-swap-sdk';
+
 import {TON} from '../../../../../globals';
-import {Asset} from '../../../../../interfaces/asset.interface';
 import {BalancesRecord} from '../../../../../types/balances-record.type';
 
 export const sortAssets = (

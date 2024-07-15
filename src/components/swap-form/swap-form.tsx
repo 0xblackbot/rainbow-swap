@@ -1,4 +1,5 @@
 import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
+import {Asset, mapSwapRouteToRoute} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {CustomInput} from './custom-input/custom-input';
@@ -12,7 +13,6 @@ import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
 import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
-import {Asset} from '../../interfaces/asset.interface';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
@@ -20,7 +20,6 @@ import {useAssetsRecordSelector} from '../../store/assets/assets-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {useSwapRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
 import {useBalancesSelector} from '../../store/wallet/wallet-selectors';
-import {mapSwapRouteToRoute} from '../../swap-routes/shared/calculated-swap-route.utils';
 import {toNano} from '../../utils/big-int.utils';
 import {formatNumber} from '../../utils/format-number.utils';
 import {swapAssets} from '../../utils/swap-assets.utils';

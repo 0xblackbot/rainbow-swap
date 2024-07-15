@@ -1,8 +1,7 @@
+import {Asset, RouteStepWithCalculation} from 'rainbow-swap-sdk';
 import {FC} from 'react';
 
 import styles from './rate-info.module.css';
-import {Asset} from '../../../interfaces/asset.interface';
-import {RouteStepWithCalculation} from '../../../interfaces/route-step-with-calculation.interface';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {useSwapInfo} from '../hooks/use-swap-info.hook';

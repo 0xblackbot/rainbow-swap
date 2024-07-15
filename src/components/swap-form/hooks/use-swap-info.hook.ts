@@ -1,6 +1,6 @@
+import {RouteStepWithCalculation} from 'rainbow-swap-sdk';
 import {useMemo} from 'react';
 
-import {RouteStepWithCalculation} from '../../../interfaces/route-step-with-calculation.interface';
 import {fromNano} from '../../../utils/big-int.utils';
 import {
     getSwapInputAssetAmount,

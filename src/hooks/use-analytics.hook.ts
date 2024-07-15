@@ -1,8 +1,8 @@
+import {Asset} from 'rainbow-swap-sdk';
 import {useEffect} from 'react';
 import ReactGA from 'react-ga4';
 
 import {isProd} from '../globals';
-import {Asset} from '../interfaces/asset.interface';
 
 export const useTrackPageView = (name: string, isOpen = true) =>
     useEffect(() => {

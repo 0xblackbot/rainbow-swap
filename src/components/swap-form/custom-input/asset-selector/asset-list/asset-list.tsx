@@ -1,3 +1,4 @@
+import {Asset} from 'rainbow-swap-sdk';
 import {ChangeEvent, FC, useEffect, useMemo, useRef, useState} from 'react';
 import {FixedSizeList} from 'react-window';
 
@@ -6,7 +7,6 @@ import {AssetListItemProps} from './asset-list-item/asset-list-item.props';
 import {SearchIcon} from '../../../../../assets/icons/SearchIcon/SearchIcon';
 import {XCircledIcon} from '../../../../../assets/icons/XCircledIcon/XCircledIcon';
 import {useDivHeight} from '../../../../../hooks/use-div-height.hook';
-import {Asset} from '../../../../../interfaces/asset.interface';
 import {useAssetsListSelector} from '../../../../../store/assets/assets-selectors';
 import {useBalancesSelector} from '../../../../../store/wallet/wallet-selectors';
 import {formatNumber} from '../../../../../utils/format-number.utils';

@@ -1,9 +1,9 @@
+import {Asset} from 'rainbow-swap-sdk';
 import {FC, useState} from 'react';
 
 import {AssetList} from './asset-list/asset-list';
 import styles from './asset-selector.module.css';
 import {ChevronRightIcon} from '../../../../assets/icons/ChevronRightIcon/ChevronRightIcon';
-import {Asset} from '../../../../interfaces/asset.interface';
 import {BottomSheet} from '../../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../../shared/form-button/form-button';
 

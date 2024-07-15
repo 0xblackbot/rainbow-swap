@@ -1,4 +1,4 @@
-import {RouteStepWithCalculation} from '../interfaces/route-step-with-calculation.interface';
+import {RouteStepWithCalculation} from 'rainbow-swap-sdk';
 
 export const getRouteInputStep = (route: RouteStepWithCalculation[]) => {
     if (route.length > 0) {

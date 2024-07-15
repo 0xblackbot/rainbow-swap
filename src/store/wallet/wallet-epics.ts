@@ -1,5 +1,5 @@
-import {Address} from '@ton/ton';
 import axios from 'axios';
+import {getIsRainbowWalletActive} from 'rainbow-swap-sdk';
 import {Epic, combineEpics} from 'redux-observable';
 import {
     Observable,
@@ -19,10 +19,8 @@ import {
     checkIsRainbowWalletActiveActions,
     loadBalancesActions
 } from './wallet-actions';
-import {TON_CLIENT, WORKCHAIN} from '../../globals';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
 import {TonBalanceArray} from '../../interfaces/ton-balance-response.interface';
-import {RainbowWalletContract} from '../../swap-routes/rainbow/rainbow-wallet.contract';
 import {getBalancesRecord} from '../../utils/balances-record.utils';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
 
@@ -80,27 +78,16 @@ const checkIsRainbowWalletActiveEpic: Epic<Action> = action$ =>
     action$.pipe(
         ofType(checkIsRainbowWalletActiveActions.submit),
         toPayload(),
-        switchMap(payload => {
-            const walletAddress = Address.parse(payload);
-
-            const rainbowWallet = RainbowWalletContract.create({
-                workchain: WORKCHAIN,
-                ownerAddress: walletAddress
-            });
-
-            const contractProvider = TON_CLIENT.provider(rainbowWallet.address);
-
-            return from(contractProvider.getState()).pipe(
-                map(state =>
-                    checkIsRainbowWalletActiveActions.success(
-                        state.state.type === 'active'
-                    )
+        switchMap(payload =>
+            from(getIsRainbowWalletActive(payload)).pipe(
+                map(isActive =>
+                    checkIsRainbowWalletActiveActions.success(isActive)
                 ),
                 catchError(err =>
                     of(checkIsRainbowWalletActiveActions.fail(err.message))
                 )
-            );
-        })
+            )
+        )
     );
 
 const addPendingActivationTransactionEpic: Epic<Action> = action$ =>

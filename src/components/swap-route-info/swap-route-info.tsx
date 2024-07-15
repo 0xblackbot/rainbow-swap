@@ -1,3 +1,4 @@
+import {mapSwapRouteToRoute} from 'rainbow-swap-sdk';
 import {FC, Fragment, useMemo} from 'react';
 
 import {RouteInfo} from './route-info/route-info';
@@ -7,7 +8,6 @@ import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
 import {useAssetsRecordSelector} from '../../store/assets/assets-selectors';
 import {useSlippageToleranceSelector} from '../../store/settings/settings-selectors';
 import {useSwapRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
-import {mapSwapRouteToRoute} from '../../swap-routes/shared/calculated-swap-route.utils';
 import {formatNumber} from '../../utils/format-number.utils';
 import {getClassName} from '../../utils/style.utils';
 import {useSwapInfo} from '../swap-form/hooks/use-swap-info.hook';

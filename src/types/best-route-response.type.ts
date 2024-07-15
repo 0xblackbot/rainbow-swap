@@ -1,4 +1,4 @@
-import {CalculatedSwapRoute} from '../swap-routes/shared/calculated-swap-route.type';
+import {CalculatedSwapRoute} from 'rainbow-swap-sdk';
 
 export type BestRouteResponse = {
     bestRoute: CalculatedSwapRoute[];

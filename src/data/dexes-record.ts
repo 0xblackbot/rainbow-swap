@@ -1,4 +1,5 @@
-import {DexTypeEnum} from '../enums/dex-type.enum';
+import {DexTypeEnum} from 'rainbow-swap-sdk';
+
 import {DexInfo} from '../interfaces/dex-info.interface';
 
 export const DEFAULT_DEXES_RECORD: Record<DexTypeEnum, DexInfo> = {
