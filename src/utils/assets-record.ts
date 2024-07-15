@@ -1,5 +1,6 @@
+import {AssetsRecord} from 'rainbow-swap-sdk';
+
 import {getUsdExchangeRate} from './get-usd-value.utils';
-import {AssetsRecord} from '../types/assets-record.type';
 
 export const mapAssetsRecordWithExchangeRate = (
     tonPrice: number,

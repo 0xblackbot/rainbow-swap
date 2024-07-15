@@ -1,5 +1,6 @@
+import {AssetsRecord} from 'rainbow-swap-sdk';
+
 import {TON, USDT} from '../globals';
-import {AssetsRecord} from '../types/assets-record.type';
 
 export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
     [TON]: {

@@ -1,9 +1,8 @@
-import {RouteStep} from 'rainbow-swap-sdk';
+import {AssetsRecord, RouteStep} from 'rainbow-swap-sdk';
 import {FC} from 'react';
 
 import styles from './swap-route-step.module.css';
 import {DEFAULT_DEXES_RECORD} from '../../../../data/dexes-record';
-import {AssetsRecord} from '../../../../types/assets-record.type';
 
 interface Props {
     routeStep: RouteStep;

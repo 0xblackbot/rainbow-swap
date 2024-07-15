@@ -1,4 +1,5 @@
-import {BestRouteResponse} from '../../types/best-route-response.type';
+import {BestRouteResponse} from 'rainbow-swap-sdk';
+
 import {createActions} from '../utils/create-actions';
 
 export const loadSwapRoutesActions = createActions<

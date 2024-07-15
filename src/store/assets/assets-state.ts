@@ -1,5 +1,6 @@
+import {AssetsRecord} from 'rainbow-swap-sdk';
+
 import {DEFAULT_ASSETS_RECORD} from '../../data/assets-record';
-import {AssetsRecord} from '../../types/assets-record.type';
 import {LoadableEntityState} from '../types';
 import {createEntity} from '../utils/create-entity';
 
