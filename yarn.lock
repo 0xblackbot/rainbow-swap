@@ -740,10 +740,10 @@
     jssha "3.2.0"
     tweetnacl "1.0.3"
 
-"@ton/ton@^13.11.2":
-  version "13.11.2"
-  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-13.11.2.tgz#e40204df6a663fdf1b862dfe8ba2a91be3c0dddc"
-  integrity sha512-EPqW+ZTe0MmfqguJEIGMuAqTAFRKMEce95HlDx8h6CGn2y3jiMgV1/oO+WpDIOiX+1wnTu+xtajk8JTWr8nKRQ==
+"@ton/ton@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-14.0.0.tgz#a66fbbfb159200892557442039a0341cda71fc2d"
+  integrity sha512-xb2CY6U0AlHUKc7DV7xK/K4Gqn6YoR253yUrM2E7L5WegVFsDF0CQRUIfpYACCuj1oUywQc5J2oMolYNu/uGkA==
   dependencies:
     axios "^1.6.7"
     dataloader "^2.0.0"
@@ -782,17 +782,17 @@
     "@tonconnect/isomorphic-fetch" "^0.0.3"
     "@tonconnect/protocol" "^2.2.6"
 
-"@tonconnect/ui-react@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui-react/-/ui-react-2.0.5.tgz#8e733d41b89273fd258d693599734605a89cd2d3"
-  integrity sha512-phK8nZpjdASyuwWZmw6Qj5tqVag83cfgSpgy7OW6cq8ftJrELiPQD0hCbcWb9iSqgf6eYpGz3s+4I0Gq/YJxww==
+"@tonconnect/ui-react@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui-react/-/ui-react-2.0.6.tgz#9adadda97da0c8ff2e40eee5dbaa1693aa6662b5"
+  integrity sha512-9VRYP2o/YW4ti+rOMSptIYaRO39V5UFmzdUl18AmDFDdynjacAIht/IInO+AGAKfrnF9bUk/J5NgLcbxVqvZww==
   dependencies:
-    "@tonconnect/ui" "2.0.5"
+    "@tonconnect/ui" "2.0.6"
 
-"@tonconnect/ui@2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.0.5.tgz#2855ee944ba47502de51d4b88ef98dc5ba6b424f"
-  integrity sha512-AuVtBqX450lJyJtrJDhBPwPzkhm10QCsnS1/p2CLkzzcMH5b5o50oVp5yuRWw/1eIwJZSLjVplkgA/JjMAlmsA==
+"@tonconnect/ui@2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.0.6.tgz#4cf092b3ff138238fa7ae7d4754d8bfed549d892"
+  integrity sha512-JMTSxgbnpDjpHi9g0s7w3tpAiLHa8BHUpaBrbSTDcKGQVEm7+NtqhN+gQkGkm8pV7NYRqiS/sKUpRQ1MyjtTBQ==
   dependencies:
     "@tonconnect/sdk" "3.0.3"
     classnames "^2.3.2"
@@ -3141,15 +3141,15 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-rainbow-swap-sdk@^1.1.15:
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.1.15.tgz#59bb94b6d2cf5297acc67570d8290a896a477511"
-  integrity sha512-61axYlEP9Qko8wn1ZE5kFj0LA4D+0gMXFy3/Y6aRySADssDXhaqSqQ8wIQt/FfnYweD6SLSjqeHrvrvo6S77bA==
+rainbow-swap-sdk@^1.1.18:
+  version "1.1.18"
+  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.1.18.tgz#5fff9a11257c7b2e4caaab6c2d900fd61082a097"
+  integrity sha512-cfpsKMi9ykYYEgLATLE4YaeaRZFeQNEJscSZh+AXMTVxhuiUZLgCwBYydecrfDb2iotiMLGOOviALfD7fHniZA==
   dependencies:
     "@rnw-community/shared" "^0.73.0"
     "@ton/core" "^0.56.3"
     "@ton/crypto" "^3.2.0"
-    "@ton/ton" "^13.11.2"
+    "@ton/ton" "^14.0.0"
     axios "^1.7.2"
     buffer "^6.0.3"
 
@@ -3621,10 +3621,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-tonapi-sdk-js@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-1.0.11.tgz#0aa7807ed818bea819f30807925852813b0a0ac5"
-  integrity sha512-6/oHFpfD5GcVppxPUEbXgEfx0YwD2yCwqjeVyEwMsASu7J+UXYQPBGqQupcw51K7OYHE6JTom6/xG0ztYImLgQ==
+tonapi-sdk-js@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-1.0.15.tgz#2ca869f1f6c4643b1e9b34175407090043aee6c8"
+  integrity sha512-26+1yoi6RIpv72l36SpnxzY2jVU9kTPV222WjdwpIL/7piwI0nigryUbWB6gtOUbmxUkpHOwJe1tXuxDCBrwzw==
 
 totalist@^3.0.0:
   version "3.0.1"
