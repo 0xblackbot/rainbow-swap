@@ -14,7 +14,7 @@ interface Props {
     isLoading: boolean;
 }
 
-const GUARANTEE_MESSAGE_LINK = 'https://t.me/rainbow_swap';
+const CHANNEL_LINK = 'https://t.me/rainbow_swap';
 
 export const RateInfo: FC<Props> = ({
     inputAsset,
@@ -44,7 +44,7 @@ export const RateInfo: FC<Props> = ({
                 : null}
             <a
                 className={styles.guarantee_container}
-                href={GUARANTEE_MESSAGE_LINK}
+                href={CHANNEL_LINK}
                 target="_blank"
             >
                 <div className={styles.guarantee_text_container}>

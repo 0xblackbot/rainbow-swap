@@ -15,11 +15,9 @@
     width: 75px;
     height: 75px;
     transform: translateX(-50%) translateY(-50%);
-    /*cursor: pointer;*/
+    cursor: pointer;
     background-color: #FFAA33;
     border-radius: 50%;
-    pointer-events: none;
-    cursor: default;
 
     &:before {
         content: '';
