@@ -15,9 +15,11 @@
     width: 75px;
     height: 75px;
     transform: translateX(-50%) translateY(-50%);
-    cursor: pointer;
-    background-color: #00BF63;
+    /*cursor: pointer;*/
+    background-color: #FFAA33;
     border-radius: 50%;
+    pointer-events: none;
+    cursor: default;
 
     &:before {
         content: '';
@@ -29,7 +31,7 @@
         height: 100%;
         box-sizing: border-box;
         border-radius: 50%;
-        background-color: #00BF63;
+        background-color: #FFAA33;
         animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
         transform: translateX(-50%) translateY(-50%);
     }
@@ -57,7 +59,8 @@
 }
 
 .guarantee_text_2 {
-    font-size: 19px;
+    font-size: 20px;
+    margin: 2px 0;
 }
 
 .guarantee_text_3 {
