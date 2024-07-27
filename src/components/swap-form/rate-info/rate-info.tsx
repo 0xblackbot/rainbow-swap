@@ -50,7 +50,7 @@ export const RateInfo: FC<Props> = ({
                 <div className={styles.guarantee_text_container}>
                     <p className={styles.guarantee_text_1}>Tap-tap</p>
                     <p className={styles.guarantee_text_2}>SOON</p>
-                    <p className={styles.guarantee_text_1}>Tap-tap</p>
+                    <p className={styles.guarantee_text_3}>Subscribe</p>
                 </div>
             </a>
         </div>
