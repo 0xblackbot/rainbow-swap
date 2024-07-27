@@ -25,7 +25,7 @@ export const RouteInfo: FC<Props> = ({route}) => {
     const routeInputAssetPercentage = (
         (parseFloat(routeInputAssetAmount) / parseFloat(inputAssetAmount)) *
         100
-    ).toFixed(1);
+    ).toFixed(2);
 
     return (
         <div className={styles.route}>
