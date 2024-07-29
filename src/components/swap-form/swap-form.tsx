@@ -4,6 +4,7 @@ import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {CustomInput} from './custom-input/custom-input';
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook';
+import {PendingSwap} from './pending-swap/pending-swap';
 import {RateInfo} from './rate-info/rate-info';
 import {SettingsButton} from './settings-button/settings-button';
 import {SwapButton} from './swap-button/swap-button';
@@ -23,7 +24,6 @@ import {useBalancesSelector} from '../../store/wallet/wallet-selectors';
 import {toNano} from '../../utils/big-int.utils';
 import {formatNumber} from '../../utils/format-number.utils';
 import {swapAssets} from '../../utils/swap-assets.utils';
-import {PendingSwap} from '../header/pending-swap/pending-swap';
 
 export const SwapScreen = () => {
     const wallet = useTonWallet();
