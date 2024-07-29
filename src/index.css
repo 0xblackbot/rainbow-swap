@@ -29,6 +29,9 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
     user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
 input[type=number]::-webkit-inner-spin-button,
