@@ -23,6 +23,7 @@ import {useBalancesSelector} from '../../store/wallet/wallet-selectors';
 import {toNano} from '../../utils/big-int.utils';
 import {formatNumber} from '../../utils/format-number.utils';
 import {swapAssets} from '../../utils/swap-assets.utils';
+import {PendingSwap} from '../header/pending-swap/pending-swap';
 
 export const SwapScreen = () => {
     const wallet = useTonWallet();
@@ -143,6 +144,7 @@ export const SwapScreen = () => {
                     <div className={styles.swapform_header}>
                         <p />
                         <div className={styles.icons_div}>
+                            <PendingSwap />
                             <RefreshIcon
                                 width="22px"
                                 height="22px"

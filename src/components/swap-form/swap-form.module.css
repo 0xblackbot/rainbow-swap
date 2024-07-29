@@ -16,6 +16,7 @@
 
 .swapform_header{
     display: flex;
+    height: 29px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--2-step);
