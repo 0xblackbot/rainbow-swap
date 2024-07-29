@@ -4,6 +4,7 @@ import {FC} from 'react';
 import styles from './rate-info.module.css';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
+import {EarnPoints} from '../earn-points/earn-points';
 import {useSwapInfo} from '../hooks/use-swap-info.hook';
 
 interface Props {
@@ -13,8 +14,6 @@ interface Props {
     routes: RouteStepWithCalculation[][];
     isLoading: boolean;
 }
-
-const CHANNEL_LINK = 'https://t.me/rainbow_swap';
 
 export const RateInfo: FC<Props> = ({
     inputAsset,
@@ -42,17 +41,7 @@ export const RateInfo: FC<Props> = ({
                       )} ${outputAsset.symbol}`
                     : 'No routes available'
                 : null}
-            <a
-                className={styles.guarantee_container}
-                href={CHANNEL_LINK}
-                target="_blank"
-            >
-                <div className={styles.guarantee_text_container}>
-                    <p className={styles.guarantee_text_1}>Tap-tap</p>
-                    <p className={styles.guarantee_text_2}>SOON</p>
-                    <p className={styles.guarantee_text_3}>Subscribe</p>
-                </div>
-            </a>
+            <EarnPoints />
         </div>
     );
 };
