@@ -1,7 +1,7 @@
 .container {
-    padding: 2px;
+    padding: 1px;
     margin-right: var(--step);
-    border-radius: var(--step);
+    border-radius: var(--4-step);
     background: linear-gradient(
             90deg,
             #ff0000 0%,
@@ -22,13 +22,13 @@
 }
 
 .container_body {
-    padding: 4px;
-    border-radius: 6px;
+    padding: calc(var(--step) - 1px) calc(var(--2-step) - 1px);
+    border-radius: calc(var(--4-step) - 1px);
     background-color: var(--bg-color);
 }
 
 .text {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-color);
 }
 
