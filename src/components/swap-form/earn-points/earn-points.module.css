@@ -6,7 +6,7 @@
     height: 75px;
     transform: translateX(-50%) translateY(-50%);
     cursor: pointer;
-    background-color: #3e88f7;
+    background-color: #41d073;
     border-radius: 50%;
 
     &:before {
@@ -19,7 +19,7 @@
         height: 100%;
         box-sizing: border-box;
         border-radius: 50%;
-        background-color: #3e88f7;
+        background-color: #41d073;
         animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
         transform: translateX(-50%) translateY(-50%);
     }

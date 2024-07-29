@@ -18,6 +18,7 @@
     );
     background-size: 200% 200%;
     animation: anim 6s linear infinite;
+    cursor: pointer;
 }
 
 .container_body {

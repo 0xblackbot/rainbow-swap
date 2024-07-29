@@ -28,6 +28,7 @@ body {
     overscroll-behavior-x: none;
     background: var(--bg-color);
     color: var(--text-color);
+    user-select: none;
 }
 
 input[type=number]::-webkit-inner-spin-button,

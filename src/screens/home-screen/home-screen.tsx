@@ -5,6 +5,7 @@ import {ToastContainer} from 'react-toastify';
 
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
+import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useDispatch} from '../../store';
@@ -75,6 +76,7 @@ export const HomeScreen = () => {
             />
             <Header />
             <SwapScreen />
+            <PointsModal />
             <Footer />
         </>
     );
