@@ -4,6 +4,7 @@ import coinImage from './coin.png';
 import styles from './points-modal.module.css';
 import {Click} from '../../interfaces/click.interface';
 import {BottomSheet} from '../../shared/bottom-sheet/bottom-sheet';
+import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
 import {closePointsModal} from '../../store/points/points-actions';
 import {useIsPointsModalOpenSelector} from '../../store/points/points-selectors';
@@ -46,38 +47,45 @@ export const PointsModal = () => {
             headerTitle="Tap-tap"
             onClose={handleClose}
         >
-            <div
-                className={styles.coin_container}
-                onClick={handleClick}
-                onMouseDown={handlePressStart}
-                onMouseUp={handlePressEnd}
-                onMouseLeave={handlePressEnd}
-                onTouchStart={handlePressStart}
-                onTouchEnd={handlePressEnd}
-                onTouchCancel={handlePressEnd}
-            >
-                <img
-                    src={coinImage}
-                    alt="coin"
-                    draggable={false}
-                    className={getClassName(
-                        styles.coin_image,
-                        isPressed ? styles.coin_image_pressed : ''
-                    )}
-                />
-                {clicks.map(click => (
-                    <div
-                        key={click.id}
-                        className={styles.click}
-                        style={{
-                            top: click.y,
-                            left: click.x
-                        }}
-                        onAnimationEnd={() => handleAnimationEnd(click.id)}
-                    >
-                        +1
-                    </div>
-                ))}
+            <div className={styles.content_container}>
+                <div
+                    className={styles.coin_container}
+                    onClick={handleClick}
+                    onMouseDown={handlePressStart}
+                    onMouseUp={handlePressEnd}
+                    onMouseLeave={handlePressEnd}
+                    onTouchStart={handlePressStart}
+                    onTouchEnd={handlePressEnd}
+                    onTouchCancel={handlePressEnd}
+                >
+                    <img
+                        src={coinImage}
+                        alt="coin"
+                        draggable={false}
+                        className={getClassName(
+                            styles.coin_image,
+                            isPressed ? styles.coin_image_pressed : ''
+                        )}
+                    />
+                    {clicks.map(click => (
+                        <div
+                            key={click.id}
+                            className={styles.click}
+                            style={{
+                                top: click.y,
+                                left: click.x
+                            }}
+                            onAnimationEnd={() => handleAnimationEnd(click.id)}
+                        >
+                            +1
+                        </div>
+                    ))}
+                </div>
+                <FormButton
+                    text="Swap"
+                    containerClassName={styles.swap_button}
+                    onClick={handleClose}
+                ></FormButton>
             </div>
         </BottomSheet>
     );
