@@ -14,6 +14,7 @@ export const App = () => {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
         window.Telegram.WebApp.enableClosingConfirmation();
+        window.Telegram.WebApp.disableVerticalSwipes();
         window.Telegram.WebApp.MainButton.show();
         // We wait for MainButton to be initialized
         setTimeout(() => viewportHeight.updateValue(), 100);

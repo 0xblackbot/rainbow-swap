@@ -471,6 +471,16 @@
         WebView.postEvent('web_app_setup_closing_behavior', false, {need_confirmation: isClosingConfirmationEnabled});
     }
 
+    var isVerticalSwipesEnabled = true;
+    function toggleVerticalSwipes(enable_swipes) {
+        if (!versionAtLeast('7.7')) {
+            console.warn('[Telegram.WebApp] Changing swipes behavior is not supported in version ' + webAppVersion);
+            return;
+        }
+        isVerticalSwipesEnabled = !!enable_swipes;
+        WebView.postEvent('web_app_setup_swipe_behavior', false, {allow_vertical_swipe: isVerticalSwipesEnabled});
+    }
+
     var headerColorKey = 'bg_color', headerColor = null;
     function getHeaderColor() {
         if (headerColorKey == 'secondary_bg_color') {
@@ -1429,6 +1439,7 @@
     }
     function onScanQrPopupClosed(eventType, eventData) {
         webAppScanQrPopupOpened = false;
+        receiveWebViewEvent('scanQrPopupClosed');
     }
 
     function onClipboardTextReceived(eventType, eventData) {
@@ -1596,6 +1607,11 @@
         get: function(){ return isClosingConfirmationEnabled; },
         enumerable: true
     });
+    Object.defineProperty(WebApp, 'isVerticalSwipesEnabled', {
+        set: function(val){ toggleVerticalSwipes(val); },
+        get: function(){ return isVerticalSwipesEnabled; },
+        enumerable: true
+    });
     Object.defineProperty(WebApp, 'headerColor', {
         set: function(val){ setHeaderColor(val); },
         get: function(){ return getHeaderColor(); },
@@ -1641,6 +1657,12 @@
     };
     WebApp.disableClosingConfirmation = function() {
         WebApp.isClosingConfirmationEnabled = false;
+    };
+    WebApp.enableVerticalSwipes = function() {
+        WebApp.isVerticalSwipesEnabled = true;
+    };
+    WebApp.disableVerticalSwipes = function() {
+        WebApp.isVerticalSwipesEnabled = false;
     };
     WebApp.isVersionAtLeast = function(ver) {
         return versionAtLeast(ver);
@@ -1707,7 +1729,14 @@
         var url = a.href;
         options = options || {};
         if (versionAtLeast('6.1')) {
-            WebView.postEvent('web_app_open_link', false, {url: url, try_instant_view: versionAtLeast('6.4') && !!options.try_instant_view});
+            var req_params = {url: url};
+            if (versionAtLeast('6.4') && options.try_instant_view) {
+                req_params.try_instant_view = true;
+            }
+            if (versionAtLeast('7.6') && options.try_browser) {
+                req_params.try_browser = options.try_browser;
+            }
+            WebView.postEvent('web_app_open_link', false, req_params);
         } else {
             window.open(url, '_blank');
         }
@@ -1949,6 +1978,57 @@
         };
         WebView.postEvent('web_app_request_phone');
     };
+    WebApp.shareToStory = function (media_url, params) {
+        params = params || {};
+        if (!versionAtLeast('7.8')) {
+            console.error('[Telegram.WebApp] Method shareToStory is not supported in version ' + webAppVersion);
+            throw Error('WebAppMethodUnsupported');
+        }
+        var a = document.createElement('A');
+        a.href = media_url;
+        if (a.protocol != 'http:' &&
+            a.protocol != 'https:') {
+            console.error('[Telegram.WebApp] Media url protocol is not supported', url);
+            throw Error('WebAppMediaUrlInvalid');
+        }
+        var share_params = {};
+        share_params.media_url = a.href;
+        if (typeof params.text !== 'undefined') {
+            var text = strTrim(params.text);
+            if (text.length > 2048) {
+                console.error('[Telegram.WebApp] Text is too long', text);
+                throw Error('WebAppShareToStoryParamInvalid');
+            }
+            if (text.length > 0) {
+                share_params.text = text;
+            }
+        }
+        if (typeof params.widget_link !== 'undefined') {
+            params.widget_link = params.widget_link || {};
+            a.href = params.widget_link.url;
+            if (a.protocol != 'http:' &&
+                a.protocol != 'https:') {
+                console.error('[Telegram.WebApp] Link protocol is not supported', url);
+                throw Error('WebAppShareToStoryParamInvalid');
+            }
+            var widget_link = {
+                url: a.href
+            };
+            if (typeof params.widget_link.name !== 'undefined') {
+                var link_name = strTrim(params.widget_link.name);
+                if (link_name.length > 48) {
+                    console.error('[Telegram.WebApp] Link name is too long', link_name);
+                    throw Error('WebAppShareToStoryParamInvalid');
+                }
+                if (link_name.length > 0) {
+                    widget_link.name = link_name;
+                }
+            }
+            share_params.widget_link = widget_link;
+        }
+
+        WebView.postEvent('web_app_share_to_story', false, share_params);
+    };
     WebApp.invokeCustomMethod = function (method, params, callback) {
         invokeCustomMethod(method, params, callback);
     };
@@ -1958,8 +2038,13 @@
     WebApp.expand = function () {
         WebView.postEvent('web_app_expand');
     };
-    WebApp.close = function () {
-        WebView.postEvent('web_app_close');
+    WebApp.close = function (options) {
+        options = options || {};
+        var req_params = {};
+        if (versionAtLeast('7.6') && options.return_back) {
+            req_params.return_back = true;
+        }
+        WebView.postEvent('web_app_close', false, req_params);
     };
 
     window.Telegram.WebApp = WebApp;
