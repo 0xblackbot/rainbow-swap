@@ -20,6 +20,7 @@ import {
     usePendingActivationTransactionSelector,
     usePendingSwapTransactionSelector
 } from '../../store/wallet/wallet-selectors';
+import terminal from 'virtual:terminal';
 
 export const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -32,6 +33,12 @@ export const HomeScreen = () => {
     useTrackPageView('Home');
 
     useEffect(() => {
+        const userId = window.Telegram.WebApp.initDataUnsafe.user?.id;
+        const refParent = window.Telegram.WebApp.initDataUnsafe.start_param;
+
+        terminal.log('userId', userId);
+        terminal.log('refParent', refParent);
+        terminal.log(window.Telegram.WebApp.initDataUnsafe);
         dispatch(loadAssetsActions.submit());
 
         // restore waitTransactionConfirmation for swap & activation transactions
