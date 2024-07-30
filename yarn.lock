@@ -923,10 +923,10 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/telegram-web-app@^7.2.1":
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/@types/telegram-web-app/-/telegram-web-app-7.2.1.tgz#655c4acf6d00a096e5ed2a67e09465da1cccead4"
-  integrity sha512-aXUUyTE8vVwolOta84wPybKNAeZq6rPVYCn/mnewN+tqF5QBqoQFnvqUATn7yNFH2+hpYF2Z2fKU6lnMQ8EC3A==
+"@types/telegram-web-app@^7.3.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@types/telegram-web-app/-/telegram-web-app-7.3.1.tgz#9edf1c18674b29c5abcf8f699fb8f367f6dae8ae"
+  integrity sha512-88VN+61MM6R3G0hhaHGJR+hMAazmNcfg568cn2WcGWZU4iAjzmogWZTgmZmwfaexrCdZ6PLVwoiQRoOX5/Djcg==
 
 "@types/use-sync-external-store@^0.0.3":
   version "0.0.3"

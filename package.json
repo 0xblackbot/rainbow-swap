@@ -43,7 +43,7 @@
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-window": "^1.8.8",
-    "@types/telegram-web-app": "^7.2.1",
+    "@types/telegram-web-app": "^7.3.1",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.8.0",
     "@vitejs/plugin-react": "^4.2.1",
