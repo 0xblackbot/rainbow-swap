@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <SwapFormProvider>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
-                    <TonConnectUIProvider manifestUrl="https://0xblackbot.github.io/rainbow-swap/tonconnect-manifest.json">
+                    <TonConnectUIProvider manifestUrl="https://rainbow.ag/tonconnect-manifest.json">
                         <App />
                     </TonConnectUIProvider>
                 </PersistGate>
