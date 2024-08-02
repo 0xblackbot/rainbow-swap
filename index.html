@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="./icons/icon-72x72.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rainbow - Swap Aggregator on TON</title>
+
+        <script src="./scripts/telegram-web-app.js"></script>
+      <script type="module" crossorigin src="./assets/index-ClaUsirw.js"></script>
+      <link rel="stylesheet" crossorigin href="./assets/index-CIsIhWwd.css">
+    </head>
+    <body>
+        <div id="root"></div>
+        <script>
+            function handleColorSchemeChange(theme) {
+                if (theme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            }
+
+            function handleTheme() {
+                if (window.Telegram.WebApp.themeParams.bg_color) {
+                    handleColorSchemeChange(window.Telegram.WebApp.colorScheme);
+                    window.Telegram.WebApp.onEvent('themeChanged', () => handleColorSchemeChange(window.Telegram.WebApp.colorScheme));
+                } else {
+                    const isLightTheme = window.matchMedia('(prefers-color-scheme: light)');
+                    handleColorSchemeChange(isLightTheme.matches ? 'light' : 'dark');
+                    isLightTheme.addEventListener('change', e => handleColorSchemeChange(e.matches ? 'light' : 'dark'));
+                }
+            }
+
+            handleTheme();
+        </script>
+    </body>
+</html>
