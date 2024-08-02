@@ -2,6 +2,7 @@ import {isDefined, isNotEmptyString} from '@rnw-community/shared';
 import {useTonAddress} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
 import {ToastContainer} from 'react-toastify';
+import terminal from 'virtual:terminal';
 
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
@@ -20,7 +21,6 @@ import {
     usePendingActivationTransactionSelector,
     usePendingSwapTransactionSelector
 } from '../../store/wallet/wallet-selectors';
-import terminal from 'virtual:terminal';
 
 export const HomeScreen = () => {
     const dispatch = useDispatch();
