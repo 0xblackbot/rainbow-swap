@@ -1,13 +1,13 @@
-# Rainbow Swap 🌈
+# Rainbow 🌈
 
-An open source repository for Rainbow Swap front end interface and smart contracts maintained by [Blackbot](https://blackbot.technology/). Rainbow Swap is the Next Gen DEX Aggregator on TON 💎.
+An open source repository for Rainbow Swap front end interface and smart contracts maintained by [Blackbot](https://blackbot.technology/). Rainbow is a Swap Aggregator on TON 💎.
 
 ![main banner.png](docs%2Fassets%2Fmain%20banner.png)
 
 ### Interfaces
 
 - TMA: [@rainbow_swap_bot](https://t.me/rainbow_swap_bot)
-- Web: [https://0xblackbot.github.io/rainbow-swap/](https://0xblackbot.github.io/rainbow-swap/)
+- Web: [rainbow.ag](https://rainbow.ag)
 
 ### Socials / Contact
 
