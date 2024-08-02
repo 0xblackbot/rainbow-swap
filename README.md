@@ -7,7 +7,7 @@ An open source repository for Rainbow Swap front end interface and smart contrac
 ### Interfaces
 
 - TMA: [@rainbow_swap_bot](https://t.me/rainbow_swap_bot)
-- Web: [https://rainbow.ag](https://rainbow.ag)
+- Web: [rainbow.ag](https://rainbow.ag)
 
 ### Socials / Contact
 
