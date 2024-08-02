@@ -24,7 +24,7 @@ export const Footer = () => {
                     href={TELEGRAM_CHANNEL_LINK}
                     target="_blank"
                 >
-                    Telegram Channel
+                    TTelegram Channel
                 </a>
                 <a
                     className={getClassName(
