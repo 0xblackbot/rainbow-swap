@@ -31,3 +31,11 @@ export const TON_API_CLIENT = new Api(
 );
 
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
+
+export const USER_ID = window.Telegram.WebApp.initDataUnsafe.user?.id;
+
+export const TELEGRAM_BOT_LINK = 'https://t.me/rainbow_swap_bot';
+export const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';
+export const COMMUNITY_CHAT_LINK = 'https://t.me/rainbow_swap_chat';
+
+export const X_LINK = 'https://x.com/rainbow_swap';

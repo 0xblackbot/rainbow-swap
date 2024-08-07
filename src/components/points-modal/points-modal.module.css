@@ -6,44 +6,6 @@
     overflow-y: scroll;
 }
 
-.coin_container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-}
-
-.coin_image {
-    width: 80%;
-    transition: transform 100ms ease;
-}
-
-.coin_image_pressed {
-    transform: translateY(var(--half-step));
-}
-
-.click {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-    font-size: 33px;
-    color: var(--button-text-color);
-    animation: float 1s ease-out;
-    transform: translateX(-50%) translateY(-50%);
-}
-
-@keyframes float {
-    0% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-50%);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-250%);
-    }
-}
-
 .swap_button {
     margin-top: auto;
 }
