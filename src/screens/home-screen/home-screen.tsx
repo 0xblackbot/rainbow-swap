@@ -2,13 +2,11 @@ import {isDefined, isNotEmptyString} from '@rnw-community/shared';
 import {useTonAddress} from '@tonconnect/ui-react';
 import {useEffect} from 'react';
 import {ToastContainer} from 'react-toastify';
-import terminal from 'virtual:terminal';
 
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
 import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
-import {USER_ID} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
@@ -34,11 +32,6 @@ export const HomeScreen = () => {
     useTrackPageView('Home');
 
     useEffect(() => {
-        const refParent = window.Telegram.WebApp.initDataUnsafe.start_param;
-
-        terminal.log('userId', USER_ID);
-        terminal.log('refParent', refParent);
-        terminal.log(window.Telegram.WebApp.initDataUnsafe);
         dispatch(loadAssetsActions.submit());
 
         // restore waitTransactionConfirmation for swap & activation transactions

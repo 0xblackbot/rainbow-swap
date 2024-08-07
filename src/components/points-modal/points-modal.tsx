@@ -25,7 +25,7 @@ export const PointsModal = () => {
                 <Tasks />
 
                 <FormButton
-                    text="Swap"
+                    text="Close"
                     containerClassName={styles.swap_button}
                     onClick={handleClose}
                 ></FormButton>
