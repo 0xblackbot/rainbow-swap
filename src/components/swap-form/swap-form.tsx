@@ -72,22 +72,13 @@ export const SwapScreen = () => {
     );
 
     useEffect(() => {
-        if (nanoInputAssetAmount === '0') {
-            dispatch(
-                loadSwapRoutesActions.success({
-                    bestRoute: [],
-                    priceImprovement: 0
-                })
-            );
-        } else {
-            dispatch(
-                loadSwapRoutesActions.submit({
-                    inputAssetAmount: nanoInputAssetAmount,
-                    inputAssetAddress,
-                    outputAssetAddress
-                })
-            );
-        }
+        dispatch(
+            loadSwapRoutesActions.submit({
+                inputAssetAmount: nanoInputAssetAmount,
+                inputAssetAddress,
+                outputAssetAddress
+            })
+        );
     }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);
 
     const handleConnectClick = useCallback(() => {

@@ -13,12 +13,21 @@ const loadSwapRoutesEpic: Epic<Action> = action$ =>
         ofType(loadSwapRoutesActions.submit),
         debounceTime(DEBOUNCE_DUE_TIME),
         toPayload(),
-        switchMap(payload =>
-            from(getBestRoute(payload)).pipe(
+        switchMap(payload => {
+            if (payload.inputAssetAmount === '0') {
+                return of(
+                    loadSwapRoutesActions.success({
+                        bestRoute: [],
+                        priceImprovement: 0
+                    })
+                );
+            }
+
+            return from(getBestRoute(payload)).pipe(
                 map(response => loadSwapRoutesActions.success(response)),
                 catchError(err => of(loadSwapRoutesActions.fail(err.message)))
-            )
-        )
+            );
+        })
     );
 
 export const swapRoutesEpics = combineEpics(loadSwapRoutesEpic);

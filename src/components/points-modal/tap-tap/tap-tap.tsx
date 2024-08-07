@@ -3,9 +3,13 @@ import React, {useState} from 'react';
 import coinImage from './coin.png';
 import styles from './tap-tap.module.css';
 import {Click} from '../../../interfaces/click.interface';
+import {useDispatch} from '../../../store';
+import {addTapActions} from '../../../store/points/points-actions';
 import {getClassName} from '../../../utils/style.utils';
 
 export const TapTap = () => {
+    const dispatch = useDispatch();
+
     const [isPressed, setIsPressed] = useState(false);
     const [clicks, setClicks] = useState<Click[]>([]);
 
@@ -18,15 +22,14 @@ export const TapTap = () => {
 
         const rect = event.currentTarget.getBoundingClientRect();
 
-        setClicks(prevClicks =>
-            prevClicks.concat([
-                {
-                    id: Date.now(),
-                    x: event.clientX - rect.left,
-                    y: event.clientY - rect.top
-                }
-            ])
-        );
+        const newClick: Click = {
+            id: Date.now(),
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
+        };
+
+        setClicks(prevClicks => prevClicks.concat([newClick]));
+        dispatch(addTapActions.submit(newClick));
     };
     const handleAnimationEnd = (id: number) => {
         setClicks(prevClicks => prevClicks.filter(click => click.id !== id));

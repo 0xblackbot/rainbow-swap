@@ -7,9 +7,11 @@ import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
 import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
+import {REF_PARENT, USER_ID} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
+import {loadPointsActions} from '../../store/points/points-actions';
 import {
     addPendingActivationTransactionActions,
     addPendingSwapTransactionActions,
@@ -33,6 +35,15 @@ export const HomeScreen = () => {
 
     useEffect(() => {
         dispatch(loadAssetsActions.submit());
+
+        if (isDefined(USER_ID)) {
+            dispatch(
+                loadPointsActions.submit({
+                    userId: USER_ID,
+                    refParent: REF_PARENT
+                })
+            );
+        }
 
         // restore waitTransactionConfirmation for swap & activation transactions
         if (isDefined(pendingSwapTransaction.data)) {

@@ -17,6 +17,11 @@ export const REFRESH_ROUTE_INTERVAL = 30 * 1000;
 export const GAS_AMOUNT = toNano('0.255', 9);
 export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);
 
+export const API = axios.create({
+    // baseURL: 'https://api.rainbow.ag/rainbow/api',
+    baseURL: 'http://localhost:7701/api'
+});
+
 export const COIN_GECKO_API = axios.create({
     baseURL: 'https://api.coingecko.com/api/v3',
     headers: {
@@ -32,7 +37,7 @@ export const TON_API_CLIENT = new Api(
 
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
 
-export const USER_ID = window.Telegram.WebApp.initDataUnsafe.user?.id;
+export const USER_ID = 151872929 ;//window.Telegram.WebApp.initDataUnsafe.user?.id;
 export const REF_PARENT = window.Telegram.WebApp.initDataUnsafe.start_param;
 export const IS_TMA = USER_ID !== undefined;
 
