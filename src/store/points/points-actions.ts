@@ -16,3 +16,10 @@ export const loadPointsActions = createActions<
 >('points/LOAD_POINTS');
 
 export const addTapActions = createActions<Click>('points/ADD_TAP');
+
+export const checkTelegramChannelTaskActions = createActions<void, number>(
+    'points/CHECK_TELEGRAM_CHANNEL_TASK'
+);
+export const checkXChannelTaskActions = createActions<void, number>(
+    'points/CHECK_X_CHANNEL_TASK'
+);

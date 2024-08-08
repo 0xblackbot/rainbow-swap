@@ -58,7 +58,28 @@
 }
 
 .button_text_3 {
+    font-size: 10px;
+}
+
+.button_text_21 {
+    font-size: 12px;
+    margin-bottom: 1px;
+}
+
+.button_text_22 {
+    font-size: 12px;
+    margin-bottom: 1px;
+    color: #24A1DE;
+}
+
+.button_text_23 {
+    font-size: 19px;
+    margin-bottom: 1px;
+}
+
+.button_text_24 {
     font-size: 11px;
+    margin-bottom: 1px;
 }
 
 @keyframes anim {

@@ -2,6 +2,8 @@ import {createReducer} from '@reduxjs/toolkit';
 
 import {
     addTapActions,
+    checkTelegramChannelTaskActions,
+    checkXChannelTaskActions,
     closePointsModal,
     loadPointsActions,
     openPointsModal
@@ -52,5 +54,47 @@ export const pointsReducers = createReducer<PointsState>(
             ...state,
             localTapTap: state.localTapTap + 1
         }));
+
+        builder.addCase(checkTelegramChannelTaskActions.submit, state => ({
+            ...state,
+            telegramChannel: createEntity(state.telegramChannel.data, true)
+        }));
+        builder.addCase(
+            checkTelegramChannelTaskActions.success,
+            (state, {payload}) => ({
+                ...state,
+                telegramChannel: createEntity(payload, false)
+            })
+        );
+        builder.addCase(
+            checkTelegramChannelTaskActions.fail,
+            (state, {payload: error}) => ({
+                ...state,
+                telegramChannel: createEntity(
+                    state.telegramChannel.data,
+                    false,
+                    error
+                )
+            })
+        );
+
+        builder.addCase(checkXChannelTaskActions.submit, state => ({
+            ...state,
+            xChannel: createEntity(state.xChannel.data, true)
+        }));
+        builder.addCase(
+            checkXChannelTaskActions.success,
+            (state, {payload}) => ({
+                ...state,
+                xChannel: createEntity(payload, false)
+            })
+        );
+        builder.addCase(
+            checkXChannelTaskActions.fail,
+            (state, {payload: error}) => ({
+                ...state,
+                xChannel: createEntity(state.xChannel.data, false, error)
+            })
+        );
     }
 );

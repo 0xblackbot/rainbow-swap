@@ -3,6 +3,7 @@ import {
     GetPointsAuthParams,
     PointsAuthResponse
 } from '../types/get-points-auth.type';
+import {GetTaskCheckParams} from '../types/get-task-check.type';
 import {PostAddTapsParams} from '../types/post-add-taps.type';
 
 export const getPointsAuth = (params: GetPointsAuthParams) =>
@@ -10,9 +11,8 @@ export const getPointsAuth = (params: GetPointsAuthParams) =>
         response => response.data
     );
 
+export const getTaskCheck = (params: GetTaskCheckParams) =>
+    API.get<number>('/task-check', {params}).then(response => response.data);
+
 export const postAddTaps = (params: PostAddTapsParams) =>
-    API.post('/add-taps', params, {
-        headers: {
-            'Content-type': 'application/json'
-        }
-    });
+    API.post('/add-taps', params);

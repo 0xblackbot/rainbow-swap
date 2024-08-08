@@ -1,3 +1,4 @@
+import {isNotEmptyString} from '@rnw-community/shared';
 import axios from 'axios';
 import {Api, HttpClient} from 'tonapi-sdk-js';
 
@@ -18,8 +19,7 @@ export const GAS_AMOUNT = toNano('0.255', 9);
 export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);
 
 export const API = axios.create({
-    // baseURL: 'https://api.rainbow.ag/rainbow/api',
-    baseURL: 'http://localhost:7701/api'
+    baseURL: 'https://api.blackbot.technology/rainbow/api'
 });
 
 export const COIN_GECKO_API = axios.create({
@@ -37,12 +37,16 @@ export const TON_API_CLIENT = new Api(
 
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
 
-export const USER_ID = 151872929 ;//window.Telegram.WebApp.initDataUnsafe.user?.id;
-export const REF_PARENT = window.Telegram.WebApp.initDataUnsafe.start_param;
-export const IS_TMA = USER_ID !== undefined;
+export const INIT_DATA = window.Telegram.WebApp.initData;
+export const IS_TMA = isNotEmptyString(INIT_DATA);
+
+export const UNSAFE_INIT_DATA = {
+    userId: window.Telegram.WebApp.initDataUnsafe.user?.id,
+    ref_parent: window.Telegram.WebApp.initDataUnsafe.start_param
+};
 
 export const TELEGRAM_BOT_LINK = 'https://t.me/rainbow_swap_bot';
+export const TELEGRAM_APP_LINK = `${TELEGRAM_BOT_LINK}/app`;
 export const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';
 export const COMMUNITY_CHAT_LINK = 'https://t.me/rainbow_swap_chat';
-
 export const X_LINK = 'https://x.com/rainbow_swap';

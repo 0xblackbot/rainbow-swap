@@ -4,9 +4,14 @@ import {bufferTime, catchError, filter, map, switchMap} from 'rxjs/operators';
 import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
-import {addTapActions, loadPointsActions} from './points-actions';
-import {getPointsAuth, postAddTaps} from '../../utils/api.utils';
-import {USER_ID} from "../../globals";
+import {
+    addTapActions,
+    checkTelegramChannelTaskActions,
+    checkXChannelTaskActions,
+    loadPointsActions
+} from './points-actions';
+import {INIT_DATA} from '../../globals';
+import {getPointsAuth, getTaskCheck, postAddTaps} from '../../utils/api.utils';
 
 const loadPointsEpic: Epic<Action> = action$ =>
     action$.pipe(
@@ -24,14 +29,51 @@ const addTapEpic: Epic<Action> = action$ =>
     action$.pipe(
         ofType(addTapActions.submit),
         toPayload(),
-        bufferTime(5000),
+        bufferTime(3000),
         filter(taps => taps.length > 0),
         switchMap(taps =>
-            from(postAddTaps({userId: USER_ID, taps})).pipe(
+            from(postAddTaps({initData: INIT_DATA, taps})).pipe(
                 map(() => addTapActions.success()),
                 catchError(err => of(addTapActions.fail(err.message)))
             )
         )
     );
 
-export const pointsEpics = combineEpics(loadPointsEpic, addTapEpic);
+const checkTelegramChannelTaskEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(checkTelegramChannelTaskActions.submit),
+        switchMap(() =>
+            from(
+                getTaskCheck({initData: INIT_DATA, taskType: 'telegramChannel'})
+            ).pipe(
+                map(response =>
+                    checkTelegramChannelTaskActions.success(response)
+                ),
+                catchError(err =>
+                    of(checkTelegramChannelTaskActions.fail(err.message))
+                )
+            )
+        )
+    );
+
+const checkXChannelTaskEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(checkXChannelTaskActions.submit),
+        switchMap(() =>
+            from(
+                getTaskCheck({initData: INIT_DATA, taskType: 'xChannel'})
+            ).pipe(
+                map(response => checkXChannelTaskActions.success(response)),
+                catchError(err =>
+                    of(checkXChannelTaskActions.fail(err.message))
+                )
+            )
+        )
+    );
+
+export const pointsEpics = combineEpics(
+    loadPointsEpic,
+    addTapEpic,
+    checkTelegramChannelTaskEpic,
+    checkXChannelTaskEpic
+);

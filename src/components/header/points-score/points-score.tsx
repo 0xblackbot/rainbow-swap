@@ -12,7 +12,7 @@ export const PointsScore = () => {
     return (
         <div className={styles.container} onClick={handleClick}>
             <div className={styles.container_body}>
-                <p className={styles.text}>{points} points</p>
+                <p className={styles.text}>{points.data} points</p>
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 export type GetPointsAuthParams = {
-    userId: number;
+    initData: string;
     refParent?: string;
 };
 

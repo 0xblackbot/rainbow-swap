@@ -5,6 +5,7 @@ import {HeaderContainer} from './header-container/header-container';
 import styles from './header.module.css';
 import {PointsScore} from './points-score/points-score';
 import {WalletMenu} from './wallet-menu/wallet-menu';
+import {IS_TMA} from '../../globals';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../hooks/use-disable-main-button.hook';
 
@@ -36,7 +37,7 @@ export const Header = () => {
             </div>
 
             <div className={styles.right_div}>
-                <PointsScore />
+                {IS_TMA && <PointsScore />}
                 {walletAddress === '' ? (
                     <button
                         className={styles.connect_button}
