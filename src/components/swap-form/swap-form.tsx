@@ -4,6 +4,7 @@ import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {CustomInput} from './custom-input/custom-input';
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook';
+import {PendingSwap} from './pending-swap/pending-swap';
 import {RateInfo} from './rate-info/rate-info';
 import {SettingsButton} from './settings-button/settings-button';
 import {SwapButton} from './swap-button/swap-button';
@@ -71,22 +72,13 @@ export const SwapScreen = () => {
     );
 
     useEffect(() => {
-        if (nanoInputAssetAmount === '0') {
-            dispatch(
-                loadSwapRoutesActions.success({
-                    bestRoute: [],
-                    priceImprovement: 0
-                })
-            );
-        } else {
-            dispatch(
-                loadSwapRoutesActions.submit({
-                    inputAssetAmount: nanoInputAssetAmount,
-                    inputAssetAddress,
-                    outputAssetAddress
-                })
-            );
-        }
+        dispatch(
+            loadSwapRoutesActions.submit({
+                inputAssetAmount: nanoInputAssetAmount,
+                inputAssetAddress,
+                outputAssetAddress
+            })
+        );
     }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);
 
     const handleConnectClick = useCallback(() => {
@@ -143,6 +135,7 @@ export const SwapScreen = () => {
                     <div className={styles.swapform_header}>
                         <p />
                         <div className={styles.icons_div}>
+                            <PendingSwap />
                             <RefreshIcon
                                 width="22px"
                                 height="22px"

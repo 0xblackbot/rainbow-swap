@@ -20,7 +20,11 @@ export const RefreshIcon: FC<Props> = ({
     const swapRoutes = useSwapRoutesSelector();
     const isRoutesLoading = swapRoutes.isLoading;
     return (
-        <div onClick={onClick} className={styles.refresh_icon_div}>
+        <div
+            style={{width, height}}
+            className={styles.refresh_icon_div}
+            onClick={onClick}
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

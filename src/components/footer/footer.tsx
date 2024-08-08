@@ -1,9 +1,7 @@
 import styles from './footer.module.css';
+import {COMMUNITY_CHAT_LINK, TELEGRAM_CHANNEL_LINK} from '../../globals';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook';
 import {getClassName} from '../../utils/style.utils';
-
-const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';
-const COMMUNITY_CHAT_LINK = 'https://t.me/rainbow_swap_chat';
 
 const CONTAINER_HEIGHT = 40;
 const CONTAINER_MARGIN_BOTTOM = 20;

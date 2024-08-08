@@ -1,0 +1,14 @@
+.title {
+    font-size: 24px;
+    color: var(--text-color);
+    border-top: 1px solid var(--secondary-bg-color);
+    padding: var(--step) 0;
+    margin: var(--step) 0;
+}
+
+.invite_button {
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    padding: var(--half-step) var(--2-step);
+    border-radius: var(--2-step);
+}
