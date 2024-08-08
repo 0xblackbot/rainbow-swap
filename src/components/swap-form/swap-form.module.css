@@ -6,7 +6,7 @@
 
 .input_asset_container {
     position: relative;
-    margin-bottom: var(--step);
+    margin-bottom: 6px;
 }
 
 .output_asset_container {
@@ -16,6 +16,7 @@
 
 .swapform_header{
     display: flex;
+    height: 29px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--2-step);

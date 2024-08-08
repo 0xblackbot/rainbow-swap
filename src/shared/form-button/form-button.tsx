@@ -1,7 +1,7 @@
 import {FC, useEffect, useMemo} from 'react';
 
 import styles from './form-button.module.css';
-import {useIsTMA} from '../../hooks/is-tma.hook';
+import {IS_TMA} from '../../globals';
 
 interface Props {
     text: string;
@@ -10,8 +10,6 @@ interface Props {
 }
 
 export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
-    const isTMA = useIsTMA();
-
     const prevMainButtonText = useMemo(
         () => window.Telegram.WebApp.MainButton.text,
         []
@@ -28,7 +26,7 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     }, [text, onClick, prevMainButtonText]);
 
     return (
-        !isTMA && (
+        !IS_TMA && (
             <div className={containerClassName}>
                 <button className={styles.button} onClick={onClick}>
                     {text}

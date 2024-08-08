@@ -1,0 +1,39 @@
+.container {
+    padding: 2px;
+    margin-right: var(--step);
+    border-radius: var(--4-step);
+    background: linear-gradient(
+            90deg,
+            #ff0000 0%,
+            #ff9a00 10%,
+            #d0de21 20%,
+            #4fdc4a 30%,
+            #3fdad8 40%,
+            #2fc9e2 50%,
+            #1c7fee 60%,
+            #5f15f2 70%,
+            #ba0cf8 80%,
+            #fb07d9 90%,
+            #ff0000 100%
+    );
+    background-size: 200% 200%;
+    animation: anim 6s linear infinite;
+    cursor: pointer;
+}
+
+.container_body {
+    padding: calc(var(--step) - 2px) calc(var(--2-step) - 2px);
+    border-radius: calc(var(--4-step) - 2px);
+    background-color: var(--bg-color);
+}
+
+.text {
+    font-size: 13px;
+    color: var(--text-color);
+}
+
+@keyframes anim {
+    100% {
+        background-position-x: -200%;
+    }
+}

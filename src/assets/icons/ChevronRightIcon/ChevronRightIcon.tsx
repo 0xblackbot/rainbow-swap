@@ -1,21 +1,15 @@
 import {FC} from 'react';
 
-interface Props {
-    width?: string;
-    height?: string;
-}
+import {IconProps} from '../../../interfaces/icon-props.interface';
 
-export const ChevronRightIcon: FC<Props> = ({
-    width = '16px',
-    height = '16px'
-}): JSX.Element => (
+export const ChevronRightIcon: FC<IconProps> = ({width = 24, height = 24}) => (
     <svg
-        xmlns="http://www.w3.org/2000/svg"
+        width={width}
+        height={height}
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        style={{width, height}}
     >
         <path
             strokeLinecap="round"

@@ -1,5 +1,6 @@
 .connect_button {
     background-color: var(--button-color);
+    font-size: 13px;
     color: var(--button-text-color);
     cursor: pointer;
     border-radius: var(--4-step);
