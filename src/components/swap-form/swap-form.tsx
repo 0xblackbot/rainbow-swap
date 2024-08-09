@@ -1,4 +1,4 @@
-import {useTonConnectModal, useTonWallet} from '@tonconnect/ui-react';
+import {useTonWallet} from '@tonconnect/ui-react';
 import {Asset, mapSwapRouteToRoute} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
@@ -13,6 +13,7 @@ import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
 import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
+import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
@@ -28,7 +29,7 @@ import {swapAssets} from '../../utils/swap-assets.utils';
 export const SwapScreen = () => {
     const wallet = useTonWallet();
     const inputRef = useRef<HTMLInputElement>(null);
-    const connectModal = useTonConnectModal();
+    const openTonConnectModal = useOpenTonConnectModal();
 
     const dispatch = useDispatch();
     const assets = useAssetsRecordSelector();
@@ -84,7 +85,7 @@ export const SwapScreen = () => {
     const handleConnectClick = useCallback(() => {
         trackButtonClick('Connect');
         inputRef.current?.blur();
-        connectModal.open();
+        openTonConnectModal();
         // Connect modal constantly changes between re-renders causing this function to be recreated on every re-render
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

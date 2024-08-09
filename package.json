@@ -18,7 +18,7 @@
     "@ton/core": "^0.56.3",
     "@ton/crypto": "^3.3.0",
     "@ton/ton": "^14.0.0",
-    "@tonconnect/ui-react": "^2.0.6",
+    "@tonconnect/ui-react": "^2.0.8",
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
     "lodash-es": "^4.17.21",

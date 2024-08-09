@@ -1,4 +1,4 @@
-import {useTonAddress, useTonConnectModal} from '@tonconnect/ui-react';
+import {useTonAddress} from '@tonconnect/ui-react';
 
 import {LogoText} from './assets/LogoText';
 import {HeaderContainer} from './header-container/header-container';
@@ -7,20 +7,16 @@ import {PointsScore} from './points-score/points-score';
 import {WalletMenu} from './wallet-menu/wallet-menu';
 import {IS_TMA} from '../../globals';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
-import {useDisableMainButton} from '../../hooks/use-disable-main-button.hook';
+import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
 
 export const Header = () => {
     const walletAddress = useTonAddress();
-    const connectModal = useTonConnectModal();
+    const openTonConnectModal = useOpenTonConnectModal();
 
     const handleConnect = () => {
         trackButtonClick('Header Connect');
-        connectModal.open();
+        openTonConnectModal();
     };
-
-    const isOpen = connectModal.state.status === 'opened';
-
-    useDisableMainButton(isOpen);
 
     return (
         <HeaderContainer>

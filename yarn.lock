@@ -723,28 +723,28 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tonconnect/sdk@3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-3.0.3.tgz#0cc6a570817194c648193f7a1db525419c570e3f"
-  integrity sha512-ElVre1DPixzQLgLtQIa8Wu5xS8nozlgblZTJhFFPrk82M2rZ+sawyF+LAVwt9wZRN7+htWnJrNz0+bBr4b3geA==
+"@tonconnect/sdk@3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-3.0.5.tgz#08a202bdc8ea897c37221fd69925c35cd2106323"
+  integrity sha512-ow0qnN4s3iQ/r2uXobZ7YzdQBtan/36CgCT9IP35G07g38UxsUXwzw8ANmJTDj/JPiQcIKuYBMfIwIX9zLM0wg==
   dependencies:
     "@tonconnect/isomorphic-eventsource" "^0.0.2"
     "@tonconnect/isomorphic-fetch" "^0.0.3"
     "@tonconnect/protocol" "^2.2.6"
 
-"@tonconnect/ui-react@^2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui-react/-/ui-react-2.0.6.tgz#9adadda97da0c8ff2e40eee5dbaa1693aa6662b5"
-  integrity sha512-9VRYP2o/YW4ti+rOMSptIYaRO39V5UFmzdUl18AmDFDdynjacAIht/IInO+AGAKfrnF9bUk/J5NgLcbxVqvZww==
+"@tonconnect/ui-react@^2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui-react/-/ui-react-2.0.8.tgz#90e6eca7e83cda5054c28d89aa5f2724949f8e3d"
+  integrity sha512-9dlK6mBsG16lvkrEHtAuW0ngIeqvrNceJSv6InBJir9ij27X3YlEFSaZMUaPK81YTrO8wQOQnFdGcATGWKHBWQ==
   dependencies:
-    "@tonconnect/ui" "2.0.6"
+    "@tonconnect/ui" "2.0.8"
 
-"@tonconnect/ui@2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.0.6.tgz#4cf092b3ff138238fa7ae7d4754d8bfed549d892"
-  integrity sha512-JMTSxgbnpDjpHi9g0s7w3tpAiLHa8BHUpaBrbSTDcKGQVEm7+NtqhN+gQkGkm8pV7NYRqiS/sKUpRQ1MyjtTBQ==
+"@tonconnect/ui@2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.0.8.tgz#44ebd08c32b182f10df804f28f800468be9d7bae"
+  integrity sha512-FPTuA25XVYUVrH+uU7LARxrTFcHwACjgCSPeBuvhTzAVNiU21HKpG4D0phYLnR0icXg6bYcmCgKegKrwynBrDw==
   dependencies:
-    "@tonconnect/sdk" "3.0.3"
+    "@tonconnect/sdk" "3.0.5"
     classnames "^2.3.2"
     deepmerge "^4.2.2"
     ua-parser-js "^1.0.35"

@@ -9,6 +9,8 @@ import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
 import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
+import {useDisableMainButton} from '../../hooks/use-disable-main-button.hook';
+import {useTonConnectModalStatus} from '../../hooks/use-ton-connect-modal-status.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
 import {loadPointsActions} from '../../store/points/points-actions';
@@ -30,7 +32,9 @@ export const HomeScreen = () => {
         usePendingActivationTransactionSelector();
 
     const walletAddress = useTonAddress();
+    const tonConnectModalStatus = useTonConnectModalStatus();
 
+    useDisableMainButton(tonConnectModalStatus === 'opened');
     useTrackPageView('Home');
 
     useEffect(() => {
