@@ -2,7 +2,7 @@ import {FC} from 'react';
 
 import styles from './RefreshIcon.module.css';
 import {REFRESH_ROUTE_INTERVAL} from '../../../globals';
-import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors';
+import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
 
 interface Props {
     width?: string;
@@ -16,9 +16,9 @@ export const RefreshIcon: FC<Props> = ({
     height = '16px',
     isAnimating = false,
     onClick
-}): JSX.Element => {
-    const swapRoutes = useSwapRoutesSelector();
-    const isRoutesLoading = swapRoutes.isLoading;
+}) => {
+    const isRoutesLoading = useIsRoutesLoadingSelector();
+
     return (
         <div
             style={{width, height}}

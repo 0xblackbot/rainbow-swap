@@ -3,34 +3,25 @@ import {ChangeEvent, forwardRef, useState} from 'react';
 
 import {AssetSelector} from './asset-selector/asset-selector';
 import styles from './custom-input.module.css';
-import {EMPTY_FN} from '../../../utils/emptyfn';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getMaxSentAmount} from '../../../utils/get-max-sent-amount.utils';
 
 interface Props {
-    label: string;
     balance: string | undefined;
-    isInputEnabled: boolean;
     inputValue: string;
-    onInputValueChange?: (newInputValue: string) => void;
+    onInputValueChange: (newInputValue: string) => void;
     assetValue: Asset;
     onAssetValueChange: (newAssetValue: Asset) => void;
-    isLoading?: boolean;
-    assetSelectorHeaderTitle: string;
 }
 
 export const CustomInput = forwardRef<HTMLInputElement, Props>(
     (
         {
-            label,
-            isInputEnabled,
-            inputValue,
-            assetValue,
-            isLoading,
             balance = '0',
-            onInputValueChange = EMPTY_FN,
-            onAssetValueChange,
-            assetSelectorHeaderTitle
+            inputValue,
+            onInputValueChange,
+            assetValue,
+            onAssetValueChange
         },
         ref
     ) => {
@@ -87,11 +78,11 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
 
         return (
             <div className={styles.container}>
-                <p className={styles.container_label}>{label}</p>
+                <p className={styles.container_label}>You send</p>
                 <div className={styles.input_container}>
                     <AssetSelector
                         value={assetValue}
-                        headerTitle={assetSelectorHeaderTitle}
+                        headerTitle="Select input asset"
                         onChange={onAssetValueChange}
                     />
                     <div className={styles.input_wrapper}>
@@ -101,46 +92,31 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                                 onClick={handleOverlayClick}
                             />
                         )}
-                        <div className={styles.empty_container}>
-                            {isLoading ? (
-                                <div className={styles.loader_spinner} />
-                            ) : null}
-                        </div>
-                        {isInputEnabled ? (
-                            <>
-                                <input
-                                    type="tel"
-                                    inputMode="decimal"
-                                    className={styles.input_field}
-                                    onChange={handleInputChange}
-                                    value={inputValue}
-                                    placeholder="0"
-                                    disabled={!isInputEnabled}
-                                    required={isInputEnabled}
-                                    ref={ref}
-                                    onFocus={handleFocus}
-                                    onBlur={handleBlur}
-                                />
-                            </>
-                        ) : (
-                            <span className={styles.span_field}>
-                                {inputValue}
-                            </span>
-                        )}
+                        <div className={styles.empty_container} />
+                        <input
+                            type="tel"
+                            inputMode="decimal"
+                            className={styles.input_field}
+                            onChange={handleInputChange}
+                            value={inputValue}
+                            placeholder="0"
+                            required={true}
+                            ref={ref}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
+                        />
                     </div>
                 </div>
 
                 <div className={styles.input_info}>
                     <div className={styles.input_info_balance}>
                         <p>Balance: {formatNumber(parseFloat(balance), 2)}</p>
-                        {isInputEnabled ? (
-                            <button
-                                className={styles.input_info_button}
-                                onClick={setMaxAssetAmount}
-                            >
-                                Max
-                            </button>
-                        ) : null}
+                        <button
+                            className={styles.input_info_button}
+                            onClick={setMaxAssetAmount}
+                        >
+                            Max
+                        </button>
                     </div>
                     <p className={styles.input_usd_balance}>
                         ${formatNumber(usdAmount, 2)}

@@ -1,5 +1,5 @@
 import {Asset} from 'rainbow-swap-sdk';
-import {FC, useState} from 'react';
+import {FC, memo, useState} from 'react';
 
 import {AssetList} from './asset-list/asset-list';
 import styles from './asset-selector.module.css';
@@ -13,37 +13,42 @@ interface Props {
     onChange: (newValue: Asset) => void;
 }
 
-export const AssetSelector: FC<Props> = ({value, headerTitle, onChange}) => {
-    const [isOpen, setIsOpen] = useState(false);
+export const AssetSelector: FC<Props> = memo(
+    ({value, headerTitle, onChange}) => {
+        const [isOpen, setIsOpen] = useState(false);
 
-    const handleOpen = () => setIsOpen(true);
-    const handleDismiss = () => setIsOpen(false);
+        const handleOpen = () => setIsOpen(true);
+        const handleDismiss = () => setIsOpen(false);
 
-    const handleChange = (newValue: Asset) => {
-        setIsOpen(false);
-        onChange(newValue);
-    };
+        const handleChange = (newValue: Asset) => {
+            setIsOpen(false);
+            onChange(newValue);
+        };
 
-    return (
-        <>
-            <div className={styles.selected_asset_button} onClick={handleOpen}>
-                <img className={styles.img} src={value.image} />
-                <p className={styles.p}>{value.symbol}</p>
-                <ChevronRightIcon />
-            </div>
+        return (
+            <>
+                <div
+                    className={styles.selected_asset_button}
+                    onClick={handleOpen}
+                >
+                    <img className={styles.img} src={value.image} />
+                    <p className={styles.p}>{value.symbol}</p>
+                    <ChevronRightIcon />
+                </div>
 
-            <BottomSheet
-                isOpen={isOpen}
-                headerTitle={headerTitle}
-                onClose={handleDismiss}
-            >
-                <AssetList value={value} onChange={handleChange} />
-                <FormButton
-                    text="Close"
-                    containerClassName={styles.footer_container}
-                    onClick={handleDismiss}
-                ></FormButton>
-            </BottomSheet>
-        </>
-    );
-};
+                <BottomSheet
+                    isOpen={isOpen}
+                    headerTitle={headerTitle}
+                    onClose={handleDismiss}
+                >
+                    <AssetList value={value} onChange={handleChange} />
+                    <FormButton
+                        text="Close"
+                        containerClassName={styles.footer_container}
+                        onClick={handleDismiss}
+                    ></FormButton>
+                </BottomSheet>
+            </>
+        );
+    }
+);

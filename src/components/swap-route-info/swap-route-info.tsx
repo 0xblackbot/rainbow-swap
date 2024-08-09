@@ -1,31 +1,24 @@
-import {mapSwapRouteToRoute} from 'rainbow-swap-sdk';
-import {FC, Fragment, useMemo} from 'react';
+import {FC, Fragment} from 'react';
 
 import {RouteInfo} from './route-info/route-info';
 import styles from './swap-route-info.module.css';
 import {SwapIcon} from '../../assets/icons/SwapIcon/SwapIcon';
 import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
-import {useAssetsRecordSelector} from '../../store/assets/assets-selectors';
 import {useSlippageToleranceSelector} from '../../store/settings/settings-selectors';
-import {useSwapRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
+import {
+    useIsRoutesLoadingSelector,
+    useRoutesSelector
+} from '../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../utils/format-number.utils';
 import {getClassName} from '../../utils/style.utils';
 import {useSwapInfo} from '../swap-form/hooks/use-swap-info.hook';
 
 export const SwapRouteInfo: FC = () => {
-    const swapRoutes = useSwapRoutesSelector();
-    const assets = useAssetsRecordSelector();
+    const routes = useRoutesSelector();
+    const isRoutesLoading = useIsRoutesLoadingSelector();
     const slippageTolerance = useSlippageToleranceSelector();
 
-    const {inputAssetAddress, outputAssetAddress} = useSwapForm();
-
-    const routes = useMemo(
-        () => swapRoutes.data.map(mapSwapRouteToRoute),
-        [swapRoutes.data]
-    );
-
-    const inputAsset = assets[inputAssetAddress];
-    const outputAsset = assets[outputAssetAddress];
+    const {inputAsset, outputAsset} = useSwapForm();
 
     const swapInfo = useSwapInfo(
         inputAsset.decimals,
@@ -39,7 +32,7 @@ export const SwapRouteInfo: FC = () => {
             <div
                 className={getClassName(
                     styles.loader_overlay,
-                    swapRoutes.isLoading ? styles.show : ''
+                    isRoutesLoading ? styles.show : ''
                 )}
             >
                 <div className={styles.loader_spinner}></div>

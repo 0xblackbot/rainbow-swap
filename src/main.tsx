@@ -18,14 +18,14 @@ isProd && ReactGA.initialize(GA_MEASUREMENT_ID);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <ViewportHeightProvider>
-        <SwapFormProvider>
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <SwapFormProvider>
                     <TonConnectUIProvider manifestUrl="https://rainbow.ag/tonconnect-manifest.json">
                         <App />
                     </TonConnectUIProvider>
-                </PersistGate>
-            </Provider>
-        </SwapFormProvider>
+                </SwapFormProvider>
+            </PersistGate>
+        </Provider>
     </ViewportHeightProvider>
 );

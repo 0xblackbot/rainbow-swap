@@ -1,19 +1,17 @@
-import {AssetsRecord, RouteStep} from 'rainbow-swap-sdk';
+import {RouteStep} from 'rainbow-swap-sdk';
 import {FC} from 'react';
 
 import styles from './swap-route-step.module.css';
 import {DEFAULT_DEXES_RECORD} from '../../../../data/dexes-record';
+import {useAssetSelector} from '../../../../store/assets/assets-selectors';
 
 interface Props {
     routeStep: RouteStep;
-    assetsRecord: AssetsRecord;
 }
 
-export const SwapRouteStep: FC<Props> = ({routeStep, assetsRecord}) => {
-    const {inputAsset, outputAsset} = {
-        inputAsset: assetsRecord[routeStep.inputAssetAddress],
-        outputAsset: assetsRecord[routeStep.outputAssetAddress]
-    };
+export const SwapRouteStep: FC<Props> = ({routeStep}) => {
+    const inputAsset = useAssetSelector(routeStep.inputAssetAddress);
+    const outputAsset = useAssetSelector(routeStep.outputAssetAddress);
 
     return (
         <div className={styles.route_step_div}>

@@ -14,8 +14,7 @@ import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook';
 import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../shared/form-button/form-button';
-import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors';
-import {useDispatch} from '../../../store/index';
+import {useDispatch} from '../../../store';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
 import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors';
 import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions';
@@ -33,13 +32,11 @@ export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
     const dispatch = useDispatch();
     const swapRoutes = useSwapRoutesSelector();
     const slippageTolerance = useSlippageToleranceSelector();
-    const assets = useAssetsRecordSelector();
-    const {inputAssetAddress, outputAssetAddress, inputAssetAmount} =
-        useSwapForm();
+    const {inputAssetAmount, inputAsset, outputAsset} = useSwapForm();
 
     const wallet = useTonWallet();
     const sendTransaction = useSendTransaction();
-    const rainbowWallet = useRainbowWallet(swapRoutes.data);
+    const rainbowWallet = useRainbowWallet(swapRoutes);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -54,16 +51,13 @@ export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
         const senderAddress = Address.parse(wallet?.account.address ?? '');
         const messages = await getSwapMessages(
             senderAddress.toString(),
-            swapRoutes.data,
+            swapRoutes,
             slippageTolerance
         );
 
         const transactionInfo = await sendTransaction(senderAddress, messages);
 
         if (isDefined(transactionInfo)) {
-            const inputAsset = assets[inputAssetAddress];
-            const outputAsset = assets[outputAssetAddress];
-
             const usdAmount =
                 parseFloat(inputAssetAmount) *
                 parseFloat(inputAsset.exchangeRate);

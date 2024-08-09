@@ -3,6 +3,7 @@ import {FC} from 'react';
 
 import styles from './rate-info.module.css';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
+import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {EarnPoints} from '../earn-points/earn-points';
 import {useSwapInfo} from '../hooks/use-swap-info.hook';
@@ -12,16 +13,15 @@ interface Props {
     outputAsset: Asset;
     inputAssetAmount: string;
     routes: RouteStepWithCalculation[][];
-    isLoading: boolean;
 }
 
 export const RateInfo: FC<Props> = ({
     inputAsset,
     outputAsset,
     inputAssetAmount,
-    routes,
-    isLoading
+    routes
 }) => {
+    const isRoutesLoading = useIsRoutesLoadingSelector();
     const slippageTolerance = useSlippageToleranceSelector();
 
     const swapInfo = useSwapInfo(
@@ -33,7 +33,7 @@ export const RateInfo: FC<Props> = ({
 
     return (
         <div className={styles.rate_div}>
-            {inputAssetAmount.length !== 0 && !isLoading
+            {inputAssetAmount.length !== 0 && !isRoutesLoading
                 ? routes.length > 0
                     ? `1 ${inputAsset.symbol} = ${formatNumber(
                           swapInfo.exchangeRate,

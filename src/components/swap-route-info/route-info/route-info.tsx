@@ -4,7 +4,7 @@ import {FC, Fragment} from 'react';
 import styles from './route-info.module.css';
 import {SwapRouteStep} from './swap-route-step/swap-route-step';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
-import {useAssetsRecordSelector} from '../../../store/assets/assets-selectors';
+import {useAssetSelector} from '../../../store/assets/assets-selectors';
 import {fromNano} from '../../../utils/big-int.utils';
 import {getRouteInputStep} from '../../../utils/route-step-with-calculation.utils';
 
@@ -13,10 +13,11 @@ interface Props {
 }
 
 export const RouteInfo: FC<Props> = ({route}) => {
-    const assetsRecord = useAssetsRecordSelector();
     const routeInputStep = getRouteInputStep(route);
     const {inputAssetAmount} = useSwapForm();
-    const inputAsset = assetsRecord[routeInputStep?.inputAssetAddress ?? ''];
+    const inputAsset = useAssetSelector(
+        routeInputStep?.inputAssetAddress ?? ''
+    );
     const routeInputAssetAmount = fromNano(
         BigInt(routeInputStep?.inputAssetAmount ?? ''),
         inputAsset.decimals
@@ -35,10 +36,7 @@ export const RouteInfo: FC<Props> = ({route}) => {
             {route.map((routeStep, index) => (
                 <Fragment key={`route-step-${index}`}>
                     {index === 0 ? <div className={styles.dots}></div> : null}
-                    <SwapRouteStep
-                        assetsRecord={assetsRecord}
-                        routeStep={routeStep}
-                    />
+                    <SwapRouteStep routeStep={routeStep} />
                     <div className={styles.dots}></div>
                 </Fragment>
             ))}

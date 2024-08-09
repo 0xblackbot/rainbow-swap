@@ -1,3 +1,4 @@
+import {Asset} from 'rainbow-swap-sdk';
 import {Dispatch, SetStateAction, createContext} from 'react';
 
 import {TON, USDT} from '../../globals';
@@ -10,6 +11,8 @@ interface SwapFormContextValues {
     setInputAssetAddress: Dispatch<SetStateAction<string>>;
     inputAssetAmount: string;
     setInputAssetAmount: Dispatch<SetStateAction<string>>;
+    inputAsset: Asset;
+    outputAsset: Asset;
 }
 
 export const SwapFormContext = createContext<SwapFormContextValues>({
@@ -18,5 +21,21 @@ export const SwapFormContext = createContext<SwapFormContextValues>({
     inputAssetAddress: TON,
     setInputAssetAddress: EMPTY_FN,
     inputAssetAmount: '',
-    setInputAssetAmount: EMPTY_FN
+    setInputAssetAmount: EMPTY_FN,
+    inputAsset: {
+        address: TON,
+        decimals: 9,
+        exchangeRate: '0',
+        image: 'https://assets.dedust.io/images/ton.webp',
+        name: 'Toncoin',
+        symbol: 'TON'
+    },
+    outputAsset: {
+        address: USDT,
+        decimals: 6,
+        exchangeRate: '0',
+        image: 'https://cache.tonapi.io/imgproxy/T3PB4s7oprNVaJkwqbGg54nexKE0zzKhcrPv8jcWYzU/rs:fill:200:200:1/g:no/aHR0cHM6Ly90ZXRoZXIudG8vaW1hZ2VzL2xvZ29DaXJjbGUucG5n.webp',
+        name: 'Tether USD',
+        symbol: 'USD₮'
+    }
 });
