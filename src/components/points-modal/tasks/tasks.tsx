@@ -19,6 +19,10 @@ import {
     useTelegramChannelTaskSelector,
     useXChannelTaskSelector
 } from '../../../store/points/points-selectors';
+import {copyToClipboard} from '../../../utils/clipboard.utils';
+import {showSuccessToast} from '../../../utils/toast.utils';
+
+const REF_URL = `${TELEGRAM_APP_LINK}?startapp=${UNSAFE_INIT_DATA.userId}`;
 
 export const Tasks = () => {
     const dispatch = useDispatch();
@@ -26,10 +30,17 @@ export const Tasks = () => {
     const telegramChannelTask = useTelegramChannelTaskSelector();
     const xChannelTask = useXChannelTaskSelector();
 
-    const handleShareClick = () => {
-        const refUrl = `${TELEGRAM_APP_LINK}?startapp=${UNSAFE_INIT_DATA.userId}`;
-        const url = `https://t.me/share/url?url=${refUrl}`;
+    const handleCopyClick = async () => {
+        await copyToClipboard(REF_URL);
+        showSuccessToast('Link copied!');
+    };
 
+    const handleInviteClick = (
+        event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
+    ) => {
+        event.stopPropagation();
+
+        const url = `https://t.me/share/url?url=${REF_URL}`;
         window.Telegram.WebApp.openTelegramLink(url);
     };
 
@@ -54,9 +65,11 @@ export const Tasks = () => {
                 imageSrc={referralImage}
                 title="Invite friends"
                 description="+5000 points per 1 friend"
-                onClick={handleShareClick}
+                onClick={handleCopyClick}
             >
-                <p className={styles.invite_button}>Invite</p>
+                <p className={styles.invite_button} onClick={handleInviteClick}>
+                    Invite
+                </p>
             </TaskItem>
             <TaskItem
                 imageSrc={telegramImage}

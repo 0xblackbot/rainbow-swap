@@ -7,8 +7,12 @@
 }
 
 .invite_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--4-step);
     background-color: var(--button-color);
     color: var(--button-text-color);
-    padding: var(--half-step) var(--2-step);
+    padding: 0 var(--2-step);
     border-radius: var(--2-step);
 }
