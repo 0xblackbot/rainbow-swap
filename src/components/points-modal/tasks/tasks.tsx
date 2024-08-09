@@ -53,7 +53,7 @@ export const Tasks = () => {
             <TaskItem
                 imageSrc={referralImage}
                 title="Invite friends"
-                description="+500 points per 1 friend"
+                description="+5000 points per 1 friend"
                 onClick={handleShareClick}
             >
                 <p className={styles.invite_button}>Invite</p>
@@ -61,7 +61,7 @@ export const Tasks = () => {
             <TaskItem
                 imageSrc={telegramImage}
                 title="Join Channel"
-                description="+200 points"
+                description="+2000 points"
                 onClick={handleJoinChannelClick}
             >
                 <TaskStatus
@@ -72,7 +72,7 @@ export const Tasks = () => {
             <TaskItem
                 imageSrc={twitterImage}
                 title="Follow X"
-                description="+200 points"
+                description="+2000 points"
                 onClick={handleFollowXClick}
             >
                 <TaskStatus
