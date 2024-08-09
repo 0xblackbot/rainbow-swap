@@ -1,6 +1,6 @@
 import {isDefined, isNotEmptyString} from '@rnw-community/shared';
 import {useTonAddress} from '@tonconnect/ui-react';
-import {useEffect} from 'react';
+import {memo, useEffect} from 'react';
 import {ToastContainer} from 'react-toastify';
 
 import {Footer} from '../../components/footer/footer';
@@ -9,8 +9,6 @@ import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
 import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
-import {useDisableMainButton} from '../../hooks/use-disable-main-button.hook';
-import {useTonConnectModalStatus} from '../../hooks/use-ton-connect-modal-status.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
 import {loadPointsActions} from '../../store/points/points-actions';
@@ -25,16 +23,14 @@ import {
     usePendingSwapTransactionSelector
 } from '../../store/wallet/wallet-selectors';
 
-export const HomeScreen = () => {
+export const HomeScreen = memo(() => {
     const dispatch = useDispatch();
     const pendingSwapTransaction = usePendingSwapTransactionSelector();
     const pendingActivationTransaction =
         usePendingActivationTransactionSelector();
 
     const walletAddress = useTonAddress();
-    const tonConnectModalStatus = useTonConnectModalStatus();
 
-    useDisableMainButton(tonConnectModalStatus === 'opened');
     useTrackPageView('Home');
 
     useEffect(() => {
@@ -95,4 +91,4 @@ export const HomeScreen = () => {
             <Footer />
         </>
     );
-};
+});
