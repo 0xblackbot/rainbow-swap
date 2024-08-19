@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import {App} from './app/app';
-import {GA_MEASUREMENT_ID, isProd} from './globals';
+import {GA_MEASUREMENT_ID, isProd, UNSAFE_INIT_DATA} from './globals';
 import {SwapFormProvider} from './hooks/swap-form/swap-form.provider';
 import {ViewportHeightProvider} from './hooks/viewport-height/viewport-height.provider';
 import {TELEGRAM_ANALYTICS_APP_NAME, TELEGRAM_ANALYTICS_TOKEN} from './secrets';
@@ -15,7 +15,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import './ReactToastify.css';
 import './index.css';
 
-isProd && ReactGA.initialize(GA_MEASUREMENT_ID);
+isProd &&
+    ReactGA.initialize(GA_MEASUREMENT_ID, {
+        gaOptions: {
+            userId: UNSAFE_INIT_DATA.userId
+        }
+    });
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
