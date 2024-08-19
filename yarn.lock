@@ -527,7 +527,7 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.25.tgz#f077fdc0b5d0078d30893396ff4827a13f99e817"
   integrity sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==
 
-"@reduxjs/toolkit@^2.2.4":
+"@reduxjs/toolkit@^2.2.7":
   version "2.2.7"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-2.2.7.tgz#199e3d10ccb39267cb5aee92c0262fd9da7fdfb2"
   integrity sha512-faI3cZbSdFb8yv9dhDTmGwclW0vk0z5o1cia+kf7gCbaCwHI5e+7tP57mJUv22pNcNbeA62GSrPpfrUfdXcQ6g==
@@ -674,6 +674,13 @@
   dependencies:
     symbol.inspect "1.0.1"
 
+"@ton/core@^0.57.0":
+  version "0.57.0"
+  resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.57.0.tgz#fdf2d32848a3d1135b890e9a5bd8295e958a4a81"
+  integrity sha512-UOehEXEV5yqi+17qmmWdD01YfVgQlYtitSm5OfN/WMg6PAMkt+Uf91JRC4mdPNtkKDhyKuujJuhYs6QiOsHPfw==
+  dependencies:
+    symbol.inspect "1.0.1"
+
 "@ton/crypto-primitives@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@ton/crypto-primitives/-/crypto-primitives-2.1.0.tgz#8c9277c250b59aae3c819e0d6bd61e44d998e9ca"
@@ -681,7 +688,7 @@
   dependencies:
     jssha "3.2.0"
 
-"@ton/crypto@^3.2.0", "@ton/crypto@^3.3.0":
+"@ton/crypto@^3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@ton/crypto/-/crypto-3.3.0.tgz#019103df6540fbc1d8102979b4587bc85ff9779e"
   integrity sha512-/A6CYGgA/H36OZ9BbTaGerKtzWp50rg67ZCH2oIjV1NcrBaCK9Z343M+CxedvM7Haf3f/Ee9EhxyeTp0GKMUpA==
@@ -694,6 +701,17 @@
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-14.0.0.tgz#a66fbbfb159200892557442039a0341cda71fc2d"
   integrity sha512-xb2CY6U0AlHUKc7DV7xK/K4Gqn6YoR253yUrM2E7L5WegVFsDF0CQRUIfpYACCuj1oUywQc5J2oMolYNu/uGkA==
+  dependencies:
+    axios "^1.6.7"
+    dataloader "^2.0.0"
+    symbol.inspect "1.0.1"
+    teslabot "^1.3.0"
+    zod "^3.21.4"
+
+"@ton/ton@^15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-15.0.0.tgz#03aab727d082db877ec6012f3b1b3fb6aa564b40"
+  integrity sha512-0xBivkN0u0+vczt3mKJrx5yqkCxRR00wM8gXCmN/eOzzHKXRFWDEjJp8EEs5J/mq1Op/OhCOFExmOZkr58wgOA==
   dependencies:
     axios "^1.6.7"
     dataloader "^2.0.0"
@@ -732,17 +750,17 @@
     "@tonconnect/isomorphic-fetch" "^0.0.3"
     "@tonconnect/protocol" "^2.2.6"
 
-"@tonconnect/ui-react@^2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui-react/-/ui-react-2.0.8.tgz#90e6eca7e83cda5054c28d89aa5f2724949f8e3d"
-  integrity sha512-9dlK6mBsG16lvkrEHtAuW0ngIeqvrNceJSv6InBJir9ij27X3YlEFSaZMUaPK81YTrO8wQOQnFdGcATGWKHBWQ==
+"@tonconnect/ui-react@^2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui-react/-/ui-react-2.0.9.tgz#c226b81110e05b7e259bbf965ad5da42318a5dd3"
+  integrity sha512-wN7tEZpQiRYSUcdNAxFsDkk5TYo8krIu00ZLE1R5kXyr+XpO120jOmTEweBSXvIzTgEVkD/PxDZbBQQxRTXsUw==
   dependencies:
-    "@tonconnect/ui" "2.0.8"
+    "@tonconnect/ui" "2.0.9"
 
-"@tonconnect/ui@2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.0.8.tgz#44ebd08c32b182f10df804f28f800468be9d7bae"
-  integrity sha512-FPTuA25XVYUVrH+uU7LARxrTFcHwACjgCSPeBuvhTzAVNiU21HKpG4D0phYLnR0icXg6bYcmCgKegKrwynBrDw==
+"@tonconnect/ui@2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.0.9.tgz#589285c9b8f4b0d94c10b3feadfae266bf086503"
+  integrity sha512-ZxofTBf81NqrxyD0ybI8AuFHN11uKVg/00xTDFhP5FoPB8rYC7En9qE2VJ6IvwvtTpmh8jspi2ancOHUMBoCQA==
   dependencies:
     "@tonconnect/sdk" "3.0.5"
     classnames "^2.3.2"
@@ -1144,10 +1162,19 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios@^1.6.7, axios@^1.6.8, axios@^1.7.2:
+axios@^1.6.7, axios@^1.6.8:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.3.tgz#a1125f2faf702bc8e8f2104ec3a76fab40257d85"
   integrity sha512-Ar7ND9pU99eJ9GpoGQKhKf58GpUOgnzuaB7ueNQ5BMi0p+LZ5oaEnfF999fAArcTIBwXTCHAmGcHOZJaWPq9Nw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.7.3:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.4.tgz#4c8ded1b43683c8dd362973c393f3ede24052aa2"
+  integrity sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
@@ -3093,16 +3120,16 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-rainbow-swap-sdk@^1.1.18:
-  version "1.1.18"
-  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.1.18.tgz#5fff9a11257c7b2e4caaab6c2d900fd61082a097"
-  integrity sha512-cfpsKMi9ykYYEgLATLE4YaeaRZFeQNEJscSZh+AXMTVxhuiUZLgCwBYydecrfDb2iotiMLGOOviALfD7fHniZA==
+rainbow-swap-sdk@^1.1.19:
+  version "1.1.19"
+  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.1.19.tgz#3f80fccdbbe3fca33d92f2b33fc040117e3981e4"
+  integrity sha512-mXLwHMSh080jC6u62YqpqEQPAWZ3Yemz74asRkZz5xPGyt4r5A8k8y9LLukcOKMZwHARSXCA2x22A33VkTN+Lg==
   dependencies:
     "@rnw-community/shared" "^0.73.0"
     "@ton/core" "^0.56.3"
-    "@ton/crypto" "^3.2.0"
+    "@ton/crypto" "^3.3.0"
     "@ton/ton" "^14.0.0"
-    axios "^1.7.2"
+    axios "^1.7.3"
     buffer "^6.0.3"
 
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
@@ -3573,10 +3600,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-tonapi-sdk-js@^1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-1.0.15.tgz#2ca869f1f6c4643b1e9b34175407090043aee6c8"
-  integrity sha512-26+1yoi6RIpv72l36SpnxzY2jVU9kTPV222WjdwpIL/7piwI0nigryUbWB6gtOUbmxUkpHOwJe1tXuxDCBrwzw==
+tonapi-sdk-js@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-1.0.16.tgz#dc3a57153014b968898771945f203e06d263b1ab"
+  integrity sha512-vbhRArhUM121Th7a+nMDF+jrf8TQ10H388IfEPkkrY3ghtU/f51YIMJWJrPLJIUCQ1H8s6HHRksTtJS3WKmSHA==
 
 totalist@^3.0.0:
   version "3.0.1"
