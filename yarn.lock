@@ -542,10 +542,10 @@
   resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.67.0.tgz#5df28e58c2181f93f323927310884997a437ea65"
   integrity sha512-CajG7XgglDd1OJ9ctsFkfnYix6NReX8wxek+QOO3e9h0lPENHSbOIqz3L1VcEiSs7BFlCnFvXFXukozEx3S/cg==
 
-"@rnw-community/shared@^0.73.0":
-  version "0.73.0"
-  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.73.0.tgz#3e49109b83aa61507fb315be4e3d63e4fee03934"
-  integrity sha512-7tD7uImOUyJ63gTL7hEZSj7oME/1vi5cFxKW6NfwGb2FBz/ERqIGYESpi/q9uPDHGxqVzsb+v7ba/MzGkKSQeA==
+"@rnw-community/shared@^0.74.0":
+  version "0.74.0"
+  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.74.0.tgz#57ec5c93935e7547f0ef8132e9ba7c51a0bd1539"
+  integrity sha512-PxEuyL6jKrNF8bDxGYRG+NEqEKtkanMahr6YSGLwmWDd57XenpwETz6LUvSoVTJGGwndwu5pwWJhsz4jqa1bDQ==
 
 "@rollup/plugin-inject@^5.0.5":
   version "5.0.5"
@@ -667,13 +667,6 @@
     "@ton-community/func-js-bin" "0.4.4-newops.1"
     arg "^5.0.2"
 
-"@ton/core@^0.56.3":
-  version "0.56.3"
-  resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.56.3.tgz#1162764573abb76032eba70f8497e5cb2ea532ee"
-  integrity sha512-HVkalfqw8zqLLPehtq0CNhu5KjVzc7IrbDwDHPjGoOSXmnqSobiWj8a5F+YuWnZnEbQKtrnMGNOOjVw4LG37rg==
-  dependencies:
-    symbol.inspect "1.0.1"
-
 "@ton/core@^0.57.0":
   version "0.57.0"
   resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.57.0.tgz#fdf2d32848a3d1135b890e9a5bd8295e958a4a81"
@@ -696,17 +689,6 @@
     "@ton/crypto-primitives" "2.1.0"
     jssha "3.2.0"
     tweetnacl "1.0.3"
-
-"@ton/ton@^14.0.0":
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-14.0.0.tgz#a66fbbfb159200892557442039a0341cda71fc2d"
-  integrity sha512-xb2CY6U0AlHUKc7DV7xK/K4Gqn6YoR253yUrM2E7L5WegVFsDF0CQRUIfpYACCuj1oUywQc5J2oMolYNu/uGkA==
-  dependencies:
-    axios "^1.6.7"
-    dataloader "^2.0.0"
-    symbol.inspect "1.0.1"
-    teslabot "^1.3.0"
-    zod "^3.21.4"
 
 "@ton/ton@^15.0.0":
   version "15.0.0"
@@ -3120,15 +3102,15 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-rainbow-swap-sdk@^1.1.19:
-  version "1.1.19"
-  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.1.19.tgz#3f80fccdbbe3fca33d92f2b33fc040117e3981e4"
-  integrity sha512-mXLwHMSh080jC6u62YqpqEQPAWZ3Yemz74asRkZz5xPGyt4r5A8k8y9LLukcOKMZwHARSXCA2x22A33VkTN+Lg==
+rainbow-swap-sdk@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.2.0.tgz#287cb1954c1d0767ee7b30829f2d813972c9f562"
+  integrity sha512-1EMg/or6zv1L2VkiI4bQtFI8FSGw7+/SUBsD6XIig4pg+IgwvkakbAc7/0sQtvdbUNQUUSAfx8W+LY1YRqnuZA==
   dependencies:
-    "@rnw-community/shared" "^0.73.0"
-    "@ton/core" "^0.56.3"
+    "@rnw-community/shared" "^0.74.0"
+    "@ton/core" "^0.57.0"
     "@ton/crypto" "^3.3.0"
-    "@ton/ton" "^14.0.0"
+    "@ton/ton" "^15.0.0"
     axios "^1.7.3"
     buffer "^6.0.3"
 

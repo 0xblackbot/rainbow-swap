@@ -52,7 +52,7 @@ export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
         const messages = await getSwapMessages(
             senderAddress.toString(),
             swapRoutes,
-            slippageTolerance
+            Number(slippageTolerance)
         );
 
         const transactionInfo = await sendTransaction(senderAddress, messages);
