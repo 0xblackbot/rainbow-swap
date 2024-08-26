@@ -9,6 +9,7 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         address: TON,
         image: 'https://assets.dedust.io/images/ton.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
     [USDT]: {
@@ -17,86 +18,97 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         address: USDT,
         image: 'https://cache.tonapi.io/imgproxy/T3PB4s7oprNVaJkwqbGg54nexKE0zzKhcrPv8jcWYzU/rs:fill:200:200:1/g:no/aHR0cHM6Ly90ZXRoZXIudG8vaW1hZ2VzL2xvZ29DaXJjbGUucG5n.webp',
         decimals: 6,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQDv2J75-X4v27dkDugwqnZ0cZ26UePE7xCUzbJE2U7wEdZM']: {
-        name: 'NOOTYA',
-        symbol: 'NOOTYA',
-        address: 'EQDv2J75-X4v27dkDugwqnZ0cZ26UePE7xCUzbJE2U7wEdZM',
-        image: 'https://photos.pinksale.finance/file/pinksale-logo-upload/1713714837122-199a71c241006f6699431eb4caa3c15e.png',
+    EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT: {
+        symbol: 'NOT',
+        name: 'Notcoin',
+        address: 'EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT',
+        image: 'https://cache.tonapi.io/imgproxy/4KCMNm34jZLXt0rqeFm4rH-BK4FoK76EVX9r0cCIGDg/rs:fill:200:200:1/g:no/aHR0cHM6Ly9jZG4uam9pbmNvbW11bml0eS54eXovY2xpY2tlci9ub3RfbG9nby5wbmc.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQDBtjG2bs3AN5X54ApnK3_WwN8Vl71vHw0VLq7IfbjMpZEe']: {
-        name: 'Cheems on Ton',
-        symbol: 'CHEEMS',
-        address: 'EQDBtjG2bs3AN5X54ApnK3_WwN8Vl71vHw0VLq7IfbjMpZEe',
-        image: 'https://scontent.fceb1-4.fna.fbcdn.net/v/t1.15752-9/437927714_451900830826350_546696055500294394_n.png?stp=dst-png_p403x403&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFN8bnMKBMGr-Gpyo0XClDdMMLudXuSWjUwwu51e5JaNQ4-zXQ_eEd8WCpooynyAbvRQb8MEjt_tT_gzglDGy_b&_nc_ohc=_rX7xzAImz8Ab73hLsF&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.fceb1-4.fna&oh=03_Q7cD1QERxgxR1N04C0rAaAjf9XeigKTf-ISGFfIQ5o_NvqzHhg&oe=66496182',
+    EQCvxJy4eG8hyHBFsZ7eePxrRsUQSFE_jpptRAYBmcG_DOGS: {
+        symbol: 'DOGS',
+        name: 'Dogs',
+        address: 'EQCvxJy4eG8hyHBFsZ7eePxrRsUQSFE_jpptRAYBmcG_DOGS',
+        image: 'https://cache.tonapi.io/imgproxy/6Pb0sBFy_AzW6l39EIHGs-Iz4eLbbZUh8AYY_Xq-rcg/rs:fill:200:200:1/g:no/aHR0cHM6Ly9jZG4uZG9ncy5kZXYvZG9ncy5wbmc.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQBkIljrz3igilxQ99PJnoN6DewESvS56WL4rurUQmxy_j6r']: {
-        name: 'POODLE',
-        symbol: 'poodle',
-        address: 'EQBkIljrz3igilxQ99PJnoN6DewESvS56WL4rurUQmxy_j6r',
-        image: 'https://bafkreidlg2qaxs4xitbpm6jyw4admvgbz7k5ut4by4pwxtjni7i3i3jr5i.ipfs.nftstorage.link/',
+    EQDgGuB15VUI7wkJ9c5_tjQswWuePEtqTDXSHIYKMMSxx_2U: {
+        symbol: 'PLD',
+        name: 'Palladium',
+        address: 'EQDgGuB15VUI7wkJ9c5_tjQswWuePEtqTDXSHIYKMMSxx_2U',
+        image: 'https://cache.tonapi.io/imgproxy/czZMuWIzvADPXGkGJ1GoUYKxCI7EC4h0OfnwDYp3Dps/rs:fill:200:200:1/g:no/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL1BhbGxhZGl1bS1mb3VuZGF0aW9uL3dlYnNpdGUvbWFpbi9sb2dvLnBuZw.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQDPh92YWAHF_u9VsY3xJSCL5hf5IrMRyLvMn1mrYvb72Xqx']: {
-        name: 'KAITO',
-        symbol: 'KAITO',
-        address: 'EQDPh92YWAHF_u9VsY3xJSCL5hf5IrMRyLvMn1mrYvb72Xqx',
-        image: 'https://bafybeidbyntpfwjbixaxpzmidpjrtjz7ahnzokcuuog46gtzxhmw6m55m4.ipfs.nftstorage.link/pobrane%20(15).jfif',
+    EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon: {
+        symbol: 'JETTON',
+        name: 'JetTon',
+        address: 'EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon',
+        image: 'https://cache.tonapi.io/imgproxy/VF6OeC8JlQ19hW2ecTD4t-mm5K9kmU8PvlFvqmwOj3s/rs:fill:200:200:1/g:no/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0pldFRvbi1Cb3QvSmV0VG9uL21haW4vamV0dG9uLTI1Ni5wbmc.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQC8hLCXW6Z4f679By0gEC6-Y_ot9okFBz1uE9d4tWd0Biuo']: {
-        name: 'Prince Harry',
-        symbol: 'PH',
-        address: 'EQC8hLCXW6Z4f679By0gEC6-Y_ot9okFBz1uE9d4tWd0Biuo',
-        image: 'https://i1.wampi.ru/2024/02/10/8c89e0c06e8a0a2cf.png',
+    'EQBlqsm144Dq6SjbPI4jjZvA1hqTIP3CvHovbIfW_t-SCALE': {
+        symbol: 'SCALE',
+        name: 'Scaleton',
+        address: 'EQBlqsm144Dq6SjbPI4jjZvA1hqTIP3CvHovbIfW_t-SCALE',
+        image: 'https://cache.tonapi.io/imgproxy/5NPQb4dU02LiwsCpR9kW4hesLuqZwd5VRQXNC-K80bw/rs:fill:200:200:1/g:no/aXBmczovL1FtU01pWHNaWU1lZndyVFEzUDZIbkRRYUNwZWNTNEVXTHBnS0s1RVgxRzhpQTg.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQDeRMjfWOwnjT9GOJn-jDjs_-6r76hCGwQh9am9QZ9Hc264']: {
-        name: 'SATURN',
-        symbol: 'STR',
-        address: 'EQDeRMjfWOwnjT9GOJn-jDjs_-6r76hCGwQh9am9QZ9Hc264',
-        image: 'https://i.postimg.cc/FsVKVj3z/IMG-20240305-231646-571.jpg',
+    EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO: {
+        symbol: 'STON',
+        name: 'STON',
+        address: 'EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO',
+        image: 'https://cache.tonapi.io/imgproxy/u6g-Eo01CQbP5ugIlzQUZEzM3DsU6ixZ7Z8wwJ2r_4g/rs:fill:200:200:1/g:no/aHR0cHM6Ly9zdGF0aWMuc3Rvbi5maS9sb2dvL3N0b25fc3ltYm9sLnBuZw.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQD-nfgEYaZnOuXFumzGUZ4uzvuKGDAz2QxL6_UL1HDYJUGr']: {
-        name: 'PONZI JETTON',
-        symbol: 'PONZI',
-        address: 'EQD-nfgEYaZnOuXFumzGUZ4uzvuKGDAz2QxL6_UL1HDYJUGr',
-        image: 'https://i.ibb.co/Hxmk6Hf/IMG-0504.jpg',
+    EQAmQGimKRrSHDLllvdUdeDsX1CszGy_SPgNNN8wE2ihIwnP: {
+        symbol: 'TPET',
+        name: 'TON PET MEMECOIN',
+        address: 'EQAmQGimKRrSHDLllvdUdeDsX1CszGy_SPgNNN8wE2ihIwnP',
+        image: 'https://cache.tonapi.io/imgproxy/JOixKjeOYVStjB-SKTHDK9n-VI06hwTNBw3fl1PRJEs/rs:fill:200:200:1/g:no/aHR0cHM6Ly93d3cudG9uZmlzaC5pby9pbWFnZXMvQkxVRV9UX0NPSU4yLnBuZw.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQBM5V1DBhDF034ngG-GAG-qnM4SiE25L3jH8kI5YqtWXmUo']: {
-        name: 'Peng Ricky',
-        symbol: 'RICKY',
-        address: 'EQBM5V1DBhDF034ngG-GAG-qnM4SiE25L3jH8kI5YqtWXmUo',
-        image: 'https://i.postimg.cc/dtFq0fTM/logo.png',
-        decimals: 6,
-        exchangeRate: '0'
-    },
-    ['EQAfCYJwb7vtTFLZk0fllREQ3xhGh1Ok6Pck2nn_JZAzTdZ_']: {
-        name: 'Ton Kitty',
-        symbol: 'KITTY',
-        address: 'EQAfCYJwb7vtTFLZk0fllREQ3xhGh1Ok6Pck2nn_JZAzTdZ_',
-        image: 'https://i.postimg.cc/Hk2z1Fb1/Ton-Kitty.png',
+    'EQBadq9p12uC1KfSiPCAaoEvhpXPHj7hBWq-mqGntuwE2C1C': {
+        symbol: 'CATS',
+        name: 'TON Cats Jetton',
+        address: 'EQBadq9p12uC1KfSiPCAaoEvhpXPHj7hBWq-mqGntuwE2C1C',
+        image: 'https://cache.tonapi.io/imgproxy/QVwU-lMwfhaiXzyNU-oQ9H6cFizvHaIkg38hS3sojsc/rs:fill:200:200:1/g:no/aHR0cHM6Ly90b25jYXRzLnB3L2ZpbGVzLyRDQVRTL2xvZ28ucG5n.webp',
         decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     },
-    ['EQDkIE6xAEPErswuOJoPZhlIjNkJ79tKN0-xiHfICaxRmUR7']: {
-        name: 'TON MINT',
-        symbol: 'TON MINT',
-        address: 'EQDkIE6xAEPErswuOJoPZhlIjNkJ79tKN0-xiHfICaxRmUR7',
-        image: 'https://play-lh.googleusercontent.com/Tca5wM5m-0Y4pM7v350ucRWWhSTiXacjfIsl_50ThsQnib61QK60jLUQXdthwgTTzw',
+    'EQAWpz2_G0NKxlG2VvgFbgZGPt8Y1qe0cGj-4Yw5BfmYR5iF': {
+        symbol: 'MEM',
+        name: 'Not Meme',
+        address: 'EQAWpz2_G0NKxlG2VvgFbgZGPt8Y1qe0cGj-4Yw5BfmYR5iF',
+        image: 'https://cache.tonapi.io/imgproxy/0U6sEl4GYHgQlBl-NMx9WI5nhBAVehpsGtq5dOHo8lo/rs:fill:200:200:1/g:no/aHR0cHM6Ly9ub3RtZW1lLm9yZy9jb2luL3BpY3R1cmVzL25vdG1lbWVfbG9nby5wbmc.webp',
         decimals: 9,
+        verification: 'whitelist',
+        exchangeRate: '0'
+    },
+    EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko: {
+        symbol: 'REDO',
+        name: 'Resistance Dog',
+        address: 'EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko',
+        image: 'https://cache.tonapi.io/imgproxy/R-9iv8csp1jZ9ymWn4dvcnYC_z3seU2dCrDdU2whQn4/rs:fill:200:200:1/g:no/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL1Jlc2lzdGFuY2UtRG9nL3Jlc2lzdGFuY2UtZG9nL21haW4vcmVzaXN0YW5jZS1kb2cud2VicA.webp',
+        decimals: 9,
+        verification: 'whitelist',
         exchangeRate: '0'
     }
 };

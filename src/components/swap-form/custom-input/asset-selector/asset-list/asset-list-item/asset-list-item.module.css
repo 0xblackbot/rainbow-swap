@@ -11,7 +11,7 @@
     margin: var(--half-step) var(--2-step);
 }
 
-.selected{
+.selected {
     border-color: var(--button-color);
 }
 
@@ -44,18 +44,27 @@
     border-radius: 16px;
 }
 
-.coin_balance{
+.coin_balance {
     font-size: var(--2-step);
     color: var(--text-color);
 }
 
-.dollar_balance{
+.dollar_balance {
     font-size: 12px;
     color: var(--hint-color);
 }
 
+.select_list_item_header {
+    display: flex;
+    align-items: center;
+}
+
 .select_list_item_ccy {
     color: var(--text-color);
+}
+
+.select_list_item_alert {
+    padding: 2px 4px 2px 8px;
 }
 
 .select_list_item_qty {

@@ -28,7 +28,8 @@ export const SwapFormContext = createContext<SwapFormContextValues>({
         exchangeRate: '0',
         image: 'https://assets.dedust.io/images/ton.webp',
         name: 'Toncoin',
-        symbol: 'TON'
+        symbol: 'TON',
+        verification: 'whitelist'
     },
     outputAsset: {
         address: USDT,
@@ -36,6 +37,7 @@ export const SwapFormContext = createContext<SwapFormContextValues>({
         exchangeRate: '0',
         image: 'https://cache.tonapi.io/imgproxy/T3PB4s7oprNVaJkwqbGg54nexKE0zzKhcrPv8jcWYzU/rs:fill:200:200:1/g:no/aHR0cHM6Ly90ZXRoZXIudG8vaW1hZ2VzL2xvZ29DaXJjbGUucG5n.webp',
         name: 'Tether USD',
-        symbol: 'USD₮'
+        symbol: 'USD₮',
+        verification: 'whitelist'
     }
 });
