@@ -2,8 +2,8 @@ import {RouteStep} from 'rainbow-swap-sdk';
 import {FC} from 'react';
 
 import styles from './swap-route-step.module.css';
-import {DEFAULT_DEXES_RECORD} from '../../../../data/dexes-record';
-import {useAssetSelector} from '../../../../store/assets/assets-selectors';
+import {DEFAULT_DEXES_RECORD} from '../../../../../data/dexes-record';
+import {useAssetSelector} from '../../../../../store/assets/assets-selectors';
 
 interface Props {
     routeStep: RouteStep;

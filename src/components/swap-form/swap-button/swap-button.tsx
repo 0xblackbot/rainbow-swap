@@ -1,42 +1,19 @@
-import {isDefined} from '@rnw-community/shared';
-import {Address} from '@ton/core';
-import {useTonWallet} from '@tonconnect/ui-react';
-import {getSwapMessages} from 'rainbow-swap-sdk';
 import {FC, useCallback, useState} from 'react';
 
 import styles from './swap-button.module.css';
-import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
-import {
-    trackButtonClick,
-    trackSwapConfirmation
-} from '../../../hooks/use-analytics.hook';
-import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook';
-import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../shared/form-button/form-button';
-import {useDispatch} from '../../../store';
-import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
-import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors';
-import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions';
-import {showSuccessToast} from '../../../utils/toast.utils';
-import {RainbowWalletInfo} from '../../swap-route-info/rainbow-wallet-info/rainbow-wallet-info';
-import {SwapRouteDisclaimer} from '../../swap-route-info/swap-route-disclaimer/swap-route-disclaimer';
-import {SwapRouteInfo} from '../../swap-route-info/swap-route-info';
+import {useAppStatusSelector} from '../../../store/security/security-selectors';
+import {SwapDetails} from '../swap-details/swap-details';
+import {SwapDisabled} from '../swap-disabled/swap-disabled';
 
 interface Props {
-    onSwap: () => void;
     outputAssetAmount: string;
+    onSwap: () => void;
 }
 
-export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
-    const dispatch = useDispatch();
-    const swapRoutes = useSwapRoutesSelector();
-    const slippageTolerance = useSlippageToleranceSelector();
-    const {inputAssetAmount, inputAsset, outputAsset} = useSwapForm();
-
-    const wallet = useTonWallet();
-    const sendTransaction = useSendTransaction();
-    const rainbowWallet = useRainbowWallet(swapRoutes);
+export const SwapButton: FC<Props> = ({outputAssetAmount, onSwap}) => {
+    const appStatus = useAppStatusSelector();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -46,35 +23,7 @@ export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
     }, [setIsOpen, onSwap]);
     const handleClose = () => setIsOpen(false);
 
-    const handleConfirm = async () => {
-        trackButtonClick('Confirm');
-        const senderAddress = Address.parse(wallet?.account.address ?? '');
-        const messages = await getSwapMessages(
-            senderAddress.toString(),
-            swapRoutes,
-            Number(slippageTolerance)
-        );
-
-        const transactionInfo = await sendTransaction(senderAddress, messages);
-
-        if (isDefined(transactionInfo)) {
-            const usdAmount =
-                parseFloat(inputAssetAmount) *
-                parseFloat(inputAsset.exchangeRate);
-
-            trackSwapConfirmation(
-                transactionInfo.bocHash,
-                usdAmount,
-                inputAsset,
-                outputAsset,
-                Number(outputAssetAmount) ?? 0
-            );
-
-            dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
-            showSuccessToast('Swap sent, please wait...');
-            setIsOpen(false);
-        }
-    };
+    const handleConfirm = () => setIsOpen(false);
 
     return (
         <>
@@ -85,21 +34,13 @@ export const SwapButton: FC<Props> = ({onSwap, outputAssetAmount}) => {
                 onClose={handleClose}
             >
                 <div className={styles.content_container}>
-                    {rainbowWallet.isRequired && <RainbowWalletInfo />}
-                    <SwapRouteInfo />
-                    <SwapRouteDisclaimer />
-                    {rainbowWallet.isRequired ? (
-                        <FormButton
-                            text="Activate contract"
-                            containerClassName={styles.main_button}
-                            onClick={rainbowWallet.activateContract}
-                        ></FormButton>
+                    {appStatus.isSwapsEnabled ? (
+                        <SwapDetails
+                            outputAssetAmount={outputAssetAmount}
+                            onConfirm={handleConfirm}
+                        />
                     ) : (
-                        <FormButton
-                            text="Confirm"
-                            containerClassName={styles.main_button}
-                            onClick={handleConfirm}
-                        ></FormButton>
+                        <SwapDisabled message={appStatus.message} />
                     )}
                 </div>
             </BottomSheet>

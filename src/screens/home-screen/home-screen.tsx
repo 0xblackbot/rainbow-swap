@@ -12,6 +12,7 @@ import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
 import {loadPointsActions} from '../../store/points/points-actions';
+import {loadAppStatusActions} from '../../store/security/security-actions';
 import {
     addPendingActivationTransactionActions,
     addPendingSwapTransactionActions,
@@ -34,6 +35,7 @@ export const HomeScreen = memo(() => {
     useTrackPageView('Home');
 
     useEffect(() => {
+        dispatch(loadAppStatusActions.submit());
         dispatch(loadAssetsActions.submit());
 
         if (IS_TMA) {

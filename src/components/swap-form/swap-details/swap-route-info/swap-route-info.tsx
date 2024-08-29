@@ -1,17 +1,17 @@
 import {FC, Fragment} from 'react';
 
-import {RouteInfo} from './route-info/route-info';
 import styles from './swap-route-info.module.css';
-import {SwapIcon} from '../../assets/icons/SwapIcon/SwapIcon';
-import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
-import {useSlippageToleranceSelector} from '../../store/settings/settings-selectors';
+import {SwapIcon} from '../../../../assets/icons/SwapIcon/SwapIcon';
+import {useSwapForm} from '../../../../hooks/swap-form/swap-form.hook';
+import {useSlippageToleranceSelector} from '../../../../store/settings/settings-selectors';
 import {
     useIsRoutesLoadingSelector,
     useRoutesSelector
-} from '../../store/swap-routes/swap-routes-selectors';
-import {formatNumber} from '../../utils/format-number.utils';
-import {getClassName} from '../../utils/style.utils';
-import {useSwapInfo} from '../swap-form/hooks/use-swap-info.hook';
+} from '../../../../store/swap-routes/swap-routes-selectors';
+import {formatNumber} from '../../../../utils/format-number.utils';
+import {getClassName} from '../../../../utils/style.utils';
+import {useSwapInfo} from '../../hooks/use-swap-info.hook';
+import {RouteInfo} from '../route-info/route-info';
 
 export const SwapRouteInfo: FC = () => {
     const routes = useRoutesSelector();

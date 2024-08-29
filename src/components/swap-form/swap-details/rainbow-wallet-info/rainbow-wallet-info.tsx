@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 import styles from './rainbow-wallet-info.module.css';
-import {InfoIcon} from '../../../assets/icons/InfoIcon/InfoIcon';
+import {InfoIcon} from '../../../../assets/icons/InfoIcon/InfoIcon';
 
 export const RainbowWalletInfo: FC = () => (
     <>

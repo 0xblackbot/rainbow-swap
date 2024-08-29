@@ -1,12 +1,22 @@
 import {FC, useState} from 'react';
 
-import styles from './swap-route-disclaimer.module.css';
-import {AlertIcon} from '../../../assets/icons/AlertIcon/AlertIcon';
-import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
-import {getClassName} from '../../../utils/style.utils';
+import styles from './disclaimer.module.css';
+import {AlertIcon} from '../../assets/icons/AlertIcon/AlertIcon';
+import {ChevronDownIcon} from '../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {getClassName} from '../../utils/style.utils';
 
-export const SwapRouteDisclaimer: FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
+interface Props {
+    title: string;
+    description: string;
+    isInitiallyOpen: boolean;
+}
+
+export const Disclaimer: FC<Props> = ({
+    title,
+    description,
+    isInitiallyOpen
+}) => {
+    const [isOpen, setIsOpen] = useState(isInitiallyOpen);
 
     const toggleAccordion = () => setIsOpen(value => !value);
 
@@ -16,7 +26,7 @@ export const SwapRouteDisclaimer: FC = () => {
                 <div className={styles.header} onClick={toggleAccordion}>
                     <div className={styles.header_text_container}>
                         <AlertIcon />
-                        <p className={styles.header_text}>Disclaimer</p>
+                        <p className={styles.header_text}>{title}</p>
                     </div>
 
                     <ChevronDownIcon
@@ -32,11 +42,7 @@ export const SwapRouteDisclaimer: FC = () => {
                         isOpen ? styles.open : ''
                     )}
                 >
-                    <p className={styles.text}>
-                        This interface and the Rainbow Smart contract are
-                        provided "as is", at your own risk, and without
-                        warranties of any kind
-                    </p>
+                    <p className={styles.text}>{description}</p>
                 </div>
             </div>
         </>
