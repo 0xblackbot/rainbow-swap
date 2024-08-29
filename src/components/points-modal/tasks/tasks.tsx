@@ -3,6 +3,7 @@ import telegramImage from './assets/telegram.png';
 import twitterImage from './assets/twitter.png';
 import {TaskItem} from './task-item/task-item';
 import {TaskStatus} from './task-status/task-status';
+import {TasksEnd} from './tasks-end/tasks-end';
 import styles from './tasks.module.css';
 import {
     TELEGRAM_APP_LINK,
@@ -93,6 +94,8 @@ export const Tasks = () => {
                     isLoading={xChannelTask.isLoading}
                 />
             </TaskItem>
+
+            <TasksEnd />
         </>
     );
 };

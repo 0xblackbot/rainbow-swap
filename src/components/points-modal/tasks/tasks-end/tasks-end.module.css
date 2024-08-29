@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--2-step);
+    margin: 24px 0 48px;
+    color: var(--hint-color);
+    font-family: 'Basel', sans-serif;
+}
+
+.animation_container {
+    width: 50%;
+
+    margin-bottom: var(--2-step);
+}
