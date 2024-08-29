@@ -3,6 +3,8 @@ import {createReducer} from '@reduxjs/toolkit';
 import {
     addTapActions,
     checkTelegramChannelTaskActions,
+    checkTorchFinanceTelegramTaskActions,
+    checkTorchFinanceTwitterTaskActions,
     checkXChannelTaskActions,
     closePointsModal,
     loadPointsActions,
@@ -29,14 +31,30 @@ export const pointsReducers = createReducer<PointsState>(
             tapTap: createEntity(state.tapTap.data, true),
             referral: createEntity(state.referral.data, true),
             telegramChannel: createEntity(state.telegramChannel.data, true),
-            xChannel: createEntity(state.xChannel.data, true)
+            xChannel: createEntity(state.xChannel.data, true),
+            torchFinanceTelegram: createEntity(
+                state.torchFinanceTelegram.data,
+                true
+            ),
+            torchFinanceTwitter: createEntity(
+                state.torchFinanceTwitter.data,
+                true
+            )
         }));
         builder.addCase(loadPointsActions.success, (state, {payload}) => ({
             ...state,
             tapTap: createEntity(payload.tapTap, false),
             referral: createEntity(payload.referral, false),
             telegramChannel: createEntity(payload.telegramChannel, false),
-            xChannel: createEntity(payload.xChannel, false)
+            xChannel: createEntity(payload.xChannel, false),
+            torchFinanceTelegram: createEntity(
+                payload.torchFinance.telegram,
+                false
+            ),
+            torchFinanceTwitter: createEntity(
+                payload.torchFinance.twitter,
+                false
+            )
         }));
         builder.addCase(loadPointsActions.fail, (state, {payload: error}) => ({
             ...state,
@@ -47,7 +65,17 @@ export const pointsReducers = createReducer<PointsState>(
                 false,
                 error
             ),
-            xChannel: createEntity(state.xChannel.data, false, error)
+            xChannel: createEntity(state.xChannel.data, false, error),
+            torchFinanceTelegram: createEntity(
+                state.torchFinanceTelegram.data,
+                false,
+                error
+            ),
+            torchFinanceTwitter: createEntity(
+                state.torchFinanceTwitter.data,
+                false,
+                error
+            )
         }));
 
         builder.addCase(addTapActions.submit, state => ({
@@ -94,6 +122,59 @@ export const pointsReducers = createReducer<PointsState>(
             (state, {payload: error}) => ({
                 ...state,
                 xChannel: createEntity(state.xChannel.data, false, error)
+            })
+        );
+
+        // TorchFinance
+        builder.addCase(checkTorchFinanceTelegramTaskActions.submit, state => ({
+            ...state,
+            torchFinanceTelegram: createEntity(
+                state.torchFinanceTelegram.data,
+                true
+            )
+        }));
+        builder.addCase(
+            checkTorchFinanceTelegramTaskActions.success,
+            (state, {payload}) => ({
+                ...state,
+                torchFinanceTelegram: createEntity(payload, false)
+            })
+        );
+        builder.addCase(
+            checkTorchFinanceTelegramTaskActions.fail,
+            (state, {payload: error}) => ({
+                ...state,
+                torchFinanceTelegram: createEntity(
+                    state.torchFinanceTelegram.data,
+                    false,
+                    error
+                )
+            })
+        );
+
+        builder.addCase(checkTorchFinanceTwitterTaskActions.submit, state => ({
+            ...state,
+            torchFinanceTwitter: createEntity(
+                state.torchFinanceTwitter.data,
+                true
+            )
+        }));
+        builder.addCase(
+            checkTorchFinanceTwitterTaskActions.success,
+            (state, {payload}) => ({
+                ...state,
+                torchFinanceTwitter: createEntity(payload, false)
+            })
+        );
+        builder.addCase(
+            checkTorchFinanceTwitterTaskActions.fail,
+            (state, {payload: error}) => ({
+                ...state,
+                torchFinanceTwitter: createEntity(
+                    state.torchFinanceTwitter.data,
+                    false,
+                    error
+                )
             })
         );
     }

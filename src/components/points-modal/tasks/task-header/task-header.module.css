@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     margin-bottom: var(--2-step);
-    cursor: pointer;
 }
 
 .image {
@@ -12,19 +11,7 @@
     margin-right: var(--step);
 }
 
-.title {
-    font-size: 16px;
+.name {
+    font-size: 20px;
     color: var(--text-color);
-    line-height: 16px;
-}
-
-.description {
-    font-size: 16px;
-    color: var(--button-color);
-    line-height: 16px;
-}
-
-.childrenContainer {
-    display: flex;
-    margin-left: auto;
 }

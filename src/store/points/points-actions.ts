@@ -23,3 +23,11 @@ export const checkTelegramChannelTaskActions = createActions<void, number>(
 export const checkXChannelTaskActions = createActions<void, number>(
     'points/CHECK_X_CHANNEL_TASK'
 );
+
+// TorchFinance
+export const checkTorchFinanceTelegramTaskActions = createActions<void, number>(
+    'points/CHECK_TORCH_TELEGRAM_CHANNEL_TASK'
+);
+export const checkTorchFinanceTwitterTaskActions = createActions<void, number>(
+    'points/CHECK_TORCH_TWITTER_CHANNEL_TASK'
+);

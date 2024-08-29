@@ -1,5 +1,7 @@
 export enum TaskTypeEnum {
-    Referral = 'Referral',
-    TelegramChannel = 'TelegramChannel',
-    XChannel = 'XChannel'
+    Telegram = 'telegramChannel',
+    Twitter = 'xChannel',
+
+    TorchFinance_Telegram = 'TorchFinance_Telegram',
+    TorchFinance_Twitter = 'TorchFinance_Twitter'
 }

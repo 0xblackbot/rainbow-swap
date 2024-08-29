@@ -8,4 +8,8 @@ export type PointsAuthResponse = {
     referral: number;
     telegramChannel: number;
     xChannel: number;
+    torchFinance: {
+        telegram: number;
+        twitter: number;
+    };
 };

@@ -7,9 +7,12 @@ import {ofType, toPayload} from 'ts-action-operators';
 import {
     addTapActions,
     checkTelegramChannelTaskActions,
+    checkTorchFinanceTelegramTaskActions,
+    checkTorchFinanceTwitterTaskActions,
     checkXChannelTaskActions,
     loadPointsActions
 } from './points-actions';
+import {TaskTypeEnum} from '../../enums/task-type.enum';
 import {INIT_DATA} from '../../globals';
 import {getPointsAuth, getTaskCheck, postAddTaps} from '../../utils/api.utils';
 
@@ -44,7 +47,10 @@ const checkTelegramChannelTaskEpic: Epic<Action> = action$ =>
         ofType(checkTelegramChannelTaskActions.submit),
         switchMap(() =>
             from(
-                getTaskCheck({initData: INIT_DATA, taskType: 'telegramChannel'})
+                getTaskCheck({
+                    initData: INIT_DATA,
+                    taskType: TaskTypeEnum.Telegram
+                })
             ).pipe(
                 map(response =>
                     checkTelegramChannelTaskActions.success(response)
@@ -61,7 +67,10 @@ const checkXChannelTaskEpic: Epic<Action> = action$ =>
         ofType(checkXChannelTaskActions.submit),
         switchMap(() =>
             from(
-                getTaskCheck({initData: INIT_DATA, taskType: 'xChannel'})
+                getTaskCheck({
+                    initData: INIT_DATA,
+                    taskType: TaskTypeEnum.Twitter
+                })
             ).pipe(
                 map(response => checkXChannelTaskActions.success(response)),
                 catchError(err =>
@@ -71,9 +80,51 @@ const checkXChannelTaskEpic: Epic<Action> = action$ =>
         )
     );
 
+const checkFinanceTelegramTaskEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(checkTorchFinanceTelegramTaskActions.submit),
+        switchMap(() =>
+            from(
+                getTaskCheck({
+                    initData: INIT_DATA,
+                    taskType: TaskTypeEnum.TorchFinance_Telegram
+                })
+            ).pipe(
+                map(response =>
+                    checkTorchFinanceTelegramTaskActions.success(response)
+                ),
+                catchError(err =>
+                    of(checkTorchFinanceTelegramTaskActions.fail(err.message))
+                )
+            )
+        )
+    );
+
+const checkFinanceTwitterTaskEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(checkTorchFinanceTwitterTaskActions.submit),
+        switchMap(() =>
+            from(
+                getTaskCheck({
+                    initData: INIT_DATA,
+                    taskType: TaskTypeEnum.TorchFinance_Twitter
+                })
+            ).pipe(
+                map(response =>
+                    checkTorchFinanceTwitterTaskActions.success(response)
+                ),
+                catchError(err =>
+                    of(checkTorchFinanceTwitterTaskActions.fail(err.message))
+                )
+            )
+        )
+    );
+
 export const pointsEpics = combineEpics(
     loadPointsEpic,
     addTapEpic,
     checkTelegramChannelTaskEpic,
-    checkXChannelTaskEpic
+    checkXChannelTaskEpic,
+    checkFinanceTelegramTaskEpic,
+    checkFinanceTwitterTaskEpic
 );

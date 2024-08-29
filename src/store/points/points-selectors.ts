@@ -10,7 +10,9 @@ export const usePointsSelector = () =>
             points.tapTap.data +
             points.referral.data +
             points.telegramChannel.data +
-            points.xChannel.data,
+            points.xChannel.data +
+            points.torchFinanceTelegram.data +
+            points.torchFinanceTwitter.data,
         isLoading: points.tapTap.isLoading
     }));
 
@@ -18,3 +20,9 @@ export const useTelegramChannelTaskSelector = () =>
     useSelector(({points}) => points.telegramChannel);
 export const useXChannelTaskSelector = () =>
     useSelector(({points}) => points.xChannel);
+
+// TorchFinance
+export const useTorchFinanceTelegramSelector = () =>
+    useSelector(({points}) => points.torchFinanceTelegram);
+export const useTorchFinanceTwitterSelector = () =>
+    useSelector(({points}) => points.torchFinanceTwitter);

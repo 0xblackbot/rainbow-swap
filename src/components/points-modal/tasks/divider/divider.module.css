@@ -1,0 +1,19 @@
+.divider {
+    width: 100%;
+    margin-top: var(--2-step);
+    margin-bottom: var(--4-step);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.chunk {
+    width: 45%;
+    height: 1px;
+    background-color: var(--secondary-bg-color);
+}
+
+.chevron {
+    stroke: var(--hint-color);
+}

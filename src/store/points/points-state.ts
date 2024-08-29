@@ -9,6 +9,8 @@ export interface PointsState {
     referral: LoadableEntityState<number>;
     telegramChannel: LoadableEntityState<number>;
     xChannel: LoadableEntityState<number>;
+    torchFinanceTelegram: LoadableEntityState<number>;
+    torchFinanceTwitter: LoadableEntityState<number>;
 }
 
 export const pointsInitialState: PointsState = {
@@ -17,5 +19,7 @@ export const pointsInitialState: PointsState = {
     tapTap: createEntity(0),
     referral: createEntity(0),
     telegramChannel: createEntity(0),
-    xChannel: createEntity(0)
+    xChannel: createEntity(0),
+    torchFinanceTelegram: createEntity(0),
+    torchFinanceTwitter: createEntity(0)
 };
