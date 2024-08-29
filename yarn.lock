@@ -3582,10 +3582,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-tonapi-sdk-js@^1.0.16:
-  version "1.0.16"
-  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-1.0.16.tgz#dc3a57153014b968898771945f203e06d263b1ab"
-  integrity sha512-vbhRArhUM121Th7a+nMDF+jrf8TQ10H388IfEPkkrY3ghtU/f51YIMJWJrPLJIUCQ1H8s6HHRksTtJS3WKmSHA==
+tonapi-sdk-js@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-2.0.1.tgz#147cd0c48462c1d0ac1e4c87f034a7d460632839"
+  integrity sha512-T5XCkqh4gE5XcipB9gZKQh6HpFxMjNV3LspJAyK786vpukunk/6a24QolTO4ffJVuWYyT2LcNRwGO44qd7bmOQ==
 
 totalist@^3.0.0:
   version "3.0.1"
