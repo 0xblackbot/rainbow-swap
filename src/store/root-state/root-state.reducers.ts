@@ -8,6 +8,7 @@ import {assetsReducers} from '../assets/assets-reducers';
 import {devReducers} from '../dev/dev-reducers';
 import {RootState} from '../index';
 import {pointsReducers} from '../points/points-reducers';
+import {securityReducers} from '../security/security-reducers';
 import {settingsReducers} from '../settings/settings-reducers';
 import {swapRoutesReducers} from '../swap-routes/swap-routes-reducers';
 import {walletReducers} from '../wallet/wallet-reducers';
@@ -18,7 +19,8 @@ export const rootReducer = combineReducers({
     wallet: walletReducers,
     settings: settingsReducers,
     points: pointsReducers,
-    dev: devReducers
+    dev: devReducers,
+    security: securityReducers
 });
 
 const resetableRootReducer = (state: RootState | undefined, action: Action) => {
