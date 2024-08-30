@@ -9,6 +9,7 @@ import {PendingSwap} from './pending-swap/pending-swap';
 import {RateInfo} from './rate-info/rate-info';
 import {SettingsButton} from './settings-button/settings-button';
 import {SwapButton} from './swap-button/swap-button';
+import {SwapDisabled} from './swap-disabled/swap-disabled';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
@@ -19,6 +20,7 @@ import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
+import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {useRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
 import {useBalancesSelector} from '../../store/wallet/wallet-selectors';
@@ -34,6 +36,7 @@ export const SwapScreen = () => {
     const dispatch = useDispatch();
     const balances = useBalancesSelector();
     const routes = useRoutesSelector();
+    const appStatus = useAppStatusSelector();
 
     const {
         inputAssetAddress,
@@ -183,6 +186,9 @@ export const SwapScreen = () => {
                         inputAssetAmount={inputAssetAmount}
                         routes={routes}
                     />
+                    {!appStatus.isSwapsEnabled && (
+                        <SwapDisabled message={appStatus.message} />
+                    )}
                     {wallet ? (
                         Number(inputAssetAmount) === 0 ? (
                             <FormButton
