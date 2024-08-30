@@ -5,7 +5,7 @@ import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../shared/form-button/form-button';
 import {useAppStatusSelector} from '../../../store/security/security-selectors';
 import {SwapDetails} from '../swap-details/swap-details';
-import {SwapDisabled} from '../swap-disabled/swap-disabled';
+import {SwapDisabledBig} from '../swap-disabled/swap-disabled-big';
 
 interface Props {
     outputAssetAmount: string;
@@ -40,7 +40,10 @@ export const SwapButton: FC<Props> = ({outputAssetAmount, onSwap}) => {
                             onConfirm={handleConfirm}
                         />
                     ) : (
-                        <SwapDisabled message={appStatus.message} />
+                        <SwapDisabledBig
+                            message={appStatus.message}
+                            onClose={handleClose}
+                        />
                     )}
                 </div>
             </BottomSheet>
