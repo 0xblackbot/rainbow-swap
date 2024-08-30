@@ -24,10 +24,8 @@ export const checkXChannelTaskActions = createActions<void, number>(
     'points/CHECK_X_CHANNEL_TASK'
 );
 
-// TorchFinance
-export const checkTorchFinanceTelegramTaskActions = createActions<void, number>(
-    'points/CHECK_TORCH_TELEGRAM_CHANNEL_TASK'
-);
-export const checkTorchFinanceTwitterTaskActions = createActions<void, number>(
-    'points/CHECK_TORCH_TWITTER_CHANNEL_TASK'
-);
+export const checkPartnerTaskActions = createActions<
+    string,
+    {taskType: string; data: number},
+    {taskType: string; error: string}
+>('points/CHECK_PARTNER_TASK');

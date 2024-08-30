@@ -6,9 +6,8 @@ import {ofType, toPayload} from 'ts-action-operators';
 
 import {
     addTapActions,
+    checkPartnerTaskActions,
     checkTelegramChannelTaskActions,
-    checkTorchFinanceTelegramTaskActions,
-    checkTorchFinanceTwitterTaskActions,
     checkXChannelTaskActions,
     loadPointsActions
 } from './points-actions';
@@ -80,41 +79,25 @@ const checkXChannelTaskEpic: Epic<Action> = action$ =>
         )
     );
 
-const checkFinanceTelegramTaskEpic: Epic<Action> = action$ =>
+const checkPartnerTaskEpic: Epic<Action> = action$ =>
     action$.pipe(
-        ofType(checkTorchFinanceTelegramTaskActions.submit),
-        switchMap(() =>
+        ofType(checkPartnerTaskActions.submit),
+        toPayload(),
+        switchMap(taskType =>
             from(
                 getTaskCheck({
                     initData: INIT_DATA,
-                    taskType: TaskTypeEnum.TorchFinance_Telegram
+                    taskType
                 })
             ).pipe(
-                map(response =>
-                    checkTorchFinanceTelegramTaskActions.success(response)
-                ),
+                map(data => checkPartnerTaskActions.success({taskType, data})),
                 catchError(err =>
-                    of(checkTorchFinanceTelegramTaskActions.fail(err.message))
-                )
-            )
-        )
-    );
-
-const checkFinanceTwitterTaskEpic: Epic<Action> = action$ =>
-    action$.pipe(
-        ofType(checkTorchFinanceTwitterTaskActions.submit),
-        switchMap(() =>
-            from(
-                getTaskCheck({
-                    initData: INIT_DATA,
-                    taskType: TaskTypeEnum.TorchFinance_Twitter
-                })
-            ).pipe(
-                map(response =>
-                    checkTorchFinanceTwitterTaskActions.success(response)
-                ),
-                catchError(err =>
-                    of(checkTorchFinanceTwitterTaskActions.fail(err.message))
+                    of(
+                        checkPartnerTaskActions.fail({
+                            taskType,
+                            error: err.message
+                        })
+                    )
                 )
             )
         )
@@ -125,6 +108,5 @@ export const pointsEpics = combineEpics(
     addTapEpic,
     checkTelegramChannelTaskEpic,
     checkXChannelTaskEpic,
-    checkFinanceTelegramTaskEpic,
-    checkFinanceTwitterTaskEpic
+    checkPartnerTaskEpic
 );

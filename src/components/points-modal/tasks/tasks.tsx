@@ -1,13 +1,16 @@
 import referralImage from './assets/referral.png';
+import snapxImage from './assets/snapx.jpg';
 import telegramImage from './assets/telegram.png';
 import torchFinanceImage from './assets/torch-finance.jpeg';
 import twitterImage from './assets/twitter.png';
 import {Divider} from './divider/divider';
+import {PartnerTaskItem} from './partner-task-item/partner-task-item';
 import {TaskHeader} from './task-header/task-header';
 import {TaskItem} from './task-item/task-item';
 import {TaskStatus} from './task-status/task-status';
 import {TasksEnd} from './tasks-end/tasks-end';
 import styles from './tasks.module.css';
+import {TaskTypeEnum} from '../../../enums/task-type.enum';
 import {
     TELEGRAM_APP_LINK,
     TELEGRAM_CHANNEL_LINK,
@@ -17,14 +20,10 @@ import {
 import {useDispatch} from '../../../store';
 import {
     checkTelegramChannelTaskActions,
-    checkTorchFinanceTelegramTaskActions,
-    checkTorchFinanceTwitterTaskActions,
     checkXChannelTaskActions
 } from '../../../store/points/points-actions';
 import {
     useTelegramChannelTaskSelector,
-    useTorchFinanceTelegramSelector,
-    useTorchFinanceTwitterSelector,
     useXChannelTaskSelector
 } from '../../../store/points/points-selectors';
 import {copyToClipboard} from '../../../utils/clipboard.utils';
@@ -32,18 +31,11 @@ import {showSuccessToast} from '../../../utils/toast.utils';
 
 const REF_URL = `${TELEGRAM_APP_LINK}?startapp=${UNSAFE_INIT_DATA.userId}`;
 
-const TORCH_FINANCE_LINKS = {
-    telegram: 'https://t.me/oxcurdle',
-    twitter: 'https://x.com/TorchTon'
-};
-
 export const Tasks = () => {
     const dispatch = useDispatch();
 
     const telegramChannelTask = useTelegramChannelTaskSelector();
     const xChannelTask = useXChannelTaskSelector();
-    const torchFinanceTelegramTask = useTorchFinanceTelegramSelector();
-    const torchFinanceTwitterTask = useTorchFinanceTwitterSelector();
 
     const handleCopyClick = async () => {
         await copyToClipboard(REF_URL);
@@ -70,20 +62,6 @@ export const Tasks = () => {
         window.Telegram.WebApp.openLink(X_LINK);
         if (xChannelTask.data === 0) {
             dispatch(checkXChannelTaskActions.submit());
-        }
-    };
-
-    const handleTorchTelegramClick = () => {
-        window.Telegram.WebApp.openTelegramLink(TORCH_FINANCE_LINKS.telegram);
-        if (torchFinanceTelegramTask.data === 0) {
-            dispatch(checkTorchFinanceTelegramTaskActions.submit());
-        }
-    };
-
-    const handleTorchTwitterClick = () => {
-        window.Telegram.WebApp.openLink(TORCH_FINANCE_LINKS.twitter);
-        if (torchFinanceTwitterTask.data === 0) {
-            dispatch(checkTorchFinanceTwitterTaskActions.submit());
         }
     };
 
@@ -128,28 +106,32 @@ export const Tasks = () => {
             <Divider />
 
             <TaskHeader name="Torch Finance" imageSrc={torchFinanceImage} />
-            <TaskItem
+            <PartnerTaskItem
+                isTelegram={true}
                 imageSrc={telegramImage}
                 title="Join Telegram"
-                description="+1000 points"
-                onClick={handleTorchTelegramClick}
-            >
-                <TaskStatus
-                    points={torchFinanceTelegramTask.data}
-                    isLoading={torchFinanceTelegramTask.isLoading}
-                />
-            </TaskItem>
-            <TaskItem
+                taskType={TaskTypeEnum.TorchFinance_Telegram}
+            />
+            <PartnerTaskItem
                 imageSrc={twitterImage}
                 title="Follow X"
-                description="+1000 points"
-                onClick={handleTorchTwitterClick}
-            >
-                <TaskStatus
-                    points={torchFinanceTwitterTask.data}
-                    isLoading={torchFinanceTwitterTask.isLoading}
-                />
-            </TaskItem>
+                taskType={TaskTypeEnum.TorchFinance_Twitter}
+            />
+
+            <Divider />
+
+            <TaskHeader name="SnapX" imageSrc={snapxImage} />
+            <PartnerTaskItem
+                isTelegram={true}
+                imageSrc={telegramImage}
+                title="Join Telegram"
+                taskType={TaskTypeEnum.SnapX_Telegram}
+            />
+            <PartnerTaskItem
+                imageSrc={twitterImage}
+                title="Follow X"
+                taskType={TaskTypeEnum.SnapX_Twitter}
+            />
 
             <TasksEnd />
         </>

@@ -2,15 +2,16 @@ import {createReducer} from '@reduxjs/toolkit';
 
 import {
     addTapActions,
+    checkPartnerTaskActions,
     checkTelegramChannelTaskActions,
-    checkTorchFinanceTelegramTaskActions,
-    checkTorchFinanceTwitterTaskActions,
     checkXChannelTaskActions,
     closePointsModal,
     loadPointsActions,
     openPointsModal
 } from './points-actions';
 import {pointsInitialState, PointsState} from './points-state';
+import {PartnerTasksKeyRecord} from '../../enums/task-type.enum';
+import {LoadableEntityState} from '../types';
 import {createEntity} from '../utils/create-entity';
 
 export const pointsReducers = createReducer<PointsState>(
@@ -25,58 +26,61 @@ export const pointsReducers = createReducer<PointsState>(
             isModalOpen: false
         }));
 
-        builder.addCase(loadPointsActions.submit, state => ({
-            ...state,
-            localTapTap: 0,
-            tapTap: createEntity(state.tapTap.data, true),
-            referral: createEntity(state.referral.data, true),
-            telegramChannel: createEntity(state.telegramChannel.data, true),
-            xChannel: createEntity(state.xChannel.data, true),
-            torchFinanceTelegram: createEntity(
-                state.torchFinanceTelegram.data,
-                true
-            ),
-            torchFinanceTwitter: createEntity(
-                state.torchFinanceTwitter.data,
-                true
-            )
-        }));
-        builder.addCase(loadPointsActions.success, (state, {payload}) => ({
-            ...state,
-            tapTap: createEntity(payload.tapTap, false),
-            referral: createEntity(payload.referral, false),
-            telegramChannel: createEntity(payload.telegramChannel, false),
-            xChannel: createEntity(payload.xChannel, false),
-            torchFinanceTelegram: createEntity(
-                payload.torchFinance.telegram,
-                false
-            ),
-            torchFinanceTwitter: createEntity(
-                payload.torchFinance.twitter,
-                false
-            )
-        }));
-        builder.addCase(loadPointsActions.fail, (state, {payload: error}) => ({
-            ...state,
-            tapTap: createEntity(state.tapTap.data, false, error),
-            referral: createEntity(state.referral.data, false, error),
-            telegramChannel: createEntity(
-                state.telegramChannel.data,
-                false,
-                error
-            ),
-            xChannel: createEntity(state.xChannel.data, false, error),
-            torchFinanceTelegram: createEntity(
-                state.torchFinanceTelegram.data,
-                false,
-                error
-            ),
-            torchFinanceTwitter: createEntity(
-                state.torchFinanceTwitter.data,
-                false,
-                error
-            )
-        }));
+        builder.addCase(loadPointsActions.submit, state => {
+            const partners: Record<string, LoadableEntityState<number>> = {};
+
+            for (const [key, value] of Object.entries(state.partners)) {
+                partners[key] = createEntity(value.data, true);
+            }
+
+            return {
+                ...state,
+                localTapTap: 0,
+                tapTap: createEntity(state.tapTap.data, true),
+                referral: createEntity(state.referral.data, true),
+                telegramChannel: createEntity(state.telegramChannel.data, true),
+                xChannel: createEntity(state.xChannel.data, true),
+                partners
+            };
+        });
+        builder.addCase(loadPointsActions.success, (state, {payload}) => {
+            const partners: Record<string, LoadableEntityState<number>> = {};
+
+            for (const [key, value] of Object.entries(
+                payload.torchFinance ?? {}
+            )) {
+                partners[key] = createEntity(value, false);
+            }
+
+            return {
+                ...state,
+                tapTap: createEntity(payload.tapTap, false),
+                referral: createEntity(payload.referral, false),
+                telegramChannel: createEntity(payload.telegramChannel, false),
+                xChannel: createEntity(payload.xChannel, false),
+                partners
+            };
+        });
+        builder.addCase(loadPointsActions.fail, (state, {payload: error}) => {
+            const partners: Record<string, LoadableEntityState<number>> = {};
+
+            for (const [key, value] of Object.entries(state.partners)) {
+                partners[key] = createEntity(value.data, false, error);
+            }
+
+            return {
+                ...state,
+                tapTap: createEntity(state.tapTap.data, false, error),
+                referral: createEntity(state.referral.data, false, error),
+                telegramChannel: createEntity(
+                    state.telegramChannel.data,
+                    false,
+                    error
+                ),
+                xChannel: createEntity(state.xChannel.data, false, error),
+                partners
+            };
+        });
 
         builder.addCase(addTapActions.submit, state => ({
             ...state,
@@ -125,57 +129,45 @@ export const pointsReducers = createReducer<PointsState>(
             })
         );
 
-        // TorchFinance
-        builder.addCase(checkTorchFinanceTelegramTaskActions.submit, state => ({
-            ...state,
-            torchFinanceTelegram: createEntity(
-                state.torchFinanceTelegram.data,
-                true
-            )
-        }));
-        builder.addCase(
-            checkTorchFinanceTelegramTaskActions.success,
-            (state, {payload}) => ({
-                ...state,
-                torchFinanceTelegram: createEntity(payload, false)
-            })
-        );
-        builder.addCase(
-            checkTorchFinanceTelegramTaskActions.fail,
-            (state, {payload: error}) => ({
-                ...state,
-                torchFinanceTelegram: createEntity(
-                    state.torchFinanceTelegram.data,
-                    false,
-                    error
-                )
-            })
-        );
+        builder.addCase(checkPartnerTaskActions.submit, (state, {payload}) => {
+            const taskKey = PartnerTasksKeyRecord[payload];
 
-        builder.addCase(checkTorchFinanceTwitterTaskActions.submit, state => ({
-            ...state,
-            torchFinanceTwitter: createEntity(
-                state.torchFinanceTwitter.data,
-                true
-            )
-        }));
-        builder.addCase(
-            checkTorchFinanceTwitterTaskActions.success,
-            (state, {payload}) => ({
+            return {
                 ...state,
-                torchFinanceTwitter: createEntity(payload, false)
-            })
-        );
-        builder.addCase(
-            checkTorchFinanceTwitterTaskActions.fail,
-            (state, {payload: error}) => ({
+                partners: {
+                    ...state.partners,
+                    [taskKey]: createEntity(
+                        state.partners[taskKey]?.data ?? 0,
+                        true
+                    )
+                }
+            };
+        });
+        builder.addCase(checkPartnerTaskActions.success, (state, {payload}) => {
+            const taskKey = PartnerTasksKeyRecord[payload.taskType];
+
+            return {
                 ...state,
-                torchFinanceTwitter: createEntity(
-                    state.torchFinanceTwitter.data,
-                    false,
-                    error
-                )
-            })
-        );
+                partners: {
+                    ...state.partners,
+                    [taskKey]: createEntity(payload.data, false)
+                }
+            };
+        });
+        builder.addCase(checkPartnerTaskActions.fail, (state, {payload}) => {
+            const taskKey = PartnerTasksKeyRecord[payload.taskType];
+
+            return {
+                ...state,
+                partners: {
+                    ...state.partners,
+                    [taskKey]: createEntity(
+                        state.partners[taskKey]?.data ?? 0,
+                        false,
+                        payload.error
+                    )
+                }
+            };
+        });
     }
 );

@@ -8,8 +8,6 @@ export type PointsAuthResponse = {
     referral: number;
     telegramChannel: number;
     xChannel: number;
-    torchFinance: {
-        telegram: number;
-        twitter: number;
-    };
+    // All partner tasks are located here
+    torchFinance?: Record<string, number>;
 };

@@ -9,8 +9,7 @@ export interface PointsState {
     referral: LoadableEntityState<number>;
     telegramChannel: LoadableEntityState<number>;
     xChannel: LoadableEntityState<number>;
-    torchFinanceTelegram: LoadableEntityState<number>;
-    torchFinanceTwitter: LoadableEntityState<number>;
+    partners: Record<string, LoadableEntityState<number>>;
 }
 
 export const pointsInitialState: PointsState = {
@@ -20,6 +19,5 @@ export const pointsInitialState: PointsState = {
     referral: createEntity(0),
     telegramChannel: createEntity(0),
     xChannel: createEntity(0),
-    torchFinanceTelegram: createEntity(0),
-    torchFinanceTwitter: createEntity(0)
+    partners: {}
 };
