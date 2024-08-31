@@ -54,6 +54,7 @@ export const pointsReducers = createReducer<PointsState>(
 
             return {
                 ...state,
+                refHash: payload.refHash,
                 tapTap: createEntity(payload.tapTap, false),
                 referral: createEntity(payload.referral, false),
                 telegramChannel: createEntity(payload.telegramChannel, false),

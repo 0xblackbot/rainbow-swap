@@ -14,7 +14,6 @@ import {TaskTypeEnum} from '../../../enums/task-type.enum';
 import {
     TELEGRAM_APP_LINK,
     TELEGRAM_CHANNEL_LINK,
-    UNSAFE_INIT_DATA,
     X_LINK
 } from '../../../globals';
 import {useDispatch} from '../../../store';
@@ -23,19 +22,21 @@ import {
     checkXChannelTaskActions
 } from '../../../store/points/points-actions';
 import {
+    useRefHashSelector,
     useTelegramChannelTaskSelector,
     useXChannelTaskSelector
 } from '../../../store/points/points-selectors';
 import {copyToClipboard} from '../../../utils/clipboard.utils';
 import {showSuccessToast} from '../../../utils/toast.utils';
 
-const REF_URL = `${TELEGRAM_APP_LINK}?startapp=${UNSAFE_INIT_DATA.userId}`;
-
 export const Tasks = () => {
     const dispatch = useDispatch();
 
     const telegramChannelTask = useTelegramChannelTaskSelector();
     const xChannelTask = useXChannelTaskSelector();
+
+    const refHash = useRefHashSelector();
+    const REF_URL = `${TELEGRAM_APP_LINK}?startapp=${refHash}`;
 
     const handleCopyClick = async () => {
         await copyToClipboard(REF_URL);

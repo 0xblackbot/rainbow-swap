@@ -36,3 +36,6 @@ export const usePartnerTaskSelector = (taskType: TaskTypeEnum) =>
 
         return points.partners[taskKey] ?? createEntity(0);
     });
+
+export const useRefHashSelector = () =>
+    useSelector(({points}) => points.refHash);
