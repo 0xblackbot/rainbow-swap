@@ -11,7 +11,10 @@ import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
-import {loadPointsActions} from '../../store/points/points-actions';
+import {
+    closePointsModal,
+    loadPointsActions
+} from '../../store/points/points-actions';
 import {loadAppStatusActions} from '../../store/security/security-actions';
 import {
     addPendingActivationTransactionActions,
@@ -35,6 +38,7 @@ export const HomeScreen = memo(() => {
     useTrackPageView('Home');
 
     useEffect(() => {
+        dispatch(closePointsModal());
         dispatch(loadAppStatusActions.submit());
         dispatch(loadAssetsActions.submit());
 
