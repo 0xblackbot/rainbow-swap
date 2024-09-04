@@ -11,7 +11,10 @@ const LinksRecord: Record<string, string> = {
     [TaskTypeEnum.TorchFinance_Telegram]: 'https://t.me/oxcurdle',
     [TaskTypeEnum.TorchFinance_Twitter]: 'https://x.com/TorchTon',
     [TaskTypeEnum.SnapX_Telegram]: 'https://t.me/SnapX_official',
-    [TaskTypeEnum.SnapX_Twitter]: 'https://x.com/snapx_co'
+    [TaskTypeEnum.SnapX_Twitter]: 'https://x.com/snapx_co',
+    [TaskTypeEnum.AppsCenter_Telegram]: 'https://t.me/+eTPf2XXxBixhMTgy',
+    [TaskTypeEnum.AppsCenter_Bot]:
+        'https://t.me/tapps_bot/app?startapp=promo_rainbow_swap'
 };
 
 interface Props {

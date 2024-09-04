@@ -1,3 +1,4 @@
+import appsCenter from './assets/apps-center.jpg';
 import referralImage from './assets/referral.png';
 import snapxImage from './assets/snapx.jpg';
 import telegramImage from './assets/telegram.png';
@@ -106,11 +107,27 @@ export const Tasks = () => {
 
             <Divider />
 
+            <TaskHeader name="Telegram Apps Center" imageSrc={appsCenter} />
+            <PartnerTaskItem
+                isTelegram={true}
+                imageSrc={telegramImage}
+                title="Join Channel"
+                taskType={TaskTypeEnum.AppsCenter_Telegram}
+            />
+            <PartnerTaskItem
+                isTelegram={true}
+                imageSrc={telegramImage}
+                title="Explore Telegram Apps"
+                taskType={TaskTypeEnum.AppsCenter_Bot}
+            />
+
+            <Divider />
+
             <TaskHeader name="Torch Finance" imageSrc={torchFinanceImage} />
             <PartnerTaskItem
                 isTelegram={true}
                 imageSrc={telegramImage}
-                title="Join Telegram"
+                title="Join Channel"
                 taskType={TaskTypeEnum.TorchFinance_Telegram}
             />
             <PartnerTaskItem
@@ -125,7 +142,7 @@ export const Tasks = () => {
             <PartnerTaskItem
                 isTelegram={true}
                 imageSrc={telegramImage}
-                title="Join Telegram"
+                title="Join Channel"
                 taskType={TaskTypeEnum.SnapX_Telegram}
             />
             <PartnerTaskItem
