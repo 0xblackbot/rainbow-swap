@@ -196,10 +196,7 @@ export const SwapScreen = () => {
                                 onClick={handleEnterSendAmount}
                             />
                         ) : (
-                            <SwapButton
-                                onSwap={handleSwap}
-                                outputAssetAmount={outputAssetAmount}
-                            />
+                            <SwapButton onSwap={handleSwap} />
                         )
                     ) : (
                         <FormButton

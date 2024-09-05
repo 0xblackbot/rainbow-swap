@@ -16,22 +16,33 @@ import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
 import {FormButton} from '../../../shared/form-button/form-button';
 import {useDispatch} from '../../../store';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
-import {useSwapRoutesSelector} from '../../../store/swap-routes/swap-routes-selectors';
+import {
+    useRoutesSelector,
+    useSwapRoutesSelector
+} from '../../../store/swap-routes/swap-routes-selectors';
 import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions';
 import {showSuccessToast} from '../../../utils/toast.utils';
 import {Disclaimer} from '../../disclaimer/disclaimer';
+import {useSwapInfo} from '../hooks/use-swap-info.hook';
 import styles from '../swap-button/swap-button.module.css';
 
 interface Props {
-    outputAssetAmount: string;
     onConfirm: () => void;
 }
 
-export const SwapDetails: FC<Props> = ({outputAssetAmount, onConfirm}) => {
+export const SwapDetails: FC<Props> = ({onConfirm}) => {
     const dispatch = useDispatch();
+    const routes = useRoutesSelector();
     const swapRoutes = useSwapRoutesSelector();
     const slippageTolerance = useSlippageToleranceSelector();
     const {inputAssetAmount, inputAsset, outputAsset} = useSwapForm();
+
+    const swapInfo = useSwapInfo(
+        inputAsset.decimals,
+        outputAsset.decimals,
+        slippageTolerance,
+        routes
+    );
 
     const wallet = useTonWallet();
     const sendTransaction = useSendTransaction();
@@ -53,13 +64,16 @@ export const SwapDetails: FC<Props> = ({outputAssetAmount, onConfirm}) => {
                 parseFloat(inputAssetAmount) *
                 parseFloat(inputAsset.exchangeRate);
 
-            trackSwapConfirmation(
-                transactionInfo.bocHash,
-                usdAmount,
-                inputAsset,
-                outputAsset,
-                Number(outputAssetAmount) ?? 0
-            );
+            trackSwapConfirmation({
+                bocHash: transactionInfo.bocHash,
+                usdValue: usdAmount,
+                inputAssetAddress: inputAsset.address,
+                inputAssetSymbol: inputAsset.symbol,
+                inputAssetAmount: Number(swapInfo.inputAssetAmount),
+                outputAssetAddress: outputAsset.address,
+                outputAssetSymbol: outputAsset.symbol,
+                outputAssetAmount: Number(swapInfo.outputAssetAmount)
+            });
 
             dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
             showSuccessToast('Swap sent, please wait...');
@@ -70,7 +84,7 @@ export const SwapDetails: FC<Props> = ({outputAssetAmount, onConfirm}) => {
     return (
         <>
             {rainbowWallet.isRequired && <RainbowWalletInfo />}
-            <SwapRouteInfo />
+            <SwapRouteInfo swapInfo={swapInfo} />
             <Disclaimer
                 title="Disclaimer"
                 description={

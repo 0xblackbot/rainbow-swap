@@ -1,6 +1,7 @@
 import {RouteStepWithCalculation} from 'rainbow-swap-sdk';
 import {useMemo} from 'react';
 
+import {SwapInfo} from '../../../interfaces/swap-info.interface';
 import {fromNano} from '../../../utils/big-int.utils';
 import {
     getSwapInputAssetAmount,
@@ -13,7 +14,7 @@ export const useSwapInfo = (
     slippageTolerance: string,
     routes: RouteStepWithCalculation[][]
 ) =>
-    useMemo(() => {
+    useMemo<SwapInfo>(() => {
         const nanoInputAssetAmount = getSwapInputAssetAmount(routes);
         const nanoOutputAssetAmount = getSwapOutputAssetAmount(routes);
 

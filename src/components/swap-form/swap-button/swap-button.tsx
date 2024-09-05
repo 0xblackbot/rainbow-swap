@@ -8,11 +8,10 @@ import {SwapDetails} from '../swap-details/swap-details';
 import {SwapDisabledBig} from '../swap-disabled/swap-disabled-big';
 
 interface Props {
-    outputAssetAmount: string;
     onSwap: () => void;
 }
 
-export const SwapButton: FC<Props> = ({outputAssetAmount, onSwap}) => {
+export const SwapButton: FC<Props> = ({onSwap}) => {
     const appStatus = useAppStatusSelector();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -35,10 +34,7 @@ export const SwapButton: FC<Props> = ({outputAssetAmount, onSwap}) => {
             >
                 <div className={styles.content_container}>
                     {appStatus.isSwapsEnabled ? (
-                        <SwapDetails
-                            outputAssetAmount={outputAssetAmount}
-                            onConfirm={handleConfirm}
-                        />
+                        <SwapDetails onConfirm={handleConfirm} />
                     ) : (
                         <SwapDisabledBig
                             message={appStatus.message}

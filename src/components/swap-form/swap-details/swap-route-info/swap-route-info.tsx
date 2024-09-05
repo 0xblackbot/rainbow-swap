@@ -3,6 +3,7 @@ import {FC, Fragment} from 'react';
 import styles from './swap-route-info.module.css';
 import {SwapIcon} from '../../../../assets/icons/SwapIcon/SwapIcon';
 import {useSwapForm} from '../../../../hooks/swap-form/swap-form.hook';
+import {SwapInfo} from '../../../../interfaces/swap-info.interface';
 import {useSlippageToleranceSelector} from '../../../../store/settings/settings-selectors';
 import {
     useIsRoutesLoadingSelector,
@@ -10,22 +11,18 @@ import {
 } from '../../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../../utils/format-number.utils';
 import {getClassName} from '../../../../utils/style.utils';
-import {useSwapInfo} from '../../hooks/use-swap-info.hook';
 import {RouteInfo} from '../route-info/route-info';
 
-export const SwapRouteInfo: FC = () => {
+interface Props {
+    swapInfo: SwapInfo;
+}
+
+export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
     const routes = useRoutesSelector();
     const isRoutesLoading = useIsRoutesLoadingSelector();
     const slippageTolerance = useSlippageToleranceSelector();
 
     const {inputAsset, outputAsset} = useSwapForm();
-
-    const swapInfo = useSwapInfo(
-        inputAsset.decimals,
-        outputAsset.decimals,
-        slippageTolerance,
-        routes
-    );
 
     return (
         <div className={styles.route_info_wrapper}>

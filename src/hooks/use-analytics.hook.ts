@@ -1,4 +1,4 @@
-import {Asset} from 'rainbow-swap-sdk';
+import axios from 'axios';
 import {useEffect} from 'react';
 import ReactGA from 'react-ga4';
 
@@ -23,27 +23,29 @@ export const trackButtonClick = (name: string) =>
         label: name
     });
 
-export const trackSwapConfirmation = (
-    bocHash: string,
-    usdValue: number,
-    inputAsset: Asset,
-    outputAsset: Asset,
-    outputAssetAmount: number
-) => {
+const API = axios.create({
+    baseURL: 'https://api.blackbot.technology/rainbow/analytics'
+});
+
+export const trackSwapConfirmation = (params: {
+    bocHash: string;
+    usdValue: number;
+    inputAssetAddress: string;
+    inputAssetSymbol: string;
+    inputAssetAmount: number;
+    outputAssetAddress: string;
+    outputAssetSymbol: string;
+    outputAssetAmount: number;
+}) => {
     if (isProd) {
-        ReactGA.gtag('event', 'purchase', {
-            transaction_id: bocHash,
-            value: usdValue,
-            currency: 'USD',
-            items: [
-                {
-                    item_id: `${inputAsset.address}_${outputAsset.address}`,
-                    item_name: `${inputAsset.symbol} - ${outputAsset.symbol}`,
-                    item_category: 'output_asset',
-                    price: usdValue,
-                    quantity: outputAssetAmount
-                }
-            ]
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        ReactGA.ga(tracker => {
+            API.post('/track-event', {
+                type: 'swap-confirmed',
+                clientId: tracker.get('clientId'),
+                ...params
+            });
         });
     }
 };
