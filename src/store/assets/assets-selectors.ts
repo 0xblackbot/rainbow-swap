@@ -7,7 +7,7 @@ const EMPTY_ASSET: Asset = {
     symbol: '???',
     name: 'Unknown token',
     address: 'unknown_token',
-    image: '/icons/unknown_asset.png',
+    image: './icons/unknown_asset.png',
     decimals: 0,
     exchangeRate: '0',
     verification: 'none'
