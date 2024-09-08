@@ -22,7 +22,7 @@ export const toNano = (src: string, decimals: number) => {
         whole = '0';
     }
     if (!frac) {
-        frac = '0';
+        frac = '';
     }
     if (frac.length > decimals) {
         throw Error('Invalid number');
