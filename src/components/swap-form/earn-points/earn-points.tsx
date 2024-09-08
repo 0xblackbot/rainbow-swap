@@ -8,6 +8,7 @@ export const EarnPoints = () => {
 
     const handleClick = () => dispatch(openPointsModal());
 
+    return null;
     return (
         <>
             {IS_TMA ? (
