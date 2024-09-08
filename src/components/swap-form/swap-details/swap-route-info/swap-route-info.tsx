@@ -79,7 +79,7 @@ export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>
-                <p>Fee</p>
+                <p>Routing Fee</p>
                 <p className={styles.value_text}>
                     <span className={styles.crossed_out}>0.1%</span>
                     <span className={styles.fee_text}> 0%</span>
@@ -93,7 +93,7 @@ export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
                 <p>Receive at least</p>
                 <p
                     className={styles.value_text}
-                >{`${swapInfo.minOutputAssetAmount} ${outputAsset.symbol}`}</p>
+                >{`${formatNumber(swapInfo.minOutputAssetAmount, 5)} ${outputAsset.symbol}`}</p>
             </div>
             <div className={styles.route_info_inside_div}>
                 <p>Swap route</p>
