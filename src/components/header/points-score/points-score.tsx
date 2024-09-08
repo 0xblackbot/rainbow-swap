@@ -9,7 +9,6 @@ export const PointsScore = () => {
 
     const handleClick = () => dispatch(openPointsModal());
 
-    return null;
     return (
         <div className={styles.container} onClick={handleClick}>
             <div className={styles.container_body}>

@@ -1,8 +1,3 @@
-import {
-    DexTypeEnum,
-    RouteDirectionEnum,
-    RouteStepWithCalculation
-} from 'rainbow-swap-sdk';
 import {FC, Fragment} from 'react';
 
 import styles from './swap-route-info.module.css';
@@ -22,60 +17,8 @@ interface Props {
     swapInfo: SwapInfo;
 }
 
-const precision = '000000000';
-
-const ROUTES_MOCK: RouteStepWithCalculation[][] = [
-    [
-        {
-            dexType: DexTypeEnum.DeDust,
-            dexPairAddress: '1',
-            inputAssetAddress: 'ton',
-            outputAssetAddress:
-                'EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT',
-            routeDirection: RouteDirectionEnum.Direct,
-            inputAssetAmount: '5420' + precision,
-            outputAssetAmount: '5420' + precision
-        },
-        {
-            dexType: DexTypeEnum.Ston,
-            dexPairAddress: '2',
-            inputAssetAddress:
-                'EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT',
-            outputAssetAddress:
-                'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
-            routeDirection: RouteDirectionEnum.Direct,
-            inputAssetAmount: '5420' + precision,
-            outputAssetAmount: '5420' + precision
-        }
-    ],
-    [
-        {
-            dexType: DexTypeEnum.Ston,
-            dexPairAddress: '3',
-            inputAssetAddress: 'ton',
-            outputAssetAddress:
-                'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
-            routeDirection: RouteDirectionEnum.Direct,
-            inputAssetAmount: '3375' + precision,
-            outputAssetAmount: '3375' + precision
-        }
-    ],
-    [
-        {
-            dexType: DexTypeEnum.DeDust,
-            dexPairAddress: '4',
-            inputAssetAddress: 'ton',
-            outputAssetAddress:
-                'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
-            routeDirection: RouteDirectionEnum.Direct,
-            inputAssetAmount: '1205' + precision,
-            outputAssetAmount: '1205' + precision
-        }
-    ]
-];
-
 export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
-    const routes = useRoutesSelector().length !== 0 ? ROUTES_MOCK : [];
+    const routes = useRoutesSelector();
     const isRoutesLoading = useIsRoutesLoadingSelector();
     const slippageTolerance = useSlippageToleranceSelector();
 
