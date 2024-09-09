@@ -4,6 +4,7 @@ import {
     addTapActions,
     checkPartnerTaskActions,
     checkTelegramChannelTaskActions,
+    checkTonAppTaskActions,
     checkXChannelTaskActions,
     closePointsModal,
     loadPointsActions,
@@ -40,6 +41,7 @@ export const pointsReducers = createReducer<PointsState>(
                 referral: createEntity(state.referral.data, true),
                 telegramChannel: createEntity(state.telegramChannel.data, true),
                 xChannel: createEntity(state.xChannel.data, true),
+                tonApp: createEntity(state.tonApp.data, true),
                 partners
             };
         });
@@ -59,6 +61,7 @@ export const pointsReducers = createReducer<PointsState>(
                 referral: createEntity(payload.referral, false),
                 telegramChannel: createEntity(payload.telegramChannel, false),
                 xChannel: createEntity(payload.xChannel, false),
+                tonApp: createEntity(payload.tonApp, false),
                 partners
             };
         });
@@ -79,6 +82,7 @@ export const pointsReducers = createReducer<PointsState>(
                     error
                 ),
                 xChannel: createEntity(state.xChannel.data, false, error),
+                tonApp: createEntity(state.tonApp.data, false, error),
                 partners
             };
         });
@@ -127,6 +131,22 @@ export const pointsReducers = createReducer<PointsState>(
             (state, {payload: error}) => ({
                 ...state,
                 xChannel: createEntity(state.xChannel.data, false, error)
+            })
+        );
+
+        builder.addCase(checkTonAppTaskActions.submit, state => ({
+            ...state,
+            tonApp: createEntity(state.tonApp.data, true)
+        }));
+        builder.addCase(checkTonAppTaskActions.success, (state, {payload}) => ({
+            ...state,
+            tonApp: createEntity(payload, false)
+        }));
+        builder.addCase(
+            checkTonAppTaskActions.fail,
+            (state, {payload: error}) => ({
+                ...state,
+                tonApp: createEntity(state.tonApp.data, false, error)
             })
         );
 

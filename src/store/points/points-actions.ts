@@ -23,6 +23,9 @@ export const checkTelegramChannelTaskActions = createActions<void, number>(
 export const checkXChannelTaskActions = createActions<void, number>(
     'points/CHECK_X_CHANNEL_TASK'
 );
+export const checkTonAppTaskActions = createActions<void, number>(
+    'points/CHECK_TON_APP_TASK'
+);
 
 export const checkPartnerTaskActions = createActions<
     string,

@@ -49,7 +49,7 @@ export const PartnerTaskItem: FC<Props> = ({
         <TaskItem
             imageSrc={imageSrc}
             title={title}
-            description="+1000 points"
+            description="+1,000 points"
             onClick={handleClick}
         >
             <TaskStatus

@@ -50,3 +50,4 @@ export const TELEGRAM_APP_LINK = `${TELEGRAM_BOT_LINK}/app`;
 export const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';
 export const COMMUNITY_CHAT_LINK = 'https://t.me/rainbow_swap_chat';
 export const X_LINK = 'https://x.com/rainbow_swap';
+export const TON_APP_LINK = 'https://ton.app/dex/rainbow-swap?id=2525';

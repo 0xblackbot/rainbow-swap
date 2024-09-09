@@ -8,6 +8,7 @@ import {
     addTapActions,
     checkPartnerTaskActions,
     checkTelegramChannelTaskActions,
+    checkTonAppTaskActions,
     checkXChannelTaskActions,
     loadPointsActions
 } from './points-actions';
@@ -79,6 +80,22 @@ const checkXChannelTaskEpic: Epic<Action> = action$ =>
         )
     );
 
+const checktonAppTaskEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(checkTonAppTaskActions.submit),
+        switchMap(() =>
+            from(
+                getTaskCheck({
+                    initData: INIT_DATA,
+                    taskType: TaskTypeEnum.TonApp
+                })
+            ).pipe(
+                map(response => checkTonAppTaskActions.success(response)),
+                catchError(err => of(checkTonAppTaskActions.fail(err.message)))
+            )
+        )
+    );
+
 const checkPartnerTaskEpic: Epic<Action> = action$ =>
     action$.pipe(
         ofType(checkPartnerTaskActions.submit),
@@ -108,5 +125,6 @@ export const pointsEpics = combineEpics(
     addTapEpic,
     checkTelegramChannelTaskEpic,
     checkXChannelTaskEpic,
+    checktonAppTaskEpic,
     checkPartnerTaskEpic
 );

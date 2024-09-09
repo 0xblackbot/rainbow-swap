@@ -2,6 +2,7 @@ import appsCenter from './assets/apps-center.jpg';
 import referralImage from './assets/referral.png';
 import snapxImage from './assets/snapx.jpg';
 import telegramImage from './assets/telegram.png';
+import tonAppImage from './assets/ton-app.png';
 import torchFinanceImage from './assets/torch-finance.jpeg';
 import twitterImage from './assets/twitter.png';
 import {Divider} from './divider/divider';
@@ -15,16 +16,19 @@ import {TaskTypeEnum} from '../../../enums/task-type.enum';
 import {
     TELEGRAM_APP_LINK,
     TELEGRAM_CHANNEL_LINK,
+    TON_APP_LINK,
     X_LINK
 } from '../../../globals';
 import {useDispatch} from '../../../store';
 import {
     checkTelegramChannelTaskActions,
+    checkTonAppTaskActions,
     checkXChannelTaskActions
 } from '../../../store/points/points-actions';
 import {
     useRefHashSelector,
     useTelegramChannelTaskSelector,
+    useTonAppTaskSelector,
     useXChannelTaskSelector
 } from '../../../store/points/points-selectors';
 import {copyToClipboard} from '../../../utils/clipboard.utils';
@@ -35,6 +39,7 @@ export const Tasks = () => {
 
     const telegramChannelTask = useTelegramChannelTaskSelector();
     const xChannelTask = useXChannelTaskSelector();
+    const tonAppTask = useTonAppTaskSelector();
 
     const refHash = useRefHashSelector();
     const REF_URL = `${TELEGRAM_APP_LINK}?startapp=${refHash}`;
@@ -67,6 +72,13 @@ export const Tasks = () => {
         }
     };
 
+    const handleTonAppClick = () => {
+        window.Telegram.WebApp.openLink(TON_APP_LINK);
+        if (tonAppTask.data === 0) {
+            dispatch(checkTonAppTaskActions.submit());
+        }
+    };
+
     return (
         <>
             <Divider />
@@ -75,7 +87,7 @@ export const Tasks = () => {
             <TaskItem
                 imageSrc={referralImage}
                 title="Invite friends"
-                description="+5000 points per 1 friend"
+                description="+5,000 points per 1 friend"
                 onClick={handleCopyClick}
             >
                 <p className={styles.invite_button} onClick={handleInviteClick}>
@@ -85,7 +97,7 @@ export const Tasks = () => {
             <TaskItem
                 imageSrc={telegramImage}
                 title="Join Channel"
-                description="+2000 points"
+                description="+2,000 points"
                 onClick={handleJoinChannelClick}
             >
                 <TaskStatus
@@ -96,12 +108,23 @@ export const Tasks = () => {
             <TaskItem
                 imageSrc={twitterImage}
                 title="Follow X"
-                description="+2000 points"
+                description="+2,000 points"
                 onClick={handleFollowXClick}
             >
                 <TaskStatus
                     points={xChannelTask.data}
                     isLoading={xChannelTask.isLoading}
+                />
+            </TaskItem>
+            <TaskItem
+                imageSrc={tonAppImage}
+                title="Leave a review"
+                description="+10,000 points"
+                onClick={handleTonAppClick}
+            >
+                <TaskStatus
+                    points={tonAppTask.data}
+                    isLoading={tonAppTask.isLoading}
                 />
             </TaskItem>
 

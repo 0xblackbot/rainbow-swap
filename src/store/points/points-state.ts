@@ -9,6 +9,7 @@ export interface PointsState {
     referral: LoadableEntityState<number>;
     telegramChannel: LoadableEntityState<number>;
     xChannel: LoadableEntityState<number>;
+    tonApp: LoadableEntityState<number>;
     partners: Record<string, LoadableEntityState<number>>;
 }
 
@@ -20,5 +21,6 @@ export const pointsInitialState: PointsState = {
     referral: createEntity(0),
     telegramChannel: createEntity(0),
     xChannel: createEntity(0),
+    tonApp: createEntity(0),
     partners: {}
 };

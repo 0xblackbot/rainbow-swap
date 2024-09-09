@@ -29,6 +29,8 @@ export const useTelegramChannelTaskSelector = () =>
     useSelector(({points}) => points.telegramChannel);
 export const useXChannelTaskSelector = () =>
     useSelector(({points}) => points.xChannel);
+export const useTonAppTaskSelector = () =>
+    useSelector(({points}) => points.tonApp);
 
 export const usePartnerTaskSelector = (taskType: TaskTypeEnum) =>
     useSelector(({points}) => {
