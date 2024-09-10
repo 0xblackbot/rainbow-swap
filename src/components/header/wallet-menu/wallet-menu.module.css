@@ -41,17 +41,18 @@
     padding: var(--step);
     border-radius: var(--2-step);
     box-shadow: 0 2px 2px black;
-    transform: translateX(500%);
-    transition: transform 0.3s ease-in-out;
+    transform: translateX(50vw);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;;
 }
 
 .wallet_button.open .menu_content {
     transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
 }
 
-.wallet_button.close .menu_content {
-    transform: translateX(500%);
-}
 .menu_button {
     justify-content: center;
     padding: var(--step);
