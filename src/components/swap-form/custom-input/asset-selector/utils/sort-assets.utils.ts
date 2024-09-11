@@ -14,9 +14,9 @@ export const sortAssets = (
         const aBalance = balances[a.address] || '0';
         const bBalance = balances[b.address] || '0';
 
-        const aUsdValue = parseFloat(aBalance) * parseFloat(a.exchangeRate);
+        const aUsdValue = parseFloat(aBalance) * a.usdExchangeRate;
 
-        const bUsdValue = parseFloat(bBalance) * parseFloat(b.exchangeRate);
+        const bUsdValue = parseFloat(bBalance) * b.usdExchangeRate;
 
         return bUsdValue - aUsdValue;
     });

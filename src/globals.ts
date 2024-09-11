@@ -2,7 +2,6 @@ import {isNotEmptyString} from '@rnw-community/shared';
 import axios from 'axios';
 import {Api, HttpClient} from 'tonapi-sdk-js';
 
-import {COIN_GECKO_API_KEY} from './secrets';
 import {toNano} from './utils/big-int.utils';
 
 export const isProd = import.meta.env.PROD;
@@ -20,13 +19,6 @@ export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);
 
 export const API = axios.create({
     baseURL: 'https://api.blackbot.technology/rainbow/api'
-});
-
-export const COIN_GECKO_API = axios.create({
-    baseURL: 'https://api.coingecko.com/api/v3',
-    headers: {
-        'x-cg-demo-api-key': COIN_GECKO_API_KEY
-    }
 });
 
 export const TON_API_CLIENT = new Api(

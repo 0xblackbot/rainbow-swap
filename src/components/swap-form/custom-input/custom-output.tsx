@@ -17,8 +17,7 @@ export const CustomOutput: FC<Props> = memo(
     ({balance = '0', inputValue, assetValue, onAssetValueChange}) => {
         const isRoutesLoading = useIsRoutesLoadingSelector();
 
-        const usdAmount =
-            parseFloat(inputValue) * parseFloat(assetValue.exchangeRate);
+        const usdAmount = parseFloat(inputValue) * assetValue.usdExchangeRate;
 
         return (
             <div className={styles.container}>

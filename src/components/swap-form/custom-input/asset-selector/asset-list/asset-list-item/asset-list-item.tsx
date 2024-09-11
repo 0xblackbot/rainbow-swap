@@ -12,8 +12,7 @@ export const AssetListItem: FC<
 > = ({index, style, data}) => {
     const item = data[index];
 
-    const usdAmount =
-        parseFloat(item.balance) * parseFloat(item.asset.exchangeRate);
+    const usdAmount = parseFloat(item.balance) * item.asset.usdExchangeRate;
 
     return (
         <div style={style} onClick={item.onClick}>

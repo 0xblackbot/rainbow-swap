@@ -61,8 +61,7 @@ export const SwapDetails: FC<Props> = ({onConfirm}) => {
 
         if (isDefined(transactionInfo)) {
             const usdAmount =
-                parseFloat(inputAssetAmount) *
-                parseFloat(inputAsset.exchangeRate);
+                parseFloat(inputAssetAmount) * inputAsset.usdExchangeRate;
 
             trackSwapConfirmation({
                 bocHash: transactionInfo.bocHash,

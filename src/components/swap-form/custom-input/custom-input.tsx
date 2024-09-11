@@ -46,8 +46,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             }
         };
 
-        const usdAmount =
-            parseFloat(inputValue) * parseFloat(assetValue.exchangeRate);
+        const usdAmount = parseFloat(inputValue) * assetValue.usdExchangeRate;
 
         const setMaxAssetAmount = () => {
             const checkedBalance = getMaxSentAmount(
