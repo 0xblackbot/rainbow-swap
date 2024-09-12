@@ -2,7 +2,7 @@ import axios from 'axios';
 import {useEffect} from 'react';
 import ReactGA from 'react-ga4';
 
-import {isProd} from '../globals';
+import {INIT_DATA, isProd} from '../globals';
 
 export const useTrackPageView = (name: string, isOpen = true) =>
     useEffect(() => {
@@ -42,6 +42,7 @@ export const trackSwapConfirmation = (params: {
         // @ts-expect-error
         ReactGA.ga(tracker => {
             API.post('/track-event', {
+                initData: INIT_DATA,
                 type: 'swap-confirmed',
                 clientId: tracker.get('clientId'),
                 ...params

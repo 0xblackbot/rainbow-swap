@@ -38,6 +38,7 @@ export const pointsReducers = createReducer<PointsState>(
                 ...state,
                 localTapTap: 0,
                 tapTap: createEntity(state.tapTap.data, true),
+                swapsVolume: createEntity(state.swapsVolume.data, true),
                 referral: createEntity(state.referral.data, true),
                 telegramChannel: createEntity(state.telegramChannel.data, true),
                 xChannel: createEntity(state.xChannel.data, true),
@@ -58,6 +59,7 @@ export const pointsReducers = createReducer<PointsState>(
                 ...state,
                 refHash: payload.refHash,
                 tapTap: createEntity(payload.tapTap, false),
+                swapsVolume: createEntity(payload.swapsVolume, false),
                 referral: createEntity(payload.referral, false),
                 telegramChannel: createEntity(payload.telegramChannel, false),
                 xChannel: createEntity(payload.xChannel, false),
@@ -75,6 +77,7 @@ export const pointsReducers = createReducer<PointsState>(
             return {
                 ...state,
                 tapTap: createEntity(state.tapTap.data, false, error),
+                swapsVolume: createEntity(state.swapsVolume.data, false, error),
                 referral: createEntity(state.referral.data, false, error),
                 telegramChannel: createEntity(
                     state.telegramChannel.data,

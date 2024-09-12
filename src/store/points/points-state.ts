@@ -6,6 +6,7 @@ export interface PointsState {
     localTapTap: number;
     refHash: string;
     tapTap: LoadableEntityState<number>;
+    swapsVolume: LoadableEntityState<number>;
     referral: LoadableEntityState<number>;
     telegramChannel: LoadableEntityState<number>;
     xChannel: LoadableEntityState<number>;
@@ -18,6 +19,7 @@ export const pointsInitialState: PointsState = {
     localTapTap: 0,
     refHash: '',
     tapTap: createEntity(0),
+    swapsVolume: createEntity(0),
     referral: createEntity(0),
     telegramChannel: createEntity(0),
     xChannel: createEntity(0),

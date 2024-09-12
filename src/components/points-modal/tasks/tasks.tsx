@@ -1,4 +1,5 @@
 import appsCenter from './assets/apps-center.jpg';
+import inviteImage from './assets/invite.png';
 import referralImage from './assets/referral.png';
 import snapxImage from './assets/snapx.jpg';
 import telegramImage from './assets/telegram.png';
@@ -23,7 +24,8 @@ import {useDispatch} from '../../../store';
 import {
     checkTelegramChannelTaskActions,
     checkTonAppTaskActions,
-    checkXChannelTaskActions
+    checkXChannelTaskActions,
+    closePointsModal
 } from '../../../store/points/points-actions';
 import {
     useRefHashSelector,
@@ -43,6 +45,8 @@ export const Tasks = () => {
 
     const refHash = useRefHashSelector();
     const REF_URL = `${TELEGRAM_APP_LINK}?startapp=${refHash}`;
+
+    const handleSwap = () => dispatch(closePointsModal());
 
     const handleCopyClick = async () => {
         await copyToClipboard(REF_URL);
@@ -86,8 +90,18 @@ export const Tasks = () => {
             <p className={styles.title}>Earn more</p>
             <TaskItem
                 imageSrc={referralImage}
+                title="Perform trades"
+                description="+5,000 per $100+ swap"
+                onClick={handleSwap}
+            >
+                <p className={styles.invite_button} onClick={handleSwap}>
+                    Swap
+                </p>
+            </TaskItem>
+            <TaskItem
+                imageSrc={inviteImage}
                 title="Invite friends"
-                description="+5,000 points per 1 friend"
+                description="+5,000 per 1 friend"
                 onClick={handleCopyClick}
             >
                 <p className={styles.invite_button} onClick={handleInviteClick}>

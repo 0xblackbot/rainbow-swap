@@ -19,10 +19,12 @@ import {
     checkIsRainbowWalletActiveActions,
     loadBalancesActions
 } from './wallet-actions';
+import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
 import {TonBalanceArray} from '../../interfaces/ton-balance-response.interface';
 import {getBalancesRecord} from '../../utils/balances-record.utils';
 import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
+import {loadPointsActions} from '../points/points-actions';
 
 const walletEpic = (action$: Observable<Action>) =>
     action$.pipe(
@@ -63,10 +65,23 @@ const addPendingSwapTransactionEpic: Epic<Action> = action$ =>
                     payload.bocHash
                 )
             ).pipe(
-                concatMap(() => [
-                    addPendingSwapTransactionActions.success(),
-                    loadBalancesActions.submit(payload.senderRawAddress)
-                ]),
+                concatMap(() => {
+                    const actions: Action<string>[] = [
+                        addPendingSwapTransactionActions.success(),
+                        loadBalancesActions.submit(payload.senderRawAddress)
+                    ];
+
+                    if (IS_TMA) {
+                        actions.push(
+                            loadPointsActions.submit({
+                                initData: INIT_DATA,
+                                refParent: UNSAFE_INIT_DATA.ref_parent
+                            })
+                        );
+                    }
+
+                    return actions;
+                }),
                 catchError(err =>
                     of(addPendingSwapTransactionActions.fail(err.message))
                 )

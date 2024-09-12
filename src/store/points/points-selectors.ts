@@ -17,6 +17,7 @@ export const usePointsSelector = () =>
             data:
                 points.localTapTap +
                 points.tapTap.data +
+                points.swapsVolume.data +
                 points.referral.data +
                 points.telegramChannel.data +
                 points.xChannel.data +
