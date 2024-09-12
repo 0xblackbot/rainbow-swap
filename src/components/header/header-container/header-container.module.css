@@ -20,4 +20,5 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--step) var(--2-step);
+    position: relative;
 }

@@ -10,11 +10,13 @@
 .left_div {
     display: flex;
     align-items: center;
+    margin-right: var(--step);
 }
 
 .right_div {
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
   
 .logo_text path {

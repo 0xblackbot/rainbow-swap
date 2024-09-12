@@ -19,6 +19,9 @@
     background-size: 200% 200%;
     animation: anim 6s linear infinite;
     cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .container_body {
@@ -30,6 +33,8 @@
 .text {
     font-size: 13px;
     color: var(--text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @keyframes anim {
