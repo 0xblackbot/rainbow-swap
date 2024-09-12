@@ -84,6 +84,7 @@
     justify-content: space-between;
     margin-top: var(--step);
     color: var(--hint-color);
+    white-space: nowrap;
 }
 
 .input_info_button {
@@ -98,6 +99,7 @@
 .input_info_balance {
     display: flex;
     align-items: center;
+    margin-right: var(--step);
 }
 
 .loader_spinner {

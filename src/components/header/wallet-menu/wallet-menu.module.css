@@ -4,7 +4,6 @@
     border-radius: var(--4-step);
     padding: var(--step) var(--2-step);
     cursor: pointer;
-    position: relative;
     z-index: 11;
     font-size: 13px;
 }
@@ -33,7 +32,7 @@
 .menu_content {
     position: absolute;
     top: var(--header-height);
-    right: 0;
+    right: var(--2-step);
     display: grid;
     gap: var(--step);
     background-color: var(--secondary-bg-color);
