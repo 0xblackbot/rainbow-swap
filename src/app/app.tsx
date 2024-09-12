@@ -21,7 +21,7 @@ export const App = () => {
         window.Telegram.WebApp.disableVerticalSwipes();
         window.Telegram.WebApp.MainButton.show();
         // We wait for MainButton to be initialized
-        setTimeout(() => viewportHeight.updateValue(), 100);
+        setTimeout(() => viewportHeight.updateValue(), 300);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
