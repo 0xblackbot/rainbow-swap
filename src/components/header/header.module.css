@@ -8,17 +8,24 @@
 }
 
 .left_div {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
     display: flex;
     align-items: center;
     margin-right: var(--step);
 }
 
 .right_div {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 0;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    justify-content: flex-end;
 }
-  
+
 .logo_text path {
     fill: var(--text-color);
 }
