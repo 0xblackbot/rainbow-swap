@@ -4,6 +4,7 @@ import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {CustomInput} from './custom-input/custom-input';
 import {CustomOutput} from './custom-input/custom-output';
+import {FarmVolume} from './farm-volume/farm-volume';
 import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook';
 import {PendingSwap} from './pending-swap/pending-swap';
 import {RateInfo} from './rate-info/rate-info';
@@ -186,6 +187,7 @@ export const SwapScreen = () => {
                         inputAssetAmount={inputAssetAmount}
                         routes={routes}
                     />
+                    <FarmVolume />
                     {!appStatus.isSwapsEnabled && (
                         <SwapDisabled message={appStatus.message} />
                     )}

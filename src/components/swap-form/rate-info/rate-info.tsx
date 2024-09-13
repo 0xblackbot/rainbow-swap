@@ -5,7 +5,6 @@ import styles from './rate-info.module.css';
 import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
 import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
-import {EarnPoints} from '../earn-points/earn-points';
 import {useSwapInfo} from '../hooks/use-swap-info.hook';
 
 interface Props {
@@ -41,7 +40,6 @@ export const RateInfo: FC<Props> = ({
                       )} ${outputAsset.symbol}`
                     : 'No routes available'
                 : null}
-            <EarnPoints />
         </div>
     );
 };
