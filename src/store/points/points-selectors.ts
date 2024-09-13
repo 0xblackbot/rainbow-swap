@@ -21,6 +21,7 @@ export const usePointsSelector = () =>
                 points.referral.data +
                 points.telegramChannel.data +
                 points.xChannel.data +
+                points.tonApp.data +
                 partnersPoints,
             isLoading: points.tapTap.isLoading
         };
