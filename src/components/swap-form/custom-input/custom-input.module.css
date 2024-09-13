@@ -68,7 +68,6 @@
     color: var(--hint-color);
 }
 
-
 .input_wrapper {
   position: relative;
   display: flex;
@@ -77,6 +76,10 @@
   width: 69%; /* Any width required to make flex: 1 work*/
   flex: 1;
   overflow: hidden;
+}
+
+.output_wrapper {
+    cursor: default;
 }
 
 .input_info {

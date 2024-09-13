@@ -5,6 +5,7 @@ import {AssetSelector} from './asset-selector/asset-selector';
 import styles from './custom-input.module.css';
 import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
+import {getClassName} from '../../../utils/style.utils';
 
 interface Props {
     balance: string | undefined;
@@ -28,7 +29,12 @@ export const CustomOutput: FC<Props> = memo(
                         headerTitle="Select output asset"
                         onChange={onAssetValueChange}
                     />
-                    <div className={styles.input_wrapper}>
+                    <div
+                        className={getClassName(
+                            styles.input_wrapper,
+                            styles.output_wrapper
+                        )}
+                    >
                         <div className={styles.empty_container}>
                             {isRoutesLoading ? (
                                 <div className={styles.loader_spinner} />
