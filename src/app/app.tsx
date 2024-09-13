@@ -15,11 +15,16 @@ export const App = () => {
     useStateVersionCheck();
 
     useEffect(() => {
+        const computedStyle = getComputedStyle(document.documentElement);
+        const bgColor = computedStyle.getPropertyValue('--bg-color').trim();
+
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
         window.Telegram.WebApp.enableClosingConfirmation();
         window.Telegram.WebApp.disableVerticalSwipes();
         window.Telegram.WebApp.MainButton.show();
+        window.Telegram.WebApp.setHeaderColor(bgColor);
+        window.Telegram.WebApp.setBackgroundColor(bgColor);
         // We wait for MainButton to be initialized
         setTimeout(() => viewportHeight.updateValue(), 300);
         // eslint-disable-next-line react-hooks/exhaustive-deps
