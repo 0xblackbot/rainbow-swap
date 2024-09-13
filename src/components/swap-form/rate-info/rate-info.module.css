@@ -2,8 +2,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-bottom: var(--2-step);
     color: var(--hint-color);
     height: 22px;
+}
+
+.attention_text {
+    color: rgba(var(--danger-color));
 }

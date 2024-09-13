@@ -1,7 +1,7 @@
 .container {
     display: flex;
     align-items: center;
-    background: rgba(255, 91, 0, 0.1);
+    background: rgba(var(--danger-color), 0.1);
     border-radius: var(--border-radius);
     margin-bottom: var(--2-step);
     padding: var(--2-step);

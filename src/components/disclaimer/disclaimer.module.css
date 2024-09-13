@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    background: rgba(255, 91, 0, 0.1);
+    background: rgba(var(--danger-color), 0.1);
     border-radius: var(--border-radius);
     margin-bottom: var(--2-step);
     padding: var(--2-step);
@@ -22,7 +22,7 @@
 .header_text {
     margin-left: var(--step);
     font-family: 'Basel', sans-serif;
-    color: rgba(255, 91, 0);
+    color: rgba(var(--danger-color));
 }
 
 .chevron {

@@ -32,14 +32,20 @@ export const RateInfo: FC<Props> = ({
 
     return (
         <div className={styles.rate_div}>
-            {inputAssetAmount.length !== 0 && !isRoutesLoading
-                ? routes.length > 0
-                    ? `1 ${inputAsset.symbol} = ${formatNumber(
-                          swapInfo.exchangeRate,
-                          5
-                      )} ${outputAsset.symbol}`
-                    : 'No routes available'
-                : null}
+            <p className={styles.attention_text}>
+                {inputAsset.address === outputAsset.address &&
+                    'Arbitrage mode!'}
+            </p>
+            <p>
+                {inputAssetAmount.length !== 0 && !isRoutesLoading
+                    ? routes.length > 0
+                        ? `1 ${inputAsset.symbol} = ${formatNumber(
+                              swapInfo.exchangeRate,
+                              5
+                          )} ${outputAsset.symbol}`
+                        : 'No routes available'
+                    : null}
+            </p>
         </div>
     );
 };
