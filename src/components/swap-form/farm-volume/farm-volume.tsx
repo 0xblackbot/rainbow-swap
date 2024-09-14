@@ -52,7 +52,7 @@ export const FarmVolume = () => {
                             className={styles.button}
                             onClick={handleFarmVolumeClick}
                         >
-                            Farm trading volume
+                            Swap tokens
                         </p>
                     </div>
                     <div className={styles.message_container}>
