@@ -19,6 +19,7 @@
 .title {
     font-size: 20px;
     color: var(--text-color);
+    margin-bottom: var(--2-step);
 }
 
 .list_container {
@@ -30,8 +31,7 @@
 .message_container {
     display: flex;
     align-items: center;
-    margin-left: var(--step);
-    margin-top: var(--step);
+    margin: var(--half-step) 0 var(--half-step) var(--step);
     white-space: nowrap;
     text-overflow: ellipsis;
 }
