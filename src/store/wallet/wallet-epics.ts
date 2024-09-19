@@ -34,7 +34,12 @@ const walletEpic = (action$: Observable<Action>) =>
             from(
                 Promise.all([
                     axios.get<BalancesArray>(
-                        `https://tonapi.io/v2/accounts/${payload}/jettons`
+                        `https://tonapi.io/v2/accounts/${payload}/jettons`,
+                        {
+                            params: {
+                                supported_extensions: 'custom_payload'
+                            }
+                        }
                     ),
                     axios.get<TonBalanceArray>(
                         `https://tonapi.io/v2/accounts/${payload}`
