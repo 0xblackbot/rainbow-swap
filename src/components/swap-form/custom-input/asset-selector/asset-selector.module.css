@@ -47,7 +47,7 @@
 .xcircleIcon {
     position: absolute;
     cursor: pointer;
-    right: 12px;
+    right: var(--step);
     top: 50%;
     transform: translateY(-50%);
     color: var(--hint-color);

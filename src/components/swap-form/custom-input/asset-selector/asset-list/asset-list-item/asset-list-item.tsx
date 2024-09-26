@@ -31,9 +31,7 @@ export const AssetListItem: FC<
                                 />
                             )}
                         </div>
-                        <p className={styles.asset_name}>
-                            {item.asset.name}
-                        </p>
+                        <p className={styles.asset_name}>{item.asset.name}</p>
                     </div>
                 </div>
                 <div className={styles.select_list_item_balance}>

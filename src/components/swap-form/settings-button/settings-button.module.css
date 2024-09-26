@@ -1,99 +1,85 @@
-.content_container{
+.content_container {
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: var(--2-step);
     overflow-y: scroll;
+    border-top: 1px solid var(--border-color);
 }
 
-.settings_icon{
+.settings_icon {
     margin-left: var(--step);
     color: var(--hint-color);
     transition: color 0.2s ease-in-out;
     cursor: pointer;
 }
 
-.content_name_p{
+.content_name_p {
     color: var(--text-color);
     font-size: 15px;
     margin-top: var(--step);
 }
-.content_text_p{
+
+.content_text_p {
     color: var(--hint-color);
     font-size: 15px;
     margin-top: var(--step);
 }
 
-.settings_icon:hover{
+.settings_icon:hover {
     color: var(--text-color);
 }
 
 .input_container {
     position: relative;
     display: flex;
+    margin-top: var(--2-step);
 }
 
 .content_input {
-    margin-top: var(--2-step);
-    background-color: var(--secondary-bg-color);
+    width: 100%;
+    background: var(--secondary-bg-color);
+    border-radius: 999999px;
+    padding: var(--step) var(--3-step);
     color: var(--text-color);
-    padding: 18px 15px;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    font-size: 15px;
-    outline: none;
-    transition: border 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    flex:1;
-    column-gap: 8px;
-}
-
-.content_input:hover,
-.content_input:focus {
-    border: 1px solid var(--button-color);
+    font-size: 16px;
+    height: var(--4-step);
 }
 
 .percent_symbol {
     position: absolute;
     right: var(--2-step);
-    top: 47.5%;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--hint-color);
     font-size: 15px;
-    margin-left: 4px;
 }
 
 .tolerance_buttons_container {
     display: flex;
-    gap: 0.75rem; 
     justify-content: space-between;
     margin-top: var(--2-step);
 }
 
-.tolerance_button{
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    background-color: transparent; 
+.tolerance_button {
+    width: 30%;
+    background-color: var(--secondary-bg-color);
+    justify-content: center;
+    padding: var(--step);
+    border-radius: var(--3-step);
     cursor: pointer;
-    height: 48px;
-    width: 100%;
-    transition: border 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tolerance_button_active{
+.tolerance_button_active {
     border: 1px solid var(--button-color);
 }
 
-.tolerance_button p{
-    display: inline-flex; 
-    justify-content: center; 
-    align-items: center; 
+.tolerance_button p {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     color: var(--text-color);
-}
-
-.tolerance_button:hover{
-    background-color: var(--secondary-bg-color);
+    font-size: 15px;
 }
 
 .main_button {
