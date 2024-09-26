@@ -30,12 +30,15 @@ export const CustomOutput: FC<Props> = memo(
                             styles.output_wrapper
                         )}
                     >
-                        <span className={styles.span_field}>{inputValue}</span>
-                        <div className={styles.empty_container}>
-                            {isRoutesLoading ? (
-                                <div className={styles.loader_spinner} />
-                            ) : null}
-                        </div>
+                        <span
+                            className={getClassName(
+                                styles.span_field,
+                                isRoutesLoading ? styles.span_pulsing : ''
+                            )}
+                        >
+                            {inputValue}
+                        </span>
+                        <div className={styles.empty_container} />
                     </div>
                     <AssetSelector
                         value={assetValue}

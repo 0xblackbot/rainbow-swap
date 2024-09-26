@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: var(--secondary-bg-color);
     border-radius: var(--border-radius);
-    padding:var(--2-step);
+    padding: var(--2-step);
     position: relative;
 }
 
@@ -12,7 +12,7 @@
     font-size: 15px;
 }
 
-.info_div{
+.info_div {
     justify-content: space-between;
     align-items: center;
     color: var(--hint-color);
@@ -34,11 +34,12 @@
     width: 69%;
     flex: 1;
 }
-.input_field::placeholder{
+
+.input_field::placeholder {
     color: var(--hint-color);
 }
 
-.input_overlay{
+.input_overlay {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -58,6 +59,23 @@
     min-width: 30px;
 }
 
+.span_pulsing {
+    color: var(--hint-color);
+    animation: pulse 0.8s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .span_field:focus {
     outline: none;
 }
@@ -68,12 +86,12 @@
 }
 
 .input_wrapper {
-  position: relative;
-  display: flex;
-  cursor: text;
-  width: 69%; /* Any width required to make flex: 1 work*/
-  flex: 1;
-  overflow: hidden;
+    position: relative;
+    display: flex;
+    cursor: text;
+    width: 69%; /* Any width required to make flex: 1 work*/
+    flex: 1;
+    overflow: hidden;
 }
 
 .output_wrapper {
@@ -112,11 +130,15 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.empty_container{
+.empty_container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,7 +146,7 @@
     margin: 0 var(--half-step);
 }
 
-.input_usd_balance{
+.input_usd_balance {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -22,10 +22,7 @@ import {ContentContainer} from '../../shared/content-container/content-container
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
 import {useAppStatusSelector} from '../../store/security/security-selectors';
-import {
-    loadSwapRoutesActions,
-    resetSwapRoutes
-} from '../../store/swap-routes/swap-routes-actions';
+import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {useRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
 import {useBalancesSelector} from '../../store/wallet/wallet-selectors';
 import {toNano} from '../../utils/big-int.utils';
@@ -74,7 +71,6 @@ export const SwapScreen = () => {
     );
 
     useEffect(() => {
-        dispatch(resetSwapRoutes());
         dispatch(
             loadSwapRoutesActions.submit({
                 inputAssetAmount: nanoInputAssetAmount,
