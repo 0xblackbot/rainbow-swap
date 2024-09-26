@@ -15,12 +15,12 @@
 
 .content_name_p{
     color: var(--text-color);
-    font-size: 16px;
+    font-size: 15px;
     margin-top: var(--step);
 }
 .content_text_p{
     color: var(--hint-color);
-    font-size: 16px;
+    font-size: 15px;
     margin-top: var(--step);
 }
 
@@ -39,8 +39,8 @@
     color: var(--text-color);
     padding: 18px 15px;
     border-radius: 12px;
-    border: 1px solid var(--hint-color);
-    font-size: 16px;
+    border: 1px solid var(--border-color);
+    font-size: 15px;
     outline: none;
     transition: border 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     flex:1;
@@ -57,7 +57,7 @@
     right: var(--2-step);
     top: 47.5%;
     color: var(--hint-color);
-    font-size: 16px;
+    font-size: 15px;
     margin-left: 4px;
 }
 
@@ -72,7 +72,7 @@
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    border: 1px solid var(--hint-color); 
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     background-color: transparent; 
     cursor: pointer;

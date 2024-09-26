@@ -5,6 +5,7 @@
     justify-content: space-between;
     margin-bottom: var(--2-step);
     color: var(--hint-color);
+    font-size: 15px;
     height: 22px;
 }
 

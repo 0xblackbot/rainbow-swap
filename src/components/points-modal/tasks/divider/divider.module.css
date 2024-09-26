@@ -11,7 +11,7 @@
 .chunk {
     width: 45%;
     height: 1px;
-    background-color: var(--secondary-bg-color);
+    background-color: var(--border-color);
 }
 
 .chevron {

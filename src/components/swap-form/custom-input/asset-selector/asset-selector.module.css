@@ -25,10 +25,11 @@
 
 .modalInput {
     background: var(--secondary-bg-color);
-    border-radius: var(--border-radius);
-    padding: var(--step) var(--2-step) var(--step) var(--4-step);
+    border-radius: 999999px;
+    padding: var(--step) var(--2-step) var(--step) var(--5-step);
     color: var(--text-color);
-    font-size: var(--2-step);
+    font-size: 16px;
+    height: var(--4-step);
 }
 
 .modalInput::placeholder {
@@ -37,7 +38,7 @@
 
 .searchIcon {
     position: absolute;
-    left: var(--step);
+    left: var(--2-step);
     top: 50%;
     transform: translateY(-50%);
     color: var(--hint-color);
@@ -46,13 +47,15 @@
 .xcircleIcon {
     position: absolute;
     cursor: pointer;
-    right: var(--step);
-    transform: translateY(40%);
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--hint-color);
+    padding: var(--step);
 }
 
 .p {
-    margin: 0 var(--step);
+    margin: 0 var(--half-step);
 }
 
 .img {
@@ -67,7 +70,11 @@
     display: flex;
     cursor: pointer;
     align-items: center;
-    font-size: var(--3-step);
+    font-size: 18px;
+    background-color: var(--attention-bg);
+    border-radius: 999999px;
+    height: var(--4-step);
+    padding: var(--half-step);
 }
 
 .modalButtonConatiner button {
@@ -78,7 +85,7 @@
     border-radius: var(--2-step);
     width: 100%;
     color: var(--button-text-color);
-    font-size: var(--2-step);
+    font-size: 15px;
     padding: var(--2-step) var(--3-step);
 }
 
@@ -96,5 +103,5 @@
     margin-top: auto;
     padding: var(--2-step);
     background-color: var(--header-bg-color);
-    border-top: 1px solid var(--secondary-bg-color);
+    border-top: 1px solid var(--border-color);
 }

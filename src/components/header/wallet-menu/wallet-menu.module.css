@@ -36,7 +36,7 @@
     right: 0;
     display: grid;
     gap: var(--step);
-    background-color: var(--secondary-bg-color);
+    background-color: var(--bg-color);
     min-width: calc(20 * var(--step));
     padding: var(--step);
     border-radius: var(--2-step);

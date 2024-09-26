@@ -53,7 +53,6 @@ export const BottomSheet: FC<Props> = ({
                     {isVisible && (
                         <>
                             <div className={styles.header_container}>
-                                <div className={styles.empty_container} />
                                 <p className={styles.header_text}>
                                     {headerTitle}
                                 </p>
@@ -63,8 +62,8 @@ export const BottomSheet: FC<Props> = ({
                                 >
                                     <XIcon
                                         className={styles.xIcon}
-                                        width="16px"
-                                        height="16px"
+                                        width="24px"
+                                        height="24px"
                                     />
                                 </button>
                             </div>

@@ -2,11 +2,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--header-bg-color);
+    background-color: var(--secondary-bg-color);
     border-radius: var(--border-radius);
     margin-bottom: var(--2-step);
     padding: var(--2-step);
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .fee_text {

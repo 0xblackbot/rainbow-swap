@@ -13,15 +13,17 @@
     transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
 
-.header_button{
+.header_button {
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
-    background: var(--secondary-bg-color);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    background-color: transparent;
+}
+
+.xIcon {
+    cursor: pointer;
+    color: var(--text-color);
 }
 
 .modal_backdrop.open {
@@ -53,20 +55,14 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--2-step);
-    border-bottom: 1px solid var(--secondary-bg-color);
 }
 
 .empty_container {
     width: 32px;
 }
 
-.xIcon {
-    cursor: pointer;
-    color: var(--hint-color);
-}
-
 .header_text {
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     color: var(--text-color);
 }

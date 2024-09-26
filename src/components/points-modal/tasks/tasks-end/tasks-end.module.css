@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: var(--2-step);
+    font-size: 15px;
     margin: 24px 0 48px;
     color: var(--hint-color);
     font-family: 'Basel', sans-serif;

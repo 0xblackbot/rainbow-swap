@@ -6,7 +6,7 @@
 
 .input_asset_container {
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: var(--half-step);
 }
 
 .output_asset_container {

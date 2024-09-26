@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    background-color: var(--header-bg-color);
+    background-color: var(--secondary-bg-color);
     border-radius: var(--border-radius);
     padding:var(--2-step);
     position: relative;
@@ -9,30 +9,30 @@
 
 .container_label {
     color: var(--hint-color);
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .info_div{
     justify-content: space-between;
     align-items: center;
     color: var(--hint-color);
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .input_container {
     display: flex;
     margin-top: var(--step);
     justify-content: space-between;
+    align-items: center;
 }
 
 .input_field {
     background-color: transparent;
     color: var(--text-color);
-    font-size: 32px;
+    font-size: 36px;
     outline: none;
     width: 69%;
     flex: 1;
-    text-align: right;
 }
 .input_field::placeholder{
     color: var(--hint-color);
@@ -50,10 +50,9 @@
     display: inline-block;
     background-color: transparent;
     color: var(--text-color);
-    font-size: 32px;
+    font-size: 36px;
     outline: none;
     width: auto;
-    text-align: right;
     white-space: nowrap;
     overflow: hidden;
     min-width: 30px; 
@@ -71,7 +70,6 @@
 .input_wrapper {
   position: relative;
   display: flex;
-  justify-content: flex-end;
   cursor: text;
   width: 69%; /* Any width required to make flex: 1 work*/
   flex: 1;
@@ -94,7 +92,7 @@
     color: var(--button-color);
     background: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     margin-left: 4px;
 
 }
@@ -102,7 +100,6 @@
 .input_info_balance {
     display: flex;
     align-items: center;
-    margin-right: var(--step);
 }
 
 .loader_spinner {
@@ -124,13 +121,11 @@
     align-items: center;
     justify-content: center;
     min-width: 20px;
-    margin-right: 4px;
+    margin: 0 var(--half-step);
 }
 
 .input_usd_balance{
-    width: 120px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    text-align: right;
 }

@@ -79,11 +79,6 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             <div className={styles.container}>
                 <p className={styles.container_label}>You send</p>
                 <div className={styles.input_container}>
-                    <AssetSelector
-                        value={assetValue}
-                        headerTitle="Select input asset"
-                        onChange={onAssetValueChange}
-                    />
                     <div className={styles.input_wrapper}>
                         {!isFocused && (
                             <div
@@ -91,7 +86,6 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                                 onClick={handleOverlayClick}
                             />
                         )}
-                        <div className={styles.empty_container} />
                         <input
                             type="tel"
                             inputMode="decimal"
@@ -104,12 +98,24 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             onFocus={handleFocus}
                             onBlur={handleBlur}
                         />
+                        <div className={styles.empty_container} />
                     </div>
+                    <AssetSelector
+                        value={assetValue}
+                        headerTitle="Select input token"
+                        onChange={onAssetValueChange}
+                    />
                 </div>
 
                 <div className={styles.input_info}>
+                    <p className={styles.input_usd_balance}>
+                        ${formatNumber(usdAmount, 2)}
+                    </p>
                     <div className={styles.input_info_balance}>
-                        <p>Balance: {formatNumber(parseFloat(balance), 2)}</p>
+                        <p>
+                            {formatNumber(parseFloat(balance), 2)}{' '}
+                            {assetValue.symbol}
+                        </p>
                         <button
                             className={styles.input_info_button}
                             onClick={setMaxAssetAmount}
@@ -117,9 +123,6 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             Max
                         </button>
                     </div>
-                    <p className={styles.input_usd_balance}>
-                        ${formatNumber(usdAmount, 2)}
-                    </p>
                 </div>
             </div>
         );

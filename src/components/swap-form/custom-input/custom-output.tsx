@@ -24,33 +24,36 @@ export const CustomOutput: FC<Props> = memo(
             <div className={styles.container}>
                 <p className={styles.container_label}>You receive</p>
                 <div className={styles.input_container}>
-                    <AssetSelector
-                        value={assetValue}
-                        headerTitle="Select output asset"
-                        onChange={onAssetValueChange}
-                    />
                     <div
                         className={getClassName(
                             styles.input_wrapper,
                             styles.output_wrapper
                         )}
                     >
+                        <span className={styles.span_field}>{inputValue}</span>
                         <div className={styles.empty_container}>
                             {isRoutesLoading ? (
                                 <div className={styles.loader_spinner} />
                             ) : null}
                         </div>
-                        <span className={styles.span_field}>{inputValue}</span>
                     </div>
+                    <AssetSelector
+                        value={assetValue}
+                        headerTitle="Select output token"
+                        onChange={onAssetValueChange}
+                    />
                 </div>
 
                 <div className={styles.input_info}>
-                    <div className={styles.input_info_balance}>
-                        <p>Balance: {formatNumber(parseFloat(balance), 2)}</p>
-                    </div>
                     <p className={styles.input_usd_balance}>
                         ${formatNumber(usdAmount, 2)}
                     </p>
+                    <div className={styles.input_info_balance}>
+                        <p>
+                            {formatNumber(parseFloat(balance), 2)}{' '}
+                            {assetValue.symbol}
+                        </p>
+                    </div>
                 </div>
             </div>
         );

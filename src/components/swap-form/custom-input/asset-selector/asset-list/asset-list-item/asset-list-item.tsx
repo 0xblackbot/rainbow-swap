@@ -5,7 +5,6 @@ import styles from './asset-list-item.module.css';
 import {AssetListItemProps} from './asset-list-item.props';
 import {AlertIcon} from '../../../../../../assets/icons/AlertIcon/AlertIcon';
 import {formatNumber} from '../../../../../../utils/format-number.utils';
-import {getClassName} from '../../../../../../utils/style.utils';
 
 export const AssetListItem: FC<
     ListChildComponentProps<AssetListItemProps[]>
@@ -16,17 +15,12 @@ export const AssetListItem: FC<
 
     return (
         <div style={style} onClick={item.onClick}>
-            <div
-                className={getClassName(
-                    styles.select_list_item_div,
-                    item.isSelected ? styles.selected : ''
-                )}
-            >
+            <div className={styles.select_list_item_div}>
                 <div className={styles.select_list_item_wrapper}>
                     <img className={styles.img} src={item.asset.image} />
                     <div className={styles.select_list_item_info}>
                         <div className={styles.select_list_item_header}>
-                            <p className={styles.select_list_item_ccy}>
+                            <p className={styles.asset_symbol}>
                                 {item.asset.symbol}
                             </p>
                             {item.asset.verification !== 'whitelist' && (
@@ -37,7 +31,7 @@ export const AssetListItem: FC<
                                 />
                             )}
                         </div>
-                        <p className={styles.select_list_item_qty}>
+                        <p className={styles.asset_name}>
                             {item.asset.name}
                         </p>
                     </div>

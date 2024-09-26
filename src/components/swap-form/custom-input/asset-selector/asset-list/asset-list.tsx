@@ -15,13 +15,14 @@ import styles from '../asset-selector.module.css';
 import {sortAssets} from '../utils/sort-assets.utils';
 
 interface Props {
+    isOpen: boolean;
     value: Asset;
     onChange: (newValue: Asset) => void;
 }
 
-export const AssetList: FC<Props> = ({value, onChange}) => {
+export const AssetList: FC<Props> = ({isOpen, value, onChange}) => {
     const divHeight = useDivHeight();
-    const listRef = useRef<FixedSizeList>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const [searchValue, setSearchValue] = useState('');
 
@@ -63,13 +64,15 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
         [balances, filteredAssetsList, onChange, value.address]
     );
 
-    const selectedAssetIndex = listProps.findIndex(item => item.isSelected);
-
     useEffect(() => {
-        if (listRef.current) {
-            listRef.current.scrollToItem(selectedAssetIndex, 'center');
-        }
-    }, [selectedAssetIndex, divHeight.height]);
+        const timer = setTimeout(() => {
+            if (isOpen && inputRef.current) {
+                inputRef.current.focus();
+            }
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, [isOpen]);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
         setSearchValue(event.target.value);
@@ -79,8 +82,9 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
         <>
             <div className={styles.modalInputContainer}>
                 <input
+                    ref={inputRef}
                     className={styles.modalInput}
-                    placeholder="Search"
+                    placeholder="Search tokens"
                     value={searchValue}
                     onChange={handleInputChange}
                 />
@@ -103,7 +107,6 @@ export const AssetList: FC<Props> = ({value, onChange}) => {
                     <AssetNoResult />
                 ) : (
                     <FixedSizeList
-                        ref={listRef}
                         height={divHeight.height}
                         width="100%"
                         className={styles.fixed_size_list}

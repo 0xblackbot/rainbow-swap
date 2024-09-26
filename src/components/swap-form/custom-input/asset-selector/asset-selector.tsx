@@ -3,7 +3,7 @@ import {FC, memo, useState} from 'react';
 
 import {AssetList} from './asset-list/asset-list';
 import styles from './asset-selector.module.css';
-import {ChevronRightIcon} from '../../../../assets/icons/ChevronRightIcon/ChevronRightIcon';
+import {ChevronDownIcon} from '../../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {BottomSheet} from '../../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../../shared/form-button/form-button';
 
@@ -33,7 +33,7 @@ export const AssetSelector: FC<Props> = memo(
                 >
                     <img className={styles.img} src={value.image} />
                     <p className={styles.p}>{value.symbol}</p>
-                    <ChevronRightIcon />
+                    <ChevronDownIcon />
                 </div>
 
                 <BottomSheet
@@ -41,7 +41,11 @@ export const AssetSelector: FC<Props> = memo(
                     headerTitle={headerTitle}
                     onClose={handleDismiss}
                 >
-                    <AssetList value={value} onChange={handleChange} />
+                    <AssetList
+                        isOpen={isOpen}
+                        value={value}
+                        onChange={handleChange}
+                    />
                     <FormButton
                         text="Close"
                         containerClassName={styles.footer_container}
