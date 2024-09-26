@@ -7,12 +7,16 @@ export const DEFAULT_DEXES_RECORD: Record<DexTypeEnum, DexInfo> = {
         name: 'DeDust',
         image: './dex-icons/dedust.png'
     },
+    [DexTypeEnum.DeDustStable]: {
+        name: 'DeDust',
+        image: './dex-icons/dedust.png'
+    },
     [DexTypeEnum.Ston]: {
         name: 'Ston',
         image: './dex-icons/ston.png'
     },
-    [DexTypeEnum.DeDustStable]: {
-        name: 'DeDustStable',
-        image: './dex-icons/dedust.png'
+    [DexTypeEnum.Ston_v2]: {
+        name: 'Ston',
+        image: './dex-icons/ston.png'
     }
 };

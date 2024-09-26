@@ -16,7 +16,9 @@ export const SwapRouteStep: FC<Props> = ({routeStep}) => {
     return (
         <div className={styles.route_step_div}>
             <div className={styles.route_step_direction_div}>
-                <img src={DEFAULT_DEXES_RECORD[routeStep.dexType].image} />
+                <img
+                    src={DEFAULT_DEXES_RECORD[routeStep.dexPair.dexType].image}
+                />
                 <img src={inputAsset.image}></img>
                 <img src={outputAsset.image}></img>
             </div>

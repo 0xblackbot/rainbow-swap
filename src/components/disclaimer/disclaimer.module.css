@@ -1,4 +1,5 @@
 .container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     background: rgba(var(--danger-color), 0.1);

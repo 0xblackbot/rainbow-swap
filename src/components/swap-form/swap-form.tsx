@@ -191,8 +191,9 @@ export const SwapScreen = () => {
                         inputAssetAmount={inputAssetAmount}
                         routes={routes}
                     />
-                    <FarmVolume />
-                    {!appStatus.isSwapsEnabled && (
+                    {appStatus.isSwapsEnabled ? (
+                        <FarmVolume />
+                    ) : (
                         <SwapDisabled message={appStatus.message} />
                     )}
                     {wallet ? (
