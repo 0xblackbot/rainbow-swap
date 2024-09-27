@@ -71,7 +71,7 @@
     cursor: pointer;
     align-items: center;
     font-size: 18px;
-    background-color: var(--attention-bg);
+    background: var(--attention-bg);
     border-radius: 999999px;
     height: var(--4-step);
     padding: var(--half-step);
