@@ -64,7 +64,7 @@ export const SwapDetails: FC<Props> = ({onConfirm}) => {
                 parseFloat(inputAssetAmount) * inputAsset.usdExchangeRate;
 
             trackSwapConfirmation({
-                walletAddress: senderAddress.toString(),
+                walletAddress: senderAddress.toRawString(),
                 bocHash: transactionInfo.bocHash,
                 usdValue: usdAmount,
                 inputAssetAddress: inputAsset.address,
