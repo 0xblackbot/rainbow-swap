@@ -1,5 +1,5 @@
 import {useTonWallet} from '@tonconnect/ui-react';
-import {Asset} from 'rainbow-swap-sdk';
+import {Asset, getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {CustomInput} from './custom-input/custom-input';
@@ -75,7 +75,8 @@ export const SwapScreen = () => {
             loadSwapRoutesActions.submit({
                 inputAssetAmount: nanoInputAssetAmount,
                 inputAssetAddress,
-                outputAssetAddress
+                outputAssetAddress,
+                requestId: getQueryId().toString()
             })
         );
     }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);

@@ -11,21 +11,38 @@ import {DEBOUNCE_DUE_TIME} from '../../globals';
 const loadSwapRoutesEpic: Epic<Action> = action$ =>
     action$.pipe(
         ofType(loadSwapRoutesActions.submit),
-        debounceTime(DEBOUNCE_DUE_TIME),
         toPayload(),
         switchMap(payload => {
             if (payload.inputAssetAmount === '0') {
                 return of(
                     loadSwapRoutesActions.success({
                         bestRoute: [],
-                        priceImprovement: 0
+                        priceImprovement: 0,
+                        requestId: payload.requestId
                     })
                 );
             }
 
-            return from(getBestRoute(payload)).pipe(
-                map(response => loadSwapRoutesActions.success(response)),
-                catchError(err => of(loadSwapRoutesActions.fail(err.message)))
+            return of(payload).pipe(
+                debounceTime(DEBOUNCE_DUE_TIME),
+                switchMap(debouncedPayload =>
+                    from(getBestRoute(debouncedPayload)).pipe(
+                        map(response =>
+                            loadSwapRoutesActions.success({
+                                ...response,
+                                requestId: debouncedPayload.requestId
+                            })
+                        ),
+                        catchError(err =>
+                            of(
+                                loadSwapRoutesActions.fail({
+                                    error: err.message,
+                                    requestId: debouncedPayload.requestId
+                                })
+                            )
+                        )
+                    )
+                )
             );
         })
     );

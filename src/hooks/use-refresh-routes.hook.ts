@@ -1,9 +1,10 @@
 import {isNotEmptyString} from '@rnw-community/shared';
 import {useTonAddress} from '@tonconnect/ui-react';
+import {getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useRef} from 'react';
 
 import {REFRESH_ROUTE_INTERVAL} from '../globals';
-import {useDispatch} from '../store/index';
+import {useDispatch} from '../store';
 import {loadSwapRoutesActions} from '../store/swap-routes/swap-routes-actions';
 import {loadBalancesActions} from '../store/wallet/wallet-actions';
 
@@ -23,7 +24,8 @@ export const useRefreshRoutes = (
                 loadSwapRoutesActions.submit({
                     inputAssetAmount: nanoInputAssetAmount,
                     inputAssetAddress,
-                    outputAssetAddress
+                    outputAssetAddress,
+                    requestId: getQueryId().toString()
                 })
             );
         }

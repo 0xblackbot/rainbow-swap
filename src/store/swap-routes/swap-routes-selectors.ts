@@ -16,4 +16,4 @@ export const useRoutesSelector = () => {
 };
 
 export const useIsRoutesLoadingSelector = () =>
-    useSelector(({swapRoutes}) => swapRoutes.batch.isLoading);
+    useSelector(({swapRoutes}) => swapRoutes.lastRequestId !== undefined);
