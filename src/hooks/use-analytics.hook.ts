@@ -28,6 +28,7 @@ const API = axios.create({
 });
 
 export const trackSwapConfirmation = (params: {
+    walletAddress: string;
     bocHash: string;
     usdValue: number;
     inputAssetAddress: string;
@@ -38,15 +39,10 @@ export const trackSwapConfirmation = (params: {
     outputAssetAmount: number;
 }) => {
     if (isProd) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        ReactGA.ga(tracker => {
-            API.post('/track-event', {
-                initData: INIT_DATA,
-                type: 'swap-confirmed',
-                clientId: tracker.get('clientId'),
-                ...params
-            });
+        return API.post('/track-event', {
+            initData: INIT_DATA,
+            type: 'swap-confirmed',
+            ...params
         });
     }
 };
