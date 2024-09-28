@@ -12,6 +12,7 @@ const loadSwapRoutesEpic: Epic<Action> = action$ =>
     action$.pipe(
         ofType(loadSwapRoutesActions.submit),
         toPayload(),
+        debounceTime(DEBOUNCE_DUE_TIME),
         switchMap(payload => {
             if (payload.inputAssetAmount === '0') {
                 return of(
@@ -23,24 +24,19 @@ const loadSwapRoutesEpic: Epic<Action> = action$ =>
                 );
             }
 
-            return of(payload).pipe(
-                debounceTime(DEBOUNCE_DUE_TIME),
-                switchMap(debouncedPayload =>
-                    from(getBestRoute(debouncedPayload)).pipe(
-                        map(response =>
-                            loadSwapRoutesActions.success({
-                                ...response,
-                                requestId: debouncedPayload.requestId
-                            })
-                        ),
-                        catchError(err =>
-                            of(
-                                loadSwapRoutesActions.fail({
-                                    error: err.message,
-                                    requestId: debouncedPayload.requestId
-                                })
-                            )
-                        )
+            return from(getBestRoute(payload)).pipe(
+                map(response =>
+                    loadSwapRoutesActions.success({
+                        ...response,
+                        requestId: payload.requestId
+                    })
+                ),
+                catchError(err =>
+                    of(
+                        loadSwapRoutesActions.fail({
+                            error: err.message,
+                            requestId: payload.requestId
+                        })
                     )
                 )
             );
