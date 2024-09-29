@@ -4,7 +4,7 @@ import {FC} from 'react';
 import styles from './rate-info.module.css';
 import {useMaxSlippageSelector} from '../../../store/settings/settings-selectors';
 import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
-import {formatNumber} from '../../../utils/format-number.utils';
+import {useExchangeRate} from '../hooks/use-exchange-rate.hook';
 import {useSwapInfo} from '../hooks/use-swap-info.hook';
 
 interface Props {
@@ -29,6 +29,11 @@ export const RateInfo: FC<Props> = ({
         slippageTolerance,
         routes
     );
+    const exchangeRate = useExchangeRate(
+        inputAsset.symbol,
+        outputAsset.symbol,
+        swapInfo.exchangeRate
+    );
 
     return (
         <div className={styles.rate_div}>
@@ -36,16 +41,18 @@ export const RateInfo: FC<Props> = ({
                 {inputAsset.address === outputAsset.address &&
                     'Arbitrage mode!'}
             </p>
-            <p>
-                {inputAssetAmount.length !== 0 && !isRoutesLoading
-                    ? routes.length > 0
-                        ? `1 ${inputAsset.symbol} = ${formatNumber(
-                              swapInfo.exchangeRate,
-                              5
-                          )} ${outputAsset.symbol}`
-                        : 'No routes available'
-                    : null}
-            </p>
+            {inputAssetAmount.length !== 0 && !isRoutesLoading ? (
+                routes.length > 0 ? (
+                    <p
+                        className={styles.rate_text}
+                        onClick={exchangeRate.toggleRate}
+                    >
+                        {exchangeRate.text}
+                    </p>
+                ) : (
+                    <p>No routes available</p>
+                )
+            ) : null}
         </div>
     );
 };

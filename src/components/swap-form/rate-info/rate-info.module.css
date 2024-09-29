@@ -12,3 +12,7 @@
 .attention_text {
     color: rgba(var(--danger-color));
 }
+
+.rate_text {
+    cursor: pointer;
+}

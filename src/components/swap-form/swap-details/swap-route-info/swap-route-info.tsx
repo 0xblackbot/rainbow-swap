@@ -11,6 +11,7 @@ import {
 } from '../../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../../utils/format-number.utils';
 import {getClassName} from '../../../../utils/style.utils';
+import {useExchangeRate} from '../../hooks/use-exchange-rate.hook';
 import {RouteInfo} from '../route-info/route-info';
 
 interface Props {
@@ -23,6 +24,11 @@ export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
     const slippageTolerance = useMaxSlippageSelector();
 
     const {inputAsset, outputAsset} = useSwapForm();
+    const exchangeRate = useExchangeRate(
+        inputAsset.symbol,
+        outputAsset.symbol,
+        swapInfo.exchangeRate
+    );
 
     return (
         <div className={styles.route_info_wrapper}>
@@ -74,8 +80,14 @@ export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
             </div>
             <div className={styles.route_info_inside_div}>
                 <p>Rate</p>
-                <p className={styles.value_text}>
-                    {`1 ${inputAsset.symbol} = ${formatNumber(swapInfo.exchangeRate, 5)} ${outputAsset.symbol}`}
+                <p
+                    className={getClassName(
+                        styles.value_text,
+                        styles.rate_text
+                    )}
+                    onClick={exchangeRate.toggleRate}
+                >
+                    {exchangeRate.text}
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>

@@ -17,6 +17,10 @@
     text-align: end;
 }
 
+.rate_text {
+    cursor: pointer;
+}
+
 .crossed_out {
     text-decoration: line-through;
 }
@@ -82,11 +86,13 @@
     align-items: center;
     z-index: 10;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .loader_overlay.show {
     opacity: 1;
+    visibility: visible;
 }
 
 .loader_spinner {
