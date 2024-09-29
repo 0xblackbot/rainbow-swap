@@ -14,7 +14,7 @@
 
 .selector_item {
     font-size: 14px;
-    padding: 0 var(--step);
+    padding: 1px var(--step);
     border-radius: 999999px;
     background: var(--secondary-bg-color);
     color: var(--hint-color);
