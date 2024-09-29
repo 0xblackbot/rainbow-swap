@@ -4,7 +4,7 @@ import styles from './swap-route-info.module.css';
 import {SwapIcon} from '../../../../assets/icons/SwapIcon/SwapIcon';
 import {useSwapForm} from '../../../../hooks/swap-form/swap-form.hook';
 import {SwapInfo} from '../../../../interfaces/swap-info.interface';
-import {useSlippageToleranceSelector} from '../../../../store/settings/settings-selectors';
+import {useMaxSlippageSelector} from '../../../../store/settings/settings-selectors';
 import {
     useIsRoutesLoadingSelector,
     useRoutesSelector
@@ -20,7 +20,7 @@ interface Props {
 export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
     const routes = useRoutesSelector();
     const isRoutesLoading = useIsRoutesLoadingSelector();
-    const slippageTolerance = useSlippageToleranceSelector();
+    const slippageTolerance = useMaxSlippageSelector();
 
     const {inputAsset, outputAsset} = useSwapForm();
 
@@ -86,7 +86,7 @@ export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>
-                <p>Max. slippage</p>
+                <p>Max slippage</p>
                 <p className={styles.value_text}>{slippageTolerance}%</p>
             </div>
             <div className={styles.route_info_inside_div}>

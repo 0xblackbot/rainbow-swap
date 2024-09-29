@@ -8,7 +8,7 @@ import {swapRoutesEpics} from '../swap-routes/swap-routes-epics';
 import {walletEpics} from '../wallet/wallet-epics';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const rootStateEpics: Epic<any>[] = [
+const rootStateEpics: Epic<any, any, any>[] = [
     assetsEpics,
     swapRoutesEpics,
     walletEpics,

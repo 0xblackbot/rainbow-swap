@@ -4,7 +4,6 @@
     flex-direction: column;
     padding: var(--2-step);
     overflow-y: scroll;
-    border-top: 1px solid var(--border-color);
 }
 
 .settings_icon {
@@ -14,72 +13,18 @@
     cursor: pointer;
 }
 
-.content_name_p {
-    color: var(--text-color);
-    font-size: 15px;
-    margin-top: var(--step);
-}
-
-.content_text_p {
-    color: var(--hint-color);
-    font-size: 15px;
-    margin-top: var(--step);
-}
-
 .settings_icon:hover {
     color: var(--text-color);
 }
 
-.input_container {
-    position: relative;
-    display: flex;
-    margin-top: var(--2-step);
-}
-
-.content_input {
-    width: 100%;
-    background: var(--secondary-bg-color);
-    border-radius: 999999px;
-    padding: var(--step) var(--3-step);
+.title {
     color: var(--text-color);
     font-size: 16px;
-    height: var(--4-step);
 }
 
-.percent_symbol {
-    position: absolute;
-    right: var(--2-step);
-    top: 50%;
-    transform: translateY(-50%);
+.description {
     color: var(--hint-color);
-    font-size: 15px;
-}
-
-.tolerance_buttons_container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: var(--2-step);
-}
-
-.tolerance_button {
-    width: 30%;
-    background-color: var(--secondary-bg-color);
-    justify-content: center;
-    padding: var(--step);
-    border-radius: var(--3-step);
-    cursor: pointer;
-}
-
-.tolerance_button_active {
-    border: 1px solid var(--button-color);
-}
-
-.tolerance_button p {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .main_button {

@@ -1,5 +1,11 @@
 import {createAction} from '@reduxjs/toolkit';
 
-export const setSlippageToleranceAction = createAction<string>(
-    'settings/SET_SLIPPAGE_TOLERANCE'
+import {RiskTolerance} from '../../enums/risk-tolerance.enum';
+
+export const setMaxSlippageAction = createAction<string>(
+    'settings/SET_MAX_SLIPPAGE'
+);
+
+export const setRiskToleranceAction = createAction<RiskTolerance>(
+    'settings/SET_RISK_TOLERANCE'
 );

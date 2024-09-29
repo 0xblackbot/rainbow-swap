@@ -15,7 +15,7 @@ import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook';
 import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
 import {FormButton} from '../../../shared/form-button/form-button';
 import {useDispatch} from '../../../store';
-import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
+import {useMaxSlippageSelector} from '../../../store/settings/settings-selectors';
 import {
     useRoutesSelector,
     useSwapRoutesSelector
@@ -34,7 +34,7 @@ export const SwapDetails: FC<Props> = ({onConfirm}) => {
     const dispatch = useDispatch();
     const routes = useRoutesSelector();
     const swapRoutes = useSwapRoutesSelector();
-    const slippageTolerance = useSlippageToleranceSelector();
+    const slippageTolerance = useMaxSlippageSelector();
     const {inputAssetAmount, inputAsset, outputAsset} = useSwapForm();
 
     const swapInfo = useSwapInfo(

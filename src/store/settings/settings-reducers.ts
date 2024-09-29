@@ -1,14 +1,19 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {setSlippageToleranceAction} from './settings-actions';
+import {setMaxSlippageAction, setRiskToleranceAction} from './settings-actions';
 import {settingsInitialState, SettingsState} from './settings-state';
 
 export const settingsReducers = createReducer<SettingsState>(
     settingsInitialState,
     builder => {
-        builder.addCase(setSlippageToleranceAction, (state, {payload}) => ({
+        builder.addCase(setMaxSlippageAction, (state, {payload}) => ({
             ...state,
-            slippageTolerance: payload
+            maxSlippage: payload
+        }));
+
+        builder.addCase(setRiskToleranceAction, (state, {payload}) => ({
+            ...state,
+            riskTolerance: payload
         }));
     }
 );

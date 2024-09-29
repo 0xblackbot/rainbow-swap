@@ -1,0 +1,42 @@
+.max_slippage_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--step);
+}
+
+.input_container {
+    display: flex;
+    padding: var(--half-step);
+    border: 1px solid var(--border-color);
+    border-radius: var(--2-step);
+}
+
+.input_container:focus-within {
+    border-color: var(--attention-bg);
+}
+
+.auto_button {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 0 var(--step);
+    background: var(--attention-bg);
+    border-radius: 999999px;
+    color: var(--button-color);
+    cursor: pointer;
+}
+
+.input {
+    width: 44px;
+    padding: 0 var(--half-step);
+    text-align: right;
+    font-size: 16px;
+    color: var(--text-color);
+    background: transparent;
+}
+
+.percent_symbol {
+    font-size: 16px;
+    color: var(--hint-color);
+}

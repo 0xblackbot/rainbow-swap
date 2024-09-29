@@ -2,7 +2,7 @@ import {Asset, RouteStepWithCalculation} from 'rainbow-swap-sdk';
 import {FC} from 'react';
 
 import styles from './rate-info.module.css';
-import {useSlippageToleranceSelector} from '../../../store/settings/settings-selectors';
+import {useMaxSlippageSelector} from '../../../store/settings/settings-selectors';
 import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {useSwapInfo} from '../hooks/use-swap-info.hook';
@@ -21,7 +21,7 @@ export const RateInfo: FC<Props> = ({
     routes
 }) => {
     const isRoutesLoading = useIsRoutesLoadingSelector();
-    const slippageTolerance = useSlippageToleranceSelector();
+    const slippageTolerance = useMaxSlippageSelector();
 
     const swapInfo = useSwapInfo(
         inputAsset.decimals,

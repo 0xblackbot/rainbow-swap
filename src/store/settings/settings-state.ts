@@ -1,7 +1,11 @@
+import {RiskTolerance} from '../../enums/risk-tolerance.enum';
+
 export interface SettingsState {
-    slippageTolerance: string;
+    maxSlippage: string;
+    riskTolerance: RiskTolerance;
 }
 
 export const settingsInitialState: SettingsState = {
-    slippageTolerance: '5'
+    maxSlippage: '5.00',
+    riskTolerance: RiskTolerance.Normal
 };

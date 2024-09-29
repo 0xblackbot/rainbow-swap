@@ -85,7 +85,7 @@ export const Tasks = () => {
 
     return (
         <>
-            <Divider />
+            <Divider withArrow={true} />
 
             <p className={styles.title}>Earn more</p>
             <TaskItem
@@ -142,7 +142,7 @@ export const Tasks = () => {
                 />
             </TaskItem>
 
-            <Divider />
+            <Divider withArrow={true} />
 
             <TaskHeader name="Telegram Apps Center" imageSrc={appsCenter} />
             <PartnerTaskItem
@@ -158,7 +158,7 @@ export const Tasks = () => {
                 taskType={TaskTypeEnum.AppsCenter_Bot}
             />
 
-            <Divider />
+            <Divider withArrow={true} />
 
             <TaskHeader name="Torch Finance" imageSrc={torchFinanceImage} />
             <PartnerTaskItem
@@ -173,7 +173,7 @@ export const Tasks = () => {
                 taskType={TaskTypeEnum.TorchFinance_Twitter}
             />
 
-            <Divider />
+            <Divider withArrow={true} />
 
             <TaskHeader name="SnapX" imageSrc={snapxImage} />
             <PartnerTaskItem

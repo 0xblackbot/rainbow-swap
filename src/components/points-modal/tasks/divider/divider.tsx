@@ -1,10 +1,22 @@
+import {FC} from 'react';
+
 import styles from './divider.module.css';
 import {ChevronDoubleDownIcon} from '../../../../assets/icons/ChevronDoubleDownIcon/ChevronDoubleDownIcon';
 
-export const Divider = () => (
+interface Props {
+    withArrow?: boolean;
+}
+
+export const Divider: FC<Props> = ({withArrow = false}) => (
     <div className={styles.divider}>
-        <div className={styles.chunk} />
-        <ChevronDoubleDownIcon className={styles.chevron} />
-        <div className={styles.chunk} />
+        {withArrow ? (
+            <>
+                <div className={styles.chunk} />
+                <ChevronDoubleDownIcon className={styles.chevron} />
+                <div className={styles.chunk} />
+            </>
+        ) : (
+            <div className={styles.line} />
+        )}
     </div>
 );
