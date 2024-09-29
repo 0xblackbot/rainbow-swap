@@ -12,6 +12,7 @@ import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
 import {loadSwapRoutesActions} from './swap-routes-actions';
+import {RiskTolerance} from '../../enums/risk-tolerance.enum';
 import {DEBOUNCE_DUE_TIME} from '../../globals';
 import {RootState} from '../index';
 
@@ -32,10 +33,15 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                 );
             }
 
+            const maxDepth =
+                payload.inputAssetAddress === payload.outputAssetAddress
+                    ? RiskTolerance.Risky
+                    : state.settings.riskTolerance;
+
             return from(
                 getBestRoute({
                     ...payload,
-                    maxDepth: state.settings.riskTolerance
+                    maxDepth
                 })
             ).pipe(
                 map(response =>

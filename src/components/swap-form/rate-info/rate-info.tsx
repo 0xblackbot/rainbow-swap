@@ -37,11 +37,9 @@ export const RateInfo: FC<Props> = ({
 
     return (
         <div className={styles.rate_div}>
-            <p className={styles.attention_text}>
-                {inputAsset.address === outputAsset.address &&
-                    'Arbitrage mode!'}
-            </p>
-            {inputAssetAmount.length !== 0 && !isRoutesLoading ? (
+            {inputAsset.address === outputAsset.address ? (
+                <p className={styles.attention_text}>Arbitrage mode!</p>
+            ) : inputAssetAmount.length !== 0 && !isRoutesLoading ? (
                 routes.length > 0 ? (
                     <p
                         className={styles.rate_text}
