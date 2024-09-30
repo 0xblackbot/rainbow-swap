@@ -1,5 +1,3 @@
-import {useTonAddress} from '@tonconnect/ui-react';
-
 import {LogoText} from './assets/LogoText';
 import {HeaderContainer} from './header-container/header-container';
 import styles from './header.module.css';
@@ -8,9 +6,10 @@ import {WalletMenu} from './wallet-menu/wallet-menu';
 import {IS_TMA} from '../../globals';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
+import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 
 export const Header = () => {
-    const walletAddress = useTonAddress();
+    const walletAddress = useWalletAddress();
     const openTonConnectModal = useOpenTonConnectModal();
 
     const handleConnect = () => {
@@ -34,15 +33,15 @@ export const Header = () => {
 
             <div className={styles.right_div}>
                 {IS_TMA && <PointsScore />}
-                {walletAddress === '' ? (
+                {walletAddress ? (
+                    <WalletMenu walletAddress={walletAddress} />
+                ) : (
                     <button
                         className={styles.connect_button}
                         onClick={handleConnect}
                     >
                         Connect
                     </button>
-                ) : (
-                    <WalletMenu walletAddress={walletAddress} />
                 )}
             </div>
         </HeaderContainer>

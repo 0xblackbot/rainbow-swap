@@ -1,5 +1,4 @@
-import {isDefined, isNotEmptyString} from '@rnw-community/shared';
-import {useTonAddress} from '@tonconnect/ui-react';
+import {isDefined} from '@rnw-community/shared';
 import {memo, useEffect} from 'react';
 import {ToastContainer} from 'react-toastify';
 
@@ -9,6 +8,7 @@ import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
 import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
+import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
 import {
@@ -33,7 +33,7 @@ export const HomeScreen = memo(() => {
     const pendingActivationTransaction =
         usePendingActivationTransactionSelector();
 
-    const walletAddress = useTonAddress();
+    const walletAddress = useWalletAddress();
 
     useTrackPageView('Home');
 
@@ -71,7 +71,7 @@ export const HomeScreen = memo(() => {
     }, []);
 
     useEffect(() => {
-        if (isNotEmptyString(walletAddress)) {
+        if (walletAddress) {
             // load wallet related data
             dispatch(loadBalancesActions.submit(walletAddress));
             dispatch(checkIsRainbowWalletActiveActions.submit(walletAddress));

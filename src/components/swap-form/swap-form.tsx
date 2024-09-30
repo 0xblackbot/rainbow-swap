@@ -1,4 +1,3 @@
-import {useTonWallet} from '@tonconnect/ui-react';
 import {Asset, getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
@@ -18,6 +17,7 @@ import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
+import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
@@ -30,7 +30,7 @@ import {formatNumber} from '../../utils/format-number.utils';
 import {swapAssets} from '../../utils/swap-assets.utils';
 
 export const SwapScreen = () => {
-    const wallet = useTonWallet();
+    const walletAddress = useWalletAddress();
     const inputRef = useRef<HTMLInputElement>(null);
     const openTonConnectModal = useOpenTonConnectModal();
 
@@ -76,10 +76,17 @@ export const SwapScreen = () => {
                 inputAssetAmount: nanoInputAssetAmount,
                 inputAssetAddress,
                 outputAssetAddress,
+                senderAddress: walletAddress,
                 requestId: getQueryId().toString()
             })
         );
-    }, [inputAssetAddress, outputAssetAddress, nanoInputAssetAmount, dispatch]);
+    }, [
+        walletAddress,
+        inputAssetAddress,
+        outputAssetAddress,
+        nanoInputAssetAmount,
+        dispatch
+    ]);
 
     const handleConnectClick = useCallback(() => {
         trackButtonClick('Connect');
@@ -193,7 +200,7 @@ export const SwapScreen = () => {
                     ) : (
                         <SwapDisabled message={appStatus.message} />
                     )}
-                    {wallet ? (
+                    {walletAddress ? (
                         Number(inputAssetAmount) === 0 ? (
                             <FormButton
                                 text="Enter amount"

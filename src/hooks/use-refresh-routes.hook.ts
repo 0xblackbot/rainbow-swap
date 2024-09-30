@@ -1,8 +1,7 @@
-import {isNotEmptyString} from '@rnw-community/shared';
-import {useTonAddress} from '@tonconnect/ui-react';
 import {getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useRef} from 'react';
 
+import {useWalletAddress} from './use-wallet-address.hook';
 import {REFRESH_ROUTE_INTERVAL} from '../globals';
 import {useDispatch} from '../store';
 import {loadSwapRoutesActions} from '../store/swap-routes/swap-routes-actions';
@@ -15,7 +14,7 @@ export const useRefreshRoutes = (
     outputAssetAddress: string
 ) => {
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
-    const walletAddress = useTonAddress();
+    const walletAddress = useWalletAddress();
     const dispatch = useDispatch();
 
     const handleRefreshRoutes = useCallback(() => {
@@ -25,11 +24,12 @@ export const useRefreshRoutes = (
                     inputAssetAmount: nanoInputAssetAmount,
                     inputAssetAddress,
                     outputAssetAddress,
+                    senderAddress: walletAddress,
                     requestId: getQueryId().toString()
                 })
             );
         }
-        if (isNotEmptyString(walletAddress)) {
+        if (walletAddress) {
             dispatch(loadBalancesActions.submit(walletAddress));
         } else {
             dispatch(loadBalancesActions.success({}));

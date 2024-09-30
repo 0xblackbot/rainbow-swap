@@ -28,6 +28,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     loadSwapRoutesActions.success({
                         bestRoute: [],
                         priceImprovement: 0,
+                        swapMessages: [],
                         requestId: payload.requestId
                     })
                 );
@@ -37,11 +38,16 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                 payload.inputAssetAddress === payload.outputAssetAddress
                     ? RiskTolerance.Risky
                     : state.settings.riskTolerance;
+            const maxSlippage = Number(state.settings.maxSlippage);
 
             return from(
                 getBestRoute({
-                    ...payload,
-                    maxDepth
+                    inputAssetAmount: payload.inputAssetAmount,
+                    inputAssetAddress: payload.inputAssetAddress,
+                    outputAssetAddress: payload.outputAssetAddress,
+                    senderAddress: payload.senderAddress,
+                    maxDepth,
+                    maxSlippage
                 })
             ).pipe(
                 map(response =>
