@@ -9,9 +9,6 @@
     font-size: 15px;
 }
 
-.fee_text {
-    color: var(--text-color);
-}
 
 .value_text {
     text-align: end;
@@ -19,6 +16,10 @@
 
 .rate_text {
     cursor: pointer;
+}
+
+.zero_fee_text {
+    color: var(--text-color);
 }
 
 .crossed_out {

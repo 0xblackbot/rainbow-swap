@@ -12,6 +12,7 @@ import {
 import {formatNumber} from '../../../../utils/format-number.utils';
 import {getClassName} from '../../../../utils/style.utils';
 import {useExchangeRate} from '../../hooks/use-exchange-rate.hook';
+import {useRoutingFee} from '../../hooks/use-routing-fee.hook';
 import {RouteInfo} from '../route-info/route-info';
 
 interface Props {
@@ -29,6 +30,7 @@ export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
         outputAsset.symbol,
         swapInfo.exchangeRate
     );
+    const routingFee = useRoutingFee(routes);
 
     return (
         <div className={styles.route_info_wrapper}>
@@ -93,8 +95,14 @@ export const SwapRouteInfo: FC<Props> = ({swapInfo}) => {
             <div className={styles.route_info_inside_div}>
                 <p>Routing Fee</p>
                 <p className={styles.value_text}>
-                    <span className={styles.crossed_out}>0.1%</span>
-                    <span className={styles.fee_text}> 0%</span>
+                    {routingFee == 0 ? (
+                        <>
+                            <span className={styles.crossed_out}>0.1%</span>
+                            <span className={styles.zero_fee_text}> 0%</span>
+                        </>
+                    ) : (
+                        <span>{routingFee}%</span>
+                    )}
                 </p>
             </div>
             <div className={styles.route_info_inside_div}>

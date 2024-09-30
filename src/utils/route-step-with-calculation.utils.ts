@@ -16,7 +16,7 @@ const getRouteOutputStep = (route: RouteStepWithCalculation[]) => {
     return undefined;
 };
 
-const getRouteInputAssetAmount = (route: RouteStepWithCalculation[]) =>
+export const getRouteInputAssetAmount = (route: RouteStepWithCalculation[]) =>
     BigInt(getRouteInputStep(route)?.inputAssetAmount ?? 0);
 
 export const getRouteOutputAssetAmount = (route: RouteStepWithCalculation[]) =>
