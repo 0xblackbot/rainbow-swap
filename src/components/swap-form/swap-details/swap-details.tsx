@@ -1,7 +1,6 @@
 import {isDefined} from '@rnw-community/shared';
 import {Address} from '@ton/core';
 import {useTonWallet} from '@tonconnect/ui-react';
-import {getSwapMessages} from 'rainbow-swap-sdk';
 import {FC} from 'react';
 
 import {RainbowWalletInfo} from './rainbow-wallet-info/rainbow-wallet-info';
@@ -18,6 +17,7 @@ import {useDispatch} from '../../../store';
 import {useMaxSlippageSelector} from '../../../store/settings/settings-selectors';
 import {
     useRoutesSelector,
+    useSwapMessagesSelector,
     useSwapRoutesSelector
 } from '../../../store/swap-routes/swap-routes-selectors';
 import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions';
@@ -35,6 +35,7 @@ export const SwapDetails: FC<Props> = ({onConfirm}) => {
     const routes = useRoutesSelector();
     const swapRoutes = useSwapRoutesSelector();
     const slippageTolerance = useMaxSlippageSelector();
+    const swapMessages = useSwapMessagesSelector();
     const {inputAssetAmount, inputAsset, outputAsset} = useSwapForm();
 
     const swapInfo = useSwapInfo(
@@ -51,13 +52,11 @@ export const SwapDetails: FC<Props> = ({onConfirm}) => {
     const handleConfirm = async () => {
         trackButtonClick('Confirm');
         const senderAddress = Address.parse(wallet?.account.address ?? '');
-        const messages = await getSwapMessages(
-            senderAddress.toString(),
-            swapRoutes,
-            Number(slippageTolerance)
-        );
 
-        const transactionInfo = await sendTransaction(senderAddress, messages);
+        const transactionInfo = await sendTransaction(
+            senderAddress,
+            swapMessages
+        );
 
         if (isDefined(transactionInfo)) {
             const usdAmount =

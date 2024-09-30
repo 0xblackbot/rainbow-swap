@@ -16,6 +16,7 @@ export const swapRoutesReducers = createReducer<SwapRoutesState>(
             ...state,
             batch: createEntity(payload.bestRoute, false),
             priceImprovement: payload.priceImprovement,
+            swapMessages: payload.swapMessages,
             lastRequestId:
                 state.lastRequestId === payload.requestId
                     ? undefined
@@ -25,6 +26,7 @@ export const swapRoutesReducers = createReducer<SwapRoutesState>(
             ...state,
             batch: createEntity([], false, payload.error),
             priceImprovement: 0,
+            swapMessages: [],
             lastRequestId:
                 state.lastRequestId === payload.requestId
                     ? undefined
