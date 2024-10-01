@@ -1,109 +1,131 @@
-import {isDefined} from '@rnw-community/shared';
-import {Address} from '@ton/core';
-import {useTonWallet} from '@tonconnect/ui-react';
-import {FC} from 'react';
+import {Asset, RouteStepWithCalculation} from 'rainbow-swap-sdk';
+import {FC, Fragment, useState} from 'react';
 
-import {RainbowWalletInfo} from './rainbow-wallet-info/rainbow-wallet-info';
-import {SwapRouteInfo} from './swap-route-info/swap-route-info';
-import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
-import {
-    trackButtonClick,
-    trackSwapConfirmation
-} from '../../../hooks/use-analytics.hook';
-import {useRainbowWallet} from '../../../hooks/use-rainbow-wallet.hook';
-import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
-import {FormButton} from '../../../shared/form-button/form-button';
-import {useDispatch} from '../../../store';
+import {RouteInfo} from './route-info/route-info';
+import styles from './swap-details.module.css';
+import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {SwapInfo} from '../../../interfaces/swap-info.interface';
 import {useMaxSlippageSelector} from '../../../store/settings/settings-selectors';
-import {
-    useRoutesSelector,
-    useSwapMessagesSelector,
-    useSwapRoutesSelector
-} from '../../../store/swap-routes/swap-routes-selectors';
-import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions';
-import {showSuccessToast} from '../../../utils/toast.utils';
-import {Disclaimer} from '../../disclaimer/disclaimer';
-import {useSwapInfo} from '../hooks/use-swap-info.hook';
-import styles from '../swap-button/swap-button.module.css';
+import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
+import {formatNumber} from '../../../utils/format-number.utils';
+import {getClassName} from '../../../utils/style.utils';
+import {Skeleton} from '../../skeleton/skeleton';
+import {useExchangeRate} from '../hooks/use-exchange-rate.hook';
+import {useRoutingFee} from '../hooks/use-routing-fee.hook';
 
 interface Props {
-    onConfirm: () => void;
+    swapInfo: SwapInfo;
+    inputAsset: Asset;
+    outputAsset: Asset;
+    inputAssetAmount: string;
+    routes: RouteStepWithCalculation[][];
 }
 
-export const SwapDetails: FC<Props> = ({onConfirm}) => {
-    const dispatch = useDispatch();
-    const routes = useRoutesSelector();
-    const swapRoutes = useSwapRoutesSelector();
-    const slippageTolerance = useMaxSlippageSelector();
-    const swapMessages = useSwapMessagesSelector();
-    const {inputAssetAmount, inputAsset, outputAsset} = useSwapForm();
+export const SwapDetails: FC<Props> = ({
+    swapInfo,
+    inputAsset,
+    outputAsset,
+    inputAssetAmount,
+    routes
+}) => {
+    const [isOpen, setIsOpen] = useState(false);
 
-    const swapInfo = useSwapInfo(
-        inputAsset.decimals,
-        outputAsset.decimals,
-        slippageTolerance,
-        routes
+    const isRoutesLoading = useIsRoutesLoadingSelector();
+    const slippageTolerance = useMaxSlippageSelector();
+
+    const exchangeRate = useExchangeRate(
+        inputAsset,
+        outputAsset,
+        swapInfo.exchangeRate
     );
 
-    const wallet = useTonWallet();
-    const sendTransaction = useSendTransaction();
-    const rainbowWallet = useRainbowWallet(swapRoutes);
+    const routingFee = useRoutingFee(routes);
 
-    const handleConfirm = async () => {
-        trackButtonClick('Confirm');
-        const senderAddress = Address.parse(wallet?.account.address ?? '');
-
-        const transactionInfo = await sendTransaction(
-            senderAddress,
-            swapMessages
-        );
-
-        if (isDefined(transactionInfo)) {
-            const usdAmount =
-                parseFloat(inputAssetAmount) * inputAsset.usdExchangeRate;
-
-            trackSwapConfirmation({
-                walletAddress: senderAddress.toRawString(),
-                bocHash: transactionInfo.bocHash,
-                usdValue: usdAmount,
-                inputAssetAddress: inputAsset.address,
-                inputAssetSymbol: inputAsset.symbol,
-                inputAssetAmount: Number(swapInfo.inputAssetAmount),
-                outputAssetAddress: outputAsset.address,
-                outputAssetSymbol: outputAsset.symbol,
-                outputAssetAmount: Number(swapInfo.outputAssetAmount)
-            });
-
-            dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
-            showSuccessToast('Swap sent, please wait...');
-            onConfirm();
-        }
-    };
+    const toggleAccordion = () => setIsOpen(value => !value);
 
     return (
-        <>
-            {rainbowWallet.isRequired && <RainbowWalletInfo />}
-            <SwapRouteInfo swapInfo={swapInfo} />
-            <Disclaimer
-                title="Disclaimer"
-                description={
-                    'This interface and the Rainbow Smart contract are provided "as is", at your own risk, and without warranties of any kind'
-                }
-                isInitiallyOpen={false}
-            />
-            {rainbowWallet.isRequired ? (
-                <FormButton
-                    text="Activate contract"
-                    containerClassName={styles.main_button}
-                    onClick={rainbowWallet.activateContract}
-                ></FormButton>
-            ) : (
-                <FormButton
-                    text="Confirm"
-                    containerClassName={styles.main_button}
-                    onClick={handleConfirm}
-                ></FormButton>
+        <div className={styles.container}>
+            {inputAssetAmount !== '' && (
+                <>
+                    <div className={styles.header_container}>
+                        {inputAsset.address === outputAsset.address ? (
+                            <p className={styles.attention_text}>
+                                Arbitrage mode!
+                            </p>
+                        ) : (
+                            <Skeleton isLoading={isRoutesLoading}>
+                                {routes.length === 0 ? (
+                                    <p>No routes available</p>
+                                ) : (
+                                    <p
+                                        className={styles.rate_text}
+                                        onClick={exchangeRate.toggleRate}
+                                    >
+                                        <span>{exchangeRate.text}</span>
+                                        <span className={styles.usd_text}>
+                                            {' '}
+                                            {exchangeRate.usdText}
+                                        </span>
+                                    </p>
+                                )}
+                            </Skeleton>
+                        )}
+                        <div
+                            className={styles.toggle_button}
+                            onClick={toggleAccordion}
+                        >
+                            <ChevronDownIcon
+                                className={getClassName(
+                                    styles.chevron,
+                                    isOpen ? styles.chevron_open : ''
+                                )}
+                            />
+                        </div>
+                    </div>
+
+                    <div
+                        className={getClassName(
+                            styles.info_container,
+                            isOpen ? styles.info_container_open : ''
+                        )}
+                    >
+                        <div className={styles.info_container_ident} />
+                        <div className={styles.row}>
+                            <p>Max slippage</p>
+                            <Skeleton isLoading={isRoutesLoading}>
+                                <p>{slippageTolerance}%</p>
+                            </Skeleton>
+                        </div>
+                        <div className={styles.row}>
+                            <p>Receive at least</p>
+                            <Skeleton isLoading={isRoutesLoading}>
+                                <p>{`${formatNumber(swapInfo.minOutputAssetAmount, 5)} ${outputAsset.symbol}`}</p>
+                            </Skeleton>
+                        </div>
+                        <div className={styles.row}>
+                            <p>Routing Fee</p>
+                            <Skeleton isLoading={isRoutesLoading}>
+                                <p>{routingFee}%</p>
+                            </Skeleton>
+                        </div>
+                        <div className={styles.row}>
+                            <p>Swap route</p>
+                        </div>
+                        <div className={styles.routes_container}>
+                            {routes.map((route, index) => (
+                                <Fragment key={`route-${index}`}>
+                                    <RouteInfo
+                                        nanoInputAssetAmount={
+                                            swapInfo.nanoInputAssetAmount
+                                        }
+                                        route={route}
+                                    />
+                                </Fragment>
+                            ))}
+                        </div>
+                    </div>
+                </>
             )}
-        </>
+        </div>
     );
 };

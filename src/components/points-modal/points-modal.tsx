@@ -1,5 +1,4 @@
 import styles from './points-modal.module.css';
-import {TapTap} from './tap-tap/tap-tap';
 import {Tasks} from './tasks/tasks';
 import {BottomSheet} from '../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../shared/form-button/form-button';
@@ -16,12 +15,10 @@ export const PointsModal = () => {
     return (
         <BottomSheet
             isOpen={isOpen}
-            headerTitle="Tap-tap"
+            headerTitle="Complete tasks"
             onClose={handleClose}
         >
             <div className={styles.content_container}>
-                <TapTap />
-
                 <Tasks />
 
                 <FormButton

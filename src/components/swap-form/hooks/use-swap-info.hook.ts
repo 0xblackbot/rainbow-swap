@@ -36,6 +36,8 @@ export const useSwapInfo = (
             parseFloat(outputAssetAmount) / parseFloat(inputAssetAmount);
 
         return {
+            nanoInputAssetAmount,
+            nanoOutputAssetAmount,
             inputAssetAmount,
             outputAssetAmount,
             minOutputAssetAmount,

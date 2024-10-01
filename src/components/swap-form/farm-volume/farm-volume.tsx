@@ -2,13 +2,16 @@ import Lottie from 'lottie-react';
 
 import duckAirdropAnimation from './duck-airdrop.json';
 import styles from './farm-volume.module.css';
-import {TON, USDT} from '../../../globals';
+import {IS_TMA, TELEGRAM_BOT_LINK, TON, USDT} from '../../../globals';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
+import {useDispatch} from '../../../store';
+import {openPointsModal} from '../../../store/points/points-actions';
 
 const DELEN_BADGE_URL = 'https://society.ton.org/degen-airdrop';
 const TON_INPUT_AMOUNT = '200';
 
 export const FarmVolume = () => {
+    const dispatch = useDispatch();
     const {setInputAssetAddress, setOutputAssetAddress, setInputAssetAmount} =
         useSwapForm();
 
@@ -26,6 +29,10 @@ export const FarmVolume = () => {
         setOutputAssetAddress(TON);
         setInputAssetAmount(TON_INPUT_AMOUNT);
     };
+
+    const handleEarnMorePointsClick = () => dispatch(openPointsModal());
+    const handleEarnPointsInTelegramClick = () =>
+        window.Telegram.WebApp.openLink(TELEGRAM_BOT_LINK);
 
     return (
         <div className={styles.container}>
@@ -52,7 +59,7 @@ export const FarmVolume = () => {
                             className={styles.button}
                             onClick={handleFarmVolumeClick}
                         >
-                            Swap tokens
+                            Swap any tokens
                         </p>
                     </div>
                     <div className={styles.message_container}>
@@ -63,6 +70,24 @@ export const FarmVolume = () => {
                         >
                             Try arbitrage mode
                         </p>
+                    </div>
+                    <div className={styles.message_container}>
+                        <p className={styles.message}>4. </p>
+                        {IS_TMA ? (
+                            <p
+                                className={styles.button}
+                                onClick={handleEarnMorePointsClick}
+                            >
+                                Earn more points
+                            </p>
+                        ) : (
+                            <p
+                                className={styles.button}
+                                onClick={handleEarnPointsInTelegramClick}
+                            >
+                                More points in Telegram app
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>

@@ -28,3 +28,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.ident_container {
+    height: var(--2-step);
+}

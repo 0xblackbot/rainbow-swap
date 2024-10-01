@@ -1,48 +1,60 @@
-import {FC, useCallback, useState} from 'react';
+import {isDefined} from '@rnw-community/shared';
+import {Asset} from 'rainbow-swap-sdk';
+import {FC} from 'react';
 
-import styles from './swap-button.module.css';
-import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
+import {
+    trackButtonClick,
+    trackSwapConfirmation
+} from '../../../hooks/use-analytics.hook';
+import {useSendTransaction} from '../../../hooks/use-send-transaction.hook';
+import {SwapInfo} from '../../../interfaces/swap-info.interface';
 import {FormButton} from '../../../shared/form-button/form-button';
-import {useAppStatusSelector} from '../../../store/security/security-selectors';
-import {SwapDetails} from '../swap-details/swap-details';
-import {SwapDisabledBig} from '../swap-disabled/swap-disabled-big';
+import {useDispatch} from '../../../store';
+import {useSwapMessagesSelector} from '../../../store/swap-routes/swap-routes-selectors';
+import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions';
+import {showErrorToast, showSuccessToast} from '../../../utils/toast.utils';
 
 interface Props {
-    onSwap: () => void;
+    swapInfo: SwapInfo;
+    inputAsset: Asset;
+    outputAsset: Asset;
 }
 
-export const SwapButton: FC<Props> = ({onSwap}) => {
-    const appStatus = useAppStatusSelector();
+export const SwapButton: FC<Props> = ({swapInfo, inputAsset, outputAsset}) => {
+    const dispatch = useDispatch();
+    const sendTransaction = useSendTransaction();
 
-    const [isOpen, setIsOpen] = useState(false);
+    const swapMessages = useSwapMessagesSelector();
 
-    const handleSwap = useCallback(() => {
-        setIsOpen(true);
-        onSwap();
-    }, [setIsOpen, onSwap]);
-    const handleClose = () => setIsOpen(false);
+    const handleClick = async () => {
+        if (swapMessages.length === 0) {
+            return showErrorToast('Swap route not found. Please try again.');
+        }
 
-    const handleConfirm = () => setIsOpen(false);
+        trackButtonClick('Confirm'); // used old name for analytics
+        const transactionInfo = await sendTransaction(swapMessages);
 
-    return (
-        <>
-            <FormButton text="Swap" onClick={handleSwap} />
-            <BottomSheet
-                isOpen={isOpen}
-                headerTitle="Confirm the swap"
-                onClose={handleClose}
-            >
-                <div className={styles.content_container}>
-                    {appStatus.isSwapsEnabled ? (
-                        <SwapDetails onConfirm={handleConfirm} />
-                    ) : (
-                        <SwapDisabledBig
-                            message={appStatus.message}
-                            onClose={handleClose}
-                        />
-                    )}
-                </div>
-            </BottomSheet>
-        </>
-    );
+        if (isDefined(transactionInfo)) {
+            const usdAmount =
+                parseFloat(swapInfo.inputAssetAmount) *
+                inputAsset.usdExchangeRate;
+
+            trackSwapConfirmation({
+                walletAddress: transactionInfo.senderRawAddress,
+                bocHash: transactionInfo.bocHash,
+                usdValue: usdAmount,
+                inputAssetAddress: inputAsset.address,
+                inputAssetSymbol: inputAsset.symbol,
+                inputAssetAmount: Number(swapInfo.inputAssetAmount),
+                outputAssetAddress: outputAsset.address,
+                outputAssetSymbol: outputAsset.symbol,
+                outputAssetAmount: Number(swapInfo.outputAssetAmount)
+            });
+
+            dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
+            showSuccessToast('Swap sent, please wait...');
+        }
+    };
+
+    return <FormButton text="Swap" onClick={handleClick} />;
 };

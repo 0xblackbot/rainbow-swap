@@ -70,7 +70,7 @@ export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
             senderAddress.toString()
         );
 
-        const transactionInfo = await sendTransaction(senderAddress, messages);
+        const transactionInfo = await sendTransaction(messages);
 
         if (isDefined(transactionInfo)) {
             dispatch(

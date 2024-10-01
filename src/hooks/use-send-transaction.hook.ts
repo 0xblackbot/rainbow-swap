@@ -1,4 +1,4 @@
-import {Address} from '@ton/core';
+import {isDefined} from '@rnw-community/shared';
 import {useTonConnectUI} from '@tonconnect/ui-react';
 import {useCallback, useState} from 'react';
 
@@ -13,20 +13,25 @@ export const useSendTransaction = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     useDisableMainButton(isOpen);
+
     return useCallback(
-        (senderAddress: Address, messages: Message[]) => {
+        (messages: Message[]) => {
             setIsOpen(true);
-            const senderRawAddress = senderAddress.toRawString();
+            const senderAddress = tonConnectUI.wallet?.account.address;
+
+            if (!isDefined(senderAddress)) {
+                throw new Error('Wallet not connected');
+            }
 
             return tonConnectUI
                 .sendTransaction({
                     validUntil: Math.floor(Date.now() / 1000) + 1 * 60,
-                    from: senderRawAddress,
+                    from: senderAddress,
                     messages
                 })
                 .then(
                     (response): TransactionInfo => ({
-                        senderRawAddress,
+                        senderRawAddress: senderAddress,
                         bocHash: bocToHash(response.boc)
                     })
                 )
@@ -39,7 +44,6 @@ export const useSendTransaction = () => {
                     setIsOpen(false);
                 });
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [tonConnectUI.sendTransaction]
+        [tonConnectUI]
     );
 };

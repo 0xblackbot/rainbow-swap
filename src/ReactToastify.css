@@ -1,5 +1,8 @@
 .Toastify__toast-container {
     padding: var(--2-step);
+    width: 100%;
+    min-width: var(--app-min-width);
+    max-width: var(--app-max-width);
 }
 
 .Toastify__toast {

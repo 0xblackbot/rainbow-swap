@@ -85,9 +85,6 @@ export const Tasks = () => {
 
     return (
         <>
-            <Divider withArrow={true} />
-
-            <p className={styles.title}>Earn more</p>
             <TaskItem
                 imageSrc={referralImage}
                 title="Perform trades"

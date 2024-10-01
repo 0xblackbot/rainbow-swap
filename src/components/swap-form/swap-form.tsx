@@ -1,27 +1,29 @@
 import {Asset, getQueryId} from 'rainbow-swap-sdk';
-import {useCallback, useEffect, useMemo, useRef} from 'react';
+import {useEffect, useMemo, useRef} from 'react';
 
+import {ConnectWalletButton} from './connect-wallet-button/connect-wallet-button';
 import {CustomInput} from './custom-input/custom-input';
 import {CustomOutput} from './custom-input/custom-output';
 import {FarmVolume} from './farm-volume/farm-volume';
-import {useOutputAssetAmount} from './hooks/use-output-asset-amount.hook';
+import {useSwapInfo} from './hooks/use-swap-info.hook';
 import {PendingSwap} from './pending-swap/pending-swap';
-import {RateInfo} from './rate-info/rate-info';
 import {SettingsButton} from './settings-button/settings-button';
 import {SwapButton} from './swap-button/swap-button';
+import {SwapDetails} from './swap-details/swap-details';
 import {SwapDisabled} from './swap-disabled/swap-disabled';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
+import {IS_TMA} from '../../globals';
 import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
-import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
 import {useAppStatusSelector} from '../../store/security/security-selectors';
+import {useMaxSlippageSelector} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {useRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
 import {useBalancesSelector} from '../../store/wallet/wallet-selectors';
@@ -32,12 +34,12 @@ import {swapAssets} from '../../utils/swap-assets.utils';
 export const SwapScreen = () => {
     const walletAddress = useWalletAddress();
     const inputRef = useRef<HTMLInputElement>(null);
-    const openTonConnectModal = useOpenTonConnectModal();
 
     const dispatch = useDispatch();
     const balances = useBalancesSelector();
     const routes = useRoutesSelector();
     const appStatus = useAppStatusSelector();
+    const slippageTolerance = useMaxSlippageSelector();
 
     const {
         inputAssetAddress,
@@ -50,11 +52,6 @@ export const SwapScreen = () => {
         outputAsset
     } = useSwapForm();
 
-    const outputAssetAmount = useOutputAssetAmount(
-        routes,
-        outputAsset.decimals
-    );
-
     const nanoInputAssetAmount = useMemo(
         () =>
             inputAssetAmount === ''
@@ -62,6 +59,16 @@ export const SwapScreen = () => {
                 : toNano(inputAssetAmount, inputAsset.decimals).toString(),
         [inputAssetAmount, inputAsset.decimals]
     );
+
+    const swapInfo = useSwapInfo(
+        inputAsset.decimals,
+        outputAsset.decimals,
+        slippageTolerance,
+        routes
+    );
+
+    const outputAssetAmount =
+        swapInfo.outputAssetAmount === '0' ? '' : swapInfo.outputAssetAmount;
 
     const {intervalRef, handleManualRefresh} = useRefreshRoutes(
         inputAssetAmount,
@@ -88,70 +95,41 @@ export const SwapScreen = () => {
         dispatch
     ]);
 
-    const handleConnectClick = useCallback(() => {
-        trackButtonClick('Connect');
-        inputRef.current?.blur();
-        openTonConnectModal();
-        // Connect modal constantly changes between re-renders causing this function to be recreated on every re-render
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    const handleToggleAssetsClick = useCallback(() => {
+    const handleConnectClick = () => inputRef.current?.blur();
+    const handleToggleAssetsClick = () => {
         trackButtonClick('Toggle Assets');
         setInputAssetAmount('');
         setInputAssetAddress(outputAssetAddress);
         setOutputAssetAddress(inputAssetAddress);
         window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
-    }, [
-        inputAssetAddress,
-        outputAssetAddress,
-        setInputAssetAddress,
-        setInputAssetAmount,
-        setOutputAssetAddress
-    ]);
-    const handleInputAssetValueChange = useCallback(
-        (newValue: Asset) => {
-            swapAssets(
-                newValue.address,
-                outputAssetAddress,
-                setInputAssetAddress,
-                handleToggleAssetsClick
-            );
-            if (inputAssetAmount !== '') {
-                const valueAmount = formatNumber(
-                    Number(inputAssetAmount),
-                    newValue.decimals
-                );
-                setInputAssetAmount(valueAmount);
-            }
-        },
-        [
-            handleToggleAssetsClick,
-            inputAssetAmount,
+    };
+    const handleInputAssetValueChange = (newValue: Asset) => {
+        swapAssets(
+            newValue.address,
             outputAssetAddress,
             setInputAssetAddress,
-            setInputAssetAmount
-        ]
-    );
-    const handleOutputAssetValueChange = useCallback(
-        (newValue: Asset) => {
-            swapAssets(
-                newValue.address,
-                inputAssetAddress,
-                setOutputAssetAddress,
-                handleToggleAssetsClick
+            handleToggleAssetsClick
+        );
+        if (inputAssetAmount !== '') {
+            const valueAmount = formatNumber(
+                Number(inputAssetAmount),
+                newValue.decimals
             );
-        },
-        [handleToggleAssetsClick, inputAssetAddress, setOutputAssetAddress]
-    );
-    const handleEnterSendAmount = useCallback(() => {
+            setInputAssetAmount(valueAmount);
+        }
+    };
+    const handleOutputAssetValueChange = (newValue: Asset) => {
+        swapAssets(
+            newValue.address,
+            inputAssetAddress,
+            setOutputAssetAddress,
+            handleToggleAssetsClick
+        );
+    };
+    const handleEnterSendAmount = () => {
         trackButtonClick('Enter amount');
         inputRef.current?.focus();
-    }, []);
-
-    const handleSwap = useCallback(() => {
-        trackButtonClick('Swap');
-        inputRef.current?.blur();
-    }, []);
+    };
 
     return (
         <>
@@ -189,7 +167,26 @@ export const SwapScreen = () => {
                             onAssetValueChange={handleOutputAssetValueChange}
                         />
                     </div>
-                    <RateInfo
+                    {walletAddress ? (
+                        Number(inputAssetAmount) === 0 ? (
+                            <FormButton
+                                text="Enter amount"
+                                onClick={handleEnterSendAmount}
+                            />
+                        ) : (
+                            <SwapButton
+                                swapInfo={swapInfo}
+                                inputAsset={inputAsset}
+                                outputAsset={outputAsset}
+                            />
+                        )
+                    ) : (
+                        <ConnectWalletButton onClick={handleConnectClick} />
+                    )}
+                    {!IS_TMA && <div className={styles.ident_container} />}
+
+                    <SwapDetails
+                        swapInfo={swapInfo}
                         inputAsset={inputAsset}
                         outputAsset={outputAsset}
                         inputAssetAmount={inputAssetAmount}
@@ -199,21 +196,6 @@ export const SwapScreen = () => {
                         <FarmVolume />
                     ) : (
                         <SwapDisabled message={appStatus.message} />
-                    )}
-                    {walletAddress ? (
-                        Number(inputAssetAmount) === 0 ? (
-                            <FormButton
-                                text="Enter amount"
-                                onClick={handleEnterSendAmount}
-                            />
-                        ) : (
-                            <SwapButton onSwap={handleSwap} />
-                        )
-                    ) : (
-                        <FormButton
-                            text="Connect Wallet"
-                            onClick={handleConnectClick}
-                        />
                     )}
                 </div>
             </ContentContainer>

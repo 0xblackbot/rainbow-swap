@@ -1,0 +1,75 @@
+.container {
+    min-height: 20px;
+    padding: 0 var(--2-step);
+    margin-bottom: var(--2-step);
+}
+
+.header_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.attention_text {
+    color: rgba(var(--danger-color));
+}
+
+.rate_text {
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.usd_text {
+    color: var(--hint-color);
+}
+
+.toggle_button {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.chevron {
+    color: var(--hint-color);
+    transition: transform 0.3s ease;
+}
+
+.chevron_open {
+    transform: rotate(180deg);
+}
+
+.info_container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--step);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.info_container_open {
+    opacity: 1;
+    max-height: 500px;
+}
+
+.info_container_ident {
+    height: var(--step);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.routes_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: var(--step);
+}

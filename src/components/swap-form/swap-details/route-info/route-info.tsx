@@ -3,28 +3,19 @@ import {FC, Fragment} from 'react';
 
 import styles from './route-info.module.css';
 import {SwapRouteStep} from './swap-route-step/swap-route-step';
-import {useSwapForm} from '../../../../hooks/swap-form/swap-form.hook';
-import {useAssetSelector} from '../../../../store/assets/assets-selectors';
-import {fromNano} from '../../../../utils/big-int.utils';
-import {getRouteInputStep} from '../../../../utils/route-step-with-calculation.utils';
+import {getRouteInputAssetAmount} from '../../../../utils/route-step-with-calculation.utils';
 
 interface Props {
+    nanoInputAssetAmount: bigint;
     route: RouteStepWithCalculation[];
 }
 
-export const RouteInfo: FC<Props> = ({route}) => {
-    const routeInputStep = getRouteInputStep(route);
-    const {inputAssetAmount} = useSwapForm();
-    const inputAsset = useAssetSelector(
-        routeInputStep?.inputAssetAddress ?? ''
-    );
-    const routeInputAssetAmount = fromNano(
-        BigInt(routeInputStep?.inputAssetAmount ?? ''),
-        inputAsset.decimals
-    );
+export const RouteInfo: FC<Props> = ({nanoInputAssetAmount, route}) => {
+    const routeStep_nanoInputAssetAmount = getRouteInputAssetAmount(route);
 
     const routeInputAssetPercentage = (
-        (parseFloat(routeInputAssetAmount) / parseFloat(inputAssetAmount)) *
+        (Number(routeStep_nanoInputAssetAmount) /
+            Number(nanoInputAssetAmount)) *
         100
     ).toFixed(2);
 
