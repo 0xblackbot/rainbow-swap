@@ -15,7 +15,6 @@
 
 html {
     height: -webkit-fill-available;
-    overflow-x: hidden;
     overflow-y: initial;
     overscroll-behavior-x: none;
 }
