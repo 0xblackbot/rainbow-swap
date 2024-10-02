@@ -31,5 +31,5 @@ export const useRoutingFee = (routes: RouteStepWithCalculation[][]) =>
         const fee =
             (MAX_FEE * Number(inputAmountWithFee)) / Number(totalInputAmount);
 
-        return Number(fee.toFixed(2));
+        return Number(fee?.toFixed(2));
     }, [routes]);

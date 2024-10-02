@@ -17,7 +17,7 @@ export const RouteInfo: FC<Props> = ({nanoInputAssetAmount, route}) => {
         (Number(routeStep_nanoInputAssetAmount) /
             Number(nanoInputAssetAmount)) *
         100
-    ).toFixed(2);
+    )?.toFixed(2);
 
     return (
         <div className={styles.route}>
