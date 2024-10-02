@@ -22,9 +22,6 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     const ID = useMemo(() => getQueryId(), []);
 
     useEffect(() => {
-        // add ButtonProps onMount
-        PROPS_STACK.push({id: ID, text, onClick});
-
         // remove ButtonProps onUnmount
         return () => {
             const buttonPropsIndex = PROPS_STACK.findIndex(
@@ -59,7 +56,11 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     useEffect(() => {
         const buttonPropsIndex = PROPS_STACK.findIndex(item => item.id === ID);
 
-        if (buttonPropsIndex !== -1) {
+        if (buttonPropsIndex === -1) {
+            // add ButtonProps
+            PROPS_STACK.push({id: ID, text, onClick});
+        } else {
+            // update ButtonProps
             const buttonProps = PROPS_STACK[buttonPropsIndex];
 
             // update if last
