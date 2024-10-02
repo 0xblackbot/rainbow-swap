@@ -22,7 +22,7 @@ export const useExchangeRate = (
             ? inputAsset.usdExchangeRate
             : outputAsset.usdExchangeRate;
 
-        const usdText = `($${usdValue?.toFixed(2)})`;
+        const usdText = `($${usdValue.toFixed(2)})`;
 
         const toggleRate = () => setIsDirect(state => !state);
 

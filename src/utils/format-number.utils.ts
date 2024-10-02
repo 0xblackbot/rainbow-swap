@@ -13,5 +13,5 @@ export function formatNumber(number: number, fixedValue: number): string {
     const roundedNumber =
         Math.floor(number * decimalsMultiplier) / decimalsMultiplier;
 
-    return roundedNumber?.toFixed(fixedValue);
+    return roundedNumber.toFixed(fixedValue);
 }

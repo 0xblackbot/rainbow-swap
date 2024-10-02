@@ -43,7 +43,7 @@ export const MaxSlippage = () => {
                 formattedValue = 0;
             }
 
-            dispatch(setMaxSlippageAction(formattedValue?.toFixed(2)));
+            dispatch(setMaxSlippageAction(formattedValue.toFixed(2)));
         }
     };
 
