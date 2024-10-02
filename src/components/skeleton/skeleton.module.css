@@ -2,7 +2,7 @@
 }
 
 .skeleton_loading {
-    background: linear-gradient(90deg, var(--secondary-bg-color) 25%, var(--spinner-color-empty-area) 50%, var(--secondary-bg-color) 75%);
+    background: linear-gradient(90deg, var(--border-color) 25%, var(--spinner-color-empty-area) 50%, var(--border-color) 75%);
     border-radius: 999999px;
     background-size: 200% 100%;
     animation: skeleton-loading 3s infinite;

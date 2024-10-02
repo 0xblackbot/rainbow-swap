@@ -6,8 +6,10 @@ import styles from './custom-input.module.css';
 import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getClassName} from '../../../utils/style.utils';
+import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props {
+    isLoading: boolean;
     balance: string | undefined;
     inputValue: string;
     assetValue: Asset;
@@ -15,7 +17,13 @@ interface Props {
 }
 
 export const CustomOutput: FC<Props> = memo(
-    ({balance = '0', inputValue, assetValue, onAssetValueChange}) => {
+    ({
+        isLoading,
+        balance = '0',
+        inputValue,
+        assetValue,
+        onAssetValueChange
+    }) => {
         const isRoutesLoading = useIsRoutesLoadingSelector();
 
         const usdAmount = parseFloat(inputValue) * assetValue.usdExchangeRate;
@@ -40,23 +48,27 @@ export const CustomOutput: FC<Props> = memo(
                         </span>
                         <div className={styles.empty_container} />
                     </div>
-                    <AssetSelector
-                        value={assetValue}
-                        headerTitle="Select output token"
-                        onChange={onAssetValueChange}
-                    />
+                    <Skeleton isLoading={isLoading}>
+                        <AssetSelector
+                            value={assetValue}
+                            headerTitle="Select output token"
+                            onChange={onAssetValueChange}
+                        />
+                    </Skeleton>
                 </div>
 
                 <div className={styles.input_info}>
                     <p className={styles.input_usd_balance}>
                         ${formatNumber(usdAmount, 2)}
                     </p>
-                    <div className={styles.input_info_balance}>
-                        <p>
-                            {formatNumber(parseFloat(balance), 2)}{' '}
-                            {assetValue.symbol}
-                        </p>
-                    </div>
+                    <Skeleton isLoading={isLoading}>
+                        <div className={styles.input_info_balance}>
+                            <p>
+                                {formatNumber(parseFloat(balance), 2)}{' '}
+                                {assetValue.symbol}
+                            </p>
+                        </div>
+                    </Skeleton>
                 </div>
             </div>
         );

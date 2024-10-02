@@ -22,6 +22,7 @@ import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
+import {useIsAssetInitializedSelector} from '../../store/initialized/initialized-selectors';
 import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {useMaxSlippageSelector} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
@@ -40,6 +41,7 @@ export const SwapScreen = () => {
     const routes = useRoutesSelector();
     const appStatus = useAppStatusSelector();
     const slippageTolerance = useMaxSlippageSelector();
+    const isAssetInitialized = useIsAssetInitializedSelector();
 
     const {
         inputAssetAddress,
@@ -151,6 +153,7 @@ export const SwapScreen = () => {
                     <div className={styles.input_asset_container}>
                         <CustomInput
                             ref={inputRef}
+                            isLoading={!isAssetInitialized}
                             balance={balances[inputAssetAddress]}
                             inputValue={inputAssetAmount}
                             onInputValueChange={setInputAssetAmount}
@@ -161,6 +164,7 @@ export const SwapScreen = () => {
                     </div>
                     <div className={styles.output_asset_container}>
                         <CustomOutput
+                            isLoading={!isAssetInitialized}
                             balance={balances[outputAssetAddress]}
                             inputValue={outputAssetAmount}
                             assetValue={outputAsset}

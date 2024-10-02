@@ -5,8 +5,10 @@ import {AssetSelector} from './asset-selector/asset-selector';
 import styles from './custom-input.module.css';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getMaxSentAmount} from '../../../utils/get-max-sent-amount.utils';
+import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props {
+    isLoading: boolean;
     balance: string | undefined;
     inputValue: string;
     onInputValueChange: (newInputValue: string) => void;
@@ -17,6 +19,7 @@ interface Props {
 export const CustomInput = forwardRef<HTMLInputElement, Props>(
     (
         {
+            isLoading,
             balance = '0',
             inputValue,
             onInputValueChange,
@@ -100,29 +103,33 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         />
                         <div className={styles.empty_container} />
                     </div>
-                    <AssetSelector
-                        value={assetValue}
-                        headerTitle="Select input token"
-                        onChange={onAssetValueChange}
-                    />
+                    <Skeleton isLoading={isLoading}>
+                        <AssetSelector
+                            value={assetValue}
+                            headerTitle="Select input token"
+                            onChange={onAssetValueChange}
+                        />
+                    </Skeleton>
                 </div>
 
                 <div className={styles.input_info}>
                     <p className={styles.input_usd_balance}>
                         ${formatNumber(usdAmount, 2)}
                     </p>
-                    <div className={styles.input_info_balance}>
-                        <p>
-                            {formatNumber(parseFloat(balance), 2)}{' '}
-                            {assetValue.symbol}
-                        </p>
-                        <button
-                            className={styles.input_info_button}
-                            onClick={setMaxAssetAmount}
-                        >
-                            Max
-                        </button>
-                    </div>
+                    <Skeleton isLoading={isLoading}>
+                        <div className={styles.input_info_balance}>
+                            <p>
+                                {formatNumber(parseFloat(balance), 2)}{' '}
+                                {assetValue.symbol}
+                            </p>
+                            <button
+                                className={styles.input_info_button}
+                                onClick={setMaxAssetAmount}
+                            >
+                                Max
+                            </button>
+                        </div>
+                    </Skeleton>
                 </div>
             </div>
         );
