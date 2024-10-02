@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import styles from './app.module.css';
+import {getErrorElement} from '../components/error-element/error-element';
 import {useDisableMainButton} from '../hooks/use-disable-main-button.hook';
 import {useStateVersionCheck} from '../hooks/use-state-version-check.hook';
 import {useTonConnectModalStatus} from '../hooks/use-ton-connect-modal-status.hook';
@@ -11,7 +12,8 @@ import {HomeScreen} from '../screens/home-screen/home-screen';
 const router = createBrowserRouter([
     {
         path: '/:inputAssetSlug?/:outputAssetSlug?/*',
-        element: <HomeScreen />
+        element: <HomeScreen />,
+        errorElement: getErrorElement()
     }
 ]);
 

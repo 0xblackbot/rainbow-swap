@@ -12,7 +12,7 @@ interface ButtonProps {
 
 const PROPS_STACK: ButtonProps[] = [];
 
-const updateMainButton = () => {
+const updateMainButton = async () => {
     if (PROPS_STACK.length !== 0) {
         const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
 
