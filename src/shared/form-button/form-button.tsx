@@ -22,7 +22,7 @@ const updateMainButton = () => {
             window.Telegram.WebApp.MainButton.show();
             window.Telegram.WebApp.MainButton.enable();
         }
-    }, 0);
+    }, 100);
 };
 
 interface Props {
