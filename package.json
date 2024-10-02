@@ -3,7 +3,6 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "type": "module",
-  "homepage": ".",
   "scripts": {
     "ts": "tsc --pretty",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
