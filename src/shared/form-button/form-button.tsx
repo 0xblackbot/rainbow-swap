@@ -80,6 +80,7 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
             PROPS_STACK[buttonPropsIndex].onClick = onClick;
         }
     }, [ID, text, onClick]);
+                PROPS_STACK.splice(buttonPropsIndex, 1);
 
     return (
         !IS_TMA && (
