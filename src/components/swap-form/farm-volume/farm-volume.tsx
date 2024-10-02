@@ -8,7 +8,7 @@ import {useDispatch} from '../../../store';
 import {openPointsModal} from '../../../store/points/points-actions';
 
 const DELEN_BADGE_URL = 'https://society.ton.org/degen-airdrop';
-const TON_INPUT_AMOUNT = '200';
+const TON_INPUT_AMOUNT = '20';
 
 export const FarmVolume = () => {
     const dispatch = useDispatch();

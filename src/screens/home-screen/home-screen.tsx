@@ -7,6 +7,7 @@ import {Header} from '../../components/header/header';
 import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
 import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
+import {SwapFormProvider} from '../../hooks/swap-form/swap-form.provider';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../store';
@@ -92,7 +93,9 @@ export const HomeScreen = memo(() => {
                 draggablePercent={40}
             />
             <Header />
-            <SwapScreen />
+            <SwapFormProvider>
+                <SwapScreen />
+            </SwapFormProvider>
             <PointsModal />
             <Footer />
         </>

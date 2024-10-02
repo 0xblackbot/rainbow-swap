@@ -7,6 +7,7 @@ import {resetState} from '../actions';
 import {assetsReducers} from '../assets/assets-reducers';
 import {devReducers} from '../dev/dev-reducers';
 import {RootState} from '../index';
+import {initializedReducers} from '../initialized/initialized-reducers';
 import {pointsReducers} from '../points/points-reducers';
 import {securityReducers} from '../security/security-reducers';
 import {settingsReducers} from '../settings/settings-reducers';
@@ -20,10 +21,14 @@ export const rootReducer = combineReducers({
     settings: settingsReducers,
     points: pointsReducers,
     dev: devReducers,
-    security: securityReducers
+    security: securityReducers,
+    initialized: initializedReducers
 });
 
-const resetableRootReducer = (state: RootState | undefined, action: Action) => {
+const resettableRootReducer = (
+    state: RootState | undefined,
+    action: Action
+) => {
     if (resetState.match(action)) {
         return rootReducer(undefined, action);
     }
@@ -33,7 +38,7 @@ const resetableRootReducer = (state: RootState | undefined, action: Action) => {
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['swapRoutes'],
+    blacklist: ['swapRoutes', 'initialized'],
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     stateReconciler: autoMergeLevel2 as any
@@ -41,5 +46,5 @@ const persistConfig = {
 
 export const persistedReducer = persistReducer(
     persistConfig,
-    resetableRootReducer
+    resettableRootReducer
 );

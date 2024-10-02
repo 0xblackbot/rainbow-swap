@@ -4,9 +4,10 @@ import {useMemo} from 'react';
 import {useSelector} from '../index';
 
 const EMPTY_ASSET: Asset = {
+    address: 'unknown_token',
+    slug: 'unknown_token',
     symbol: '???',
     name: 'Unknown token',
-    address: 'unknown_token',
     image: './icons/unknown_asset.png',
     decimals: 0,
     exchangeRate: '0',
@@ -22,8 +23,11 @@ export const useAssetSelector = (address: string) =>
             b.address + '_' + b.usdExchangeRate
     );
 
+export const useAssetsRecordSelector = () =>
+    useSelector(({assets}) => assets.record.data);
+
 export const useAssetsListSelector = () => {
-    const assetsRecord = useSelector(({assets}) => assets.record.data);
+    const assetsRecord = useAssetsRecordSelector();
 
     return useMemo(() => Object.values(assetsRecord), [assetsRecord]);
 };

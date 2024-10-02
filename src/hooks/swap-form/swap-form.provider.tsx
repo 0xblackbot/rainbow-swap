@@ -3,6 +3,7 @@ import {FC, PropsWithChildren, useState} from 'react';
 import {SwapFormContext} from './swap-form.context';
 import {TON, USDT} from '../../globals';
 import {useAssetSelector} from '../../store/assets/assets-selectors';
+import {useSetAssetsFromRouterParams} from '../use-set-assets-from-router-params.hook';
 
 export const SwapFormProvider: FC<PropsWithChildren> = ({children}) => {
     const [inputAssetAddress, setInputAssetAddress] = useState<string>(TON);
@@ -11,6 +12,8 @@ export const SwapFormProvider: FC<PropsWithChildren> = ({children}) => {
 
     const inputAsset = useAssetSelector(inputAssetAddress);
     const outputAsset = useAssetSelector(outputAssetAddress);
+
+    useSetAssetsFromRouterParams(setInputAssetAddress, setOutputAssetAddress);
 
     return (
         <SwapFormContext.Provider

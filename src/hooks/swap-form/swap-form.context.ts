@@ -24,6 +24,7 @@ export const SwapFormContext = createContext<SwapFormContextValues>({
     setInputAssetAmount: EMPTY_FN,
     inputAsset: {
         address: TON,
+        slug: 'TON',
         decimals: 9,
         exchangeRate: '0',
         usdExchangeRate: 0,
@@ -34,6 +35,7 @@ export const SwapFormContext = createContext<SwapFormContextValues>({
     },
     outputAsset: {
         address: USDT,
+        slug: 'USDT',
         decimals: 6,
         exchangeRate: '0',
         usdExchangeRate: 0,
