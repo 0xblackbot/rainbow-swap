@@ -1,24 +1,29 @@
 import {isDefined} from '@rnw-community/shared';
+import {Asset} from 'rainbow-swap-sdk';
 import {Dispatch, SetStateAction, useEffect, useRef} from 'react';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 import {useAssetsRecordSelector} from '../store/assets/assets-selectors';
 import {useIsAssetInitializedSelector} from '../store/initialized/initialized-selectors';
 import {findAssetBySlug} from '../utils/asset.utils';
 
-export const useSetAssetsFromRouterParams = (
+export const useSyncSwapFormWithRouter = (
+    inputAsset: Asset,
+    outputAsset: Asset,
     setInputAssetAddress: Dispatch<SetStateAction<string>>,
     setOutputAssetAddress: Dispatch<SetStateAction<string>>
 ) => {
+    const isSynced = useRef(false);
+
+    const navigate = useNavigate();
     const params = useParams();
-    const hasSetParams = useRef(false);
 
     const assetsRecord = useAssetsRecordSelector();
     const isAssetInitialized = useIsAssetInitializedSelector();
 
     useEffect(() => {
-        if (hasSetParams.current === false && isAssetInitialized) {
-            hasSetParams.current = true;
+        if (isSynced.current === false && isAssetInitialized) {
+            isSynced.current = true;
 
             const inputAsset = findAssetBySlug(
                 params.inputAssetSlug,
@@ -35,6 +40,7 @@ export const useSetAssetsFromRouterParams = (
             }
         }
     }, [
+        isSynced,
         assetsRecord,
         isAssetInitialized,
         params.inputAssetSlug,
@@ -42,4 +48,12 @@ export const useSetAssetsFromRouterParams = (
         setInputAssetAddress,
         setOutputAssetAddress
     ]);
+
+    useEffect(() => {
+        if (isSynced.current === true) {
+            navigate(`/${inputAsset.slug}/${outputAsset.slug}`, {
+                replace: true
+            });
+        }
+    }, [navigate, inputAsset.slug, outputAsset.slug]);
 };
