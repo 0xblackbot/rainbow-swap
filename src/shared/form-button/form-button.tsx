@@ -56,24 +56,19 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     useEffect(() => {
         const buttonPropsIndex = PROPS_STACK.findIndex(item => item.id === ID);
 
+        // update if last
+        if (buttonPropsIndex === PROPS_STACK.length - 1) {
+            window.Telegram.WebApp.MainButton.setText(text);
+            window.Telegram.WebApp.MainButton.onClick(onClick);
+        }
+
         if (buttonPropsIndex === -1) {
-            // add ButtonProps
+            // add
             PROPS_STACK.push({id: ID, text, onClick});
         } else {
-            // update ButtonProps
-            const buttonProps = PROPS_STACK[buttonPropsIndex];
-
-            // update if last
-            if (buttonPropsIndex === PROPS_STACK.length - 1) {
-                // remove old onClick
-                window.Telegram.WebApp.MainButton.offClick(buttonProps.onClick);
-
-                window.Telegram.WebApp.MainButton.setText(text);
-                window.Telegram.WebApp.MainButton.onClick(onClick);
-            }
-
-            buttonProps.text = text;
-            buttonProps.onClick = onClick;
+            // update
+            PROPS_STACK[buttonPropsIndex].text = text;
+            PROPS_STACK[buttonPropsIndex].onClick = onClick;
         }
     }, [ID, text, onClick]);
 
