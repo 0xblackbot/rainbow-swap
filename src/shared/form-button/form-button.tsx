@@ -1,3 +1,4 @@
+import {debounce} from 'lodash-es';
 import {getQueryId} from 'rainbow-swap-sdk';
 import {FC, useEffect, useMemo} from 'react';
 
@@ -12,7 +13,7 @@ interface ButtonProps {
 
 const PROPS_STACK: ButtonProps[] = [];
 
-const updateMainButton = () => {
+const updateMainButton = debounce(() => {
     setTimeout(() => {
         if (PROPS_STACK.length !== 0) {
             const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
@@ -23,7 +24,7 @@ const updateMainButton = () => {
             window.Telegram.WebApp.MainButton.enable();
         }
     }, 100);
-};
+}, 100);
 
 interface Props {
     text: string;
