@@ -80,7 +80,22 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
             PROPS_STACK[buttonPropsIndex].onClick = onClick;
         }
     }, [ID, text, onClick]);
+
+    useEffect(() => {
+        return () => {
+            const buttonPropsIndex = PROPS_STACK.findIndex(
+                item => item.id === ID
+            );
+
+            if (buttonPropsIndex !== -1) {
+                // remove from stack
                 PROPS_STACK.splice(buttonPropsIndex, 1);
+            }
+
+            updateMainButton();
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         !IS_TMA && (
