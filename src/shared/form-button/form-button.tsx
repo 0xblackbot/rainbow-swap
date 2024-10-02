@@ -20,6 +20,7 @@ const updateMainButton = () => {
             window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
             window.Telegram.WebApp.MainButton.onClick(lastButtonProps.onClick);
             window.Telegram.WebApp.MainButton.show();
+            window.Telegram.WebApp.MainButton.enable();
         }
     }, 0);
 };
