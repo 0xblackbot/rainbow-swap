@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 
 import {MaxSlippage} from './max-slippage/max-slippage';
 import {RiskToleranceSetting} from './risk-tolerance/risk-tolerance';
@@ -12,7 +12,7 @@ export const SettingsButton = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpen = () => setIsOpen(true);
-    const handleClose = () => setIsOpen(false);
+    const handleClose = useCallback(() => setIsOpen(false), []);
 
     return (
         <>

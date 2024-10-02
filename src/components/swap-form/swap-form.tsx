@@ -1,5 +1,5 @@
 import {Asset, getQueryId} from 'rainbow-swap-sdk';
-import {useEffect, useMemo, useRef} from 'react';
+import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {ConnectWalletButton} from './connect-wallet-button/connect-wallet-button';
 import {CustomInput} from './custom-input/custom-input';
@@ -97,7 +97,7 @@ export const SwapScreen = () => {
         dispatch
     ]);
 
-    const handleConnectClick = () => inputRef.current?.blur();
+    const handleConnectClick = useCallback(() => inputRef.current?.blur(), []);
     const handleToggleAssetsClick = () => {
         trackButtonClick('Toggle Assets');
         setInputAssetAmount('');
@@ -128,10 +128,10 @@ export const SwapScreen = () => {
             handleToggleAssetsClick
         );
     };
-    const handleEnterSendAmount = () => {
+    const handleEnterSendAmount = useCallback(() => {
         trackButtonClick('Enter amount');
         inputRef.current?.focus();
-    };
+    }, []);
 
     return (
         <>

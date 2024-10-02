@@ -22,30 +22,30 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     const ID = useMemo(() => getQueryId(), []);
 
     useEffect(() => {
-        // remove ButtonProps onUnmount
         return () => {
             const buttonPropsIndex = PROPS_STACK.findIndex(
                 item => item.id === ID
             );
 
             if (buttonPropsIndex !== -1) {
-                const buttonProps = PROPS_STACK[buttonPropsIndex];
-
-                // remove old onClick
-                window.Telegram.WebApp.MainButton.offClick(buttonProps.onClick);
-
+                // remove onClick
+                window.Telegram.WebApp.MainButton.offClick(
+                    PROPS_STACK[buttonPropsIndex].onClick
+                );
+                // remove from stack
                 PROPS_STACK.splice(buttonPropsIndex, 1);
 
                 if (PROPS_STACK.length === 0) {
                     // don't know that to do
                 } else {
-                    const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
+                    const newButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
 
+                    // update MainButton state
                     window.Telegram.WebApp.MainButton.setText(
-                        lastButtonProps.text
+                        newButtonProps.text
                     );
                     window.Telegram.WebApp.MainButton.onClick(
-                        lastButtonProps.onClick
+                        newButtonProps.onClick
                     );
                 }
             }
@@ -56,17 +56,26 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     useEffect(() => {
         const buttonPropsIndex = PROPS_STACK.findIndex(item => item.id === ID);
 
-        // update if last
-        if (buttonPropsIndex === PROPS_STACK.length - 1) {
+        if (buttonPropsIndex === -1) {
+            // add to stack
+            PROPS_STACK.push({id: ID, text, onClick});
+
+            // set MainButton
             window.Telegram.WebApp.MainButton.setText(text);
             window.Telegram.WebApp.MainButton.onClick(onClick);
-        }
-
-        if (buttonPropsIndex === -1) {
-            // add
-            PROPS_STACK.push({id: ID, text, onClick});
         } else {
-            // update
+            // remove old onClick
+            window.Telegram.WebApp.MainButton.offClick(
+                PROPS_STACK[buttonPropsIndex].onClick
+            );
+
+            // update MainButton if last
+            if (buttonPropsIndex === PROPS_STACK.length - 1) {
+                window.Telegram.WebApp.MainButton.setText(text);
+                window.Telegram.WebApp.MainButton.onClick(onClick);
+            }
+
+            // update stack
             PROPS_STACK[buttonPropsIndex].text = text;
             PROPS_STACK[buttonPropsIndex].onClick = onClick;
         }

@@ -1,5 +1,5 @@
 import {Asset} from 'rainbow-swap-sdk';
-import {FC, memo, useState} from 'react';
+import {FC, memo, useCallback, useState} from 'react';
 
 import {AssetList} from './asset-list/asset-list';
 import styles from './asset-selector.module.css';
@@ -18,7 +18,7 @@ export const AssetSelector: FC<Props> = memo(
         const [isOpen, setIsOpen] = useState(false);
 
         const handleOpen = () => setIsOpen(true);
-        const handleDismiss = () => setIsOpen(false);
+        const handleDismiss = useCallback(() => setIsOpen(false), []);
 
         const handleChange = (newValue: Asset) => {
             setIsOpen(false);

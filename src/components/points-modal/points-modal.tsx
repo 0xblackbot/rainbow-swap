@@ -1,3 +1,5 @@
+import {useCallback} from 'react';
+
 import styles from './points-modal.module.css';
 import {Tasks} from './tasks/tasks';
 import {BottomSheet} from '../../shared/bottom-sheet/bottom-sheet';
@@ -10,7 +12,10 @@ export const PointsModal = () => {
     const dispatch = useDispatch();
     const isOpen = useIsPointsModalOpenSelector();
 
-    const handleClose = () => dispatch(closePointsModal());
+    const handleClose = useCallback(
+        () => dispatch(closePointsModal()),
+        [dispatch]
+    );
 
     return (
         <BottomSheet

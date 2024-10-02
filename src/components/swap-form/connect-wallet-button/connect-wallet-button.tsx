@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useCallback} from 'react';
 
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../../hooks/use-open-ton-connect-modal.hook';
@@ -11,12 +11,12 @@ interface Props {
 export const ConnectWalletButton: FC<Props> = ({onClick}) => {
     const openTonConnectModal = useOpenTonConnectModal();
 
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
         trackButtonClick('Connect');
         openTonConnectModal();
 
         onClick();
-    };
+    }, [onClick, openTonConnectModal]);
 
     return <FormButton text="Connect Wallet" onClick={handleClick} />;
 };
