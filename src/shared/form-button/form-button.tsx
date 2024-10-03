@@ -1,4 +1,5 @@
 import {isDefined} from '@rnw-community/shared';
+import {mainButton} from '@telegram-apps/sdk';
 import {getQueryId} from 'rainbow-swap-sdk';
 import {FC, useEffect, useMemo} from 'react';
 
@@ -28,19 +29,24 @@ const updateMainButton = () => {
         // remove previous ButtonProps
         if (isDefined(activeButtonProps)) {
             // window.Telegram.WebApp.MainButton.setText('_');
-            window.Telegram.WebApp.MainButton.offClick(
-                activeButtonProps.onClick
-            );
+            mainButton.offClick(activeButtonProps.onClick);
+            // window.Telegram.WebApp.MainButton.offClick(
+            //     activeButtonProps.onClick
+            // );
         }
 
         // set new ButtonProps
         activeButtonProps = nextButtonProps;
 
         if (isDefined(activeButtonProps)) {
-            window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
-            window.Telegram.WebApp.MainButton.onClick(
-                activeButtonProps.onClick
-            );
+            mainButton.setParams({
+                text: activeButtonProps.text
+            });
+            mainButton.onClick(activeButtonProps.onClick);
+            // window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
+            // window.Telegram.WebApp.MainButton.onClick(
+            //     activeButtonProps.onClick
+            // );
         }
     }, 0);
 };

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rainbow Swap - Aggregator on TON</title>
 
-        <script src="/scripts/telegram-web-app.js"></script>
+<!--        <script src="/scripts/telegram-web-app.js"></script>-->
         <script async src="https://tganalytics.xyz/index.js" type="text/javascript"></script>
     </head>
     <body>
@@ -22,14 +22,14 @@
             }
 
             function handleTheme() {
-                if (window.Telegram.WebApp.themeParams.bg_color) {
-                    handleColorSchemeChange(window.Telegram.WebApp.colorScheme);
-                    window.Telegram.WebApp.onEvent('themeChanged', () => handleColorSchemeChange(window.Telegram.WebApp.colorScheme));
-                } else {
-                    const isLightTheme = window.matchMedia('(prefers-color-scheme: light)');
-                    handleColorSchemeChange(isLightTheme.matches ? 'light' : 'dark');
-                    isLightTheme.addEventListener('change', e => handleColorSchemeChange(e.matches ? 'light' : 'dark'));
-                }
+                // if (window.Telegram.WebApp.themeParams.bg_color) {
+                //     handleColorSchemeChange(window.Telegram.WebApp.colorScheme);
+                //     window.Telegram.WebApp.onEvent('themeChanged', () => handleColorSchemeChange(window.Telegram.WebApp.colorScheme));
+                // } else {
+                //     const isLightTheme = window.matchMedia('(prefers-color-scheme: light)');
+                //     handleColorSchemeChange(isLightTheme.matches ? 'light' : 'dark');
+                //     isLightTheme.addEventListener('change', e => handleColorSchemeChange(e.matches ? 'light' : 'dark'));
+                // }
             }
 
             handleTheme();

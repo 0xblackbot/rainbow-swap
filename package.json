@@ -15,6 +15,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@rnw-community/shared": "^0.67.0",
+    "@telegram-apps/sdk": "^2.3.1",
     "@ton/core": "^0.58.1",
     "@ton/crypto": "^3.3.0",
     "@ton/ton": "^15.0.0",
