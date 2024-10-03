@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Api, HttpClient} from 'tonapi-sdk-js';
 
 import {toNano} from './utils/big-int.utils';
-import terminal from 'virtual:terminal';
 
 export const isProd = import.meta.env.PROD;
 export const PROD_STATE_VERSION = 1;
@@ -32,9 +31,10 @@ export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
 
 export const INIT_DATA = window.Telegram.WebApp.initData;
 export const IS_TMA = isNotEmptyString(INIT_DATA);
-export const IS_IOS = window.Telegram.WebApp.platform === 'ios';
 
-terminal.log('IS_IOS', IS_IOS);
+// On Android devices MainButton text updates only after touch
+export const IS_MAIN_BUTTON_AVAILABLE =
+    window.Telegram.WebApp.platform === 'ios';
 
 export const UNSAFE_INIT_DATA = {
     userId: window.Telegram.WebApp.initDataUnsafe.user?.id,
