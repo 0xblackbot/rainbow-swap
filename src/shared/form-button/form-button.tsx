@@ -1,5 +1,5 @@
-// import {isDefined} from '@rnw-community/shared';
-// import {getQueryId} from 'rainbow-swap-sdk';
+import {isDefined} from '@rnw-community/shared';
+import {getQueryId} from 'rainbow-swap-sdk';
 import {FC, useEffect, useMemo} from 'react';
 
 import styles from './form-button.module.css';
@@ -12,7 +12,7 @@ interface ButtonProps {
 }
 
 const BUTTON_PROPS_STACK: ButtonProps[] = [];
-// let activeButtonProps: ButtonProps | undefined;
+let activeButtonProps: ButtonProps | undefined;
 
 // let i = 0;
 // setInterval(() => {
@@ -20,23 +20,23 @@ const BUTTON_PROPS_STACK: ButtonProps[] = [];
 //     window.Telegram.WebApp.MainButton.setText(`test ${i}`);
 // }, 1000);
 
-// const updateMainButton = () => {
-//     const next
-//     // remove previous ButtonProps
-//     if (isDefined(activeButtonProps)) {
-//         window.Telegram.WebApp.MainButton.setText('_1');
-//         window.Telegram.WebApp.MainButton.offClick(activeButtonProps.onClick);
-//     }
-//
-//     // set new ButtonProps
-//     activeButtonProps = BUTTON_PROPS_STACK[BUTTON_PROPS_STACK.length - 1];
-//
-//     if (isDefined(activeButtonProps)) {
-//         window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
-//         window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
-//         window.Telegram.WebApp.MainButton.onClick(activeButtonProps.onClick);
-//     }
-// };
+const updateMainButton = () => {
+    const nextButtonProps = BUTTON_PROPS_STACK[BUTTON_PROPS_STACK.length - 1];;
+
+    // remove previous ButtonProps
+    if (isDefined(activeButtonProps)) {
+        window.Telegram.WebApp.MainButton.setText(nextButtonProps.text);
+        window.Telegram.WebApp.MainButton.offClick(activeButtonProps.onClick);
+    }
+
+    // set new ButtonProps
+    activeButtonProps = nextButtonProps;
+
+    if (isDefined(activeButtonProps)) {
+        window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
+        window.Telegram.WebApp.MainButton.onClick(activeButtonProps.onClick);
+    }
+};
 
 interface Props {
     text: string;
@@ -45,55 +45,40 @@ interface Props {
 }
 
 export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
-    // const ID = useMemo(() => getQueryId(), []);
-    //
-    // useEffect(() => {
-    //     const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
-    //         item => item.id === ID
-    //     );
-    //
-    //     if (buttonPropsIndex === -1) {
-    //         // add to stack
-    //         BUTTON_PROPS_STACK.push({id: ID, text, onClick});
-    //     } else {
-    //         // update stack
-    //         BUTTON_PROPS_STACK[buttonPropsIndex].text = text;
-    //         BUTTON_PROPS_STACK[buttonPropsIndex].onClick = onClick;
-    //     }
-    //
-    //     updateMainButton();
-    // }, [ID, text, onClick]);
-    //
-    // useEffect(() => {
-    //     return () => {
-    //         const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
-    //             item => item.id === ID
-    //         );
-    //
-    //         if (buttonPropsIndex !== -1) {
-    //             // remove from stack
-    //             BUTTON_PROPS_STACK.splice(buttonPropsIndex, 1);
-    //         }
-    //
-    //         updateMainButton();
-    //     };
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
-
-    const prevMainButtonText = useMemo(
-        () => window.Telegram.WebApp.MainButton.text,
-        []
-    );
+    const ID = useMemo(() => getQueryId(), []);
 
     useEffect(() => {
-        window.Telegram.WebApp.MainButton.setText(text);
-        window.Telegram.WebApp.MainButton.onClick(onClick);
+        const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
+            item => item.id === ID
+        );
 
+        if (buttonPropsIndex === -1) {
+            // add to stack
+            BUTTON_PROPS_STACK.push({id: ID, text, onClick});
+        } else {
+            // update stack
+            BUTTON_PROPS_STACK[buttonPropsIndex].text = text;
+            BUTTON_PROPS_STACK[buttonPropsIndex].onClick = onClick;
+        }
+
+        updateMainButton();
+    }, [ID, text, onClick]);
+
+    useEffect(() => {
         return () => {
-            window.Telegram.WebApp.MainButton.setText(prevMainButtonText);
-            window.Telegram.WebApp.MainButton.offClick(onClick);
+            const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
+                item => item.id === ID
+            );
+
+            if (buttonPropsIndex !== -1) {
+                // remove from stack
+                BUTTON_PROPS_STACK.splice(buttonPropsIndex, 1);
+            }
+
+            updateMainButton();
         };
-    }, [text, onClick, prevMainButtonText]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return !IS_TMA ? (
         <div className={containerClassName}>
