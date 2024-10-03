@@ -30,7 +30,7 @@ export const TON_API_CLIENT = new Api(
 
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
 
-export const INIT_DATA = initData; //window.Telegram.WebApp.initData;
+export const INIT_DATA = initData as unknown as string; //window.Telegram.WebApp.initData;
 export const IS_TMA = isNotEmptyString(INIT_DATA);
 
 export const UNSAFE_INIT_DATA = {
