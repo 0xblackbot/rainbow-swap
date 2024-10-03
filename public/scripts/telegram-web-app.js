@@ -961,7 +961,7 @@
             var btn_params = buttonParams();
             var btn_state = buttonState(btn_params);
             if (curButtonState === btn_state) {
-                // return;
+                return;
             }
             curButtonState = btn_state;
             WebView.postEvent(setupFnName, false, btn_params);

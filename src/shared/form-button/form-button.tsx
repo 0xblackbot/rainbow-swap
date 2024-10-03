@@ -3,7 +3,7 @@ import {getQueryId} from 'rainbow-swap-sdk';
 import {FC, useEffect, useMemo} from 'react';
 
 import styles from './form-button.module.css';
-import {IS_TMA} from '../../globals';
+import {IS_IOS} from '../../globals';
 
 interface ButtonProps {
     id: number;
@@ -101,15 +101,13 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return !IS_TMA ? (
-        <div className={containerClassName}>
-            <button className={styles.button} onClick={onClick}>
-                {text}
-            </button>
-        </div>
-    ) : (
-        <p style={{color: 'white'}}>
-            {BUTTON_PROPS_STACK[BUTTON_PROPS_STACK.length - 1]?.text}
-        </p>
+    return (
+        !IS_IOS && (
+            <div className={containerClassName}>
+                <button className={styles.button} onClick={onClick}>
+                    {text}
+                </button>
+            </div>
+        )
     );
 };
