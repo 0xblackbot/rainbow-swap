@@ -24,7 +24,7 @@ let i = 0;
 const updateMainButton = () => {
     setInterval(() => {
         i++;
-        window.Telegram.WebApp.MainButton.setText(`test ${i}`);
+        window.Telegram.WebApp.MainButton.setText(`test T ${i}`);
     }, 1000);
     // setTimeout(() => {
     //     const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
