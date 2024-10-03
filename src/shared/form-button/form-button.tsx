@@ -14,11 +14,11 @@ const PROPS_STACK: ButtonProps[] = [];
 
 const eventsLog: string[] = [];
 
-// let i = 0;
-// setInterval(() => {
-//     i++;
-//     window.Telegram.WebApp.MainButton.setText(`test ${i}`);
-// }, 1000);
+let i = 0;
+setInterval(() => {
+    i++;
+    window.Telegram.WebApp.MainButton.setText(`test ${i}`);
+}, 1000);
 
 const updateMainButton = (id: number) => {
     setTimeout(() => {
