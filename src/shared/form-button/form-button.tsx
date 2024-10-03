@@ -12,6 +12,8 @@ interface ButtonProps {
 
 const PROPS_STACK: ButtonProps[] = [];
 
+const eventsLog: string[] = [];
+
 // let i = 0;
 // setInterval(() => {
 //     i++;
@@ -28,6 +30,8 @@ const updateMainButton = (id: number) => {
         ) {
             if (PROPS_STACK.length !== 0) {
                 const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
+
+                eventsLog.push(`${id} setText ${lastButtonProps.text}`);
 
                 window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
                 window.Telegram.WebApp.MainButton.onClick(
@@ -92,6 +96,7 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     ) : (
         <p style={{color: 'white'}}>
             {PROPS_STACK[PROPS_STACK.length - 1]?.text}
+            {eventsLog.join('\n')}
         </p>
     );
 };
