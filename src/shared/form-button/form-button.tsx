@@ -74,10 +74,14 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     useEffect(() => {
         const prevMainButtonText = window.Telegram.WebApp.MainButton.text;
 
-        window.Telegram.WebApp.MainButton.setText(text);
+        window.Telegram.WebApp.MainButton.setParams({
+            text
+        });
 
         return () => {
-            window.Telegram.WebApp.MainButton.setText(prevMainButtonText);
+            window.Telegram.WebApp.MainButton.setParams({
+                text: prevMainButtonText
+            });
 
             const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
                 item => item.id === ID
