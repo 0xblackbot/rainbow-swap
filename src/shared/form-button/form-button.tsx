@@ -83,13 +83,15 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return (
-        !IS_TMA && (
-            <div className={containerClassName}>
-                <button className={styles.button} onClick={onClick}>
-                    {text}
-                </button>
-            </div>
-        )
+    return !IS_TMA ? (
+        <div className={containerClassName}>
+            <button className={styles.button} onClick={onClick}>
+                {text}
+            </button>
+        </div>
+    ) : (
+        <p style={{color: 'white'}}>
+            {PROPS_STACK[PROPS_STACK.length - 1]?.text}
+        </p>
     );
 };
