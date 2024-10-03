@@ -34,7 +34,11 @@ export const useSyncSwapFormWithRouter = (
                 assetsRecord
             );
 
-            if (isDefined(inputAsset) && isDefined(outputAsset)) {
+            if (
+                isDefined(inputAsset) &&
+                isDefined(outputAsset) &&
+                inputAsset.address !== outputAsset.address
+            ) {
                 setInputAssetAddress(inputAsset.address);
                 setOutputAssetAddress(outputAsset.address);
             }
