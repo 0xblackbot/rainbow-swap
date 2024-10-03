@@ -3,6 +3,7 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import styles from './app.module.css';
 import {getErrorElement} from '../components/error-element/error-element';
+import {IS_MAIN_BUTTON_AVAILABLE} from '../globals';
 import {useDisableMainButton} from '../hooks/use-disable-main-button.hook';
 import {useStateVersionCheck} from '../hooks/use-state-version-check.hook';
 import {useTonConnectModalStatus} from '../hooks/use-ton-connect-modal-status.hook';
@@ -32,7 +33,7 @@ export const App = () => {
         window.Telegram.WebApp.expand();
         window.Telegram.WebApp.enableClosingConfirmation();
         window.Telegram.WebApp.disableVerticalSwipes();
-        window.Telegram.WebApp.MainButton.show();
+        IS_MAIN_BUTTON_AVAILABLE && window.Telegram.WebApp.MainButton.show();
         window.Telegram.WebApp.setHeaderColor(bgColor);
         window.Telegram.WebApp.setBackgroundColor(bgColor);
         // We wait for MainButton to be initialized

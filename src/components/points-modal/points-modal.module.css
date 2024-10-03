@@ -6,6 +6,9 @@
     overflow-y: scroll;
 }
 
-.swap_button {
+.footer_container {
     margin-top: auto;
+    padding: var(--2-step);
+    background-color: var(--header-bg-color);
+    border-top: 1px solid var(--border-color);
 }

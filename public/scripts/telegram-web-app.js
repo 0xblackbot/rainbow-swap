@@ -132,7 +132,7 @@
         if (eventData === undefined) {
             eventData = '';
         }
-        // console.log('[Telegram.WebView] > postEvent', eventType, eventData);
+        console.log('[Telegram.WebView] > postEvent', eventType, eventData);
 
         if (window.TelegramWebviewProxy !== undefined) {
             TelegramWebviewProxy.postEvent(eventType, JSON.stringify(eventData));
@@ -171,17 +171,10 @@
             !curEventHandlers.length) {
             return;
         }
-        // Call only last eventHandler for mainButtonClicked event
-        if (eventType === 'webview:mainButtonClicked') {
+        for (var i = 0; i < curEventHandlers.length; i++) {
             try {
-                func(curEventHandlers[curEventHandlers.length -1]);
+                func(curEventHandlers[i]);
             } catch (e) {}
-        } else {
-            for (var i = 0; i < curEventHandlers.length; i++) {
-                try {
-                    func(curEventHandlers[i]);
-                } catch (e) {}
-            }
         }
     }
 
