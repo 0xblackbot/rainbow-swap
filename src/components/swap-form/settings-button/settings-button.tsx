@@ -31,13 +31,12 @@ export const SettingsButton = () => {
                     <MaxSlippage />
                     <Divider />
                     <RiskToleranceSetting />
-
-                    <FormButton
-                        text="Close"
-                        containerClassName={styles.main_button}
-                        onClick={handleClose}
-                    />
                 </div>
+                <FormButton
+                    text="Close"
+                    containerClassName={styles.footer_container}
+                    onClick={handleClose}
+                />
             </BottomSheet>
         </>
     );

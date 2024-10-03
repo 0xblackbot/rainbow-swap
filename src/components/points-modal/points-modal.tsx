@@ -25,13 +25,12 @@ export const PointsModal = () => {
         >
             <div className={styles.content_container}>
                 <Tasks />
-
-                <FormButton
-                    text="Close"
-                    containerClassName={styles.swap_button}
-                    onClick={handleClose}
-                ></FormButton>
             </div>
+            <FormButton
+                text="Close"
+                containerClassName={styles.footer_container}
+                onClick={handleClose}
+            ></FormButton>
         </BottomSheet>
     );
 };
