@@ -1,3 +1,4 @@
+import {isDefined} from '@rnw-community/shared';
 import {getQueryId} from 'rainbow-swap-sdk';
 import {FC, useEffect, useMemo} from 'react';
 
@@ -14,32 +15,21 @@ const PROPS_STACK: ButtonProps[] = [];
 
 const eventsLog: string[] = [];
 
-let i = 0;
-setInterval(() => {
-    i++;
-    window.Telegram.WebApp.MainButton.setText(`test ${i}`);
-}, 1000);
+// let i = 0;
+// setInterval(() => {
+//     i++;
+//     window.Telegram.WebApp.MainButton.setText(`test ${i}`);
+// }, 1000);
 
-const updateMainButton = (id: number) => {
+const updateMainButton = () => {
     setTimeout(() => {
-        const buttonPropsIndex = PROPS_STACK.findIndex(item => item.id === id);
+        const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
 
-        if (
-            buttonPropsIndex === -1 ||
-            buttonPropsIndex === PROPS_STACK.length - 1
-        ) {
-            if (PROPS_STACK.length !== 0) {
-                const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
-
-                eventsLog.push(`${id} setText ${lastButtonProps.text}`);
-
-                window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
-                window.Telegram.WebApp.MainButton.onClick(
-                    lastButtonProps.onClick
-                );
-            }
+        if (isDefined(lastButtonProps)) {
+            window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
+            window.Telegram.WebApp.MainButton.onClick(lastButtonProps.onClick);
         }
-    }, 0);
+    }, 1000);
 };
 
 interface Props {
@@ -82,7 +72,7 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
                 PROPS_STACK.splice(buttonPropsIndex, 1);
             }
 
-            updateMainButton(ID);
+            updateMainButton();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
