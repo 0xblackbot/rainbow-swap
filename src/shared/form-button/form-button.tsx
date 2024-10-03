@@ -1,3 +1,4 @@
+import {isDefined} from '@rnw-community/shared';
 import {getQueryId} from 'rainbow-swap-sdk';
 import {FC, useEffect, useMemo} from 'react';
 
@@ -14,25 +15,25 @@ const PROPS_STACK: ButtonProps[] = [];
 
 const eventsLog: string[] = [];
 
-let i = 0;
+const i = 0;
 // setInterval(() => {
 //     i++;
 //     window.Telegram.WebApp.MainButton.setText(`test ${i}`);
 // }, 1000);
 
 const updateMainButton = () => {
-    setInterval(() => {
-        i++;
-        window.Telegram.WebApp.MainButton.setText(`test T ${i}`);
-    }, 1000);
-    // setTimeout(() => {
-    //     const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
-    //
-    //     if (isDefined(lastButtonProps)) {
-    //         window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
-    //         window.Telegram.WebApp.MainButton.onClick(lastButtonProps.onClick);
-    //     }
+    // setInterval(() => {
+    //     i++;
+    //     window.Telegram.WebApp.MainButton.setText(`test T ${i}`);
     // }, 1000);
+    setTimeout(() => {
+        const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
+
+        if (isDefined(lastButtonProps)) {
+            window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
+            // window.Telegram.WebApp.MainButton.onClick(lastButtonProps.onClick);
+        }
+    }, 1000);
 };
 
 interface Props {
