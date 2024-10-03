@@ -37,7 +37,9 @@ const updateMainButton = () => {
         activeButtonProps = nextButtonProps;
 
         if (isDefined(activeButtonProps)) {
-            window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
+            window.Telegram.WebApp.MainButton.setText(
+                activeButtonProps.text + ' ' + getQueryId()
+            );
             window.Telegram.WebApp.MainButton.onClick(
                 activeButtonProps.onClick
             );
