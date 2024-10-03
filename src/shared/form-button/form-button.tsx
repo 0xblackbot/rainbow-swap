@@ -15,7 +15,7 @@ const PROPS_STACK: ButtonProps[] = [];
 
 const eventsLog: string[] = [];
 
-const i = 0;
+// const i = 0;
 // setInterval(() => {
 //     i++;
 //     window.Telegram.WebApp.MainButton.setText(`test ${i}`);
