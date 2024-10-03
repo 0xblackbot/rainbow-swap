@@ -1,5 +1,4 @@
 import {isDefined} from '@rnw-community/shared';
-import {mainButton} from '@telegram-apps/sdk';
 import {Address} from '@ton/core';
 import {useTonWallet} from '@tonconnect/ui-react';
 import {
@@ -40,16 +39,10 @@ export const useRainbowWallet = (swapRoutes: CalculatedSwapRoute[]) => {
             isRainbowWalletActive.isLoading ||
             pendingActivationTransaction.isLoading
         ) {
-            mainButton.setParams({
-                isLoaderVisible: true
-            });
-            // window.Telegram.WebApp.MainButton.showProgress();
+            window.Telegram.WebApp.MainButton.showProgress();
 
             return () => {
-                mainButton.setParams({
-                    isLoaderVisible: false
-                });
-                // window.Telegram.WebApp.MainButton.hideProgress();
+                window.Telegram.WebApp.MainButton.hideProgress();
             };
         }
     }, [

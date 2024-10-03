@@ -1,5 +1,4 @@
 import {isNotEmptyString} from '@rnw-community/shared';
-import {initData} from '@telegram-apps/sdk';
 import axios from 'axios';
 import {Api, HttpClient} from 'tonapi-sdk-js';
 
@@ -30,12 +29,12 @@ export const TON_API_CLIENT = new Api(
 
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
 
-export const INIT_DATA = initData as unknown as string; //window.Telegram.WebApp.initData;
+export const INIT_DATA = window.Telegram.WebApp.initData;
 export const IS_TMA = isNotEmptyString(INIT_DATA);
 
 export const UNSAFE_INIT_DATA = {
-    userId: undefined, //window.Telegram.WebApp.initDataUnsafe.user?.id,
-    ref_parent: undefined //window.Telegram.WebApp.initDataUnsafe.start_param
+    userId: window.Telegram.WebApp.initDataUnsafe.user?.id,
+    ref_parent: window.Telegram.WebApp.initDataUnsafe.start_param
 };
 
 export const TELEGRAM_BOT_LINK = 'https://t.me/rainbow_swap_bot';
