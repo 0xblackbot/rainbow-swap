@@ -27,7 +27,7 @@ const updateMainButton = () => {
 
         // remove previous ButtonProps
         if (isDefined(activeButtonProps)) {
-            window.Telegram.WebApp.MainButton.setText(nextButtonProps.text);
+            // window.Telegram.WebApp.MainButton.setText(nextButtonProps.text);
             window.Telegram.WebApp.MainButton.offClick(
                 activeButtonProps.onClick
             );
@@ -37,7 +37,7 @@ const updateMainButton = () => {
         activeButtonProps = nextButtonProps;
 
         if (isDefined(activeButtonProps)) {
-            window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
+            // window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
             window.Telegram.WebApp.MainButton.onClick(
                 activeButtonProps.onClick
             );
@@ -72,7 +72,13 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     }, [ID, text, onClick]);
 
     useEffect(() => {
+        const prevMainButtonText = window.Telegram.WebApp.MainButton.text;
+
+        window.Telegram.WebApp.MainButton.setText(text);
+
         return () => {
+            window.Telegram.WebApp.MainButton.setText(prevMainButtonText);
+
             const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
                 item => item.id === ID
             );
