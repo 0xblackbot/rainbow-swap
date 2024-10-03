@@ -21,21 +21,28 @@ let activeButtonProps: ButtonProps | undefined;
 // }, 1000);
 
 const updateMainButton = () => {
-    const nextButtonProps = BUTTON_PROPS_STACK[BUTTON_PROPS_STACK.length - 1];;
+    setTimeout(() => {
+        const nextButtonProps =
+            BUTTON_PROPS_STACK[BUTTON_PROPS_STACK.length - 1];
 
-    // remove previous ButtonProps
-    if (isDefined(activeButtonProps)) {
-        window.Telegram.WebApp.MainButton.setText(nextButtonProps.text);
-        window.Telegram.WebApp.MainButton.offClick(activeButtonProps.onClick);
-    }
+        // remove previous ButtonProps
+        if (isDefined(activeButtonProps)) {
+            window.Telegram.WebApp.MainButton.setText(nextButtonProps.text);
+            window.Telegram.WebApp.MainButton.offClick(
+                activeButtonProps.onClick
+            );
+        }
 
-    // set new ButtonProps
-    activeButtonProps = nextButtonProps;
+        // set new ButtonProps
+        activeButtonProps = nextButtonProps;
 
-    if (isDefined(activeButtonProps)) {
-        window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
-        window.Telegram.WebApp.MainButton.onClick(activeButtonProps.onClick);
-    }
+        if (isDefined(activeButtonProps)) {
+            window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
+            window.Telegram.WebApp.MainButton.onClick(
+                activeButtonProps.onClick
+            );
+        }
+    }, 0);
 };
 
 interface Props {
