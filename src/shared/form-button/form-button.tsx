@@ -77,11 +77,13 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
         window.Telegram.WebApp.MainButton.setParams({
             text
         });
+        window.Telegram.WebApp.ready();
 
         return () => {
             window.Telegram.WebApp.MainButton.setParams({
                 text: prevMainButtonText
             });
+            window.Telegram.WebApp.ready();
 
             const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
                 item => item.id === ID
