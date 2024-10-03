@@ -1,7 +1,9 @@
 import appsCenter from './assets/apps-center.jpg';
 import inviteImage from './assets/invite.png';
+import jvaultImage from './assets/jvault.jpeg';
 import referralImage from './assets/referral.png';
 import snapxImage from './assets/snapx.jpg';
+import stakingImage from './assets/staking.png';
 import telegramImage from './assets/telegram.png';
 import tonAppImage from './assets/ton-app.png';
 import torchFinanceImage from './assets/torch-finance.jpeg';
@@ -138,6 +140,22 @@ export const Tasks = () => {
                     isLoading={tonAppTask.isLoading}
                 />
             </TaskItem>
+
+            <Divider withArrow={true} />
+
+            <TaskHeader name="JVault" imageSrc={jvaultImage} />
+            <PartnerTaskItem
+                isTelegram={true}
+                imageSrc={telegramImage}
+                title="Join Channel"
+                taskType={TaskTypeEnum.JVault_Telegram}
+            />
+            <PartnerTaskItem
+                imageSrc={stakingImage}
+                title="Stake any token"
+                taskType={TaskTypeEnum.JVault_Staking}
+                isWalletAddressRequired={true}
+            />
 
             <Divider withArrow={true} />
 

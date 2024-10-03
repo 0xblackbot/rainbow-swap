@@ -20,6 +20,10 @@
     background-color: #FF3B30;
 }
 
+.Toastify__toast--info {
+    background-color: var(--button-color);
+}
+
 .Toastify__toast--default {
     background-color: var(--button-color);
 }
@@ -45,4 +49,6 @@
 :root {
     --toastify-color-progress-success: white;
     --toastify-color-progress-error: white;
+    --toastify-color-progress-info: white;
+    --toastify-icon-color-info: white;
 }

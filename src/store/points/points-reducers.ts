@@ -154,7 +154,7 @@ export const pointsReducers = createReducer<PointsState>(
         );
 
         builder.addCase(checkPartnerTaskActions.submit, (state, {payload}) => {
-            const taskKey = PartnerTasksKeyRecord[payload];
+            const taskKey = PartnerTasksKeyRecord[payload.taskType];
 
             return {
                 ...state,

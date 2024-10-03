@@ -100,11 +100,12 @@ const checkPartnerTaskEpic: Epic<Action> = action$ =>
     action$.pipe(
         ofType(checkPartnerTaskActions.submit),
         toPayload(),
-        switchMap(taskType =>
+        switchMap(({taskType, walletAddress}) =>
             from(
                 getTaskCheck({
                     initData: INIT_DATA,
-                    taskType
+                    taskType,
+                    walletAddress
                 })
             ).pipe(
                 map(data => checkPartnerTaskActions.success({taskType, data})),

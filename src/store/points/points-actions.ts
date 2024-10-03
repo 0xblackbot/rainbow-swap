@@ -28,7 +28,7 @@ export const checkTonAppTaskActions = createActions<void, number>(
 );
 
 export const checkPartnerTaskActions = createActions<
-    string,
+    {taskType: string; walletAddress?: string},
     {taskType: string; data: number},
     {taskType: string; error: string}
 >('points/CHECK_PARTNER_TASK');

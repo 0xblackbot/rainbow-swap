@@ -10,7 +10,10 @@ export enum TaskTypeEnum {
     SnapX_Twitter = 'SnapX_Twitter',
 
     AppsCenter_Telegram = 'AppsCenter_Telegram',
-    AppsCenter_Bot = 'AppsCenter_Bot'
+    AppsCenter_Bot = 'AppsCenter_Bot',
+
+    JVault_Telegram = 'JVault_Telegram',
+    JVault_Staking = 'JVault_Staking'
 }
 
 export const PartnerTasksKeyRecord: Record<string, string> = {
@@ -19,5 +22,7 @@ export const PartnerTasksKeyRecord: Record<string, string> = {
     [TaskTypeEnum.SnapX_Telegram]: 'snapXTelegram',
     [TaskTypeEnum.SnapX_Twitter]: 'snapXTwitter',
     [TaskTypeEnum.AppsCenter_Telegram]: 'appsCenterTelegram',
-    [TaskTypeEnum.AppsCenter_Bot]: 'appsCenterBot'
+    [TaskTypeEnum.AppsCenter_Bot]: 'appsCenterBot',
+    [TaskTypeEnum.JVault_Telegram]: 'jvaultTelegram',
+    [TaskTypeEnum.JVault_Staking]: 'jvaultStaking'
 };
