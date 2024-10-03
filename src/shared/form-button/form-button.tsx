@@ -15,21 +15,25 @@ const PROPS_STACK: ButtonProps[] = [];
 
 const eventsLog: string[] = [];
 
-// let i = 0;
+let i = 0;
 // setInterval(() => {
 //     i++;
 //     window.Telegram.WebApp.MainButton.setText(`test ${i}`);
 // }, 1000);
 
 const updateMainButton = () => {
-    setTimeout(() => {
-        const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
-
-        if (isDefined(lastButtonProps)) {
-            window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
-            window.Telegram.WebApp.MainButton.onClick(lastButtonProps.onClick);
-        }
+    setInterval(() => {
+        i++;
+        window.Telegram.WebApp.MainButton.setText(`test ${i}`);
     }, 1000);
+    // setTimeout(() => {
+    //     const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
+    //
+    //     if (isDefined(lastButtonProps)) {
+    //         window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
+    //         window.Telegram.WebApp.MainButton.onClick(lastButtonProps.onClick);
+    //     }
+    // }, 1000);
 };
 
 interface Props {
@@ -53,7 +57,7 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
             PROPS_STACK[buttonPropsIndex].onClick = onClick;
         }
 
-        updateMainButton(ID);
+        updateMainButton();
 
         return () => {
             // remove old onClick
