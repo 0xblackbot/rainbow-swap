@@ -11,31 +11,29 @@ interface ButtonProps {
     onClick: () => void;
 }
 
-const PROPS_STACK: ButtonProps[] = [];
+const BUTTON_PROPS_STACK: ButtonProps[] = [];
+let activeButtonProps: ButtonProps | undefined;
 
-const eventsLog: string[] = [];
-
-let i = 0;
+// let i = 0;
 // setInterval(() => {
 //     i++;
 //     window.Telegram.WebApp.MainButton.setText(`test ${i}`);
 // }, 1000);
 
 const updateMainButton = () => {
-    // setInterval(() => {
-    //     window.Telegram.WebApp.MainButton.setText(`test T ${i}`);
-    // }, 1000);
-    setInterval(() => {
-        i++;
-        const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
+    // remove previous ButtonProps
+    if (isDefined(activeButtonProps)) {
+        window.Telegram.WebApp.MainButton.setText('');
+        window.Telegram.WebApp.MainButton.offClick(activeButtonProps.onClick);
+    }
 
-        if (isDefined(lastButtonProps)) {
-            window.Telegram.WebApp.MainButton.setText(
-                i + ' ' + lastButtonProps.text
-            );
-            // window.Telegram.WebApp.MainButton.onClick(lastButtonProps.onClick);
-        }
-    }, 1000);
+    // set new ButtonProps
+    activeButtonProps = BUTTON_PROPS_STACK[BUTTON_PROPS_STACK.length - 1];
+
+    if (isDefined(activeButtonProps)) {
+        window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
+        window.Telegram.WebApp.MainButton.onClick(activeButtonProps.onClick);
+    }
 };
 
 interface Props {
@@ -48,34 +46,31 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
     const ID = useMemo(() => getQueryId(), []);
 
     useEffect(() => {
-        const buttonPropsIndex = PROPS_STACK.findIndex(item => item.id === ID);
+        const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
+            item => item.id === ID
+        );
 
         if (buttonPropsIndex === -1) {
             // add to stack
-            PROPS_STACK.push({id: ID, text, onClick});
+            BUTTON_PROPS_STACK.push({id: ID, text, onClick});
         } else {
             // update stack
-            PROPS_STACK[buttonPropsIndex].text = text;
-            PROPS_STACK[buttonPropsIndex].onClick = onClick;
+            BUTTON_PROPS_STACK[buttonPropsIndex].text = text;
+            BUTTON_PROPS_STACK[buttonPropsIndex].onClick = onClick;
         }
 
         updateMainButton();
-
-        return () => {
-            // remove old onClick
-            window.Telegram.WebApp.MainButton.offClick(onClick);
-        };
     }, [ID, text, onClick]);
 
     useEffect(() => {
         return () => {
-            const buttonPropsIndex = PROPS_STACK.findIndex(
+            const buttonPropsIndex = BUTTON_PROPS_STACK.findIndex(
                 item => item.id === ID
             );
 
             if (buttonPropsIndex !== -1) {
                 // remove from stack
-                PROPS_STACK.splice(buttonPropsIndex, 1);
+                BUTTON_PROPS_STACK.splice(buttonPropsIndex, 1);
             }
 
             updateMainButton();
@@ -91,8 +86,7 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
         </div>
     ) : (
         <p style={{color: 'white'}}>
-            {PROPS_STACK[PROPS_STACK.length - 1]?.text}
-            {eventsLog.join('\n')}
+            {BUTTON_PROPS_STACK[BUTTON_PROPS_STACK.length - 1]?.text}
         </p>
     );
 };
