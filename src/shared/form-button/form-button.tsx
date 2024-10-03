@@ -1,4 +1,3 @@
-import {isDefined} from '@rnw-community/shared';
 import {getQueryId} from 'rainbow-swap-sdk';
 import {FC, useEffect, useMemo} from 'react';
 
