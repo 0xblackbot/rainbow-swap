@@ -11,20 +11,22 @@ interface MainButtonState {
 }
 
 const BUTTONS_STACK: MainButtonState[] = [];
-let activeButtonState: MainButtonState | undefined;
 
-const updateMainButton = () => {
-    // remove previous MainButtonState
-    if (isDefined(activeButtonState)) {
-        window.Telegram.WebApp.MainButton.offClick(activeButtonState.onClick);
+const updateMainButton = (
+    oldOnClick?: () => void,
+    newText?: string,
+    newOnClick?: () => void
+) => {
+    if (isDefined(oldOnClick)) {
+        window.Telegram.WebApp.MainButton.offClick(oldOnClick);
     }
 
-    // set new MainButtonState
-    activeButtonState = BUTTONS_STACK[BUTTONS_STACK.length - 1];
+    if (isDefined(newText)) {
+        window.Telegram.WebApp.MainButton.setText(newText);
+    }
 
-    if (isDefined(activeButtonState)) {
-        window.Telegram.WebApp.MainButton.setText(activeButtonState.text);
-        window.Telegram.WebApp.MainButton.onClick(activeButtonState.onClick);
+    if (isDefined(newOnClick)) {
+        window.Telegram.WebApp.MainButton.onClick(newOnClick);
     }
 };
 
@@ -36,6 +38,18 @@ export const MainButton: FC<MainButtonProps> = ({text, onClick}) => {
             item => item.id === ID
         );
 
+        const isLast =
+            buttonStateIndex === -1 || // new MainButton
+            buttonStateIndex === BUTTONS_STACK.length - 1; // last MainButton update
+
+        if (isLast) {
+            updateMainButton(
+                BUTTONS_STACK[BUTTONS_STACK.length - 1]?.onClick,
+                text,
+                onClick
+            );
+        }
+
         if (buttonStateIndex === -1) {
             // add to stack
             BUTTONS_STACK.push({id: ID, text, onClick});
@@ -44,8 +58,6 @@ export const MainButton: FC<MainButtonProps> = ({text, onClick}) => {
             BUTTONS_STACK[buttonStateIndex].text = text;
             BUTTONS_STACK[buttonStateIndex].onClick = onClick;
         }
-
-        updateMainButton();
     }, [ID, text, onClick]);
 
     useEffect(() => {
@@ -55,11 +67,19 @@ export const MainButton: FC<MainButtonProps> = ({text, onClick}) => {
             );
 
             if (buttonStateIndex !== -1) {
+                const isLast = buttonStateIndex === BUTTONS_STACK.length - 1;
+
+                if (isLast) {
+                    updateMainButton(
+                        BUTTONS_STACK[buttonStateIndex]?.onClick,
+                        BUTTONS_STACK[buttonStateIndex - 1]?.text,
+                        BUTTONS_STACK[buttonStateIndex - 1]?.onClick
+                    );
+                }
+
                 // remove from stack
                 BUTTONS_STACK.splice(buttonStateIndex, 1);
             }
-
-            updateMainButton();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
