@@ -23,7 +23,7 @@ let activeButtonProps: ButtonProps | undefined;
 const updateMainButton = () => {
     // remove previous ButtonProps
     if (isDefined(activeButtonProps)) {
-        window.Telegram.WebApp.MainButton.setText('_');
+        window.Telegram.WebApp.MainButton.setText('_1');
         window.Telegram.WebApp.MainButton.offClick(activeButtonProps.onClick);
     }
 
@@ -31,6 +31,7 @@ const updateMainButton = () => {
     activeButtonProps = BUTTON_PROPS_STACK[BUTTON_PROPS_STACK.length - 1];
 
     if (isDefined(activeButtonProps)) {
+        window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
         window.Telegram.WebApp.MainButton.setText(activeButtonProps.text);
         window.Telegram.WebApp.MainButton.onClick(activeButtonProps.onClick);
     }
