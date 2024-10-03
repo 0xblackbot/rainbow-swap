@@ -15,7 +15,7 @@ const PROPS_STACK: ButtonProps[] = [];
 
 const eventsLog: string[] = [];
 
-// const i = 0;
+let i = 0;
 // setInterval(() => {
 //     i++;
 //     window.Telegram.WebApp.MainButton.setText(`test ${i}`);
@@ -23,14 +23,16 @@ const eventsLog: string[] = [];
 
 const updateMainButton = () => {
     // setInterval(() => {
-    //     i++;
     //     window.Telegram.WebApp.MainButton.setText(`test T ${i}`);
     // }, 1000);
     setInterval(() => {
+        i++;
         const lastButtonProps = PROPS_STACK[PROPS_STACK.length - 1];
 
         if (isDefined(lastButtonProps)) {
-            window.Telegram.WebApp.MainButton.setText(lastButtonProps.text);
+            window.Telegram.WebApp.MainButton.setText(
+                i + ' ' + lastButtonProps.text
+            );
             // window.Telegram.WebApp.MainButton.onClick(lastButtonProps.onClick);
         }
     }, 1000);
