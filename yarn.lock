@@ -2729,10 +2729,10 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-rainbow-swap-sdk@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.4.0.tgz#07fc48524a4b707e649e6e480618a813157844a6"
-  integrity sha512-vjsOzreT56eSqZcRYMasyiPglhqhUXUQy5C+azXX1ca0S6DfxsZlR7OfewNreaI3Gk4UNwgOmkZ/x082I/ix1w==
+rainbow-swap-sdk@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.4.1.tgz#7272fe0857c7b2e75fd4750a47121833ec25fa9a"
+  integrity sha512-ladrD3c0V+ZcILw6fnZwF39h7h14wfMQrF35zQ9kcWUsL6RAJCdi9UcUFyiWDtSOTGeZnP6Pq3d+io3wKCjJHw==
   dependencies:
     "@rnw-community/shared" "^0.74.0"
     axios "^1.7.7"
@@ -3340,10 +3340,10 @@ typed-array-length@^1.0.6:
     is-typed-array "^1.1.13"
     possible-typed-array-names "^1.0.0"
 
-typescript@5.5.4:
-  version "5.5.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.5.4.tgz#d9852d6c82bad2d2eda4fd74a5762a8f5909e9ba"
-  integrity sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==
+typescript@^5.5.4:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
+  integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
 
 ua-parser-js@^1.0.35:
   version "1.0.39"

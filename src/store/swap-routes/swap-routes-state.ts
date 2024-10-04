@@ -1,19 +1,21 @@
-import {CalculatedSwapRoute} from 'rainbow-swap-sdk';
+import {BestRouteResponse} from 'rainbow-swap-sdk';
 
-import {Message} from '../../types/message.type';
 import {LoadableEntityState} from '../types';
 import {createEntity} from '../utils/create-entity';
 
 export interface SwapRoutesState {
-    batch: LoadableEntityState<CalculatedSwapRoute[]>;
-    priceImprovement: number;
-    swapMessages: Message[];
+    bestRouteResponse: LoadableEntityState<BestRouteResponse>;
     lastRequestId?: string;
 }
 
-export const swapRouteInitialState: SwapRoutesState = {
-    batch: createEntity([]),
+export const emptyBestRouteResponse: BestRouteResponse = {
+    bestRoute: [],
     priceImprovement: 0,
-    swapMessages: [],
+    routingFee: 0,
+    swapMessages: []
+};
+
+export const swapRouteInitialState: SwapRoutesState = {
+    bestRouteResponse: createEntity(emptyBestRouteResponse),
     lastRequestId: undefined
 };

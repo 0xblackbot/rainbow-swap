@@ -6,12 +6,14 @@ import styles from './swap-details.module.css';
 import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {SwapInfo} from '../../../interfaces/swap-info.interface';
 import {useMaxSlippageSelector} from '../../../store/settings/settings-selectors';
-import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
+import {
+    useIsRoutesLoadingSelector,
+    useRoutingFeeSelector
+} from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 import {useExchangeRate} from '../hooks/use-exchange-rate.hook';
-import {useRoutingFee} from '../hooks/use-routing-fee.hook';
 
 interface Props {
     swapInfo: SwapInfo;
@@ -32,14 +34,13 @@ export const SwapDetails: FC<Props> = ({
 
     const isRoutesLoading = useIsRoutesLoadingSelector();
     const slippageTolerance = useMaxSlippageSelector();
+    const routingFee = useRoutingFeeSelector();
 
     const exchangeRate = useExchangeRate(
         inputAsset,
         outputAsset,
         swapInfo.exchangeRate
     );
-
-    const routingFee = useRoutingFee(routes);
 
     const toggleAccordion = () => setIsOpen(value => !value);
 

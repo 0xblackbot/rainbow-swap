@@ -3,9 +3,9 @@ import {useMemo} from 'react';
 
 import {useSelector} from '../index';
 
-export const useSwapRoutesSelector = () =>
+const useSwapRoutesSelector = () =>
     useSelector(
-        ({swapRoutes}) => swapRoutes.batch.data,
+        ({swapRoutes}) => swapRoutes.bestRouteResponse.data.bestRoute,
         (a, b) => JSON.stringify(a) === JSON.stringify(b)
     );
 
@@ -18,5 +18,10 @@ export const useRoutesSelector = () => {
 export const useIsRoutesLoadingSelector = () =>
     useSelector(({swapRoutes}) => swapRoutes.lastRequestId !== undefined);
 
+export const useRoutingFeeSelector = () =>
+    useSelector(({swapRoutes}) => swapRoutes.bestRouteResponse.data.routingFee);
+
 export const useSwapMessagesSelector = () =>
-    useSelector(({swapRoutes}) => swapRoutes.swapMessages);
+    useSelector(
+        ({swapRoutes}) => swapRoutes.bestRouteResponse.data.swapMessages
+    );

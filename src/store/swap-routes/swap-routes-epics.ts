@@ -15,6 +15,7 @@ import {loadSwapRoutesActions} from './swap-routes-actions';
 import {RiskTolerance} from '../../enums/risk-tolerance.enum';
 import {DEBOUNCE_DUE_TIME} from '../../globals';
 import {RootState} from '../index';
+import {emptyBestRouteResponse} from './swap-routes-state';
 
 const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
     action$.pipe(
@@ -26,9 +27,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
             if (payload.inputAssetAmount === '0') {
                 return of(
                     loadSwapRoutesActions.success({
-                        bestRoute: [],
-                        priceImprovement: 0,
-                        swapMessages: [],
+                        ...emptyBestRouteResponse,
                         requestId: payload.requestId
                     })
                 );
