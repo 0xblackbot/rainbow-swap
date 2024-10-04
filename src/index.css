@@ -47,10 +47,6 @@ input[type=number]::-webkit-outer-spin-button {
     scrollbar-color: var(--backdrop-color) transparent;
 }
 
-*::-webkit-scrollbar {
-    width: 8px;
-}
-
 *::-webkit-scrollbar-thumb {
     background-color: var(--backdrop-color);
     border-radius: 10px;
