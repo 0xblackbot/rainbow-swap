@@ -29,12 +29,14 @@ export const useSendTransaction = () => {
                     from: senderAddress,
                     messages
                 })
-                .then(
-                    (response): TransactionInfo => ({
+                .then(async (response): Promise<TransactionInfo> => {
+                    const bocHash = await bocToHash(response.boc);
+
+                    return {
                         senderRawAddress: senderAddress,
-                        bocHash: bocToHash(response.boc)
-                    })
-                )
+                        bocHash
+                    };
+                })
                 .catch(() => {
                     showErrorToast('Transaction cancelled, try again...');
 

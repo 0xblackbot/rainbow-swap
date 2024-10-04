@@ -1,4 +1,3 @@
-import {Address} from '@ton/core';
 import {AxiosResponse} from 'axios';
 
 import {fromNano} from './big-int.utils';
@@ -7,10 +6,12 @@ import {BalancesArray} from '../interfaces/balance-object.interface';
 import {TonBalanceArray} from '../interfaces/ton-balance-response.interface';
 import {BalancesRecord} from '../types/balances-record.type';
 
-export const getBalancesRecord = (
+export const getBalancesRecord = async (
     jettonsResponse: AxiosResponse<BalancesArray>,
     accountResponse: AxiosResponse<TonBalanceArray>
 ) => {
+    const {Address} = await import('@ton/core');
+
     const balancesRecord: BalancesRecord = {};
 
     jettonsResponse.data.balances.forEach(balanceObject => {

@@ -43,14 +43,12 @@ const walletEpic = (action$: Observable<Action>) =>
                     )
                 ])
             ).pipe(
-                map(([jettonsResponse, accountResponse]) => {
-                    const balancesRecord = getBalancesRecord(
-                        jettonsResponse,
-                        accountResponse
-                    );
-
-                    return loadBalancesActions.success(balancesRecord);
-                }),
+                switchMap(([jettonsResponse, accountResponse]) =>
+                    getBalancesRecord(jettonsResponse, accountResponse)
+                ),
+                map(balancesRecord =>
+                    loadBalancesActions.success(balancesRecord)
+                ),
                 catchError(error => of(loadBalancesActions.fail(error.message)))
             )
         )
