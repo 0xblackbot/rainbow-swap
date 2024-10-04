@@ -16,5 +16,8 @@ export default defineConfig({
         }),
         mkcert({force: true}),
         Terminal()
-    ]
+    ],
+    build: {
+        minify: false
+    }
 });
