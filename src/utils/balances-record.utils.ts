@@ -1,4 +1,4 @@
-import {Address} from '@ton/ton';
+import {Address} from '@ton/core';
 import {AxiosResponse} from 'axios';
 
 import {fromNano} from './big-int.utils';

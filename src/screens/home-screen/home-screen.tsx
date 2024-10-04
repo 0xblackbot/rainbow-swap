@@ -18,21 +18,14 @@ import {
 } from '../../store/points/points-actions';
 import {loadAppStatusActions} from '../../store/security/security-actions';
 import {
-    addPendingActivationTransactionActions,
     addPendingSwapTransactionActions,
-    checkIsRainbowWalletActiveActions,
     loadBalancesActions
 } from '../../store/wallet/wallet-actions';
-import {
-    usePendingActivationTransactionSelector,
-    usePendingSwapTransactionSelector
-} from '../../store/wallet/wallet-selectors';
+import {usePendingSwapTransactionSelector} from '../../store/wallet/wallet-selectors';
 
 export const HomeScreen = memo(() => {
     const dispatch = useDispatch();
     const pendingSwapTransaction = usePendingSwapTransactionSelector();
-    const pendingActivationTransaction =
-        usePendingActivationTransactionSelector();
 
     const walletAddress = useWalletAddress();
 
@@ -60,14 +53,6 @@ export const HomeScreen = memo(() => {
                 )
             );
         }
-
-        if (isDefined(pendingActivationTransaction.data)) {
-            dispatch(
-                addPendingActivationTransactionActions.submit(
-                    pendingActivationTransaction.data
-                )
-            );
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -75,11 +60,9 @@ export const HomeScreen = memo(() => {
         if (walletAddress) {
             // load wallet related data
             dispatch(loadBalancesActions.submit(walletAddress));
-            dispatch(checkIsRainbowWalletActiveActions.submit(walletAddress));
         } else {
             // reset wallet related data
             dispatch(loadBalancesActions.success({}));
-            dispatch(checkIsRainbowWalletActiveActions.success(false));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [walletAddress]);

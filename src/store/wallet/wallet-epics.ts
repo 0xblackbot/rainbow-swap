@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {getIsRainbowWalletActive} from 'rainbow-swap-sdk';
 import {Epic, combineEpics} from 'redux-observable';
 import {
     Observable,
@@ -14,9 +13,7 @@ import {Action} from 'ts-action';
 import {toPayload, ofType} from 'ts-action-operators';
 
 import {
-    addPendingActivationTransactionActions,
     addPendingSwapTransactionActions,
-    checkIsRainbowWalletActiveActions,
     loadBalancesActions
 } from './wallet-actions';
 import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
@@ -94,50 +91,7 @@ const addPendingSwapTransactionEpic: Epic<Action> = action$ =>
         )
     );
 
-const checkIsRainbowWalletActiveEpic: Epic<Action> = action$ =>
-    action$.pipe(
-        ofType(checkIsRainbowWalletActiveActions.submit),
-        toPayload(),
-        switchMap(payload =>
-            from(getIsRainbowWalletActive(payload)).pipe(
-                map(isActive =>
-                    checkIsRainbowWalletActiveActions.success(isActive)
-                ),
-                catchError(err =>
-                    of(checkIsRainbowWalletActiveActions.fail(err.message))
-                )
-            )
-        )
-    );
-
-const addPendingActivationTransactionEpic: Epic<Action> = action$ =>
-    action$.pipe(
-        ofType(addPendingActivationTransactionActions.submit),
-        toPayload(),
-        switchMap(payload =>
-            from(
-                waitTransactionConfirmation(
-                    payload.senderRawAddress,
-                    payload.bocHash
-                )
-            ).pipe(
-                concatMap(() => [
-                    addPendingActivationTransactionActions.success(),
-                    loadBalancesActions.submit(payload.senderRawAddress),
-                    checkIsRainbowWalletActiveActions.submit(
-                        payload.senderRawAddress
-                    )
-                ]),
-                catchError(err =>
-                    of(addPendingActivationTransactionActions.fail(err.message))
-                )
-            )
-        )
-    );
-
 export const walletEpics = combineEpics(
     walletEpic,
-    addPendingSwapTransactionEpic,
-    checkIsRainbowWalletActiveEpic,
-    addPendingActivationTransactionEpic
+    addPendingSwapTransactionEpic
 );
