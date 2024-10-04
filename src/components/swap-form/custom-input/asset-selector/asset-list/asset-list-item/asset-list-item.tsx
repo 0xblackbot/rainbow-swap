@@ -17,7 +17,11 @@ export const AssetListItem: FC<
         <div style={style} onClick={item.onClick}>
             <div className={styles.select_list_item_div}>
                 <div className={styles.select_list_item_wrapper}>
-                    <img className={styles.img} src={item.asset.image} />
+                    <img
+                        className={styles.img}
+                        src={item.asset.image}
+                        alt={item.asset.symbol}
+                    />
                     <div className={styles.select_list_item_info}>
                         <div className={styles.select_list_item_header}>
                             <p className={styles.asset_symbol}>

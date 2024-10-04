@@ -48,7 +48,7 @@ export const TapTap = () => {
         >
             <img
                 src={coinImage}
-                alt="coin"
+                alt="Coin icon that can be tapped to earn points"
                 draggable={false}
                 className={getClassName(
                     styles.coin_image,

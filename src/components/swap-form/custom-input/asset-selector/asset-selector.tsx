@@ -31,7 +31,11 @@ export const AssetSelector: FC<Props> = memo(
                     className={styles.selected_asset_button}
                     onClick={handleOpen}
                 >
-                    <img className={styles.img} src={value.image} />
+                    <img
+                        className={styles.img}
+                        src={value.image}
+                        alt={value.symbol}
+                    />
                     <p className={styles.p}>{value.symbol}</p>
                     <ChevronDownIcon />
                 </div>
