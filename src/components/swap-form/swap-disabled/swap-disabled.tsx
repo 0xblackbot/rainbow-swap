@@ -1,8 +1,9 @@
-import Lottie from 'lottie-react';
-import {FC} from 'react';
+import {FC, Suspense, lazy} from 'react';
 
-import duckAlertAnimation from './duck-alert.json';
 import styles from './swap-disabled.module.css';
+import {Skeleton} from '../../skeleton/skeleton';
+
+const DuckAlert = lazy(() => import('./duck-alert/duck-alert'));
 
 interface Props {
     message: string;
@@ -10,11 +11,19 @@ interface Props {
 
 export const SwapDisabled: FC<Props> = ({message}) => (
     <div className={styles.container}>
-        <Lottie
-            loop={true}
-            animationData={duckAlertAnimation}
-            className={styles.animation_container}
-        />
-        <p className={styles.message}>{message}</p>
+        <Suspense
+            fallback={
+                <Skeleton
+                    isLoading={true}
+                    className={styles.duck_alert_fallback}
+                />
+            }
+        >
+            <DuckAlert />
+        </Suspense>
+        <div className={styles.list_container}>
+            <p className={styles.title}>Attention</p>
+            <p className={styles.message}>{message}</p>
+        </div>
     </div>
 );

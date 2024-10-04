@@ -1,11 +1,13 @@
-import Lottie from 'lottie-react';
+import {Suspense, lazy} from 'react';
 
-import duckAirdropAnimation from './duck-airdrop.json';
 import styles from './farm-volume.module.css';
 import {IS_TMA, TELEGRAM_BOT_LINK, TON, USDT} from '../../../globals';
 import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
 import {useDispatch} from '../../../store';
 import {openPointsModal} from '../../../store/points/points-actions';
+import {Skeleton} from '../../skeleton/skeleton';
+
+const DuckAirdrop = lazy(() => import('./duck-airdrop/duck-airdrop'));
 
 const DELEN_BADGE_URL = 'https://society.ton.org/degen-airdrop';
 const TON_INPUT_AMOUNT = '20';
@@ -38,11 +40,16 @@ export const FarmVolume = () => {
         <div className={styles.container}>
             <p className={styles.title}>Farm The Open League Airdrop</p>
             <div className={styles.inner_container}>
-                <Lottie
-                    loop={true}
-                    animationData={duckAirdropAnimation}
-                    className={styles.animation_container}
-                />
+                <Suspense
+                    fallback={
+                        <Skeleton
+                            isLoading={true}
+                            className={styles.duck_airdrop_fallback}
+                        />
+                    }
+                >
+                    <DuckAirdrop />
+                </Suspense>
                 <div className={styles.list_container}>
                     <div className={styles.message_container}>
                         <p className={styles.message}>1. </p>
@@ -85,7 +92,7 @@ export const FarmVolume = () => {
                                 className={styles.button}
                                 onClick={handleEarnPointsInTelegramClick}
                             >
-                                More points in Telegram app
+                                More points in Telegram
                             </p>
                         )}
                     </div>

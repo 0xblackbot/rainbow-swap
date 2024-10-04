@@ -59,6 +59,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.12",
     "prettier": "^3.3.3",
+    "terser": "^5.34.1",
     "ts-node": "^10.9.2",
     "ts-prune": "^0.10.3",
     "typescript": "^5.5.4",

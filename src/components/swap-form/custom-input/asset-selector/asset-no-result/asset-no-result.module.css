@@ -8,8 +8,9 @@
     font-family: 'Basel', sans-serif;
 }
 
-.animation_container {
-    width: 50%;
+.duck_not_found_fallback {
+    width: 187px;
+    height: 192px;
 
     margin-bottom: var(--2-step);
 }

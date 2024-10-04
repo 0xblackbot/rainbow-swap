@@ -18,6 +18,6 @@ export default defineConfig({
         Terminal()
     ],
     build: {
-        minify: false
+        minify: 'terser'
     }
 });

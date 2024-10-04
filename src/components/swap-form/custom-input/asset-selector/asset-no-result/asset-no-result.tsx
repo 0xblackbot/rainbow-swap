@@ -1,15 +1,22 @@
-import Lottie from 'lottie-react';
+import {Suspense, lazy} from 'react';
 
 import styles from './asset-no-result.module.css';
-import duckNotFoundAnimation from './duck-not-found.json';
+import {Skeleton} from '../../../../skeleton/skeleton';
+
+const DuckNotFound = lazy(() => import('./duck-not-found/duck-not-found'));
 
 export const AssetNoResult = () => (
     <div className={styles.noResultDiv}>
-        <Lottie
-            loop={true}
-            animationData={duckNotFoundAnimation}
-            className={styles.animation_container}
-        />
+        <Suspense
+            fallback={
+                <Skeleton
+                    isLoading={true}
+                    className={styles.duck_not_found_fallback}
+                />
+            }
+        >
+            <DuckNotFound />
+        </Suspense>
         <p>No assets found.</p>
     </div>
 );

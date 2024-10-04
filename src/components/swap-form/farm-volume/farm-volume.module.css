@@ -12,10 +12,13 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    gap: var(--step);
 }
 
-.animation_container {
+.duck_airdrop_fallback {
     width: 100px;
+    height: 100px;
+    align-self: center;
 }
 
 .title {
