@@ -14,7 +14,7 @@ import {SwapDisabled} from './swap-disabled/swap-disabled';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
-import {IS_TMA} from '../../globals';
+import {IS_MAIN_BUTTON_AVAILABLE} from '../../globals';
 import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
@@ -187,7 +187,9 @@ export const SwapScreen = () => {
                     ) : (
                         <ConnectWalletButton onClick={handleConnectClick} />
                     )}
-                    {!IS_TMA && <div className={styles.ident_container} />}
+                    {!IS_MAIN_BUTTON_AVAILABLE && (
+                        <div className={styles.ident_container} />
+                    )}
 
                     <SwapDetails
                         swapInfo={swapInfo}
