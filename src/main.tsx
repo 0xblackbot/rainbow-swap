@@ -1,3 +1,5 @@
+import './polyfill';
+
 import {TonConnectUIProvider} from '@tonconnect/ui-react';
 import ReactDOM from 'react-dom/client';
 import ReactGA from 'react-ga4';
