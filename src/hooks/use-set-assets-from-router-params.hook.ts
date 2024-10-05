@@ -3,7 +3,9 @@ import {Asset} from 'rainbow-swap-sdk';
 import {Dispatch, SetStateAction, useEffect, useRef} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 
+import {useDispatch} from '../store';
 import {useAssetsRecordSelector} from '../store/assets/assets-selectors';
+import {assetsInitializedAction} from '../store/initialized/initialized-actions';
 import {useIsAssetInitializedSelector} from '../store/initialized/initialized-selectors';
 import {findAssetBySlug} from '../utils/asset.utils';
 
@@ -15,6 +17,7 @@ export const useSyncSwapFormWithRouter = (
 ) => {
     const isSynced = useRef(false);
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
 
@@ -22,8 +25,13 @@ export const useSyncSwapFormWithRouter = (
     const isAssetInitialized = useIsAssetInitializedSelector();
 
     useEffect(() => {
-        if (isSynced.current === false && isAssetInitialized) {
-            isSynced.current = true;
+        if (isSynced.current === false) {
+            // skip Arbitrage mode
+            if (params.inputAssetSlug === params.outputAssetSlug) {
+                isSynced.current = true;
+
+                return;
+            }
 
             const inputAsset = findAssetBySlug(
                 params.inputAssetSlug,
@@ -34,13 +42,20 @@ export const useSyncSwapFormWithRouter = (
                 assetsRecord
             );
 
-            if (
-                isDefined(inputAsset) &&
-                isDefined(outputAsset) &&
-                inputAsset.address !== outputAsset.address
-            ) {
+            if (isDefined(inputAsset) && isDefined(outputAsset)) {
+                isSynced.current = true;
+
+                // remove skeleton from AssetsSelector
+                dispatch(assetsInitializedAction());
+
                 setInputAssetAddress(inputAsset.address);
                 setOutputAssetAddress(outputAsset.address);
+            } else {
+                if (isAssetInitialized) {
+                    isSynced.current = true;
+
+                    return;
+                }
             }
         }
     }, [
@@ -50,7 +65,8 @@ export const useSyncSwapFormWithRouter = (
         params.inputAssetSlug,
         params.outputAssetSlug,
         setInputAssetAddress,
-        setOutputAssetAddress
+        setOutputAssetAddress,
+        dispatch
     ]);
 
     useEffect(() => {
