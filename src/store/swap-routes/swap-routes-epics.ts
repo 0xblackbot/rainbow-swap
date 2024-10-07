@@ -36,7 +36,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
             const maxDepth =
                 payload.inputAssetAddress === payload.outputAssetAddress
                     ? RiskTolerance.Risky
-                    : state.settings.riskTolerance;
+                    : payload.riskTolerance;
             const maxSlippage = Number(state.settings.maxSlippage);
 
             return from(

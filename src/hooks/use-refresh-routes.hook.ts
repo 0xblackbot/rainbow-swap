@@ -2,6 +2,7 @@ import {getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useRef} from 'react';
 
 import {useWalletAddress} from './use-wallet-address.hook';
+import {RiskTolerance} from '../enums/risk-tolerance.enum';
 import {REFRESH_ROUTE_INTERVAL} from '../globals';
 import {useDispatch} from '../store';
 import {loadSwapRoutesActions} from '../store/swap-routes/swap-routes-actions';
@@ -11,7 +12,8 @@ export const useRefreshRoutes = (
     inputAssetAmount: string,
     nanoInputAssetAmount: string,
     inputAssetAddress: string,
-    outputAssetAddress: string
+    outputAssetAddress: string,
+    riskTolerance: RiskTolerance
 ) => {
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const walletAddress = useWalletAddress();
@@ -25,6 +27,7 @@ export const useRefreshRoutes = (
                     inputAssetAddress,
                     outputAssetAddress,
                     senderAddress: walletAddress,
+                    riskTolerance,
                     requestId: getQueryId().toString()
                 })
             );
@@ -40,6 +43,7 @@ export const useRefreshRoutes = (
         nanoInputAssetAmount,
         inputAssetAddress,
         outputAssetAddress,
+        riskTolerance,
         dispatch
     ]);
 
