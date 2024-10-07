@@ -11,19 +11,6 @@
     font-size: 14px;
 }
 
-.attention_text {
-    color: rgba(var(--danger-color));
-}
-
-.rate_text {
-    cursor: pointer;
-    color: var(--text-color);
-}
-
-.usd_text {
-    color: var(--hint-color);
-}
-
 .toggle_button {
     flex: 1;
     display: flex;

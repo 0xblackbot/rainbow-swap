@@ -4,27 +4,22 @@ import {FC, memo} from 'react';
 import {AssetSelector} from './asset-selector/asset-selector';
 import styles from './custom-input.module.css';
 import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
+import {useAssetBalanceSelector} from '../../../store/wallet/wallet-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props {
     isLoading: boolean;
-    balance: string | undefined;
     inputValue: string;
     assetValue: Asset;
     onAssetValueChange: (newAssetValue: Asset) => void;
 }
 
 export const CustomOutput: FC<Props> = memo(
-    ({
-        isLoading,
-        balance = '0',
-        inputValue,
-        assetValue,
-        onAssetValueChange
-    }) => {
+    ({isLoading, inputValue, assetValue, onAssetValueChange}) => {
         const isRoutesLoading = useIsRoutesLoadingSelector();
+        const balance = useAssetBalanceSelector(assetValue.address);
 
         const usdAmount = parseFloat(inputValue) * assetValue.usdExchangeRate;
 

@@ -35,6 +35,10 @@
     flex: 1;
 }
 
+.input_field_error {
+    color: var(--error-color);
+}
+
 .input_field::placeholder {
     color: var(--hint-color);
 }

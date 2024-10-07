@@ -5,6 +5,7 @@ import {ConnectWalletButton} from './connect-wallet-button/connect-wallet-button
 import {CustomInput} from './custom-input/custom-input';
 import {CustomOutput} from './custom-input/custom-output';
 import {FarmVolume} from './farm-volume/farm-volume';
+import {useInputError} from './hooks/use-input-error.hook';
 import {useSwapInfo} from './hooks/use-swap-info.hook';
 import {PendingSwap} from './pending-swap/pending-swap';
 import {SettingsButton} from './settings-button/settings-button';
@@ -27,7 +28,6 @@ import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {useMaxSlippageSelector} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {useRoutesSelector} from '../../store/swap-routes/swap-routes-selectors';
-import {useBalancesSelector} from '../../store/wallet/wallet-selectors';
 import {toNano} from '../../utils/big-int.utils';
 import {formatNumber} from '../../utils/format-number.utils';
 import {swapAssets} from '../../utils/swap-assets.utils';
@@ -37,7 +37,6 @@ export const SwapScreen = () => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const dispatch = useDispatch();
-    const balances = useBalancesSelector();
     const routes = useRoutesSelector();
     const appStatus = useAppStatusSelector();
     const slippageTolerance = useMaxSlippageSelector();
@@ -62,6 +61,7 @@ export const SwapScreen = () => {
         [inputAssetAmount, inputAsset.decimals]
     );
 
+    const inputError = useInputError();
     const swapInfo = useSwapInfo(
         inputAsset.decimals,
         outputAsset.decimals,
@@ -153,8 +153,8 @@ export const SwapScreen = () => {
                     <div className={styles.input_asset_container}>
                         <CustomInput
                             ref={inputRef}
+                            isError={!!inputError}
                             isLoading={!isAssetInitialized}
-                            balance={balances[inputAssetAddress]}
                             inputValue={inputAssetAmount}
                             onInputValueChange={setInputAssetAmount}
                             assetValue={inputAsset}
@@ -165,7 +165,6 @@ export const SwapScreen = () => {
                     <div className={styles.output_asset_container}>
                         <CustomOutput
                             isLoading={!isAssetInitialized}
-                            balance={balances[outputAssetAddress]}
                             inputValue={outputAssetAmount}
                             assetValue={outputAsset}
                             onAssetValueChange={handleOutputAssetValueChange}
@@ -192,11 +191,12 @@ export const SwapScreen = () => {
                     )}
 
                     <SwapDetails
-                        swapInfo={swapInfo}
+                        inputAssetAmount={inputAssetAmount}
+                        inputError={inputError}
                         inputAsset={inputAsset}
                         outputAsset={outputAsset}
-                        inputAssetAmount={inputAssetAmount}
                         routes={routes}
+                        swapInfo={swapInfo}
                     />
                     {appStatus.isSwapsEnabled ? (
                         <FarmVolume />

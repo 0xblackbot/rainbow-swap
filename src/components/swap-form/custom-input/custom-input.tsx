@@ -3,13 +3,15 @@ import {ChangeEvent, forwardRef, useState} from 'react';
 
 import {AssetSelector} from './asset-selector/asset-selector';
 import styles from './custom-input.module.css';
+import {useAssetBalanceSelector} from '../../../store/wallet/wallet-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getMaxSentAmount} from '../../../utils/get-max-sent-amount.utils';
+import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props {
+    isError: boolean;
     isLoading: boolean;
-    balance: string | undefined;
     inputValue: string;
     onInputValueChange: (newInputValue: string) => void;
     assetValue: Asset;
@@ -19,8 +21,8 @@ interface Props {
 export const CustomInput = forwardRef<HTMLInputElement, Props>(
     (
         {
+            isError,
             isLoading,
-            balance = '0',
             inputValue,
             onInputValueChange,
             assetValue,
@@ -28,6 +30,8 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
         },
         ref
     ) => {
+        const balance = useAssetBalanceSelector(assetValue.address);
+
         const [isFocused, setIsFocused] = useState(false);
         const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
             let value = e.target.value;
@@ -92,7 +96,10 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                         <input
                             type="tel"
                             inputMode="decimal"
-                            className={styles.input_field}
+                            className={getClassName(
+                                styles.input_field,
+                                isError ? styles.input_field_error : ''
+                            )}
                             onChange={handleInputChange}
                             value={inputValue}
                             placeholder="0"
