@@ -10,18 +10,23 @@ import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props {
-    isLoading: boolean;
     inputValue: string;
     assetValue: Asset;
     onAssetValueChange: (newAssetValue: Asset) => void;
+    isLoading: boolean;
+    inputValueUsdAmount: number;
 }
 
 export const CustomOutput: FC<Props> = memo(
-    ({isLoading, inputValue, assetValue, onAssetValueChange}) => {
+    ({
+        inputValue,
+        assetValue,
+        onAssetValueChange,
+        isLoading,
+        inputValueUsdAmount
+    }) => {
         const isRoutesLoading = useIsRoutesLoadingSelector();
         const balance = useAssetBalanceSelector(assetValue.address);
-
-        const usdAmount = parseFloat(inputValue) * assetValue.usdExchangeRate;
 
         return (
             <div className={styles.container}>
@@ -54,7 +59,7 @@ export const CustomOutput: FC<Props> = memo(
 
                 <div className={styles.input_info}>
                     <p className={styles.input_usd_balance}>
-                        ${formatNumber(usdAmount, 2)}
+                        ${formatNumber(inputValueUsdAmount, 2)}
                     </p>
                     <Skeleton isLoading={isLoading}>
                         <div className={styles.input_info_balance}>

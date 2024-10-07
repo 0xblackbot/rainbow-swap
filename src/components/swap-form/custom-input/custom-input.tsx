@@ -10,23 +10,25 @@ import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props {
-    isError: boolean;
-    isLoading: boolean;
     inputValue: string;
     onInputValueChange: (newInputValue: string) => void;
     assetValue: Asset;
     onAssetValueChange: (newAssetValue: Asset) => void;
+    isError: boolean;
+    isLoading: boolean;
+    inputValueUsdAmount: number;
 }
 
 export const CustomInput = forwardRef<HTMLInputElement, Props>(
     (
         {
-            isError,
-            isLoading,
             inputValue,
             onInputValueChange,
             assetValue,
-            onAssetValueChange
+            onAssetValueChange,
+            isError,
+            isLoading,
+            inputValueUsdAmount
         },
         ref
     ) => {
@@ -52,8 +54,6 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 }
             }
         };
-
-        const usdAmount = parseFloat(inputValue) * assetValue.usdExchangeRate;
 
         const setMaxAssetAmount = () => {
             const checkedBalance = getMaxSentAmount(
@@ -121,7 +121,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
 
                 <div className={styles.input_info}>
                     <p className={styles.input_usd_balance}>
-                        ${formatNumber(usdAmount, 2)}
+                        ${formatNumber(inputValueUsdAmount, 2)}
                     </p>
                     <Skeleton isLoading={isLoading}>
                         <div className={styles.input_info_balance}>

@@ -3,14 +3,11 @@ import {useMemo} from 'react';
 
 import {useSelector} from '../index';
 
-const useSwapRoutesSelector = () =>
-    useSelector(
+export const useRoutesSelector = () => {
+    const swapRoutes = useSelector(
         ({swapRoutes}) => swapRoutes.bestRouteResponse.data.bestRoute,
         (a, b) => JSON.stringify(a) === JSON.stringify(b)
     );
-
-export const useRoutesSelector = () => {
-    const swapRoutes = useSwapRoutesSelector();
 
     return useMemo(() => swapRoutes.map(mapSwapRouteToRoute), [swapRoutes]);
 };
@@ -18,10 +15,12 @@ export const useRoutesSelector = () => {
 export const useIsRoutesLoadingSelector = () =>
     useSelector(({swapRoutes}) => swapRoutes.lastRequestId !== undefined);
 
-export const useRoutingFeeSelector = () =>
-    useSelector(({swapRoutes}) => swapRoutes.bestRouteResponse.data.routingFee);
-
 export const useSwapMessagesSelector = () =>
     useSelector(
         ({swapRoutes}) => swapRoutes.bestRouteResponse.data.swapMessages
+    );
+
+export const useSwapDisplayDataSelector = () =>
+    useSelector(
+        ({swapRoutes}) => swapRoutes.bestRouteResponse.data.displayData
     );

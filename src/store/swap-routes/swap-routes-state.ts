@@ -10,8 +10,17 @@ export interface SwapRoutesState {
 
 export const emptyBestRouteResponse: BestRouteResponse = {
     bestRoute: [],
-    priceImprovement: 0,
-    routingFee: 0,
+    displayData: {
+        inputAssetAmount: 0,
+        inputAssetUsdAmount: 0,
+        outputAssetAmount: 0,
+        outputAssetUsdAmount: 0,
+        minOutputAssetAmount: 0,
+        exchangeRate: 0,
+        maxSlippage: 0,
+        routingFeePercent: 0,
+        priceImprovementPercent: 0
+    },
     swapMessages: []
 };
 

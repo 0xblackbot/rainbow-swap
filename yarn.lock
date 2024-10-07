@@ -2729,10 +2729,10 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-rainbow-swap-sdk@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.4.1.tgz#7272fe0857c7b2e75fd4750a47121833ec25fa9a"
-  integrity sha512-ladrD3c0V+ZcILw6fnZwF39h7h14wfMQrF35zQ9kcWUsL6RAJCdi9UcUFyiWDtSOTGeZnP6Pq3d+io3wKCjJHw==
+rainbow-swap-sdk@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.4.3.tgz#f50111361e8e1ef3eddd73690ad8ca9cb3cd999e"
+  integrity sha512-TxBzCrEot9666kJv41a318DaAd4PXUqHZ7kVAQAGfm+vBYsuKO7InYZstGPxSdSsT15gbJVKH4FiuVUCV+gxoQ==
   dependencies:
     "@rnw-community/shared" "^0.74.0"
     axios "^1.7.7"

@@ -9,14 +9,13 @@ export const SwapDetailsHeader: FC<SwapDetailsHeaderProps> = ({
     inputError,
     inputAsset,
     outputAsset,
-    routes,
-    swapInfo
+    routes
 }) => {
-    const exchangeRate = useExchangeRate(
-        inputAsset,
-        outputAsset,
-        swapInfo.exchangeRate
-    );
+    const exchangeRate = useExchangeRate(inputAsset, outputAsset);
+
+    if (routes.length === 0) {
+        return <p className={styles.error_text}>No routes available</p>;
+    }
 
     if (isDefined(inputError)) {
         return <p className={styles.error_text}>{inputError}</p>;
@@ -24,10 +23,6 @@ export const SwapDetailsHeader: FC<SwapDetailsHeaderProps> = ({
 
     if (inputAsset.address === outputAsset.address) {
         return <p className={styles.attention_text}>Arbitrage mode!</p>;
-    }
-
-    if (routes.length === 0) {
-        return <p>No routes available</p>;
     }
 
     return (

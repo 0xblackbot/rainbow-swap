@@ -5,12 +5,12 @@ import {SwapDetailsHeader} from './swap-details-header/swap-details-header';
 import {SwapDetailsHeaderProps} from './swap-details-header/swap-details-header.props';
 import styles from './swap-details.module.css';
 import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
-import {useMaxSlippageSelector} from '../../../store/settings/settings-selectors';
 import {
     useIsRoutesLoadingSelector,
-    useRoutingFeeSelector
+    useSwapDisplayDataSelector
 } from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
+import {getSwapInputAssetAmount} from '../../../utils/route-step-with-calculation.utils';
 import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
@@ -23,14 +23,14 @@ export const SwapDetails: FC<Props> = ({
     inputError,
     inputAsset,
     outputAsset,
-    routes,
-    swapInfo
+    routes
 }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const isRoutesLoading = useIsRoutesLoadingSelector();
-    const slippageTolerance = useMaxSlippageSelector();
-    const routingFee = useRoutingFeeSelector();
+    const swapDisplayData = useSwapDisplayDataSelector();
+
+    const nanoInputAssetAmount = getSwapInputAssetAmount(routes);
 
     const toggleAccordion = () => setIsOpen(value => !value);
 
@@ -45,7 +45,6 @@ export const SwapDetails: FC<Props> = ({
                                 inputAsset={inputAsset}
                                 outputAsset={outputAsset}
                                 routes={routes}
-                                swapInfo={swapInfo}
                             />
                         </Skeleton>
                         <div
@@ -71,19 +70,27 @@ export const SwapDetails: FC<Props> = ({
                         <div className={styles.row}>
                             <p>Max slippage</p>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>{slippageTolerance}%</p>
+                                <p>{swapDisplayData.maxSlippage.toFixed(2)}%</p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
                             <p>Receive at least</p>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>{`${formatNumber(swapInfo.minOutputAssetAmount, 5)} ${outputAsset.symbol}`}</p>
+                                <p>{`${formatNumber(
+                                    swapDisplayData.minOutputAssetAmount,
+                                    5
+                                )} ${outputAsset.symbol}`}</p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
                             <p>Routing Fee</p>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>{routingFee}%</p>
+                                <p>
+                                    {swapDisplayData.routingFeePercent.toFixed(
+                                        2
+                                    )}
+                                    %
+                                </p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
@@ -94,7 +101,7 @@ export const SwapDetails: FC<Props> = ({
                                 <Fragment key={`route-${index}`}>
                                     <RouteInfo
                                         nanoInputAssetAmount={
-                                            swapInfo.nanoInputAssetAmount
+                                            nanoInputAssetAmount
                                         }
                                         route={route}
                                     />
