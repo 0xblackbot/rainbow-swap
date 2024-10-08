@@ -5,7 +5,7 @@ import Terminal from 'vite-plugin-terminal';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: '/',
+    base: process.env.VITE_BASE_URL ?? '/',
     plugins: [react(), mkcert({force: true}), Terminal()],
     build: {
         minify: 'terser'

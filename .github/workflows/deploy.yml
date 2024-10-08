@@ -25,6 +25,8 @@ jobs:
 
       - name: Create build
         run: yarn build
+        env:
+          VITE_BASE_URL: /rainbow-swap/
 
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v4
