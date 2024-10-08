@@ -2,7 +2,7 @@ name: UI deployment
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   deploy:
@@ -27,6 +27,9 @@ jobs:
         run: yarn build
         env:
           VITE_BASE_URL: /rainbow-swap/
+
+      - name: Copy index.html to 404.html
+        run: cp dist/index.html dist/404.html
 
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v4
