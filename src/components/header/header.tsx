@@ -22,7 +22,7 @@ export const Header = () => {
             <div className={styles.left_div}>
                 <img
                     className={styles.header_triangle_logo}
-                    src="/icons/icon-128x128.png"
+                    src="./icons/icon-128x128.png"
                     alt="Rainbow Swap logo"
                 ></img>
                 <LogoText
