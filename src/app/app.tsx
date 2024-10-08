@@ -3,25 +3,20 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import styles from './app.module.css';
 import {getErrorElement} from '../components/error-element/error-element';
-import {BASE_URL, IS_MAIN_BUTTON_AVAILABLE} from '../globals';
+import {IS_MAIN_BUTTON_AVAILABLE} from '../globals';
 import {useDisableMainButton} from '../hooks/use-disable-main-button.hook';
 import {useStateVersionCheck} from '../hooks/use-state-version-check.hook';
 import {useTonConnectModalStatus} from '../hooks/use-ton-connect-modal-status.hook';
 import {useViewportHeight} from '../hooks/viewport-height/viewport-height.hook';
 import {HomeScreen} from '../screens/home-screen/home-screen';
 
-const router = createBrowserRouter(
-    [
-        {
-            path: '/:inputAssetSlug?/:outputAssetSlug?/*',
-            element: <HomeScreen />,
-            errorElement: getErrorElement()
-        }
-    ],
+const router = createBrowserRouter([
     {
-        basename: BASE_URL
+        path: '/:inputAssetSlug?/:outputAssetSlug?/*',
+        element: <HomeScreen />,
+        errorElement: getErrorElement()
     }
-);
+]);
 
 export const App = () => {
     const viewportHeight = useViewportHeight();

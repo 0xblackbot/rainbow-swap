@@ -7,6 +7,7 @@ import {IS_TMA} from '../../globals';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
+import logoImage from './assets/icon.png';
 
 export const Header = () => {
     const walletAddress = useWalletAddress();
@@ -22,7 +23,7 @@ export const Header = () => {
             <div className={styles.left_div}>
                 <img
                     className={styles.header_triangle_logo}
-                    src="./icons/icon-128x128.png"
+                    src={logoImage}
                     alt="Rainbow Swap logo"
                 ></img>
                 <LogoText
