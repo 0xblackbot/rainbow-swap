@@ -6,6 +6,7 @@ import snapxImage from './assets/snapx.jpg';
 import stakingImage from './assets/staking.png';
 import telegramImage from './assets/telegram.png';
 import tonAppImage from './assets/ton-app.png';
+import tonHedgeImage from './assets/ton-hedge.jpeg';
 import torchFinanceImage from './assets/torch-finance.jpeg';
 import twitterImage from './assets/twitter.png';
 import {Divider} from './divider/divider';
@@ -140,6 +141,22 @@ export const Tasks = () => {
                     isLoading={tonAppTask.isLoading}
                 />
             </TaskItem>
+
+            <Divider withArrow={true} />
+
+            <TaskHeader name="TON Hedge" imageSrc={tonHedgeImage} />
+            <PartnerTaskItem
+                isTelegram={true}
+                imageSrc={telegramImage}
+                title="Join Channel"
+                taskType={TaskTypeEnum.TonHedge_Telegram}
+            />
+            <PartnerTaskItem
+                isTelegram={true}
+                imageSrc={telegramImage}
+                title="Explore app"
+                taskType={TaskTypeEnum.TonHedge_Bot}
+            />
 
             <Divider withArrow={true} />
 

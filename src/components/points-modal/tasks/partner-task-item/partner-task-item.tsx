@@ -19,7 +19,10 @@ const LinksRecord: Record<string, string> = {
     [TaskTypeEnum.AppsCenter_Bot]:
         'https://t.me/tapps_bot/app?startapp=promo_rainbow_swap',
     [TaskTypeEnum.JVault_Telegram]: 'https://t.me/JVault',
-    [TaskTypeEnum.JVault_Staking]: 'https://jvault.xyz/staking'
+    [TaskTypeEnum.JVault_Staking]: 'https://jvault.xyz/staking',
+    [TaskTypeEnum.TonHedge_Telegram]: 'https://t.me/ton_hedge',
+    [TaskTypeEnum.TonHedge_Bot]:
+        'https://t.me/ton_hedge_bot/trade?startapp=rainbowswap'
 };
 
 interface Props {
