@@ -4,7 +4,7 @@ import {Api, HttpClient} from 'tonapi-sdk-js';
 
 import {toNano} from './utils/big-int.utils';
 
-// export const BASE_URL = process?.env?.VITE_BASE_URL ?? '/';
+export const BASE_URL = import.meta.env.VITE_BASE_URL ?? '/';
 
 export const isProd = import.meta.env.PROD;
 export const PROD_STATE_VERSION = 1;
