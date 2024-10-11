@@ -22,7 +22,10 @@ const LinksRecord: Record<string, string> = {
     [TaskTypeEnum.JVault_Staking]: 'https://jvault.xyz/staking',
     [TaskTypeEnum.TonHedge_Telegram]: 'https://t.me/ton_hedge',
     [TaskTypeEnum.TonHedge_Bot]:
-        'https://t.me/ton_hedge_bot/trade?startapp=rainbowswap'
+        'https://t.me/ton_hedge_bot/trade?startapp=rainbowswap',
+    [TaskTypeEnum.Parraton_Telegram]: 'https://t.me/parraton_en',
+    [TaskTypeEnum.Parraton_Bot]:
+        'https://t.me/parraton_bot/app?startapp=151872929'
 };
 
 interface Props {

@@ -1,6 +1,7 @@
 import appsCenter from './assets/apps-center.jpg';
 import inviteImage from './assets/invite.png';
 import jvaultImage from './assets/jvault.jpeg';
+import parratonImage from './assets/parraton.jpeg';
 import referralImage from './assets/referral.png';
 import snapxImage from './assets/snapx.jpg';
 import stakingImage from './assets/staking.png';
@@ -141,6 +142,22 @@ export const Tasks = () => {
                     isLoading={tonAppTask.isLoading}
                 />
             </TaskItem>
+
+            <Divider withArrow={true} />
+
+            <TaskHeader name="Parraton" imageSrc={parratonImage} />
+            <PartnerTaskItem
+                isTelegram={true}
+                imageSrc={telegramImage}
+                title="Join Channel"
+                taskType={TaskTypeEnum.Parraton_Telegram}
+            />
+            <PartnerTaskItem
+                isTelegram={true}
+                imageSrc={telegramImage}
+                title="Explore app"
+                taskType={TaskTypeEnum.Parraton_Bot}
+            />
 
             <Divider withArrow={true} />
 

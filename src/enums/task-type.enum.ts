@@ -16,7 +16,10 @@ export enum TaskTypeEnum {
     JVault_Staking = 'JVault_Staking',
 
     TonHedge_Telegram = 'TonHedge_Telegram',
-    TonHedge_Bot = 'TonHedge_Bot'
+    TonHedge_Bot = 'TonHedge_Bot',
+
+    Parraton_Telegram = 'Parraton_Telegram',
+    Parraton_Bot = 'Parraton_Bot'
 }
 
 export const PartnerTasksKeyRecord: Record<string, string> = {
@@ -29,5 +32,7 @@ export const PartnerTasksKeyRecord: Record<string, string> = {
     [TaskTypeEnum.JVault_Telegram]: 'jvaultTelegram',
     [TaskTypeEnum.JVault_Staking]: 'jvaultStaking',
     [TaskTypeEnum.TonHedge_Telegram]: 'tonHedgeTelegram',
-    [TaskTypeEnum.TonHedge_Bot]: 'tonHedgeBot'
+    [TaskTypeEnum.TonHedge_Bot]: 'tonHedgeBot',
+    [TaskTypeEnum.Parraton_Telegram]: 'parratonTelegram',
+    [TaskTypeEnum.Parraton_Bot]: 'parratonBot'
 };
