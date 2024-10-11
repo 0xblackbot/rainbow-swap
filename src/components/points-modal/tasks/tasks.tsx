@@ -1,5 +1,4 @@
 import appsCenter from './assets/apps-center.jpg';
-import inviteImage from './assets/invite.png';
 import jvaultImage from './assets/jvault.jpeg';
 import parratonImage from './assets/parraton.jpeg';
 import referralImage from './assets/referral.png';
@@ -18,12 +17,7 @@ import {TaskStatus} from './task-status/task-status';
 import {TasksEnd} from './tasks-end/tasks-end';
 import styles from './tasks.module.css';
 import {TaskTypeEnum} from '../../../enums/task-type.enum';
-import {
-    TELEGRAM_APP_LINK,
-    TELEGRAM_CHANNEL_LINK,
-    TON_APP_LINK,
-    X_LINK
-} from '../../../globals';
+import {TELEGRAM_CHANNEL_LINK, TON_APP_LINK, X_LINK} from '../../../globals';
 import {useDispatch} from '../../../store';
 import {
     checkTelegramChannelTaskActions,
@@ -32,13 +26,10 @@ import {
     closePointsModal
 } from '../../../store/points/points-actions';
 import {
-    useRefHashSelector,
     useTelegramChannelTaskSelector,
     useTonAppTaskSelector,
     useXChannelTaskSelector
 } from '../../../store/points/points-selectors';
-import {copyToClipboard} from '../../../utils/clipboard.utils';
-import {showSuccessToast} from '../../../utils/toast.utils';
 
 export const Tasks = () => {
     const dispatch = useDispatch();
@@ -47,24 +38,7 @@ export const Tasks = () => {
     const xChannelTask = useXChannelTaskSelector();
     const tonAppTask = useTonAppTaskSelector();
 
-    const refHash = useRefHashSelector();
-    const REF_URL = `${TELEGRAM_APP_LINK}?startapp=${refHash}`;
-
     const handleSwap = () => dispatch(closePointsModal());
-
-    const handleCopyClick = async () => {
-        await copyToClipboard(REF_URL);
-        showSuccessToast('Link copied!');
-    };
-
-    const handleInviteClick = (
-        event: React.MouseEvent<HTMLParagraphElement, MouseEvent>
-    ) => {
-        event.stopPropagation();
-
-        const url = `https://t.me/share/url?url=${REF_URL}`;
-        window.Telegram.WebApp.openTelegramLink(url);
-    };
 
     const handleJoinChannelClick = () => {
         window.Telegram.WebApp.openTelegramLink(TELEGRAM_CHANNEL_LINK);
@@ -89,6 +63,10 @@ export const Tasks = () => {
 
     return (
         <>
+            <Divider withArrow={true} />
+
+            <p className={styles.title}>Tasks</p>
+
             <TaskItem
                 imageSrc={referralImage}
                 title="Perform trades"
@@ -97,16 +75,6 @@ export const Tasks = () => {
             >
                 <p className={styles.invite_button} onClick={handleSwap}>
                     Swap
-                </p>
-            </TaskItem>
-            <TaskItem
-                imageSrc={inviteImage}
-                title="Invite friends"
-                description="+5,000 per 1 friend"
-                onClick={handleCopyClick}
-            >
-                <p className={styles.invite_button} onClick={handleInviteClick}>
-                    Invite
                 </p>
             </TaskItem>
             <TaskItem

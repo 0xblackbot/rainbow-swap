@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--step);
+    align-items: center;
+    text-align: center;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+    padding: var(--2-step);
+    margin-bottom: var(--step);
+    position: relative;
+}
+
+.friends_container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--hint-color);
+    padding: var(--step) var(--2-step);
+    transform: rotate(25deg);
+}
+
+.bonus_text {
+    color: var(--button-color);
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.description {
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.counter_text {
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.counter_value {
+    color: var(--text-color);
+}
+
+.copy_button {
+    width: 100%;
+    padding: var(--step);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--button-color);
+    color: var(--button-text-color);
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.share_button {
+    width: 100%;
+    padding: var(--step);
+    border-radius: var(--border-radius);
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    font-size: 15px;
+    cursor: pointer;
+}

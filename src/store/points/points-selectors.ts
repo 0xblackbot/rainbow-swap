@@ -18,6 +18,7 @@ export const usePointsSelector = () =>
                 points.localTapTap +
                 points.tapTap.data +
                 points.swapsVolume.data +
+                points.bonus.data +
                 points.referral.data +
                 points.telegramChannel.data +
                 points.xChannel.data +
@@ -26,6 +27,11 @@ export const usePointsSelector = () =>
             isLoading: points.tapTap.isLoading
         };
     });
+
+const REF_BONUS = 5000;
+
+export const useNumberOfReferralsSelector = () =>
+    useSelector(({points}) => points.referral.data / REF_BONUS);
 
 export const useTelegramChannelTaskSelector = () =>
     useSelector(({points}) => points.telegramChannel);

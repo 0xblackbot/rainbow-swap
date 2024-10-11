@@ -7,6 +7,7 @@ export type PointsAuthResponse = {
     refHash: string;
     tapTap: number;
     swapsVolume: number;
+    bonus: number;
     referral: number;
     telegramChannel: number;
     xChannel: number;
