@@ -681,10 +681,10 @@
     "@ton-community/func-js-bin" "0.4.4-newops.1"
     arg "^5.0.2"
 
-"@ton/core@^0.58.1":
-  version "0.58.1"
-  resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.58.1.tgz#f6f2ecef6a7149bcd23825bfbb454f116d54363f"
-  integrity sha512-zydh42iT6E3U3Ky/DhTFqJMN/ycKKzbsHASY257Qr2sZn97G/MOcHFizPfMnbJJgx0H9iHX6mdyMvp1IKBVAFA==
+"@ton/core@^0.59.0":
+  version "0.59.0"
+  resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.59.0.tgz#58da9fcaa58e5a0c705b63baf1e86cab6e196689"
+  integrity sha512-LSIkGst7BoY7fMWshejzcH0UJnoW21JGlRrW0ch+6A7Xb/7EuekxgdKym7fHxcry6OIf6FoeFg97lJ960N/Ghg==
   dependencies:
     symbol.inspect "1.0.1"
 
@@ -3185,10 +3185,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-tonapi-sdk-js@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-2.0.2.tgz#720e3b803bef0d264bfc01f82751d30482a901a7"
-  integrity sha512-eG9l+3rZ7Ocr7gxpjHD3mKOpfwIV1F8R3AjJGDpS+n84hE8gwbjkD4j+pg71WPeeO2JtEMmSyttDIDp49ubwow==
+tonapi-sdk-js@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-2.0.3.tgz#102e87219a81c58b8e54b9556436f5db129ea07a"
+  integrity sha512-fSJC2OtnI9SqDLsYLKZWqY/xhfHpPVPnVx4l72jVwnhXjx5ZEdHcUd9R1+0OVQCCtXOA5EV2ALDnwLaPtAIlcw==
 
 totalist@^3.0.0:
   version "3.0.1"

@@ -15,7 +15,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@rnw-community/shared": "^0.67.0",
-    "@ton/core": "^0.58.1",
+    "@ton/core": "^0.59.0",
     "@ton/crypto": "^3.3.0",
     "@tonconnect/ui-react": "^2.0.9",
     "axios": "^1.7.7",
@@ -34,7 +34,7 @@
     "redux-observable": "^3.0.0-rc.2",
     "redux-persist": "^6.0.0",
     "rxjs": "^7.8.1",
-    "tonapi-sdk-js": "^2.0.2",
+    "tonapi-sdk-js": "^2.0.3",
     "ts-action": "^11.0.0",
     "ts-action-operators": "^9.1.2"
   },
