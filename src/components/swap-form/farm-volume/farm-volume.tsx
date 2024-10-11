@@ -26,12 +26,6 @@ export const FarmVolume = () => {
         setInputAssetAmount(TON_INPUT_AMOUNT);
     };
 
-    const handleTryArbitrageModeClick = () => {
-        setInputAssetAddress(TON);
-        setOutputAssetAddress(TON);
-        setInputAssetAmount(TON_INPUT_AMOUNT);
-    };
-
     const handleEarnMorePointsClick = () => dispatch(openPointsModal());
     const handleEarnPointsInTelegramClick = () =>
         window.Telegram.WebApp.openLink(TELEGRAM_BOT_LINK);
@@ -71,15 +65,6 @@ export const FarmVolume = () => {
                     </div>
                     <div className={styles.message_container}>
                         <p className={styles.message}>3. </p>
-                        <p
-                            className={styles.button}
-                            onClick={handleTryArbitrageModeClick}
-                        >
-                            Try arbitrage mode
-                        </p>
-                    </div>
-                    <div className={styles.message_container}>
-                        <p className={styles.message}>4. </p>
                         {IS_TMA ? (
                             <p
                                 className={styles.button}
