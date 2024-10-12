@@ -52,7 +52,7 @@
     padding: var(--step);
     border-radius: var(--border-radius);
     border: 1px solid var(--button-color);
-    color: var(--button-text-color);
+    color: var(--text-color);
     text-align: center;
     font-size: 15px;
     cursor: pointer;
