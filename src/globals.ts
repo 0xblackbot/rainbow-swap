@@ -20,7 +20,7 @@ export const GAS_AMOUNT = toNano('0.255', 9);
 export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);
 
 export const API = axios.create({
-    baseURL: 'https://api.blackbot.technology/rainbow/api'
+    baseURL: 'https://api.rainbow.ag/api'
 });
 
 export const TON_API_CLIENT = new Api(
