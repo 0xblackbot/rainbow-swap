@@ -58,6 +58,7 @@
     padding: var(--step);
     border-radius: var(--3-step);
     cursor: pointer;
+    text-align: center;
 }
 
 .menu_disconnect_button {
@@ -67,9 +68,6 @@
 
 .menu_explore_button {
     border: 1px solid var(--button-color);
-    background: none;
-}
-
-.a_button {
     color: var(--button-color);
+    background: none;
 }

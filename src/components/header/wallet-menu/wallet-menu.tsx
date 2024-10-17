@@ -47,21 +47,17 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
             >
                 {shortWalletAddress}
                 <div className={styles.menu_content}>
-                    <button
+                    <a
                         className={getClassName(
                             styles.menu_explore_button,
                             styles.menu_button
                         )}
+                        href={`https://tonviewer.com/${walletAddress}`}
+                        target="_blank"
+                        rel="noreferrer"
                     >
-                        <a
-                            className={styles.a_button}
-                            href={`https://tonviewer.com/${walletAddress}`}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            View in Explorer
-                        </a>
-                    </button>
+                        View in Explorer
+                    </a>
                     <button
                         className={getClassName(
                             styles.menu_disconnect_button,
