@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
 import {MaxSlippage} from './max-slippage/max-slippage';
 import {RiskToleranceSetting} from './risk-tolerance/risk-tolerance';
@@ -11,8 +11,19 @@ import {Divider} from '../../points-modal/tasks/divider/divider';
 export const SettingsButton = () => {
     const [isOpen, setIsOpen] = useState(false);
 
+    const handleClick = () => setIsOpen(value => !value);
     const handleOpen = () => setIsOpen(true);
     const handleClose = useCallback(() => setIsOpen(false), []);
+
+    useEffect(() => {
+        window.Telegram.WebApp.SettingsButton.show();
+        window.Telegram.WebApp.SettingsButton.onClick(handleClick);
+
+        return () => {
+            window.Telegram.WebApp.SettingsButton.hide();
+            window.Telegram.WebApp.SettingsButton.offClick(handleClick);
+        };
+    }, []);
 
     return (
         <>
