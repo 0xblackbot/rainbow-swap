@@ -1,9 +1,10 @@
 import {useTonConnectUI} from '@tonconnect/ui-react';
-import {FC, useMemo, useState} from 'react';
+import {FC, useCallback, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
+import {useEnableBackButton} from '../../../hooks/use-enable-back-button.hook';
 import {getClassName} from '../../../utils/style.utils';
 
 interface Props {
@@ -20,7 +21,10 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
         [walletAddress]
     );
 
+    const onClose = useCallback(() => setIsOpen(false), []);
+
     useDisableMainButton(isOpen);
+    useEnableBackButton(isOpen, onClose);
 
     const handleMenuClick = () => {
         trackButtonClick('Header Menu');
@@ -28,12 +32,12 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
     };
     const handleClose = () => {
         trackButtonClick('Header Menu Backdrop');
-        setIsOpen(false);
+        onClose();
     };
     const handleDisconnect = () => {
         trackButtonClick('Header Disconnect');
         tonConnectUI.disconnect();
-        setIsOpen(false);
+        onClose();
     };
 
     return (

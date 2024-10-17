@@ -3,6 +3,7 @@ import {FC, PropsWithChildren, useEffect, useState} from 'react';
 import styles from './bottom-sheet.module.css';
 import {XIcon} from '../../assets/icons/XIcon/XIcon';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
+import {useEnableBackButton} from '../../hooks/use-enable-back-button.hook';
 import {usePreventScroll} from '../../hooks/use-prevent-scrolling.hook';
 import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook';
 import {getClassName} from '../../utils/style.utils';
@@ -25,6 +26,7 @@ export const BottomSheet: FC<Props> = ({
 
     usePreventScroll(isOpen);
     useTrackPageView(headerTitle, isOpen);
+    useEnableBackButton(isOpen, onClose);
 
     useEffect(() => {
         if (isOpen) {
