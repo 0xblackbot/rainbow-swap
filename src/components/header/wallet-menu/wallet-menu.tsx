@@ -2,6 +2,10 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import {FC, useCallback, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
+import {DollarIcon} from '../../../assets/icons/DollarIcon/DollarIcon';
+import {ExternalLinkIcon} from '../../../assets/icons/ExternalLinkIcon/ExternalLinkIcon';
+import {AlertIcon} from '../../../assets/icons/LogoutIcon/LogoutIcon';
+import {useOpenReferralsModal} from '../../../hooks/referrals-modal/referrals-modal.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
 import {useEnableBackButton} from '../../../hooks/use-enable-back-button.hook';
@@ -13,6 +17,7 @@ interface Props {
 
 export const WalletMenu: FC<Props> = ({walletAddress}) => {
     const [tonConnectUI] = useTonConnectUI();
+    const openReferralsModal = useOpenReferralsModal();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -34,6 +39,11 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
         trackButtonClick('Header Menu Backdrop');
         onClose();
     };
+    const handleEarnFeesClick = () => {
+        trackButtonClick('Header Earn Fees');
+        openReferralsModal();
+        onClose();
+    };
     const handleDisconnect = () => {
         trackButtonClick('Header Disconnect');
         tonConnectUI.disconnect();
@@ -44,33 +54,38 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
         <>
             <div
                 className={getClassName(
-                    styles.wallet_button,
+                    styles.container,
                     isOpen ? styles.open : styles.close
                 )}
-                onClick={handleMenuClick}
             >
-                {shortWalletAddress}
+                <div className={styles.wallet_button} onClick={handleMenuClick}>
+                    {shortWalletAddress}
+                </div>
+
                 <div className={styles.menu_content}>
+                    <div
+                        className={styles.menu_button}
+                        onClick={handleEarnFeesClick}
+                    >
+                        <DollarIcon className={styles.menu_button_icon} />
+                        Earn fees
+                    </div>
                     <a
-                        className={getClassName(
-                            styles.menu_explore_button,
-                            styles.menu_button
-                        )}
+                        className={styles.menu_button}
                         href={`https://tonviewer.com/${walletAddress}`}
                         target="_blank"
                         rel="noreferrer"
                     >
-                        View in Explorer
+                        <ExternalLinkIcon className={styles.menu_button_icon} />
+                        Explorer
                     </a>
-                    <button
-                        className={getClassName(
-                            styles.menu_disconnect_button,
-                            styles.menu_button
-                        )}
+                    <div
+                        className={styles.menu_button}
                         onClick={handleDisconnect}
                     >
+                        <AlertIcon className={styles.menu_button_icon} />
                         Disconnect
-                    </button>
+                    </div>
                 </div>
             </div>
 

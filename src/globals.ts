@@ -44,6 +44,7 @@ export const UNSAFE_INIT_DATA = {
     ref_parent: window.Telegram.WebApp.initDataUnsafe.start_param
 };
 
+export const WEB_LINK = 'https://rainbow.ag';
 export const TELEGRAM_BOT_LINK = 'https://t.me/rainbow_swap_bot';
 export const TELEGRAM_APP_LINK = `${TELEGRAM_BOT_LINK}/app`;
 export const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';

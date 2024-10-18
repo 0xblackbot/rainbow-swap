@@ -34,6 +34,7 @@
     "redux-observable": "^3.0.0-rc.2",
     "redux-persist": "^6.0.0",
     "rxjs": "^7.8.1",
+    "swiper": "^11.1.14",
     "tonapi-sdk-js": "^2.0.3",
     "ts-action": "^11.0.0",
     "ts-action-operators": "^9.1.2"

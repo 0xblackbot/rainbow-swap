@@ -1,8 +1,8 @@
+import {emptyFn} from '@rnw-community/shared';
 import {Asset} from 'rainbow-swap-sdk';
 import {Dispatch, SetStateAction, createContext} from 'react';
 
 import {TON, USDT} from '../../globals';
-import {EMPTY_FN} from '../../utils/emptyfn';
 
 interface SwapFormContextValues {
     outputAssetAddress: string;
@@ -17,11 +17,11 @@ interface SwapFormContextValues {
 
 export const SwapFormContext = createContext<SwapFormContextValues>({
     outputAssetAddress: USDT,
-    setOutputAssetAddress: EMPTY_FN,
+    setOutputAssetAddress: emptyFn,
     inputAssetAddress: TON,
-    setInputAssetAddress: EMPTY_FN,
+    setInputAssetAddress: emptyFn,
     inputAssetAmount: '',
-    setInputAssetAmount: EMPTY_FN,
+    setInputAssetAmount: emptyFn,
     inputAsset: {
         address: TON,
         slug: 'TON',

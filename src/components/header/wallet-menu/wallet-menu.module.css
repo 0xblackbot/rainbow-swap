@@ -1,11 +1,14 @@
+.container {
+    position: relative;
+    z-index: 11;
+}
+
 .wallet_button {
     background-color: var(--button-color);
     color: var(--button-text-color);
     border-radius: var(--4-step);
     padding: var(--step) var(--2-step);
     cursor: pointer;
-    position: relative;
-    z-index: 11;
     font-size: 13px;
 }
 
@@ -37,7 +40,6 @@
     display: grid;
     gap: var(--step);
     background-color: var(--bg-color);
-    min-width: calc(20 * var(--step));
     padding: var(--step);
     border-radius: var(--2-step);
     box-shadow: 0 2px 2px black;
@@ -47,27 +49,37 @@
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;;
 }
 
-.wallet_button.open .menu_content {
+.container.open .menu_content {
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
 }
 
 .menu_button {
-    justify-content: center;
-    padding: var(--step);
-    border-radius: var(--3-step);
+    display: flex;
+    align-items: center;
+    gap: var(--step);
+    font-size: 14px;
+    border-radius: var(--4-step);
+    padding: var(--half-step) var(--2-step);
+    background: var(--secondary-bg-color);
+    color: var(--hint-color);
     cursor: pointer;
-    text-align: center;
 }
 
-.menu_disconnect_button {
-    background-color: var(--button-color);
-    color: var(--button-text-color);
+.menu_button_icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--hint-color);
+    stroke: var(--hint-color);
 }
 
-.menu_explore_button {
-    border: 1px solid var(--button-color);
+.menu_button_attention {
+    background: var(--attention-bg);
     color: var(--button-color);
-    background: none;
+}
+
+.menu_button_icon_attention {
+    fill: var(--button-color);
+    stroke: var(--button-color);
 }

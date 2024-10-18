@@ -1,10 +1,10 @@
 import {Asset, getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
+import {AdsSwiper} from './ads-swiper/ads-swiper';
 import {ConnectWalletButton} from './connect-wallet-button/connect-wallet-button';
 import {CustomInput} from './custom-input/custom-input';
 import {CustomOutput} from './custom-input/custom-output';
-import {FarmVolume} from './farm-volume/farm-volume';
 import {useInputError} from './hooks/use-input-error.hook';
 import {PendingSwap} from './pending-swap/pending-swap';
 import {SettingsButton} from './settings-button/settings-button';
@@ -205,7 +205,7 @@ export const SwapScreen = () => {
                         routes={routes}
                     />
                     {appStatus.isSwapsEnabled ? (
-                        <FarmVolume />
+                        <AdsSwiper />
                     ) : (
                         <SwapDisabled message={appStatus.message} />
                     )}

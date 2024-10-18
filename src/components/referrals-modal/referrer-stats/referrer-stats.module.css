@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--step);
+}
+
+.description_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.duck_money_fallback {
+    width: 180px;
+    height: 185px;
+
+    margin-bottom: var(--2-step);
+}
+
+.duck_money {
+    width: 180px;
+    height: 185px;
+
+    margin-bottom: var(--2-step);
+}
+
+.description {
+    color: var(--hint-color);
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: var(--4-step);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.copy_button {
+    display: flex;
+    justify-content: center;
+    gap: var(--step);
+    padding: var(--step);
+    border-radius: var(--border-radius);
+    background: var(--secondary-bg-color);
+    color: var(--hint-color);
+    stroke: var(--hint-color);
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.claim_button {
+    padding: var(--step);
+    border-radius: var(--border-radius);
+    background: var(--attention-bg);
+    color: var(--button-color);
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+

@@ -87,6 +87,7 @@ input[type=number]::-webkit-outer-spin-button {
     --spinner-color-empty-area: rgba(255, 255, 255, 0.3);
     --spinner-color: #fff;
     --error-color: #FF5F52;
+    --green-color: 52, 164, 78;
 
     --step: 8px;
     --half-step: calc(0.5 * var(--step));
