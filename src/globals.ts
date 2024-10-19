@@ -41,7 +41,8 @@ export const IS_MAIN_BUTTON_AVAILABLE = ['ios', 'macos'].includes(
 
 export const UNSAFE_INIT_DATA = {
     userId: window.Telegram.WebApp.initDataUnsafe.user?.id,
-    ref_parent: window.Telegram.WebApp.initDataUnsafe.start_param
+    refParent: window.Telegram.WebApp.initDataUnsafe.start_param,
+    refWallet: new URLSearchParams(window.location.search).get('r')
 };
 
 export const WEB_LINK = 'https://rainbow.ag';
@@ -49,5 +50,3 @@ export const TELEGRAM_BOT_LINK = 'https://t.me/rainbow_swap_bot';
 export const TELEGRAM_APP_LINK = `${TELEGRAM_BOT_LINK}/app`;
 export const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';
 export const COMMUNITY_CHAT_LINK = 'https://t.me/rainbow_swap_chat';
-export const X_LINK = 'https://x.com/rainbow_swap';
-export const TON_APP_LINK = 'https://ton.app/dex/rainbow-swap?id=2525';
