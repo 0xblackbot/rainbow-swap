@@ -1,5 +1,3 @@
-import {Suspense, lazy} from 'react';
-
 import styles from './referrer-stats.module.css';
 import {CopyIcon} from '../../../assets/icons/CopyIcon/CopyIcon';
 import {WEB_LINK} from '../../../globals';
@@ -8,9 +6,11 @@ import {useOpenTonConnectModal} from '../../../hooks/use-open-ton-connect-modal.
 import {useWalletAddress} from '../../../hooks/use-wallet-address.hook';
 import {copyToClipboard} from '../../../utils/clipboard.utils';
 import {showSuccessToast} from '../../../utils/toast.utils';
-import {Skeleton} from '../../skeleton/skeleton';
+import {Divider} from '../../points-modal/tasks/divider/divider';
+import sharedStyles from '../../swap-form/settings-button/settings-button.module.css';
 
-const DuckMoney = lazy(() => import('./duck-money/duck-money'));
+const CONTACT_LINK = 'https://t.me/yuraivanchyshyn';
+const SDK_LINK = 'https://www.npmjs.com/package/rainbow-swap-sdk';
 
 export const ReferrerStats = () => {
     const walletAddress = useWalletAddress();
@@ -34,7 +34,7 @@ export const ReferrerStats = () => {
         const REF_URL = `${WEB_LINK}?r=${walletAddress}`;
 
         await copyToClipboard(REF_URL);
-        showSuccessToast('Link copied!');
+        showSuccessToast('Your referral link copied!');
     };
 
     const handleConnect = () => {
@@ -44,39 +44,66 @@ export const ReferrerStats = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.description_container}>
-                <Suspense
-                    fallback={
-                        <Skeleton
-                            isLoading={true}
-                            className={styles.duck_money_fallback}
-                        />
-                    }
+            <div className={styles.title_container}>
+                <p className={styles.title}>Standard Referral</p>
+                {walletAddress ? (
+                    <div className={styles.button} onClick={handleCopyClick}>
+                        Copy link
+                    </div>
+                ) : (
+                    <div className={styles.button} onClick={handleConnect}>
+                        Connect wallet
+                    </div>
+                )}
+            </div>
+            <p className={sharedStyles.description}>
+                Refer new users and earn 10% of their trading fees.
+            </p>
+            <Divider />
+            <div className={styles.title_container}>
+                <p className={sharedStyles.title}>Influencer Bonus</p>
+                <a
+                    className={styles.button}
+                    href={CONTACT_LINK}
+                    target="_blank"
                 >
-                    <DuckMoney className={styles.duck_money} />
-                </Suspense>
+                    Contact us
+                </a>
+            </div>
+            <p className={sharedStyles.description}>
+                If you're an influencer, contact us to access exclusive bonuses.
+            </p>
+            <Divider />
+            <div className={styles.title_container}>
+                <p className={sharedStyles.title}>App Developer Partnership</p>
+                <a className={styles.button} href={SDK_LINK} target="_blank">
+                    Open SDK
+                </a>
+            </div>
+            <p className={sharedStyles.description}>
+                Integrate our SDK, enable in-app swaps, set custom fees, and
+                enjoy a 50/50 revenue share.
+            </p>
 
-                <p className={styles.description}>
-                    Refer new users and earn 10% <br />
-                    of their trading fees.
-                </p>
-            </div>
+            <Divider />
 
-            <div className={styles.row}>
-                <p>Traders Referred</p>
-                <p>{data.tradersReferred}</p>
-            </div>
-            <div className={styles.row}>
-                <p>Referees Volume</p>
-                <p>{data.refereesVolume}</p>
-            </div>
-            <div className={styles.row}>
-                <p>Unclaimed Rewards</p>
-                <p>{data.unclaimedRewards}</p>
-            </div>
-            <div className={styles.row}>
-                <p>Total Rewards Earned</p>
-                <p>{data.totalRewardsEarned}</p>
+            <div className={styles.stats_container}>
+                <div className={styles.row}>
+                    <p>Traders Referred</p>
+                    <p>{data.tradersReferred}</p>
+                </div>
+                <div className={styles.row}>
+                    <p>Referees Volume</p>
+                    <p>{data.refereesVolume}</p>
+                </div>
+                <div className={styles.row}>
+                    <p>Total Rewards Earned</p>
+                    <p>{data.totalRewardsEarned}</p>
+                </div>
+                <div className={styles.row}>
+                    <p>Unclaimed Rewards</p>
+                    <p>{data.unclaimedRewards}</p>
+                </div>
             </div>
 
             {walletAddress ? (

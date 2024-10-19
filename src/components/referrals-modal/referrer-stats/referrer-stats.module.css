@@ -1,27 +1,29 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: var(--step);
 }
 
-.description_container {
+.title_container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: var(--step);
 }
 
-.duck_money_fallback {
-    width: 180px;
-    height: 185px;
-
-    margin-bottom: var(--2-step);
+.title {
+    color: var(--text-color);
+    font-size: 16px;
 }
 
-.duck_money {
-    width: 180px;
-    height: 185px;
-
-    margin-bottom: var(--2-step);
+.button {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 1px var(--step);
+    background: var(--attention-bg);
+    border-radius: 999999px;
+    color: var(--button-color);
+    cursor: pointer;
 }
 
 .description {
@@ -29,6 +31,13 @@
     font-size: 14px;
     text-align: center;
     margin-bottom: var(--4-step);
+}
+
+.stats_container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--step);
+    margin-bottom: var(--2-step);
 }
 
 .row {
@@ -51,6 +60,7 @@
     text-align: center;
     font-size: 15px;
     cursor: pointer;
+    margin-bottom: var(--step);
 }
 
 .claim_button {
