@@ -54,10 +54,6 @@
     padding: var(--step);
 }
 
-.p {
-    margin: 0 var(--half-step);
-}
-
 .img {
     width: var(--4-step);
     height: var(--4-step);
@@ -65,16 +61,13 @@
     object-fit: cover;
 }
 
-
 .selected_asset_button {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    font-size: 18px;
-    background: var(--attention-bg);
+    gap: var(--half-step);
     border-radius: 999999px;
-    height: var(--4-step);
-    padding: var(--half-step);
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-color);
 }
 
 .modalButtonConatiner button {

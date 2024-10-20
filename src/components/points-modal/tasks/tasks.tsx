@@ -13,59 +13,23 @@ import {Divider} from './divider/divider';
 import {PartnerTaskItem} from './partner-task-item/partner-task-item';
 import {TaskHeader} from './task-header/task-header';
 import {TaskItem} from './task-item/task-item';
-import {TaskStatus} from './task-status/task-status';
 import {TasksEnd} from './tasks-end/tasks-end';
 import styles from './tasks.module.css';
 import {TaskTypeEnum} from '../../../enums/task-type.enum';
-import {TELEGRAM_CHANNEL_LINK, TON_APP_LINK, X_LINK} from '../../../globals';
 import {useDispatch} from '../../../store';
-import {
-    checkTelegramChannelTaskActions,
-    checkTonAppTaskActions,
-    checkXChannelTaskActions,
-    closePointsModal
-} from '../../../store/points/points-actions';
-import {
-    useTelegramChannelTaskSelector,
-    useTonAppTaskSelector,
-    useXChannelTaskSelector
-} from '../../../store/points/points-selectors';
+import {closePointsModal} from '../../../store/points/points-actions';
+import {Button} from '../../button/button';
 
 export const Tasks = () => {
     const dispatch = useDispatch();
 
-    const telegramChannelTask = useTelegramChannelTaskSelector();
-    const xChannelTask = useXChannelTaskSelector();
-    const tonAppTask = useTonAppTaskSelector();
-
     const handleSwap = () => dispatch(closePointsModal());
-
-    const handleJoinChannelClick = () => {
-        window.Telegram.WebApp.openTelegramLink(TELEGRAM_CHANNEL_LINK);
-        if (telegramChannelTask.data === 0) {
-            dispatch(checkTelegramChannelTaskActions.submit());
-        }
-    };
-
-    const handleFollowXClick = () => {
-        window.Telegram.WebApp.openLink(X_LINK);
-        if (xChannelTask.data === 0) {
-            dispatch(checkXChannelTaskActions.submit());
-        }
-    };
-
-    const handleTonAppClick = () => {
-        window.Telegram.WebApp.openLink(TON_APP_LINK);
-        if (tonAppTask.data === 0) {
-            dispatch(checkTonAppTaskActions.submit());
-        }
-    };
 
     return (
         <>
-            <Divider withArrow={true} />
+            <Divider withArrow={true} className={styles.divider} />
 
-            <p className={styles.title}>Tasks</p>
+            <p className={styles.title}>Earn more</p>
 
             <TaskItem
                 imageSrc={referralImage}
@@ -73,45 +37,28 @@ export const Tasks = () => {
                 description="+5,000 per $100+ swap"
                 onClick={handleSwap}
             >
-                <p className={styles.invite_button} onClick={handleSwap}>
-                    Swap
-                </p>
+                <Button size="xs" mode="bezeled" onClick={handleSwap}>
+                    <span>Swap</span>
+                </Button>
             </TaskItem>
-            <TaskItem
+            <PartnerTaskItem
+                isTelegram={true}
                 imageSrc={telegramImage}
                 title="Join Channel"
-                description="+2,000 points"
-                onClick={handleJoinChannelClick}
-            >
-                <TaskStatus
-                    points={telegramChannelTask.data}
-                    isLoading={telegramChannelTask.isLoading}
-                />
-            </TaskItem>
-            <TaskItem
+                taskType={TaskTypeEnum.Telegram}
+            />
+            <PartnerTaskItem
                 imageSrc={twitterImage}
                 title="Follow X"
-                description="+2,000 points"
-                onClick={handleFollowXClick}
-            >
-                <TaskStatus
-                    points={xChannelTask.data}
-                    isLoading={xChannelTask.isLoading}
-                />
-            </TaskItem>
-            <TaskItem
+                taskType={TaskTypeEnum.Twitter}
+            />
+            <PartnerTaskItem
                 imageSrc={tonAppImage}
                 title="Leave a review"
-                description="+10,000 points"
-                onClick={handleTonAppClick}
-            >
-                <TaskStatus
-                    points={tonAppTask.data}
-                    isLoading={tonAppTask.isLoading}
-                />
-            </TaskItem>
+                taskType={TaskTypeEnum.TonApp}
+            />
 
-            <Divider withArrow={true} />
+            <Divider withArrow={true} className={styles.divider} />
 
             <TaskHeader name="Parraton" imageSrc={parratonImage} />
             <PartnerTaskItem
@@ -127,7 +74,7 @@ export const Tasks = () => {
                 taskType={TaskTypeEnum.Parraton_Bot}
             />
 
-            <Divider withArrow={true} />
+            <Divider withArrow={true} className={styles.divider} />
 
             <TaskHeader name="TON Hedge" imageSrc={tonHedgeImage} />
             <PartnerTaskItem
@@ -143,7 +90,7 @@ export const Tasks = () => {
                 taskType={TaskTypeEnum.TonHedge_Bot}
             />
 
-            <Divider withArrow={true} />
+            <Divider withArrow={true} className={styles.divider} />
 
             <TaskHeader name="JVault" imageSrc={jvaultImage} />
             <PartnerTaskItem
@@ -159,7 +106,7 @@ export const Tasks = () => {
                 isWalletAddressRequired={true}
             />
 
-            <Divider withArrow={true} />
+            <Divider withArrow={true} className={styles.divider} />
 
             <TaskHeader name="Telegram Apps Center" imageSrc={appsCenter} />
             <PartnerTaskItem
@@ -175,7 +122,7 @@ export const Tasks = () => {
                 taskType={TaskTypeEnum.AppsCenter_Bot}
             />
 
-            <Divider withArrow={true} />
+            <Divider withArrow={true} className={styles.divider} />
 
             <TaskHeader name="Torch Finance" imageSrc={torchFinanceImage} />
             <PartnerTaskItem
@@ -190,7 +137,7 @@ export const Tasks = () => {
                 taskType={TaskTypeEnum.TorchFinance_Twitter}
             />
 
-            <Divider withArrow={true} />
+            <Divider withArrow={true} className={styles.divider} />
 
             <TaskHeader name="SnapX" imageSrc={snapxImage} />
             <PartnerTaskItem

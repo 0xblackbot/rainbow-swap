@@ -17,7 +17,7 @@ export const ChevronDoubleDownIcon: FC<IconProps> = ({
     >
         <path
             d="M7 13L12 18L17 13M7 6L12 11L17 6"
-            strokeWidth="2"
+            strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
         />

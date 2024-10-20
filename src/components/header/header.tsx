@@ -4,10 +4,10 @@ import {HeaderContainer} from './header-container/header-container';
 import styles from './header.module.css';
 import {PointsScore} from './points-score/points-score';
 import {WalletMenu} from './wallet-menu/wallet-menu';
-import {IS_TMA} from '../../globals';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
+import {Button} from '../button/button';
 
 export const Header = () => {
     const walletAddress = useWalletAddress();
@@ -34,16 +34,13 @@ export const Header = () => {
             </div>
 
             <div className={styles.right_div}>
-                {IS_TMA && <PointsScore />}
+                <PointsScore />
                 {walletAddress ? (
                     <WalletMenu walletAddress={walletAddress} />
                 ) : (
-                    <button
-                        className={styles.connect_button}
-                        onClick={handleConnect}
-                    >
-                        Connect
-                    </button>
+                    <Button size="s" mode="filled" onClick={handleConnect}>
+                        <span>Connect</span>
+                    </Button>
                 )}
             </div>
         </HeaderContainer>

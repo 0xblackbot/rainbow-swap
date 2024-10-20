@@ -2,7 +2,7 @@ import {FC} from 'react';
 
 import {IconProps} from '../../../interfaces/icon-props.interface';
 
-export const AlertIcon: FC<IconProps> = ({
+export const LogoutIcon: FC<IconProps> = ({
     width = 20,
     height = 20,
     className,

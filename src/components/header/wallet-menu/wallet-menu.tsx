@@ -4,12 +4,13 @@ import {FC, useCallback, useMemo, useState} from 'react';
 import styles from './wallet-menu.module.css';
 import {DollarIcon} from '../../../assets/icons/DollarIcon/DollarIcon';
 import {ExternalLinkIcon} from '../../../assets/icons/ExternalLinkIcon/ExternalLinkIcon';
-import {AlertIcon} from '../../../assets/icons/LogoutIcon/LogoutIcon';
+import {LogoutIcon} from '../../../assets/icons/LogoutIcon/LogoutIcon';
 import {useOpenReferralsModal} from '../../../hooks/referrals-modal/referrals-modal.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
 import {useEnableBackButton} from '../../../hooks/use-enable-back-button.hook';
 import {getClassName} from '../../../utils/style.utils';
+import {Button} from '../../button/button';
 
 interface Props {
     walletAddress: string;
@@ -58,34 +59,40 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                     isOpen ? styles.open : styles.close
                 )}
             >
-                <div className={styles.wallet_button} onClick={handleMenuClick}>
-                    {shortWalletAddress}
-                </div>
+                <Button size="s" mode="filled" onClick={handleMenuClick}>
+                    <span>{shortWalletAddress}</span>
+                </Button>
 
                 <div className={styles.menu_content}>
-                    <div
+                    <Button
+                        size="s"
+                        mode="gray"
                         className={styles.menu_button}
                         onClick={handleEarnFeesClick}
                     >
                         <DollarIcon className={styles.menu_button_icon} />
-                        Earn fees
-                    </div>
-                    <a
+                        <span>Rewards Center</span>
+                    </Button>
+                    <Button
+                        size="s"
+                        mode="gray"
                         className={styles.menu_button}
+                        Component="a"
                         href={`https://tonviewer.com/${walletAddress}`}
                         target="_blank"
-                        rel="noreferrer"
                     >
                         <ExternalLinkIcon className={styles.menu_button_icon} />
-                        Explorer
-                    </a>
-                    <div
+                        <span>Explorer</span>
+                    </Button>
+                    <Button
+                        size="s"
+                        mode="gray"
                         className={styles.menu_button}
                         onClick={handleDisconnect}
                     >
-                        <AlertIcon className={styles.menu_button_icon} />
-                        Disconnect
-                    </div>
+                        <LogoutIcon className={styles.menu_button_icon} />
+                        <span>Disconnect</span>
+                    </Button>
                 </div>
             </div>
 

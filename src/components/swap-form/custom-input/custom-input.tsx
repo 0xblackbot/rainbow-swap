@@ -7,6 +7,7 @@ import {useAssetBalanceSelector} from '../../../store/wallet/wallet-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getMaxSentAmount} from '../../../utils/get-max-sent-amount.utils';
 import {getClassName} from '../../../utils/style.utils';
+import {Button} from '../../button/button';
 import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props {
@@ -129,12 +130,14 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                                 {formatNumber(parseFloat(balance), 2)}{' '}
                                 {assetValue.symbol}
                             </p>
-                            <button
-                                className={styles.input_info_button}
+                            <Button
+                                size="xs"
+                                mode="bezeled"
+                                className={styles.max_button}
                                 onClick={setMaxAssetAmount}
                             >
-                                Max
-                            </button>
+                                <span>Max</span>
+                            </Button>
                         </div>
                     </Skeleton>
                 </div>

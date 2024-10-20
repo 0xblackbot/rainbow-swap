@@ -23,5 +23,5 @@ export const TaskStatus: FC<Props> = ({points, isLoading}) => {
         return <CheckmarkIcon />;
     }
 
-    return <ChevronRightIcon />;
+    return <ChevronRightIcon className={styles.chevron_right} />;
 };

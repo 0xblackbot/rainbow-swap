@@ -2,13 +2,15 @@ import {FC} from 'react';
 
 import styles from './divider.module.css';
 import {ChevronDoubleDownIcon} from '../../../../assets/icons/ChevronDoubleDownIcon/ChevronDoubleDownIcon';
+import {getClassName} from '../../../../utils/style.utils';
 
 interface Props {
     withArrow?: boolean;
+    className?: string;
 }
 
-export const Divider: FC<Props> = ({withArrow = false}) => (
-    <div className={styles.divider}>
+export const Divider: FC<Props> = ({withArrow = false, className = ''}) => (
+    <div className={getClassName(styles.divider, className)}>
         {withArrow ? (
             <>
                 <div className={styles.chunk} />

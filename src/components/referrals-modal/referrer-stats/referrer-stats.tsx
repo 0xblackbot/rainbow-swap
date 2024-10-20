@@ -6,6 +6,7 @@ import {useOpenTonConnectModal} from '../../../hooks/use-open-ton-connect-modal.
 import {useWalletAddress} from '../../../hooks/use-wallet-address.hook';
 import {copyToClipboard} from '../../../utils/clipboard.utils';
 import {showSuccessToast} from '../../../utils/toast.utils';
+import {Button} from '../../button/button';
 import {Divider} from '../../points-modal/tasks/divider/divider';
 import sharedStyles from '../../swap-form/settings-button/settings-button.module.css';
 
@@ -47,13 +48,13 @@ export const ReferrerStats = () => {
             <div className={styles.title_container}>
                 <p className={styles.title}>Standard Referral</p>
                 {walletAddress ? (
-                    <div className={styles.button} onClick={handleCopyClick}>
-                        Copy link
-                    </div>
+                    <Button size="xs" mode="bezeled" onClick={handleCopyClick}>
+                        <span>Copy link</span>
+                    </Button>
                 ) : (
-                    <div className={styles.button} onClick={handleConnect}>
-                        Connect wallet
-                    </div>
+                    <Button size="xs" mode="bezeled" onClick={handleConnect}>
+                        <span>Connect wallet</span>
+                    </Button>
                 )}
             </div>
             <p className={sharedStyles.description}>
@@ -62,13 +63,15 @@ export const ReferrerStats = () => {
             <Divider />
             <div className={styles.title_container}>
                 <p className={sharedStyles.title}>Influencer Bonus</p>
-                <a
-                    className={styles.button}
+                <Button
+                    size="xs"
+                    mode="bezeled"
+                    Component="a"
                     href={CONTACT_LINK}
                     target="_blank"
                 >
-                    Contact us
-                </a>
+                    <span>Contact us</span>
+                </Button>
             </div>
             <p className={sharedStyles.description}>
                 If you're an influencer, contact us to access exclusive bonuses.
@@ -76,13 +79,19 @@ export const ReferrerStats = () => {
             <Divider />
             <div className={styles.title_container}>
                 <p className={sharedStyles.title}>App Developer Partnership</p>
-                <a className={styles.button} href={SDK_LINK} target="_blank">
-                    Open SDK
-                </a>
+                <Button
+                    size="xs"
+                    mode="bezeled"
+                    Component="a"
+                    href={SDK_LINK}
+                    target="_blank"
+                >
+                    <span>Open SDK</span>
+                </Button>
             </div>
             <p className={sharedStyles.description}>
                 Integrate our SDK, enable in-app swaps, set custom fees, and
-                enjoy a 50/50 revenue share.
+                enjoy a 50% revenue share.
             </p>
 
             <Divider />
@@ -108,21 +117,34 @@ export const ReferrerStats = () => {
 
             {walletAddress ? (
                 <>
-                    <div
+                    <Button
+                        size="m"
+                        mode="gray"
+                        stretched={true}
                         className={styles.copy_button}
                         onClick={handleCopyClick}
                     >
-                        <CopyIcon />
-                        Copy referral link
-                    </div>
-                    <div className={styles.claim_button} onClick={() => void 0}>
-                        Claim rewards
-                    </div>
+                        <CopyIcon className={styles.copy_icon} />
+                        <span>Copy referral link</span>
+                    </Button>
+                    <Button
+                        size="m"
+                        mode="bezeled"
+                        stretched={true}
+                        onClick={() => void 0}
+                    >
+                        <span>Claim rewards</span>
+                    </Button>
                 </>
             ) : (
-                <div className={styles.claim_button} onClick={handleConnect}>
-                    Connect wallet
-                </div>
+                <Button
+                    size="m"
+                    mode="bezeled"
+                    stretched={true}
+                    onClick={handleConnect}
+                >
+                    <span>Connect wallet</span>
+                </Button>
             )}
         </div>
     );

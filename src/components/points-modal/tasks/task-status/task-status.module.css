@@ -1,10 +1,18 @@
 .in_review {
-    display: flex;
+    display: inline-flex;
+    box-sizing: border-box;
     align-items: center;
-    justify-content: center;
-    height: var(--4-step);
-    background-color: #FBE5B9;
+    height: 28px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    background: #FBE5B9;
     color: #9D502A;
-    padding: 0 var(--2-step);
-    border-radius: var(--2-step);
+    cursor: pointer;
+}
+
+.chevron_right {
+    color: var(--text-color);
 }

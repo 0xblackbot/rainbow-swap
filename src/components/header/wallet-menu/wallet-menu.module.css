@@ -3,15 +3,6 @@
     z-index: 11;
 }
 
-.wallet_button {
-    background-color: var(--button-color);
-    color: var(--button-text-color);
-    border-radius: var(--4-step);
-    padding: var(--step) var(--2-step);
-    cursor: pointer;
-    font-size: 13px;
-}
-
 .menu_backdrop {
     position: fixed;
     top: 0;
@@ -39,9 +30,9 @@
     right: 0;
     display: grid;
     gap: var(--step);
-    background-color: var(--bg-color);
+    background-color: var(--secondary-bg-color);
     padding: var(--step);
-    border-radius: var(--2-step);
+    border-radius: 20px;
     box-shadow: 0 2px 2px black;
     transform: translateX(50vw);
     opacity: 0;
@@ -56,30 +47,13 @@
 }
 
 .menu_button {
-    display: flex;
-    align-items: center;
-    gap: var(--step);
-    font-size: 14px;
-    border-radius: var(--4-step);
-    padding: var(--half-step) var(--2-step);
-    background: var(--secondary-bg-color);
-    color: var(--hint-color);
-    cursor: pointer;
+    min-width: max-content;
+    justify-content: start !important;
 }
 
 .menu_button_icon {
     width: 18px;
     height: 18px;
-    fill: var(--hint-color);
-    stroke: var(--hint-color);
-}
-
-.menu_button_attention {
-    background: var(--attention-bg);
-    color: var(--button-color);
-}
-
-.menu_button_icon_attention {
-    fill: var(--button-color);
-    stroke: var(--button-color);
+    fill: var(--text-color);
+    stroke: var(--text-color);
 }

@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const ReferralsModal: FC<Props> = ({isOpen, onClose}) => (
-    <BottomSheet isOpen={isOpen} headerTitle="Referrals" onClose={onClose}>
+    <BottomSheet isOpen={isOpen} headerTitle="Rewards Center" onClose={onClose}>
         <div className={styles.content_container}>
             <ReferrerStats />
         </div>

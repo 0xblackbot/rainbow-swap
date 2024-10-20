@@ -1,13 +1,17 @@
 .container {
     display: flex;
     align-items: center;
-    margin-bottom: var(--2-step);
+    padding: var(--step) var(--2-step);
     cursor: pointer;
 }
 
+.container:hover {
+    background-color: var(--secondary-bg-color);
+}
+
 .image {
-    width: 44px;
-    height: 44px;
+    width: var(--5-step);
+    height: var(--5-step);
     border-radius: var(--step);
     margin-right: var(--step);
 }
@@ -19,7 +23,7 @@
 
 .description {
     font-size: 14px;
-    color: var(--button-color);
+    color: var(--hint-color);
 }
 
 .childrenContainer {

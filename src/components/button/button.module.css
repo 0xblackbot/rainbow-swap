@@ -1,0 +1,105 @@
+.button {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+}
+
+.button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity .15s ease-out;
+}
+
+.button * {
+    z-index: 1;
+}
+
+.stretched {
+    width: 100%;
+}
+
+.xs {
+    gap: 4px;
+    height: 28px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.s {
+    gap: 6px;
+    height: 36px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.m {
+    gap: 8px;
+    height: 42px;
+    padding: 8px 14px;
+    border-radius: var(--border-radius);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.l {
+    gap: 10px;
+    height: 50px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 26px;
+}
+
+.filled {
+    color: var(--button-text-color);
+}
+
+.filled::after {
+    background: var(--button-color);
+}
+
+.filled:hover::after {
+    opacity: .85;
+}
+
+.bezeled {
+    color: var(--button-color);
+}
+
+.bezeled::after {
+    background: var(--attention-bg);
+}
+
+.bezeled:hover::after {
+    opacity: .7;
+}
+
+.gray {
+    color: var(--text-color);
+}
+
+.gray::after {
+    background: var(--header-bg-color);
+}
+
+.gray:hover::after {
+    opacity: .6;
+}
