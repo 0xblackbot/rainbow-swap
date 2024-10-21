@@ -1,3 +1,5 @@
+import {Address} from '@ton/core';
+
 import {TON_API_CLIENT} from '../globals';
 
 const CHECK_INTERVAL = 2500;
@@ -19,17 +21,17 @@ export const waitTransactionConfirmation = async (
 
         const intervalId = setInterval(async () => {
             const accountEvent = await TON_API_CLIENT.accounts
-                .getAccountEvent(senderRawAddress, bocHash)
+                .getAccountEvent(Address.parse(senderRawAddress), bocHash)
                 .catch(() => ({
-                    event_id: 'empty_event_id',
-                    in_progress: true
+                    eventId: 'empty_event_id',
+                    inProgress: true
                 }));
 
-            if (!accountEvent.in_progress) {
+            if (!accountEvent.inProgress) {
                 clearInterval(intervalId);
                 clearTimeout(timeoutId);
 
-                resolve(accountEvent.event_id);
+                resolve(accountEvent.eventId);
             }
         }, CHECK_INTERVAL);
     });

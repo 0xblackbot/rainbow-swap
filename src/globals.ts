@@ -1,6 +1,6 @@
 import {isNotEmptyString} from '@rnw-community/shared';
+import {TonApiClient} from '@ton-api/client';
 import axios from 'axios';
-import {Api, HttpClient} from 'tonapi-sdk-js';
 
 import {toNano} from './utils/big-int.utils';
 
@@ -23,11 +23,9 @@ export const API = axios.create({
     baseURL: 'https://api.rainbow.ag/api'
 });
 
-export const TON_API_CLIENT = new Api(
-    new HttpClient({
-        baseUrl: 'https://tonapi.io'
-    })
-);
+export const TON_API_CLIENT = new TonApiClient({
+    baseUrl: 'https://tonapi.io'
+});
 
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
 

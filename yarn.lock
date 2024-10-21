@@ -668,6 +668,13 @@
   resolved "https://registry.yarnpkg.com/@rtsao/scc/-/scc-1.1.0.tgz#927dd2fae9bc3361403ac2c7a00c32ddce9ad7e8"
   integrity sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==
 
+"@ton-api/client@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@ton-api/client/-/client-0.2.0.tgz#82ca5cfba84919fd5010260d5695496af5b4e785"
+  integrity sha512-m/T8Nroq4rghUcg72Bbt2He9x5g9RlrP4F9rs7J4DVYLMHnKQTlKDo9JMD/feLXtHxOMh/YGJNcb+BGBkNbNug==
+  dependencies:
+    core-js-pure "^3.38.0"
+
 "@ton-community/func-js-bin@0.4.4-newops.1":
   version "0.4.4-newops.1"
   resolved "https://registry.yarnpkg.com/@ton-community/func-js-bin/-/func-js-bin-0.4.4-newops.1.tgz#d21cd01da8abf29cb301969f782c01b0852fdac5"
@@ -1315,6 +1322,11 @@ convert-source-map@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-2.0.0.tgz#4b560f649fc4e918dd0ab75cf4961e8bc882d82a"
   integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
+
+core-js-pure@^3.38.0:
+  version "3.38.1"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.38.1.tgz#e8534062a54b7221344884ba9b52474be495ada3"
+  integrity sha512-BY8Etc1FZqdw1glX0XNOq2FDwfrg/VGqoZOZCdaL+UmdaqDwQwYXkMJT4t6In+zfEfOJDcM9T0KdbBeJg8KKCQ==
 
 cosmiconfig@^7.0.1:
   version "7.1.0"
@@ -3189,11 +3201,6 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
-
-tonapi-sdk-js@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/tonapi-sdk-js/-/tonapi-sdk-js-2.0.3.tgz#102e87219a81c58b8e54b9556436f5db129ea07a"
-  integrity sha512-fSJC2OtnI9SqDLsYLKZWqY/xhfHpPVPnVx4l72jVwnhXjx5ZEdHcUd9R1+0OVQCCtXOA5EV2ALDnwLaPtAIlcw==
 
 totalist@^3.0.0:
   version "3.0.1"
