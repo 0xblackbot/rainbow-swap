@@ -7,6 +7,7 @@ import {Header} from '../../components/header/header';
 import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
 import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
+import {ReferralsModalProvider} from '../../hooks/referrals-modal/referrals-modal.provider';
 import {SwapFormProvider} from '../../hooks/swap-form/swap-form.provider';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
@@ -68,7 +69,7 @@ export const HomeScreen = memo(() => {
     }, [walletAddress]);
 
     return (
-        <>
+        <ReferralsModalProvider>
             <ToastContainer
                 position="top-center"
                 pauseOnHover={false}
@@ -81,6 +82,6 @@ export const HomeScreen = memo(() => {
             </SwapFormProvider>
             <PointsModal />
             <Footer />
-        </>
+        </ReferralsModalProvider>
     );
 });

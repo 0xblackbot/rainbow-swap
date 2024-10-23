@@ -2,20 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: var(--attention-bg);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--2-step);
-    padding: var(--2-step);
 }
 
 .inner_container {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    gap: var(--step);
+    gap: var(--2-step);
 }
 
-.duck_airdrop_fallback {
+.duck_airdrop {
     width: 100px;
     height: 100px;
     align-self: center;
@@ -24,14 +20,14 @@
 .title {
     font-size: 16px;
     color: var(--text-color);
-    margin-bottom: var(--2-step);
+    margin-bottom: var(--step);
 }
 
 .list_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 8px;
+    gap: var(--half-step);
 }
 
 .message_container {
@@ -42,16 +38,15 @@
 }
 
 .message {
-    width: var(--2-step);
     font-size: 14px;
-    color: var(--text-color);
+    color: var(--button-color);
 }
 
 .button {
     margin-left: var(--step);
-    background-color: var(--button-color);
+    background-color: var(--attention-bg);
     font-size: 14px;
-    color: var(--button-text-color);
+    color: var(--text-color);
     border-radius: var(--4-step);
     padding: var(--half-step) var(--2-step);
     cursor: pointer;

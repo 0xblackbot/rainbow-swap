@@ -2,15 +2,19 @@ import {isDefined} from '@rnw-community/shared';
 import {FC} from 'react';
 
 import {TaskTypeEnum} from '../../../../enums/task-type.enum';
+import {TELEGRAM_CHANNEL_LINK} from '../../../../globals';
 import {useWalletAddress} from '../../../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../../../store';
-import {checkPartnerTaskActions} from '../../../../store/points/points-actions';
-import {usePartnerTaskSelector} from '../../../../store/points/points-selectors';
+import {checkTaskActions} from '../../../../store/points/points-actions';
+import {useTaskSelector} from '../../../../store/points/points-selectors';
 import {showInfoToast} from '../../../../utils/toast.utils';
 import {TaskItem} from '../task-item/task-item';
 import {TaskStatus} from '../task-status/task-status';
 
-const LinksRecord: Record<string, string> = {
+const LinksRecord: Record<TaskTypeEnum, string> = {
+    [TaskTypeEnum.Telegram]: TELEGRAM_CHANNEL_LINK,
+    [TaskTypeEnum.Twitter]: 'https://x.com/rainbow_swap',
+    [TaskTypeEnum.TonApp]: 'https://ton.app/dex/rainbow-swap?id=2525',
     [TaskTypeEnum.TorchFinance_Telegram]: 'https://t.me/oxcurdle',
     [TaskTypeEnum.TorchFinance_Twitter]: 'https://x.com/TorchTon',
     [TaskTypeEnum.SnapX_Telegram]: 'https://t.me/SnapX_official',
@@ -26,6 +30,24 @@ const LinksRecord: Record<string, string> = {
     [TaskTypeEnum.Parraton_Telegram]: 'https://t.me/parraton_en',
     [TaskTypeEnum.Parraton_Bot]:
         'https://t.me/parraton_bot/app?startapp=151872929'
+};
+
+const RewardsRecord: Record<TaskTypeEnum, string> = {
+    [TaskTypeEnum.Telegram]: '2,000',
+    [TaskTypeEnum.Twitter]: '2,000',
+    [TaskTypeEnum.TonApp]: '10,000',
+    [TaskTypeEnum.TorchFinance_Telegram]: '1,000',
+    [TaskTypeEnum.TorchFinance_Twitter]: '1,000',
+    [TaskTypeEnum.SnapX_Telegram]: '1,000',
+    [TaskTypeEnum.SnapX_Twitter]: '1,000',
+    [TaskTypeEnum.AppsCenter_Telegram]: '1,000',
+    [TaskTypeEnum.AppsCenter_Bot]: '1,000',
+    [TaskTypeEnum.JVault_Telegram]: '1,000',
+    [TaskTypeEnum.JVault_Staking]: '1,000',
+    [TaskTypeEnum.TonHedge_Telegram]: '1,000',
+    [TaskTypeEnum.TonHedge_Bot]: '1,000',
+    [TaskTypeEnum.Parraton_Telegram]: '1,000',
+    [TaskTypeEnum.Parraton_Bot]: '1,000'
 };
 
 interface Props {
@@ -46,7 +68,8 @@ export const PartnerTaskItem: FC<Props> = ({
     const dispatch = useDispatch();
     const walletAddress = useWalletAddress();
 
-    const partnerTask = usePartnerTaskSelector(taskType);
+    const reward = RewardsRecord[taskType];
+    const task = useTaskSelector(taskType);
 
     const handleClick = () => {
         if (isWalletAddressRequired && !isDefined(walletAddress)) {
@@ -57,10 +80,8 @@ export const PartnerTaskItem: FC<Props> = ({
             isTelegram
                 ? window.Telegram.WebApp.openTelegramLink(link)
                 : window.Telegram.WebApp.openLink(link);
-            if (partnerTask.data === 0) {
-                dispatch(
-                    checkPartnerTaskActions.submit({taskType, walletAddress})
-                );
+            if (task.data === 0) {
+                dispatch(checkTaskActions.submit({taskType, walletAddress}));
             }
         }
     };
@@ -69,13 +90,10 @@ export const PartnerTaskItem: FC<Props> = ({
         <TaskItem
             imageSrc={imageSrc}
             title={title}
-            description="+1,000 points"
+            description={`+${reward} points`}
             onClick={handleClick}
         >
-            <TaskStatus
-                points={partnerTask.data}
-                isLoading={partnerTask.isLoading}
-            />
+            <TaskStatus points={task.data} isLoading={task.isLoading} />
         </TaskItem>
     );
 };

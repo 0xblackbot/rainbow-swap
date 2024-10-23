@@ -1,12 +1,3 @@
-.connect_button {
-    background-color: var(--button-color);
-    font-size: 13px;
-    color: var(--button-text-color);
-    cursor: pointer;
-    border-radius: var(--4-step);
-    padding: var(--step) var(--2-step);
-}
-
 .left_div {
     flex-grow: 0;
     flex-shrink: 0;

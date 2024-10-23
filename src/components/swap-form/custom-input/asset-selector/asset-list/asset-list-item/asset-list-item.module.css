@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding: 4px var(--step);
+    padding: var(--half-step) 0 var(--half-step) var(--step);
     border-radius: 16px;
 }
 

@@ -1,0 +1,20 @@
+.swiper {
+    width: 100%;
+    height: calc(20.25 * var(--step));
+    padding-bottom: 22px; /* pagination height */
+    margin-bottom: var(--2-step);
+}
+
+.swiperSlide {
+    box-sizing: border-box;
+    padding: var(--2-step);
+    border-radius: var(--border-radius);
+}
+
+.swiperSlideBlue {
+    background: var(--attention-bg);
+}
+
+.swiperSlideGreen {
+    background: rgba(var(--green-color), 0.25);
+}

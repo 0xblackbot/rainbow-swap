@@ -13,7 +13,7 @@
 }
 
 .Toastify__toast--success {
-    background-color: #34CC4E;
+    background-color: rgb(var(--green-color));
 }
 
 .Toastify__toast--error {

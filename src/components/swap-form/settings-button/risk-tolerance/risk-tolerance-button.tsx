@@ -1,11 +1,10 @@
 import {FC} from 'react';
 
-import styles from './risk-tolerance.module.css';
 import {RiskTolerance} from '../../../../enums/risk-tolerance.enum';
 import {useDispatch} from '../../../../store';
 import {setRiskToleranceAction} from '../../../../store/settings/settings-actions';
 import {useRiskToleranceSelector} from '../../../../store/settings/settings-selectors';
-import {getClassName} from '../../../../utils/style.utils';
+import {Button} from '../../../button/button';
 
 interface Props {
     value: RiskTolerance;
@@ -19,14 +18,12 @@ export const RiskToleranceButton: FC<Props> = ({value, title}) => {
     const handleClick = () => dispatch(setRiskToleranceAction(value));
 
     return (
-        <p
-            className={getClassName(
-                styles.selector_item,
-                riskTolerance === value ? styles.selector_item_selected : ''
-            )}
+        <Button
+            size="xs"
+            mode={riskTolerance === value ? 'bezeled' : 'gray'}
             onClick={handleClick}
         >
-            {title}
-        </p>
+            <span>{title}</span>
+        </Button>
     );
 };

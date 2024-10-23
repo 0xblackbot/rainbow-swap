@@ -111,20 +111,18 @@
     font-size: 14px;
 }
 
-.input_info_button {
-    color: var(--button-color);
-    background: var(--attention-bg);
-    cursor: pointer;
-    font-size: 12px;
-    margin-left: var(--half-step);
-    padding: 2px var(--half-step);
-    border-radius: var(--step);
-
-}
-
 .input_info_balance {
     display: flex;
     align-items: center;
+}
+
+.max_button {
+    height: unset;
+    padding: 2px var(--half-step);
+    border-radius: var(--step);
+    font-size: 12px;
+    line-height: unset;
+    margin-left: var(--half-step);
 }
 
 .loader_spinner {

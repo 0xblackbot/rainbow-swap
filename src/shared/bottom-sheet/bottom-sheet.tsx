@@ -1,3 +1,4 @@
+import {EmptyFn} from '@rnw-community/shared';
 import {FC, PropsWithChildren, useEffect, useState} from 'react';
 
 import styles from './bottom-sheet.module.css';
@@ -11,7 +12,7 @@ import {ContentContainer} from '../content-container/content-container';
 
 interface Props extends PropsWithChildren {
     isOpen: boolean;
-    onClose: () => void;
+    onClose: EmptyFn;
     headerTitle: string;
 }
 
