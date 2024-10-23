@@ -3,7 +3,7 @@ import {isDefined} from '@rnw-community/shared';
 import {TON_API_CLIENT} from '../globals';
 import {isTraceConfirmed} from './trace.utils';
 
-const CHECK_INTERVAL = 2500;
+const CHECK_INTERVAL = 3000;
 const TRANSACTION_CONFIRMATION_TIMEOUT = 5 * 60 * 1000;
 
 export const waitTransactionConfirmation = async (

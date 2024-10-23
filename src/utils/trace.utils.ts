@@ -1,24 +1,28 @@
+import {isDefined} from '@rnw-community/shared';
 import {Trace} from '@ton-api/client';
 
 export const isTraceConfirmed = (trace: Trace) => {
-    // If the trace is emulated, it is not confirmed
     if (trace.emulated === true) {
         return false;
     }
 
-    // If outMsgs exist, children traces are not generated yet (still pending)
-    if (trace.transaction.outMsgs.length > 0) {
-        return false;
-    }
+    return countUncompleted(trace) === 0;
+};
 
-    // If there are children, we need to check if all of them are confirmed
-    if (trace.children) {
-        for (const child of trace.children) {
-            if (!isTraceConfirmed(child)) {
-                return false;
-            }
+const countUncompleted = (trace: Trace): number => {
+    let counter = 0;
+
+    for (const msg of trace.transaction.outMsgs) {
+        if (isDefined(msg.destination)) {
+            counter++;
         }
     }
 
-    return true;
+    if (trace.children) {
+        for (const child of trace.children) {
+            counter += countUncompleted(child);
+        }
+    }
+
+    return counter;
 };
