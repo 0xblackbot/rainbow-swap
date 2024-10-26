@@ -2,18 +2,18 @@ import {FC, PropsWithChildren} from 'react';
 
 import {ModalsContext} from './modals.context';
 import {PointsModal} from '../../components/points-modal/points-modal';
-import {ReferralsModal} from '../../components/referrals-modal/referrals-modal';
+import {RewardsModal} from '../../components/rewards-modal/rewards-modal';
 import {useModalState} from '../../hooks/use-modal-state.hook';
 
 export const ModalsProvider: FC<PropsWithChildren> = ({children}) => {
     const pointsModalState = useModalState();
-    const referralsModalState = useModalState();
+    const rewardsModalState = useModalState();
 
     return (
         <ModalsContext.Provider
             value={{
                 openPointsModal: pointsModalState.open,
-                openReferralsModal: referralsModalState.open
+                openRewardsModal: rewardsModalState.open
             }}
         >
             {children}
@@ -22,9 +22,9 @@ export const ModalsProvider: FC<PropsWithChildren> = ({children}) => {
                 isOpen={pointsModalState.isOpen}
                 onClose={pointsModalState.close}
             />
-            <ReferralsModal
-                isOpen={referralsModalState.isOpen}
-                onClose={referralsModalState.close}
+            <RewardsModal
+                isOpen={rewardsModalState.isOpen}
+                onClose={rewardsModalState.close}
             />
         </ModalsContext.Provider>
     );

@@ -3,10 +3,10 @@ import {createContext} from 'react';
 
 interface ModalsContextValues {
     openPointsModal: EmptyFn;
-    openReferralsModal: EmptyFn;
+    openRewardsModal: EmptyFn;
 }
 
 export const ModalsContext = createContext<ModalsContextValues>({
     openPointsModal: emptyFn,
-    openReferralsModal: emptyFn
+    openRewardsModal: emptyFn
 });

@@ -5,17 +5,16 @@ import {useModals} from '../../../../contexts/modals/modals.hook';
 import {Skeleton} from '../../../skeleton/skeleton';
 
 const DuckMoney = lazy(
-    () =>
-        import('../../../referrals-modal/referrer-stats/duck-money/duck-money')
+    () => import('../../../rewards-modal/referrer-stats/duck-money/duck-money')
 );
 
 export const EarnFees = () => {
     const modals = useModals();
 
-    const handleContainerClick = () => modals.openReferralsModal();
+    const handleClick = () => modals.openRewardsModal();
 
     return (
-        <div className={styles.container} onClick={handleContainerClick}>
+        <div className={styles.container} onClick={handleClick}>
             <p className={styles.title}>Earn TON with referral program!</p>
             <div className={styles.inner_container}>
                 <div className={styles.list_container}>

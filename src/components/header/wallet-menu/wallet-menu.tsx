@@ -40,9 +40,9 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
         trackButtonClick('Header Menu Backdrop');
         onClose();
     };
-    const handleEarnFeesClick = () => {
-        trackButtonClick('Header Earn Fees');
-        modals.openReferralsModal();
+    const handleRewardsCenterClick = () => {
+        trackButtonClick('Header Rewards Center');
+        modals.openRewardsModal();
         onClose();
     };
     const handleDisconnect = () => {
@@ -68,7 +68,7 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         size="s"
                         mode="gray"
                         className={styles.menu_button}
-                        onClick={handleEarnFeesClick}
+                        onClick={handleRewardsCenterClick}
                     >
                         <DiamondIcon className={styles.menu_button_icon} />
                         <span>Rewards Center</span>
