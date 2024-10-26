@@ -22,8 +22,8 @@ export const usePointsSelector = () =>
 export const useNumberOfReferralsSelector = () =>
     useSelector(
         ({pointsV2}) =>
-            pointsV2.walletPoints.data.referralState.usersReferred +
-            pointsV2.walletPoints.data.referralState.walletsReferred
+            pointsV2.walletPoints.data.rewardsState.usersReferred +
+            pointsV2.walletPoints.data.rewardsState.walletsReferred
     );
 
 const EMPTY_TASK_STATE = createEntity(0);
@@ -32,3 +32,9 @@ export const useTaskSelector = (taskType: TaskTypeEnum) =>
     useSelector(
         ({pointsV2}) => pointsV2.tasksState[taskType] ?? EMPTY_TASK_STATE
     );
+
+export const useRewardsStateSelector = () =>
+    useSelector(({pointsV2}) => ({
+        isLoading: pointsV2.walletPoints.isLoading,
+        data: pointsV2.walletPoints.data.rewardsState
+    }));

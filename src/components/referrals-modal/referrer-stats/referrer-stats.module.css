@@ -20,6 +20,11 @@
     font-size: 14px;
 }
 
+.skeleton {
+    text-align: end;
+    min-width: var(--5-step);
+}
+
 .stats_container {
     display: flex;
     flex-direction: column;

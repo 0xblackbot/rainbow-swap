@@ -4,9 +4,17 @@ import {catchError, map, switchMap} from 'rxjs/operators';
 import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
-import {checkTaskActions, loadWalletPointsActions} from './points-actions';
+import {
+    checkTaskActions,
+    claimRewardsActions,
+    loadWalletPointsActions
+} from './points-actions';
 import {INIT_DATA} from '../../globals';
-import {getTaskCheck, getWalletPoints} from '../../utils/api.utils';
+import {
+    getClaimRewards,
+    getTaskCheck,
+    getWalletPoints
+} from '../../utils/api.utils';
 
 const loadWalletPointsEpic: Epic<Action> = action$ =>
     action$.pipe(
@@ -45,4 +53,20 @@ const checkTaskEpic: Epic<Action> = action$ =>
         )
     );
 
-export const pointsEpics = combineEpics(loadWalletPointsEpic, checkTaskEpic);
+const claimRewardsEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(claimRewardsActions.submit),
+        toPayload(),
+        switchMap(payload =>
+            from(getClaimRewards(payload)).pipe(
+                map(response => claimRewardsActions.success(response)),
+                catchError(err => of(claimRewardsActions.fail(err.message)))
+            )
+        )
+    );
+
+export const pointsEpics = combineEpics(
+    loadWalletPointsEpic,
+    checkTaskEpic,
+    claimRewardsEpic
+);

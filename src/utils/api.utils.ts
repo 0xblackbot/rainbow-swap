@@ -1,4 +1,5 @@
 import {API} from '../globals';
+import {GetClaimRewardsParams} from '../types/get-claim-rewards.type';
 import {GetTaskCheckParams} from '../types/get-task-check.type';
 import {
     GetWalletPointsParams,
@@ -12,3 +13,8 @@ export const getWalletPoints = (params: GetWalletPointsParams) =>
 
 export const getTaskCheck = (params: GetTaskCheckParams) =>
     API.get<number>('/task-check', {params}).then(response => response.data);
+
+export const getClaimRewards = (params: GetClaimRewardsParams) =>
+    API.get<boolean>('/claim-rewards', {params}).then(
+        response => response.data
+    );
