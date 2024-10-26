@@ -2,7 +2,7 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import {FC, useCallback, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
-import {DollarIcon} from '../../../assets/icons/DollarIcon/DollarIcon';
+import {DiamondIcon} from '../../../assets/icons/DiamondIcon/DiamondIcon';
 import {ExternalLinkIcon} from '../../../assets/icons/ExternalLinkIcon/ExternalLinkIcon';
 import {LogoutIcon} from '../../../assets/icons/LogoutIcon/LogoutIcon';
 import {useModals} from '../../../contexts/modals/modals.hook';
@@ -70,7 +70,7 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         className={styles.menu_button}
                         onClick={handleEarnFeesClick}
                     >
-                        <DollarIcon className={styles.menu_button_icon} />
+                        <DiamondIcon className={styles.menu_button_icon} />
                         <span>Rewards Center</span>
                     </Button>
                     <Button
@@ -82,12 +82,15 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         target="_blank"
                     >
                         <ExternalLinkIcon className={styles.menu_button_icon} />
-                        <span>Explorer</span>
+                        <span>Open Explorer</span>
                     </Button>
                     <Button
                         size="s"
                         mode="gray"
-                        className={styles.menu_button}
+                        className={getClassName(
+                            styles.menu_button,
+                            styles.disconnect_button
+                        )}
                         onClick={handleDisconnect}
                     >
                         <LogoutIcon className={styles.menu_button_icon} />

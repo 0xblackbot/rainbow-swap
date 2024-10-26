@@ -14,7 +14,9 @@ export const PointsScore = () => {
         <div className={styles.container} onClick={handleClick}>
             <div className={styles.container_body}>
                 <p className={styles.text}>
-                    {walletAddress ? `${points} XP` : 'Farm Points'}
+                    {walletAddress && points > 0
+                        ? `${points} XP`
+                        : 'Farm points'}
                 </p>
             </div>
         </div>

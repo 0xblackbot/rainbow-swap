@@ -51,6 +51,22 @@
     justify-content: start !important;
 }
 
+.disconnect_button {
+    transition: color 0.3s ease-in-out;
+}
+
+.disconnect_button svg {
+    transition: stroke 0.3s ease-in-out;
+}
+
+.disconnect_button:hover {
+    color: var(--error-color) !important;
+}
+
+.disconnect_button:hover svg {
+    stroke: var(--error-color);
+}
+
 .menu_button_icon {
     width: 18px;
     height: 18px;
