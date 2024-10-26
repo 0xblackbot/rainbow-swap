@@ -3,11 +3,11 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import styles from './app.module.css';
 import {getErrorElement} from '../components/error-element/error-element';
+import {useViewportHeight} from '../contexts/viewport-height/viewport-height.hook';
 import {BASE_URL, IS_MAIN_BUTTON_AVAILABLE, IS_TMA} from '../globals';
 import {useDisableMainButton} from '../hooks/use-disable-main-button.hook';
 import {useStateVersionCheck} from '../hooks/use-state-version-check.hook';
 import {useTonConnectModalStatus} from '../hooks/use-ton-connect-modal-status.hook';
-import {useViewportHeight} from '../hooks/viewport-height/viewport-height.hook';
 import {HomeScreen} from '../screens/home-screen/home-screen';
 
 const router = createBrowserRouter(

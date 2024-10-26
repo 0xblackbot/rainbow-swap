@@ -7,8 +7,8 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import {App} from './app/app';
+import {ViewportHeightProvider} from './contexts/viewport-height/viewport-height.provider';
 import {GA_MEASUREMENT_ID, isProd, UNSAFE_INIT_DATA} from './globals';
-import {ViewportHeightProvider} from './hooks/viewport-height/viewport-height.provider';
 import {TELEGRAM_ANALYTICS_APP_NAME, TELEGRAM_ANALYTICS_TOKEN} from './secrets';
 import {persistor, store} from './store';
 

@@ -1,10 +1,9 @@
 import {Suspense, lazy} from 'react';
 
 import styles from './farm-volume.module.css';
+import {useModals} from '../../../../contexts/modals/modals.hook';
+import {useSwapForm} from '../../../../contexts/swap-form/swap-form.hook';
 import {IS_TMA, TELEGRAM_BOT_LINK, TON, USDT} from '../../../../globals';
-import {useSwapForm} from '../../../../hooks/swap-form/swap-form.hook';
-import {useDispatch} from '../../../../store';
-import {openPointsModal} from '../../../../store/points/points-actions';
 import {Skeleton} from '../../../skeleton/skeleton';
 
 const DuckAirdrop = lazy(() => import('./duck-airdrop/duck-airdrop'));
@@ -13,7 +12,7 @@ const DELEN_BADGE_URL = 'https://society.ton.org/degen-airdrop';
 const TON_INPUT_AMOUNT = '20';
 
 export const FarmVolume = () => {
-    const dispatch = useDispatch();
+    const modals = useModals();
     const {setInputAssetAddress, setOutputAssetAddress, setInputAssetAmount} =
         useSwapForm();
 
@@ -26,7 +25,7 @@ export const FarmVolume = () => {
         setInputAssetAmount(TON_INPUT_AMOUNT);
     };
 
-    const handleEarnMorePointsClick = () => dispatch(openPointsModal());
+    const handleEarnMorePointsClick = () => modals.openPointsModal();
     const handleEarnPointsInTelegramClick = () =>
         window.Telegram.WebApp.openLink(TELEGRAM_BOT_LINK);
 

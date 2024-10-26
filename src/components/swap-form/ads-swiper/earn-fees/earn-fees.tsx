@@ -1,7 +1,7 @@
 import {lazy, Suspense} from 'react';
 
 import styles from './earn-fees.module.css';
-import {useOpenReferralsModal} from '../../../../hooks/referrals-modal/referrals-modal.hook';
+import {useModals} from '../../../../contexts/modals/modals.hook';
 import {Skeleton} from '../../../skeleton/skeleton';
 
 const DuckMoney = lazy(
@@ -10,9 +10,9 @@ const DuckMoney = lazy(
 );
 
 export const EarnFees = () => {
-    const openReferralsModal = useOpenReferralsModal();
+    const modals = useModals();
 
-    const handleContainerClick = () => openReferralsModal();
+    const handleContainerClick = () => modals.openReferralsModal();
 
     return (
         <div className={styles.container} onClick={handleContainerClick}>

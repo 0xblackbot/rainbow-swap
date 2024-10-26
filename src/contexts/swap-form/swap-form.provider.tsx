@@ -3,8 +3,8 @@ import {Helmet} from 'react-helmet';
 
 import {SwapFormContext} from './swap-form.context';
 import {TON, USDT} from '../../globals';
+import {useSyncSwapFormWithRouter} from '../../hooks/use-set-assets-from-router-params.hook';
 import {useAssetSelector} from '../../store/assets/assets-selectors';
-import {useSyncSwapFormWithRouter} from '../use-set-assets-from-router-params.hook';
 
 export const SwapFormProvider: FC<PropsWithChildren> = ({children}) => {
     const [inputAssetAddress, setInputAssetAddress] = useState<string>(TON);

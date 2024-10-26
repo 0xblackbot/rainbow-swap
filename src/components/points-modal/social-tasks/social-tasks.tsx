@@ -1,3 +1,6 @@
+import {EmptyFn} from '@rnw-community/shared';
+import {FC} from 'react';
+
 import appsCenter from './assets/apps-center.jpg';
 import jvaultImage from './assets/jvault.jpeg';
 import parratonImage from './assets/parraton.jpeg';
@@ -16,14 +19,13 @@ import {TaskHeader} from './task-header/task-header';
 import {TaskItem} from './task-item/task-item';
 import {TaskTypeEnum} from '../../../enums/task-type.enum';
 import {IS_TMA, TELEGRAM_APP_LINK} from '../../../globals';
-import {useDispatch} from '../../../store';
-import {closePointsModal} from '../../../store/points/points-actions';
 import {Button} from '../../button/button';
 
-export const SocialTasks = () => {
-    const dispatch = useDispatch();
+interface Props {
+    onSwap: EmptyFn;
+}
 
-    const handleSwap = () => dispatch(closePointsModal());
+export const SocialTasks: FC<Props> = ({onSwap}) => {
     const handleOpenTelegram = () => window.open(TELEGRAM_APP_LINK, '_blank');
 
     return (
@@ -36,9 +38,9 @@ export const SocialTasks = () => {
                 imageSrc={referralImage}
                 title="Swap Tokens"
                 description="+5,000 XP for every $100+ swap"
-                onClick={handleSwap}
+                onClick={onSwap}
             >
-                <Button size="xs" mode="bezeled" onClick={handleSwap}>
+                <Button size="xs" mode="bezeled" onClick={onSwap}>
                     <span>Swap</span>
                 </Button>
             </TaskItem>

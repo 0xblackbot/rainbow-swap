@@ -1,18 +1,21 @@
 import styles from './points-score.module.css';
-import {useDispatch} from '../../../store';
-import {openPointsModal} from '../../../store/points/points-actions';
+import {useModals} from '../../../contexts/modals/modals.hook';
+import {useWalletAddress} from '../../../hooks/use-wallet-address.hook';
 import {usePointsSelector} from '../../../store/points/points-selectors';
 
 export const PointsScore = () => {
-    const dispatch = useDispatch();
+    const walletAddress = useWalletAddress();
+    const modals = useModals();
     const points = usePointsSelector();
 
-    const handleClick = () => dispatch(openPointsModal());
+    const handleClick = () => modals.openPointsModal();
 
     return (
         <div className={styles.container} onClick={handleClick}>
             <div className={styles.container_body}>
-                <p className={styles.text}>{points} XP</p>
+                <p className={styles.text}>
+                    {walletAddress ? `${points} XP` : 'Farm Points'}
+                </p>
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ import styles from './wallet-menu.module.css';
 import {DollarIcon} from '../../../assets/icons/DollarIcon/DollarIcon';
 import {ExternalLinkIcon} from '../../../assets/icons/ExternalLinkIcon/ExternalLinkIcon';
 import {LogoutIcon} from '../../../assets/icons/LogoutIcon/LogoutIcon';
-import {useOpenReferralsModal} from '../../../hooks/referrals-modal/referrals-modal.hook';
+import {useModals} from '../../../contexts/modals/modals.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
 import {useEnableBackButton} from '../../../hooks/use-enable-back-button.hook';
@@ -18,7 +18,7 @@ interface Props {
 
 export const WalletMenu: FC<Props> = ({walletAddress}) => {
     const [tonConnectUI] = useTonConnectUI();
-    const openReferralsModal = useOpenReferralsModal();
+    const modals = useModals();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -42,7 +42,7 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
     };
     const handleEarnFeesClick = () => {
         trackButtonClick('Header Earn Fees');
-        openReferralsModal();
+        modals.openReferralsModal();
         onClose();
     };
     const handleDisconnect = () => {
