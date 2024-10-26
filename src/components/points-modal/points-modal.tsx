@@ -1,8 +1,8 @@
 import {useCallback} from 'react';
 
+import {InviteFriends} from './invite-friends/invite-friends';
 import styles from './points-modal.module.css';
-import {InviteFriends} from './tasks/invite-friends/invite-friends';
-import {Tasks} from './tasks/tasks';
+import {SocialTasks} from './social-tasks/social-tasks';
 import {BottomSheet} from '../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
@@ -22,7 +22,7 @@ export const PointsModal = () => {
         <BottomSheet isOpen={isOpen} headerTitle="" onClose={handleClose}>
             <div className={styles.content_container}>
                 <InviteFriends />
-                <Tasks />
+                <SocialTasks />
             </div>
             <FormButton
                 text="Close"

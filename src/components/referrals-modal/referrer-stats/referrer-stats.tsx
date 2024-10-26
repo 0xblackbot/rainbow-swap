@@ -7,8 +7,7 @@ import {useWalletAddress} from '../../../hooks/use-wallet-address.hook';
 import {copyToClipboard} from '../../../utils/clipboard.utils';
 import {showSuccessToast} from '../../../utils/toast.utils';
 import {Button} from '../../button/button';
-import {Divider} from '../../points-modal/tasks/divider/divider';
-import sharedStyles from '../../swap-form/settings-button/settings-button.module.css';
+import {Divider} from '../../points-modal/social-tasks/divider/divider';
 
 const CONTACT_LINK = 'https://t.me/yuraivanchyshyn';
 const SDK_LINK = 'https://www.npmjs.com/package/rainbow-swap-sdk';
@@ -57,12 +56,12 @@ export const ReferrerStats = () => {
                     </Button>
                 )}
             </div>
-            <p className={sharedStyles.description}>
+            <p className={styles.description}>
                 Refer new users and earn 10% of their trading fees.
             </p>
             <Divider />
             <div className={styles.title_container}>
-                <p className={sharedStyles.title}>Influencer Bonus</p>
+                <p className={styles.title}>Influencer Bonus</p>
                 <Button
                     size="xs"
                     mode="bezeled"
@@ -73,12 +72,12 @@ export const ReferrerStats = () => {
                     <span>Contact us</span>
                 </Button>
             </div>
-            <p className={sharedStyles.description}>
+            <p className={styles.description}>
                 If you're an influencer, contact us to access exclusive bonuses.
             </p>
             <Divider />
             <div className={styles.title_container}>
-                <p className={sharedStyles.title}>App Developer Partnership</p>
+                <p className={styles.title}>App Developer Partnership</p>
                 <Button
                     size="xs"
                     mode="bezeled"
@@ -89,7 +88,7 @@ export const ReferrerStats = () => {
                     <span>Open SDK</span>
                 </Button>
             </div>
-            <p className={sharedStyles.description}>
+            <p className={styles.description}>
                 Integrate our SDK, enable in-app swaps, set custom fees, and
                 enjoy a 50% revenue share.
             </p>

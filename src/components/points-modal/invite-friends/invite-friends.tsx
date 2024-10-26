@@ -1,11 +1,15 @@
+import {Suspense, lazy} from 'react';
+
 import styles from './invite-friends.module.css';
-import {CopyIcon} from '../../../../assets/icons/CopyIcon/CopyIcon';
-import {useReferralLink} from '../../../../hooks/use-referral-link.hook';
-import {useNumberOfReferralsSelector} from '../../../../store/points/points-selectors';
-import {copyToClipboard} from '../../../../utils/clipboard.utils';
-import {showSuccessToast} from '../../../../utils/toast.utils';
-import {Button} from '../../../button/button';
-import sharedStyles from '../../../swap-form/settings-button/settings-button.module.css';
+import {CopyIcon} from '../../../assets/icons/CopyIcon/CopyIcon';
+import {useReferralLink} from '../../../hooks/use-referral-link.hook';
+import {useNumberOfReferralsSelector} from '../../../store/points/points-selectors';
+import {copyToClipboard} from '../../../utils/clipboard.utils';
+import {showSuccessToast} from '../../../utils/toast.utils';
+import {Button} from '../../button/button';
+import {Skeleton} from '../../skeleton/skeleton';
+
+const Diamond = lazy(() => import('./diamond/diamond'));
 
 export const InviteFriends = () => {
     const referralLink = useReferralLink();
@@ -18,14 +22,24 @@ export const InviteFriends = () => {
 
     return (
         <div className={styles.container}>
+            <Suspense
+                fallback={
+                    <Skeleton
+                        isLoading={true}
+                        className={styles.animation_container}
+                    />
+                }
+            >
+                <Diamond className={styles.animation_container} />
+            </Suspense>
             <p className={styles.title}>Invite frens</p>
-            <p className={sharedStyles.description}>
+            <p className={styles.description}>
                 Refer new users and earn 10% of their <br /> trading fees and
-                +5,000 points
+                +5,000 XP
             </p>
             <Button
                 size="m"
-                mode="filled"
+                mode="gray"
                 stretched={true}
                 className={styles.copy_button}
                 onClick={handleCopyClick}

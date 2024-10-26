@@ -9,3 +9,7 @@
     margin-left: var(--2-step);
     margin-right: var(--2-step);
 }
+
+.footer {
+    margin-bottom: var(--4-step);
+}

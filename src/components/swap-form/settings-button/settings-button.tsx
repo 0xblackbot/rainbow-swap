@@ -7,7 +7,7 @@ import {SettingsIcon} from '../../../assets/icons/SettingsIcon/SettingsIcon';
 import {IS_TMA} from '../../../globals';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../shared/form-button/form-button';
-import {Divider} from '../../points-modal/tasks/divider/divider';
+import {Divider} from '../../points-modal/social-tasks/divider/divider';
 
 export const SettingsButton = () => {
     const [isOpen, setIsOpen] = useState(false);

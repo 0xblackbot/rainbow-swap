@@ -90,7 +90,7 @@ export const PartnerTaskItem: FC<Props> = ({
         <TaskItem
             imageSrc={imageSrc}
             title={title}
-            description={`+${reward} points`}
+            description={`+${reward} XP`}
             onClick={handleClick}
         >
             <TaskStatus points={task.data} isLoading={task.isLoading} />
