@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--step);
+}
+
+.title {
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.description {
+    color: var(--hint-color);
+    font-size: 14px;
+}
+
+.skeleton {
+    text-align: end;
+    min-width: var(--5-step);
+}
+
+.stats_container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--step);
+    margin-bottom: var(--2-step);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.copy_button {
+    margin-bottom: var(--step);
+}
+
+.copy_icon {
+    stroke: var(--text-color);
+}

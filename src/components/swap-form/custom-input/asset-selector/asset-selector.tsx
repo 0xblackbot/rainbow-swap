@@ -6,6 +6,7 @@ import styles from './asset-selector.module.css';
 import {ChevronDownIcon} from '../../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {BottomSheet} from '../../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../../shared/form-button/form-button';
+import {Button} from '../../../button/button';
 
 interface Props {
     value: Asset;
@@ -27,7 +28,9 @@ export const AssetSelector: FC<Props> = memo(
 
         return (
             <>
-                <div
+                <Button
+                    size="m"
+                    mode="bezeled"
                     className={styles.selected_asset_button}
                     onClick={handleOpen}
                 >
@@ -36,9 +39,9 @@ export const AssetSelector: FC<Props> = memo(
                         src={value.image}
                         alt={value.symbol}
                     />
-                    <p className={styles.p}>{value.symbol}</p>
+                    <span>{value.symbol}</span>
                     <ChevronDownIcon />
-                </div>
+                </Button>
 
                 <BottomSheet
                     isOpen={isOpen}

@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    align-items: center;
+    margin: var(--2-step);
+}
+
+.image {
+    width: var(--5-step);
+    height: var(--5-step);
+    border-radius: 999999px;
+    margin-right: var(--step);
+}
+
+.name {
+    font-size: 16px;
+    color: var(--text-color);
+}

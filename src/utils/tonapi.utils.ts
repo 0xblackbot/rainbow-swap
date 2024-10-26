@@ -1,6 +1,9 @@
-import {TON_API_CLIENT} from '../globals';
+import {isDefined} from '@rnw-community/shared';
 
-const CHECK_INTERVAL = 2500;
+import {TON_API_CLIENT} from '../globals';
+import {isTraceConfirmed} from './trace.utils';
+
+const CHECK_INTERVAL = 3000;
 const TRANSACTION_CONFIRMATION_TIMEOUT = 5 * 60 * 1000;
 
 export const waitTransactionConfirmation = async (
@@ -18,18 +21,17 @@ export const waitTransactionConfirmation = async (
         }, TRANSACTION_CONFIRMATION_TIMEOUT);
 
         const intervalId = setInterval(async () => {
-            const accountEvent = await TON_API_CLIENT.accounts
-                .getAccountEvent(senderRawAddress, bocHash)
-                .catch(() => ({
-                    event_id: 'empty_event_id',
-                    in_progress: true
-                }));
+            const trace = await TON_API_CLIENT.traces
+                .getTrace(bocHash)
+                .catch(() => undefined);
 
-            if (!accountEvent.in_progress) {
+            const isConfirmed = isDefined(trace) && isTraceConfirmed(trace);
+
+            if (isConfirmed) {
                 clearInterval(intervalId);
                 clearTimeout(timeoutId);
 
-                resolve(accountEvent.event_id);
+                resolve(bocHash);
             }
         }, CHECK_INTERVAL);
     });

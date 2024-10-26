@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--step);
+    text-align: center;
+    border-radius: var(--border-radius);
+    margin: 0 var(--2-step) var(--step);
+}
+
+.animation_container {
+    width: 20%;
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+    align-self: center;
+    margin: var(--2-step);
+}
+
+.animation_container svg {
+    transform: scale(2) !important;
+    transform-origin: center;
+}
+
+.title {
+    color: var(--text-color);
+    font-size: 22px;
+}
+
+.description {
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.counter_text {
+    text-align: center;
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.counter_value {
+    color: var(--text-color);
+}
+
+.copy_button {
+    margin-top: var(--2-step);
+}
+
+.copy_icon {
+    stroke: var(--text-color);
+}

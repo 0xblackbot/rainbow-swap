@@ -4,24 +4,21 @@ import {ToastContainer} from 'react-toastify';
 
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
-import {PointsModal} from '../../components/points-modal/points-modal';
 import {SwapScreen} from '../../components/swap-form/swap-form';
-import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
-import {SwapFormProvider} from '../../hooks/swap-form/swap-form.provider';
+import {ModalsProvider} from '../../contexts/modals/modals.provider';
+import {SwapFormProvider} from '../../contexts/swap-form/swap-form.provider';
+import {INIT_DATA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
-import {
-    closePointsModal,
-    loadPointsActions
-} from '../../store/points/points-actions';
-import {loadAppStatusActions} from '../../store/security/security-actions';
+import {loadWalletPointsActions} from '../../store/points/points-actions';
 import {
     addPendingSwapTransactionActions,
     loadBalancesActions
 } from '../../store/wallet/wallet-actions';
 import {usePendingSwapTransactionSelector} from '../../store/wallet/wallet-selectors';
+import {emptyWalletPoints} from '../../types/get-wallet-points.type';
 
 export const HomeScreen = memo(() => {
     const dispatch = useDispatch();
@@ -32,18 +29,7 @@ export const HomeScreen = memo(() => {
     useTrackPageView('Home');
 
     useEffect(() => {
-        dispatch(closePointsModal());
-        dispatch(loadAppStatusActions.submit());
         dispatch(loadAssetsActions.submit());
-
-        if (IS_TMA) {
-            dispatch(
-                loadPointsActions.submit({
-                    initData: INIT_DATA,
-                    refParent: UNSAFE_INIT_DATA.ref_parent
-                })
-            );
-        }
 
         // restore waitTransactionConfirmation for swap & activation transactions
         if (isDefined(pendingSwapTransaction.data)) {
@@ -60,15 +46,23 @@ export const HomeScreen = memo(() => {
         if (walletAddress) {
             // load wallet related data
             dispatch(loadBalancesActions.submit(walletAddress));
+            dispatch(
+                loadWalletPointsActions.submit({
+                    address: walletAddress,
+                    initData: INIT_DATA,
+                    refParent: UNSAFE_INIT_DATA.refParent
+                })
+            );
         } else {
             // reset wallet related data
             dispatch(loadBalancesActions.success({}));
+            dispatch(loadWalletPointsActions.success(emptyWalletPoints));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [walletAddress]);
 
     return (
-        <>
+        <ModalsProvider>
             <ToastContainer
                 position="top-center"
                 pauseOnHover={false}
@@ -79,8 +73,7 @@ export const HomeScreen = memo(() => {
             <SwapFormProvider>
                 <SwapScreen />
             </SwapFormProvider>
-            <PointsModal />
             <Footer />
-        </>
+        </ModalsProvider>
     );
 });

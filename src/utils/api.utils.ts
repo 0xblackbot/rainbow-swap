@@ -1,18 +1,20 @@
 import {API} from '../globals';
-import {
-    GetPointsAuthParams,
-    PointsAuthResponse
-} from '../types/get-points-auth.type';
+import {GetClaimRewardsParams} from '../types/get-claim-rewards.type';
 import {GetTaskCheckParams} from '../types/get-task-check.type';
-import {PostAddTapsParams} from '../types/post-add-taps.type';
+import {
+    GetWalletPointsParams,
+    WalletPointsResponse
+} from '../types/get-wallet-points.type';
 
-export const getPointsAuth = (params: GetPointsAuthParams) =>
-    API.get<PointsAuthResponse>('/points-auth', {params}).then(
+export const getWalletPoints = (params: GetWalletPointsParams) =>
+    API.get<WalletPointsResponse>('/wallet-points', {params}).then(
         response => response.data
     );
 
 export const getTaskCheck = (params: GetTaskCheckParams) =>
     API.get<number>('/task-check', {params}).then(response => response.data);
 
-export const postAddTaps = (params: PostAddTapsParams) =>
-    API.post('/add-taps', params);
+export const getClaimRewards = (params: GetClaimRewardsParams) =>
+    API.get<boolean>('/claim-rewards', {params}).then(
+        response => response.data
+    );

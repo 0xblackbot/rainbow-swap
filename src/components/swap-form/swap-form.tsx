@@ -1,10 +1,10 @@
 import {Asset, getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
+import {AdsSwiper} from './ads-swiper/ads-swiper';
 import {ConnectWalletButton} from './connect-wallet-button/connect-wallet-button';
 import {CustomInput} from './custom-input/custom-input';
 import {CustomOutput} from './custom-input/custom-output';
-import {FarmVolume} from './farm-volume/farm-volume';
 import {useInputError} from './hooks/use-input-error.hook';
 import {PendingSwap} from './pending-swap/pending-swap';
 import {SettingsButton} from './settings-button/settings-button';
@@ -14,8 +14,8 @@ import {SwapDisabled} from './swap-disabled/swap-disabled';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
+import {useSwapForm} from '../../contexts/swap-form/swap-form.hook';
 import {IS_MAIN_BUTTON_AVAILABLE} from '../../globals';
-import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
@@ -205,7 +205,7 @@ export const SwapScreen = () => {
                         routes={routes}
                     />
                     {appStatus.isSwapsEnabled ? (
-                        <FarmVolume />
+                        <AdsSwiper />
                     ) : (
                         <SwapDisabled message={appStatus.message} />
                     )}

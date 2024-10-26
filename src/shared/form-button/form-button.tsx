@@ -1,9 +1,9 @@
 import {FC} from 'react';
 
-import styles from './form-button.module.css';
 import {IS_MAIN_BUTTON_AVAILABLE} from '../../globals';
 import {MainButton} from './main-button/main-button';
 import {MainButtonProps} from './main-button/main-button.props';
+import {Button} from '../../components/button/button';
 
 interface Props extends MainButtonProps {
     containerClassName?: string;
@@ -16,9 +16,9 @@ export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
 
     return (
         <div className={containerClassName}>
-            <button className={styles.button} onClick={onClick}>
-                {text}
-            </button>
+            <Button size="l" mode="filled" stretched={true} onClick={onClick}>
+                <span>{text}</span>
+            </Button>
         </div>
     );
 };

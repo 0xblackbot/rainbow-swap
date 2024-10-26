@@ -1,38 +1,23 @@
 export enum TaskTypeEnum {
-    Telegram = 'telegramChannel',
-    Twitter = 'xChannel',
+    Telegram = 'telegram',
+    Twitter = 'twitter',
     TonApp = 'tonApp',
 
-    TorchFinance_Telegram = 'TorchFinance_Telegram',
-    TorchFinance_Twitter = 'TorchFinance_Twitter',
+    TorchFinance_Telegram = 'torchFinanceTelegram',
+    TorchFinance_Twitter = 'torchFinanceTwitter',
 
-    SnapX_Telegram = 'SnapX_Telegram',
-    SnapX_Twitter = 'SnapX_Twitter',
+    SnapX_Telegram = 'snapXTelegram',
+    SnapX_Twitter = 'snapXTwitter',
 
-    AppsCenter_Telegram = 'AppsCenter_Telegram',
-    AppsCenter_Bot = 'AppsCenter_Bot',
+    AppsCenter_Telegram = 'appsCenterTelegram',
+    AppsCenter_Bot = 'appsCenterBot',
 
-    JVault_Telegram = 'JVault_Telegram',
-    JVault_Staking = 'JVault_Staking',
+    JVault_Telegram = 'jvaultTelegram',
+    JVault_Staking = 'jvaultStaking',
 
-    TonHedge_Telegram = 'TonHedge_Telegram',
-    TonHedge_Bot = 'TonHedge_Bot',
+    TonHedge_Telegram = 'tonHedgeTelegram',
+    TonHedge_Bot = 'tonHedgeBot',
 
-    Parraton_Telegram = 'Parraton_Telegram',
-    Parraton_Bot = 'Parraton_Bot'
+    Parraton_Telegram = 'parratonTelegram',
+    Parraton_Bot = 'parratonBot'
 }
-
-export const PartnerTasksKeyRecord: Record<string, string> = {
-    [TaskTypeEnum.TorchFinance_Telegram]: 'telegram',
-    [TaskTypeEnum.TorchFinance_Twitter]: 'twitter',
-    [TaskTypeEnum.SnapX_Telegram]: 'snapXTelegram',
-    [TaskTypeEnum.SnapX_Twitter]: 'snapXTwitter',
-    [TaskTypeEnum.AppsCenter_Telegram]: 'appsCenterTelegram',
-    [TaskTypeEnum.AppsCenter_Bot]: 'appsCenterBot',
-    [TaskTypeEnum.JVault_Telegram]: 'jvaultTelegram',
-    [TaskTypeEnum.JVault_Staking]: 'jvaultStaking',
-    [TaskTypeEnum.TonHedge_Telegram]: 'tonHedgeTelegram',
-    [TaskTypeEnum.TonHedge_Bot]: 'tonHedgeBot',
-    [TaskTypeEnum.Parraton_Telegram]: 'parratonTelegram',
-    [TaskTypeEnum.Parraton_Bot]: 'parratonBot'
-};

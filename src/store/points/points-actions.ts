@@ -1,34 +1,23 @@
-import {createAction} from '@reduxjs/toolkit';
-
-import {Click} from '../../interfaces/click.interface';
+import {TaskTypeEnum} from '../../enums/task-type.enum';
+import {GetClaimRewardsParams} from '../../types/get-claim-rewards.type';
 import {
-    GetPointsAuthParams,
-    PointsAuthResponse
-} from '../../types/get-points-auth.type';
+    GetWalletPointsParams,
+    WalletPointsResponse
+} from '../../types/get-wallet-points.type';
 import {createActions} from '../utils/create-actions';
 
-export const openPointsModal = createAction('points/OPEN_MODAL');
-export const closePointsModal = createAction('points/CLOSE_MODAL');
+export const loadWalletPointsActions = createActions<
+    GetWalletPointsParams,
+    WalletPointsResponse
+>('points/LOAD_WALLET_POINTS');
 
-export const loadPointsActions = createActions<
-    GetPointsAuthParams,
-    PointsAuthResponse
->('points/LOAD_POINTS');
+export const checkTaskActions = createActions<
+    {taskType: TaskTypeEnum; walletAddress?: string},
+    {taskType: TaskTypeEnum; data: number},
+    {taskType: TaskTypeEnum; error: string}
+>('points/CHECK_TASK');
 
-export const addTapActions = createActions<Click>('points/ADD_TAP');
-
-export const checkTelegramChannelTaskActions = createActions<void, number>(
-    'points/CHECK_TELEGRAM_CHANNEL_TASK'
-);
-export const checkXChannelTaskActions = createActions<void, number>(
-    'points/CHECK_X_CHANNEL_TASK'
-);
-export const checkTonAppTaskActions = createActions<void, number>(
-    'points/CHECK_TON_APP_TASK'
-);
-
-export const checkPartnerTaskActions = createActions<
-    {taskType: string; walletAddress?: string},
-    {taskType: string; data: number},
-    {taskType: string; error: string}
->('points/CHECK_PARTNER_TASK');
+export const claimRewardsActions = createActions<
+    GetClaimRewardsParams,
+    boolean
+>('points/CLAIM_REWARDS');

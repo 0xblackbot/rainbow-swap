@@ -3,6 +3,7 @@ import {useDispatch} from '../../../../store';
 import {setMaxSlippageAction} from '../../../../store/settings/settings-actions';
 import {useMaxSlippageSelector} from '../../../../store/settings/settings-selectors';
 import {settingsInitialState} from '../../../../store/settings/settings-state';
+import {Button} from '../../../button/button';
 import sharedStyles from '../settings-button.module.css';
 
 const DEFAULT_SLIPPAGE_TOLERANCE = settingsInitialState.maxSlippage;
@@ -56,12 +57,9 @@ export const MaxSlippage = () => {
                 <p className={sharedStyles.title}>Max slippage</p>
 
                 <div className={styles.input_container}>
-                    <div
-                        className={styles.auto_button}
-                        onClick={handleAutoClick}
-                    >
-                        <p>Auto</p>
-                    </div>
+                    <Button size="xs" mode="bezeled" onClick={handleAutoClick}>
+                        <span>Auto</span>
+                    </Button>
                     <input
                         type="tel"
                         inputMode="decimal"

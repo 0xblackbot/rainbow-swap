@@ -1,30 +1,22 @@
+import {UNSAFE_INIT_DATA} from '../../globals';
+import {
+    emptyWalletPoints,
+    WalletPointsResponse
+} from '../../types/get-wallet-points.type';
 import {LoadableEntityState} from '../types';
 import {createEntity} from '../utils/create-entity';
 
+type WalletPointsState = Omit<WalletPointsResponse, 'tasksState'>;
+export type TasksState = Record<string, LoadableEntityState<number>>;
+
 export interface PointsState {
-    isModalOpen: boolean;
-    localTapTap: number;
-    refHash: string;
-    tapTap: LoadableEntityState<number>;
-    swapsVolume: LoadableEntityState<number>;
-    bonus: LoadableEntityState<number>;
-    referral: LoadableEntityState<number>;
-    telegramChannel: LoadableEntityState<number>;
-    xChannel: LoadableEntityState<number>;
-    tonApp: LoadableEntityState<number>;
-    partners: Record<string, LoadableEntityState<number>>;
+    refWallet: string | null;
+    walletPoints: LoadableEntityState<WalletPointsState>;
+    tasksState: TasksState;
 }
 
 export const pointsInitialState: PointsState = {
-    isModalOpen: false,
-    localTapTap: 0,
-    refHash: '',
-    tapTap: createEntity(0),
-    swapsVolume: createEntity(0),
-    bonus: createEntity(0),
-    referral: createEntity(0),
-    telegramChannel: createEntity(0),
-    xChannel: createEntity(0),
-    tonApp: createEntity(0),
-    partners: {}
+    refWallet: UNSAFE_INIT_DATA.refWallet,
+    walletPoints: createEntity(emptyWalletPoints),
+    tasksState: {}
 };

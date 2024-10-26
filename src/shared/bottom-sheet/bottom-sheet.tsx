@@ -1,17 +1,18 @@
+import {EmptyFn} from '@rnw-community/shared';
 import {FC, PropsWithChildren, useEffect, useState} from 'react';
 
 import styles from './bottom-sheet.module.css';
 import {XIcon} from '../../assets/icons/XIcon/XIcon';
+import {useViewportHeight} from '../../contexts/viewport-height/viewport-height.hook';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useEnableBackButton} from '../../hooks/use-enable-back-button.hook';
 import {usePreventScroll} from '../../hooks/use-prevent-scrolling.hook';
-import {useViewportHeight} from '../../hooks/viewport-height/viewport-height.hook';
 import {getClassName} from '../../utils/style.utils';
 import {ContentContainer} from '../content-container/content-container';
 
 interface Props extends PropsWithChildren {
     isOpen: boolean;
-    onClose: () => void;
+    onClose: EmptyFn;
     headerTitle: string;
 }
 

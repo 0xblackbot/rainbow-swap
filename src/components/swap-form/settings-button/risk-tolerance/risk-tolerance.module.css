@@ -12,19 +12,6 @@
     border-radius: var(--2-step);
 }
 
-.selector_item {
-    font-size: 14px;
-    padding: 1px var(--step);
-    border-radius: 999999px;
-    background: var(--secondary-bg-color);
-    color: var(--hint-color);
-    cursor: pointer;
-}
-
-.selector_item_selected {
-    background: var(--attention-bg);
-    color: var(--button-color);
-}
 
 .selector_divider {
     padding: 0 var(--half-step);

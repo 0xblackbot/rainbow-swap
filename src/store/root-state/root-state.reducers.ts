@@ -19,7 +19,7 @@ export const rootReducer = combineReducers({
     swapRoutes: swapRoutesReducers,
     wallet: walletReducers,
     settings: settingsReducers,
-    points: pointsReducers,
+    pointsV2: pointsReducers,
     dev: devReducers,
     security: securityReducers,
     initialized: initializedReducers
