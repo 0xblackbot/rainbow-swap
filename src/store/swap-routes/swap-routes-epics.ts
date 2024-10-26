@@ -1,3 +1,4 @@
+import {isDefined} from '@rnw-community/shared';
 import {getBestRoute} from 'rainbow-swap-sdk';
 import {combineEpics, Epic} from 'redux-observable';
 import {from, of} from 'rxjs';
@@ -38,6 +39,9 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     ? RiskTolerance.Risky
                     : payload.riskTolerance;
             const maxSlippage = Number(state.settings.maxSlippage);
+            const referralAddress = isDefined(state.pointsV2.refWallet)
+                ? state.pointsV2.refWallet
+                : undefined;
 
             return from(
                 getBestRoute({
@@ -46,7 +50,8 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     outputAssetAddress: payload.outputAssetAddress,
                     senderAddress: payload.senderAddress,
                     maxDepth,
-                    maxSlippage
+                    maxSlippage,
+                    referralAddress
                 })
             ).pipe(
                 map(response =>

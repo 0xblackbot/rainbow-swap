@@ -1,200 +1,83 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {
-    addTapActions,
-    checkPartnerTaskActions,
-    checkTelegramChannelTaskActions,
-    checkTonAppTaskActions,
-    checkXChannelTaskActions,
-    closePointsModal,
-    loadPointsActions,
-    openPointsModal
-} from './points-actions';
-import {pointsInitialState, PointsState} from './points-state';
-import {PartnerTasksKeyRecord} from '../../enums/task-type.enum';
-import {LoadableEntityState} from '../types';
+import {checkTaskActions, loadWalletPointsActions} from './points-actions';
+import {pointsInitialState, PointsState, TasksState} from './points-state';
 import {createEntity} from '../utils/create-entity';
 
 export const pointsReducers = createReducer<PointsState>(
     pointsInitialState,
     builder => {
-        builder.addCase(openPointsModal, state => ({
-            ...state,
-            isModalOpen: true
-        }));
-        builder.addCase(closePointsModal, state => ({
-            ...state,
-            isModalOpen: false
-        }));
+        builder.addCase(loadWalletPointsActions.submit, state => {
+            const tasksState: TasksState = {};
 
-        builder.addCase(loadPointsActions.submit, state => {
-            const partners: Record<string, LoadableEntityState<number>> = {};
-
-            for (const [key, value] of Object.entries(state.partners)) {
-                partners[key] = createEntity(value.data, true);
+            for (const [key, value] of Object.entries(state.tasksState)) {
+                tasksState[key] = createEntity(value.data, true);
             }
 
             return {
                 ...state,
-                localTapTap: 0,
-                tapTap: createEntity(state.tapTap.data, true),
-                swapsVolume: createEntity(state.swapsVolume.data, true),
-                bonus: createEntity(state.bonus.data, true),
-                referral: createEntity(state.referral.data, true),
-                telegramChannel: createEntity(state.telegramChannel.data, true),
-                xChannel: createEntity(state.xChannel.data, true),
-                tonApp: createEntity(state.tonApp.data, true),
-                partners
+                walletPoints: createEntity(state.walletPoints.data, true),
+                tasksState
             };
         });
-        builder.addCase(loadPointsActions.success, (state, {payload}) => {
-            const partners: Record<string, LoadableEntityState<number>> = {};
+        builder.addCase(loadWalletPointsActions.success, (state, {payload}) => {
+            const tasksState: TasksState = {};
 
-            for (const [key, value] of Object.entries(
-                payload.torchFinance ?? {}
-            )) {
-                partners[key] = createEntity(value, false);
+            for (const [key, value] of Object.entries(payload.tasksState)) {
+                tasksState[key] = createEntity(value, false);
             }
 
             return {
                 ...state,
-                refHash: payload.refHash,
-                tapTap: createEntity(payload.tapTap, false),
-                swapsVolume: createEntity(payload.swapsVolume, false),
-                bonus: createEntity(payload.bonus, false),
-                referral: createEntity(payload.referral, false),
-                telegramChannel: createEntity(payload.telegramChannel, false),
-                xChannel: createEntity(payload.xChannel, false),
-                tonApp: createEntity(payload.tonApp, false),
-                partners
+                walletPoints: createEntity(payload, false),
+                tasksState
             };
         });
-        builder.addCase(loadPointsActions.fail, (state, {payload: error}) => {
-            const partners: Record<string, LoadableEntityState<number>> = {};
+        builder.addCase(loadWalletPointsActions.fail, (state, {payload}) => {
+            const tasksState: TasksState = {};
 
-            for (const [key, value] of Object.entries(state.partners)) {
-                partners[key] = createEntity(value.data, false, error);
+            for (const [key, value] of Object.entries(state.tasksState)) {
+                tasksState[key] = createEntity(value.data, false, payload);
             }
 
             return {
                 ...state,
-                tapTap: createEntity(state.tapTap.data, false, error),
-                swapsVolume: createEntity(state.swapsVolume.data, false, error),
-                bonus: createEntity(state.bonus.data, false, error),
-                referral: createEntity(state.referral.data, false, error),
-                telegramChannel: createEntity(
-                    state.telegramChannel.data,
+                walletPoints: createEntity(
+                    state.walletPoints.data,
                     false,
-                    error
+                    payload
                 ),
-                xChannel: createEntity(state.xChannel.data, false, error),
-                tonApp: createEntity(state.tonApp.data, false, error),
-                partners
+                tasksState
             };
         });
 
-        builder.addCase(addTapActions.submit, state => ({
+        builder.addCase(checkTaskActions.submit, (state, {payload}) => ({
             ...state,
-            localTapTap: state.localTapTap + 1
-        }));
-
-        builder.addCase(checkTelegramChannelTaskActions.submit, state => ({
-            ...state,
-            telegramChannel: createEntity(state.telegramChannel.data, true)
-        }));
-        builder.addCase(
-            checkTelegramChannelTaskActions.success,
-            (state, {payload}) => ({
-                ...state,
-                telegramChannel: createEntity(payload, false)
-            })
-        );
-        builder.addCase(
-            checkTelegramChannelTaskActions.fail,
-            (state, {payload: error}) => ({
-                ...state,
-                telegramChannel: createEntity(
-                    state.telegramChannel.data,
-                    false,
-                    error
+            tasksState: {
+                ...state.tasksState,
+                [payload.taskType]: createEntity(
+                    state.tasksState[payload.taskType]?.data ?? 0,
+                    true
                 )
-            })
-        );
-
-        builder.addCase(checkXChannelTaskActions.submit, state => ({
-            ...state,
-            xChannel: createEntity(state.xChannel.data, true)
+            }
         }));
-        builder.addCase(
-            checkXChannelTaskActions.success,
-            (state, {payload}) => ({
-                ...state,
-                xChannel: createEntity(payload, false)
-            })
-        );
-        builder.addCase(
-            checkXChannelTaskActions.fail,
-            (state, {payload: error}) => ({
-                ...state,
-                xChannel: createEntity(state.xChannel.data, false, error)
-            })
-        );
-
-        builder.addCase(checkTonAppTaskActions.submit, state => ({
+        builder.addCase(checkTaskActions.success, (state, {payload}) => ({
             ...state,
-            tonApp: createEntity(state.tonApp.data, true)
+            tasksState: {
+                ...state.tasksState,
+                [payload.taskType]: createEntity(payload.data, false)
+            }
         }));
-        builder.addCase(checkTonAppTaskActions.success, (state, {payload}) => ({
+        builder.addCase(checkTaskActions.fail, (state, {payload}) => ({
             ...state,
-            tonApp: createEntity(payload, false)
+            tasksState: {
+                ...state.tasksState,
+                [payload.taskType]: createEntity(
+                    state.tasksState[payload.taskType]?.data ?? 0,
+                    false,
+                    payload.error
+                )
+            }
         }));
-        builder.addCase(
-            checkTonAppTaskActions.fail,
-            (state, {payload: error}) => ({
-                ...state,
-                tonApp: createEntity(state.tonApp.data, false, error)
-            })
-        );
-
-        builder.addCase(checkPartnerTaskActions.submit, (state, {payload}) => {
-            const taskKey = PartnerTasksKeyRecord[payload.taskType];
-
-            return {
-                ...state,
-                partners: {
-                    ...state.partners,
-                    [taskKey]: createEntity(
-                        state.partners[taskKey]?.data ?? 0,
-                        true
-                    )
-                }
-            };
-        });
-        builder.addCase(checkPartnerTaskActions.success, (state, {payload}) => {
-            const taskKey = PartnerTasksKeyRecord[payload.taskType];
-
-            return {
-                ...state,
-                partners: {
-                    ...state.partners,
-                    [taskKey]: createEntity(payload.data, false)
-                }
-            };
-        });
-        builder.addCase(checkPartnerTaskActions.fail, (state, {payload}) => {
-            const taskKey = PartnerTasksKeyRecord[payload.taskType];
-
-            return {
-                ...state,
-                partners: {
-                    ...state.partners,
-                    [taskKey]: createEntity(
-                        state.partners[taskKey]?.data ?? 0,
-                        false,
-                        payload.error
-                    )
-                }
-            };
-        });
     }
 );
