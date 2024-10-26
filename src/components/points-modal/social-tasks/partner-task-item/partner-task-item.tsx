@@ -55,15 +55,13 @@ interface Props {
     title: string;
     taskType: TaskTypeEnum;
     isTelegram?: boolean;
-    isWalletAddressRequired?: boolean;
 }
 
 export const PartnerTaskItem: FC<Props> = ({
     imageSrc,
     title,
     taskType,
-    isTelegram = false,
-    isWalletAddressRequired = false
+    isTelegram = false
 }) => {
     const dispatch = useDispatch();
     const walletAddress = useWalletAddress();
@@ -72,7 +70,7 @@ export const PartnerTaskItem: FC<Props> = ({
     const task = useTaskSelector(taskType);
 
     const handleClick = () => {
-        if (isWalletAddressRequired && !isDefined(walletAddress)) {
+        if (!isDefined(walletAddress)) {
             showInfoToast('Please, connect wallet');
         } else {
             const link = LinksRecord[taskType];

@@ -109,7 +109,6 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         imageSrc={stakingImage}
                         title="Stake any token"
                         taskType={TaskTypeEnum.JVault_Staking}
-                        isWalletAddressRequired={true}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />
