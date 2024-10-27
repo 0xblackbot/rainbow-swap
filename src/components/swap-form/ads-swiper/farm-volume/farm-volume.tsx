@@ -2,7 +2,7 @@ import styles from './farm-volume.module.css';
 import {useModals} from '../../../../contexts/modals/modals.hook';
 import {useSwapForm} from '../../../../contexts/swap-form/swap-form.hook';
 import {IS_TMA, TELEGRAM_BOT_LINK, TON, USDT} from '../../../../globals';
-import {Lottie} from '../../../lottie/lottie';
+import {LottieWithSuspense} from '../../../lottie/lottie-with-suspense';
 
 const DELEN_BADGE_URL = 'https://society.ton.org/degen-airdrop';
 const TON_INPUT_AMOUNT = '20';
@@ -68,7 +68,7 @@ export const FarmVolume = () => {
                     </div>
                 </div>
 
-                <Lottie
+                <LottieWithSuspense
                     src="/animations/duck-airdrop.lottie"
                     className={styles.duck_airdrop}
                 />

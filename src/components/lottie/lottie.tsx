@@ -1,14 +1,10 @@
 import {DotLottieReact, DotLottie} from '@lottiefiles/dotlottie-react';
 import {FC, useEffect, useState} from 'react';
 
+import {LottieProps} from './lottie.props';
 import {Skeleton} from '../skeleton/skeleton';
 
-interface Props {
-    src: string;
-    className?: string;
-}
-
-export const Lottie: FC<Props> = ({src, className}) => {
+const Lottie: FC<LottieProps> = ({src, className}) => {
     const [dotLottie, setDotLottie] = useState<DotLottie | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -33,3 +29,5 @@ export const Lottie: FC<Props> = ({src, className}) => {
         </Skeleton>
     );
 };
+
+export default Lottie;

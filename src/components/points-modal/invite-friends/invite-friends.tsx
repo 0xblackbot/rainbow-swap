@@ -8,7 +8,7 @@ import {useNumberOfReferralsSelector} from '../../../store/points/points-selecto
 import {copyToClipboard} from '../../../utils/clipboard.utils';
 import {showSuccessToast} from '../../../utils/toast.utils';
 import {Button} from '../../button/button';
-import {Lottie} from '../../lottie/lottie';
+import {LottieWithSuspense} from '../../lottie/lottie-with-suspense';
 
 export const InviteFriends = () => {
     const walletAddress = useWalletAddress();
@@ -29,7 +29,7 @@ export const InviteFriends = () => {
 
     return (
         <div className={styles.container}>
-            <Lottie
+            <LottieWithSuspense
                 src="/animations/diamond.lottie"
                 className={styles.animation_container}
             />

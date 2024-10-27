@@ -1,6 +1,6 @@
 import styles from './earn-fees.module.css';
 import {useModals} from '../../../../contexts/modals/modals.hook';
-import {Lottie} from '../../../lottie/lottie';
+import {LottieWithSuspense} from '../../../lottie/lottie-with-suspense';
 
 export const EarnFees = () => {
     const modals = useModals();
@@ -26,7 +26,7 @@ export const EarnFees = () => {
                     </div>
                 </div>
 
-                <Lottie
+                <LottieWithSuspense
                     src="/animations/duck-money.lottie"
                     className={styles.duck_airdrop}
                 />

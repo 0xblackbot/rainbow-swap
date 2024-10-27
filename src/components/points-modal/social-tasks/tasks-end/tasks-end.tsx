@@ -1,9 +1,9 @@
 import styles from './tasks-end.module.css';
-import {Lottie} from '../../../lottie/lottie';
+import {LottieWithSuspense} from '../../../lottie/lottie-with-suspense';
 
 export const TasksEnd = () => (
     <div className={styles.container}>
-        <Lottie
+        <LottieWithSuspense
             src="/animations/duck-clap.lottie"
             className={styles.duck_alert_fallback}
         />

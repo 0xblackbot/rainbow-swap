@@ -1,9 +1,9 @@
 import styles from './asset-no-result.module.css';
-import {Lottie} from '../../../../lottie/lottie';
+import {LottieWithSuspense} from '../../../../lottie/lottie-with-suspense';
 
 export const AssetNoResult = () => (
     <div className={styles.noResultDiv}>
-        <Lottie
+        <LottieWithSuspense
             src="/animations/duck-not-found.lottie"
             className={styles.duck_not_found_fallback}
         />

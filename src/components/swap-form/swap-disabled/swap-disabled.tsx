@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 import styles from './swap-disabled.module.css';
-import {Lottie} from '../../lottie/lottie';
+import {LottieWithSuspense} from '../../lottie/lottie-with-suspense';
 
 interface Props {
     message: string;
@@ -9,7 +9,7 @@ interface Props {
 
 export const SwapDisabled: FC<Props> = () => (
     <div className={styles.container}>
-        <Lottie
+        <LottieWithSuspense
             src="/animations/duck-alert.lottie"
             className={styles.duck_alert_fallback}
         />
