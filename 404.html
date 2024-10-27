@@ -14,32 +14,10 @@
 
         <script src="/rainbow-swap/scripts/telegram-web-app.js"></script>
         <script async src="https://tganalytics.xyz/index.js" type="text/javascript"></script>
-      <script type="module" crossorigin src="/rainbow-swap/assets/index-4b7s05ps.js"></script>
-      <link rel="stylesheet" crossorigin href="/rainbow-swap/assets/index-BR9aFEWg.css">
+      <script type="module" crossorigin src="/rainbow-swap/assets/index-BgLiaQtc.js"></script>
+      <link rel="stylesheet" crossorigin href="/rainbow-swap/assets/index-C9BABqJZ.css">
     </head>
     <body>
         <div id="root"></div>
-        <script>
-            function handleColorSchemeChange(theme) {
-                if (theme === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                }
-            }
-
-            function handleTheme() {
-                if (window.Telegram.WebApp.themeParams.bg_color) {
-                    handleColorSchemeChange(window.Telegram.WebApp.colorScheme);
-                    window.Telegram.WebApp.onEvent('themeChanged', () => handleColorSchemeChange(window.Telegram.WebApp.colorScheme));
-                } else {
-                    const isLightTheme = window.matchMedia('(prefers-color-scheme: light)');
-                    handleColorSchemeChange(isLightTheme.matches ? 'light' : 'dark');
-                    isLightTheme.addEventListener('change', e => handleColorSchemeChange(e.matches ? 'light' : 'dark'));
-                }
-            }
-
-            handleTheme();
-        </script>
     </body>
 </html>
