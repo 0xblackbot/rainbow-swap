@@ -46,7 +46,6 @@ export const CustomOutput: FC<Props> = memo(
                         >
                             {inputValue}
                         </span>
-                        <div className={styles.empty_container} />
                     </div>
                     <Skeleton isLoading={isLoading}>
                         <AssetSelector

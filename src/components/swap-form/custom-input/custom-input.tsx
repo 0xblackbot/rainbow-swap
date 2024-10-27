@@ -109,7 +109,6 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             onFocus={handleFocus}
                             onBlur={handleBlur}
                         />
-                        <div className={styles.empty_container} />
                     </div>
                     <Skeleton isLoading={isLoading}>
                         <AssetSelector

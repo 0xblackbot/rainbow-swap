@@ -12,13 +12,6 @@
     font-size: 14px;
 }
 
-.info_div {
-    justify-content: space-between;
-    align-items: center;
-    color: var(--hint-color);
-    font-size: 14px;
-}
-
 .input_container {
     display: flex;
     margin-top: var(--step);
@@ -95,6 +88,7 @@
     cursor: text;
     width: 69%; /* Any width required to make flex: 1 work*/
     flex: 1;
+    margin-right: var(--2-step);
     overflow: hidden;
 }
 
@@ -123,32 +117,6 @@
     font-size: 12px;
     line-height: unset;
     margin-left: var(--half-step);
-}
-
-.loader_spinner {
-    border: 2px solid rgba(var(--attention-color), 0.3);
-    border-top: 2px solid var(--button-color);
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.empty_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 20px;
-    margin: 0 var(--half-step);
 }
 
 .input_usd_balance {
