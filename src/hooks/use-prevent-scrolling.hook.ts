@@ -6,11 +6,11 @@ export const usePreventScroll = (isOpen: boolean) => {
         const originalOverflowY = htmlElement.style.overflowY;
 
         if (isOpen) {
-            htmlElement.style.overflowY = 'hidden';
+            htmlElement.style.overflow = 'hidden';
         }
 
         return () => {
-            htmlElement.style.overflowY = originalOverflowY;
+            htmlElement.style.overflow = originalOverflowY;
         };
     }, [isOpen]);
 };
