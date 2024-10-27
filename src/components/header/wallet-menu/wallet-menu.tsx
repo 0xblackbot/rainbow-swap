@@ -9,6 +9,7 @@ import {useModals} from '../../../contexts/modals/modals.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
 import {useEnableBackButton} from '../../../hooks/use-enable-back-button.hook';
+import {usePreventScroll} from '../../../hooks/use-prevent-scrolling.hook';
 import {getClassName} from '../../../utils/style.utils';
 import {Button} from '../../button/button';
 
@@ -29,6 +30,7 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
 
     const onClose = useCallback(() => setIsOpen(false), []);
 
+    usePreventScroll(isOpen);
     useDisableMainButton(isOpen);
     useEnableBackButton(isOpen, onClose);
 

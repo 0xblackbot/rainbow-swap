@@ -19,7 +19,7 @@ export const TaskItem: FC<Props> = ({
     return (
         <div className={styles.container} onClick={onClick}>
             <img src={imageSrc} alt={title} className={styles.image} />
-            <div>
+            <div className={styles.text_container}>
                 <p className={styles.title}>{title}</p>
                 <p className={styles.description}>{description}</p>
             </div>

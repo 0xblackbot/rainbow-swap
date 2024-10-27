@@ -16,6 +16,10 @@
     margin-right: var(--step);
 }
 
+.text_container {
+    min-width: 0;
+}
+
 .title {
     font-size: 14px;
     color: var(--text-color);
@@ -24,6 +28,9 @@
 .description {
     font-size: 14px;
     color: var(--hint-color);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .childrenContainer {
