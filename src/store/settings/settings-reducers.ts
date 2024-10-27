@@ -1,6 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 
 import {
+    setExplorerAction,
     setMaxSlippageAction,
     setRiskToleranceAction,
     setThemeAction
@@ -23,6 +24,11 @@ export const settingsReducers = createReducer<SettingsState>(
         builder.addCase(setThemeAction, (state, {payload}) => ({
             ...state,
             theme: payload
+        }));
+
+        builder.addCase(setExplorerAction, (state, {payload}) => ({
+            ...state,
+            explorer: payload
         }));
     }
 );

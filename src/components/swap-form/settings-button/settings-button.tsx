@@ -1,5 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 
+import {ExplorerSetting} from './explorer/explorer';
 import {MaxSlippage} from './max-slippage/max-slippage';
 import {RiskToleranceSetting} from './risk-tolerance/risk-tolerance';
 import styles from './settings-button.module.css';
@@ -44,6 +45,8 @@ export const SettingsButton = () => {
             >
                 <div className={styles.content_container}>
                     <ThemeSetting />
+                    <Divider />
+                    <ExplorerSetting />
                     <Divider />
                     <MaxSlippage />
                     <Divider />

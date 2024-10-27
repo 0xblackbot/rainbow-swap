@@ -8,3 +8,6 @@ export const useRiskToleranceSelector = () =>
 
 export const useThemeSelector = () =>
     useSelector(({settings}) => settings.theme);
+
+export const useExplorerSelector = () =>
+    useSelector(({settings}) => settings.explorer);

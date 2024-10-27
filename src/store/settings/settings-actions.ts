@@ -1,5 +1,6 @@
 import {createAction} from '@reduxjs/toolkit';
 
+import {Explorer} from '../../enums/explorer.enum';
 import {RiskTolerance} from '../../enums/risk-tolerance.enum';
 import {Theme} from '../../enums/theme.enum';
 
@@ -12,3 +13,7 @@ export const setRiskToleranceAction = createAction<RiskTolerance>(
 );
 
 export const setThemeAction = createAction<Theme>('settings/SET_THEME');
+
+export const setExplorerAction = createAction<Explorer>(
+    'settings/SET_EXPLORER'
+);

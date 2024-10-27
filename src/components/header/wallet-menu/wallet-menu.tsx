@@ -9,6 +9,7 @@ import {useModals} from '../../../contexts/modals/modals.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
 import {useEnableBackButton} from '../../../hooks/use-enable-back-button.hook';
+import {useExplorerLinks} from '../../../hooks/use-explorer-links.hook';
 import {usePreventScroll} from '../../../hooks/use-prevent-scrolling.hook';
 import {getClassName} from '../../../utils/style.utils';
 import {Button} from '../../button/button';
@@ -20,6 +21,9 @@ interface Props {
 export const WalletMenu: FC<Props> = ({walletAddress}) => {
     const [tonConnectUI] = useTonConnectUI();
     const modals = useModals();
+
+    const explorerLinks = useExplorerLinks();
+    const walletHref = explorerLinks.getWalletLink(walletAddress);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -80,7 +84,7 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         mode="gray"
                         className={styles.menu_button}
                         Component="a"
-                        href={`https://tonviewer.com/${walletAddress}`}
+                        href={walletHref}
                         target="_blank"
                     >
                         <ExternalLinkIcon className={styles.menu_button_icon} />
