@@ -45,8 +45,17 @@ export const App = () => {
             window.Telegram.WebApp.setBackgroundColor(bgColor);
         }
 
-        // We wait for MainButton to be initialized
-        setTimeout(() => viewportHeight.updateValue(), 300);
+        const handleOrientationChange = () => {
+            // We wait for MainButton to be initialized
+            setTimeout(() => viewportHeight.updateValue(), 300);
+        };
+
+        window.addEventListener('resize', handleOrientationChange);
+
+        handleOrientationChange();
+
+        return () =>
+            window.removeEventListener('resize', handleOrientationChange);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

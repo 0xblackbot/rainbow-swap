@@ -82,9 +82,10 @@
 }
 
 .assets_list {
-    height: 100%;
-    justify-content: center;
+    flex: 1;
+    overflow: hidden;
     display: flex;
+    justify-content: center;
 }
 
 .fixed_size_list{
