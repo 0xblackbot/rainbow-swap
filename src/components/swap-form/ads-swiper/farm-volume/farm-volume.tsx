@@ -1,12 +1,8 @@
-import {Suspense, lazy} from 'react';
-
 import styles from './farm-volume.module.css';
 import {useModals} from '../../../../contexts/modals/modals.hook';
 import {useSwapForm} from '../../../../contexts/swap-form/swap-form.hook';
 import {IS_TMA, TELEGRAM_BOT_LINK, TON, USDT} from '../../../../globals';
-import {Skeleton} from '../../../skeleton/skeleton';
-
-const DuckAirdrop = lazy(() => import('./duck-airdrop/duck-airdrop'));
+import {Lottie} from '../../../lottie/lottie';
 
 const DELEN_BADGE_URL = 'https://society.ton.org/degen-airdrop';
 const TON_INPUT_AMOUNT = '20';
@@ -72,16 +68,10 @@ export const FarmVolume = () => {
                     </div>
                 </div>
 
-                <Suspense
-                    fallback={
-                        <Skeleton
-                            isLoading={true}
-                            className={styles.duck_airdrop}
-                        />
-                    }
-                >
-                    <DuckAirdrop className={styles.duck_airdrop} />
-                </Suspense>
+                <Lottie
+                    src="/animations/duck-airdrop.lottie"
+                    className={styles.duck_airdrop}
+                />
             </div>
         </div>
     );

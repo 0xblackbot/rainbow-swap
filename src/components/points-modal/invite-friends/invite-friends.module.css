@@ -10,15 +10,13 @@
 .animation_container {
     width: 20%;
     aspect-ratio: 1 / 1;
-
-    overflow: hidden;
-    align-self: center;
     margin: var(--2-step);
+    align-self: center;
+    overflow: hidden;
 }
 
-.animation_container svg {
+.animation_container canvas {
     transform: scale(2) !important;
-    transform-origin: center;
 }
 
 .title {

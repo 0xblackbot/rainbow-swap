@@ -1,12 +1,6 @@
-import {lazy, Suspense} from 'react';
-
 import styles from './earn-fees.module.css';
 import {useModals} from '../../../../contexts/modals/modals.hook';
-import {Skeleton} from '../../../skeleton/skeleton';
-
-const DuckMoney = lazy(
-    () => import('../../../rewards-modal/referrer-stats/duck-money/duck-money')
-);
+import {Lottie} from '../../../lottie/lottie';
 
 export const EarnFees = () => {
     const modals = useModals();
@@ -32,16 +26,10 @@ export const EarnFees = () => {
                     </div>
                 </div>
 
-                <Suspense
-                    fallback={
-                        <Skeleton
-                            isLoading={true}
-                            className={styles.duck_airdrop}
-                        />
-                    }
-                >
-                    <DuckMoney className={styles.duck_airdrop} />
-                </Suspense>
+                <Lottie
+                    src="/animations/duck-money.lottie"
+                    className={styles.duck_airdrop}
+                />
             </div>
         </div>
     );

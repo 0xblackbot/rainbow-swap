@@ -7,14 +7,14 @@
 .inner_container {
     width: 100%;
     display: flex;
+    align-items: flex-end;
     justify-content: space-evenly;
-    gap: var(--2-step);
+    gap: var(--step);
 }
 
 .duck_airdrop {
-    width: 100px;
-    height: 100px;
-    align-self: center;
+    width: 22%;
+    aspect-ratio: 1 / 1;
 }
 
 .title {

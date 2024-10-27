@@ -1,8 +1,8 @@
 .container {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    gap: var(--step);
+    justify-content: center;
+    gap: var(--2-step);
     background: rgba(var(--danger-color), 0.1);
     border-radius: var(--border-radius);
     margin-bottom: var(--2-step);
@@ -10,15 +10,13 @@
 }
 
 .duck_alert_fallback {
-    width: 100px;
-    height: 100px;
-    align-self: center;
+    width: 22%;
+    aspect-ratio: 1 / 1;
 }
 
 .title {
     font-size: 26px;
     color: rgb(var(--danger-color));
-    margin-bottom: var(--step);
 }
 
 .list_container {

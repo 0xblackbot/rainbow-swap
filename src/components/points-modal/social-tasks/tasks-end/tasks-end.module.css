@@ -8,8 +8,7 @@
 }
 
 .duck_alert_fallback {
-    width: 171px;
-    height: 176px;
-
+    width: 30%;
+    aspect-ratio: 1 / 1;
     margin-bottom: var(--2-step);
 }

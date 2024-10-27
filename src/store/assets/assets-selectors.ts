@@ -8,7 +8,7 @@ const EMPTY_ASSET: Asset = {
     slug: 'unknown_token',
     symbol: '???',
     name: 'Unknown token',
-    image: './icons/unknown_asset.png',
+    image: '/icons/unknown_asset.png',
     decimals: 0,
     exchangeRate: '0',
     usdExchangeRate: 0,

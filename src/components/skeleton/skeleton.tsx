@@ -12,17 +12,9 @@ export const Skeleton: FC<Props> = ({isLoading, className, children}) => (
     <div
         className={getClassName(
             className ?? '',
-            styles.skeleton,
             isLoading ? styles.skeleton_loading : ''
         )}
     >
-        <div
-            className={getClassName(
-                styles.children,
-                isLoading ? styles.children_loading : ''
-            )}
-        >
-            {children}
-        </div>
+        {children}
     </div>
 );
