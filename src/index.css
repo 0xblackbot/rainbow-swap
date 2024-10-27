@@ -17,6 +17,15 @@ html {
     height: -webkit-fill-available;
     overflow-y: initial;
     overscroll-behavior-x: none;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html::-webkit-scrollbar-track {
+    display: none;
 }
 
 body {
