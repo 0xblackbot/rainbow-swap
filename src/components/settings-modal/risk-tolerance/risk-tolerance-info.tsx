@@ -1,6 +1,6 @@
 import styles from './risk-tolerance.module.css';
-import {RiskTolerance} from '../../../../enums/risk-tolerance.enum';
-import {useRiskToleranceSelector} from '../../../../store/settings/settings-selectors';
+import {RiskTolerance} from '../../../enums/risk-tolerance.enum';
+import {useRiskToleranceSelector} from '../../../store/settings/settings-selectors';
 
 const TitleRecord: Record<RiskTolerance, string> = {
     [RiskTolerance.Safe]: 'Safe',

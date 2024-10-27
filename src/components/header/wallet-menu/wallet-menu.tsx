@@ -5,6 +5,7 @@ import styles from './wallet-menu.module.css';
 import {DiamondIcon} from '../../../assets/icons/DiamondIcon/DiamondIcon';
 import {ExternalLinkIcon} from '../../../assets/icons/ExternalLinkIcon/ExternalLinkIcon';
 import {LogoutIcon} from '../../../assets/icons/LogoutIcon/LogoutIcon';
+import {SettingsIcon} from '../../../assets/icons/SettingsIcon/SettingsIcon';
 import {useModals} from '../../../contexts/modals/modals.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
@@ -51,6 +52,11 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
         modals.openRewardsModal();
         onClose();
     };
+    const handleSettingsClick = () => {
+        trackButtonClick('Header Settings');
+        modals.openSettingsModal();
+        onClose();
+    };
     const handleDisconnect = () => {
         trackButtonClick('Header Disconnect');
         tonConnectUI.disconnect();
@@ -74,6 +80,17 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         size="s"
                         mode="gray"
                         className={styles.menu_button}
+                        Component="a"
+                        href={walletHref}
+                        target="_blank"
+                    >
+                        <ExternalLinkIcon className={styles.menu_button_icon} />
+                        <span>Open Explorer</span>
+                    </Button>
+                    <Button
+                        size="s"
+                        mode="gray"
+                        className={styles.menu_button}
                         onClick={handleRewardsCenterClick}
                     >
                         <DiamondIcon className={styles.menu_button_icon} />
@@ -83,12 +100,10 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         size="s"
                         mode="gray"
                         className={styles.menu_button}
-                        Component="a"
-                        href={walletHref}
-                        target="_blank"
+                        onClick={handleSettingsClick}
                     >
-                        <ExternalLinkIcon className={styles.menu_button_icon} />
-                        <span>Open Explorer</span>
+                        <SettingsIcon className={styles.menu_button_icon} />
+                        <span>Settings</span>
                     </Button>
                     <Button
                         size="s"

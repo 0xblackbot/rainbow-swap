@@ -1,10 +1,10 @@
 import {FC} from 'react';
 
-import {Explorer} from '../../../../enums/explorer.enum';
-import {useDispatch} from '../../../../store';
-import {setExplorerAction} from '../../../../store/settings/settings-actions';
-import {useExplorerSelector} from '../../../../store/settings/settings-selectors';
-import {Button} from '../../../button/button';
+import {Explorer} from '../../../enums/explorer.enum';
+import {useDispatch} from '../../../store';
+import {setExplorerAction} from '../../../store/settings/settings-actions';
+import {useExplorerSelector} from '../../../store/settings/settings-selectors';
+import {Button} from '../../button/button';
 
 interface Props {
     value: Explorer;

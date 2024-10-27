@@ -1,6 +1,6 @@
-import sharedStyles from '../settings-button.module.css';
+import sharedStyles from '../settings-modal.module.css';
 import {ThemeButton} from './theme-button';
-import {Theme} from '../../../../enums/theme.enum';
+import {Theme} from '../../../enums/theme.enum';
 
 export const ThemeSetting = () => (
     <div className={sharedStyles.title_container}>

@@ -1,10 +1,10 @@
 import {FC} from 'react';
 
-import {Theme} from '../../../../enums/theme.enum';
-import {useDispatch} from '../../../../store';
-import {setThemeAction} from '../../../../store/settings/settings-actions';
-import {useThemeSelector} from '../../../../store/settings/settings-selectors';
-import {Button} from '../../../button/button';
+import {Theme} from '../../../enums/theme.enum';
+import {useDispatch} from '../../../store';
+import {setThemeAction} from '../../../store/settings/settings-actions';
+import {useThemeSelector} from '../../../store/settings/settings-selectors';
+import {Button} from '../../button/button';
 
 interface Props {
     value: Theme;

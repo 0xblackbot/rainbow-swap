@@ -1,7 +1,7 @@
 import {RiskToleranceButton} from './risk-tolerance-button';
 import {RiskToleranceInfo} from './risk-tolerance-info';
-import {RiskTolerance} from '../../../../enums/risk-tolerance.enum';
-import sharedStyles from '../settings-button.module.css';
+import {RiskTolerance} from '../../../enums/risk-tolerance.enum';
+import sharedStyles from '../settings-modal.module.css';
 
 export const RiskToleranceSetting = () => (
     <>

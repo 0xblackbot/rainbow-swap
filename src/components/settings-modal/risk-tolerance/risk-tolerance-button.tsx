@@ -1,10 +1,10 @@
 import {FC} from 'react';
 
-import {RiskTolerance} from '../../../../enums/risk-tolerance.enum';
-import {useDispatch} from '../../../../store';
-import {setRiskToleranceAction} from '../../../../store/settings/settings-actions';
-import {useRiskToleranceSelector} from '../../../../store/settings/settings-selectors';
-import {Button} from '../../../button/button';
+import {RiskTolerance} from '../../../enums/risk-tolerance.enum';
+import {useDispatch} from '../../../store';
+import {setRiskToleranceAction} from '../../../store/settings/settings-actions';
+import {useRiskToleranceSelector} from '../../../store/settings/settings-selectors';
+import {Button} from '../../button/button';
 
 interface Props {
     value: RiskTolerance;

@@ -1,6 +1,6 @@
-import sharedStyles from '../settings-button.module.css';
+import sharedStyles from '../settings-modal.module.css';
 import {ExplorerButton} from './explorer-button';
-import {Explorer} from '../../../../enums/explorer.enum';
+import {Explorer} from '../../../enums/explorer.enum';
 
 export const ExplorerSetting = () => (
     <>
