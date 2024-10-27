@@ -1,5 +1,5 @@
 .swiper-pagination {
-    bottom: unset !important;
+    display: none;
 }
 
 .swiper-pagination-bullet {

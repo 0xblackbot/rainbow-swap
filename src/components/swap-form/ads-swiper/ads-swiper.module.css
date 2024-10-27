@@ -1,8 +1,8 @@
 .swiper {
     width: 100%;
     height: calc(19 * var(--step));
-    padding-bottom: 22px; /* pagination height */
     margin-bottom: var(--2-step);
+    border-radius: var(--border-radius) !important;
 }
 
 .swiperSlide {

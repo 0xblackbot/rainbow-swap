@@ -11,7 +11,7 @@ import {EarnFees} from './earn-fees/earn-fees';
 import {FarmVolume} from './farm-volume/farm-volume';
 import {getClassName} from '../../../utils/style.utils';
 
-export const AdsSwiper = () => (
+const AdsSwiper = () => (
     <Swiper
         className={styles.swiper}
         loop={true}
@@ -37,3 +37,5 @@ export const AdsSwiper = () => (
         </SwiperSlide>
     </Swiper>
 );
+
+export default AdsSwiper;

@@ -1,5 +1,4 @@
 import {isNotEmptyString} from '@rnw-community/shared';
-import {TonApiClient} from '@ton-api/client';
 import axios from 'axios';
 
 import {toNano} from './utils/big-int.utils';
@@ -21,10 +20,6 @@ export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);
 
 export const API = axios.create({
     baseURL: 'https://api.rainbow.ag/api'
-});
-
-export const TON_API_CLIENT = new TonApiClient({
-    baseUrl: 'https://tonapi.io'
 });
 
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
