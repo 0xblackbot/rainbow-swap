@@ -12,9 +12,11 @@ import {SwapDetails} from './swap-details/swap-details';
 import {SwapDisabled} from './swap-disabled/swap-disabled';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
+import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
 import {useSwapForm} from '../../contexts/swap-form/swap-form.hook';
 import {IS_MAIN_BUTTON_AVAILABLE} from '../../globals';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
+import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
@@ -53,6 +55,8 @@ export const SwapScreen = () => {
         outputAsset
     } = useSwapForm();
 
+    const isValidInputAssetAmount = Number(inputAssetAmount) !== 0;
+
     const nanoInputAssetAmount = useMemo(
         () =>
             inputAssetAmount === ''
@@ -67,6 +71,14 @@ export const SwapScreen = () => {
         swapDisplayData.outputAssetAmount === 0
             ? ''
             : swapDisplayData.outputAssetAmount.toString();
+
+    const {intervalRef, handleManualRefresh} = useRefreshRoutes(
+        inputAssetAmount,
+        nanoInputAssetAmount,
+        inputAssetAddress,
+        outputAssetAddress,
+        riskTolerance
+    );
 
     useEffect(() => {
         dispatch(
@@ -132,6 +144,14 @@ export const SwapScreen = () => {
                         <p />
                         <div className={styles.icons_div}>
                             <PendingSwap />
+                            {isValidInputAssetAmount && (
+                                <RefreshIcon
+                                    width="22px"
+                                    height="22px"
+                                    onClick={handleManualRefresh}
+                                    isAnimating={intervalRef.current !== null}
+                                />
+                            )}
                         </div>
                     </div>
                     <div className={styles.input_asset_container}>
@@ -161,15 +181,15 @@ export const SwapScreen = () => {
                         />
                     </div>
                     {walletAddress ? (
-                        Number(inputAssetAmount) === 0 ? (
-                            <FormButton
-                                text="Enter amount"
-                                onClick={handleEnterSendAmount}
-                            />
-                        ) : (
+                        isValidInputAssetAmount ? (
                             <SwapButton
                                 inputAsset={inputAsset}
                                 outputAsset={outputAsset}
+                            />
+                        ) : (
+                            <FormButton
+                                text="Enter amount"
+                                onClick={handleEnterSendAmount}
                             />
                         )
                     ) : (
@@ -180,7 +200,7 @@ export const SwapScreen = () => {
                     )}
 
                     <SwapDetails
-                        inputAssetAmount={inputAssetAmount}
+                        isValidInputAssetAmount={isValidInputAssetAmount}
                         inputError={inputError}
                         inputAsset={inputAsset}
                         outputAsset={outputAsset}

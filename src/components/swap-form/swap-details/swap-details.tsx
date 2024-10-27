@@ -15,11 +15,11 @@ import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props extends SwapDetailsHeaderProps {
-    inputAssetAmount: string;
+    isValidInputAssetAmount: boolean;
 }
 
 export const SwapDetails: FC<Props> = ({
-    inputAssetAmount,
+    isValidInputAssetAmount,
     inputError,
     inputAsset,
     outputAsset,
@@ -36,7 +36,7 @@ export const SwapDetails: FC<Props> = ({
 
     return (
         <div className={styles.container}>
-            {inputAssetAmount !== '' && (
+            {isValidInputAssetAmount && (
                 <>
                     <div className={styles.header_container}>
                         <Skeleton isLoading={isRoutesLoading}>
