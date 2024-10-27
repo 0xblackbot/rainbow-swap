@@ -7,12 +7,15 @@ import {Header} from '../../components/header/header';
 import {SwapScreen} from '../../components/swap-form/swap-form';
 import {ModalsProvider} from '../../contexts/modals/modals.provider';
 import {SwapFormProvider} from '../../contexts/swap-form/swap-form.provider';
-import {INIT_DATA, UNSAFE_INIT_DATA} from '../../globals';
+import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../store';
 import {loadAssetsActions} from '../../store/assets/assets-actions';
-import {loadWalletPointsActions} from '../../store/points/points-actions';
+import {
+    loadUserAuthActions,
+    loadWalletPointsActions
+} from '../../store/points/points-actions';
 import {
     addPendingSwapTransactionActions,
     loadBalancesActions
@@ -54,6 +57,15 @@ export const HomeScreen = memo(() => {
                 })
             );
         } else {
+            // save new user
+            IS_TMA &&
+                dispatch(
+                    loadUserAuthActions.submit({
+                        initData: INIT_DATA,
+                        refParent: UNSAFE_INIT_DATA.refParent
+                    })
+                );
+
             // reset wallet related data
             dispatch(loadBalancesActions.success({}));
             dispatch(loadWalletPointsActions.success(emptyWalletPoints));
