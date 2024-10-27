@@ -18,27 +18,5 @@
     <body>
         <div id="root"></div>
         <script type="module" src="/src/main.tsx"></script>
-        <script>
-            function handleColorSchemeChange(theme) {
-                if (theme === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                }
-            }
-
-            function handleTheme() {
-                if (window.Telegram.WebApp.themeParams.bg_color) {
-                    handleColorSchemeChange(window.Telegram.WebApp.colorScheme);
-                    window.Telegram.WebApp.onEvent('themeChanged', () => handleColorSchemeChange(window.Telegram.WebApp.colorScheme));
-                } else {
-                    const isLightTheme = window.matchMedia('(prefers-color-scheme: light)');
-                    handleColorSchemeChange(isLightTheme.matches ? 'light' : 'dark');
-                    isLightTheme.addEventListener('change', e => handleColorSchemeChange(e.matches ? 'light' : 'dark'));
-                }
-            }
-
-            handleTheme();
-        </script>
     </body>
 </html>

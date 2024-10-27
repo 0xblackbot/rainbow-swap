@@ -3,6 +3,7 @@ import {useCallback, useEffect, useState} from 'react';
 import {MaxSlippage} from './max-slippage/max-slippage';
 import {RiskToleranceSetting} from './risk-tolerance/risk-tolerance';
 import styles from './settings-button.module.css';
+import {ThemeSetting} from './theme/theme';
 import {SettingsIcon} from '../../../assets/icons/SettingsIcon/SettingsIcon';
 import {IS_TMA} from '../../../globals';
 import {BottomSheet} from '../../../shared/bottom-sheet/bottom-sheet';
@@ -42,6 +43,8 @@ export const SettingsButton = () => {
                 onClose={handleClose}
             >
                 <div className={styles.content_container}>
+                    <ThemeSetting />
+                    <Divider />
                     <MaxSlippage />
                     <Divider />
                     <RiskToleranceSetting />

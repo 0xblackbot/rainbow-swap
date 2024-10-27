@@ -5,3 +5,6 @@ export const useMaxSlippageSelector = () =>
 
 export const useRiskToleranceSelector = () =>
     useSelector(({settings}) => settings.riskTolerance);
+
+export const useThemeSelector = () =>
+    useSelector(({settings}) => settings.theme);

@@ -17,14 +17,33 @@
     color: var(--text-color);
 }
 
+.title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .title {
     color: var(--text-color);
     font-size: 16px;
 }
 
+.selector_container {
+    display: flex;
+    justify-content: space-around;
+    padding: var(--half-step);
+    border: 1px solid var(--border-color);
+    border-radius: var(--2-step);
+}
+
+.selector_divider {
+    padding: 0 var(--half-step);
+}
+
 .description {
     color: var(--hint-color);
     font-size: 14px;
+    margin-top: var(--step);
 }
 
 .footer_container {

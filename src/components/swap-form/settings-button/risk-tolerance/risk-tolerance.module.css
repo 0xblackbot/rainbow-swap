@@ -1,23 +1,4 @@
-.risk_tolerance_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--step);
-}
-.selector_container {
-    display: flex;
-    justify-content: space-around;
-    padding: var(--half-step);
-    border: 1px solid var(--border-color);
-    border-radius: var(--2-step);
-}
-
-
-.selector_divider {
-    padding: 0 var(--half-step);
-}
-
 .info_text {
     font-size: 14px;
-    margin-bottom: var(--step);
+    margin-top: var(--step);
 }

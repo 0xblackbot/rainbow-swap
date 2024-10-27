@@ -53,7 +53,7 @@ export const MaxSlippage = () => {
 
     return (
         <>
-            <div className={styles.max_slippage_container}>
+            <div className={sharedStyles.title_container}>
                 <p className={sharedStyles.title}>Max slippage</p>
 
                 <div className={styles.input_container}>

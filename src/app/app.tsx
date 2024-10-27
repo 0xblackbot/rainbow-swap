@@ -7,6 +7,7 @@ import {useViewportHeight} from '../contexts/viewport-height/viewport-height.hoo
 import {BASE_URL, IS_MAIN_BUTTON_AVAILABLE, IS_TMA} from '../globals';
 import {useDisableMainButton} from '../hooks/use-disable-main-button.hook';
 import {useStateVersionCheck} from '../hooks/use-state-version-check.hook';
+import {useThemeStyles} from '../hooks/use-theme-styles.hook';
 import {useTonConnectModalStatus} from '../hooks/use-ton-connect-modal-status.hook';
 import {HomeScreen} from '../screens/home-screen/home-screen';
 
@@ -27,22 +28,18 @@ export const App = () => {
     const viewportHeight = useViewportHeight();
     const tonConnectModalStatus = useTonConnectModalStatus();
 
+    useThemeStyles();
     useDisableMainButton(tonConnectModalStatus === 'opened');
     useStateVersionCheck();
 
     useEffect(() => {
         if (IS_TMA) {
-            const computedStyle = getComputedStyle(document.documentElement);
-            const bgColor = computedStyle.getPropertyValue('--bg-color').trim();
-
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.enableClosingConfirmation();
             window.Telegram.WebApp.disableVerticalSwipes();
             IS_MAIN_BUTTON_AVAILABLE &&
                 window.Telegram.WebApp.MainButton.show();
-            window.Telegram.WebApp.setHeaderColor(bgColor);
-            window.Telegram.WebApp.setBackgroundColor(bgColor);
         }
 
         const handleOrientationChange = () => {

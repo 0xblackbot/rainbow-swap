@@ -1,10 +1,3 @@
-.max_slippage_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--step);
-}
-
 .input_container {
     display: flex;
     align-items: center;
