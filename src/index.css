@@ -36,6 +36,8 @@ body {
     overscroll-behavior-x: none;
     background: var(--bg-color);
     color: var(--text-color);
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
     user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
