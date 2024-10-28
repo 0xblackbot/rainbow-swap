@@ -15,34 +15,30 @@ export const AssetListItem: FC<
 
     return (
         <div style={style} onClick={item.onClick}>
-            <div className={styles.select_list_item_div}>
-                <div className={styles.select_list_item_wrapper}>
-                    <img
-                        className={styles.img}
-                        src={item.asset.image}
-                        alt={item.asset.symbol}
-                    />
-                    <div className={styles.select_list_item_info}>
-                        <div className={styles.select_list_item_header}>
+            <div className={styles.container}>
+                <img
+                    className={styles.img}
+                    src={item.asset.image}
+                    alt={item.asset.symbol}
+                />
+                <div className={styles.info_container}>
+                    <div className={styles.info_container_row}>
+                        <div className={styles.info_container_row}>
                             <p className={styles.asset_symbol}>
                                 {item.asset.symbol}
                             </p>
                             {item.asset.verification !== 'whitelist' && (
-                                <AlertIcon
-                                    width={16}
-                                    height={16}
-                                    className={styles.select_list_item_alert}
-                                />
+                                <AlertIcon width={16} height={16} />
                             )}
                         </div>
-                        <p className={styles.asset_name}>{item.asset.name}</p>
+                        <p className={styles.coin_balance}>{item.balance}</p>
                     </div>
-                </div>
-                <div className={styles.select_list_item_balance}>
-                    <p className={styles.coin_balance}>{item.balance}</p>
-                    <p className={styles.dollar_balance}>
-                        ≈{formatNumber(usdAmount, 2)}$
-                    </p>
+                    <div className={styles.info_container_row}>
+                        <p className={styles.asset_name}>{item.asset.name}</p>
+                        <p className={styles.dollar_balance}>
+                            ≈{formatNumber(usdAmount, 2)}$
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

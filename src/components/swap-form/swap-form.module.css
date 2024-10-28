@@ -1,7 +1,7 @@
 .body_div {
     display: flex;
     flex-direction: column;
-    margin: var(--2-step);
+    margin: var(--2-step) var(--step);
 }
 
 .input_asset_container {

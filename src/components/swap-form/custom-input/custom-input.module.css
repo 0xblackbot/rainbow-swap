@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
+    gap: var(--step);
     background-color: var(--secondary-bg-color);
     border-radius: var(--border-radius);
     padding: var(--2-step);
@@ -14,9 +15,9 @@
 
 .input_container {
     display: flex;
-    margin-top: var(--step);
     justify-content: space-between;
     align-items: center;
+    gap: var(--2-step);
 }
 
 .input_field {
@@ -24,7 +25,6 @@
     color: var(--text-color);
     font-size: 36px;
     outline: none;
-    width: 69%;
     flex: 1;
 }
 
@@ -86,9 +86,7 @@
     position: relative;
     display: flex;
     cursor: text;
-    width: 69%; /* Any width required to make flex: 1 work*/
     flex: 1;
-    margin-right: var(--2-step);
     overflow: hidden;
 }
 
@@ -99,7 +97,6 @@
 .input_info {
     display: flex;
     justify-content: space-between;
-    margin-top: var(--step);
     color: var(--hint-color);
     white-space: nowrap;
     font-size: 14px;

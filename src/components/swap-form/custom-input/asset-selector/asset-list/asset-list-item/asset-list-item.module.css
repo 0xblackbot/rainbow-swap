@@ -1,55 +1,52 @@
-.select_list_item_div {
+.container {
     display: flex;
+    gap: var(--2-step);
     cursor: pointer;
-    justify-content: space-between;
     align-items: center;
     padding: var(--step) var(--2-step);
 }
 
-.select_list_item_div:hover {
+.container:hover {
     background-color: var(--secondary-bg-color);
 }
 
-.selected {
-    border-color: var(--button-color);
-}
-
-.select_list_item_wrapper {
-    display: flex;
-}
-
 .img {
-    width: 40px;
-    height: 40px;
-    margin-right: 12px;
+    width: var(--5-step);
+    height: var(--5-step);
     align-self: center;
     border-radius: 50%;
     object-fit: cover;
 }
 
-
-.select_list_item_info {
+.info_container {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    overflow: hidden;
 }
 
-.select_list_item_balance {
+.info_container_row {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: var(--half-step) 0 var(--half-step) var(--step);
-    border-radius: 16px;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--step);
+    overflow: hidden;
 }
 
 .asset_symbol {
     font-size: 18px;
     color: var(--text-color);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .asset_name {
     font-size: 14px;
     color: var(--hint-color);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .coin_balance {
@@ -60,13 +57,4 @@
 .dollar_balance {
     font-size: 14px;
     color: var(--hint-color);
-}
-
-.select_list_item_header {
-    display: flex;
-    align-items: center;
-}
-
-.select_list_item_alert {
-    padding: 2px 4px 2px 8px;
 }
