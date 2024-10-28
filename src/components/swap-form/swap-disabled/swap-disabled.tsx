@@ -10,7 +10,7 @@ interface Props {
 export const SwapDisabled: FC<Props> = () => (
     <div className={styles.container}>
         <LottieWithSuspense
-            src="/animations/duck-alert.lottie"
+            src="animations/duck-alert.lottie"
             className={styles.duck_alert_fallback}
         />
         <div className={styles.list_container}>

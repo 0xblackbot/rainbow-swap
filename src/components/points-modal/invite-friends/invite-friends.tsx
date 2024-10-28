@@ -30,7 +30,7 @@ export const InviteFriends = () => {
     return (
         <div className={styles.container}>
             <LottieWithSuspense
-                src="/animations/diamond.lottie"
+                src="animations/diamond.lottie"
                 className={styles.animation_container}
             />
             <p className={styles.title}>Invite frens</p>

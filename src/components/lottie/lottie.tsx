@@ -2,6 +2,7 @@ import {DotLottieReact, DotLottie} from '@lottiefiles/dotlottie-react';
 import {FC, useEffect, useState} from 'react';
 
 import {LottieProps} from './lottie.props';
+import {BASE_URL} from '../../globals';
 import {Skeleton} from '../skeleton/skeleton';
 
 const Lottie: FC<LottieProps> = ({src, className}) => {
@@ -21,7 +22,7 @@ const Lottie: FC<LottieProps> = ({src, className}) => {
     return (
         <Skeleton isLoading={isLoading} className={className}>
             <DotLottieReact
-                src={src}
+                src={BASE_URL + src}
                 loop={true}
                 autoplay={true}
                 dotLottieRefCallback={setDotLottie}

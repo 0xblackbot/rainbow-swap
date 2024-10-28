@@ -27,7 +27,7 @@ export const EarnFees = () => {
                 </div>
 
                 <LottieWithSuspense
-                    src="/animations/duck-money.lottie"
+                    src="animations/duck-money.lottie"
                     className={styles.duck_airdrop}
                 />
             </div>
