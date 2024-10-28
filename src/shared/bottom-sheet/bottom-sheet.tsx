@@ -1,9 +1,8 @@
 import {EmptyFn} from '@rnw-community/shared';
-import {FC, PropsWithChildren, useEffect, useMemo, useState} from 'react';
+import {FC, PropsWithChildren, useEffect, useState} from 'react';
 
 import styles from './bottom-sheet.module.css';
 import {XIcon} from '../../assets/icons/XIcon/XIcon';
-import {useViewportHeight} from '../../contexts/viewport-height/viewport-height.hook';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useEnableBackButton} from '../../hooks/use-enable-back-button.hook';
 import {usePreventScroll} from '../../hooks/use-prevent-scrolling.hook';
@@ -22,14 +21,7 @@ export const BottomSheet: FC<Props> = ({
     headerTitle,
     children
 }) => {
-    const viewportHeight = useViewportHeight();
     const [isVisible, setIsVisible] = useState(false);
-
-    const contentHeight = useMemo(() => {
-        const topOffset = viewportHeight.value < 600 ? 40 : 60;
-
-        return viewportHeight.value - topOffset;
-    }, [viewportHeight.value]);
 
     usePreventScroll(isOpen);
     useTrackPageView(headerTitle, isOpen);
@@ -50,13 +42,11 @@ export const BottomSheet: FC<Props> = ({
                 styles.modal_backdrop,
                 isOpen ? styles.open : styles.close
             )}
-            style={{height: viewportHeight.value}}
             onClick={onClose}
         >
             <ContentContainer>
                 <div
                     className={styles.modal_content}
-                    style={{height: contentHeight}}
                     onClick={e => e.stopPropagation()}
                 >
                     {isVisible && (

@@ -7,7 +7,6 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import {App} from './app/app';
-import {ViewportHeightProvider} from './contexts/viewport-height/viewport-height.provider';
 import {GA_MEASUREMENT_ID, isProd, UNSAFE_INIT_DATA} from './globals';
 import {TELEGRAM_ANALYTICS_APP_NAME, TELEGRAM_ANALYTICS_TOKEN} from './secrets';
 import {persistor, store} from './store';
@@ -31,13 +30,11 @@ window.telegramAnalytics?.init({
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <ViewportHeightProvider>
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                <TonConnectUIProvider manifestUrl="https://rainbow.ag/tonconnect-manifest.json">
-                    <App />
-                </TonConnectUIProvider>
-            </PersistGate>
-        </Provider>
-    </ViewportHeightProvider>
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+            <TonConnectUIProvider manifestUrl="https://rainbow.ag/tonconnect-manifest.json">
+                <App />
+            </TonConnectUIProvider>
+        </PersistGate>
+    </Provider>
 );
