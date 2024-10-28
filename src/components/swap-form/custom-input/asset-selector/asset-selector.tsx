@@ -1,11 +1,13 @@
 import {Asset} from 'rainbow-swap-sdk';
-import {FC, memo, useCallback, useState} from 'react';
+import {FC, memo, useCallback, useEffect, useState} from 'react';
 
 import {AssetList} from './asset-list/asset-list';
 import styles from './asset-selector.module.css';
 import {ChevronDownIcon} from '../../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
 import {BottomSheet} from '../../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../../shared/form-button/form-button';
+import {useDispatch} from '../../../../store';
+import {setAssetsListSearchValue} from '../../../../store/assets/assets-actions';
 import {Button} from '../../../button/button';
 
 interface Props {
@@ -16,7 +18,14 @@ interface Props {
 
 export const AssetSelector: FC<Props> = memo(
     ({value, headerTitle, onChange}) => {
+        const dispatch = useDispatch();
         const [isOpen, setIsOpen] = useState(false);
+
+        useEffect(() => {
+            if (!isOpen) {
+                dispatch(setAssetsListSearchValue(''));
+            }
+        }, [dispatch, isOpen]);
 
         const handleOpen = () => setIsOpen(true);
         const handleDismiss = useCallback(() => setIsOpen(false), []);

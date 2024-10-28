@@ -6,10 +6,23 @@ import {AssetListItemProps} from './asset-list-item.props';
 import {AlertIcon} from '../../../../../../assets/icons/AlertIcon/AlertIcon';
 import {formatNumber} from '../../../../../../utils/format-number.utils';
 
-export const AssetListItem: FC<
-    ListChildComponentProps<AssetListItemProps[]>
-> = ({index, style, data}) => {
-    const item = data[index];
+export const AssetListItem: FC<ListChildComponentProps<AssetListItemProps>> = ({
+    index,
+    style,
+    data
+}) => {
+    // List end
+    if (index >= data.dataArray.length) {
+        return (
+            <div style={style}>
+                <p className={styles.search_hint_text}>
+                    Pss, try search tokens input...
+                </p>
+            </div>
+        );
+    }
+
+    const item = data.dataArray[index];
 
     const usdAmount = parseFloat(item.balance) * item.asset.usdExchangeRate;
 

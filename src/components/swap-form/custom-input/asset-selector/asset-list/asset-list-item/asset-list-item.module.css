@@ -1,3 +1,12 @@
+.search_hint_text {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
 .container {
     display: flex;
     gap: var(--2-step);

@@ -1,4 +1,7 @@
+import {Asset} from 'rainbow-swap-sdk';
+
 import {API} from '../globals';
+import {GetAssetsListParams} from '../types/get-assets-list.type';
 import {GetClaimRewardsParams} from '../types/get-claim-rewards.type';
 import {GetTaskCheckParams} from '../types/get-task-check.type';
 import {GetUserAuthParams} from '../types/get-user-auth.type';
@@ -22,3 +25,6 @@ export const getClaimRewards = (params: GetClaimRewardsParams) =>
     API.get<boolean>('/claim-rewards', {params}).then(
         response => response.data
     );
+
+export const getAssetsList = (params: GetAssetsListParams) =>
+    API.post<Asset[]>('/assets-list', params).then(response => response.data);
