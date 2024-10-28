@@ -1,6 +1,6 @@
 import {isDefined} from '@rnw-community/shared';
 import {Asset} from 'rainbow-swap-sdk';
-import {Dispatch, SetStateAction, useEffect, useRef} from 'react';
+import {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 
 import {useDispatch} from '../store';
@@ -15,7 +15,7 @@ export const useSyncSwapFormWithRouter = (
     setInputAssetAddress: Dispatch<SetStateAction<string>>,
     setOutputAssetAddress: Dispatch<SetStateAction<string>>
 ) => {
-    const isSynced = useRef(false);
+    const [isSynced, setIsSynced] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,10 +25,10 @@ export const useSyncSwapFormWithRouter = (
     const isAssetInitialized = useIsAssetInitializedSelector();
 
     useEffect(() => {
-        if (isSynced.current === false) {
+        if (isSynced === false) {
             // skip Arbitrage mode
             if (params.inputAssetSlug === params.outputAssetSlug) {
-                isSynced.current = true;
+                setIsSynced(true);
 
                 return;
             }
@@ -43,7 +43,7 @@ export const useSyncSwapFormWithRouter = (
             );
 
             if (isDefined(inputAsset) && isDefined(outputAsset)) {
-                isSynced.current = true;
+                setIsSynced(true);
 
                 // remove skeleton from AssetsSelector
                 dispatch(assetsInitializedAction());
@@ -52,7 +52,7 @@ export const useSyncSwapFormWithRouter = (
                 setOutputAssetAddress(outputAsset.address);
             } else {
                 if (isAssetInitialized) {
-                    isSynced.current = true;
+                    setIsSynced(true);
 
                     return;
                 }
@@ -70,10 +70,10 @@ export const useSyncSwapFormWithRouter = (
     ]);
 
     useEffect(() => {
-        if (isSynced.current === true) {
+        if (isSynced === true) {
             navigate(`/${inputAsset.slug}/${outputAsset.slug}`, {
                 replace: true
             });
         }
-    }, [navigate, inputAsset.slug, outputAsset.slug]);
+    }, [isSynced, navigate, inputAsset.slug, outputAsset.slug]);
 };
