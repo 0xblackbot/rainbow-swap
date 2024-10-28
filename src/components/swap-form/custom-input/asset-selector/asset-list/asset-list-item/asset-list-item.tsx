@@ -5,12 +5,41 @@ import styles from './asset-list-item.module.css';
 import {AssetListItemProps} from './asset-list-item.props';
 import {AlertIcon} from '../../../../../../assets/icons/AlertIcon/AlertIcon';
 import {formatNumber} from '../../../../../../utils/format-number.utils';
+import {Skeleton} from '../../../../../skeleton/skeleton';
 
 export const AssetListItem: FC<ListChildComponentProps<AssetListItemProps>> = ({
     index,
     style,
     data
 }) => {
+    if (data.isLoading) {
+        return (
+            <div style={style}>
+                <div className={styles.container}>
+                    <Skeleton isLoading={true} className={styles.img} />
+                    <div className={styles.info_container}>
+                        <div className={styles.info_container_row}>
+                            <Skeleton isLoading={true}>
+                                <p>symbol</p>
+                            </Skeleton>
+                            <Skeleton isLoading={true}>
+                                <p>balance</p>
+                            </Skeleton>
+                        </div>
+                        <div className={styles.info_container_row}>
+                            <Skeleton isLoading={true}>
+                                <p>some long name</p>
+                            </Skeleton>
+                            <Skeleton isLoading={true}>
+                                <p>dollar balance</p>
+                            </Skeleton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     // List end
     if (index >= data.dataArray.length) {
         return (

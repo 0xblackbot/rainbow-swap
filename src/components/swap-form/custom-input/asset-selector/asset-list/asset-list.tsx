@@ -12,7 +12,8 @@ import {useDispatch} from '../../../../../store';
 import {setAssetsListSearchValue} from '../../../../../store/assets/assets-actions';
 import {
     useAssetsListSearchValueSelector,
-    useAssetsListSelector
+    useAssetsListSelector,
+    useIsAssetsLoadingSelector
 } from '../../../../../store/assets/assets-selectors';
 import {useBalancesRecordSelector} from '../../../../../store/wallet/wallet-selectors';
 import {formatNumber} from '../../../../../utils/format-number.utils';
@@ -27,22 +28,25 @@ interface Props {
 }
 
 export const AssetList: FC<Props> = ({isOpen, onChange}) => {
-    const divHeight = useDivHeight();
-    const inputRef = useRef<HTMLInputElement>(null);
-
     const dispatch = useDispatch();
-    const searchValue = useAssetsListSearchValueSelector();
+    const divHeight = useDivHeight();
 
+    const inputRef = useRef<HTMLInputElement>(null);
+    const listRef = useRef<FixedSizeList>(null);
+
+    const searchValue = useAssetsListSearchValueSelector();
     const assetsList = useAssetsListSelector();
+    const isAssetsLoading = useIsAssetsLoadingSelector();
     const balancesRecord = useBalancesRecordSelector();
 
     const sortedAssetsList = useMemo(
-        () => sortAssets(assetsList.data, balancesRecord),
-        [assetsList.data, balancesRecord]
+        () => sortAssets(assetsList, balancesRecord),
+        [assetsList, balancesRecord]
     );
 
-    const listProps = useMemo<AssetListItemProps>(
-        () => ({
+    const data = useMemo(() => {
+        const listProps: AssetListItemProps = {
+            isLoading: isAssetsLoading,
             dataArray: sortedAssetsList.map(asset => ({
                 asset,
                 balance:
@@ -52,14 +56,29 @@ export const AssetList: FC<Props> = ({isOpen, onChange}) => {
                     ) ?? '0',
                 onClick: () => onChange(asset)
             }))
-        }),
-        [sortedAssetsList, balancesRecord, onChange]
-    );
+        };
 
-    const itemCount =
-        searchValue === ''
-            ? listProps.dataArray.length + 1 // Search hint component
-            : listProps.dataArray.length;
+        const isListEmpty =
+            !isAssetsLoading && listProps.dataArray.length === 0;
+
+        return {
+            listProps,
+            isListEmpty
+        };
+    }, [isAssetsLoading, sortedAssetsList, balancesRecord, onChange]);
+
+    const itemCount = useMemo(() => {
+        const dataLength =
+            searchValue === ''
+                ? data.listProps.dataArray.length + 1 // "Search hint" component
+                : data.listProps.dataArray.length;
+
+        if (isAssetsLoading) {
+            return Math.max(15, dataLength); // show skeletons
+        } else {
+            return dataLength;
+        }
+    }, [searchValue, isAssetsLoading, data.listProps.dataArray.length]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -70,6 +89,12 @@ export const AssetList: FC<Props> = ({isOpen, onChange}) => {
 
         return () => clearTimeout(timer);
     }, [isOpen]);
+
+    useEffect(() => {
+        if (!isAssetsLoading && listRef.current) {
+            listRef.current.scrollTo(0);
+        }
+    }, [isAssetsLoading]);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
         dispatch(setAssetsListSearchValue(event.target.value));
@@ -100,16 +125,16 @@ export const AssetList: FC<Props> = ({isOpen, onChange}) => {
                 )}
             </div>
             <div ref={divHeight.ref} className={styles.assets_list}>
-                {listProps.dataArray.length === 0 ? (
+                {data.isListEmpty ? (
                     <AssetNoResult />
                 ) : (
                     <FixedSizeList
+                        ref={listRef}
                         itemSize={66}
-                        itemData={listProps}
+                        itemData={data.listProps}
                         itemCount={itemCount}
                         width="100%"
                         height={divHeight.height}
-                        className={styles.fixed_size_list}
                     >
                         {AssetListItem}
                     </FixedSizeList>

@@ -1,7 +1,15 @@
 import {Asset} from 'rainbow-swap-sdk';
-import {useMemo} from 'react';
 
 import {useSelector} from '../index';
+
+export const useAssetsListSelector = () =>
+    useSelector(({assets}) => assets.list.data);
+
+export const useAssetsRecordSelector = () =>
+    useSelector(({assets}) => assets.record);
+
+export const useIsAssetsLoadingSelector = () =>
+    useSelector(({assets}) => assets.lastRequestId !== undefined);
 
 const EMPTY_ASSET: Asset = {
     address: 'unknown_token',
@@ -17,17 +25,11 @@ const EMPTY_ASSET: Asset = {
 
 export const useAssetSelector = (address: string) =>
     useSelector(
-        ({assets}) => assets.record.data[address] ?? {...EMPTY_ASSET, address},
+        ({assets}) => assets.record[address] ?? {...EMPTY_ASSET, address},
         (a, b) =>
             a.address + '_' + a.usdExchangeRate ===
             b.address + '_' + b.usdExchangeRate
     );
 
-export const useAssetsRecordSelector = () =>
-    useSelector(({assets}) => assets.record.data);
-
-export const useAssetsListSelector = () => {
-    const assetsRecord = useAssetsRecordSelector();
-
-    return useMemo(() => Object.values(assetsRecord), [assetsRecord]);
-};
+export const useAssetsListSearchValueSelector = () =>
+    useSelector(({assets}) => assets.searchValue);

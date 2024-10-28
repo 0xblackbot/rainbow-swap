@@ -7,6 +7,6 @@ export const AssetNoResult = () => (
             src="animations/duck-not-found.lottie"
             className={styles.duck_not_found_fallback}
         />
-        <p>No assets found.</p>
+        <p>No assets found</p>
     </div>
 );

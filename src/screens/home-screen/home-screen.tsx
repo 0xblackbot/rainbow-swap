@@ -9,9 +9,9 @@ import {ModalsProvider} from '../../contexts/modals/modals.provider';
 import {SwapFormProvider} from '../../contexts/swap-form/swap-form.provider';
 import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
+import {useUpdateAssetsList} from '../../hooks/use-update-assets-list.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../store';
-import {loadAssetsActions} from '../../store/assets/assets-actions';
 import {
     loadUserAuthActions,
     loadWalletPointsActions
@@ -30,10 +30,9 @@ export const HomeScreen = memo(() => {
     const walletAddress = useWalletAddress();
 
     useTrackPageView('Home');
+    useUpdateAssetsList();
 
     useEffect(() => {
-        dispatch(loadAssetsActions.submit());
-
         // restore waitTransactionConfirmation for swap & activation transactions
         if (isDefined(pendingSwapTransaction.data)) {
             dispatch(
