@@ -21,7 +21,7 @@ import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
-import {useIsAssetInitializedSelector} from '../../store/initialized/initialized-selectors';
+import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-selectors';
 import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {useRiskToleranceSelector} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
@@ -40,7 +40,7 @@ export const SwapScreen = () => {
     const dispatch = useDispatch();
     const routes = useRoutesSelector();
     const appStatus = useAppStatusSelector();
-    const isAssetInitialized = useIsAssetInitializedSelector();
+    const isAssetsInitialized = useIsAssetsInitializedSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
     const riskTolerance = useRiskToleranceSelector();
 
@@ -162,7 +162,7 @@ export const SwapScreen = () => {
                             assetValue={inputAsset}
                             onAssetValueChange={handleInputAssetValueChange}
                             isError={!!inputError}
-                            isLoading={!isAssetInitialized}
+                            isLoading={!isAssetsInitialized}
                             inputValueUsdAmount={
                                 swapDisplayData.inputAssetUsdAmount
                             }
@@ -174,7 +174,7 @@ export const SwapScreen = () => {
                             inputValue={outputAssetAmount}
                             assetValue={outputAsset}
                             onAssetValueChange={handleOutputAssetValueChange}
-                            isLoading={!isAssetInitialized}
+                            isLoading={!isAssetsInitialized}
                             inputValueUsdAmount={
                                 swapDisplayData.outputAssetUsdAmount
                             }

@@ -8,11 +8,9 @@ export interface AssetsState {
     list: LoadableEntityState<Asset[]>;
     record: AssetsRecord;
     lastRequestId?: string;
-    searchValue: string;
 }
 
 export const assetsInitialState: AssetsState = {
     list: createEntity(Object.values(DEFAULT_ASSETS_RECORD)),
-    record: DEFAULT_ASSETS_RECORD,
-    searchValue: ''
+    record: DEFAULT_ASSETS_RECORD
 };

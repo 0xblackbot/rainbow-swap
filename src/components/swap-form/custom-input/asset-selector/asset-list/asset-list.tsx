@@ -9,12 +9,12 @@ import {XCircledIcon} from '../../../../../assets/icons/XCircledIcon/XCircledIco
 import {IS_TMA} from '../../../../../globals';
 import {useDivHeight} from '../../../../../hooks/use-div-height.hook';
 import {useDispatch} from '../../../../../store';
-import {setAssetsListSearchValue} from '../../../../../store/assets/assets-actions';
 import {
-    useAssetsListSearchValueSelector,
     useAssetsListSelector,
     useIsAssetsLoadingSelector
 } from '../../../../../store/assets/assets-selectors';
+import {setAssetsSearchValue} from '../../../../../store/initialized/runtime-actions';
+import {useAssetsSearchValueSelector} from '../../../../../store/initialized/runtime-selectors';
 import {useBalancesRecordSelector} from '../../../../../store/wallet/wallet-selectors';
 import {formatNumber} from '../../../../../utils/format-number.utils';
 import {AssetNoResult} from '../asset-no-result/asset-no-result';
@@ -34,7 +34,7 @@ export const AssetList: FC<Props> = ({isOpen, onChange}) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<FixedSizeList>(null);
 
-    const searchValue = useAssetsListSearchValueSelector();
+    const searchValue = useAssetsSearchValueSelector();
     const assetsList = useAssetsListSelector();
     const isAssetsLoading = useIsAssetsLoadingSelector();
     const balancesRecord = useBalancesRecordSelector();
@@ -97,8 +97,8 @@ export const AssetList: FC<Props> = ({isOpen, onChange}) => {
     }, [isAssetsLoading]);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
-        dispatch(setAssetsListSearchValue(event.target.value));
-    const handleInputClear = () => dispatch(setAssetsListSearchValue(''));
+        dispatch(setAssetsSearchValue(event.target.value));
+    const handleInputClear = () => dispatch(setAssetsSearchValue(''));
 
     return (
         <>

@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 
 import {useDispatch} from '../store';
 import {loadAssetsListActions} from '../store/assets/assets-actions';
-import {useAssetsListSearchValueSelector} from '../store/assets/assets-selectors';
+import {useAssetsSearchValueSelector} from '../store/initialized/runtime-selectors';
 import {useUserAssetsSelector} from '../store/wallet/wallet-selectors';
 
 export const useUpdateAssetsList = () => {
@@ -15,7 +15,7 @@ export const useUpdateAssetsList = () => {
     const initialOutputAssetSlug = useRef(params.outputAssetSlug);
 
     const userAssets = useUserAssetsSelector();
-    const searchValue = useAssetsListSearchValueSelector();
+    const searchValue = useAssetsSearchValueSelector();
 
     useEffect(() => {
         dispatch(

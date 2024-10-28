@@ -7,7 +7,7 @@ import {ChevronDownIcon} from '../../../../assets/icons/ChevronDownIcon/ChevronD
 import {BottomSheet} from '../../../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../../../shared/form-button/form-button';
 import {useDispatch} from '../../../../store';
-import {setAssetsListSearchValue} from '../../../../store/assets/assets-actions';
+import {setAssetsSearchValue} from '../../../../store/initialized/runtime-actions';
 import {Button} from '../../../button/button';
 
 interface Props {
@@ -23,7 +23,7 @@ export const AssetSelector: FC<Props> = memo(
 
         useEffect(() => {
             if (!isOpen) {
-                dispatch(setAssetsListSearchValue(''));
+                dispatch(setAssetsSearchValue(''));
             }
         }, [dispatch, isOpen]);
 

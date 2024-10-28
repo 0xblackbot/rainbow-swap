@@ -1,10 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {AssetsRecord} from 'rainbow-swap-sdk';
 
-import {
-    loadAssetsListActions,
-    setAssetsListSearchValue
-} from './assets-actions';
+import {loadAssetsListActions} from './assets-actions';
 import {assetsInitialState, AssetsState} from './assets-state';
 import {createEntity} from '../utils/create-entity';
 
@@ -43,11 +40,6 @@ export const assetsReducers = createReducer<AssetsState>(
                 state.lastRequestId === payload.requestId
                     ? undefined
                     : state.lastRequestId
-        }));
-
-        builder.addCase(setAssetsListSearchValue, (state, {payload}) => ({
-            ...state,
-            searchValue: payload
         }));
     }
 );

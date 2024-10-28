@@ -30,6 +30,3 @@ export const useAssetSelector = (address: string) =>
             a.address + '_' + a.usdExchangeRate ===
             b.address + '_' + b.usdExchangeRate
     );
-
-export const useAssetsListSearchValueSelector = () =>
-    useSelector(({assets}) => assets.searchValue);

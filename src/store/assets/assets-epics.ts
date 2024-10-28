@@ -6,7 +6,7 @@ import {ofType, toPayload} from 'ts-action-operators';
 import {loadAssetsListActions} from './assets-actions';
 import {DEBOUNCE_DUE_TIME} from '../../globals';
 import {getAssetsList} from '../../utils/api.utils';
-import {assetsInitializedAction} from '../initialized/initialized-actions';
+import {assetsInitializedAction} from '../initialized/runtime-actions';
 
 const loadAssetsListEpic: Epic<Action> = action$ =>
     action$.pipe(

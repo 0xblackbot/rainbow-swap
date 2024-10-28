@@ -5,8 +5,8 @@ import {useNavigate, useParams} from 'react-router-dom';
 
 import {useDispatch} from '../store';
 import {useAssetsRecordSelector} from '../store/assets/assets-selectors';
-import {assetsInitializedAction} from '../store/initialized/initialized-actions';
-import {useIsAssetInitializedSelector} from '../store/initialized/initialized-selectors';
+import {assetsInitializedAction} from '../store/initialized/runtime-actions';
+import {useIsAssetsInitializedSelector} from '../store/initialized/runtime-selectors';
 import {findAssetBySlug} from '../utils/asset.utils';
 
 export const useSyncSwapFormWithRouter = (
@@ -22,7 +22,7 @@ export const useSyncSwapFormWithRouter = (
     const params = useParams();
 
     const assetsRecord = useAssetsRecordSelector();
-    const isAssetInitialized = useIsAssetInitializedSelector();
+    const isAssetsInitialized = useIsAssetsInitializedSelector();
 
     useEffect(() => {
         if (isSynced === false) {
@@ -51,7 +51,7 @@ export const useSyncSwapFormWithRouter = (
                 setInputAssetAddress(inputAsset.address);
                 setOutputAssetAddress(outputAsset.address);
             } else {
-                if (isAssetInitialized) {
+                if (isAssetsInitialized) {
                     setIsSynced(true);
 
                     return;
@@ -61,7 +61,7 @@ export const useSyncSwapFormWithRouter = (
     }, [
         isSynced,
         assetsRecord,
-        isAssetInitialized,
+        isAssetsInitialized,
         params.inputAssetSlug,
         params.outputAssetSlug,
         setInputAssetAddress,
