@@ -1,4 +1,4 @@
-import {TonConnectUIContext, WalletsModalState} from '@tonconnect/ui-react';
+import {TonConnectUIContext} from '@tonconnect/ui-react';
 import {useContext, useEffect, useState} from 'react';
 
 export const useTonConnectModalStatus = () => {
@@ -6,15 +6,9 @@ export const useTonConnectModalStatus = () => {
     const [status, setStatus] = useState(tonConnectUI?.modal.state.status);
 
     useEffect(() => {
-        if (tonConnectUI) {
-            setStatus(tonConnectUI.modal.state.status);
-
-            return tonConnectUI.onModalStateChange(
-                (value: WalletsModalState) => {
-                    setStatus(value.status);
-                }
-            );
-        }
+        tonConnectUI?.onModalStateChange(value => {
+            setStatus(value.status);
+        });
     }, [tonConnectUI]);
 
     return status;
