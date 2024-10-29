@@ -1,11 +1,10 @@
-import {Asset} from 'rainbow-swap-sdk';
+import {Asset, AssetsListParams} from 'rainbow-swap-sdk';
 
-import {GetAssetsListParams} from '../../types/get-assets-list.type';
 import {PayloadWithRequest} from '../interfaces/payload-with-request.interface';
 import {createActions} from '../utils/create-actions';
 
 export const loadAssetsListActions = createActions<
-    GetAssetsListParams & PayloadWithRequest,
+    AssetsListParams & PayloadWithRequest,
     {list: Asset[]} & PayloadWithRequest,
     {error: string} & PayloadWithRequest
 >('assets/LOAD_ASSETS_LIST');
