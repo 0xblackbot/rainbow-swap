@@ -1,0 +1,23 @@
+.button {
+    line-height: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.icon {
+    height: var(--2-step);
+    width: var(--2-step);
+    fill: var(--hint-color);
+}
+
+.tooltip {
+    width: max-content;
+    max-width: min(340px, calc(100vw - var(--2-step)));
+    box-sizing: border-box;
+    padding: var(--half-step) var(--step);
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--step);
+    border: 1px solid var(--border-color);
+}

@@ -54,6 +54,12 @@
     color: var(--hint-color);
 }
 
+.cell {
+    display: flex;
+    align-items: center;
+    gap: var(--half-step)
+}
+
 .routes_container {
     display: flex;
     flex-direction: column;

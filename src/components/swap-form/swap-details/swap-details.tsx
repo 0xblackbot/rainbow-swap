@@ -5,6 +5,7 @@ import {SwapDetailsHeader} from './swap-details-header/swap-details-header';
 import {SwapDetailsHeaderProps} from './swap-details-header/swap-details-header.props';
 import styles from './swap-details.module.css';
 import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {TooltipIcon} from '../../../shared/tooltip/tooltip-icon';
 import {
     useIsRoutesLoadingSelector,
     useSwapDisplayDataSelector
@@ -37,17 +38,21 @@ export const SwapDetails: FC<Props> = ({
             return {
                 maxSlippage: `-`,
                 receiveAtLeast: `-`,
+                receiveAtLeastTooltipText: undefined,
                 routingFee: `-`,
                 gasFee: `-`
             };
         }
 
+        const receiveAtLeast = `${formatNumber(
+            swapDisplayData.minOutputAssetAmount,
+            5
+        )} ${outputAsset.symbol}`;
+
         return {
             maxSlippage: `${swapDisplayData.maxSlippage.toFixed(2)}%`,
-            receiveAtLeast: `${formatNumber(
-                swapDisplayData.minOutputAssetAmount,
-                5
-            )} ${outputAsset.symbol}`,
+            receiveAtLeast: receiveAtLeast,
+            receiveAtLeastTooltipText: `If the price drops below ${receiveAtLeast}, your transaction will be partially or fully reverted.`,
             routingFee: `${formatNumber(swapDisplayData.routingFeePercent, 2)}%`,
             gasFee: `~ ${formatNumber(swapDisplayData.roughGasFee, 2)} TON`
         };
@@ -102,7 +107,12 @@ export const SwapDetails: FC<Props> = ({
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
-                            <p>Receive at least</p>
+                            <div className={styles.cell}>
+                                <p>Receive at least</p>
+                                <TooltipIcon
+                                    text={data.receiveAtLeastTooltipText}
+                                />
+                            </div>
                             <Skeleton isLoading={isRoutesLoading}>
                                 <p>{data.receiveAtLeast}</p>
                             </Skeleton>
