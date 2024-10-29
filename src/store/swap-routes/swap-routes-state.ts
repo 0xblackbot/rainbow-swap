@@ -19,7 +19,9 @@ export const emptyBestRouteResponse: BestRouteResponse = {
         exchangeRate: 0,
         maxSlippage: 0,
         routingFeePercent: 0,
-        priceImprovementPercent: 0
+        priceImprovementPercent: 0,
+        roughGasFee: 0,
+        roughGasUsdFee: 0
     },
     swapMessages: []
 };

@@ -1,4 +1,4 @@
-import {FC, Fragment, useState} from 'react';
+import {FC, Fragment, useMemo, useState} from 'react';
 
 import {RouteInfo} from './route-info/route-info';
 import {SwapDetailsHeader} from './swap-details-header/swap-details-header';
@@ -31,6 +31,34 @@ export const SwapDetails: FC<Props> = ({
     const swapDisplayData = useSwapDisplayDataSelector();
 
     const nanoInputAssetAmount = getSwapInputAssetAmount(routes);
+
+    const data = useMemo(() => {
+        if (routes.length === 0) {
+            return {
+                maxSlippage: `-`,
+                receiveAtLeast: `-`,
+                routingFee: `-`,
+                gasFee: `-`
+            };
+        }
+
+        return {
+            maxSlippage: `${swapDisplayData.maxSlippage.toFixed(2)}%`,
+            receiveAtLeast: `${formatNumber(
+                swapDisplayData.minOutputAssetAmount,
+                5
+            )} ${outputAsset.symbol}`,
+            routingFee: `${formatNumber(swapDisplayData.routingFeePercent, 2)}%`,
+            gasFee: `~ ${formatNumber(swapDisplayData.roughGasFee, 2)} TON`
+        };
+    }, [
+        routes.length,
+        swapDisplayData.maxSlippage,
+        swapDisplayData.minOutputAssetAmount,
+        swapDisplayData.routingFeePercent,
+        swapDisplayData.roughGasFee,
+        outputAsset.symbol
+    ]);
 
     const toggleAccordion = () => setIsOpen(value => !value);
 
@@ -70,27 +98,25 @@ export const SwapDetails: FC<Props> = ({
                         <div className={styles.row}>
                             <p>Max slippage</p>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>{swapDisplayData.maxSlippage.toFixed(2)}%</p>
+                                <p>{data.maxSlippage}</p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
                             <p>Receive at least</p>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>{`${formatNumber(
-                                    swapDisplayData.minOutputAssetAmount,
-                                    5
-                                )} ${outputAsset.symbol}`}</p>
+                                <p>{data.receiveAtLeast}</p>
+                            </Skeleton>
+                        </div>
+                        <div className={styles.row}>
+                            <p>Gas Fee</p>
+                            <Skeleton isLoading={isRoutesLoading}>
+                                <p>{data.gasFee}</p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
                             <p>Routing Fee</p>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>
-                                    {swapDisplayData.routingFeePercent.toFixed(
-                                        2
-                                    )}
-                                    %
-                                </p>
+                                <p>{data.routingFee}</p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
