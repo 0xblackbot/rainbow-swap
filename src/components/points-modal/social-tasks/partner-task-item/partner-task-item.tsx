@@ -29,7 +29,10 @@ const LinksRecord: Record<TaskTypeEnum, string> = {
         'https://t.me/ton_hedge_bot/trade?startapp=rainbowswap',
     [TaskTypeEnum.Parraton_Telegram]: 'https://t.me/parraton_en',
     [TaskTypeEnum.Parraton_Bot]:
-        'https://t.me/parraton_bot/app?startapp=151872929'
+        'https://t.me/parraton_bot/app?startapp=151872929',
+    [TaskTypeEnum.GemsWall_Bot]:
+        'https://t.me/GleamRewardsBot/app?startapp=cmM9ZjA5MjA3ZjQ0ZDgx',
+    [TaskTypeEnum.GemsWall_Twitter]: 'https://x.com/gems_wall'
 };
 
 const RewardsRecord: Record<TaskTypeEnum, string> = {
@@ -47,7 +50,9 @@ const RewardsRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.TonHedge_Telegram]: '1,000',
     [TaskTypeEnum.TonHedge_Bot]: '1,000',
     [TaskTypeEnum.Parraton_Telegram]: '1,000',
-    [TaskTypeEnum.Parraton_Bot]: '1,000'
+    [TaskTypeEnum.Parraton_Bot]: '1,000',
+    [TaskTypeEnum.GemsWall_Bot]: '1,000',
+    [TaskTypeEnum.GemsWall_Twitter]: '1,000'
 };
 
 interface Props {

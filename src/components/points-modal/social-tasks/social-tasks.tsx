@@ -2,6 +2,7 @@ import {EmptyFn} from '@rnw-community/shared';
 import {FC} from 'react';
 
 import appsCenter from './assets/apps-center.jpg';
+import gemswallImage from './assets/gemswall.jpeg';
 import jvaultImage from './assets/jvault.jpeg';
 import parratonImage from './assets/parraton.jpeg';
 import referralImage from './assets/referral.png';
@@ -62,6 +63,21 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         imageSrc={tonAppImage}
                         title="Leave a review"
                         taskType={TaskTypeEnum.TonApp}
+                    />
+
+                    <Divider withArrow={true} className={styles.divider} />
+
+                    <TaskHeader name="GemsWall" imageSrc={gemswallImage} />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={telegramImage}
+                        title="Explore app"
+                        taskType={TaskTypeEnum.GemsWall_Bot}
+                    />
+                    <PartnerTaskItem
+                        imageSrc={twitterImage}
+                        title="Follow X"
+                        taskType={TaskTypeEnum.GemsWall_Twitter}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />

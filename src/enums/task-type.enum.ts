@@ -19,5 +19,8 @@ export enum TaskTypeEnum {
     TonHedge_Bot = 'tonHedgeBot',
 
     Parraton_Telegram = 'parratonTelegram',
-    Parraton_Bot = 'parratonBot'
+    Parraton_Bot = 'parratonBot',
+
+    GemsWall_Bot = 'gemsWallBot',
+    GemsWall_Twitter = 'gemsWallTwitter'
 }
