@@ -2,15 +2,14 @@ import {useTonConnectUI} from '@tonconnect/ui-react';
 import {FC, useCallback, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
-import {DiamondIcon} from '../../../assets/icons/DiamondIcon/DiamondIcon';
-import {ExternalLinkIcon} from '../../../assets/icons/ExternalLinkIcon/ExternalLinkIcon';
+import {DollarIcon} from '../../../assets/icons/DollarIcon/DollarIcon';
+import {HistoryIcon} from '../../../assets/icons/HistoryIcon/HistoryIcon';
 import {LogoutIcon} from '../../../assets/icons/LogoutIcon/LogoutIcon';
 import {SettingsIcon} from '../../../assets/icons/SettingsIcon/SettingsIcon';
 import {useModals} from '../../../contexts/modals/modals.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
 import {useEnableBackButton} from '../../../hooks/use-enable-back-button.hook';
-import {useExplorerLinks} from '../../../hooks/use-explorer-links.hook';
 import {usePreventScroll} from '../../../hooks/use-prevent-scrolling.hook';
 import {getClassName} from '../../../utils/style.utils';
 import {Button} from '../../button/button';
@@ -22,9 +21,6 @@ interface Props {
 export const WalletMenu: FC<Props> = ({walletAddress}) => {
     const [tonConnectUI] = useTonConnectUI();
     const modals = useModals();
-
-    const explorerLinks = useExplorerLinks();
-    const walletHref = explorerLinks.getWalletLink(walletAddress);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -50,6 +46,11 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
     const handleRewardsCenterClick = () => {
         trackButtonClick('Header Rewards Center');
         modals.openRewardsModal();
+        onClose();
+    };
+    const handleHistoryClick = () => {
+        trackButtonClick('Header History');
+        modals.openHistoryModal();
         onClose();
     };
     const handleSettingsClick = () => {
@@ -80,21 +81,19 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                         size="s"
                         mode="gray"
                         className={styles.menu_button}
-                        Component="a"
-                        href={walletHref}
-                        target="_blank"
+                        onClick={handleRewardsCenterClick}
                     >
-                        <ExternalLinkIcon className={styles.menu_button_icon} />
-                        <span>Open Explorer</span>
+                        <DollarIcon className={styles.menu_button_icon} />
+                        <span>Rewards Center</span>
                     </Button>
                     <Button
                         size="s"
                         mode="gray"
                         className={styles.menu_button}
-                        onClick={handleRewardsCenterClick}
+                        onClick={handleHistoryClick}
                     >
-                        <DiamondIcon className={styles.menu_button_icon} />
-                        <span>Rewards Center</span>
+                        <HistoryIcon className={styles.menu_button_icon} />
+                        <span>History</span>
                     </Button>
                     <Button
                         size="s"

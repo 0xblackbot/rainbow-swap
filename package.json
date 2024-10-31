@@ -24,7 +24,7 @@
     "axios": "^1.7.7",
     "buffer": "^6.0.3",
     "lodash-es": "^4.17.21",
-    "rainbow-swap-sdk": "^1.4.7",
+    "rainbow-swap-sdk": "^1.4.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
@@ -38,7 +38,8 @@
     "rxjs": "^7.8.1",
     "swiper": "^11.1.14",
     "ts-action": "^11.0.0",
-    "ts-action-operators": "^9.1.2"
+    "ts-action-operators": "^9.1.2",
+    "ts-retry-promise": "^0.8.1"
   },
   "devDependencies": {
     "@ton-community/func-js": "^0.7.0",

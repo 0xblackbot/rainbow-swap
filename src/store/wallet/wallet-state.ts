@@ -1,14 +1,27 @@
-import {TransactionInfo} from '../../interfaces/transaction-info.interface';
 import {BalancesRecord} from '../../types/balances-record.type';
+import {SwapProgressResponse} from '../../types/get-swap-progress.type';
 import {LoadableEntityState} from '../types';
 import {createEntity} from '../utils/create-entity';
 
 export interface WalletState {
     balances: LoadableEntityState<BalancesRecord>;
-    pendingSwapTransaction: LoadableEntityState<TransactionInfo | undefined>;
+    pendingSwap: {
+        bocHash: string | undefined;
+        expectedMessageCount: number;
+        parsedTrace: SwapProgressResponse['parsedTrace'];
+        result: SwapProgressResponse['onchain'];
+    };
 }
 
 export const walletInitialState: WalletState = {
     balances: createEntity({}),
-    pendingSwapTransaction: createEntity(undefined)
+    pendingSwap: {
+        bocHash: undefined,
+        expectedMessageCount: 0,
+        parsedTrace: {
+            confirmed: false,
+            completedMessages: 0
+        },
+        result: undefined
+    }
 };

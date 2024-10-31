@@ -1,4 +1,3 @@
-import {isDefined} from '@rnw-community/shared';
 import {memo, useEffect} from 'react';
 import {ToastContainer} from 'react-toastify';
 
@@ -10,39 +9,24 @@ import {SwapFormProvider} from '../../contexts/swap-form/swap-form.provider';
 import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useUpdateAssetsList} from '../../hooks/use-update-assets-list.hook';
+import {useUpdatePendingSwap} from '../../hooks/use-update-pending-swap.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../store';
 import {
     loadUserAuthActions,
     loadWalletPointsActions
 } from '../../store/points/points-actions';
-import {
-    addPendingSwapTransactionActions,
-    loadBalancesActions
-} from '../../store/wallet/wallet-actions';
-import {usePendingSwapTransactionSelector} from '../../store/wallet/wallet-selectors';
+import {loadBalancesActions} from '../../store/wallet/wallet-actions';
 import {emptyWalletPoints} from '../../types/get-wallet-points.type';
 
 export const HomeScreen = memo(() => {
     const dispatch = useDispatch();
-    const pendingSwapTransaction = usePendingSwapTransactionSelector();
 
     const walletAddress = useWalletAddress();
 
     useTrackPageView('Home');
     useUpdateAssetsList();
-
-    useEffect(() => {
-        // restore waitTransactionConfirmation for swap & activation transactions
-        if (isDefined(pendingSwapTransaction.data)) {
-            dispatch(
-                addPendingSwapTransactionActions.submit(
-                    pendingSwapTransaction.data
-                )
-            );
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    useUpdatePendingSwap();
 
     useEffect(() => {
         if (walletAddress) {

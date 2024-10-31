@@ -2777,10 +2777,10 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-rainbow-swap-sdk@^1.4.7:
-  version "1.4.7"
-  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.4.7.tgz#8bf4a0e57a3b06957c323d2704346989a5b33d49"
-  integrity sha512-Djio6GqF1xXFJq4NDA9ijKg873xB0S8xjUyF4++528Od3/hBdlq9sm9GyHgNOWXJSIHskTWMYAkm4ZxinVh19A==
+rainbow-swap-sdk@^1.4.8:
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/rainbow-swap-sdk/-/rainbow-swap-sdk-1.4.8.tgz#6bbc3500e109eda4c46f5a18be0266c0bc953766"
+  integrity sha512-KlhurpF2tO5qSCJknseBWhQl6hI/j311MoN8I1+oqFsny2jGHwRCxb+fdLyR9fpE4lV65Gm7uC05F5SFTOSknA==
   dependencies:
     "@rnw-community/shared" "^0.74.0"
     axios "^1.7.7"
@@ -3311,6 +3311,11 @@ ts-prune@^0.10.3:
     lodash "^4.17.21"
     "true-myth" "^4.1.0"
     ts-morph "^13.0.1"
+
+ts-retry-promise@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/ts-retry-promise/-/ts-retry-promise-0.8.1.tgz#ba90eb07cb03677fcbf78fe38e94c9183927e154"
+  integrity sha512-+AHPUmAhr5bSRRK5CurE9kNH8gZlEHnCgusZ0zy2bjfatUBDX0h6vGQjiT0YrGwSDwRZmU+bapeX6mj55FOPvg==
 
 tsconfig-paths@^3.15.0:
   version "3.15.0"

@@ -1,0 +1,15 @@
+.container {
+    width: 100%;
+    height: var(--step);
+    background-color: var(--attention-bg);
+    border-radius: var(--step);
+    overflow: hidden;
+}
+
+.fill {
+    width: 0;
+    height: 100%;
+    background-color: var(--button-color);
+    border-radius: var(--step);
+    transition: width 0.5s ease;
+}

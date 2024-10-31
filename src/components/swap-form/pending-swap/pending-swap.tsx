@@ -1,25 +1,21 @@
 import styles from './pending-swap.module.css';
-import {useExplorerLinks} from '../../../hooks/use-explorer-links.hook';
-import {usePendingSwapTransactionSelector} from '../../../store/wallet/wallet-selectors';
+import {useModals} from '../../../contexts/modals/modals.hook';
+import {usePendingBocHashSelector} from '../../../store/wallet/wallet-selectors';
+import {Button} from '../../button/button';
 
 export const PendingSwap = () => {
-    const pendingSwapTransaction = usePendingSwapTransactionSelector();
-    const explorerLinks = useExplorerLinks();
-    const href = explorerLinks.getTransactionLink(
-        pendingSwapTransaction.data?.bocHash
-    );
+    const modals = useModals();
+
+    const pendingBocHash = usePendingBocHashSelector();
+
+    const handleClick = () => modals.openHistoryModal();
 
     return (
-        pendingSwapTransaction.data && (
-            <a
-                className={styles.container}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-            >
+        pendingBocHash && (
+            <Button size="xs" mode="bezeled" onClick={handleClick}>
                 <div className={styles.loader_spinner} />
-                <p className={styles.text}>1 swap</p>
-            </a>
+                <span>1 swap</span>
+            </Button>
         )
     );
 };

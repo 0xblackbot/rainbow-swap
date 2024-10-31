@@ -1,5 +1,9 @@
 import {API} from '../globals';
 import {GetClaimRewardsParams} from '../types/get-claim-rewards.type';
+import {
+    GetSwapProgressParams,
+    SwapProgressResponse
+} from '../types/get-swap-progress.type';
 import {GetTaskCheckParams} from '../types/get-task-check.type';
 import {GetUserAuthParams} from '../types/get-user-auth.type';
 import {
@@ -20,5 +24,10 @@ export const getTaskCheck = (params: GetTaskCheckParams) =>
 
 export const getClaimRewards = (params: GetClaimRewardsParams) =>
     API.get<boolean>('/claim-rewards', {params}).then(
+        response => response.data
+    );
+
+export const getSwapProgress = (params: GetSwapProgressParams) =>
+    API.get<SwapProgressResponse>('/swap-progress', {params}).then(
         response => response.data
     );

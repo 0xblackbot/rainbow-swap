@@ -1,8 +1,9 @@
 import {createReducer} from '@reduxjs/toolkit';
 
 import {
-    addPendingSwapTransactionActions,
-    loadBalancesActions
+    loadBalancesActions,
+    setPendingSwapAction,
+    setPendingSwapProgressAction
 } from './wallet-actions';
 import {walletInitialState, WalletState} from './wallet-state';
 import {createEntity} from '../utils/create-entity';
@@ -26,23 +27,22 @@ export const walletReducers = createReducer<WalletState>(
             })
         );
 
-        builder.addCase(
-            addPendingSwapTransactionActions.submit,
-            (state, {payload}) => ({
-                ...state,
-                pendingSwapTransaction: createEntity(payload, true)
-            })
-        );
-        builder.addCase(addPendingSwapTransactionActions.success, state => ({
+        builder.addCase(setPendingSwapAction, (state, {payload}) => ({
             ...state,
-            pendingSwapTransaction: createEntity(undefined, false)
+            pendingSwap: {
+                ...state.pendingSwap,
+                bocHash: payload?.bocHash ?? undefined,
+                expectedMessageCount: payload?.expectedMessageCount ?? 0
+            }
         }));
-        builder.addCase(
-            addPendingSwapTransactionActions.fail,
-            (state, {payload: error}) => ({
-                ...state,
-                pendingSwapTransaction: createEntity(undefined, false, error)
-            })
-        );
+
+        builder.addCase(setPendingSwapProgressAction, (state, {payload}) => ({
+            ...state,
+            pendingSwap: {
+                ...state.pendingSwap,
+                parsedTrace: payload.parsedTrace,
+                result: payload.onchain
+            }
+        }));
     }
 );

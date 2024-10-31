@@ -23,7 +23,8 @@ export const emptyBestRouteResponse: BestRouteResponse = {
         roughGasFee: 0,
         roughGasUsdFee: 0
     },
-    swapMessages: []
+    swapMessages: [],
+    messageCount: 0
 };
 
 export const swapRouteInitialState: SwapRoutesState = {

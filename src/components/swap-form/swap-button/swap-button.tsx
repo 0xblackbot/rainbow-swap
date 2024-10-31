@@ -2,6 +2,7 @@ import {isDefined} from '@rnw-community/shared';
 import {Asset} from 'rainbow-swap-sdk';
 import {FC} from 'react';
 
+import {useModals} from '../../../contexts/modals/modals.hook';
 import {
     trackButtonClick,
     trackSwapConfirmation
@@ -11,9 +12,10 @@ import {FormButton} from '../../../shared/form-button/form-button';
 import {useDispatch} from '../../../store';
 import {
     useSwapDisplayDataSelector,
+    useExpectedMessageCountSelector,
     useSwapMessagesSelector
 } from '../../../store/swap-routes/swap-routes-selectors';
-import {addPendingSwapTransactionActions} from '../../../store/wallet/wallet-actions';
+import {setPendingSwapAction} from '../../../store/wallet/wallet-actions';
 import {showErrorToast, showSuccessToast} from '../../../utils/toast.utils';
 
 interface Props {
@@ -22,10 +24,12 @@ interface Props {
 }
 
 export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
+    const modal = useModals();
     const dispatch = useDispatch();
     const sendTransaction = useSendTransaction();
 
     const swapMessages = useSwapMessagesSelector();
+    const expectedMessageCount = useExpectedMessageCountSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
 
     const handleClick = async () => {
@@ -49,7 +53,13 @@ export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
                 outputAssetAmount: swapDisplayData.outputAssetAmount
             });
 
-            dispatch(addPendingSwapTransactionActions.submit(transactionInfo));
+            dispatch(
+                setPendingSwapAction({
+                    bocHash: transactionInfo.bocHash,
+                    expectedMessageCount
+                })
+            );
+            modal.openHistoryModal();
             showSuccessToast('Swap sent, please wait...');
         }
     };
