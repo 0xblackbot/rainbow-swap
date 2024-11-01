@@ -12,7 +12,7 @@ import {FormButton} from '../../../shared/form-button/form-button';
 import {useDispatch} from '../../../store';
 import {
     useSwapDisplayDataSelector,
-    useExpectedMessageCountSelector,
+    useSwapMessageCountSelector,
     useSwapMessagesSelector
 } from '../../../store/swap-routes/swap-routes-selectors';
 import {setPendingSwapAction} from '../../../store/wallet/wallet-actions';
@@ -29,7 +29,7 @@ export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
     const sendTransaction = useSendTransaction();
 
     const swapMessages = useSwapMessagesSelector();
-    const expectedMessageCount = useExpectedMessageCountSelector();
+    const swapMessageCount = useSwapMessageCountSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
 
     const handleClick = async () => {
@@ -56,7 +56,7 @@ export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
             dispatch(
                 setPendingSwapAction({
                     bocHash: transactionInfo.bocHash,
-                    expectedMessageCount
+                    expectedMessageCount: swapMessageCount
                 })
             );
             modal.openHistoryModal();

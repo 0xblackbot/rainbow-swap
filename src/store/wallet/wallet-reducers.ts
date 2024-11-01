@@ -27,14 +27,31 @@ export const walletReducers = createReducer<WalletState>(
             })
         );
 
-        builder.addCase(setPendingSwapAction, (state, {payload}) => ({
-            ...state,
-            pendingSwap: {
-                ...state.pendingSwap,
-                bocHash: payload?.bocHash ?? undefined,
-                expectedMessageCount: payload?.expectedMessageCount ?? 0
+        builder.addCase(setPendingSwapAction, (state, {payload}) => {
+            if (payload) {
+                return {
+                    ...state,
+                    pendingSwap: {
+                        ...state.pendingSwap,
+                        bocHash: payload.bocHash,
+                        expectedMessageCount: payload.expectedMessageCount
+                    }
+                };
             }
-        }));
+
+            return {
+                ...state,
+                pendingSwap: {
+                    ...state.pendingSwap,
+                    bocHash: undefined,
+                    expectedMessageCount: 0,
+                    parsedTrace: {
+                        confirmed: false,
+                        completedMessages: 0
+                    }
+                }
+            };
+        });
 
         builder.addCase(setPendingSwapProgressAction, (state, {payload}) => ({
             ...state,

@@ -17,3 +17,12 @@ export const useAssetBalanceSelector = (address: string) =>
 
 export const usePendingBocHashSelector = () =>
     useSelector(({wallet}) => wallet.pendingSwap.bocHash);
+
+export const usePendingSwapResultSelector = () =>
+    useSelector(({wallet}) => wallet.pendingSwap.result);
+
+export const usePendingParsedTraceSelector = () =>
+    useSelector(({wallet}) => wallet.pendingSwap.parsedTrace);
+
+export const useExpectedMessageCountSelector = () =>
+    useSelector(({wallet}) => wallet.pendingSwap.expectedMessageCount);

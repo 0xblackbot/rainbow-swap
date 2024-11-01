@@ -25,7 +25,7 @@ export const useSwapDisplayDataSelector = () =>
         ({swapRoutes}) => swapRoutes.bestRouteResponse.data.displayData
     );
 
-export const useExpectedMessageCountSelector = () =>
+export const useSwapMessageCountSelector = () =>
     useSelector(
         ({swapRoutes}) => swapRoutes.bestRouteResponse.data.messageCount
     );

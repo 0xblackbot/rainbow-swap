@@ -1,5 +1,22 @@
 import {isDefined} from '@rnw-community/shared';
-import {AssetsRecord} from 'rainbow-swap-sdk';
+import {Asset, AssetsRecord} from 'rainbow-swap-sdk';
+
+const EMPTY_ASSET: Asset = {
+    address: 'unknown_token',
+    slug: 'unknown_token',
+    symbol: '???',
+    name: 'Unknown token',
+    image: '/icons/unknown_asset.png',
+    decimals: 0,
+    exchangeRate: '0',
+    usdExchangeRate: 0,
+    verification: 'none'
+};
+
+export const getAsset = (address: string, assetsRecord: AssetsRecord): Asset =>
+    assetsRecord[address] != null
+        ? assetsRecord[address]
+        : {...EMPTY_ASSET, address};
 
 export const findAssetBySlug = (
     slug: string | undefined,

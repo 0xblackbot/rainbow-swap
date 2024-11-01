@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status {
+    font-size: 15px;
+}
+
+.link_button {
+    height: unset;
+    padding: var(--half-step);
+    border-radius: var(--step);
+    font-size: 12px;
+    line-height: unset;
+}
+
+.link_icon {
+    width: var(--2-step);
+    height: var(--2-step);
+    fill: var(--button-color);
+}

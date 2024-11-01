@@ -1,0 +1,21 @@
+.progress_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.animation_container {
+    width: 288px;
+}
+
+.progress_bar {
+    max-width: 380px;
+}
+
+.progress_description {
+    justify-content: center;
+    font-size: 14px;
+    color: var(--hint-color);
+    text-align: center;
+    margin-top: var(--step);
+}
