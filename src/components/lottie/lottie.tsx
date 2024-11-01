@@ -22,6 +22,7 @@ const Lottie: FC<LottieProps> = ({src, speed, className}) => {
     return (
         <Skeleton isLoading={isLoading} className={className}>
             <DotLottieReact
+                key={src}
                 src={BASE_URL + src}
                 loop={true}
                 autoplay={true}
