@@ -1,43 +1,52 @@
 import {isDefined} from '@rnw-community/shared';
 import {useEffect} from 'react';
 
+import {SwapStatusEnum} from '../enums/swap-status.enum';
 import {INIT_DATA, UNSAFE_INIT_DATA} from '../globals';
 import {useDispatch} from '../store';
-import {loadWalletPointsActions} from '../store/points/points-actions';
+import {useWalletAddressRef} from './use-wallet-address.hook';
 import {
     loadBalancesActions,
+    loadWalletDataActions,
     setPendingSwapAction,
-    setPendingSwapProgressAction
+    setPendingSwapHistoryDataAction
 } from '../store/wallet/wallet-actions';
 import {usePendingBocHashSelector} from '../store/wallet/wallet-selectors';
-import {getSwapProgress} from '../utils/api.utils';
+import {getSwapHistoryData} from '../utils/api.utils';
+import {showSuccessToast} from '../utils/toast.utils';
 
 const CHECK_INTERVAL = 3000;
 
 export const useUpdatePendingSwap = () => {
     const dispatch = useDispatch();
     const bocHash = usePendingBocHashSelector();
+    const walletAddressRef = useWalletAddressRef();
 
     useEffect(() => {
         if (bocHash) {
             const intervalId = setInterval(async () => {
-                const swapProgress = await getSwapProgress({bocHash});
+                const historyData = await getSwapHistoryData({bocHash});
 
-                dispatch(setPendingSwapProgressAction(swapProgress));
+                dispatch(setPendingSwapHistoryDataAction(historyData));
 
                 // completed
-                if (isDefined(swapProgress.onchain)) {
-                    const walletAddress = swapProgress.onchain.walletAddress;
-
+                if (historyData.status !== SwapStatusEnum.Pending) {
                     dispatch(setPendingSwapAction(undefined));
-                    dispatch(loadBalancesActions.submit(walletAddress));
-                    dispatch(
-                        loadWalletPointsActions.submit({
-                            address: walletAddress,
-                            initData: INIT_DATA,
-                            refParent: UNSAFE_INIT_DATA.refParent
-                        })
-                    );
+
+                    if (isDefined(walletAddressRef.current)) {
+                        dispatch(
+                            loadBalancesActions.submit(walletAddressRef.current)
+                        );
+                        dispatch(
+                            loadWalletDataActions.submit({
+                                address: walletAddressRef.current,
+                                initData: INIT_DATA,
+                                refParent: UNSAFE_INIT_DATA.refParent
+                            })
+                        );
+                    }
+
+                    showSuccessToast('Swap completed');
                 }
             }, CHECK_INTERVAL);
 
@@ -45,5 +54,5 @@ export const useUpdatePendingSwap = () => {
                 clearInterval(intervalId);
             };
         }
-    }, [bocHash, dispatch]);
+    }, [bocHash, dispatch, walletAddressRef]);
 };

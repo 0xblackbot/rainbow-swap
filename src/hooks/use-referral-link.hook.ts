@@ -4,7 +4,7 @@ import {IS_TMA, TELEGRAM_APP_LINK, WEB_LINK} from '../globals';
 
 export const useReferralLink = () => {
     const userRefHash = useSelector(
-        ({pointsV2}) => pointsV2.walletPoints.data.refHash
+        ({wallet}) => wallet.pointsState.walletPoints.data.refHash
     );
     const walletAddress = useWalletAddress();
 

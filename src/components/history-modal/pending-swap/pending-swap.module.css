@@ -5,10 +5,11 @@
 }
 
 .animation_container {
-    width: 288px;
+    height: 140px;
 }
 
 .progress_bar {
+    height: var(--step);
     max-width: 380px;
 }
 

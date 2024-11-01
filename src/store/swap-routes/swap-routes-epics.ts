@@ -39,8 +39,8 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     : payload.riskTolerance;
             const maxSlippage = Number(state.settings.maxSlippage);
             const referralAddress =
-                state.pointsV2.walletPoints.data.refParent ??
-                state.pointsV2.refWallet ??
+                state.wallet.pointsState.walletPoints.data.refParent ??
+                state.wallet.pointsState.refWallet ??
                 undefined;
 
             return from(

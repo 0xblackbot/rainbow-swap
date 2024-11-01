@@ -1,0 +1,6 @@
+.container {
+    margin-top: var(--2-step);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

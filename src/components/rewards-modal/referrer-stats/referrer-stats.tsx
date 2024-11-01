@@ -9,8 +9,8 @@ import {useOpenTonConnectModal} from '../../../hooks/use-open-ton-connect-modal.
 import {useReferralLink} from '../../../hooks/use-referral-link.hook';
 import {useWalletAddress} from '../../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../../store';
-import {claimRewardsActions} from '../../../store/points/points-actions';
-import {useRewardsStateSelector} from '../../../store/points/points-selectors';
+import {claimRewardsActions} from '../../../store/wallet/wallet-actions';
+import {useRewardsStateSelector} from '../../../store/wallet/wallet-selectors';
 import {fromNano, toNano} from '../../../utils/big-int.utils';
 import {copyToClipboard} from '../../../utils/clipboard.utils';
 import {showInfoToast, showSuccessToast} from '../../../utils/toast.utils';

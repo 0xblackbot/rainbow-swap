@@ -1,10 +1,4 @@
-export type GetWalletPointsParams = {
-    address: string;
-    initData: string;
-    refParent?: string;
-};
-
-export type WalletPointsResponse = {
+export interface WalletPointsState {
     refHash: string;
     refParent: string | undefined;
     bonusPoints: number;
@@ -19,9 +13,9 @@ export type WalletPointsResponse = {
         unclaimedRewards: string;
     };
     tasksState: Record<string, number>;
-};
+}
 
-export const emptyWalletPoints: WalletPointsResponse = {
+export const emptyWalletPoints: WalletPointsState = {
     refHash: '',
     refParent: undefined,
     bonusPoints: 0,

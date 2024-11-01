@@ -1,4 +1,6 @@
+import {TaskTypeEnum} from '../../enums/task-type.enum';
 import {useSelector} from '../index';
+import {createEntity} from '../utils/create-entity';
 
 export const useBalancesRecordSelector = () =>
     useSelector(
@@ -16,13 +18,50 @@ export const useAssetBalanceSelector = (address: string) =>
     useSelector(({wallet}) => wallet.balances.data[address] ?? '0');
 
 export const usePendingBocHashSelector = () =>
-    useSelector(({wallet}) => wallet.pendingSwap.bocHash);
-
-export const usePendingSwapResultSelector = () =>
-    useSelector(({wallet}) => wallet.pendingSwap.result);
-
-export const usePendingParsedTraceSelector = () =>
-    useSelector(({wallet}) => wallet.pendingSwap.parsedTrace);
+    useSelector(({wallet}) => wallet.swapsState.pending.bocHash);
 
 export const useExpectedMessageCountSelector = () =>
-    useSelector(({wallet}) => wallet.pendingSwap.expectedMessageCount);
+    useSelector(({wallet}) => wallet.swapsState.pending.expectedMessageCount);
+
+export const usePendingSwapHistoryDataSelector = () =>
+    useSelector(({wallet}) => wallet.swapsState.pending.historyData);
+
+export const useSwapHistoryDataSelector = () =>
+    useSelector(({wallet}) => wallet.swapsState.history);
+
+export const usePointsSelector = () =>
+    useSelector(({wallet}) => {
+        const walletPoints =
+            wallet.pointsState.walletPoints.data.bonusPoints +
+            wallet.pointsState.walletPoints.data.tapTapPoints +
+            wallet.pointsState.walletPoints.data.referralPoints +
+            wallet.pointsState.walletPoints.data.swapVolumePoints;
+
+        let tasksPoints = 0;
+
+        for (const value of Object.values(wallet.pointsState.tasks)) {
+            tasksPoints += value.data;
+        }
+
+        return walletPoints + tasksPoints;
+    });
+
+export const useNumberOfReferralsSelector = () =>
+    useSelector(
+        ({wallet}) =>
+            wallet.pointsState.walletPoints.data.rewardsState.usersReferred +
+            wallet.pointsState.walletPoints.data.rewardsState.walletsReferred
+    );
+
+const EMPTY_TASK_STATE = createEntity(0);
+
+export const useTaskSelector = (taskType: TaskTypeEnum) =>
+    useSelector(
+        ({wallet}) => wallet.pointsState.tasks[taskType] ?? EMPTY_TASK_STATE
+    );
+
+export const useRewardsStateSelector = () =>
+    useSelector(({wallet}) => ({
+        isLoading: wallet.pointsState.walletPoints.isLoading,
+        data: wallet.pointsState.walletPoints.data.rewardsState
+    }));

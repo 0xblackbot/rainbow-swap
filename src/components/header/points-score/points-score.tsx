@@ -1,7 +1,7 @@
 import styles from './points-score.module.css';
 import {useModals} from '../../../contexts/modals/modals.hook';
 import {useWalletAddress} from '../../../hooks/use-wallet-address.hook';
-import {usePointsSelector} from '../../../store/points/points-selectors';
+import {usePointsSelector} from '../../../store/wallet/wallet-selectors';
 
 export const PointsScore = () => {
     const walletAddress = useWalletAddress();

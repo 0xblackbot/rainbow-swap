@@ -5,7 +5,7 @@ import {LottieProps} from './lottie.props';
 import {BASE_URL} from '../../globals';
 import {Skeleton} from '../skeleton/skeleton';
 
-const Lottie: FC<LottieProps> = ({src, className}) => {
+const Lottie: FC<LottieProps> = ({src, speed, className}) => {
     const [dotLottie, setDotLottie] = useState<DotLottie | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -25,6 +25,7 @@ const Lottie: FC<LottieProps> = ({src, className}) => {
                 src={BASE_URL + src}
                 loop={true}
                 autoplay={true}
+                speed={speed}
                 dotLottieRefCallback={setDotLottie}
             />
         </Skeleton>

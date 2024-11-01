@@ -13,11 +13,11 @@ import {useUpdatePendingSwap} from '../../hooks/use-update-pending-swap.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../store';
 import {
+    loadBalancesActions,
     loadUserAuthActions,
-    loadWalletPointsActions
-} from '../../store/points/points-actions';
-import {loadBalancesActions} from '../../store/wallet/wallet-actions';
-import {emptyWalletPoints} from '../../types/get-wallet-points.type';
+    loadWalletDataActions
+} from '../../store/wallet/wallet-actions';
+import {EMPTY_WALLET_DATA} from '../../types/get-wallet-data.type';
 
 export const HomeScreen = memo(() => {
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const HomeScreen = memo(() => {
             // load wallet related data
             dispatch(loadBalancesActions.submit(walletAddress));
             dispatch(
-                loadWalletPointsActions.submit({
+                loadWalletDataActions.submit({
                     address: walletAddress,
                     initData: INIT_DATA,
                     refParent: UNSAFE_INIT_DATA.refParent
@@ -51,7 +51,7 @@ export const HomeScreen = memo(() => {
 
             // reset wallet related data
             dispatch(loadBalancesActions.success({}));
-            dispatch(loadWalletPointsActions.success(emptyWalletPoints));
+            dispatch(loadWalletDataActions.success(EMPTY_WALLET_DATA));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [walletAddress]);

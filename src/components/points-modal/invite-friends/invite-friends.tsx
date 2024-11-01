@@ -4,7 +4,7 @@ import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../../hooks/use-open-ton-connect-modal.hook';
 import {useReferralLink} from '../../../hooks/use-referral-link.hook';
 import {useWalletAddress} from '../../../hooks/use-wallet-address.hook';
-import {useNumberOfReferralsSelector} from '../../../store/points/points-selectors';
+import {useNumberOfReferralsSelector} from '../../../store/wallet/wallet-selectors';
 import {copyToClipboard} from '../../../utils/clipboard.utils';
 import {showSuccessToast} from '../../../utils/toast.utils';
 import {Button} from '../../button/button';

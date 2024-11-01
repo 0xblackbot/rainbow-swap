@@ -1,21 +1,19 @@
 import {API} from '../globals';
+import {SwapHistoryData} from '../store/interfaces/swap-history-data.interface';
 import {GetClaimRewardsParams} from '../types/get-claim-rewards.type';
-import {
-    GetSwapProgressParams,
-    SwapProgressResponse
-} from '../types/get-swap-progress.type';
+import {GetSwapHistoryDataParams} from '../types/get-swap-history-data.type';
 import {GetTaskCheckParams} from '../types/get-task-check.type';
 import {GetUserAuthParams} from '../types/get-user-auth.type';
 import {
-    GetWalletPointsParams,
-    WalletPointsResponse
-} from '../types/get-wallet-points.type';
+    GetWalletDataParams,
+    WalletDataResponse
+} from '../types/get-wallet-data.type';
 
 export const getUserAuth = (params: GetUserAuthParams) =>
     API.get<boolean>('/user-auth', {params}).then(response => response.data);
 
-export const getWalletPoints = (params: GetWalletPointsParams) =>
-    API.get<WalletPointsResponse>('/wallet-points', {params}).then(
+export const getWalletData = (params: GetWalletDataParams) =>
+    API.get<WalletDataResponse>('/wallet-data', {params}).then(
         response => response.data
     );
 
@@ -27,7 +25,7 @@ export const getClaimRewards = (params: GetClaimRewardsParams) =>
         response => response.data
     );
 
-export const getSwapProgress = (params: GetSwapProgressParams) =>
-    API.get<SwapProgressResponse>('/swap-progress', {params}).then(
+export const getSwapHistoryData = (params: GetSwapHistoryDataParams) =>
+    API.get<SwapHistoryData>('/swap-history-data', {params}).then(
         response => response.data
     );

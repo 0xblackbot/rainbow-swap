@@ -16,7 +16,7 @@ import {
     useSwapMessagesSelector
 } from '../../../store/swap-routes/swap-routes-selectors';
 import {setPendingSwapAction} from '../../../store/wallet/wallet-actions';
-import {showErrorToast, showSuccessToast} from '../../../utils/toast.utils';
+import {showErrorToast} from '../../../utils/toast.utils';
 
 interface Props {
     inputAsset: Asset;
@@ -60,7 +60,6 @@ export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
                 })
             );
             modal.openHistoryModal();
-            showSuccessToast('Swap sent, please wait...');
         }
     };
 
