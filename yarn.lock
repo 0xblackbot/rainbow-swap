@@ -364,10 +364,10 @@
   dependencies:
     "@floating-ui/dom" "^1.0.0"
 
-"@floating-ui/react@^0.26.25":
-  version "0.26.25"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.26.25.tgz#cf4c8a2b89fab1a71712d15e6551df3bfbd2ea1d"
-  integrity sha512-hZOmgN0NTOzOuZxI1oIrDu3Gcl8WViIkvPMpB4xdd4QD6xAMtwgwr3VPoiyH/bLtRcS1cDnhxLSD1NsMJmwh/A==
+"@floating-ui/react@^0.26.27":
+  version "0.26.27"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.26.27.tgz#402f7b4b2702650662705fe9cbe0f1d5607846a1"
+  integrity sha512-jLP72x0Kr2CgY6eTYi/ra3VA9LOkTo4C+DUTrbFgFOExKy3omYVmwMjNKqxAHdsnyLS96BIDLcO2SlnsNf8KUQ==
   dependencies:
     "@floating-ui/react-dom" "^2.1.2"
     "@floating-ui/utils" "^0.2.8"
@@ -445,17 +445,17 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@lottiefiles/dotlottie-react@^0.9.2":
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.9.2.tgz#52679fcc83361849a03fe039f14d97ca716c0676"
-  integrity sha512-KSx2BRM2/zwMJRwt68b78n93Da3G3tZT5MmDTPPjy5kIKvS98Q3OBpngjgEDPNax9FHnTZZkmjnhVsBaNbllQA==
+"@lottiefiles/dotlottie-react@^0.9.3":
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.9.3.tgz#75f9851172b2da0d034d86fbf1ba0602724b760c"
+  integrity sha512-x4xQlFFulAF/nG044VNMwaXWk8ehg/KEHXpMxGB+L5gv3qohjxv/I7/erHyfhWY9y6C/VMl+PiWZbT54W8+lUQ==
   dependencies:
-    "@lottiefiles/dotlottie-web" "0.36.0"
+    "@lottiefiles/dotlottie-web" "0.36.1"
 
-"@lottiefiles/dotlottie-web@0.36.0":
-  version "0.36.0"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.36.0.tgz#ca2cf4d9c4dce6cfe79f36cb2d539f8469da1325"
-  integrity sha512-FVGlQnhT95+aKrf4OiyC4/fP6ESZa8YwYDyvfuAeWktHFdAT/7Gbt76ZmCZU/Bwera6FB7UgJuoAtK/duTFCZQ==
+"@lottiefiles/dotlottie-web@0.36.1":
+  version "0.36.1"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.36.1.tgz#0507a1422ac3f40fde1cc56ebec4120524164a77"
+  integrity sha512-KvxOH5Msk0Ivqpgq4p1DGo1IG2XPX4kEVkhssTaOUEvoeCxDLru+DlbUzwG8b5JcJwEBmrAMzCNzCTmn+uMFxQ==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -608,10 +608,10 @@
   resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.74.0.tgz#57ec5c93935e7547f0ef8132e9ba7c51a0bd1539"
   integrity sha512-PxEuyL6jKrNF8bDxGYRG+NEqEKtkanMahr6YSGLwmWDd57XenpwETz6LUvSoVTJGGwndwu5pwWJhsz4jqa1bDQ==
 
-"@rnw-community/shared@^0.75.4":
-  version "0.75.4"
-  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.75.4.tgz#295878c5bc98f390d9f72ade004cb3ac352a8d10"
-  integrity sha512-wWI9ROKBvwVfFIIjoBqUhUuEs9/4jZDcJ5ufKoggMOxwTR5ivjKN0rEB5SXLGO9iicn0NhtxGuQt5OPZ/ek8iQ==
+"@rnw-community/shared@^0.77.0":
+  version "0.77.0"
+  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.77.0.tgz#a100d405053b54d5720b72b70d30720c5084b01e"
+  integrity sha512-mgaKIIIbNCZ4X0Rkgrudce/QKy4m6y703eG3MK8jf03fuzXzzOVE8/hhNoMHjhi6A3qIkvPWFwrPOMZC20bolA==
 
 "@rollup/plugin-strip@^3.0.2":
   version "3.0.4"
@@ -3479,10 +3479,10 @@ vite-plugin-terminal@^1.2.0:
     sirv "^2.0.2"
     ufo "^1.1.1"
 
-vite@^5.4.9:
-  version "5.4.9"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.9.tgz#215c80cbebfd09ccbb9ceb8c0621391c9abdc19c"
-  integrity sha512-20OVpJHh0PAM0oSOELa5GaZNWeDjcAvQjGXy2Uyr+Tp+/D2/Hdz6NLgpJLsarPTA2QJ6v8mX2P1ZfbsSKvdMkg==
+vite@^5.4.10:
+  version "5.4.10"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.10.tgz#d358a7bd8beda6cf0f3b7a450a8c7693a4f80c18"
+  integrity sha512-1hvaPshuPUtxeQ0hsVH3Mud0ZanOLwVTneA1EgbAM5LhaZEqyPWGRQ7BtaMvUrTDeEaC8pxtj6a6jku3x4z6SQ==
   dependencies:
     esbuild "^0.21.3"
     postcss "^8.4.43"
