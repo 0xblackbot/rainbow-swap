@@ -6,6 +6,7 @@
 
 .animation_container {
     height: 140px;
+    aspect-ratio: 2 / 1;
 }
 
 .progress_bar {
