@@ -21,7 +21,8 @@ export const emptyBestRouteResponse: BestRouteResponse = {
         routingFeePercent: 0,
         priceImprovementPercent: 0,
         roughGasFee: 0,
-        roughGasUsdFee: 0
+        roughGasUsdFee: 0,
+        routes: []
     },
     swapMessages: [],
     messageCount: 0

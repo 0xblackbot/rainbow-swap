@@ -1,4 +1,4 @@
-import {FC, Fragment, useMemo, useState} from 'react';
+import {FC, useMemo, useState} from 'react';
 
 import {RouteInfo} from './route-info/route-info';
 import {SwapDetailsHeader} from './swap-details-header/swap-details-header';
@@ -11,11 +11,10 @@ import {
     useSwapDisplayDataSelector
 } from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
-import {getSwapInputAssetAmount} from '../../../utils/route-step-with-calculation.utils';
 import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
-interface Props extends SwapDetailsHeaderProps {
+interface Props extends Omit<SwapDetailsHeaderProps, 'routesLength'> {
     isValidInputAssetAmount: boolean;
 }
 
@@ -23,18 +22,15 @@ export const SwapDetails: FC<Props> = ({
     isValidInputAssetAmount,
     inputError,
     inputAsset,
-    outputAsset,
-    routes
+    outputAsset
 }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const isRoutesLoading = useIsRoutesLoadingSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
 
-    const nanoInputAssetAmount = getSwapInputAssetAmount(routes);
-
     const data = useMemo(() => {
-        if (routes.length === 0) {
+        if (swapDisplayData.routes.length === 0) {
             return {
                 maxSlippage: `-`,
                 receiveAtLeast: `-`,
@@ -57,9 +53,9 @@ export const SwapDetails: FC<Props> = ({
             gasFee: `~ ${formatNumber(swapDisplayData.roughGasFee, 2)} TON`
         };
     }, [
-        routes.length,
-        swapDisplayData.maxSlippage,
+        swapDisplayData.routes.length,
         swapDisplayData.minOutputAssetAmount,
+        swapDisplayData.maxSlippage,
         swapDisplayData.routingFeePercent,
         swapDisplayData.roughGasFee,
         outputAsset.symbol
@@ -77,7 +73,7 @@ export const SwapDetails: FC<Props> = ({
                                 inputError={inputError}
                                 inputAsset={inputAsset}
                                 outputAsset={outputAsset}
-                                routes={routes}
+                                routesLength={swapDisplayData.routes.length}
                             />
                         </Skeleton>
                         <div
@@ -133,15 +129,11 @@ export const SwapDetails: FC<Props> = ({
                             <p>Swap route</p>
                         </div>
                         <div className={styles.routes_container}>
-                            {routes.map((route, index) => (
-                                <Fragment key={`route-${index}`}>
-                                    <RouteInfo
-                                        nanoInputAssetAmount={
-                                            nanoInputAssetAmount
-                                        }
-                                        route={route}
-                                    />
-                                </Fragment>
+                            {swapDisplayData.routes.map((route, index) => (
+                                <RouteInfo
+                                    key={`route-${index}`}
+                                    route={route}
+                                />
                             ))}
                         </div>
                     </div>

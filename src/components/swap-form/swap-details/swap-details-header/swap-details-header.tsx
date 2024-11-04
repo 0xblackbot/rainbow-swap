@@ -9,11 +9,11 @@ export const SwapDetailsHeader: FC<SwapDetailsHeaderProps> = ({
     inputError,
     inputAsset,
     outputAsset,
-    routes
+    routesLength
 }) => {
     const exchangeRate = useExchangeRate(inputAsset, outputAsset);
 
-    if (routes.length === 0) {
+    if (routesLength === 0) {
         return <p className={styles.error_text}>No routes available</p>;
     }
 

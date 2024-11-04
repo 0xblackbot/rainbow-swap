@@ -24,10 +24,7 @@ import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-se
 import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {useRiskToleranceSelector} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
-import {
-    useRoutesSelector,
-    useSwapDisplayDataSelector
-} from '../../store/swap-routes/swap-routes-selectors';
+import {useSwapDisplayDataSelector} from '../../store/swap-routes/swap-routes-selectors';
 import {toNano} from '../../utils/big-int.utils';
 import {formatNumber} from '../../utils/format-number.utils';
 import {swapAssets} from '../../utils/swap-assets.utils';
@@ -37,7 +34,6 @@ export const SwapScreen = () => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const dispatch = useDispatch();
-    const routes = useRoutesSelector();
     const appStatus = useAppStatusSelector();
     const isAssetsInitialized = useIsAssetsInitializedSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
@@ -203,7 +199,6 @@ export const SwapScreen = () => {
                         inputError={inputError}
                         inputAsset={inputAsset}
                         outputAsset={outputAsset}
-                        routes={routes}
                     />
                     {!appStatus.isSwapsEnabled && (
                         <SwapDisabled message={appStatus.message} />
