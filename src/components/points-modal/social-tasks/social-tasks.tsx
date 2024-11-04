@@ -11,6 +11,7 @@ import stakingImage from './assets/staking.png';
 import telegramImage from './assets/telegram.png';
 import tonAppImage from './assets/ton-app.png';
 import tonHedgeImage from './assets/ton-hedge.jpeg';
+import ton2kImage from './assets/ton2k.jpeg';
 import torchFinanceImage from './assets/torch-finance.jpeg';
 import twitterImage from './assets/twitter.png';
 import {Divider} from './divider/divider';
@@ -63,6 +64,25 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         imageSrc={tonAppImage}
                         title="Leave a review"
                         taskType={TaskTypeEnum.TonApp}
+                    />
+
+                    <Divider withArrow={true} className={styles.divider} />
+
+                    <TaskHeader
+                        name="Sharding, TON's, two Jetons"
+                        imageSrc={ton2kImage}
+                    />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={telegramImage}
+                        title="Join Channel"
+                        taskType={TaskTypeEnum.Ton2k_Telegram}
+                    />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={telegramImage}
+                        title="Join RU Channel"
+                        taskType={TaskTypeEnum.Ton2k_TelegramRu}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />
