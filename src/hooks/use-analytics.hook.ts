@@ -24,7 +24,7 @@ export const trackButtonClick = (name: string) =>
     });
 
 const API = axios.create({
-    baseURL: 'https://api.blackbot.technology/rainbow/analytics'
+    baseURL: 'https://api.rainbow.ag/analytics'
 });
 
 export const trackSwapConfirmation = (params: {
@@ -37,12 +37,9 @@ export const trackSwapConfirmation = (params: {
     outputAssetAddress: string;
     outputAssetSymbol: string;
     outputAssetAmount: number;
-}) => {
-    if (isProd) {
-        return API.post('/track-event', {
-            initData: INIT_DATA,
-            type: 'swap-confirmed',
-            ...params
-        });
-    }
-};
+}) =>
+    API.post('/track-event', {
+        initData: INIT_DATA,
+        type: 'swap-confirmed',
+        ...params
+    });
