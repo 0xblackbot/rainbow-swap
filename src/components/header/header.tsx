@@ -1,4 +1,4 @@
-import logoImage from './assets/icon.png';
+import logoImage from './assets/icon.svg';
 import {LogoText} from './assets/LogoText';
 import {HeaderContainer} from './header-container/header-container';
 import styles from './header.module.css';
