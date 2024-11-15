@@ -46,3 +46,4 @@ export const COMMUNITY_CHAT_LINK = 'https://t.me/rainbow_swap_chat';
 export const TWITTER_LINK = 'https://x.com/rainbow_swap';
 export const GITBOOK_LINK = 'https://rainbow-ag.gitbook.io/docs';
 export const GITHUB_LINK = 'https://github.com/0xblackbot/rainbow-swap';
+export const BLACKBOT_LINK = 'https://blackbot.technology/';

@@ -5,6 +5,7 @@ import {GithubIcon} from '../../assets/icons/GithubIcon/GithubIcon';
 import {TelegramIcon} from '../../assets/icons/TelegramIcon/TelegramIcon';
 import {TwitterIcon} from '../../assets/icons/TwitterIcon/TwitterIcon';
 import {
+    BLACKBOT_LINK,
     COMMUNITY_CHAT_LINK,
     GITBOOK_LINK,
     GITHUB_LINK,
@@ -22,28 +23,40 @@ export const Footer = () => (
         <div className={styles.inner_container}>
             <div className={styles.container_row}>
                 <a
-                    className={styles.container_a}
+                    className={getClassName(
+                        styles.container_a,
+                        styles.container_icon
+                    )}
                     href={TWITTER_LINK}
                     target="_blank"
                 >
                     <TwitterIcon width={iconSize} height={iconSize} />
                 </a>
                 <a
-                    className={styles.container_a}
+                    className={getClassName(
+                        styles.container_a,
+                        styles.container_icon
+                    )}
                     href={TELEGRAM_CHANNEL_LINK}
                     target="_blank"
                 >
                     <TelegramIcon width={iconSize} height={iconSize} />
                 </a>
                 <a
-                    className={styles.container_a}
+                    className={getClassName(
+                        styles.container_a,
+                        styles.container_icon
+                    )}
                     href={GITBOOK_LINK}
                     target="_blank"
                 >
                     <GitbookIcon width={iconSize} height={iconSize} />
                 </a>
                 <a
-                    className={styles.container_a}
+                    className={getClassName(
+                        styles.container_a,
+                        styles.container_icon
+                    )}
                     href={GITHUB_LINK}
                     target="_blank"
                 >
@@ -52,6 +65,7 @@ export const Footer = () => (
                 <a
                     className={getClassName(
                         styles.container_a,
+                        styles.container_icon,
                         styles.support_button
                     )}
                     href={COMMUNITY_CHAT_LINK}
@@ -63,7 +77,14 @@ export const Footer = () => (
             </div>
             <div className={styles.container_row}>
                 <p className={styles.copyright_text}>
-                    Copyright © {currentYear} Blackbot
+                    Copyright © {currentYear}{' '}
+                    <a
+                        className={styles.container_a}
+                        href={BLACKBOT_LINK}
+                        target="_blank"
+                    >
+                        Blackbot
+                    </a>
                 </p>
             </div>
         </div>

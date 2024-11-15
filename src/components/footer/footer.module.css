@@ -20,26 +20,29 @@
     gap: var(--half-step);
 }
 
-.container_a {
+.container_icon {
     display: flex;
     align-items: center;
     gap: var(--half-step);
     padding: var(--step);
     font-size: 14px;
+}
+
+.container_a {
     cursor: pointer;
     transition: color 0.3s ease-in-out;
 }
 
 .container_a:-webkit-any-link {
-    color: var(--hint-color)
+    color: var(--hint-color);
 }
 
 .container_a:visited {
-    color: var(--hint-color)
+    color: var(--hint-color);
 }
 
 .container_a:hover {
-    color: var(--text-color)
+    color: var(--text-color);
 }
 
 .support_button {
