@@ -5,7 +5,7 @@
 .inner_container {
     display: flex;
     flex-direction: column;
-    gap: var(--step);
+    gap: var(--half-step);
     padding: var(--step);
     color: var(--hint-color);
 }
