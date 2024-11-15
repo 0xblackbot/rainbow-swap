@@ -9,6 +9,7 @@ import {
     COMMUNITY_CHAT_LINK,
     GITBOOK_LINK,
     GITHUB_LINK,
+    IS_TMA,
     TELEGRAM_CHANNEL_LINK,
     TWITTER_LINK
 } from '../../globals';
@@ -75,18 +76,20 @@ export const Footer = () => (
                     Support
                 </a>
             </div>
-            <div className={styles.container_row}>
-                <p className={styles.copyright_text}>
-                    <a
-                        className={styles.container_a}
-                        href={BLACKBOT_LINK}
-                        target="_blank"
-                    >
-                        Blackbot
-                    </a>{' '}
-                    © {currentYear}
-                </p>
-            </div>
+            {!IS_TMA && (
+                <div className={styles.container_row}>
+                    <p className={styles.copyright_text}>
+                        <a
+                            className={styles.container_a}
+                            href={BLACKBOT_LINK}
+                            target="_blank"
+                        >
+                            Blackbot
+                        </a>{' '}
+                        © {currentYear}
+                    </p>
+                </div>
+            )}
         </div>
     </ContentContainer>
 );
