@@ -5,7 +5,6 @@ import {GithubIcon} from '../../assets/icons/GithubIcon/GithubIcon';
 import {TelegramIcon} from '../../assets/icons/TelegramIcon/TelegramIcon';
 import {TwitterIcon} from '../../assets/icons/TwitterIcon/TwitterIcon';
 import {
-    BLACKBOT_LINK,
     COMMUNITY_CHAT_LINK,
     GITBOOK_LINK,
     GITHUB_LINK,
@@ -15,7 +14,6 @@ import {
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {getClassName} from '../../utils/style.utils';
 
-const currentYear = new Date().getFullYear();
 const iconSize = 24;
 
 export const Footer = () => (
@@ -74,18 +72,6 @@ export const Footer = () => (
                     <ChatIcon width={iconSize} height={iconSize} />
                     Support
                 </a>
-            </div>
-            <div className={styles.container_row}>
-                <p className={styles.copyright_text}>
-                    Copyright © {currentYear}{' '}
-                    <a
-                        className={styles.container_a}
-                        href={BLACKBOT_LINK}
-                        target="_blank"
-                    >
-                        Blackbot
-                    </a>
-                </p>
             </div>
         </div>
     </ContentContainer>
