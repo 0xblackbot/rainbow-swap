@@ -38,8 +38,12 @@ export const App = () => {
             window.Telegram.WebApp.disableVerticalSwipes();
 
             /* eslint-disable @typescript-eslint/ban-ts-comment */
-            // @ts-expect-error
-            window.Telegram.WebApp.requestFullscreen();
+            try {
+                // @ts-expect-error
+                window.Telegram.WebApp?.requestFullscreen();
+            } catch (e) {
+                console.log(e);
+            }
 
             // @ts-expect-error
             window.Telegram.WebApp.onEvent('fullscreenChanged', () => {
