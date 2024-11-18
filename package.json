@@ -18,6 +18,7 @@
     "@reduxjs/toolkit": "^2.3.0",
     "@rnw-community/shared": "^0.77.0",
     "@sentry/react": "^8.38.0",
+    "@sentry/vite-plugin": "^2.22.6",
     "@ton-api/client": "^0.2.0",
     "@ton/core": "^0.59.0",
     "@ton/crypto": "^3.3.0",
