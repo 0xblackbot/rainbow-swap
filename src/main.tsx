@@ -63,13 +63,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <PersistGate loading={null} persistor={persistor}>
             <TonConnectUIProvider manifestUrl="https://rainbow.ag/tonconnect-manifest.json">
                 <App />
-                <button
-                    onClick={() => {
-                        throw new Error('This is your first error!');
-                    }}
-                >
-                    Break the world
-                </button>
             </TonConnectUIProvider>
         </PersistGate>
     </Provider>
