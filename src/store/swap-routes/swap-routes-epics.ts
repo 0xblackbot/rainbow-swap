@@ -1,13 +1,7 @@
 import {getBestRoute} from 'rainbow-swap-sdk';
 import {combineEpics, Epic} from 'redux-observable';
 import {from, of} from 'rxjs';
-import {
-    catchError,
-    debounceTime,
-    map,
-    switchMap,
-    withLatestFrom
-} from 'rxjs/operators';
+import {debounceTime, map, switchMap, withLatestFrom} from 'rxjs/operators';
 import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
@@ -16,6 +10,7 @@ import {RiskTolerance} from '../../enums/risk-tolerance.enum';
 import {DEBOUNCE_DUE_TIME} from '../../globals';
 import {RootState} from '../index';
 import {emptyBestRouteResponse} from './swap-routes-state';
+import {sentryCatchError} from '../../utils/sentry.utils';
 
 const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
     action$.pipe(
@@ -60,7 +55,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                         requestId: payload.requestId
                     })
                 ),
-                catchError(err =>
+                sentryCatchError(err =>
                     of(
                         loadSwapRoutesActions.fail({
                             error: err.message,

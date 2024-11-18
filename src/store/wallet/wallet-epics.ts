@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {combineEpics, Epic} from 'redux-observable';
-import {catchError, from, map, Observable, of, switchMap} from 'rxjs';
+import {from, map, Observable, of, switchMap} from 'rxjs';
 import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
@@ -21,6 +21,7 @@ import {
     getWalletData
 } from '../../utils/api.utils';
 import {getBalancesRecord} from '../../utils/balances-record.utils';
+import {sentryCatchError} from '../../utils/sentry.utils';
 
 const loadBalancesEpic = (action$: Observable<Action>) =>
     action$.pipe(
@@ -48,7 +49,9 @@ const loadBalancesEpic = (action$: Observable<Action>) =>
                 map(balancesRecord =>
                     loadBalancesActions.success(balancesRecord)
                 ),
-                catchError(error => of(loadBalancesActions.fail(error.message)))
+                sentryCatchError(error =>
+                    of(loadBalancesActions.fail(error.message))
+                )
             )
         )
     );
@@ -60,7 +63,9 @@ const loadUserAuthEpic: Epic<Action> = action$ =>
         switchMap(payload =>
             from(getUserAuth(payload)).pipe(
                 map(response => loadUserAuthActions.success(response)),
-                catchError(err => of(loadUserAuthActions.fail(err.message)))
+                sentryCatchError(err =>
+                    of(loadUserAuthActions.fail(err.message))
+                )
             )
         )
     );
@@ -72,7 +77,9 @@ const loadWalletDataEpic: Epic<Action> = action$ =>
         switchMap(payload =>
             from(getWalletData(payload)).pipe(
                 map(response => loadWalletDataActions.success(response)),
-                catchError(err => of(loadWalletDataActions.fail(err.message)))
+                sentryCatchError(err =>
+                    of(loadWalletDataActions.fail(err.message))
+                )
             )
         )
     );
@@ -90,7 +97,7 @@ const checkTaskEpic: Epic<Action> = action$ =>
                 })
             ).pipe(
                 map(data => checkTaskActions.success({taskType, data})),
-                catchError(err =>
+                sentryCatchError(err =>
                     of(
                         checkTaskActions.fail({
                             taskType,
@@ -109,7 +116,9 @@ const claimRewardsEpic: Epic<Action> = action$ =>
         switchMap(payload =>
             from(getClaimRewards(payload)).pipe(
                 map(response => claimRewardsActions.success(response)),
-                catchError(err => of(claimRewardsActions.fail(err.message)))
+                sentryCatchError(err =>
+                    of(claimRewardsActions.fail(err.message))
+                )
             )
         )
     );

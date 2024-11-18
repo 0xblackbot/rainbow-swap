@@ -1,11 +1,12 @@
 import {getAssetsList} from 'rainbow-swap-sdk';
 import {combineEpics, Epic} from 'redux-observable';
-import {catchError, concatMap, debounceTime, from, of, switchMap} from 'rxjs';
+import {concatMap, debounceTime, from, of, switchMap} from 'rxjs';
 import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
 import {loadAssetsListActions} from './assets-actions';
 import {DEBOUNCE_DUE_TIME} from '../../globals';
+import {sentryCatchError} from '../../utils/sentry.utils';
 import {assetsInitializedAction} from '../initialized/runtime-actions';
 
 const loadAssetsListEpic: Epic<Action> = action$ =>
@@ -22,7 +23,7 @@ const loadAssetsListEpic: Epic<Action> = action$ =>
                     }),
                     assetsInitializedAction()
                 ]),
-                catchError(err =>
+                sentryCatchError(err =>
                     of(
                         loadAssetsListActions.fail({
                             error: err.message,

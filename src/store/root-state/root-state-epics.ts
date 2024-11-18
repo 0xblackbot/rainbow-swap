@@ -1,6 +1,7 @@
 import {Epic, StateObservable, combineEpics} from 'redux-observable';
-import {Observable, catchError} from 'rxjs';
+import {Observable} from 'rxjs';
 
+import {sentryCatchError} from '../../utils/sentry.utils';
 import {assetsEpics} from '../assets/assets-epics';
 import {securityEpics} from '../security/security-epics';
 import {swapRoutesEpics} from '../swap-routes/swap-routes-epics';
@@ -20,8 +21,8 @@ export const rootEpic = (
     dependencies: any
 ) =>
     combineEpics(...rootStateEpics)(action$, store$, dependencies).pipe(
-        catchError((error, source) => {
-            console.error(error);
+        sentryCatchError((error, source) => {
+            console.log(error);
             return source;
         })
     );
