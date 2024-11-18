@@ -36,6 +36,21 @@ export const App = () => {
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.enableClosingConfirmation();
             window.Telegram.WebApp.disableVerticalSwipes();
+
+            /* eslint-disable @typescript-eslint/ban-ts-comment */
+            // @ts-expect-error
+            window.Telegram.WebApp.requestFullscreen();
+
+            // @ts-expect-error
+            window.Telegram.WebApp.onEvent('fullscreenChanged', () => {
+                // @ts-expect-error
+                if (window.Telegram.WebApp.isFullscreen) {
+                    window.Telegram.WebApp.disableClosingConfirmation();
+                } else {
+                    window.Telegram.WebApp.enableClosingConfirmation();
+                }
+            });
+
             IS_MAIN_BUTTON_AVAILABLE &&
                 window.Telegram.WebApp.MainButton.show();
         }

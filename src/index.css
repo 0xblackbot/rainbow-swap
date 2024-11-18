@@ -112,6 +112,8 @@ input[type=number]::-webkit-outer-spin-button {
 
     --app-min-width: 320px;
     --app-max-width: 480px;
+
+    --safe-area-inset-top: calc(var(--tg-safe-area-inset-top) + var(--tg-content-safe-area-inset-top));
 }
 
 :root[data-theme='light'] {
