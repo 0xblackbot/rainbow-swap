@@ -13,8 +13,8 @@ import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
 import {useSwapForm} from '../../contexts/swap-form/swap-form.hook';
-import {IS_MAIN_BUTTON_AVAILABLE} from '../../globals';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
+import {useIsMainButtonAvailable} from '../../hooks/use-is-main-button-available.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
@@ -32,6 +32,7 @@ import {swapAssets} from '../../utils/swap-assets.utils';
 export const SwapScreen = () => {
     const walletAddress = useWalletAddress();
     const inputRef = useRef<HTMLInputElement>(null);
+    const isMainButtonAvailable = useIsMainButtonAvailable();
 
     const dispatch = useDispatch();
     const appStatus = useAppStatusSelector();
@@ -190,7 +191,7 @@ export const SwapScreen = () => {
                     ) : (
                         <ConnectWalletButton onClick={handleConnectClick} />
                     )}
-                    {!IS_MAIN_BUTTON_AVAILABLE && (
+                    {!isMainButtonAvailable && (
                         <div className={styles.ident_container} />
                     )}
 

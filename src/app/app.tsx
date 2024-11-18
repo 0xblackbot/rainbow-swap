@@ -3,7 +3,7 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import styles from './app.module.css';
 import {getErrorElement} from '../components/error-element/error-element';
-import {BASE_URL, IS_MAIN_BUTTON_AVAILABLE, IS_TMA} from '../globals';
+import {BASE_URL, IS_TMA} from '../globals';
 import {useDisableMainButton} from '../hooks/use-disable-main-button.hook';
 import {useStateVersionCheck} from '../hooks/use-state-version-check.hook';
 import {useThemeStyles} from '../hooks/use-theme-styles.hook';
@@ -54,9 +54,6 @@ export const App = () => {
                     window.Telegram.WebApp.enableClosingConfirmation();
                 }
             });
-
-            IS_MAIN_BUTTON_AVAILABLE &&
-                window.Telegram.WebApp.MainButton.show();
         }
     }, []);
 

@@ -27,11 +27,6 @@ export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
 export const INIT_DATA = window.Telegram.WebApp.initData;
 export const IS_TMA = isNotEmptyString(INIT_DATA);
 
-// On Android devices MainButton text updates only after touch
-export const IS_MAIN_BUTTON_AVAILABLE = ['ios', 'macos'].includes(
-    window.Telegram.WebApp.platform
-);
-
 export const UNSAFE_INIT_DATA = {
     userId: window.Telegram.WebApp.initDataUnsafe.user?.id,
     refParent: window.Telegram.WebApp.initDataUnsafe.start_param,
