@@ -22,7 +22,7 @@ if (isProd) {
         release: 'rainbow-swap@1.0.0',
         integrations: [
             Sentry.captureConsoleIntegration({
-                levels: ['warn', 'error', 'debug', 'assert']
+                levels: ['error', 'debug', 'assert']
             }),
             Sentry.browserTracingIntegration(),
             Sentry.browserApiErrorsIntegration({
