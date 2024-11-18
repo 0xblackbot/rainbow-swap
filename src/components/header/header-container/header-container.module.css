@@ -1,11 +1,11 @@
 .replacement {
     height: 56px;
-    padding-top: var(--safe-area-inset-top);
+    padding-top: var(--app-safe-area-inset-top);
 }
 
 .container {
     height: 56px;
-    padding-top: var(--safe-area-inset-top);
+    padding-top: var(--app-safe-area-inset-top);
     background-color: var(--bg-color);
     position: fixed;
     width: 100%;

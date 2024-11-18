@@ -33,7 +33,7 @@
 }
 
 .modal_content {
-    height: calc(100vh - 60px - var(--safe-area-inset-top));
+    height: calc(100vh - 60px - var(--app-safe-area-inset-top));
     display: flex;
     flex-direction: column;
     border-top-left-radius: var(--border-radius);
