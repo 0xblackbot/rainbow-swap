@@ -25,6 +25,7 @@ if (isProd) {
                 levels: ['error', 'debug', 'assert']
             }),
             Sentry.browserTracingIntegration(),
+            Sentry.replayIntegration(),
             Sentry.browserApiErrorsIntegration({
                 setTimeout: true,
                 setInterval: true,
@@ -36,6 +37,8 @@ if (isProd) {
         ],
         tracesSampleRate: 1.0,
         tracePropagationTargets: ['localhost', /^https:\/\/rainbow\.ag/],
+        replaysSessionSampleRate: 0.1,
+        replaysOnErrorSampleRate: 1.0,
         sendDefaultPii: true
     });
 
