@@ -11,7 +11,8 @@ const getIsAvailable = () => {
         // @ts-ignore
         !window.Telegram.WebApp?.isFullscreen
     ) {
-        return true;
+        return false;
+        // return true; // TODO: return this when WebApp.isFullscreen will work on macos
     }
 
     // On Android devices MainButton text updates only after the touch
