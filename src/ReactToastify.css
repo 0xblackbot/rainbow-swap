@@ -1,12 +1,15 @@
 .Toastify__toast-container {
-    padding: var(--2-step);
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--step);
+    margin-top: var(--app-safe-area-inset-top);
+    padding: 0 var(--2-step);
     min-width: var(--app-min-width);
     max-width: var(--app-max-width);
 }
 
 .Toastify__toast {
-    margin-bottom: var(--step);
     border-radius: var(--step);
     min-height: unset;
     color: var(--button-text-color);
