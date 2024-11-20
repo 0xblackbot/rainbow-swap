@@ -20,8 +20,7 @@ const LinksRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.SnapX_Telegram]: 'https://t.me/SnapX_official',
     [TaskTypeEnum.SnapX_Twitter]: 'https://x.com/snapx_co',
     [TaskTypeEnum.AppsCenter_Telegram]: 'https://t.me/+eTPf2XXxBixhMTgy',
-    [TaskTypeEnum.AppsCenter_Bot]:
-        'https://t.me/tapps_bot/app?startapp=promo_rainbow_swap',
+    [TaskTypeEnum.AppsCenter_Bot]: 'https://t.me/tapps/app?startapp=ref_1_5000',
     [TaskTypeEnum.JVault_Telegram]: 'https://t.me/JVault',
     [TaskTypeEnum.JVault_Staking]: 'https://jvault.xyz/staking',
     [TaskTypeEnum.TonHedge_Telegram]: 'https://t.me/ton_hedge',

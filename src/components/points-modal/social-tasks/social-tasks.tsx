@@ -66,6 +66,25 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
 
                     <Divider withArrow={true} className={styles.divider} />
 
+                    <TaskHeader
+                        name="Telegram Apps Center"
+                        imageSrc={appsCenter}
+                    />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={telegramImage}
+                        title="Join Channel"
+                        taskType={TaskTypeEnum.AppsCenter_Telegram}
+                    />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={telegramImage}
+                        title="Explore Telegram Apps"
+                        taskType={TaskTypeEnum.AppsCenter_Bot}
+                    />
+
+                    <Divider withArrow={true} className={styles.divider} />
+
                     <TaskHeader name="Parraton" imageSrc={parratonImage} />
                     <PartnerTaskItem
                         isTelegram={true}
@@ -109,25 +128,6 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         imageSrc={stakingImage}
                         title="Stake any token"
                         taskType={TaskTypeEnum.JVault_Staking}
-                    />
-
-                    <Divider withArrow={true} className={styles.divider} />
-
-                    <TaskHeader
-                        name="Telegram Apps Center"
-                        imageSrc={appsCenter}
-                    />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Join Channel"
-                        taskType={TaskTypeEnum.AppsCenter_Telegram}
-                    />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Explore Telegram Apps"
-                        taskType={TaskTypeEnum.AppsCenter_Bot}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />
