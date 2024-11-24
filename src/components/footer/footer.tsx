@@ -6,10 +6,10 @@ import {TelegramIcon} from '../../assets/icons/TelegramIcon/TelegramIcon';
 import {TwitterIcon} from '../../assets/icons/TwitterIcon/TwitterIcon';
 import {
     BLACKBOT_LINK,
-    COMMUNITY_CHAT_LINK,
     GITBOOK_LINK,
     GITHUB_LINK,
     IS_TMA,
+    SUPPORT_CHAT_LINK,
     TELEGRAM_CHANNEL_LINK,
     TWITTER_LINK
 } from '../../globals';
@@ -69,7 +69,7 @@ export const Footer = () => (
                         styles.container_icon,
                         styles.support_button
                     )}
-                    href={COMMUNITY_CHAT_LINK}
+                    href={SUPPORT_CHAT_LINK}
                     target="_blank"
                 >
                     <ChatIcon width={iconSize} height={iconSize} />
