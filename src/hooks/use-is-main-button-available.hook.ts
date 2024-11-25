@@ -6,17 +6,13 @@ const getIsAvailable = () => {
         return true;
     }
 
-    if (
-        window.Telegram.WebApp.platform === 'macos' &&
-        // @ts-ignore
-        !window.Telegram.WebApp?.isFullscreen
-    ) {
+    if (window.Telegram.WebApp.platform !== 'macos') {
         return false;
-        // return true; // TODO: return this when WebApp.isFullscreen will work on macos
+    } else {
+        return true;
     }
 
     // On Android devices MainButton text updates only after the touch
-    return false;
 };
 
 export const useIsMainButtonAvailable = () => {

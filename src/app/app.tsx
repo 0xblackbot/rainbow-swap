@@ -39,8 +39,10 @@ export const App = () => {
 
             /* eslint-disable @typescript-eslint/ban-ts-comment */
             try {
-                // @ts-expect-error
-                window.Telegram.WebApp?.requestFullscreen();
+                if (window.Telegram.WebApp.platform !== 'macos') {
+                    // @ts-expect-error
+                    window.Telegram.WebApp?.requestFullscreen();
+                }
             } catch (e) {
                 console.log(e);
             }
