@@ -26,10 +26,13 @@ export const EarnFees = () => {
                     </div>
                 </div>
 
-                <LottieWithSuspense
-                    src="animations/duck-money.lottie"
-                    className={styles.duck_airdrop}
-                />
+                <div className={styles.animationContainer}>
+                    <LottieWithSuspense
+                        speed={0.9}
+                        src="animations/duck-money.lottie"
+                        className={styles.duck_airdrop}
+                    />
+                </div>
             </div>
         </div>
     );

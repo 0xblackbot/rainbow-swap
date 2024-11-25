@@ -1,11 +1,12 @@
 .swiper {
     width: 100%;
-    height: calc(19 * var(--step));
+    height: calc(20 * var(--step));
     margin-bottom: var(--2-step);
     border-radius: var(--border-radius) !important;
 }
 
 .swiperSlide {
+    position: relative;
     box-sizing: border-box;
     padding: var(--2-step);
     border-radius: var(--border-radius);

@@ -15,8 +15,8 @@ const AdsSwiper = () => (
     <Swiper
         className={styles.swiper}
         loop={true}
-        autoplay={{delay: 4000}}
-        speed={1000}
+        // autoplay={{delay: 4000}}
+        speed={1400}
         effect="fade"
         spaceBetween={16}
         pagination={{clickable: true}}

@@ -68,10 +68,13 @@ export const FarmVolume = () => {
                     </div>
                 </div>
 
-                <LottieWithSuspense
-                    src="animations/duck-airdrop.lottie"
-                    className={styles.duck_airdrop}
-                />
+                <div className={styles.animationContainer}>
+                    <LottieWithSuspense
+                        speed={0.8}
+                        src="animations/duck-airdrop.lottie"
+                        className={styles.duck_airdrop}
+                    />
+                </div>
             </div>
         </div>
     );
