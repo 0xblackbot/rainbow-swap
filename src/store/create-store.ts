@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit';
-import * as Sentry from '@sentry/react';
 import {createEpicMiddleware} from 'redux-observable';
 import {
     FLUSH,
@@ -16,8 +15,6 @@ import {persistedReducer} from './root-state/root-state.reducers';
 
 const epicMiddleware = createEpicMiddleware();
 const middlewares = [epicMiddleware];
-
-const sentryReduxEnhancer = Sentry.createReduxEnhancer();
 
 export const createStore = () => {
     const store = configureStore({
@@ -39,9 +36,6 @@ export const createStore = () => {
                     warnAfter: 600
                 }
             }).concat(middlewares);
-        },
-        enhancers: getDefaultEnhancers => {
-            return getDefaultEnhancers().concat(sentryReduxEnhancer);
         }
     });
 

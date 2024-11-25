@@ -1,6 +1,5 @@
 import './polyfill';
 
-import * as Sentry from '@sentry/react';
 import {TonConnectUIProvider} from '@tonconnect/ui-react';
 import ReactDOM from 'react-dom/client';
 import ReactGA from 'react-ga4';
@@ -17,31 +16,6 @@ import './ReactToastify.css';
 import './index.css';
 
 if (isProd) {
-    Sentry.init({
-        dsn: 'https://3786d11f809236e6c0fec755623e3e98@o4508318518411264.ingest.de.sentry.io/4508318523129936',
-        release: 'rainbow-swap@1.0.0',
-        integrations: [
-            Sentry.captureConsoleIntegration({
-                levels: ['error', 'debug', 'assert']
-            }),
-            Sentry.browserTracingIntegration(),
-            Sentry.replayIntegration(),
-            Sentry.browserApiErrorsIntegration({
-                setTimeout: true,
-                setInterval: true,
-                requestAnimationFrame: true,
-                XMLHttpRequest: true,
-                eventTarget: true
-            }),
-            Sentry.httpClientIntegration()
-        ],
-        tracesSampleRate: 1.0,
-        tracePropagationTargets: ['localhost', /^https:\/\/rainbow\.ag/],
-        replaysSessionSampleRate: 0.1,
-        replaysOnErrorSampleRate: 1.0,
-        sendDefaultPii: true
-    });
-
     ReactGA.initialize(GA_MEASUREMENT_ID, {
         gaOptions: {
             userId: UNSAFE_INIT_DATA.userId
