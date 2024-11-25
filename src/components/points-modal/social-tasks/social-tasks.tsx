@@ -1,15 +1,19 @@
 import {EmptyFn} from '@rnw-community/shared';
 import {FC} from 'react';
 
-import appsCenter from './assets/apps-center.jpg';
+import appsCenterImage from './assets/apps-center.jpg';
+import claytonImage from './assets/clayton.jpeg';
 import jvaultImage from './assets/jvault.jpeg';
+import notPixelImage from './assets/notPixel.jpeg';
 import parratonImage from './assets/parraton.jpeg';
 import referralImage from './assets/referral.png';
 import snapxImage from './assets/snapx.jpg';
 import stakingImage from './assets/staking.png';
 import telegramImage from './assets/telegram.png';
+import terminalImage from './assets/terminal.jpeg';
 import tonAppImage from './assets/ton-app.png';
 import tonHedgeImage from './assets/ton-hedge.jpeg';
+import tonStationImage from './assets/tonStation.jpeg';
 import torchFinanceImage from './assets/torch-finance.jpeg';
 import twitterImage from './assets/twitter.png';
 import {Divider} from './divider/divider';
@@ -19,6 +23,7 @@ import {TaskHeader} from './task-header/task-header';
 import {TaskItem} from './task-item/task-item';
 import {TaskTypeEnum} from '../../../enums/task-type.enum';
 import {IS_TMA, TELEGRAM_APP_LINK} from '../../../globals';
+import {useTaskSelector} from '../../../store/wallet/wallet-selectors';
 import {Button} from '../../button/button';
 
 interface Props {
@@ -27,6 +32,7 @@ interface Props {
 
 export const SocialTasks: FC<Props> = ({onSwap}) => {
     const handleOpenTelegram = () => window.open(TELEGRAM_APP_LINK, '_blank');
+    const tonAppTask = useTaskSelector(TaskTypeEnum.TonApp);
 
     return (
         <>
@@ -58,29 +64,64 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         title="Follow X"
                         taskType={TaskTypeEnum.Twitter}
                     />
+                    {tonAppTask.data !== 0 && (
+                        <PartnerTaskItem
+                            imageSrc={tonAppImage}
+                            title="Leave a review"
+                            taskType={TaskTypeEnum.TonApp}
+                        />
+                    )}
+
+                    <Divider withArrow={true} className={styles.divider} />
+
+                    <p className={styles.title}>New Year Special ✨</p>
                     <PartnerTaskItem
-                        imageSrc={tonAppImage}
-                        title="Leave a review"
-                        taskType={TaskTypeEnum.TonApp}
+                        isTelegram={true}
+                        imageSrc={tonStationImage}
+                        title="Open TON Station"
+                        taskType={TaskTypeEnum.TonStation_Bot}
+                    />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={claytonImage}
+                        title="Play Clayton Game"
+                        taskType={TaskTypeEnum.Clayton_Bot}
+                    />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={terminalImage}
+                        title="Open TERMINAL"
+                        taskType={TaskTypeEnum.Terminal_Bot}
+                    />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={notPixelImage}
+                        title="Draw at Not Pixel"
+                        taskType={TaskTypeEnum.notPixel_Bot}
+                    />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={appsCenterImage}
+                        title="Open Telegram Apps Center"
+                        taskType={TaskTypeEnum.AppsCenter_Bot}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />
 
                     <TaskHeader
-                        name="Telegram Apps Center"
-                        imageSrc={appsCenter}
+                        name="Torch Finance"
+                        imageSrc={torchFinanceImage}
                     />
                     <PartnerTaskItem
                         isTelegram={true}
                         imageSrc={telegramImage}
-                        title="Join Channel"
-                        taskType={TaskTypeEnum.AppsCenter_Telegram}
+                        title="Open app"
+                        taskType={TaskTypeEnum.TorchFinance_Telegram}
                     />
                     <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Explore Telegram Apps"
-                        taskType={TaskTypeEnum.AppsCenter_Bot}
+                        imageSrc={twitterImage}
+                        title="Follow X"
+                        taskType={TaskTypeEnum.TorchFinance_Twitter}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />
@@ -128,24 +169,6 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         imageSrc={stakingImage}
                         title="Stake any token"
                         taskType={TaskTypeEnum.JVault_Staking}
-                    />
-
-                    <Divider withArrow={true} className={styles.divider} />
-
-                    <TaskHeader
-                        name="Torch Finance"
-                        imageSrc={torchFinanceImage}
-                    />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Join Channel"
-                        taskType={TaskTypeEnum.TorchFinance_Telegram}
-                    />
-                    <PartnerTaskItem
-                        imageSrc={twitterImage}
-                        title="Follow X"
-                        taskType={TaskTypeEnum.TorchFinance_Twitter}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />

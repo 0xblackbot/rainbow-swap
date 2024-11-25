@@ -15,7 +15,8 @@ const LinksRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.Telegram]: TELEGRAM_CHANNEL_LINK,
     [TaskTypeEnum.Twitter]: 'https://x.com/rainbow_swap',
     [TaskTypeEnum.TonApp]: 'https://ton.app/dex/rainbow-swap?id=2525',
-    [TaskTypeEnum.TorchFinance_Telegram]: 'https://t.me/oxcurdle',
+    [TaskTypeEnum.TorchFinance_Telegram]:
+        'https://t.me/torch_finance_bot/torlympics?startapp=P3JlZj0xNTE4NzI5Mjk=',
     [TaskTypeEnum.TorchFinance_Twitter]: 'https://x.com/TorchTon',
     [TaskTypeEnum.SnapX_Telegram]: 'https://t.me/SnapX_official',
     [TaskTypeEnum.SnapX_Twitter]: 'https://x.com/snapx_co',
@@ -33,7 +34,15 @@ const LinksRecord: Record<TaskTypeEnum, string> = {
         'https://t.me/GleamRewardsBot/app?startapp=cmM9ZjA5MjA3ZjQ0ZDgx',
     [TaskTypeEnum.GemsWall_Twitter]: 'https://x.com/gems_wall',
     [TaskTypeEnum.Ton2k_Telegram]: 'https://t.me/ton2keng',
-    [TaskTypeEnum.Ton2k_TelegramRu]: 'https://t.me/ton2k'
+    [TaskTypeEnum.Ton2k_TelegramRu]: 'https://t.me/ton2k',
+    [TaskTypeEnum.TonStation_Bot]:
+        'https://t.me/tonstationgames_bot/app?startapp=ref_8ecvbawnh2wyxnnq27gyl7',
+    [TaskTypeEnum.Clayton_Bot]:
+        'https://t.me/claytoncoinbot/game?startapp=02bbc3',
+    [TaskTypeEnum.notPixel_Bot]:
+        'https://t.me/notpixel/app?startapp=f151872929_s574604',
+    [TaskTypeEnum.Terminal_Bot]:
+        'https://t.me/terminalgame_bot/terminalgame?startapp=V8XW4H36&startApp=V8XW4H36'
 };
 
 const RewardsRecord: Record<TaskTypeEnum, string> = {
@@ -55,7 +64,11 @@ const RewardsRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.GemsWall_Bot]: '1,000',
     [TaskTypeEnum.GemsWall_Twitter]: '1,000',
     [TaskTypeEnum.Ton2k_Telegram]: '1,000',
-    [TaskTypeEnum.Ton2k_TelegramRu]: '1,000'
+    [TaskTypeEnum.Ton2k_TelegramRu]: '1,000',
+    [TaskTypeEnum.TonStation_Bot]: '1,000',
+    [TaskTypeEnum.Clayton_Bot]: '1,000',
+    [TaskTypeEnum.notPixel_Bot]: '1,000',
+    [TaskTypeEnum.Terminal_Bot]: '1,000'
 };
 
 interface Props {

@@ -25,5 +25,10 @@ export enum TaskTypeEnum {
     GemsWall_Twitter = 'gemsWallTwitter',
 
     Ton2k_Telegram = 'ton2kTelegram',
-    Ton2k_TelegramRu = 'ton2kTelegramRu'
+    Ton2k_TelegramRu = 'ton2kTelegramRu',
+
+    TonStation_Bot = 'tonStationBot',
+    Clayton_Bot = 'claytonBot',
+    notPixel_Bot = 'notPixelBot',
+    Terminal_Bot = 'terminalBot'
 }
