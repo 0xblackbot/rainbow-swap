@@ -2,8 +2,9 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     margin-left: var(--2-step);
+    /*justify-content: center;*/
+    gap: var(--2-step);
 }
 
 .inner_container {
@@ -15,11 +16,11 @@
 
 .animationContainer {
     position: absolute;
-    right: -10px;
-    bottom: -16px;
+    right: -5%;
+    bottom: -4%;
     width: 30%;
     aspect-ratio: 1 / 1;
-    transform: rotate(-16deg);
+    transform: rotate(-5deg);
 }
 
 .duck_airdrop {
@@ -29,7 +30,7 @@
 
 .title {
     font-size: 16px;
-    color: var(--button-color);
+    color: var(--text-color);
 }
 
 .list_container {
@@ -52,11 +53,11 @@
 }
 
 .button {
-    margin-left: var(--step);
-    background-color: var(--attention-bg);
+    /*margin-left: var(--step);*/
+    /*background-color: var(--attention-bg);*/
     font-size: 14px;
-    color: var(--text-color);
-    border-radius: var(--4-step);
-    padding: var(--half-step) var(--2-step);
-    cursor: pointer;
+    color: var(--button-color);
+    /*border-radius: var(--4-step);*/
+    /*padding: var(--half-step) var(--2-step);*/
+    /*cursor: pointer;*/
 }

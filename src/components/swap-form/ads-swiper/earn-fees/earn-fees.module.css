@@ -15,11 +15,11 @@
 
 .animationContainer {
     position: absolute;
-    right: -9px;
-    bottom: -8px;
+    right: -2%;
+    bottom: -4%;
     width: 30%;
     aspect-ratio: 1 / 1;
-    transform: rotate(-2deg);
+    transform: rotate(-5deg);
 }
 
 .duck_airdrop {

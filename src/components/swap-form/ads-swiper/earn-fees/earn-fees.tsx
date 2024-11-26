@@ -5,20 +5,22 @@ import {LottieWithSuspense} from '../../../lottie/lottie-with-suspense';
 export const EarnFees = () => {
     const modals = useModals();
 
-    const handleClick = () => modals.openRewardsModal();
+    const handleClick = () => modals.openPointsModal();
 
     return (
         <div className={styles.container} onClick={handleClick}>
-            <p className={styles.title}>Earn TON with referral program!</p>
+            <p className={styles.title}>Earn TON and farm points</p>
             <div className={styles.inner_container}>
                 <div className={styles.list_container}>
                     <div className={styles.message_container}>
                         <p className={styles.message}>1</p>
-                        <p className={styles.button}>Get your link</p>
+                        <p className={styles.button}>
+                            Copy link & invite frens
+                        </p>
                     </div>
                     <div className={styles.message_container}>
                         <p className={styles.message}>2</p>
-                        <p className={styles.button}>Invite frens</p>
+                        <p className={styles.button}>Complete tasks</p>
                     </div>
                     <div className={styles.message_container}>
                         <p className={styles.message}>3</p>
