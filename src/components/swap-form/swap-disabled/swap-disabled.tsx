@@ -9,15 +9,24 @@ interface Props {
 
 export const SwapDisabled: FC<Props> = () => (
     <div className={styles.container}>
-        <LottieWithSuspense
-            src="animations/duck-alert.lottie"
-            className={styles.duck_alert_fallback}
-        />
-        <div className={styles.list_container}>
-            <p className={styles.title}>Attention</p>
-            <p className={styles.message}>
-                We are updating the serves, wait a little bit...
-            </p>
+        <p className={styles.title}>Service temporary disabled</p>
+        <div className={styles.inner_container}>
+            <div className={styles.list_container}>
+                <div className={styles.message_container}>
+                    <p className={styles.button}>We are updating the serves</p>
+                </div>
+                <div className={styles.message_container}>
+                    <p className={styles.button}>Wait a little bit, please</p>
+                </div>
+            </div>
+
+            <div className={styles.animationContainer}>
+                <LottieWithSuspense
+                    speed={0.8}
+                    src="animations/duck-alert.lottie"
+                    className={styles.duck_airdrop}
+                />
+            </div>
         </div>
     </div>
 );
