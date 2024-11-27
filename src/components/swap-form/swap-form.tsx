@@ -25,7 +25,10 @@ import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-se
 import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {useRiskToleranceSelector} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
-import {useSwapDisplayDataSelector} from '../../store/swap-routes/swap-routes-selectors';
+import {
+    useIsRoutesLoadingSelector,
+    useSwapDisplayDataSelector
+} from '../../store/swap-routes/swap-routes-selectors';
 import {toNano} from '../../utils/big-int.utils';
 import {formatNumber} from '../../utils/format-number.utils';
 import {swapAssets} from '../../utils/swap-assets.utils';
@@ -40,6 +43,7 @@ export const SwapScreen = () => {
     const isAssetsInitialized = useIsAssetsInitializedSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
     const riskTolerance = useRiskToleranceSelector();
+    const isRoutesLoading = useIsRoutesLoadingSelector();
 
     const {
         inputAssetAddress,
@@ -138,7 +142,9 @@ export const SwapScreen = () => {
             <ContentContainer>
                 <div className={styles.body_div}>
                     <div className={styles.swapform_header}>
-                        <p />
+                        <p className={styles.error_text}>
+                            {!isRoutesLoading && inputError}
+                        </p>
                         <div className={styles.icons_div}>
                             <PendingSwap />
                             {isValidInputAssetAmount && (
@@ -198,7 +204,6 @@ export const SwapScreen = () => {
 
                     <SwapDetails
                         isValidInputAssetAmount={isValidInputAssetAmount}
-                        inputError={inputError}
                         inputAsset={inputAsset}
                         outputAsset={outputAsset}
                     />

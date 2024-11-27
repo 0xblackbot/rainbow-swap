@@ -20,7 +20,6 @@ interface Props extends Omit<SwapDetailsHeaderProps, 'routesLength'> {
 
 export const SwapDetails: FC<Props> = ({
     isValidInputAssetAmount,
-    inputError,
     inputAsset,
     outputAsset
 }) => {
@@ -70,7 +69,6 @@ export const SwapDetails: FC<Props> = ({
                     <div className={styles.header_container}>
                         <Skeleton isLoading={isRoutesLoading}>
                             <SwapDetailsHeader
-                                inputError={inputError}
                                 inputAsset={inputAsset}
                                 outputAsset={outputAsset}
                                 routesLength={swapDisplayData.routes.length}

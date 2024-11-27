@@ -21,6 +21,12 @@
     align-items: center;
     margin-bottom: var(--2-step);
     font-size: 22px;
+    padding: 0 var(--2-step);
+}
+
+.error_text {
+    font-size: 14px;
+    color: var(--error-color);
 }
 
 .icons_div{
