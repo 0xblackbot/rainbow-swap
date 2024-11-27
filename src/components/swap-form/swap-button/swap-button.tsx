@@ -32,9 +32,6 @@ export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
     const swapMessageCount = useSwapMessageCountSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
 
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     const handleClick = async () => {
         if (swapMessages.length === 0) {
             return showErrorToast('Swap route not found. Please try again.');
@@ -66,10 +63,5 @@ export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
         }
     };
 
-    return (
-        <FormButton
-            text="Swap"
-            onClick={() => showErrorToast('service under maintenance')}
-        />
-    );
+    return <FormButton text="Swap" onClick={handleClick} />;
 };
