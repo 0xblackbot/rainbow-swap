@@ -2,9 +2,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin-left: var(--2-step);
-    /*justify-content: center;*/
-    gap: var(--2-step);
 }
 
 .inner_container {
@@ -30,7 +29,7 @@
 
 .title {
     font-size: 16px;
-    color: var(--text-color);
+    color: var(--button-color);
 }
 
 .list_container {
@@ -38,6 +37,7 @@
     flex-direction: column;
     justify-content: center;
     gap: var(--half-step);
+    z-index: 1;
 }
 
 .message_container {
@@ -53,11 +53,11 @@
 }
 
 .button {
-    /*margin-left: var(--step);*/
-    /*background-color: var(--attention-bg);*/
+    margin-left: var(--step);
+    background-color: var(--attention-bg);
     font-size: 14px;
-    color: var(--button-color);
-    /*border-radius: var(--4-step);*/
-    /*padding: var(--half-step) var(--2-step);*/
-    /*cursor: pointer;*/
+    color: var(--text-color);
+    border-radius: var(--4-step);
+    padding: var(--half-step) var(--2-step);
+    cursor: pointer;
 }

@@ -37,6 +37,7 @@
     flex-direction: column;
     justify-content: center;
     gap: var(--half-step);
+    z-index: 1;
 }
 
 .message_container {
