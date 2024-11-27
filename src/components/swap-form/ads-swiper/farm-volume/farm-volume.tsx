@@ -6,6 +6,20 @@ import {LottieWithSuspense} from '../../../lottie/lottie-with-suspense';
 const BADGE_URL = 'https://society.ton.org/the-open-league-new-year-airdrop';
 const TON_INPUT_AMOUNT = '20';
 
+const getCountdown = () => {
+    const targetDate = new Date(Date.UTC(2024, 11, 17, 11, 0, 0)); // December 17, 11:00 UTC
+    const now = new Date();
+    const timeDiff = targetDate.getTime() - now.getTime();
+
+    if (timeDiff <= 0) {
+        return '';
+    }
+
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+    return `${days} days left`;
+};
+
 export const FarmVolume = () => {
     const {setInputAssetAddress, setOutputAssetAddress, setInputAssetAmount} =
         useSwapForm();
@@ -20,7 +34,10 @@ export const FarmVolume = () => {
 
     return (
         <div className={styles.container}>
-            <p className={styles.title}>Farm $1,500,000 Airdrop</p>
+            <div className={styles.header_container}>
+                <p className={styles.title}>$1,500,000 Airdrop</p>
+                <p className={styles.title}>{getCountdown()}</p>
+            </div>
             <div className={styles.inner_container}>
                 <div className={styles.list_container}>
                     <div className={styles.message_container}>

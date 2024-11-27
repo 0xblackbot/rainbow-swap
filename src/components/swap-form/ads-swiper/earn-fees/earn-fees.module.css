@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: var(--2-step);
 }
 
 .inner_container {
@@ -15,11 +14,11 @@
 
 .animationContainer {
     position: absolute;
-    right: -2%;
+    right: 5%;
     bottom: -4%;
     width: 30%;
     aspect-ratio: 1 / 1;
-    transform: rotate(-5deg);
+    transform: rotate(0deg);
 }
 
 .duck_airdrop {
