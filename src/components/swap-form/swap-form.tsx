@@ -1,4 +1,4 @@
-import {AppStatus, Asset, getQueryId} from 'rainbow-swap-sdk';
+import {Asset, getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {AdsSwiperWithSuspense} from './ads-swiper/ads-swiper-with-suspense';
@@ -22,6 +22,7 @@ import {ContentContainer} from '../../shared/content-container/content-container
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
 import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-selectors';
+import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {useRiskToleranceSelector} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {useSwapDisplayDataSelector} from '../../store/swap-routes/swap-routes-selectors';
@@ -29,18 +30,13 @@ import {toNano} from '../../utils/big-int.utils';
 import {formatNumber} from '../../utils/format-number.utils';
 import {swapAssets} from '../../utils/swap-assets.utils';
 
-const appStatusMock: AppStatus = {
-    isSwapsEnabled: false,
-    message: 'some text'
-};
-
 export const SwapScreen = () => {
     const walletAddress = useWalletAddress();
     const inputRef = useRef<HTMLInputElement>(null);
     const isMainButtonAvailable = useIsMainButtonAvailable();
 
     const dispatch = useDispatch();
-    const appStatus = appStatusMock; //useAppStatusSelector();
+    const appStatus = useAppStatusSelector();
     const isAssetsInitialized = useIsAssetsInitializedSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
     const riskTolerance = useRiskToleranceSelector();
