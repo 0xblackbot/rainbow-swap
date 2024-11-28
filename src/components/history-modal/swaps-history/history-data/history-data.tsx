@@ -67,11 +67,13 @@ export const HistoryData: FC<Props> = ({historyData, isLoading}) => {
                 description="Returned"
                 infoArray={[historyData.returnedInfo]}
                 isLoading={isLoading}
+                tooltipText="These tokens were returned due to a sudden price change during the swap"
             />
             <InfoRow
                 description="Received intermediate tokens"
                 infoArray={historyData.intermediateTokensInfo}
                 isLoading={isLoading}
+                tooltipText="You didn’t receive the final token because of a sudden price change during the swap"
             />
         </div>
     );
