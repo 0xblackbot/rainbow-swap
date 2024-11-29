@@ -2,6 +2,7 @@ import {EmptyFn} from '@rnw-community/shared';
 import {FC} from 'react';
 
 import appsCenterImage from './assets/apps-center.jpg';
+import blockLabsImage from './assets/blockLabs.jpeg';
 import claytonImage from './assets/clayton.jpeg';
 import jvaultImage from './assets/jvault.jpeg';
 import notPixelImage from './assets/notPixel.jpeg';
@@ -75,6 +76,12 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                     <Divider withArrow={true} className={styles.divider} />
 
                     <p className={styles.title}>New Year Special ✨</p>
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={blockLabsImage}
+                        title="Open Block Labs"
+                        taskType={TaskTypeEnum.BlockLabs_Bot}
+                    />
                     <PartnerTaskItem
                         isTelegram={true}
                         imageSrc={tonStationImage}

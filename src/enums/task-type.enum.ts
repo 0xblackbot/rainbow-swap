@@ -30,5 +30,6 @@ export enum TaskTypeEnum {
     TonStation_Bot = 'tonStationBot',
     Clayton_Bot = 'claytonBot',
     notPixel_Bot = 'notPixelBot',
-    Terminal_Bot = 'terminalBot'
+    Terminal_Bot = 'terminalBot',
+    BlockLabs_Bot = 'blockLabsBot'
 }

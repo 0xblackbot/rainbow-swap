@@ -42,7 +42,9 @@ const LinksRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.notPixel_Bot]:
         'https://t.me/notpixel/app?startapp=f151872929_s574604',
     [TaskTypeEnum.Terminal_Bot]:
-        'https://t.me/terminalgame_bot/terminalgame?startapp=V8XW4H36&startApp=V8XW4H36'
+        'https://t.me/terminalgame_bot/terminalgame?startapp=V8XW4H36&startApp=V8XW4H36',
+    [TaskTypeEnum.BlockLabs_Bot]:
+        'https://t.me/blocklab_bot?start=MTczMjg5MDg0MTI5MQ'
 };
 
 const RewardsRecord: Record<TaskTypeEnum, string> = {
@@ -68,7 +70,8 @@ const RewardsRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.TonStation_Bot]: '1,000',
     [TaskTypeEnum.Clayton_Bot]: '1,000',
     [TaskTypeEnum.notPixel_Bot]: '1,000',
-    [TaskTypeEnum.Terminal_Bot]: '1,000'
+    [TaskTypeEnum.Terminal_Bot]: '1,000',
+    [TaskTypeEnum.BlockLabs_Bot]: '1,000'
 };
 
 interface Props {
