@@ -45,7 +45,7 @@ export const AssetListItem: FC<ListChildComponentProps<AssetListItemProps>> = ({
         return (
             <div style={style}>
                 <p className={styles.search_hint_text}>
-                    Pss, try search tokens input...
+                    Pss, try to search tokens...
                 </p>
             </div>
         );
