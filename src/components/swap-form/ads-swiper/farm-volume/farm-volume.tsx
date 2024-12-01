@@ -17,7 +17,7 @@ const getCountdown = () => {
 
     const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-    return `${days} days left`;
+    return `${days + 1} days left`;
 };
 
 export const FarmVolume = () => {

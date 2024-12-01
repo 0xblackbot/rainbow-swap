@@ -12,6 +12,10 @@ export const setRiskToleranceAction = createAction<RiskTolerance>(
     'settings/SET_RISK_TOLERANCE'
 );
 
+export const setMaxSplitsAction = createAction<number>(
+    'settings/SET_MAX_SPLITS'
+);
+
 export const setThemeAction = createAction<Theme>('settings/SET_THEME');
 
 export const setExplorerAction = createAction<Explorer>(

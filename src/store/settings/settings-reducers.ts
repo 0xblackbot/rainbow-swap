@@ -3,6 +3,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {
     setExplorerAction,
     setMaxSlippageAction,
+    setMaxSplitsAction,
     setRiskToleranceAction,
     setThemeAction
 } from './settings-actions';
@@ -19,6 +20,11 @@ export const settingsReducers = createReducer<SettingsState>(
         builder.addCase(setRiskToleranceAction, (state, {payload}) => ({
             ...state,
             riskTolerance: payload
+        }));
+
+        builder.addCase(setMaxSplitsAction, (state, {payload}) => ({
+            ...state,
+            maxSplits: payload
         }));
 
         builder.addCase(setThemeAction, (state, {payload}) => ({

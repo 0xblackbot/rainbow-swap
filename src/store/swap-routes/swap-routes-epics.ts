@@ -45,6 +45,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     outputAssetAddress: payload.outputAssetAddress,
                     senderAddress: payload.senderAddress,
                     maxDepth,
+                    maxSplits: payload.maxSplits,
                     maxSlippage,
                     referralAddress
                 })

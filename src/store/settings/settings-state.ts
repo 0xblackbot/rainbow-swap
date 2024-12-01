@@ -5,6 +5,7 @@ import {Theme} from '../../enums/theme.enum';
 export interface SettingsState {
     maxSlippage: string;
     riskTolerance: RiskTolerance;
+    maxSplits: number;
     theme: Theme;
     explorer: Explorer;
 }
@@ -12,6 +13,7 @@ export interface SettingsState {
 export const settingsInitialState: SettingsState = {
     maxSlippage: '5.00',
     riskTolerance: RiskTolerance.Normal,
+    maxSplits: 4,
     theme: Theme.Dark,
-    explorer: Explorer.TONScan
+    explorer: Explorer.Tonviewer
 };

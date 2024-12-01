@@ -13,7 +13,8 @@ export const useRefreshRoutes = (
     nanoInputAssetAmount: string,
     inputAssetAddress: string,
     outputAssetAddress: string,
-    riskTolerance: RiskTolerance
+    riskTolerance: RiskTolerance,
+    maxSplits: number
 ) => {
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const walletAddress = useWalletAddress();
@@ -28,6 +29,7 @@ export const useRefreshRoutes = (
                     outputAssetAddress,
                     senderAddress: walletAddress,
                     riskTolerance,
+                    maxSplits,
                     requestId: getQueryId().toString()
                 })
             );
@@ -44,6 +46,7 @@ export const useRefreshRoutes = (
         inputAssetAddress,
         outputAssetAddress,
         riskTolerance,
+        maxSplits,
         dispatch
     ]);
 

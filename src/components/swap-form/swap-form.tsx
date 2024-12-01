@@ -23,7 +23,10 @@ import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
 import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-selectors';
 import {useAppStatusSelector} from '../../store/security/security-selectors';
-import {useRiskToleranceSelector} from '../../store/settings/settings-selectors';
+import {
+    useMaxSplitsSelector,
+    useRiskToleranceSelector
+} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {
     useIsRoutesLoadingSelector,
@@ -43,6 +46,7 @@ export const SwapScreen = () => {
     const isAssetsInitialized = useIsAssetsInitializedSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
     const riskTolerance = useRiskToleranceSelector();
+    const maxSplits = useMaxSplitsSelector();
     const isRoutesLoading = useIsRoutesLoadingSelector();
 
     const {
@@ -78,7 +82,8 @@ export const SwapScreen = () => {
         nanoInputAssetAmount,
         inputAssetAddress,
         outputAssetAddress,
-        riskTolerance
+        riskTolerance,
+        maxSplits
     );
 
     useEffect(() => {
@@ -89,6 +94,7 @@ export const SwapScreen = () => {
                 outputAssetAddress,
                 senderAddress: walletAddress,
                 riskTolerance,
+                maxSplits,
                 requestId: getQueryId().toString()
             })
         );
@@ -98,6 +104,7 @@ export const SwapScreen = () => {
         outputAssetAddress,
         nanoInputAssetAmount,
         riskTolerance,
+        maxSplits,
         dispatch
     ]);
 
