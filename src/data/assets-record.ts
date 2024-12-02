@@ -8,7 +8,7 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         slug: 'TON',
         symbol: 'TON',
         name: 'Toncoin',
-        image: 'https://assets.dedust.io/images/ton.webp',
+        image: 'https://raw.githubusercontent.com/0xblackbot/rainbow-swap/refs/heads/main/public/external-assets/ton.png',
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',

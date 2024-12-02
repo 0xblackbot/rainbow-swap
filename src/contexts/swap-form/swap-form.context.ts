@@ -28,7 +28,7 @@ export const SwapFormContext = createContext<SwapFormContextValues>({
         decimals: 9,
         exchangeRate: '0',
         usdExchangeRate: 0,
-        image: 'https://assets.dedust.io/images/ton.webp',
+        image: 'https://raw.githubusercontent.com/0xblackbot/rainbow-swap/refs/heads/main/public/external-assets/ton.png',
         name: 'Toncoin',
         symbol: 'TON',
         verification: 'whitelist'
