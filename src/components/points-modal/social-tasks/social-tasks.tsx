@@ -4,6 +4,7 @@ import {FC} from 'react';
 import appsCenterImage from './assets/apps-center.jpg';
 import blockLabsImage from './assets/blockLabs.jpeg';
 import claytonImage from './assets/clayton.jpeg';
+import intractImage from './assets/intract.png';
 import jvaultImage from './assets/jvault.jpeg';
 import notPixelImage from './assets/notPixel.jpeg';
 import parratonImage from './assets/parraton.jpeg';
@@ -51,6 +52,13 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                     <span>Swap</span>
                 </Button>
             </TaskItem>
+
+            <PartnerTaskItem
+                imageSrc={intractImage}
+                title="Hit $500+ Trading Volume"
+                taskType={TaskTypeEnum.Intract_500}
+                onSwap={onSwap}
+            />
 
             {IS_TMA ? (
                 <>

@@ -1,4 +1,4 @@
-import {isDefined} from '@rnw-community/shared';
+import {EmptyFn, emptyFn, isDefined} from '@rnw-community/shared';
 import {FC} from 'react';
 
 import {TaskTypeEnum} from '../../../../enums/task-type.enum';
@@ -11,10 +11,13 @@ import {showInfoToast} from '../../../../utils/toast.utils';
 import {TaskItem} from '../task-item/task-item';
 import {TaskStatus} from '../task-status/task-status';
 
+const OPEN_SWAP = 'open_swap';
+
 const LinksRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.Telegram]: TELEGRAM_CHANNEL_LINK,
     [TaskTypeEnum.Twitter]: 'https://x.com/rainbow_swap',
     [TaskTypeEnum.TonApp]: 'https://ton.app/dex/rainbow-swap?id=2525',
+    [TaskTypeEnum.Intract_500]: OPEN_SWAP,
     [TaskTypeEnum.TorchFinance_Telegram]:
         'https://t.me/torch_finance_bot/torlympics?startapp=P3JlZj0xNTE4NzI5Mjk=',
     [TaskTypeEnum.TorchFinance_Twitter]: 'https://x.com/TorchTon',
@@ -51,6 +54,7 @@ const RewardsRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.Telegram]: '2,000',
     [TaskTypeEnum.Twitter]: '2,000',
     [TaskTypeEnum.TonApp]: '10,000',
+    [TaskTypeEnum.Intract_500]: '25,000',
     [TaskTypeEnum.TorchFinance_Telegram]: '1,000',
     [TaskTypeEnum.TorchFinance_Twitter]: '1,000',
     [TaskTypeEnum.SnapX_Telegram]: '1,000',
@@ -79,13 +83,15 @@ interface Props {
     title: string;
     taskType: TaskTypeEnum;
     isTelegram?: boolean;
+    onSwap?: EmptyFn;
 }
 
 export const PartnerTaskItem: FC<Props> = ({
     imageSrc,
     title,
     taskType,
-    isTelegram = false
+    isTelegram = false,
+    onSwap = emptyFn
 }) => {
     const dispatch = useDispatch();
     const walletAddress = useWalletAddress();
@@ -94,11 +100,15 @@ export const PartnerTaskItem: FC<Props> = ({
     const task = useTaskSelector(taskType);
 
     const handleClick = () => {
+        const link = LinksRecord[taskType];
+
+        if (link === OPEN_SWAP) {
+            return onSwap();
+        }
+
         if (!isDefined(walletAddress)) {
             showInfoToast('Please, connect wallet');
         } else {
-            const link = LinksRecord[taskType];
-
             isTelegram
                 ? window.Telegram.WebApp.openTelegramLink(link)
                 : window.Telegram.WebApp.openLink(link);

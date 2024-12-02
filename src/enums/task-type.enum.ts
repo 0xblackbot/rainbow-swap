@@ -2,6 +2,7 @@ export enum TaskTypeEnum {
     Telegram = 'telegram',
     Twitter = 'twitter',
     TonApp = 'tonApp',
+    Intract_500 = 'intract500',
 
     TorchFinance_Telegram = 'torchFinanceTelegram',
     TorchFinance_Twitter = 'torchFinanceTwitter',
