@@ -2,17 +2,12 @@ import {useEffect, useState} from 'react';
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 const getIsAvailable = () => {
-    if (window.Telegram.WebApp.platform === 'ios') {
-        return true;
-    }
-
-    if (window.Telegram.WebApp.platform !== 'macos') {
-        return false;
-    } else {
+    if (['ios', 'macos'].includes(window.Telegram.WebApp.platform)) {
         return true;
     }
 
     // On Android devices MainButton text updates only after the touch
+    return false;
 };
 
 export const useIsMainButtonAvailable = () => {

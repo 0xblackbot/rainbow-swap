@@ -39,7 +39,9 @@ export const App = () => {
 
             /* eslint-disable @typescript-eslint/ban-ts-comment */
             try {
-                if (window.Telegram.WebApp.platform !== 'macos') {
+                if (
+                    ['ios', 'android'].includes(window.Telegram.WebApp.platform)
+                ) {
                     // @ts-expect-error
                     window.Telegram.WebApp?.requestFullscreen();
                 }
