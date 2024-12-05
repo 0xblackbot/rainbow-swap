@@ -29,28 +29,21 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                 );
             }
 
-            let maxDepth =
+            const maxDepth =
                 payload.inputAssetAddress === payload.outputAssetAddress
                     ? RiskTolerance.Risky
                     : payload.riskTolerance;
-            let maxSplits = payload.maxSplits;
             const maxSlippage = Number(state.settings.maxSlippage);
             const referralAddress =
                 state.wallet.pointsState.walletPoints.data.refParent ??
                 state.wallet.pointsState.refWallet ??
                 undefined;
-            let partnerId: string | undefined = undefined;
-
-            if (
-                isTolFeePromo(
-                    payload.inputAssetAddress,
-                    payload.outputAssetAddress
-                )
-            ) {
-                maxDepth = RiskTolerance.Safe;
-                maxSplits = 1;
-                partnerId = 'TolS7Promo';
-            }
+            const partnerId = isTolFeePromo(
+                payload.inputAssetAddress,
+                payload.outputAssetAddress
+            )
+                ? 'TolS7Promo'
+                : undefined;
 
             return from(
                 getBestRoute({
@@ -59,7 +52,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     outputAssetAddress: payload.outputAssetAddress,
                     senderAddress: payload.senderAddress,
                     maxDepth,
-                    maxSplits,
+                    maxSplits: payload.maxSplits,
                     maxSlippage,
                     referralAddress,
                     partnerId
