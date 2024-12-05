@@ -11,6 +11,7 @@ import {DEBOUNCE_DUE_TIME} from '../../globals';
 import {RootState} from '../index';
 import {emptyBestRouteResponse} from './swap-routes-state';
 import {sentryCatchError} from '../../utils/sentry.utils';
+import {isTolFeePromo} from '../../utils/tol-fee.utils';
 
 const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
     action$.pipe(
@@ -28,15 +29,28 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                 );
             }
 
-            const maxDepth =
+            let maxDepth =
                 payload.inputAssetAddress === payload.outputAssetAddress
                     ? RiskTolerance.Risky
                     : payload.riskTolerance;
+            let maxSplits = payload.maxSplits;
             const maxSlippage = Number(state.settings.maxSlippage);
             const referralAddress =
                 state.wallet.pointsState.walletPoints.data.refParent ??
                 state.wallet.pointsState.refWallet ??
                 undefined;
+            let partnerId: string | undefined = undefined;
+
+            if (
+                isTolFeePromo(
+                    payload.inputAssetAddress,
+                    payload.outputAssetAddress
+                )
+            ) {
+                maxDepth = RiskTolerance.Safe;
+                maxSplits = 1;
+                partnerId = 'TolS7Promo';
+            }
 
             return from(
                 getBestRoute({
@@ -45,9 +59,10 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     outputAssetAddress: payload.outputAssetAddress,
                     senderAddress: payload.senderAddress,
                     maxDepth,
-                    maxSplits: payload.maxSplits,
+                    maxSplits,
                     maxSlippage,
-                    referralAddress
+                    referralAddress,
+                    partnerId
                 })
             ).pipe(
                 map(response =>

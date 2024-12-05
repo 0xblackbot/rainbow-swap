@@ -11,10 +11,22 @@
     font-size: 14px;
 }
 
+.zero_fee {
+    height: unset;
+    padding: 2px var(--half-step);
+    border-radius: var(--step);
+    font-size: 12px;
+    line-height: unset;
+    color: rgb(var(--green-color));
+    background-color: rgba(var(--green-color), 0.25);
+}
+
 .toggle_button {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: var(--step);
     cursor: pointer;
 }
 
