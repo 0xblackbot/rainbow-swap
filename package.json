@@ -24,7 +24,7 @@
     "axios": "^1.7.9",
     "buffer": "^6.0.3",
     "lodash-es": "^4.17.21",
-    "rainbow-swap-sdk": "^1.4.15",
+    "rainbow-swap-sdk": "^1.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",

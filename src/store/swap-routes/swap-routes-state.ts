@@ -9,7 +9,6 @@ export interface SwapRoutesState {
 }
 
 export const emptyBestRouteResponse: BestRouteResponse = {
-    bestRoute: [],
     displayData: {
         inputAssetAmount: 0,
         inputAssetUsdAmount: 0,
