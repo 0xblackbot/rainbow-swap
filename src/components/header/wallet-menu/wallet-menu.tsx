@@ -5,6 +5,7 @@ import styles from './wallet-menu.module.css';
 import {DollarIcon} from '../../../assets/icons/DollarIcon/DollarIcon';
 import {HistoryIcon} from '../../../assets/icons/HistoryIcon/HistoryIcon';
 import {LogoutIcon} from '../../../assets/icons/LogoutIcon/LogoutIcon';
+import {ProfitsIcon} from '../../../assets/icons/ProfitsIcon/ProfitsIcon';
 import {SettingsIcon} from '../../../assets/icons/SettingsIcon/SettingsIcon';
 import {useModals} from '../../../contexts/modals/modals.hook';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
@@ -48,6 +49,11 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
         modals.openRewardsModal();
         onClose();
     };
+    const handleTradingCompetitionClick = () => {
+        trackButtonClick('Header Trading Competition');
+        modals.openTradingCompetitionModal();
+        onClose();
+    };
     const handleHistoryClick = () => {
         trackButtonClick('Header History');
         modals.openHistoryModal();
@@ -85,6 +91,15 @@ export const WalletMenu: FC<Props> = ({walletAddress}) => {
                     >
                         <DollarIcon className={styles.menu_button_icon} />
                         <span>Rewards Center</span>
+                    </Button>
+                    <Button
+                        size="s"
+                        mode="gray"
+                        className={styles.menu_button}
+                        onClick={handleTradingCompetitionClick}
+                    >
+                        <ProfitsIcon className={styles.menu_button_icon} />
+                        <span>Trading Competition</span>
                     </Button>
                     <Button
                         size="s"

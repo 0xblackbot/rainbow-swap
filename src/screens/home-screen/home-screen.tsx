@@ -57,18 +57,18 @@ export const HomeScreen = memo(() => {
     }, [walletAddress]);
 
     return (
-        <ModalsProvider>
-            <ToastContainer
-                position="top-center"
-                pauseOnHover={false}
-                pauseOnFocusLoss={false}
-                draggablePercent={40}
-            />
-            <Header />
-            <SwapFormProvider>
+        <SwapFormProvider>
+            <ModalsProvider>
+                <ToastContainer
+                    position="top-center"
+                    pauseOnHover={false}
+                    pauseOnFocusLoss={false}
+                    draggablePercent={40}
+                />
+                <Header />
                 <SwapScreen />
-            </SwapFormProvider>
-            <Footer />
-        </ModalsProvider>
+                <Footer />
+            </ModalsProvider>
+        </SwapFormProvider>
     );
 });

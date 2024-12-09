@@ -6,11 +6,13 @@ interface ModalsContextValues {
     openRewardsModal: EmptyFn;
     openHistoryModal: EmptyFn;
     openSettingsModal: EmptyFn;
+    openTradingCompetitionModal: EmptyFn;
 }
 
 export const ModalsContext = createContext<ModalsContextValues>({
     openPointsModal: emptyFn,
     openRewardsModal: emptyFn,
     openHistoryModal: emptyFn,
-    openSettingsModal: emptyFn
+    openSettingsModal: emptyFn,
+    openTradingCompetitionModal: emptyFn
 });

@@ -1,24 +1,12 @@
 import styles from './farm-volume.module.css';
 import {useSwapForm} from '../../../../contexts/swap-form/swap-form.hook';
 import {TON, USDT} from '../../../../globals';
+import {Countdown} from '../../../countdown/countdown';
 import {LottieWithSuspense} from '../../../lottie/lottie-with-suspense';
 
 const BADGE_URL = 'https://society.ton.org/the-open-league-new-year-airdrop';
 const TON_INPUT_AMOUNT = '20';
-
-const getCountdown = () => {
-    const targetDate = new Date(Date.UTC(2024, 11, 17, 11, 0, 0)); // December 17, 11:00 UTC
-    const now = new Date();
-    const timeDiff = targetDate.getTime() - now.getTime();
-
-    if (timeDiff <= 0) {
-        return '';
-    }
-
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-    return `${days + 1} days left`;
-};
+const END_DATE = Date.UTC(2024, 11, 17, 11, 0, 0); // December 17, 11:00 UTC
 
 export const FarmVolume = () => {
     const {setInputAssetAddress, setOutputAssetAddress, setInputAssetAmount} =
@@ -36,7 +24,11 @@ export const FarmVolume = () => {
         <div className={styles.container}>
             <div className={styles.header_container}>
                 <p className={styles.title}>$1,500,000 Airdrop</p>
-                <p className={styles.title}>{getCountdown()}</p>
+                <Countdown
+                    date={END_DATE}
+                    placeholder=""
+                    className={styles.title}
+                />
             </div>
             <div className={styles.inner_container}>
                 <div className={styles.list_container}>

@@ -5,6 +5,7 @@ import {HistoryModal} from '../../components/history-modal/history-modal';
 import {PointsModal} from '../../components/points-modal/points-modal';
 import {RewardsModal} from '../../components/rewards-modal/rewards-modal';
 import {SettingsModal} from '../../components/settings-modal/settings-modal';
+import {TradingCompetitionModal} from '../../components/trading-competition-modal/trading-competition-modal';
 import {useModalState} from '../../hooks/use-modal-state.hook';
 
 export const ModalsProvider: FC<PropsWithChildren> = ({children}) => {
@@ -12,6 +13,7 @@ export const ModalsProvider: FC<PropsWithChildren> = ({children}) => {
     const rewardsModalState = useModalState();
     const historyModalState = useModalState();
     const settingsModalState = useModalState();
+    const tradingCompetitionModalState = useModalState();
 
     return (
         <ModalsContext.Provider
@@ -19,7 +21,8 @@ export const ModalsProvider: FC<PropsWithChildren> = ({children}) => {
                 openPointsModal: pointsModalState.open,
                 openRewardsModal: rewardsModalState.open,
                 openHistoryModal: historyModalState.open,
-                openSettingsModal: settingsModalState.open
+                openSettingsModal: settingsModalState.open,
+                openTradingCompetitionModal: tradingCompetitionModalState.open
             }}
         >
             {children}
@@ -40,6 +43,10 @@ export const ModalsProvider: FC<PropsWithChildren> = ({children}) => {
                 isOpen={settingsModalState.isOpen}
                 onOpen={settingsModalState.open}
                 onClose={settingsModalState.close}
+            />
+            <TradingCompetitionModal
+                isOpen={tradingCompetitionModalState.isOpen}
+                onClose={tradingCompetitionModalState.close}
             />
         </ModalsContext.Provider>
     );

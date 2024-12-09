@@ -3,6 +3,10 @@ import {SwapHistoryData} from '../store/interfaces/swap-history-data.interface';
 import {GetClaimRewardsParams} from '../types/get-claim-rewards.type';
 import {GetSwapHistoryDataParams} from '../types/get-swap-history-data.type';
 import {GetTaskCheckParams} from '../types/get-task-check.type';
+import {
+    GetTradingCompetitionDataParams,
+    TradingCompetitionDataResponse
+} from '../types/get-trading-competition-data.type';
 import {GetUserAuthParams} from '../types/get-user-auth.type';
 import {
     GetWalletDataParams,
@@ -29,3 +33,10 @@ export const getSwapHistoryData = (params: GetSwapHistoryDataParams) =>
     API.get<SwapHistoryData>('/swap-history-data', {params}).then(
         response => response.data
     );
+
+export const getTradingCompetitionData = (
+    params: GetTradingCompetitionDataParams
+) =>
+    API.get<TradingCompetitionDataResponse>('/trading-competition-data', {
+        params
+    }).then(response => response.data);

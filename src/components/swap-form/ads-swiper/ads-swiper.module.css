@@ -20,3 +20,7 @@
 .swiperSlideGreen {
     background: rgba(var(--green-color), 0.25);
 }
+
+.swiperSlidePink {
+    background: rgba(var(--purple-color), 0.25);
+}

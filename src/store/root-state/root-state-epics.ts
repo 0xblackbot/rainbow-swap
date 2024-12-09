@@ -5,6 +5,7 @@ import {sentryCatchError} from '../../utils/sentry.utils';
 import {assetsEpics} from '../assets/assets-epics';
 import {securityEpics} from '../security/security-epics';
 import {swapRoutesEpics} from '../swap-routes/swap-routes-epics';
+import {tradingCompetitionEpics} from '../trading-competition/trading-competition-epics';
 import {walletEpics} from '../wallet/wallet-epics';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,7 +13,8 @@ const rootStateEpics: Epic<any, any, any>[] = [
     assetsEpics,
     swapRoutesEpics,
     walletEpics,
-    securityEpics
+    securityEpics,
+    tradingCompetitionEpics
 ];
 
 export const rootEpic = (
