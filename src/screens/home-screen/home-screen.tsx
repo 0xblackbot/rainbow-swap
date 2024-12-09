@@ -63,6 +63,7 @@ export const HomeScreen = memo(() => {
                     position="top-center"
                     pauseOnHover={false}
                     pauseOnFocusLoss={false}
+                    closeOnClick={true}
                     draggablePercent={40}
                 />
                 <Header />
