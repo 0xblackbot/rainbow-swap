@@ -1,4 +1,4 @@
-import {AppStatus, Asset, getQueryId} from 'rainbow-swap-sdk';
+import {Asset, getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 import {AdsSwiperWithSuspense} from './ads-swiper/ads-swiper-with-suspense';
@@ -22,6 +22,7 @@ import {ContentContainer} from '../../shared/content-container/content-container
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
 import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-selectors';
+import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {
     useMaxSplitsSelector,
     useRiskToleranceSelector
@@ -41,10 +42,7 @@ export const SwapScreen = () => {
     const isMainButtonAvailable = useIsMainButtonAvailable();
 
     const dispatch = useDispatch();
-    const appStatus: AppStatus = {
-        isSwapsEnabled: false,
-        message: 'some text'
-    };
+    const appStatus = useAppStatusSelector();
     const isAssetsInitialized = useIsAssetsInitializedSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
     const riskTolerance = useRiskToleranceSelector();
