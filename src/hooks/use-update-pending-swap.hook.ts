@@ -13,6 +13,7 @@ import {
 } from '../store/wallet/wallet-actions';
 import {usePendingBocHashSelector} from '../store/wallet/wallet-selectors';
 import {getSwapHistoryData} from '../utils/api.utils';
+import {sleep} from '../utils/promise.utils';
 import {showSuccessToast} from '../utils/toast.utils';
 
 const CHECK_INTERVAL = 3000;
@@ -34,6 +35,7 @@ export const useUpdatePendingSwap = () => {
                     dispatch(setPendingSwapAction(undefined));
 
                     if (isDefined(walletAddressRef.current)) {
+                        await sleep(1000);
                         dispatch(
                             loadBalancesActions.submit(walletAddressRef.current)
                         );
