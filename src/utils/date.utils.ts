@@ -4,14 +4,12 @@ export const formatTimestamp = (timestamp: number) => {
     const isCurrentYear = date.getFullYear() === now.getFullYear();
 
     const time = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'UTC',
         hour: '2-digit',
         minute: '2-digit',
         hour12: false
     }).format(date);
 
     const dateOptions: Intl.DateTimeFormatOptions = {
-        timeZone: 'UTC',
         month: 'short',
         day: 'numeric'
     };
