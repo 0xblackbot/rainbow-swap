@@ -6,6 +6,7 @@ import {ExternalLinkIcon} from '../../../../assets/icons/ExternalLinkIcon/Extern
 import {SwapStatusEnum} from '../../../../enums/swap-status.enum';
 import {useExplorerLinks} from '../../../../hooks/use-explorer-links.hook';
 import {SwapHistoryData} from '../../../../store/interfaces/swap-history-data.interface';
+import {formatTimestamp} from '../../../../utils/date.utils';
 import {Button} from '../../../button/button';
 import {Skeleton} from '../../../skeleton/skeleton';
 
@@ -41,16 +42,21 @@ export const HistoryData: FC<Props> = ({historyData, isLoading}) => {
                     </p>
                 </Skeleton>
                 <Skeleton isLoading={isLoading}>
-                    <Button
-                        size="xs"
-                        mode="bezeled"
-                        className={styles.link_button}
-                        Component="a"
-                        href={transactionHref}
-                        target="_blank"
-                    >
-                        <ExternalLinkIcon className={styles.link_icon} />
-                    </Button>
+                    <div className={styles.row}>
+                        <p className={styles.timestamp}>
+                            {formatTimestamp(historyData.timestamp ?? 0)}
+                        </p>
+                        <Button
+                            size="xs"
+                            mode="bezeled"
+                            className={styles.link_button}
+                            Component="a"
+                            href={transactionHref}
+                            target="_blank"
+                        >
+                            <ExternalLinkIcon className={styles.link_icon} />
+                        </Button>
+                    </div>
                 </Skeleton>
             </div>
             <InfoRow

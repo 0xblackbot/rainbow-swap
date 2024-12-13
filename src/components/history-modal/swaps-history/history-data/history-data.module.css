@@ -9,6 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--step);
 }
 
 .status {
@@ -16,6 +17,11 @@
     align-items: center;
     gap: var(--half-step);
     font-size: 15px;
+}
+
+.timestamp {
+    font-size: 14px;
+    color: var(--hint-color);
 }
 
 .loader_spinner {
