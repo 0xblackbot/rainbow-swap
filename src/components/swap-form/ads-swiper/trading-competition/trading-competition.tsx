@@ -30,7 +30,7 @@ export const TradingCompetition = () => {
                 <p className={styles.title}>$2,000 Trading Competition</p>
                 <Countdown
                     date={END_DATE}
-                    placeholder=""
+                    placeholder="Ended"
                     className={styles.title}
                 />
             </div>
