@@ -24,14 +24,14 @@ const AdsSwiper = () => (
         modules={[Pagination, Autoplay]}
     >
         <SwiperSlide
-            className={getClassName(styles.swiperSlide, styles.swiperSlidePink)}
-        >
-            <TradingCompetition />
-        </SwiperSlide>
-        <SwiperSlide
             className={getClassName(styles.swiperSlide, styles.swiperSlideBlue)}
         >
             <FarmVolume />
+        </SwiperSlide>
+        <SwiperSlide
+            className={getClassName(styles.swiperSlide, styles.swiperSlidePink)}
+        >
+            <TradingCompetition />
         </SwiperSlide>
         {/*<SwiperSlide*/}
         {/*    className={getClassName(*/}
