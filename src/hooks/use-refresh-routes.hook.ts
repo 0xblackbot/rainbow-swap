@@ -14,7 +14,8 @@ export const useRefreshRoutes = (
     inputAssetAddress: string,
     outputAssetAddress: string,
     riskTolerance: RiskTolerance,
-    maxSplits: number
+    maxSplits: number,
+    maxSlippage: string
 ) => {
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const walletAddress = useWalletAddress();
@@ -30,6 +31,7 @@ export const useRefreshRoutes = (
                     senderAddress: walletAddress,
                     riskTolerance,
                     maxSplits,
+                    maxSlippage: Number(maxSlippage),
                     requestId: getQueryId().toString()
                 })
             );
@@ -47,6 +49,7 @@ export const useRefreshRoutes = (
         outputAssetAddress,
         riskTolerance,
         maxSplits,
+        maxSlippage,
         dispatch
     ]);
 

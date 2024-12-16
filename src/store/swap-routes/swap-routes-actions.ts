@@ -12,6 +12,7 @@ export const loadSwapRoutesActions = createActions<
         senderAddress: string | undefined;
         riskTolerance: RiskTolerance;
         maxSplits: number;
+        maxSlippage: number;
     } & PayloadWithRequest,
     BestRouteResponse & PayloadWithRequest,
     {error: string} & PayloadWithRequest

@@ -24,6 +24,7 @@ import {useDispatch} from '../../store';
 import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-selectors';
 import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {
+    useMaxSlippageSelector,
     useMaxSplitsSelector,
     useRiskToleranceSelector
 } from '../../store/settings/settings-selectors';
@@ -47,6 +48,7 @@ export const SwapScreen = () => {
     const swapDisplayData = useSwapDisplayDataSelector();
     const riskTolerance = useRiskToleranceSelector();
     const maxSplits = useMaxSplitsSelector();
+    const maxSlippage = useMaxSlippageSelector();
     const isRoutesLoading = useIsRoutesLoadingSelector();
 
     const {
@@ -83,7 +85,8 @@ export const SwapScreen = () => {
         inputAssetAddress,
         outputAssetAddress,
         riskTolerance,
-        maxSplits
+        maxSplits,
+        maxSlippage
     );
 
     useEffect(() => {
@@ -95,6 +98,7 @@ export const SwapScreen = () => {
                 senderAddress: walletAddress,
                 riskTolerance,
                 maxSplits,
+                maxSlippage: Number(maxSlippage),
                 requestId: getQueryId().toString()
             })
         );
@@ -105,6 +109,7 @@ export const SwapScreen = () => {
         nanoInputAssetAmount,
         riskTolerance,
         maxSplits,
+        maxSlippage,
         dispatch
     ]);
 

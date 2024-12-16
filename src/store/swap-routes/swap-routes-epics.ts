@@ -33,7 +33,6 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                 payload.inputAssetAddress === payload.outputAssetAddress
                     ? RiskTolerance.Risky
                     : payload.riskTolerance;
-            const maxSlippage = Number(state.settings.maxSlippage);
             const referralAddress =
                 state.wallet.pointsState.walletPoints.data.refParent ??
                 state.wallet.pointsState.refWallet ??
@@ -53,7 +52,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     senderAddress: payload.senderAddress,
                     maxDepth,
                     maxSplits: payload.maxSplits,
-                    maxSlippage,
+                    maxSlippage: payload.maxSlippage,
                     referralAddress,
                     partnerId
                 })
