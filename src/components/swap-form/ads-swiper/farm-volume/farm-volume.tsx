@@ -26,7 +26,7 @@ export const FarmVolume = () => {
                 <p className={styles.title}>$1,500,000 Airdrop</p>
                 <Countdown
                     date={END_DATE}
-                    placeholder=""
+                    placeholder="Ended"
                     className={styles.title}
                 />
             </div>
