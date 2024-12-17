@@ -17,14 +17,8 @@ export const useUserAssetsSelector = () =>
 export const useAssetBalanceSelector = (address: string) =>
     useSelector(({wallet}) => wallet.balances.data[address] ?? '0');
 
-export const usePendingBocHashSelector = () =>
-    useSelector(({wallet}) => wallet.swapsState.pending.bocHash);
-
-export const useExpectedMessageCountSelector = () =>
-    useSelector(({wallet}) => wallet.swapsState.pending.expectedMessageCount);
-
-export const usePendingSwapHistoryDataSelector = () =>
-    useSelector(({wallet}) => wallet.swapsState.pending.historyData);
+export const usePendingSwapSelector = () =>
+    useSelector(({wallet}) => wallet.swapsState.pending);
 
 export const useSwapHistoryDataSelector = () =>
     useSelector(({wallet}) => wallet.swapsState.history);

@@ -24,6 +24,7 @@ export interface WalletState {
     swapsState: {
         pending: {
             bocHash: string | undefined;
+            createdAt: number | undefined; // local pending bocHash creation time
             expectedMessageCount: number;
             historyData: SwapHistoryData;
         };
@@ -41,6 +42,7 @@ export const walletInitialState: WalletState = {
     swapsState: {
         pending: {
             bocHash: undefined,
+            createdAt: undefined,
             expectedMessageCount: 0,
             historyData: EMPTY_SWAP_HISTORY_DATA
         },

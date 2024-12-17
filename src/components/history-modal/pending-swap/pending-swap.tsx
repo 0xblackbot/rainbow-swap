@@ -1,11 +1,7 @@
 import {useMemo} from 'react';
 
 import styles from './pending-swap.module.css';
-import {
-    useExpectedMessageCountSelector,
-    usePendingBocHashSelector,
-    usePendingSwapHistoryDataSelector
-} from '../../../store/wallet/wallet-selectors';
+import {usePendingSwapSelector} from '../../../store/wallet/wallet-selectors';
 import {clamp} from '../../../utils/number.utils';
 import {LottieWithSuspense} from '../../lottie/lottie-with-suspense';
 import {ProgressBar} from '../../progress-bar/progress-bar';
@@ -14,22 +10,22 @@ const MIN = 2;
 const MAX = 98;
 
 export const PendingSwap = () => {
-    const bocHash = usePendingBocHashSelector();
-    const historyData = usePendingSwapHistoryDataSelector();
-
-    const expectedMessageCount = useExpectedMessageCountSelector();
+    const pendingSwap = usePendingSwapSelector();
 
     const progress = useMemo(() => {
         const value =
-            expectedMessageCount === 0
+            pendingSwap.expectedMessageCount === 0
                 ? 0
-                : (100 * historyData.completedMessageCount) /
-                  expectedMessageCount;
+                : (100 * pendingSwap.historyData.completedMessageCount) /
+                  pendingSwap.expectedMessageCount;
 
         return clamp(Math.floor(value), MIN, MAX);
-    }, [expectedMessageCount, historyData.completedMessageCount]);
+    }, [
+        pendingSwap.expectedMessageCount,
+        pendingSwap.historyData.completedMessageCount
+    ]);
 
-    if (bocHash) {
+    if (pendingSwap.bocHash) {
         return (
             <div className={styles.progress_container}>
                 <LottieWithSuspense

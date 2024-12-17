@@ -152,10 +152,12 @@ export const walletReducers = createReducer<WalletState>(
             };
             if (payload) {
                 newPendingState.bocHash = payload.bocHash;
+                newPendingState.createdAt = Date.now();
                 newPendingState.expectedMessageCount =
                     payload.expectedMessageCount;
             } else {
                 newPendingState.bocHash = undefined;
+                newPendingState.createdAt = undefined;
                 newPendingState.expectedMessageCount = 0;
                 newPendingState.historyData = EMPTY_SWAP_HISTORY_DATA;
             }
