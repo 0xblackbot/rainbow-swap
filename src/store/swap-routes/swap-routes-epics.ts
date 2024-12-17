@@ -11,7 +11,6 @@ import {DEBOUNCE_DUE_TIME} from '../../globals';
 import {RootState} from '../index';
 import {emptyBestRouteResponse} from './swap-routes-state';
 import {sentryCatchError} from '../../utils/sentry.utils';
-import {isTolFeePromo} from '../../utils/tol-fee.utils';
 
 const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
     action$.pipe(
@@ -37,12 +36,6 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                 state.wallet.pointsState.walletPoints.data.refParent ??
                 state.wallet.pointsState.refWallet ??
                 undefined;
-            const partnerId = isTolFeePromo(
-                payload.inputAssetAddress,
-                payload.outputAssetAddress
-            )
-                ? 'TolS7Promo'
-                : undefined;
 
             return from(
                 getBestRoute({
@@ -53,8 +46,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     maxDepth,
                     maxSplits: payload.maxSplits,
                     maxSlippage: payload.maxSlippage,
-                    referralAddress,
-                    partnerId
+                    referralAddress
                 })
             ).pipe(
                 map(response =>

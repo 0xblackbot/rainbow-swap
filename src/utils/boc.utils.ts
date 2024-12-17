@@ -3,5 +3,5 @@ export const bocToHash = async (boc: string) => {
 
     const cell = Cell.fromBoc(Buffer.from(boc, 'base64'))[0];
 
-    return cell.hash(0).toString('hex');
+    return cell.hash().toString('hex');
 };

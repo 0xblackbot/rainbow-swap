@@ -12,7 +12,6 @@ import {
 } from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getClassName} from '../../../utils/style.utils';
-import {isTolFeePromo} from '../../../utils/tol-fee.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props extends Omit<SwapDetailsHeaderProps, 'routesLength'> {
@@ -28,7 +27,6 @@ export const SwapDetails: FC<Props> = ({
 
     const isRoutesLoading = useIsRoutesLoadingSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
-    const isTolPromo = isTolFeePromo(inputAsset.address, outputAsset.address);
 
     const data = useMemo(() => {
         if (swapDisplayData.routes.length === 0) {
@@ -80,9 +78,6 @@ export const SwapDetails: FC<Props> = ({
                             className={styles.toggle_button}
                             onClick={toggleAccordion}
                         >
-                            {isTolPromo && (
-                                <p className={styles.zero_fee}>0% fee</p>
-                            )}
                             <ChevronDownIcon
                                 className={getClassName(
                                     styles.chevron,
