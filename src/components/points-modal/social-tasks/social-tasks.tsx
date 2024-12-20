@@ -25,7 +25,6 @@ import {TaskHeader} from './task-header/task-header';
 import {TaskItem} from './task-item/task-item';
 import {TaskTypeEnum} from '../../../enums/task-type.enum';
 import {IS_TMA, TELEGRAM_APP_LINK} from '../../../globals';
-import {useTaskSelector} from '../../../store/wallet/wallet-selectors';
 import {Button} from '../../button/button';
 
 interface Props {
@@ -34,7 +33,6 @@ interface Props {
 
 export const SocialTasks: FC<Props> = ({onSwap}) => {
     const handleOpenTelegram = () => window.open(TELEGRAM_APP_LINK, '_blank');
-    const tonAppTask = useTaskSelector(TaskTypeEnum.TonApp);
 
     return (
         <>
@@ -73,13 +71,11 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         title="Follow X"
                         taskType={TaskTypeEnum.Twitter}
                     />
-                    {tonAppTask.data !== 0 && (
-                        <PartnerTaskItem
-                            imageSrc={tonAppImage}
-                            title="Leave a review"
-                            taskType={TaskTypeEnum.TonApp}
-                        />
-                    )}
+                    <PartnerTaskItem
+                        imageSrc={tonAppImage}
+                        title="Leave a review"
+                        taskType={TaskTypeEnum.TonApp}
+                    />
 
                     <Divider withArrow={true} className={styles.divider} />
 
