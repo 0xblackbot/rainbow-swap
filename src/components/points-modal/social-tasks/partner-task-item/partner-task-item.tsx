@@ -47,7 +47,10 @@ const LinksRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.Terminal_Bot]:
         'https://t.me/terminalgame_bot/terminalgame?startapp=V8XW4H36&startApp=V8XW4H36',
     [TaskTypeEnum.BlockLabs_Bot]:
-        'https://t.me/blocklab_bot?start=MTczMjg5MDg0MTI5MQ'
+        'https://t.me/blocklab_bot?start=MTczMjg5MDg0MTI5MQ',
+    [TaskTypeEnum.DaoLama_Swap]: 'https://app.daolama.co/LLAMA?ref=iBDfh1gmek',
+    [TaskTypeEnum.DaoLama_Borrow]:
+        'https://app.daolama.co/borrow?ref=iBDfh1gmek'
 };
 
 const RewardsRecord: Record<TaskTypeEnum, string> = {
@@ -75,7 +78,9 @@ const RewardsRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.Clayton_Bot]: '1,000',
     [TaskTypeEnum.notPixel_Bot]: '1,000',
     [TaskTypeEnum.Terminal_Bot]: '1,000',
-    [TaskTypeEnum.BlockLabs_Bot]: '1,000'
+    [TaskTypeEnum.BlockLabs_Bot]: '1,000',
+    [TaskTypeEnum.DaoLama_Swap]: '1,000',
+    [TaskTypeEnum.DaoLama_Borrow]: '1,000'
 };
 
 interface Props {

@@ -32,5 +32,8 @@ export enum TaskTypeEnum {
     Clayton_Bot = 'claytonBot',
     notPixel_Bot = 'notPixelBot',
     Terminal_Bot = 'terminalBot',
-    BlockLabs_Bot = 'blockLabsBot'
+    BlockLabs_Bot = 'blockLabsBot',
+
+    DaoLama_Swap = 'daoLamaSwap',
+    DaoLama_Borrow = 'daoLamaBorrow'
 }

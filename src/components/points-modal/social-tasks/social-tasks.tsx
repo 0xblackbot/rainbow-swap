@@ -1,6 +1,7 @@
 import {EmptyFn} from '@rnw-community/shared';
 import {FC} from 'react';
 
+import daoLamaImage from './assets/dao-lama.png';
 import jvaultImage from './assets/jvault.jpeg';
 import parratonImage from './assets/parraton.jpeg';
 import referralImage from './assets/referral.png';
@@ -60,6 +61,23 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         imageSrc={tonAppImage}
                         title="Leave a review"
                         taskType={TaskTypeEnum.TonApp}
+                    />
+
+                    <Divider withArrow={true} className={styles.divider} />
+
+                    <TaskHeader
+                        name="DAOLama New Year Airdrop"
+                        imageSrc={daoLamaImage}
+                    />
+                    <PartnerTaskItem
+                        imageSrc={referralImage}
+                        title="Swap at DAOLama"
+                        taskType={TaskTypeEnum.DaoLama_Swap}
+                    />
+                    <PartnerTaskItem
+                        imageSrc={stakingImage}
+                        title="Borrow TON"
+                        taskType={TaskTypeEnum.DaoLama_Borrow}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />
