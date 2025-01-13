@@ -41,13 +41,14 @@ export const HomeScreen = memo(() => {
             );
         } else {
             // save new user
-            IS_TMA &&
+            if (IS_TMA) {
                 dispatch(
                     loadUserAuthActions.submit({
                         initData: INIT_DATA,
                         refParent: UNSAFE_INIT_DATA.refParent
                     })
                 );
+            }
 
             // reset wallet related data
             dispatch(loadBalancesActions.success({}));

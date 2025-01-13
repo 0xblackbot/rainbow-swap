@@ -109,9 +109,11 @@ export const PartnerTaskItem: FC<Props> = ({
         if (!isDefined(walletAddress)) {
             showInfoToast('Please, connect wallet');
         } else {
-            isTelegram
-                ? window.Telegram.WebApp.openTelegramLink(link)
-                : window.Telegram.WebApp.openLink(link);
+            if (isTelegram) {
+                window.Telegram.WebApp.openTelegramLink(link);
+            } else {
+                window.Telegram.WebApp.openLink(link);
+            }
             if (task.data === 0) {
                 dispatch(checkTaskActions.submit({taskType, walletAddress}));
             }
