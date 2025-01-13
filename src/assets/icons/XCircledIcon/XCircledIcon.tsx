@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, type JSX} from 'react';
 interface Props {
     width?: string;
     height?: string;

@@ -1,5 +1,6 @@
-import {TonConnectUIContext} from '@tonconnect/ui-react';
 import {useContext, useEffect, useState} from 'react';
+
+import {TonConnectUIContext} from '../tonconnect/TonConnectUIContext';
 
 export const useTonConnectModalStatus = () => {
     const tonConnectUI = useContext(TonConnectUIContext);

@@ -1,9 +1,9 @@
 import {isDefined} from '@rnw-community/shared';
-import {useTonConnectUI} from '@tonconnect/ui-react';
 import {useCallback, useState} from 'react';
 
 import {useDisableMainButton} from './use-disable-main-button.hook';
 import {TransactionInfo} from '../interfaces/transaction-info.interface';
+import {useTonConnectUI} from '../tonconnect/useTonConnectUI';
 import {Message} from '../types/message.type';
 import {bocToHash} from '../utils/boc.utils';
 import {showErrorToast} from '../utils/toast.utils';

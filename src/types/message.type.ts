@@ -1,4 +1,4 @@
-import {SendTransactionRequest} from '@tonconnect/ui-react';
+import {SendTransactionRequest} from '@tonconnect/ui';
 
 import {ArrayElement} from './array-element.type';
 

@@ -1,4 +1,3 @@
-import {useTonConnectUI} from '@tonconnect/ui-react';
 import {FC, useCallback, useMemo, useState} from 'react';
 
 import styles from './wallet-menu.module.css';
@@ -12,6 +11,7 @@ import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useDisableMainButton} from '../../../hooks/use-disable-main-button.hook';
 import {useEnableBackButton} from '../../../hooks/use-enable-back-button.hook';
 import {usePreventScroll} from '../../../hooks/use-prevent-scrolling.hook';
+import {useTonConnectUI} from '../../../tonconnect/useTonConnectUI';
 import {getClassName} from '../../../utils/style.utils';
 import {Button} from '../../button/button';
 

@@ -1,6 +1,5 @@
 import './polyfill';
 
-import {TonConnectUIProvider} from '@tonconnect/ui-react';
 import ReactDOM from 'react-dom/client';
 import ReactGA from 'react-ga4';
 import {Provider} from 'react-redux';
@@ -10,6 +9,7 @@ import {App} from './app/app';
 import {GA_MEASUREMENT_ID, IS_TMA, isProd, UNSAFE_INIT_DATA} from './globals';
 import {TELEGRAM_ANALYTICS_APP_NAME, TELEGRAM_ANALYTICS_TOKEN} from './secrets';
 import {persistor, store} from './store';
+import TonConnectUIProvider from './tonconnect/TonConnectUIProvider';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './ReactToastify.css';

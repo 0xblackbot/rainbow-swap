@@ -1,6 +1,7 @@
 import {isNotEmptyString} from '@rnw-community/shared';
-import {useTonAddress} from '@tonconnect/ui-react';
 import {useEffect, useMemo, useRef} from 'react';
+
+import {useTonAddress} from '../tonconnect/useTonAddress';
 
 export const useWalletAddress = () => {
     const walletAddress = useTonAddress();

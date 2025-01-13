@@ -1,5 +1,6 @@
-import {TonConnectUIContext} from '@tonconnect/ui-react';
 import {useCallback, useContext} from 'react';
+
+import {TonConnectUIContext} from '../tonconnect/TonConnectUIContext';
 
 export const useOpenTonConnectModal = () => {
     const tonConnectUI = useContext(TonConnectUIContext);

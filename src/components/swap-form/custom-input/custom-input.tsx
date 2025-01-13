@@ -71,7 +71,9 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 typeof ref !== 'function' &&
                 document.activeElement !== ref.current
             ) {
-                (ref as React.RefObject<HTMLInputElement>).current?.focus();
+                (
+                    ref as React.RefObject<HTMLInputElement | null>
+                ).current?.focus();
             }
         };
 
