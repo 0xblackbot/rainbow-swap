@@ -13,11 +13,11 @@
     "find-deadcode": "ts-prune --error"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.27.2",
-    "@lottiefiles/dotlottie-react": "^0.12.0",
+    "@floating-ui/react": "^0.27.3",
+    "@lottiefiles/dotlottie-react": "^0.12.1",
     "@reduxjs/toolkit": "^2.5.0",
-    "@rnw-community/shared": "^0.77.0",
-    "@ton-api/client": "^0.3.0",
+    "@rnw-community/shared": "^0.83.0",
+    "@ton-api/client": "^0.3.1",
     "@ton/core": "^0.59.1",
     "@ton/crypto": "^3.3.0",
     "@tonconnect/ui-react": "^2.0.9",

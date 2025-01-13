@@ -346,19 +346,24 @@
   dependencies:
     "@floating-ui/dom" "^1.0.0"
 
-"@floating-ui/react@^0.27.2":
-  version "0.27.2"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.27.2.tgz#901a04e93061c427d45b69a29c99f641a8b3a7bc"
-  integrity sha512-k/yP6a9K9QwhLfIu87iUZxCH6XN5z5j/VUHHq0dEnbZYY2Y9jz68E/LXFtK8dkiaYltS2WYohnyKC0VcwVneVg==
+"@floating-ui/react@^0.27.3":
+  version "0.27.3"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.27.3.tgz#f9a30583eddd5770f3a6e1f3479a258f3df0c8c8"
+  integrity sha512-CLHnes3ixIFFKVQDdICjel8muhFLOBdQH7fgtHNPY8UbCNqbeKZ262G7K66lGQOUQWWnYocf7ZbUsLJgGfsLHg==
   dependencies:
     "@floating-ui/react-dom" "^2.1.2"
-    "@floating-ui/utils" "^0.2.8"
+    "@floating-ui/utils" "^0.2.9"
     tabbable "^6.0.0"
 
 "@floating-ui/utils@^0.2.8":
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.8.tgz#21a907684723bbbaa5f0974cf7730bd797eb8e62"
   integrity sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==
+
+"@floating-ui/utils@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.9.tgz#50dea3616bc8191fb8e112283b49eaff03e78429"
+  integrity sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==
 
 "@humanwhocodes/config-array@^0.13.0":
   version "0.13.0"
@@ -427,17 +432,17 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@lottiefiles/dotlottie-react@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.12.0.tgz#2accb771470fbc38771e7872c1f29353c00e7dde"
-  integrity sha512-33Tsd67vlotrm43R8oko30Krwyuqb0YdOLra7L5m2mVfrTvDPEDBt8jfjgiveoLJ0jG/FlTLiCPXi/vCaBSXrg==
+"@lottiefiles/dotlottie-react@^0.12.1":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.12.1.tgz#b71949f28d3cf1fda73814b4b068e835a30082b9"
+  integrity sha512-8l0db31gqozQMC2ZfzV6NWN1cit/NOlevVgS98qC2N4vugS6CZ6IWE4EfLLJEa9DILSinENDE4K85+eIJw4MOQ==
   dependencies:
-    "@lottiefiles/dotlottie-web" "0.38.2"
+    "@lottiefiles/dotlottie-web" "0.39.0"
 
-"@lottiefiles/dotlottie-web@0.38.2":
-  version "0.38.2"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.38.2.tgz#fa97288443f695f6bb76f9e632eb83cd255a2874"
-  integrity sha512-01d+UjJ8NG7ZStYQxtb8FPzknzGmauG7gEkcH+wHfSdiSQJY9PoBNVSTB9V6F5hAnmFqOxaocTtd7TIEEnzMnA==
+"@lottiefiles/dotlottie-web@0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.39.0.tgz#bfbddcc6cb8becbd36424eebd5b294de4b66d6f5"
+  integrity sha512-kJWL6NEtbXQQHFK8kMfNte/5vuTHjFhL11a30s4PJSikao8IeEu+hLJH72flWHyTLpL4tmnxW3WkTKUwZ8Osug==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -590,10 +595,10 @@
   resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.74.0.tgz#57ec5c93935e7547f0ef8132e9ba7c51a0bd1539"
   integrity sha512-PxEuyL6jKrNF8bDxGYRG+NEqEKtkanMahr6YSGLwmWDd57XenpwETz6LUvSoVTJGGwndwu5pwWJhsz4jqa1bDQ==
 
-"@rnw-community/shared@^0.77.0":
-  version "0.77.0"
-  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.77.0.tgz#a100d405053b54d5720b72b70d30720c5084b01e"
-  integrity sha512-mgaKIIIbNCZ4X0Rkgrudce/QKy4m6y703eG3MK8jf03fuzXzzOVE8/hhNoMHjhi6A3qIkvPWFwrPOMZC20bolA==
+"@rnw-community/shared@^0.83.0":
+  version "0.83.0"
+  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-0.83.0.tgz#255dc48bb6505cb778531de77321819d2fadaf82"
+  integrity sha512-KJiwh13wTQW8PuUe91kSQvFMRGoe6cKV14XCZlYeK87sHLLxFz4LdDzoZ7M0Mm4IjTIJudYVVcK5jfEDAcJ/EA==
 
 "@rollup/plugin-strip@^3.0.2":
   version "3.0.4"
@@ -708,10 +713,10 @@
   resolved "https://registry.yarnpkg.com/@rtsao/scc/-/scc-1.1.0.tgz#927dd2fae9bc3361403ac2c7a00c32ddce9ad7e8"
   integrity sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==
 
-"@ton-api/client@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@ton-api/client/-/client-0.3.0.tgz#f5c8ea889349a9538bbc530299d5120717d31d7d"
-  integrity sha512-Dnq2XaGRAd+SyyTeTeMqMI3AgsbilAxqK4mGNGHRUbECLD4TwzMKEtPcS3XA0hwBnPdT1PczjW2/+Th0Zt4Ntw==
+"@ton-api/client@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@ton-api/client/-/client-0.3.1.tgz#23cf860e59df52f72221ad8051e0e123b3864893"
+  integrity sha512-QwKcYcX9vaudJK7E7Gfx87A/TU1LgAUrNGdW6OZVKvKxttoUQUtEtRqLk3xqyuhQK24IYAd6BQ6Ki33X7zSdaw==
   dependencies:
     core-js-pure "^3.38.0"
 
