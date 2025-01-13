@@ -36,7 +36,7 @@
     "redux-observable": "^3.0.0-rc.2",
     "redux-persist": "^6.0.0",
     "rxjs": "^7.8.1",
-    "swiper": "^11.1.15",
+    "swiper": "^11.2.1",
     "ts-action": "^11.0.0",
     "ts-action-operators": "^9.1.2",
     "ts-retry-promise": "^0.8.1"
