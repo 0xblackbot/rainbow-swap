@@ -23,7 +23,6 @@ if (isProd) {
     });
 }
 
-
 if (IS_TMA) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
