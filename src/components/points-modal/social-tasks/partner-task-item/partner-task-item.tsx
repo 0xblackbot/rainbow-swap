@@ -48,9 +48,10 @@ const LinksRecord: Record<TaskTypeEnum, string> = {
         'https://t.me/terminalgame_bot/terminalgame?startapp=V8XW4H36&startApp=V8XW4H36',
     [TaskTypeEnum.BlockLabs_Bot]:
         'https://t.me/blocklab_bot?start=MTczMjg5MDg0MTI5MQ',
-    [TaskTypeEnum.DaoLama_Swap]: 'https://app.daolama.co/LLAMA?ref=iBDfh1gmek',
+    [TaskTypeEnum.DaoLama_Swap]:
+        'https://app.daolama.co/LLAMA?ref=iBDfh1gmek&utm_source=telegram&utm_medium=messenger&utm_campaign=RAINBOW',
     [TaskTypeEnum.DaoLama_Borrow]:
-        'https://app.daolama.co/borrow?ref=iBDfh1gmek'
+        'https://app.daolama.co/borrow?ref=iBDfh1gmek&utm_source=telegram&utm_medium=messenger&utm_campaign=RAINBOW'
 };
 
 const RewardsRecord: Record<TaskTypeEnum, string> = {
