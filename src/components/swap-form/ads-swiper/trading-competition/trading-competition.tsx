@@ -1,14 +1,16 @@
 import {MouseEvent} from 'react';
 
-import logoImage from './bolgur.png';
+import logoImage from './kuku.png';
 import styles from './trading-competition.module.css';
 import {useModals} from '../../../../contexts/modals/modals.hook';
 import {useSwapForm} from '../../../../contexts/swap-form/swap-form.hook';
 import {TON} from '../../../../globals';
 import {Countdown} from '../../../countdown/countdown';
 
-const END_DATE = Date.UTC(2024, 11, 15, 24, 0, 0);
-const TOKEN_ADDRESS = 'EQBTjR1nGlxTdRZGSSHeXYvckDkZc3eDwupzBFhz5cDx-eub';
+const PRIZE_POOL_USD_VALUE = '2,500';
+const END_DATE = Date.UTC(2025, 1, 9, 24, 0, 0);
+const TOKEN_SYMBOL = 'KUKU';
+const TOKEN_ADDRESS = 'EQCDU9gNsGU71zFuAW498HV9JI4y01TknJpgtxvLPUanPkxR';
 
 export const TradingCompetition = () => {
     const modals = useModals();
@@ -27,7 +29,9 @@ export const TradingCompetition = () => {
     return (
         <div className={styles.container} onClick={handleClick}>
             <div className={styles.header_container}>
-                <p className={styles.title}>$2,000 Trading Competition</p>
+                <p className={styles.title}>
+                    ${PRIZE_POOL_USD_VALUE} Trading Competition
+                </p>
                 <Countdown
                     date={END_DATE}
                     placeholder="Ended"
@@ -39,7 +43,7 @@ export const TradingCompetition = () => {
                     <div className={styles.message_container}>
                         <p className={styles.message}>1</p>
                         <p className={styles.button} onClick={handleSwapClick}>
-                            Trade BOLGUR
+                            Trade {TOKEN_SYMBOL}
                         </p>
                     </div>
                     <div className={styles.message_container}>

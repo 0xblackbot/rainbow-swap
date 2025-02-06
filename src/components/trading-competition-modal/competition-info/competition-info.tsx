@@ -13,7 +13,7 @@ import {Countdown} from '../../countdown/countdown';
 import {Divider} from '../../points-modal/social-tasks/divider/divider';
 import {Skeleton} from '../../skeleton/skeleton';
 
-const COMPETITION_ID = 'bolgur';
+const COMPETITION_ID = 'kuku';
 
 const getRewardText = (
     amount: number | undefined,
