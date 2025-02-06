@@ -35,5 +35,8 @@ export enum TaskTypeEnum {
     BlockLabs_Bot = 'blockLabsBot',
 
     DaoLama_Swap = 'daoLamaSwap',
-    DaoLama_Borrow = 'daoLamaBorrow'
+    DaoLama_Borrow = 'daoLamaBorrow',
+
+    KukuCoin_Telegram = 'kukuCoinTelegram',
+    KukuCoin_Twitter = 'kukuCoinTwitter'
 }

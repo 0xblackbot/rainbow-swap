@@ -51,7 +51,9 @@ const LinksRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.DaoLama_Swap]:
         'https://app.daolama.co/LLAMA?ref=iBDfh1gmek&utm_source=telegram&utm_medium=messenger&utm_campaign=RAINBOW',
     [TaskTypeEnum.DaoLama_Borrow]:
-        'https://app.daolama.co/borrow?ref=iBDfh1gmek&utm_source=telegram&utm_medium=messenger&utm_campaign=RAINBOW'
+        'https://app.daolama.co/borrow?ref=iBDfh1gmek&utm_source=telegram&utm_medium=messenger&utm_campaign=RAINBOW',
+    [TaskTypeEnum.KukuCoin_Telegram]: 'https://t.me/KuKuCoinAi',
+    [TaskTypeEnum.KukuCoin_Twitter]: 'https://x.com/coinkukucoin'
 };
 
 const RewardsRecord: Record<TaskTypeEnum, string> = {
@@ -81,7 +83,9 @@ const RewardsRecord: Record<TaskTypeEnum, string> = {
     [TaskTypeEnum.Terminal_Bot]: '1,000',
     [TaskTypeEnum.BlockLabs_Bot]: '1,000',
     [TaskTypeEnum.DaoLama_Swap]: '1,000',
-    [TaskTypeEnum.DaoLama_Borrow]: '1,000'
+    [TaskTypeEnum.DaoLama_Borrow]: '1,000',
+    [TaskTypeEnum.KukuCoin_Telegram]: '1,000',
+    [TaskTypeEnum.KukuCoin_Twitter]: '1,000'
 };
 
 interface Props {

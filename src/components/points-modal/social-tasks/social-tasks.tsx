@@ -1,8 +1,8 @@
 import {EmptyFn} from '@rnw-community/shared';
 import {FC} from 'react';
 
-import daoLamaImage from './assets/dao-lama.png';
 import jvaultImage from './assets/jvault.jpeg';
+import kukuCoinImage from './assets/kuku-coin.jpeg';
 import parratonImage from './assets/parraton.jpeg';
 import referralImage from './assets/referral.png';
 import stakingImage from './assets/staking.png';
@@ -65,19 +65,17 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
 
                     <Divider withArrow={true} className={styles.divider} />
 
-                    <TaskHeader
-                        name="DAOLama New Year Airdrop"
-                        imageSrc={daoLamaImage}
+                    <TaskHeader name="KuKuCoin" imageSrc={kukuCoinImage} />
+                    <PartnerTaskItem
+                        isTelegram={true}
+                        imageSrc={telegramImage}
+                        title="Join Channel"
+                        taskType={TaskTypeEnum.KukuCoin_Telegram}
                     />
                     <PartnerTaskItem
-                        imageSrc={referralImage}
-                        title="Swap at DAOLama"
-                        taskType={TaskTypeEnum.DaoLama_Swap}
-                    />
-                    <PartnerTaskItem
-                        imageSrc={stakingImage}
-                        title="Borrow TON"
-                        taskType={TaskTypeEnum.DaoLama_Borrow}
+                        imageSrc={twitterImage}
+                        title="Follow X"
+                        taskType={TaskTypeEnum.KukuCoin_Twitter}
                     />
 
                     <Divider withArrow={true} className={styles.divider} />
