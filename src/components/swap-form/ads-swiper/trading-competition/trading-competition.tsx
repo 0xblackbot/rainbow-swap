@@ -8,7 +8,7 @@ import {TON} from '../../../../globals';
 import {Countdown} from '../../../countdown/countdown';
 
 const PRIZE_POOL_USD_VALUE = '2,500';
-const END_DATE = Date.UTC(2025, 1, 9, 24, 0, 0);
+const END_DATE = Date.UTC(2025, 1, 14, 24, 0, 0);
 const TOKEN_SYMBOL = 'KUKU';
 const TOKEN_ADDRESS = 'EQCDU9gNsGU71zFuAW498HV9JI4y01TknJpgtxvLPUanPkxR';
 
