@@ -3,12 +3,14 @@
 
 ;; storage variables
 
+global int storage::shard_offset;
 global slice storage::owner_address;
 global cell storage::effects_dict;
 
 () load_storage() impure {
     slice cs::storage = get_data().begin_parse();
 
+    storage::shard_offset = cs::storage~load_uint(32);
     storage::owner_address = cs::storage~load_msg_addr();
     storage::effects_dict = cs::storage~load_dict();
 
@@ -18,16 +20,18 @@ global cell storage::effects_dict;
 () save_storage() impure {
     set_data(
         begin_cell()
+            .store_uint(storage::shard_offset, 32)
             .store_slice(storage::owner_address)
             .store_dict(storage::effects_dict)
             .end_cell()
     );
 }
 
-(slice, cell) get_storage() method_id {
+(int, slice, cell) get_storage() method_id {
     load_storage();
 
     return (
+        storage::shard_offset,
         storage::owner_address,
         storage::effects_dict
     );
