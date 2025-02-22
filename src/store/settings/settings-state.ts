@@ -11,7 +11,7 @@ export interface SettingsState {
 }
 
 export const settingsInitialState: SettingsState = {
-    maxSlippage: '5.00',
+    maxSlippage: '3.00',
     riskTolerance: RiskTolerance.Normal,
     maxSplits: 4,
     theme: Theme.Dark,
