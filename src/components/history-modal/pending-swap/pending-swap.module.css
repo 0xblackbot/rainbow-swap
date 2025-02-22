@@ -20,4 +20,11 @@
     color: var(--hint-color);
     text-align: center;
     margin-top: var(--step);
+    margin-bottom: var(--step);
+}
+
+.link_icon {
+    width: var(--2-step);
+    height: var(--2-step);
+    fill: var(--button-color);
 }
