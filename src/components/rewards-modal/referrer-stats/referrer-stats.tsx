@@ -18,7 +18,7 @@ import {Button} from '../../button/button';
 import {Divider} from '../../points-modal/social-tasks/divider/divider';
 import {Skeleton} from '../../skeleton/skeleton';
 
-const CONTACT_LINK = 'https://t.me/yuraivanchyshyn';
+const CONTACT_LINK = 'https://t.me/rainbow_swap_manager';
 const SDK_LINK = 'https://www.npmjs.com/package/rainbow-swap-sdk';
 
 const MIN_CLAIM_AMOUNT = '0.1';
