@@ -9,7 +9,7 @@ import {
     GITBOOK_LINK,
     GITHUB_LINK,
     IS_TMA,
-    SUPPORT_CHAT_LINK,
+    SUPPORT_LINK,
     TELEGRAM_CHANNEL_LINK,
     TWITTER_LINK
 } from '../../globals';
@@ -69,7 +69,7 @@ export const Footer = () => (
                         styles.container_icon,
                         styles.support_button
                     )}
-                    href={SUPPORT_CHAT_LINK}
+                    href={SUPPORT_LINK}
                     target="_blank"
                 >
                     <ChatIcon width={iconSize} height={iconSize} />

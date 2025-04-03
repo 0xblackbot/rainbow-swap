@@ -3,7 +3,7 @@ import {useMemo} from 'react';
 
 import styles from './referrer-stats.module.css';
 import {CopyIcon} from '../../../assets/icons/CopyIcon/CopyIcon';
-import {INIT_DATA, TON_DECIMALS} from '../../../globals';
+import {INIT_DATA, SUPPORT_LINK, TON_DECIMALS} from '../../../globals';
 import {trackButtonClick} from '../../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../../hooks/use-open-ton-connect-modal.hook';
 import {useReferralLink} from '../../../hooks/use-referral-link.hook';
@@ -18,7 +18,6 @@ import {Button} from '../../button/button';
 import {Divider} from '../../points-modal/social-tasks/divider/divider';
 import {Skeleton} from '../../skeleton/skeleton';
 
-const CONTACT_LINK = 'https://t.me/rainbow_swap_manager';
 const SDK_LINK = 'https://www.npmjs.com/package/rainbow-swap-sdk';
 
 const MIN_CLAIM_AMOUNT = '0.1';
@@ -126,7 +125,7 @@ export const ReferrerStats = () => {
                     size="xs"
                     mode="bezeled"
                     Component="a"
-                    href={CONTACT_LINK}
+                    href={SUPPORT_LINK}
                     target="_blank"
                 >
                     <span>Contact us</span>
