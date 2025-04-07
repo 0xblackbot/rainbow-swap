@@ -12,7 +12,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     [USDT]: {
         address: USDT,
@@ -23,7 +25,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 6,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT: {
         address: 'EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT',
@@ -34,7 +38,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     EQCvxJy4eG8hyHBFsZ7eePxrRsUQSFE_jpptRAYBmcG_DOGS: {
         address: 'EQCvxJy4eG8hyHBFsZ7eePxrRsUQSFE_jpptRAYBmcG_DOGS',
@@ -45,7 +51,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon: {
         address: 'EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon',
@@ -56,7 +64,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     'EQBlqsm144Dq6SjbPI4jjZvA1hqTIP3CvHovbIfW_t-SCALE': {
         address: 'EQBlqsm144Dq6SjbPI4jjZvA1hqTIP3CvHovbIfW_t-SCALE',
@@ -67,7 +77,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO: {
         address: 'EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO',
@@ -78,7 +90,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     EQAmQGimKRrSHDLllvdUdeDsX1CszGy_SPgNNN8wE2ihIwnP: {
         address: 'EQAmQGimKRrSHDLllvdUdeDsX1CszGy_SPgNNN8wE2ihIwnP',
@@ -89,7 +103,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     'EQBadq9p12uC1KfSiPCAaoEvhpXPHj7hBWq-mqGntuwE2C1C': {
         address: 'EQBadq9p12uC1KfSiPCAaoEvhpXPHj7hBWq-mqGntuwE2C1C',
@@ -100,7 +116,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     'EQAWpz2_G0NKxlG2VvgFbgZGPt8Y1qe0cGj-4Yw5BfmYR5iF': {
         address: 'EQAWpz2_G0NKxlG2VvgFbgZGPt8Y1qe0cGj-4Yw5BfmYR5iF',
@@ -111,7 +129,9 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     },
     EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko: {
         address: 'EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko',
@@ -122,6 +142,8 @@ export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
         decimals: 9,
         verification: 'whitelist',
         exchangeRate: '0',
-        usdExchangeRate: 0
+        usdExchangeRate: 0,
+        totalSupply: '0',
+        fdv: 0
     }
 };

@@ -1,7 +1,7 @@
 import {isDefined} from '@rnw-community/shared';
 import {Asset, AssetsRecord} from 'rainbow-swap-sdk';
 
-const EMPTY_ASSET: Asset = {
+export const EMPTY_ASSET: Asset = {
     address: 'unknown_token',
     slug: 'unknown_token',
     symbol: '???',
@@ -10,7 +10,9 @@ const EMPTY_ASSET: Asset = {
     decimals: 0,
     exchangeRate: '0',
     usdExchangeRate: 0,
-    verification: 'none'
+    verification: 'none',
+    totalSupply: '0',
+    fdv: 0
 };
 
 export const getAsset = (address: string, assetsRecord: AssetsRecord): Asset =>
