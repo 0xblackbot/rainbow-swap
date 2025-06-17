@@ -17,7 +17,7 @@ interface Props {
     onAssetValueChange: (newAssetValue: Asset) => void;
     isError: boolean;
     isLoading: boolean;
-    inputValueUsdAmount: number;
+    inputAssetUsdAmount: number;
 }
 
 export const CustomInput = forwardRef<HTMLInputElement, Props>(
@@ -29,7 +29,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             onAssetValueChange,
             isError,
             isLoading,
-            inputValueUsdAmount
+            inputAssetUsdAmount
         },
         ref
     ) => {
@@ -123,7 +123,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
 
                 <div className={styles.input_info}>
                     <p className={styles.input_usd_balance}>
-                        ${formatNumber(inputValueUsdAmount, 2)}
+                        ${formatNumber(inputAssetUsdAmount, 2)}
                     </p>
                     <Skeleton isLoading={isLoading}>
                         <div className={styles.input_info_balance}>

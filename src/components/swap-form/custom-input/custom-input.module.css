@@ -121,3 +121,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.output_positive_diff {
+    color: rgb(var(--green-color));
+}

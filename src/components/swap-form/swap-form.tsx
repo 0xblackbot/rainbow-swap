@@ -177,7 +177,7 @@ export const SwapScreen = () => {
                             onAssetValueChange={handleInputAssetValueChange}
                             isError={!!inputError}
                             isLoading={!isAssetsInitialized}
-                            inputValueUsdAmount={
+                            inputAssetUsdAmount={
                                 swapDisplayData.inputAssetUsdAmount
                             }
                         />
@@ -189,7 +189,10 @@ export const SwapScreen = () => {
                             assetValue={outputAsset}
                             onAssetValueChange={handleOutputAssetValueChange}
                             isLoading={!isAssetsInitialized}
-                            inputValueUsdAmount={
+                            inputAssetUsdAmount={
+                                swapDisplayData.inputAssetUsdAmount
+                            }
+                            outputAssetUsdAmount={
                                 swapDisplayData.outputAssetUsdAmount
                             }
                         />
