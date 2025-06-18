@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {ComponentType} from 'react';
 import {ListChildComponentProps} from 'react-window';
 
 import styles from './asset-list-item.module.css';
@@ -7,11 +7,9 @@ import {AlertIcon} from '../../../../../../assets/icons/AlertIcon/AlertIcon';
 import {formatNumber} from '../../../../../../utils/format-number.utils';
 import {Skeleton} from '../../../../../skeleton/skeleton';
 
-export const AssetListItem: FC<ListChildComponentProps<AssetListItemProps>> = ({
-    index,
-    style,
-    data
-}) => {
+export const AssetListItem: ComponentType<
+    ListChildComponentProps<AssetListItemProps>
+> = ({index, style, data}) => {
     if (data.isLoading) {
         return (
             <div style={style}>
