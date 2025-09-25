@@ -20,7 +20,7 @@
     "@ton/core": "^0.61.0",
     "@ton/crypto": "^3.3.0",
     "@tonconnect/ui": "^2.1.0",
-    "axios": "^1.10.0",
+    "axios": "^1.12.0",
     "buffer": "^6.0.3",
     "lodash-es": "^4.17.21",
     "rainbow-swap-sdk": "^1.5.12",
