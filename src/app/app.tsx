@@ -37,21 +37,17 @@ export const App = () => {
             window.Telegram.WebApp.enableClosingConfirmation();
             window.Telegram.WebApp.disableVerticalSwipes();
 
-            /* eslint-disable @typescript-eslint/ban-ts-comment */
             try {
                 if (
                     ['ios', 'android'].includes(window.Telegram.WebApp.platform)
                 ) {
-                    // @ts-expect-error
                     window.Telegram.WebApp?.requestFullscreen();
                 }
             } catch (e) {
                 console.log(e);
             }
 
-            // @ts-expect-error
             window.Telegram.WebApp.onEvent('fullscreenChanged', () => {
-                // @ts-expect-error
                 if (window.Telegram.WebApp.isFullscreen) {
                     window.Telegram.WebApp.disableClosingConfirmation();
                 } else {
