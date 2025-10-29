@@ -414,7 +414,7 @@
             el.target != '_blank' &&
             (el.protocol == 'http:' || el.protocol == 'https:') &&
             el.hostname == 't.me') {
-            WebApp.openTgLink(el.href);
+            WebApp.openTelegramLink(el.href);
             e.preventDefault();
         }
     }
@@ -3266,6 +3266,9 @@
     };
     WebApp.invokeCustomMethod = function (method, params, callback) {
         invokeCustomMethod(method, params, callback);
+    };
+    WebApp.hideKeyboard = function () {
+        WebView.postEvent('web_app_hide_keyboard');
     };
     WebApp.ready = function () {
         WebView.postEvent('web_app_ready');
