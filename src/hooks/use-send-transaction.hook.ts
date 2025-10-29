@@ -37,7 +37,8 @@ export const useSendTransaction = () => {
                         bocHash
                     };
                 })
-                .catch(() => {
+                .catch((error) => {
+                    console.log(error);
                     showErrorToast('Transaction cancelled, try again...');
 
                     return undefined;
