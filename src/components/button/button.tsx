@@ -11,7 +11,8 @@ import styles from './button.module.css';
 import {getClassName} from '../../utils/style.utils';
 
 interface Props
-    extends PropsWithChildren,
+    extends
+        PropsWithChildren,
         Omit<AllHTMLAttributes<HTMLButtonElement>, 'size'> {
     size: 'xs' | 's' | 'm' | 'l';
     mode: 'filled' | 'bezeled' | 'gray';

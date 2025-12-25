@@ -1,3 +1,4 @@
+import {LogoIcon} from './assets/LogoIcon';
 import {LogoText} from './assets/LogoText';
 import {HeaderContainer} from './header-container/header-container';
 import styles from './header.module.css';
@@ -7,7 +8,6 @@ import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {Button} from '../button/button';
-import {LogoIcon} from './assets/LogoIcon';
 
 export const Header = () => {
     const walletAddress = useWalletAddress();
