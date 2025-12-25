@@ -1,0 +1,197 @@
+import {FC, type JSX} from 'react';
+
+interface Props {
+    className?: string;
+}
+
+export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+        width="128"
+        height="138"
+        viewBox="0 0 128 138"
+        xmlSpace="preserve"
+        className={className}
+    >
+        <desc>Created with Fabric.js 5.3.0</desc>
+        <defs></defs>
+        <g
+            transform="matrix(0.5971858939 0 0 0.5971858939 77.2507596342 37.6593781864)"
+            id="HJCDj2b54nFEHNzNki2wz"
+        >
+            <path
+                style={{
+                    stroke: 'rgb(0,0,0)',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeDashoffset: 0,
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 4,
+                    fill: 'rgb(244,55,49)',
+                    fillRule: 'nonzero',
+                    opacity: 1
+                }}
+                transform=" translate(0, 0)"
+                d="M -22.18867 52.48051 L 22.18867 52.48051 L -22.18867 -52.48051999999999 z"
+                stroke-linecap="round"
+            />
+        </g>
+        <g
+            transform="matrix(0.5971858939 0 0 0.5971858939 89.7574921399 37.6897672223)"
+            id="ZzqdDKOsgj3UDNgKpobar"
+        >
+            <path
+                style={{
+                    stroke: 'rgb(0,0,0)',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeDashoffset: 0,
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 4,
+                    fill: 'rgb(83,113,255)',
+                    fillRule: 'nonzero',
+                    opacity: 1
+                }}
+                transform=" translate(0, 0)"
+                d="M 1.26055 52.42963 L 43.13145 52.42963 L -43.13145 -52.42962 z"
+                stroke-linecap="round"
+            />
+        </g>
+        <g
+            transform="matrix(0.5971858939 0 0 -0.5971858939 77.2507610186 100.3406232635)"
+            id="vFz7bT3O5-lQHs0Ys7A3k"
+        >
+            <path
+                style={{
+                    stroke: 'rgb(0,0,0)',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeDashoffset: 0,
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 4,
+                    fill: 'rgb(183,6,0)',
+                    fillRule: 'nonzero',
+                    opacity: 1
+                }}
+                transform=" translate(0, 0)"
+                d="M -22.18867 52.48051 L 22.18867 52.48051 L -22.18867 -52.48051999999999 z"
+                stroke-linecap="round"
+            />
+        </g>
+        <g
+            transform="matrix(0.5971858939 0 0 -0.5971858939 89.7574935242 100.3710122994)"
+            id="kuBjJn-e12TfqIKlS82au"
+        >
+            <path
+                style={{
+                    stroke: 'rgb(0,0,0)',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeDashoffset: 0,
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 4,
+                    fill: 'rgb(0,37,206)',
+                    fillRule: 'nonzero',
+                    opacity: 1
+                }}
+                transform=" translate(0, 0)"
+                d="M 1.26055 52.42963 L 43.13145 52.42963 L -43.13145 -52.42962 z"
+                stroke-linecap="round"
+            />
+        </g>
+        <g
+            transform="matrix(-0.5971858939 0 0 0.5971858939 50.7492392712 37.6593767365)"
+            id="SmuCwRbJ9CyQL3yqcYGc6"
+        >
+            <path
+                style={{
+                    stroke: 'rgb(0,0,0)',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeDashoffset: 0,
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 4,
+                    fill: 'rgb(255,143,78)',
+                    fillRule: 'nonzero',
+                    opacity: 1
+                }}
+                transform=" translate(0, 0)"
+                d="M -22.18867 52.48051 L 22.18867 52.48051 L -22.18867 -52.48051999999999 z"
+                stroke-linecap="round"
+            />
+        </g>
+        <g
+            transform="matrix(-0.5971858939 0 0 0.5971858939 38.2425064758 37.6897675266)"
+            id="QVqDq_pzt6InOWqqSRLKH"
+        >
+            <path
+                style={{
+                    stroke: 'rgb(0,0,0)',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeDashoffset: 0,
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 4,
+                    fill: 'rgb(255,222,90)',
+                    fillRule: 'nonzero',
+                    opacity: 1
+                }}
+                transform=" translate(0, 0)"
+                d="M 1.26055 52.42963 L 43.13145 52.42963 L -43.13145 -52.42962 z"
+                stroke-linecap="round"
+            />
+        </g>
+        <g
+            transform="matrix(-0.5971858939 0 0 -0.5971858939 50.7492392712 100.3406232635)"
+            id="nKe9jaUdbJmpFXXX3nKOK"
+        >
+            <path
+                style={{
+                    stroke: 'rgb(0,0,0)',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeDashoffset: 0,
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 4,
+                    fill: 'rgb(212,77,1)',
+                    fillRule: 'nonzero',
+                    opacity: 1
+                }}
+                transform=" translate(0, 0)"
+                d="M -22.18867 52.48051 L 22.18867 52.48051 L -22.18867 -52.48051999999999 z"
+                stroke-linecap="round"
+            />
+        </g>
+        <g
+            transform="matrix(-0.5971858939 0 0 -0.5971858939 38.2425064758 100.3102324734)"
+            id="w0m7FoR6YMmY9c8IMjM22"
+        >
+            <path
+                style={{
+                    stroke: 'rgb(0,0,0)',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeDashoffset: 0,
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 4,
+                    fill: 'rgb(230,185,0)',
+                    fillRule: 'nonzero',
+                    opacity: 1
+                }}
+                transform=" translate(0, 0)"
+                d="M 1.26055 52.42963 L 43.13145 52.42963 L -43.13145 -52.42962 z"
+                stroke-linecap="round"
+            />
+        </g>
+    </svg>
+);

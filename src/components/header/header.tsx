@@ -1,4 +1,3 @@
-import logoImage from './assets/icon.svg';
 import {LogoText} from './assets/LogoText';
 import {HeaderContainer} from './header-container/header-container';
 import styles from './header.module.css';
@@ -8,6 +7,7 @@ import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useOpenTonConnectModal} from '../../hooks/use-open-ton-connect-modal.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {Button} from '../button/button';
+import {LogoIcon} from './assets/LogoIcon';
 
 export const Header = () => {
     const walletAddress = useWalletAddress();
@@ -21,11 +21,7 @@ export const Header = () => {
     return (
         <HeaderContainer>
             <div className={styles.left_div}>
-                <img
-                    className={styles.header_triangle_logo}
-                    src={logoImage}
-                    alt="Rainbow Swap logo"
-                ></img>
+                <LogoIcon className={styles.header_triangle_logo} />
                 <LogoText
                     className={styles.logo_text}
                     width="64px"
