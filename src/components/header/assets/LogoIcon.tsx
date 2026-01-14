@@ -36,7 +36,7 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
                 }}
                 transform=" translate(0, 0)"
                 d="M -22.18867 52.48051 L 22.18867 52.48051 L -22.18867 -52.48051999999999 z"
-                stroke-linecap="round"
+                strokeLinecap="round"
             />
         </g>
         <g
@@ -58,7 +58,7 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
                 }}
                 transform=" translate(0, 0)"
                 d="M 1.26055 52.42963 L 43.13145 52.42963 L -43.13145 -52.42962 z"
-                stroke-linecap="round"
+                strokeLinecap="round"
             />
         </g>
         <g
@@ -80,7 +80,7 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
                 }}
                 transform=" translate(0, 0)"
                 d="M -22.18867 52.48051 L 22.18867 52.48051 L -22.18867 -52.48051999999999 z"
-                stroke-linecap="round"
+                strokeLinecap="round"
             />
         </g>
         <g
@@ -102,7 +102,7 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
                 }}
                 transform=" translate(0, 0)"
                 d="M 1.26055 52.42963 L 43.13145 52.42963 L -43.13145 -52.42962 z"
-                stroke-linecap="round"
+                strokeLinecap="round"
             />
         </g>
         <g
@@ -124,7 +124,7 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
                 }}
                 transform=" translate(0, 0)"
                 d="M -22.18867 52.48051 L 22.18867 52.48051 L -22.18867 -52.48051999999999 z"
-                stroke-linecap="round"
+                strokeLinecap="round"
             />
         </g>
         <g
@@ -146,7 +146,7 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
                 }}
                 transform=" translate(0, 0)"
                 d="M 1.26055 52.42963 L 43.13145 52.42963 L -43.13145 -52.42962 z"
-                stroke-linecap="round"
+                strokeLinecap="round"
             />
         </g>
         <g
@@ -168,7 +168,7 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
                 }}
                 transform=" translate(0, 0)"
                 d="M -22.18867 52.48051 L 22.18867 52.48051 L -22.18867 -52.48051999999999 z"
-                stroke-linecap="round"
+                strokeLinecap="round"
             />
         </g>
         <g
@@ -190,7 +190,7 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
                 }}
                 transform=" translate(0, 0)"
                 d="M 1.26055 52.42963 L 43.13145 52.42963 L -43.13145 -52.42962 z"
-                stroke-linecap="round"
+                strokeLinecap="round"
             />
         </g>
     </svg>

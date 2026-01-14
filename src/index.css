@@ -75,7 +75,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 @font-face {
     font-family: 'Basel';
-    src: url('fonts/sf-pro-text-regular-webfont.woff2') format("woff2"), url('fonts/sf-pro-text-regular-webfont.woff') format("woff");
+    src:
+        url('/fonts/sf-pro-text-regular-webfont.woff2') format('woff2'),
+        url('/fonts/sf-pro-text-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
