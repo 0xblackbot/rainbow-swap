@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react';
+import {FC, useEffect, useMemo, useState} from 'react';
 
 interface Props {
     date: number;
@@ -7,65 +7,64 @@ interface Props {
     className?: string;
 }
 
+const formatTarget = (date: number, placeholder?: string) =>
+    placeholder ??
+    new Date(date).toLocaleString(undefined, {
+        dateStyle: 'short',
+        timeStyle: 'short'
+    });
+
+const computeCountdownText = (date: number, placeholder?: string) => {
+    const now = Date.now();
+    const diff = date - now;
+
+    if (diff <= 0) return formatTarget(date, placeholder);
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    if (days > 0) return `${days} day${days > 1 ? 's' : ''} left`;
+
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    return `${hours.toString().padStart(2, '0')}:${minutes
+        .toString()
+        .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+};
+
 export const Countdown: FC<Props> = ({
     date,
     isActive = true,
     placeholder,
     className
 }) => {
-    const [timeLeft, setTimeLeft] = useState<string>('');
+    const inactiveText = useMemo(
+        () => formatTarget(date, placeholder),
+        [date, placeholder]
+    );
+
+    const [timeLeft, setTimeLeft] = useState(() =>
+        isActive ? computeCountdownText(date, placeholder) : inactiveText
+    );
 
     useEffect(() => {
-        let timer: NodeJS.Timeout;
+        if (!isActive) return;
 
-        const calculateTimeLeft = () => {
-            const now = new Date().getTime();
-            const diff = date - now;
+        const tick = () => {
+            const next = computeCountdownText(date, placeholder);
+            setTimeLeft(next);
 
-            if (diff <= 0) {
-                setTimeLeft(
-                    placeholder ??
-                        new Date(date).toLocaleString(undefined, {
-                            dateStyle: 'short',
-                            timeStyle: 'short'
-                        })
-                );
-                clearInterval(timer);
-                return;
-            }
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor(
-                (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-            );
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            if (days > 0) {
-                setTimeLeft(`${days} day${days > 1 ? 's' : ''} left`);
-            } else {
-                setTimeLeft(
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds
-                        .toString()
-                        .padStart(2, '0')}`
-                );
+            if (Date.now() >= date) {
+                clearInterval(id);
             }
         };
 
-        if (isActive) {
-            calculateTimeLeft();
-            timer = setInterval(calculateTimeLeft, 1000);
-        } else {
-            setTimeLeft(
-                new Date(date).toLocaleString(undefined, {
-                    dateStyle: 'short',
-                    timeStyle: 'short'
-                })
-            );
-        }
+        const id = window.setInterval(tick, 1000);
 
-        return () => clearInterval(timer);
+        return () => window.clearInterval(id);
     }, [date, isActive, placeholder]);
 
-    return <p className={className}>{timeLeft}</p>;
+    const text = isActive ? timeLeft : inactiveText;
+
+    return <p className={className}>{text}</p>;
 };

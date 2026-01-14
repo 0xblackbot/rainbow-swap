@@ -14,20 +14,15 @@ export function useTonWallet():
     | Wallet
     | (Wallet & WalletInfoWithOpenMethod)
     | null {
-    const [tonConnectUI] = useTonConnectUI();
+    const tonConnectUI = useTonConnectUI();
     const [wallet, setWallet] = useState<
         Wallet | (Wallet & WalletInfoWithOpenMethod) | null
-    >(tonConnectUI?.wallet || null);
+    >(tonConnectUI.wallet);
 
     useEffect(() => {
-        if (tonConnectUI) {
-            setWallet(tonConnectUI.wallet);
-            return tonConnectUI.onStatusChange(
-                (value: ConnectedWallet | null) => {
-                    setWallet(value);
-                }
-            );
-        }
+        tonConnectUI.onStatusChange((value: ConnectedWallet | null) => {
+            setWallet(value);
+        });
     }, [tonConnectUI]);
 
     return wallet;

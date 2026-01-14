@@ -29,6 +29,7 @@ export const BottomSheet: FC<Props> = ({
 
     useEffect(() => {
         if (isOpen) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setIsVisible(true);
         } else {
             const timer = setTimeout(() => setIsVisible(false), 400);

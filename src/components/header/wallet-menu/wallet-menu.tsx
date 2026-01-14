@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const WalletMenu: FC<Props> = ({walletAddress}) => {
-    const [tonConnectUI] = useTonConnectUI();
+    const tonConnectUI = useTonConnectUI();
     const modals = useModals();
 
     const [isOpen, setIsOpen] = useState(false);

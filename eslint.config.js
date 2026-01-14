@@ -73,7 +73,9 @@ export default [
                 {ts: 'never', tsx: 'never'}
             ],
 
-            'import/no-unresolved': ['error', {ignore: ['^swiper/']}]
+            'import/no-unresolved': ['error', {ignore: ['^swiper/']}],
+
+            'react-hooks/refs': 'off'
         }
     },
 

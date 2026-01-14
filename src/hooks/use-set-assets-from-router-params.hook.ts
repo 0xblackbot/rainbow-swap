@@ -28,6 +28,7 @@ export const useSyncSwapFormWithRouter = (
         if (isSynced === false) {
             // skip Arbitrage mode
             if (params.inputAssetSlug === params.outputAssetSlug) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setIsSynced(true);
 
                 return;

@@ -1,5 +1,5 @@
 import {EmptyFn, isDefined} from '@rnw-community/shared';
-import {FC, useEffect} from 'react';
+import {FC, useEffect, useState} from 'react';
 
 import styles from './competition-info.module.css';
 import {useSwapForm} from '../../../contexts/swap-form/swap-form.hook';
@@ -31,6 +31,7 @@ interface Props {
 }
 
 export const CompetitionInfo: FC<Props> = ({onClose}) => {
+    const [now, setNow] = useState(() => Date.now());
     const dispatch = useDispatch();
 
     const walletAddress = useWalletAddress();
@@ -48,6 +49,11 @@ export const CompetitionInfo: FC<Props> = ({onClose}) => {
             })
         );
     }, [dispatch, walletAddress]);
+
+    useEffect(() => {
+        const id = window.setInterval(() => setNow(Date.now()), 1000);
+        return () => window.clearInterval(id);
+    }, []);
 
     const handleTradeNowClick = () => {
         setInputAssetAddress(TON);
@@ -104,7 +110,7 @@ export const CompetitionInfo: FC<Props> = ({onClose}) => {
                     <Skeleton isLoading={isLoading}>
                         <Countdown
                             date={data.data.startDate}
-                            isActive={Date.now() < data.data.startDate}
+                            isActive={now < data.data.startDate}
                         />
                     </Skeleton>
                 </div>
@@ -113,7 +119,7 @@ export const CompetitionInfo: FC<Props> = ({onClose}) => {
                     <Skeleton isLoading={isLoading}>
                         <Countdown
                             date={data.data.endDate}
-                            isActive={data.data.startDate < Date.now()}
+                            isActive={data.data.startDate < now}
                             placeholder="Competition is over"
                         />
                     </Skeleton>

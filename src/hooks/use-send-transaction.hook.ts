@@ -9,7 +9,7 @@ import {bocToHash} from '../utils/boc.utils';
 import {showErrorToast} from '../utils/toast.utils';
 
 export const useSendTransaction = () => {
-    const [tonConnectUI] = useTonConnectUI();
+    const tonConnectUI = useTonConnectUI();
     const [isOpen, setIsOpen] = useState(false);
 
     useDisableMainButton(isOpen);

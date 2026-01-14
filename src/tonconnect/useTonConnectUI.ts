@@ -1,31 +1,16 @@
-import {TonConnectUI, TonConnectUiOptions} from '@tonconnect/ui';
-import {useCallback, useContext} from 'react';
+import {useContext} from 'react';
 
+import {TonConnectProviderNotSetError} from './errors/ton-connect-provider-not-set.error';
 import {TonConnectUIContext} from './TonConnectUIContext';
-import {checkProvider} from './utils/errors';
-import {isServerSide} from './utils/web';
 
-/**
- * Use it to get access to the `TonConnectUI` instance and UI options updating function.
- */
-export function useTonConnectUI(): [
-    TonConnectUI,
-    (options: TonConnectUiOptions) => void
-] {
+export const useTonConnectUI = () => {
     const tonConnectUI = useContext(TonConnectUIContext);
-    const setOptions = useCallback(
-        (options: TonConnectUiOptions) => {
-            if (tonConnectUI) {
-                tonConnectUI!.uiOptions = options;
-            }
-        },
-        [tonConnectUI]
-    );
 
-    if (isServerSide()) {
-        return [null as unknown as TonConnectUI, () => {}];
+    if (!tonConnectUI) {
+        throw new TonConnectProviderNotSetError(
+            'You should add <TonConnectUIProvider> on the top of the app to use TonConnect'
+        );
     }
 
-    checkProvider(tonConnectUI);
-    return [tonConnectUI!, setOptions];
-}
+    return tonConnectUI;
+};
