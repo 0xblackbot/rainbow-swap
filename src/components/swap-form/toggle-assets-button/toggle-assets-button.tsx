@@ -8,7 +8,11 @@ interface Props {
 }
 
 export const ToggleAssetsButton: FC<Props> = ({onClick}) => (
-    <button className={styles.currency_selector_button} onClick={onClick}>
+    <button
+        className={styles.currency_selector_button}
+        onClick={onClick}
+        aria-label="Swap input and output assets"
+    >
         <ArrowUpDownIcon height="20px" width="20px" className={styles.icon} />
     </button>
 );

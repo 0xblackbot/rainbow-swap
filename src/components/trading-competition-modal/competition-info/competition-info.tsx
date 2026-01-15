@@ -68,6 +68,8 @@ export const CompetitionInfo: FC<Props> = ({onClose}) => {
                 src={data.data.bgImageSrc}
                 alt="Trading competition"
                 className={styles.bg_image}
+                loading="lazy"
+                decoding="async"
             />
             <div className={styles.title_container}>
                 <Skeleton isLoading={isLoading}>

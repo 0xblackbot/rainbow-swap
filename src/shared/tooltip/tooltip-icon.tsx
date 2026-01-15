@@ -29,6 +29,7 @@ export const TooltipIcon: FC<Props> = ({text}) => {
                 onTouchEnd={onTouchEnd}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
+                aria-label={text}
             >
                 <InfoIcon className={styles.icon} />
             </TooltipTrigger>

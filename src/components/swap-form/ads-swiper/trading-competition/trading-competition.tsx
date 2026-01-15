@@ -61,6 +61,8 @@ export const TradingCompetition = () => {
                         src={logoImage}
                         className={styles.duck_airdrop}
                         alt="Trading competition"
+                        loading="lazy"
+                        decoding="async"
                     />
                 </div>
             </div>

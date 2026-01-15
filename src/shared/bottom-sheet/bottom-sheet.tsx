@@ -59,6 +59,8 @@ export const BottomSheet: FC<Props> = ({
                                 <button
                                     className={styles.header_button}
                                     onClick={onClose}
+                                    type="button"
+                                    aria-label="Close"
                                 >
                                     <XIcon
                                         className={styles.xIcon}

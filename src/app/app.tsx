@@ -58,8 +58,8 @@ export const App = () => {
     }, []);
 
     return (
-        <div className={styles.App}>
+        <main className={styles.App}>
             <RouterProvider router={router} />
-        </div>
+        </main>
     );
 };
