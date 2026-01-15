@@ -1,12 +1,6 @@
-.wallet_button {
-    background-color: var(--button-color);
-    color: var(--button-text-color);
-    border-radius: var(--4-step);
-    padding: var(--step) var(--2-step);
-    cursor: pointer;
+.container {
     position: relative;
     z-index: 11;
-    font-size: 13px;
 }
 
 .menu_backdrop {
@@ -36,10 +30,9 @@
     right: 0;
     display: grid;
     gap: var(--step);
-    background-color: var(--bg-color);
-    min-width: calc(20 * var(--step));
+    background-color: var(--secondary-bg-color);
     padding: var(--step);
-    border-radius: var(--2-step);
+    border-radius: 20px;
     box-shadow: 0 2px 2px black;
     transform: translateX(50vw);
     opacity: 0;
@@ -47,27 +40,36 @@
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;;
 }
 
-.wallet_button.open .menu_content {
+.container.open .menu_content {
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
 }
 
 .menu_button {
-    justify-content: center;
-    padding: var(--step);
-    border-radius: var(--3-step);
-    cursor: pointer;
-    text-align: center;
+    min-width: max-content;
+    justify-content: start !important;
 }
 
-.menu_disconnect_button {
-    background-color: var(--button-color);
-    color: var(--button-text-color);
+.disconnect_button {
+    transition: color 0.3s ease-in-out;
 }
 
-.menu_explore_button {
-    border: 1px solid var(--button-color);
-    color: var(--button-color);
-    background: none;
+.disconnect_button svg {
+    transition: stroke 0.3s ease-in-out;
+}
+
+.disconnect_button:hover {
+    color: var(--error-color) !important;
+}
+
+.disconnect_button:hover svg {
+    stroke: var(--error-color);
+}
+
+.menu_button_icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--text-color);
+    stroke: var(--text-color);
 }

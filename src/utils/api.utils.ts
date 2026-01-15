@@ -1,18 +1,42 @@
 import {API} from '../globals';
-import {
-    GetPointsAuthParams,
-    PointsAuthResponse
-} from '../types/get-points-auth.type';
+import {SwapHistoryData} from '../store/interfaces/swap-history-data.interface';
+import {GetClaimRewardsParams} from '../types/get-claim-rewards.type';
+import {GetSwapHistoryDataParams} from '../types/get-swap-history-data.type';
 import {GetTaskCheckParams} from '../types/get-task-check.type';
-import {PostAddTapsParams} from '../types/post-add-taps.type';
+import {
+    GetTradingCompetitionDataParams,
+    TradingCompetitionDataResponse
+} from '../types/get-trading-competition-data.type';
+import {GetUserAuthParams} from '../types/get-user-auth.type';
+import {
+    GetWalletDataParams,
+    WalletDataResponse
+} from '../types/get-wallet-data.type';
 
-export const getPointsAuth = (params: GetPointsAuthParams) =>
-    API.get<PointsAuthResponse>('/points-auth', {params}).then(
+export const getUserAuth = (params: GetUserAuthParams) =>
+    API.get<boolean>('/user-auth', {params}).then(response => response.data);
+
+export const getWalletData = (params: GetWalletDataParams) =>
+    API.get<WalletDataResponse>('/wallet-data', {params}).then(
         response => response.data
     );
 
 export const getTaskCheck = (params: GetTaskCheckParams) =>
     API.get<number>('/task-check', {params}).then(response => response.data);
 
-export const postAddTaps = (params: PostAddTapsParams) =>
-    API.post('/add-taps', params);
+export const getClaimRewards = (params: GetClaimRewardsParams) =>
+    API.get<boolean>('/claim-rewards', {params}).then(
+        response => response.data
+    );
+
+export const getSwapHistoryData = (params: GetSwapHistoryDataParams) =>
+    API.get<SwapHistoryData>('/swap-history-data', {params}).then(
+        response => response.data
+    );
+
+export const getTradingCompetitionData = (
+    params: GetTradingCompetitionDataParams
+) =>
+    API.get<TradingCompetitionDataResponse>('/trading-competition-data', {
+        params
+    }).then(response => response.data);

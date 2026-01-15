@@ -7,6 +7,7 @@ import {useAssetBalanceSelector} from '../../../store/wallet/wallet-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
 import {getMaxSentAmount} from '../../../utils/get-max-sent-amount.utils';
 import {getClassName} from '../../../utils/style.utils';
+import {Button} from '../../button/button';
 import {Skeleton} from '../../skeleton/skeleton';
 
 interface Props {
@@ -16,7 +17,7 @@ interface Props {
     onAssetValueChange: (newAssetValue: Asset) => void;
     isError: boolean;
     isLoading: boolean;
-    inputValueUsdAmount: number;
+    inputAssetUsdAmount: number;
 }
 
 export const CustomInput = forwardRef<HTMLInputElement, Props>(
@@ -28,7 +29,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
             onAssetValueChange,
             isError,
             isLoading,
-            inputValueUsdAmount
+            inputAssetUsdAmount
         },
         ref
     ) => {
@@ -70,7 +71,9 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                 typeof ref !== 'function' &&
                 document.activeElement !== ref.current
             ) {
-                (ref as React.RefObject<HTMLInputElement>).current?.focus();
+                (
+                    ref as React.RefObject<HTMLInputElement | null>
+                ).current?.focus();
             }
         };
 
@@ -108,7 +111,6 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                             onFocus={handleFocus}
                             onBlur={handleBlur}
                         />
-                        <div className={styles.empty_container} />
                     </div>
                     <Skeleton isLoading={isLoading}>
                         <AssetSelector
@@ -121,7 +123,7 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
 
                 <div className={styles.input_info}>
                     <p className={styles.input_usd_balance}>
-                        ${formatNumber(inputValueUsdAmount, 2)}
+                        ${formatNumber(inputAssetUsdAmount, 2)}
                     </p>
                     <Skeleton isLoading={isLoading}>
                         <div className={styles.input_info_balance}>
@@ -129,12 +131,14 @@ export const CustomInput = forwardRef<HTMLInputElement, Props>(
                                 {formatNumber(parseFloat(balance), 2)}{' '}
                                 {assetValue.symbol}
                             </p>
-                            <button
-                                className={styles.input_info_button}
+                            <Button
+                                size="xs"
+                                mode="bezeled"
+                                className={styles.max_button}
                                 onClick={setMaxAssetAmount}
                             >
-                                Max
-                            </button>
+                                <span>Max</span>
+                            </Button>
                         </div>
                     </Skeleton>
                 </div>

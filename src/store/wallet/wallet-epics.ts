@@ -1,29 +1,29 @@
 import axios from 'axios';
-import {Epic, combineEpics} from 'redux-observable';
-import {
-    Observable,
-    switchMap,
-    from,
-    map,
-    catchError,
-    of,
-    concatMap
-} from 'rxjs';
+import {combineEpics, Epic} from 'redux-observable';
+import {from, map, Observable, of, switchMap} from 'rxjs';
 import {Action} from 'ts-action';
-import {toPayload, ofType} from 'ts-action-operators';
+import {ofType, toPayload} from 'ts-action-operators';
 
 import {
-    addPendingSwapTransactionActions,
-    loadBalancesActions
+    checkTaskActions,
+    claimRewardsActions,
+    loadBalancesActions,
+    loadUserAuthActions,
+    loadWalletDataActions
 } from './wallet-actions';
-import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
+import {INIT_DATA} from '../../globals';
 import {BalancesArray} from '../../interfaces/balance-object.interface';
 import {TonBalanceArray} from '../../interfaces/ton-balance-response.interface';
+import {
+    getClaimRewards,
+    getTaskCheck,
+    getUserAuth,
+    getWalletData
+} from '../../utils/api.utils';
 import {getBalancesRecord} from '../../utils/balances-record.utils';
-import {waitTransactionConfirmation} from '../../utils/tonapi.utils';
-import {loadPointsActions} from '../points/points-actions';
+import {sentryCatchError} from '../../utils/sentry.utils';
 
-const walletEpic = (action$: Observable<Action>) =>
+const loadBalancesEpic = (action$: Observable<Action>) =>
     action$.pipe(
         ofType(loadBalancesActions.submit),
         toPayload(),
@@ -49,47 +49,84 @@ const walletEpic = (action$: Observable<Action>) =>
                 map(balancesRecord =>
                     loadBalancesActions.success(balancesRecord)
                 ),
-                catchError(error => of(loadBalancesActions.fail(error.message)))
+                sentryCatchError(error =>
+                    of(loadBalancesActions.fail(error.message))
+                )
             )
         )
     );
 
-const addPendingSwapTransactionEpic: Epic<Action> = action$ =>
+const loadUserAuthEpic: Epic<Action> = action$ =>
     action$.pipe(
-        ofType(addPendingSwapTransactionActions.submit),
+        ofType(loadUserAuthActions.submit),
         toPayload(),
         switchMap(payload =>
-            from(
-                waitTransactionConfirmation(
-                    payload.senderRawAddress,
-                    payload.bocHash
+            from(getUserAuth(payload)).pipe(
+                map(response => loadUserAuthActions.success(response)),
+                sentryCatchError(err =>
+                    of(loadUserAuthActions.fail(err.message))
                 )
+            )
+        )
+    );
+
+const loadWalletDataEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(loadWalletDataActions.submit),
+        toPayload(),
+        switchMap(payload =>
+            from(getWalletData(payload)).pipe(
+                map(response => loadWalletDataActions.success(response)),
+                sentryCatchError(err =>
+                    of(loadWalletDataActions.fail(err.message))
+                )
+            )
+        )
+    );
+
+const checkTaskEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(checkTaskActions.submit),
+        toPayload(),
+        switchMap(({taskType, walletAddress}) =>
+            from(
+                getTaskCheck({
+                    initData: INIT_DATA,
+                    taskType,
+                    walletAddress
+                })
             ).pipe(
-                concatMap(() => {
-                    const actions: Action<string>[] = [
-                        addPendingSwapTransactionActions.success(),
-                        loadBalancesActions.submit(payload.senderRawAddress)
-                    ];
+                map(data => checkTaskActions.success({taskType, data})),
+                sentryCatchError(err =>
+                    of(
+                        checkTaskActions.fail({
+                            taskType,
+                            error: err.message
+                        })
+                    )
+                )
+            )
+        )
+    );
 
-                    if (IS_TMA) {
-                        actions.push(
-                            loadPointsActions.submit({
-                                initData: INIT_DATA,
-                                refParent: UNSAFE_INIT_DATA.ref_parent
-                            })
-                        );
-                    }
-
-                    return actions;
-                }),
-                catchError(err =>
-                    of(addPendingSwapTransactionActions.fail(err.message))
+const claimRewardsEpic: Epic<Action> = action$ =>
+    action$.pipe(
+        ofType(claimRewardsActions.submit),
+        toPayload(),
+        switchMap(payload =>
+            from(getClaimRewards(payload)).pipe(
+                map(response => claimRewardsActions.success(response)),
+                sentryCatchError(err =>
+                    of(claimRewardsActions.fail(err.message))
                 )
             )
         )
     );
 
 export const walletEpics = combineEpics(
-    walletEpic,
-    addPendingSwapTransactionEpic
+    loadBalancesEpic,
+    loadUserAuthEpic,
+    loadWalletDataEpic,
+    checkTaskEpic,
+    claimRewardsEpic
 );

@@ -14,10 +14,10 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Use Node 20
+      - name: Use Node 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'yarn'
 
       - name: Install dependencies and code quality check

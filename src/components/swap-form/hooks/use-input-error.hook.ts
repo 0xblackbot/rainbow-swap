@@ -1,7 +1,7 @@
 import {useMemo} from 'react';
 
+import {useSwapForm} from '../../../contexts/swap-form/swap-form.hook';
 import {TON, TON_DECIMALS} from '../../../globals';
-import {useSwapForm} from '../../../hooks/swap-form/swap-form.hook';
 import {useWalletAddress} from '../../../hooks/use-wallet-address.hook';
 import {useSwapMessagesSelector} from '../../../store/swap-routes/swap-routes-selectors';
 import {useAssetBalanceSelector} from '../../../store/wallet/wallet-selectors';

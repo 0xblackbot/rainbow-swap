@@ -1,6 +1,5 @@
 import {isNotEmptyString} from '@rnw-community/shared';
 import axios from 'axios';
-import {Api, HttpClient} from 'tonapi-sdk-js';
 
 import {toNano} from './utils/big-int.utils';
 
@@ -23,30 +22,24 @@ export const API = axios.create({
     baseURL: 'https://api.rainbow.ag/api'
 });
 
-export const TON_API_CLIENT = new Api(
-    new HttpClient({
-        baseUrl: 'https://tonapi.io'
-    })
-);
-
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';
 
 export const INIT_DATA = window.Telegram.WebApp.initData;
 export const IS_TMA = isNotEmptyString(INIT_DATA);
 
-// On Android devices MainButton text updates only after touch
-export const IS_MAIN_BUTTON_AVAILABLE = ['ios', 'macos'].includes(
-    window.Telegram.WebApp.platform
-);
-
 export const UNSAFE_INIT_DATA = {
     userId: window.Telegram.WebApp.initDataUnsafe.user?.id,
-    ref_parent: window.Telegram.WebApp.initDataUnsafe.start_param
+    refParent: window.Telegram.WebApp.initDataUnsafe.start_param,
+    refWallet: new URLSearchParams(window.location.search).get('r')
 };
 
+export const WEB_LINK = 'https://rainbow.ag';
 export const TELEGRAM_BOT_LINK = 'https://t.me/rainbow_swap_bot';
 export const TELEGRAM_APP_LINK = `${TELEGRAM_BOT_LINK}/app`;
 export const TELEGRAM_CHANNEL_LINK = 'https://t.me/rainbow_swap';
 export const COMMUNITY_CHAT_LINK = 'https://t.me/rainbow_swap_chat';
-export const X_LINK = 'https://x.com/rainbow_swap';
-export const TON_APP_LINK = 'https://ton.app/dex/rainbow-swap?id=2525';
+export const SUPPORT_LINK = 'https://t.me/rainbow_swap_manager';
+export const TWITTER_LINK = 'https://x.com/rainbow_swap';
+export const GITBOOK_LINK = 'https://rainbow-ag.gitbook.io/docs';
+export const GITHUB_LINK = 'https://github.com/0xblackbot/rainbow-swap';
+export const BLACKBOT_LINK = 'https://blackbot.technology/';

@@ -1,0 +1,7 @@
+.swiper-pagination {
+    display: none;
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--hint-color) !important;
+}

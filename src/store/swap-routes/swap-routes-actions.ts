@@ -1,11 +1,8 @@
 import {BestRouteResponse} from 'rainbow-swap-sdk';
 
 import {RiskTolerance} from '../../enums/risk-tolerance.enum';
+import {PayloadWithRequest} from '../interfaces/payload-with-request.interface';
 import {createActions} from '../utils/create-actions';
-
-interface PayloadWithRequest {
-    requestId: string;
-}
 
 export const loadSwapRoutesActions = createActions<
     {
@@ -14,6 +11,8 @@ export const loadSwapRoutesActions = createActions<
         outputAssetAddress: string;
         senderAddress: string | undefined;
         riskTolerance: RiskTolerance;
+        maxSplits: number;
+        maxSlippage: number;
     } & PayloadWithRequest,
     BestRouteResponse & PayloadWithRequest,
     {error: string} & PayloadWithRequest

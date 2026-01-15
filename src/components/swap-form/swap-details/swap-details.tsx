@@ -1,50 +1,77 @@
-import {FC, Fragment, useState} from 'react';
+import {FC, useMemo, useState} from 'react';
 
 import {RouteInfo} from './route-info/route-info';
 import {SwapDetailsHeader} from './swap-details-header/swap-details-header';
 import {SwapDetailsHeaderProps} from './swap-details-header/swap-details-header.props';
 import styles from './swap-details.module.css';
 import {ChevronDownIcon} from '../../../assets/icons/ChevronDownIcon/ChevronDownIcon';
+import {TooltipIcon} from '../../../shared/tooltip/tooltip-icon';
 import {
     useIsRoutesLoadingSelector,
     useSwapDisplayDataSelector
 } from '../../../store/swap-routes/swap-routes-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
-import {getSwapInputAssetAmount} from '../../../utils/route-step-with-calculation.utils';
 import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
-interface Props extends SwapDetailsHeaderProps {
-    inputAssetAmount: string;
+interface Props extends Omit<SwapDetailsHeaderProps, 'routesLength'> {
+    isValidInputAssetAmount: boolean;
 }
 
 export const SwapDetails: FC<Props> = ({
-    inputAssetAmount,
-    inputError,
+    isValidInputAssetAmount,
     inputAsset,
-    outputAsset,
-    routes
+    outputAsset
 }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const isRoutesLoading = useIsRoutesLoadingSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
 
-    const nanoInputAssetAmount = getSwapInputAssetAmount(routes);
+    const data = useMemo(() => {
+        if (swapDisplayData.routes.length === 0) {
+            return {
+                maxSlippage: `-`,
+                receiveAtLeast: `-`,
+                receiveAtLeastTooltipText: undefined,
+                routingFee: `-`,
+                gasFee: `-`
+            };
+        }
+
+        const receiveAtLeast = `${formatNumber(
+            swapDisplayData.minOutputAssetAmount,
+            5
+        )} ${outputAsset.symbol}`;
+
+        return {
+            maxSlippage: `${swapDisplayData.maxSlippage.toFixed(2)}%`,
+            receiveAtLeast: receiveAtLeast,
+            receiveAtLeastTooltipText: `If the price drops below ${receiveAtLeast}, your transaction will be partially or fully reverted.`,
+            routingFee: `${formatNumber(swapDisplayData.routingFeePercent, 2)}%`,
+            gasFee: `~ ${formatNumber(swapDisplayData.roughGasFee, 2)} TON`
+        };
+    }, [
+        swapDisplayData.routes.length,
+        swapDisplayData.minOutputAssetAmount,
+        swapDisplayData.maxSlippage,
+        swapDisplayData.routingFeePercent,
+        swapDisplayData.roughGasFee,
+        outputAsset.symbol
+    ]);
 
     const toggleAccordion = () => setIsOpen(value => !value);
 
     return (
         <div className={styles.container}>
-            {inputAssetAmount !== '' && (
+            {isValidInputAssetAmount && (
                 <>
                     <div className={styles.header_container}>
                         <Skeleton isLoading={isRoutesLoading}>
                             <SwapDetailsHeader
-                                inputError={inputError}
                                 inputAsset={inputAsset}
                                 outputAsset={outputAsset}
-                                routes={routes}
+                                routesLength={swapDisplayData.routes.length}
                             />
                         </Skeleton>
                         <div
@@ -70,42 +97,41 @@ export const SwapDetails: FC<Props> = ({
                         <div className={styles.row}>
                             <p>Max slippage</p>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>{swapDisplayData.maxSlippage.toFixed(2)}%</p>
+                                <p>{data.maxSlippage}</p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
-                            <p>Receive at least</p>
+                            <div className={styles.cell}>
+                                <p>Receive at least</p>
+                                <TooltipIcon
+                                    text={data.receiveAtLeastTooltipText}
+                                />
+                            </div>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>{`${formatNumber(
-                                    swapDisplayData.minOutputAssetAmount,
-                                    5
-                                )} ${outputAsset.symbol}`}</p>
+                                <p>{data.receiveAtLeast}</p>
+                            </Skeleton>
+                        </div>
+                        <div className={styles.row}>
+                            <p>Gas Fee</p>
+                            <Skeleton isLoading={isRoutesLoading}>
+                                <p>{data.gasFee}</p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
                             <p>Routing Fee</p>
                             <Skeleton isLoading={isRoutesLoading}>
-                                <p>
-                                    {swapDisplayData.routingFeePercent.toFixed(
-                                        2
-                                    )}
-                                    %
-                                </p>
+                                <p>{data.routingFee}</p>
                             </Skeleton>
                         </div>
                         <div className={styles.row}>
                             <p>Swap route</p>
                         </div>
                         <div className={styles.routes_container}>
-                            {routes.map((route, index) => (
-                                <Fragment key={`route-${index}`}>
-                                    <RouteInfo
-                                        nanoInputAssetAmount={
-                                            nanoInputAssetAmount
-                                        }
-                                        route={route}
-                                    />
-                                </Fragment>
+                            {swapDisplayData.routes.map((route, index) => (
+                                <RouteInfo
+                                    key={`route-${index}`}
+                                    route={route}
+                                />
                             ))}
                         </div>
                     </div>

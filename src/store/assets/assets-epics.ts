@@ -1,24 +1,34 @@
-import {getAssetsRecord} from 'rainbow-swap-sdk';
-import {combineEpics} from 'redux-observable';
-import {catchError, concatMap, from, Observable, of, switchMap} from 'rxjs';
+import {getAssetsList} from 'rainbow-swap-sdk';
+import {combineEpics, Epic} from 'redux-observable';
+import {concatMap, debounceTime, from, of, switchMap} from 'rxjs';
 import {Action} from 'ts-action';
-import {ofType} from 'ts-action-operators';
+import {ofType, toPayload} from 'ts-action-operators';
 
-import {loadAssetsActions} from './assets-actions';
-import {assetsInitializedAction} from '../initialized/initialized-actions';
+import {loadAssetsListActions} from './assets-actions';
+import {DEBOUNCE_DUE_TIME} from '../../globals';
+import {sentryCatchError} from '../../utils/sentry.utils';
+import {assetsInitializedAction} from '../initialized/runtime-actions';
 
-const loadAssetsEpic = (action$: Observable<Action>) =>
+const loadAssetsListEpic: Epic<Action> = action$ =>
     action$.pipe(
-        ofType(loadAssetsActions.submit),
-        switchMap(() =>
-            from(getAssetsRecord()).pipe(
-                concatMap(assetsRecord => [
-                    loadAssetsActions.success(assetsRecord),
+        ofType(loadAssetsListActions.submit),
+        toPayload(),
+        debounceTime(DEBOUNCE_DUE_TIME),
+        switchMap(payload =>
+            from(getAssetsList(payload)).pipe(
+                concatMap(assetsList => [
+                    loadAssetsListActions.success({
+                        list: assetsList,
+                        requestId: payload.requestId
+                    }),
                     assetsInitializedAction()
                 ]),
-                catchError(err =>
+                sentryCatchError(err =>
                     of(
-                        loadAssetsActions.fail(err.message),
+                        loadAssetsListActions.fail({
+                            error: err.message,
+                            requestId: payload.requestId
+                        }),
                         assetsInitializedAction()
                     )
                 )
@@ -26,4 +36,4 @@ const loadAssetsEpic = (action$: Observable<Action>) =>
         )
     );
 
-export const assetsEpics = combineEpics(loadAssetsEpic);
+export const assetsEpics = combineEpics(loadAssetsListEpic);

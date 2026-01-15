@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding: var(--step) var(--2-step);
+    cursor: pointer;
+}
+
+.container:hover {
+    background-color: var(--secondary-bg-color);
+}
+
+.image {
+    width: var(--5-step);
+    height: var(--5-step);
+    border-radius: var(--step);
+    margin-right: var(--step);
+}
+
+.text_container {
+    min-width: 0;
+}
+
+.title {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.description {
+    font-size: 14px;
+    color: var(--hint-color);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.childrenContainer {
+    display: flex;
+    margin-left: auto;
+}

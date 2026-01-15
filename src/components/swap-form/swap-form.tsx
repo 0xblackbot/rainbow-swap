@@ -4,30 +4,32 @@ import {useCallback, useEffect, useMemo, useRef} from 'react';
 import {ConnectWalletButton} from './connect-wallet-button/connect-wallet-button';
 import {CustomInput} from './custom-input/custom-input';
 import {CustomOutput} from './custom-input/custom-output';
-import {FarmVolume} from './farm-volume/farm-volume';
 import {useInputError} from './hooks/use-input-error.hook';
 import {PendingSwap} from './pending-swap/pending-swap';
-import {SettingsButton} from './settings-button/settings-button';
 import {SwapButton} from './swap-button/swap-button';
 import {SwapDetails} from './swap-details/swap-details';
 import {SwapDisabled} from './swap-disabled/swap-disabled';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
-import {IS_MAIN_BUTTON_AVAILABLE} from '../../globals';
-import {useSwapForm} from '../../hooks/swap-form/swap-form.hook';
+import {useSwapForm} from '../../contexts/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
+import {useIsMainButtonAvailable} from '../../hooks/use-is-main-button-available.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {ContentContainer} from '../../shared/content-container/content-container';
 import {FormButton} from '../../shared/form-button/form-button';
 import {useDispatch} from '../../store';
-import {useIsAssetInitializedSelector} from '../../store/initialized/initialized-selectors';
+import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-selectors';
 import {useAppStatusSelector} from '../../store/security/security-selectors';
-import {useRiskToleranceSelector} from '../../store/settings/settings-selectors';
+import {
+    useMaxSlippageSelector,
+    useMaxSplitsSelector,
+    useRiskToleranceSelector
+} from '../../store/settings/settings-selectors';
 import {loadSwapRoutesActions} from '../../store/swap-routes/swap-routes-actions';
 import {
-    useRoutesSelector,
+    useIsRoutesLoadingSelector,
     useSwapDisplayDataSelector
 } from '../../store/swap-routes/swap-routes-selectors';
 import {toNano} from '../../utils/big-int.utils';
@@ -37,13 +39,16 @@ import {swapAssets} from '../../utils/swap-assets.utils';
 export const SwapScreen = () => {
     const walletAddress = useWalletAddress();
     const inputRef = useRef<HTMLInputElement>(null);
+    const isMainButtonAvailable = useIsMainButtonAvailable();
 
     const dispatch = useDispatch();
-    const routes = useRoutesSelector();
     const appStatus = useAppStatusSelector();
-    const isAssetInitialized = useIsAssetInitializedSelector();
+    const isAssetsInitialized = useIsAssetsInitializedSelector();
     const swapDisplayData = useSwapDisplayDataSelector();
     const riskTolerance = useRiskToleranceSelector();
+    const maxSplits = useMaxSplitsSelector();
+    const maxSlippage = useMaxSlippageSelector();
+    const isRoutesLoading = useIsRoutesLoadingSelector();
 
     const {
         inputAssetAddress,
@@ -55,6 +60,8 @@ export const SwapScreen = () => {
         inputAsset,
         outputAsset
     } = useSwapForm();
+
+    const isValidInputAssetAmount = Number(inputAssetAmount) !== 0;
 
     const nanoInputAssetAmount = useMemo(
         () =>
@@ -76,7 +83,9 @@ export const SwapScreen = () => {
         nanoInputAssetAmount,
         inputAssetAddress,
         outputAssetAddress,
-        riskTolerance
+        riskTolerance,
+        maxSplits,
+        maxSlippage
     );
 
     useEffect(() => {
@@ -87,6 +96,8 @@ export const SwapScreen = () => {
                 outputAssetAddress,
                 senderAddress: walletAddress,
                 riskTolerance,
+                maxSplits,
+                maxSlippage: Number(maxSlippage),
                 requestId: getQueryId().toString()
             })
         );
@@ -96,6 +107,8 @@ export const SwapScreen = () => {
         outputAssetAddress,
         nanoInputAssetAmount,
         riskTolerance,
+        maxSplits,
+        maxSlippage,
         dispatch
     ]);
 
@@ -140,16 +153,19 @@ export const SwapScreen = () => {
             <ContentContainer>
                 <div className={styles.body_div}>
                     <div className={styles.swapform_header}>
-                        <p />
+                        <p className={styles.error_text}>
+                            {!isRoutesLoading && inputError}
+                        </p>
                         <div className={styles.icons_div}>
                             <PendingSwap />
-                            <RefreshIcon
-                                width="22px"
-                                height="22px"
-                                onClick={handleManualRefresh}
-                                isAnimating={intervalRef.current !== null}
-                            />
-                            <SettingsButton />
+                            {isValidInputAssetAmount && (
+                                <RefreshIcon
+                                    width="22px"
+                                    height="22px"
+                                    onClick={handleManualRefresh}
+                                    isAnimating={intervalRef.current !== null}
+                                />
+                            )}
                         </div>
                     </div>
                     <div className={styles.input_asset_container}>
@@ -160,8 +176,8 @@ export const SwapScreen = () => {
                             assetValue={inputAsset}
                             onAssetValueChange={handleInputAssetValueChange}
                             isError={!!inputError}
-                            isLoading={!isAssetInitialized}
-                            inputValueUsdAmount={
+                            isLoading={!isAssetsInitialized}
+                            inputAssetUsdAmount={
                                 swapDisplayData.inputAssetUsdAmount
                             }
                         />
@@ -172,41 +188,40 @@ export const SwapScreen = () => {
                             inputValue={outputAssetAmount}
                             assetValue={outputAsset}
                             onAssetValueChange={handleOutputAssetValueChange}
-                            isLoading={!isAssetInitialized}
-                            inputValueUsdAmount={
+                            isLoading={!isAssetsInitialized}
+                            inputAssetUsdAmount={
+                                swapDisplayData.inputAssetUsdAmount
+                            }
+                            outputAssetUsdAmount={
                                 swapDisplayData.outputAssetUsdAmount
                             }
                         />
                     </div>
                     {walletAddress ? (
-                        Number(inputAssetAmount) === 0 ? (
-                            <FormButton
-                                text="Enter amount"
-                                onClick={handleEnterSendAmount}
-                            />
-                        ) : (
+                        isValidInputAssetAmount ? (
                             <SwapButton
                                 inputAsset={inputAsset}
                                 outputAsset={outputAsset}
+                            />
+                        ) : (
+                            <FormButton
+                                text="Enter amount"
+                                onClick={handleEnterSendAmount}
                             />
                         )
                     ) : (
                         <ConnectWalletButton onClick={handleConnectClick} />
                     )}
-                    {!IS_MAIN_BUTTON_AVAILABLE && (
+                    {!isMainButtonAvailable && (
                         <div className={styles.ident_container} />
                     )}
 
                     <SwapDetails
-                        inputAssetAmount={inputAssetAmount}
-                        inputError={inputError}
+                        isValidInputAssetAmount={isValidInputAssetAmount}
                         inputAsset={inputAsset}
                         outputAsset={outputAsset}
-                        routes={routes}
                     />
-                    {appStatus.isSwapsEnabled ? (
-                        <FarmVolume />
-                    ) : (
+                    {appStatus.isSwapsEnabled ? null : (
                         <SwapDisabled message={appStatus.message} />
                     )}
                 </div>

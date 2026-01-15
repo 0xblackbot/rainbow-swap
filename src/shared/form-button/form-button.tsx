@@ -1,24 +1,34 @@
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 
-import styles from './form-button.module.css';
-import {IS_MAIN_BUTTON_AVAILABLE} from '../../globals';
 import {MainButton} from './main-button/main-button';
 import {MainButtonProps} from './main-button/main-button.props';
+import {Button} from '../../components/button/button';
+import {useIsMainButtonAvailable} from '../../hooks/use-is-main-button-available.hook';
 
 interface Props extends MainButtonProps {
     containerClassName?: string;
 }
 
 export const FormButton: FC<Props> = ({text, containerClassName, onClick}) => {
-    if (IS_MAIN_BUTTON_AVAILABLE) {
+    const isMainButtonAvailable = useIsMainButtonAvailable();
+
+    useEffect(() => {
+        if (isMainButtonAvailable) {
+            window.Telegram.WebApp.MainButton.show();
+        } else {
+            window.Telegram.WebApp.MainButton.hide();
+        }
+    }, [isMainButtonAvailable]);
+
+    if (isMainButtonAvailable) {
         return <MainButton text={text} onClick={onClick} />;
     }
 
     return (
         <div className={containerClassName}>
-            <button className={styles.button} onClick={onClick}>
-                {text}
-            </button>
+            <Button size="l" mode="filled" stretched={true} onClick={onClick}>
+                <span>{text}</span>
+            </Button>
         </div>
     );
 };

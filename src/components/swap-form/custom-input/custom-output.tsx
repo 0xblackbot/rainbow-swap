@@ -6,6 +6,7 @@ import styles from './custom-input.module.css';
 import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
 import {useAssetBalanceSelector} from '../../../store/wallet/wallet-selectors';
 import {formatNumber} from '../../../utils/format-number.utils';
+import {calcPercentDiff, formatPercentDiff} from '../../../utils/percent.utils';
 import {getClassName} from '../../../utils/style.utils';
 import {Skeleton} from '../../skeleton/skeleton';
 
@@ -14,7 +15,8 @@ interface Props {
     assetValue: Asset;
     onAssetValueChange: (newAssetValue: Asset) => void;
     isLoading: boolean;
-    inputValueUsdAmount: number;
+    inputAssetUsdAmount: number;
+    outputAssetUsdAmount: number;
 }
 
 export const CustomOutput: FC<Props> = memo(
@@ -23,10 +25,15 @@ export const CustomOutput: FC<Props> = memo(
         assetValue,
         onAssetValueChange,
         isLoading,
-        inputValueUsdAmount
+        inputAssetUsdAmount,
+        outputAssetUsdAmount
     }) => {
         const isRoutesLoading = useIsRoutesLoadingSelector();
         const balance = useAssetBalanceSelector(assetValue.address);
+        const percentDiff = calcPercentDiff(
+            inputAssetUsdAmount,
+            outputAssetUsdAmount
+        );
 
         return (
             <div className={styles.container}>
@@ -46,7 +53,6 @@ export const CustomOutput: FC<Props> = memo(
                         >
                             {inputValue}
                         </span>
-                        <div className={styles.empty_container} />
                     </div>
                     <Skeleton isLoading={isLoading}>
                         <AssetSelector
@@ -59,7 +65,16 @@ export const CustomOutput: FC<Props> = memo(
 
                 <div className={styles.input_info}>
                     <p className={styles.input_usd_balance}>
-                        ${formatNumber(inputValueUsdAmount, 2)}
+                        ${formatNumber(outputAssetUsdAmount, 2)}{' '}
+                        <span
+                            className={
+                                percentDiff && percentDiff > 0.01
+                                    ? styles.output_positive_diff
+                                    : ''
+                            }
+                        >
+                            {formatPercentDiff(percentDiff)}
+                        </span>
                     </p>
                     <Skeleton isLoading={isLoading}>
                         <div className={styles.input_info_balance}>

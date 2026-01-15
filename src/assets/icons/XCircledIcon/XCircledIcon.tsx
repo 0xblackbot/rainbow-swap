@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, type JSX} from 'react';
 interface Props {
     width?: string;
     height?: string;
@@ -16,7 +16,7 @@ export const XCircledIcon: FC<Props> = ({
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        strokeWidth={1.5}
+        strokeWidth="1.5"
         stroke="currentColor"
         style={{width, height}}
         className={className}

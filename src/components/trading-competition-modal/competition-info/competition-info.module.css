@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.bg_image {
+    border-radius: var(--border-radius);
+    margin-bottom: var(--2-step);
+}
+
+.title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--step);
+}
+
+.title {
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.description {
+    color: var(--hint-color);
+    font-size: 14px;
+}
+
+.skeleton {
+    text-align: end;
+    min-width: var(--5-step);
+}
+
+.stats_container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--step);
+    margin-bottom: var(--2-step);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.value {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.usd_value {
+    font-size: 12px;
+    color: var(--hint-color);
+}
+
+.copy_button {
+    margin-bottom: var(--step);
+}
+
+.copy_icon {
+    stroke: var(--text-color);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+}
+
+.table th {
+    font-size: 14px;
+    color: var(--text-color);
+}
+.table td {
+    font-size: 14px;
+    color: var(--hint-color);
+}
+
+.table th,
+.table td {
+    padding: var(--step) var(--2-step);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: var(--bg-color);
+}
+
+.align_left {
+    text-align: left;
+}
+
+.align_center {
+    text-align: center;
+}
+
+.align_right {
+    text-align: right;
+}

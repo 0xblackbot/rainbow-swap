@@ -1,28 +1,32 @@
-import {isDefined} from '@rnw-community/shared';
 import {FC} from 'react';
 
 import styles from './swap-details-header.module.css';
 import {SwapDetailsHeaderProps} from './swap-details-header.props';
+import {TooltipIcon} from '../../../../shared/tooltip/tooltip-icon';
 import {useExchangeRate} from '../../hooks/use-exchange-rate.hook';
 
 export const SwapDetailsHeader: FC<SwapDetailsHeaderProps> = ({
-    inputError,
     inputAsset,
     outputAsset,
-    routes
+    routesLength
 }) => {
     const exchangeRate = useExchangeRate(inputAsset, outputAsset);
 
-    if (routes.length === 0) {
+    if (routesLength === 0) {
         return <p className={styles.error_text}>No routes available</p>;
     }
 
-    if (isDefined(inputError)) {
-        return <p className={styles.error_text}>{inputError}</p>;
-    }
-
     if (inputAsset.address === outputAsset.address) {
-        return <p className={styles.attention_text}>Arbitrage mode!</p>;
+        return (
+            <div className={styles.attention_container}>
+                <p className={styles.attention_text}>Arbitrage mode!</p>
+                <TooltipIcon
+                    text={
+                        "Arbitrage is a high-risk swap. Many people and bots are attempting the same swap as you, creating a 'race' for profit, where only the first one to complete the swap will succeed."
+                    }
+                />
+            </div>
+        );
     }
 
     return (

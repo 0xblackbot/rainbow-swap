@@ -7,11 +7,11 @@ import {resetState} from '../actions';
 import {assetsReducers} from '../assets/assets-reducers';
 import {devReducers} from '../dev/dev-reducers';
 import {RootState} from '../index';
-import {initializedReducers} from '../initialized/initialized-reducers';
-import {pointsReducers} from '../points/points-reducers';
+import {runtimeReducers} from '../initialized/runtime-reducers';
 import {securityReducers} from '../security/security-reducers';
 import {settingsReducers} from '../settings/settings-reducers';
 import {swapRoutesReducers} from '../swap-routes/swap-routes-reducers';
+import {tradingCompetitionReducers} from '../trading-competition/trading-competition-reducers';
 import {walletReducers} from '../wallet/wallet-reducers';
 
 export const rootReducer = combineReducers({
@@ -19,10 +19,10 @@ export const rootReducer = combineReducers({
     swapRoutes: swapRoutesReducers,
     wallet: walletReducers,
     settings: settingsReducers,
-    points: pointsReducers,
     dev: devReducers,
     security: securityReducers,
-    initialized: initializedReducers
+    tradingCompetition: tradingCompetitionReducers,
+    runtime: runtimeReducers
 });
 
 const resettableRootReducer = (
@@ -38,7 +38,7 @@ const resettableRootReducer = (
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['swapRoutes', 'initialized'],
+    blacklist: ['swapRoutes', 'runtime'],
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     stateReconciler: autoMergeLevel2 as any

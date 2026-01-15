@@ -1,34 +1,57 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: var(--step);
-    background: rgba(var(--danger-color), 0.1);
-    border-radius: var(--border-radius);
+    position: relative;
+    overflow: hidden;
     margin-bottom: var(--2-step);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
     padding: var(--2-step);
+    gap: var(--2-step);
+    background: rgba(var(--danger-color), 0.1);
 }
 
-.duck_alert_fallback {
-    width: 100px;
-    height: 100px;
-    align-self: center;
+.inner_container {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    gap: var(--step);
+}
+
+.animationContainer {
+    position: absolute;
+    right: 4%;
+    bottom: -28px;
+    height: 90%;
+    aspect-ratio: 1 / 1;
+    transform: rotate(-5deg);
+}
+
+.duck_airdrop {
+    width: 100%;
+    scale: 2;
 }
 
 .title {
-    font-size: 26px;
+    font-size: 16px;
     color: rgb(var(--danger-color));
-    margin-bottom: var(--step);
 }
 
 .list_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: var(--half-step);
 }
 
-.message {
+.message_container {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.button {
     font-size: 14px;
-    color: rgb(var(--danger-color));
-    max-width: 215px;
+    color: var(--text-color);
 }

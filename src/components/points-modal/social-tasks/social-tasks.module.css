@@ -1,0 +1,15 @@
+.title {
+    color: var(--text-color);
+    font-size: 16px;
+    margin: 0 var(--2-step) var(--2-step);
+}
+
+.divider {
+    width: unset;
+    margin-left: var(--2-step);
+    margin-right: var(--2-step);
+}
+
+.footer {
+    margin-bottom: var(--4-step);
+}

@@ -1,15 +1,15 @@
 import {isDefined} from '@rnw-community/shared';
-import {useTonConnectUI} from '@tonconnect/ui-react';
 import {useCallback, useState} from 'react';
 
 import {useDisableMainButton} from './use-disable-main-button.hook';
 import {TransactionInfo} from '../interfaces/transaction-info.interface';
+import {useTonConnectUI} from '../tonconnect/useTonConnectUI';
 import {Message} from '../types/message.type';
 import {bocToHash} from '../utils/boc.utils';
 import {showErrorToast} from '../utils/toast.utils';
 
 export const useSendTransaction = () => {
-    const [tonConnectUI] = useTonConnectUI();
+    const tonConnectUI = useTonConnectUI();
     const [isOpen, setIsOpen] = useState(false);
 
     useDisableMainButton(isOpen);
@@ -37,7 +37,8 @@ export const useSendTransaction = () => {
                         bocHash
                     };
                 })
-                .catch(() => {
+                .catch(error => {
+                    console.log(error);
                     showErrorToast('Transaction cancelled, try again...');
 
                     return undefined;
