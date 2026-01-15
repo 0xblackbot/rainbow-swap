@@ -85,10 +85,25 @@ export const useRefreshRoutes = (
             stopInterval();
         }
 
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'hidden') {
+                stopInterval();
+            } else if (inputAssetAmount !== '') {
+                handleRefreshRoutes();
+                startInterval();
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
         return () => {
+            document.removeEventListener(
+                'visibilitychange',
+                handleVisibilityChange
+            );
             stopInterval();
         };
-    }, [inputAssetAmount, startInterval, stopInterval]);
+    }, [handleRefreshRoutes, inputAssetAmount, startInterval, stopInterval]);
 
     return {handleManualRefresh, intervalRef};
 };
