@@ -61,6 +61,8 @@ export const AssetListItem: ComponentType<
                     src={item.asset.image}
                     alt=""
                     aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
                 />
                 <div className={styles.info_container}>
                     <div className={styles.info_container_row}>
