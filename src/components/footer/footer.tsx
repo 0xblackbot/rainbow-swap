@@ -30,6 +30,8 @@ export const Footer = () => (
                     )}
                     href={TWITTER_LINK}
                     target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Twitter"
                 >
                     <TwitterIcon width={iconSize} height={iconSize} />
                 </a>
@@ -40,6 +42,8 @@ export const Footer = () => (
                     )}
                     href={TELEGRAM_CHANNEL_LINK}
                     target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Telegram channel"
                 >
                     <TelegramIcon width={iconSize} height={iconSize} />
                 </a>
@@ -50,6 +54,8 @@ export const Footer = () => (
                     )}
                     href={GITBOOK_LINK}
                     target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Gitbook documentation"
                 >
                     <GitbookIcon width={iconSize} height={iconSize} />
                 </a>
@@ -60,6 +66,8 @@ export const Footer = () => (
                     )}
                     href={GITHUB_LINK}
                     target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="GitHub repository"
                 >
                     <GithubIcon width={iconSize} height={iconSize} />
                 </a>
@@ -71,6 +79,8 @@ export const Footer = () => (
                     )}
                     href={SUPPORT_LINK}
                     target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Support chat"
                 >
                     <ChatIcon width={iconSize} height={iconSize} />
                     Support
@@ -83,6 +93,7 @@ export const Footer = () => (
                             className={styles.container_a}
                             href={BLACKBOT_LINK}
                             target="_blank"
+                            rel="noreferrer noopener"
                         >
                             Blackbot
                         </a>{' '}

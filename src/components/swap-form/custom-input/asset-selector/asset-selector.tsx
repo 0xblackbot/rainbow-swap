@@ -46,7 +46,8 @@ export const AssetSelector: FC<Props> = memo(
                     <img
                         className={styles.img}
                         src={value.image}
-                        alt={value.symbol}
+                        alt=""
+                        aria-hidden="true"
                     />
                     <span>{value.symbol}</span>
                     <ChevronDownIcon />

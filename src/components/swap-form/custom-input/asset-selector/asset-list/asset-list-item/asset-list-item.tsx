@@ -59,7 +59,8 @@ export const AssetListItem: ComponentType<
                 <img
                     className={styles.img}
                     src={item.asset.image}
-                    alt={item.asset.symbol}
+                    alt=""
+                    aria-hidden="true"
                 />
                 <div className={styles.info_container}>
                     <div className={styles.info_container_row}>
