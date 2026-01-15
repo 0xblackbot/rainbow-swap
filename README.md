@@ -1,8 +1,8 @@
 # Rainbow 🌈
 
-An open source repository for Rainbow Swap front end interface and smart contracts maintained by [Blackbot](https://blackbot.technology/). Rainbow Swap is a Aggregator on TON 💎.
+An open source repository for the Rainbow Swap frontend interface and smart contracts maintained by [Blackbot](https://blackbot.technology/). Rainbow Swap is an aggregator on TON 💎.
 
-![main banner.png](docs%2Fassets%2Fmain%20banner.png)
+![main banner](docs/assets/main%20banner.png)
 
 ### Interfaces
 
@@ -25,12 +25,12 @@ Rainbow Swap aggregates liquidity from multiple TON DEXes, distributing trade vo
 
 ### Examples
 
-![not example.png](docs%2Fassets%2Fnot%20example.png)
-![usdt example.png](docs%2Fassets%2Fusdt%20example.png)
+![Not example](docs/assets/not%20example.png)
+![USDT example](docs/assets/usdt%20example.png)
 
 ### Results
 
-Our user-friendly interface allows seamless swaps with the most efficient routes, considering swap distribution and gas costs. Swap now with our bot  [@rainbow_swap_bot](https://t.me/rainbow_swap_bot) and share your thoughts and suggestions in [Community Chat](https://t.me/@rainbow_swap_chat)! 🌈🚀
+Our user-friendly interface allows seamless swaps with the most efficient routes, considering swap distribution and gas costs. Swap now with our bot [@rainbow_swap_bot](https://t.me/rainbow_swap_bot) and share your thoughts and suggestions in [Community Chat](https://t.me/rainbow_swap_chat)! 🌈🚀
 
 # Development info
 
@@ -51,9 +51,9 @@ yarn
 yarn start
 ```
 
-[Instruction on how to run development application as TMA](docs%2FTMA-development.md)
+[Instructions for running the development application as TMA](docs/TMA-development.md)
 
-If you want to contribute your code, before making a pull request - ensure, that code passes all pipeline checks. You can manually check it before a pull request running commands
+Before opening a pull request, ensure the code passes all pipeline checks. You can run:
 ```
 yarn ts
 yarn lint
@@ -62,14 +62,14 @@ yarn lint
 ### Smart contract
 
 `Rainbow routing wallet` smart contract acts as a middleman, enabling seamless swaps between two different decentralized exchanges (DEXes) in a single transaction.  
-In order to insure against the loss of assets (there was no such cases yet), it also allows users to withdraw TON or jettons, similar to a Jetton Wallet contract.  
+To guard against asset loss (there have been no such cases yet), it also allows users to withdraw TON or jettons, similar to a Jetton Wallet contract.  
 
 Events diagram:
 
-![smart-contract-events-diagram.svg](docs%2Fassets%2Fsmart-contract-events-diagram.svg)
+![smart contract events diagram](docs/assets/smart-contract-events-diagram.svg)
 
-Smart contract are written using [FunC](https://docs.ton.org/develop/func/overview) language.  
-All code could be found in [contracts](contracts) folder.  
+Smart contracts are written using [FunC](https://docs.ton.org/develop/func/overview).  
+All code can be found in the [contracts](contracts) folder.  
 
 To build `Rainbow routing wallet` smart contract run
 ```
