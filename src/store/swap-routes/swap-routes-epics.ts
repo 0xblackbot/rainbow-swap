@@ -6,11 +6,12 @@ import {Action} from 'ts-action';
 import {ofType, toPayload} from 'ts-action-operators';
 
 import {loadSwapRoutesActions} from './swap-routes-actions';
+import {emptyBestRouteResponse} from './swap-routes-state';
 import {RiskTolerance} from '../../enums/risk-tolerance.enum';
 import {DEBOUNCE_DUE_TIME} from '../../globals';
-import {RootState} from '../index';
-import {emptyBestRouteResponse} from './swap-routes-state';
+import {resolveReferralAddress} from '../../utils/referral.utils';
 import {sentryCatchError} from '../../utils/sentry.utils';
+import {RootState} from '../index';
 
 const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
     action$.pipe(
@@ -32,10 +33,10 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                 payload.inputAssetAddress === payload.outputAssetAddress
                     ? RiskTolerance.Risky
                     : payload.riskTolerance;
-            const referralAddress =
-                state.wallet.pointsState.walletPoints.data.refParent ??
-                state.wallet.pointsState.refWallet ??
-                undefined;
+            const referralAddress = resolveReferralAddress(
+                state.wallet.pointsState.refWallet,
+                state.wallet.pointsState.walletPoints.data.refParent
+            );
 
             return from(
                 getBestRoute({
