@@ -94,7 +94,7 @@ export const ReferrerStats = () => {
                         initData: INIT_DATA
                     })
                 );
-                showSuccessToast('Claim request sent!');
+                showSuccessToast('Claim request sent! Wait up to 2 minutes.');
             } else {
                 showInfoToast('Minimum 0.1 TON required to claim rewards.');
             }
