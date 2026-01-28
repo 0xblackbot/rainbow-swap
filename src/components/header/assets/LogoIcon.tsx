@@ -9,8 +9,6 @@ export const LogoIcon: FC<Props> = ({className = ''}): JSX.Element => (
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
-        width="128"
-        height="138"
         viewBox="0 0 128 138"
         xmlSpace="preserve"
         className={className}
