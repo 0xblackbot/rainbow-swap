@@ -34,6 +34,7 @@
     padding: 0 !important;
     min-width: unset !important;
     max-width: calc(var(--app-max-width) - var(--4-step)) !important;
+    top: var(--step) !important;
 }
 
 .Toastify__toast-container--top-center {
@@ -56,7 +57,7 @@
 }
 
 .Toastify__toast--error {
-    background: #FF3B30 !important;
+    background: #ff3b30 !important;
 }
 
 .Toastify__toast--info {
