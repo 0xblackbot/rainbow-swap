@@ -44,12 +44,18 @@ body {
     -webkit-user-select: none;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input,
+textarea,
+[contenteditable='true'] {
+    caret-color: var(--hint-color);
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
-[data-tc-wallets-modal-container="true"] {
+[data-tc-wallets-modal-container='true'] {
     background-color: var(--backdrop-color);
 }
 
@@ -68,7 +74,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 440px) {
-    [data-tc-actions-modal-container="true"] > div > div {
+    [data-tc-actions-modal-container='true'] > div > div {
         border-radius: 24px 24px 0px 0px;
     }
 }
@@ -99,7 +105,7 @@ input[type=number]::-webkit-outer-spin-button {
     --text-opacity: 0.8;
     --spinner-color-empty-area: rgba(255, 255, 255, 0.3);
     --spinner-color: #fff;
-    --error-color: #FF5F52;
+    --error-color: #ff5f52;
     --green-color: 52, 164, 78;
     --purple-color: 158, 109, 247;
 
@@ -116,7 +122,13 @@ input[type=number]::-webkit-outer-spin-button {
     --app-min-width: 320px;
     --app-max-width: 480px;
 
-    --app-safe-area-inset-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
+    --app-safe-area-inset-top: max(
+        env(safe-area-inset-top, 0px),
+        calc(
+            var(--tg-safe-area-inset-top, 0px) +
+                var(--tg-content-safe-area-inset-top, 0px)
+        )
+    );
 }
 
 :root[data-theme='light'] {

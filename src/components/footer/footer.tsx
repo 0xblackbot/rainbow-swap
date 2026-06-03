@@ -8,7 +8,6 @@ import {
     BLACKBOT_LINK,
     GITBOOK_LINK,
     GITHUB_LINK,
-    IS_TMA,
     SUPPORT_LINK,
     TELEGRAM_CHANNEL_LINK,
     TWITTER_LINK
@@ -86,21 +85,19 @@ export const Footer = () => (
                     Support
                 </a>
             </div>
-            {!IS_TMA && (
-                <div className={styles.container_row}>
-                    <p className={styles.copyright_text}>
-                        <a
-                            className={styles.container_a}
-                            href={BLACKBOT_LINK}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                        >
-                            Blackbot
-                        </a>{' '}
-                        © {currentYear}
-                    </p>
-                </div>
-            )}
+            <div className={styles.container_row}>
+                <p className={styles.copyright_text}>
+                    <a
+                        className={styles.container_a}
+                        href={BLACKBOT_LINK}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        Blackbot
+                    </a>{' '}
+                    © {currentYear}
+                </p>
+            </div>
         </div>
     </ContentContainer>
 );

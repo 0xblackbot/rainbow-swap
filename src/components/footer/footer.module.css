@@ -53,3 +53,9 @@
     font-size: 10px;
     margin: 0 auto;
 }
+
+@media (max-width: 480px) {
+    .copyright_text {
+        display: none;
+    }
+}

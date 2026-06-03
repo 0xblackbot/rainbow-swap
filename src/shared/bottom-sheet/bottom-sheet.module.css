@@ -1,5 +1,5 @@
 .modal_backdrop {
-    height: 100vh;
+    height: 100dvh;
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +11,9 @@
     z-index: 100;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    transition:
+        opacity 0.4s ease-in-out,
+        visibility 0.4s ease-in-out;
 }
 
 .header_button {
@@ -33,7 +35,7 @@
 }
 
 .modal_content {
-    height: calc(100vh - 60px - var(--app-safe-area-inset-top));
+    height: calc(100dvh - 60px - var(--app-safe-area-inset-top));
     display: flex;
     flex-direction: column;
     border-top-left-radius: var(--border-radius);
