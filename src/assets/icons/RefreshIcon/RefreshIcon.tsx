@@ -1,63 +1,81 @@
-import {FC} from 'react';
+import {CSSProperties, FC, type JSX} from 'react';
 
 import styles from './RefreshIcon.module.css';
 import {REFRESH_ROUTE_INTERVAL} from '../../../globals';
 import {useIsRoutesLoadingSelector} from '../../../store/swap-routes/swap-routes-selectors';
+import {getClassName} from '../../../utils/style.utils';
 
 interface Props {
     width?: string;
     height?: string;
     onClick?: () => void;
     isAnimating?: boolean;
+    disabled?: boolean;
 }
+
+interface RefreshSvgProps {
+    className: string;
+    style?: CSSProperties;
+}
+
+const RefreshSvg: FC<RefreshSvgProps> = ({className, style}): JSX.Element => (
+    <svg
+        className={className}
+        style={style}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <path
+            d="M 19 3 v 5.25 H 14 M 20 12.5 A 8.25 8.25 0 1 1 17.8 6.9"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+    </svg>
+);
 
 export const RefreshIcon: FC<Props> = ({
     width = '16px',
     height = '16px',
     isAnimating = false,
-    onClick
-}) => {
+    onClick,
+    disabled = false
+}): JSX.Element => {
     const isRoutesLoading = useIsRoutesLoadingSelector();
+    const isTimerRunning = isAnimating && !isRoutesLoading && !disabled;
+    const buttonStyle = {
+        width,
+        height,
+        '--refresh-animation-duration': `${REFRESH_ROUTE_INTERVAL}ms`
+    } as CSSProperties;
+    const overlayStyle = isTimerRunning
+        ? ({
+              animationDuration: `${REFRESH_ROUTE_INTERVAL}ms`
+          } as CSSProperties)
+        : undefined;
 
     return (
-        <div
-            style={{width, height}}
-            className={styles.refresh_icon_div}
+        <button
+            type="button"
+            style={buttonStyle}
+            className={getClassName(
+                styles.refresh_icon_button,
+                isRoutesLoading && !disabled ? styles.loading : '',
+                isTimerRunning ? styles.timer_running : '',
+                disabled ? styles.disabled : ''
+            )}
             onClick={onClick}
+            disabled={disabled}
+            aria-label="Refresh route"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                style={{width, height}}
-            >
-                <path
-                    fill="currentColor"
-                    d="M12 19.5c-4.125 0-7.5-3.375-7.5-7.5S7.875 4.5 12 4.5c2.063 0 3.937.875 5.25 2.25l-4 4H22V2l-2.937 2.938A9.97 9.97 0 0 0 12 2C6.5 2 2 6.5 2 12s4.437 10 10 10c4.605 0 8.425-3.076 9.625-7.273H18.98C17.915 17.543 15.165 19.5 12 19.5"
-                ></path>
-            </svg>
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                style={{
-                    width,
-                    height,
-                    animationDuration: `${REFRESH_ROUTE_INTERVAL}s`
-                }}
-                className={
-                    isRoutesLoading
-                        ? styles.refresh_icon_path_pulsating
-                        : isAnimating
-                          ? styles.refresh_icon_path_animated
-                          : styles.refresh_icon_path_static
-                }
-            >
-                <path
-                    fill="currentColor"
-                    d="M12 19.5c-4.125 0-7.5-3.375-7.5-7.5S7.875 4.5 12 4.5c2.063 0 3.937.875 5.25 2.25l-4 4H22V2l-2.937 2.938A9.97 9.97 0 0 0 12 2C6.5 2 2 6.5 2 12s4.437 10 10 10c4.605 0 8.425-3.076 9.625-7.273H18.98C17.915 17.543 15.165 19.5 12 19.5"
-                ></path>
-            </svg>
-        </div>
+            <RefreshSvg className={styles.refresh_icon} />
+            <RefreshSvg
+                className={getClassName(styles.refresh_icon, styles.overlay)}
+                style={overlayStyle}
+            />
+        </button>
     );
 };

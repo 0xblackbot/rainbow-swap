@@ -1,0 +1,94 @@
+.header {
+    min-height: 28px;
+}
+
+.group_list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--step);
+    margin-top: var(--step);
+}
+
+.group_toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: 48px;
+    padding: var(--step);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--header-bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.dex_info {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: var(--step);
+}
+
+.dex_image {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dex_name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.switch_track {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    flex: 0 0 36px;
+    margin-left: var(--step);
+    border-radius: 999px;
+    background: var(--border-color);
+    transition: background-color 0.15s ease-out;
+}
+
+.switch_thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--button-text-color);
+    transition: transform 0.15s ease-out;
+}
+
+.enabled .switch_track {
+    background: var(--button-color);
+}
+
+.enabled .switch_thumb {
+    transform: translateX(16px);
+    background: var(--button-text-color);
+}
+
+.disabled {
+    color: var(--hint-color);
+}
+
+.disabled .switch_thumb {
+    background: var(--header-bg-color);
+    box-shadow: 0 0 0 1px var(--border-color);
+}
+
+@media (max-width: 420px) {
+    .group_list {
+        grid-template-columns: 1fr;
+    }
+}

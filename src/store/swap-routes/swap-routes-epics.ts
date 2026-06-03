@@ -46,6 +46,7 @@ const loadSwapRoutesEpic: Epic<Action, Action, RootState> = (action$, state$) =>
                     maxDepth,
                     maxSplits: payload.maxSplits,
                     maxSlippage: payload.maxSlippage,
+                    disabledDexGroups: payload.disabledDexGroups,
                     referralAddress
                 })
             ).pipe(

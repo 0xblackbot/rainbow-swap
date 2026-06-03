@@ -1,13 +1,14 @@
 import {emptyFn} from '@rnw-community/shared';
 import {FC, useEffect} from 'react';
 
+import {DexFilterSetting} from './dex-filter/dex-filter';
 import {ExplorerSetting} from './explorer/explorer';
 import {MaxSlippage} from './max-slippage/max-slippage';
+import {MaxSplitsSetting} from './max-splits/max-splits';
 import {RiskToleranceSetting} from './risk-tolerance/risk-tolerance';
 import styles from './settings-modal.module.css';
 import {ThemeSetting} from './theme/theme';
 import {IS_TMA} from '../../globals';
-import {MaxSplitsSetting} from './max-splits/max-splits';
 import {ModalProps} from '../../interfaces/modal-props.intefrace';
 import {BottomSheet} from '../../shared/bottom-sheet/bottom-sheet';
 import {FormButton} from '../../shared/form-button/form-button';
@@ -42,6 +43,8 @@ export const SettingsModal: FC<ModalProps> = ({
                 <RiskToleranceSetting />
                 <Divider />
                 <MaxSplitsSetting />
+                <Divider />
+                <DexFilterSetting />
             </div>
             <FormButton
                 text="Close"

@@ -1,45 +1,59 @@
-.refresh_icon_div{
+.refresh_icon_button {
     position: relative;
-    display: flex;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--hint-color);
     cursor: pointer;
-    justify-content: center;
-    align-items: center;
-}
-
-.refresh_icon_div svg{
-    position: absolute;
-    right: 0;
-    color: var(--hint-color);
     transition: color 0.2s ease-in-out;
-    z-index: 1;
 }
 
-/* I guess we don't need hover behavior for touch devices so hover pseudoclass would be removed for touch devices */
-@media (hover: hover){
-    .refresh_icon_div:hover svg {
-        color: var(--text-color);
-    }    
+.refresh_icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: currentColor;
+    transition: color 0.2s ease-in-out;
 }
 
-.refresh_icon_path_animated path {
+.overlay {
     color: var(--text-color);
-    animation: fillAnimation 30s linear infinite;
-    z-index: 10;
-  } 
-
-.refresh_icon_path_pulsating path{
-    animation: pulsatingAnimation 2s linear infinite;
-    color: var(--text-color);
-    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
 }
 
-.refresh_icon_path_static path {
+.timer_running .overlay {
+    animation-name: refreshTimerProgress;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 1;
+}
+
+.loading .overlay {
+    animation: refreshLoadingPulse 1s ease-in-out infinite;
+    opacity: 1;
+}
+
+.disabled {
+    cursor: default;
+}
+
+.disabled .refresh_icon {
     color: var(--hint-color);
-    z-index: 1;
+    opacity: 0.55;
 }
 
+@media (hover: hover) {
+    .refresh_icon_button:not(.disabled):hover {
+        color: var(--text-color);
+    }
+}
 
-@keyframes pulsatingAnimation {
+@keyframes refreshLoadingPulse {
     0% {
         color: var(--hint-color);
     }
@@ -53,42 +67,73 @@
     }
 }
 
-@keyframes fillAnimation {
+@keyframes refreshTimerProgress {
     0% {
-        clip-path: polygon(50% 50%,150% 50%,150% 50%)
+        clip-path: polygon(50% 50%, 150% 50%, 150% 50%);
     }
 
     25% {
-        clip-path: polygon(50% 50%,150% 50%,50% 150%)
+        clip-path: polygon(50% 50%, 150% 50%, 50% 150%);
     }
 
     25.000001% {
-        clip-path: polygon(50% 50%,150% 50%,50% 150%,50% 150%)
+        clip-path: polygon(50% 50%, 150% 50%, 50% 150%, 50% 150%);
     }
 
     50% {
-        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%)
+        clip-path: polygon(50% 50%, 150% 50%, 50% 150%, -50% 50%);
     }
 
     50.000001% {
-        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,-50% 50%)
+        clip-path: polygon(
+            50% 50%,
+            150% 50%,
+            50% 150%,
+            -50% 50%,
+            -50% 50%
+        );
     }
 
     75% {
-        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,50% -50%)
+        clip-path: polygon(
+            50% 50%,
+            150% 50%,
+            50% 150%,
+            -50% 50%,
+            50% -50%
+        );
     }
 
     75.000001% {
-        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,50% -50%,50% -50%)
+        clip-path: polygon(
+            50% 50%,
+            150% 50%,
+            50% 150%,
+            -50% 50%,
+            50% -50%,
+            50% -50%
+        );
     }
 
     97.5% {
-        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,50% -50%,150% 50%);
-        fill: var(--text-color)
+        clip-path: polygon(
+            50% 50%,
+            150% 50%,
+            50% 150%,
+            -50% 50%,
+            50% -50%,
+            150% 50%
+        );
     }
 
     to {
-        clip-path: polygon(50% 50%,150% 50%,50% 150%,-50% 50%,50% -50%,150% 50%);
-        fill: var(--text-color)
+        clip-path: polygon(
+            50% 50%,
+            150% 50%,
+            50% 150%,
+            -50% 50%,
+            50% -50%,
+            150% 50%
+        );
     }
 }

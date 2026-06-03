@@ -1,4 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
+import {DexGroupIdEnum} from 'rainbow-swap-sdk';
 
 import {Explorer} from '../../enums/explorer.enum';
 import {RiskTolerance} from '../../enums/risk-tolerance.enum';
@@ -14,6 +15,14 @@ export const setRiskToleranceAction = createAction<RiskTolerance>(
 
 export const setMaxSplitsAction = createAction<number>(
     'settings/SET_MAX_SPLITS'
+);
+
+export const toggleDisabledDexGroupAction = createAction<DexGroupIdEnum>(
+    'settings/TOGGLE_DISABLED_DEX_GROUP'
+);
+
+export const enableAllDexGroupsAction = createAction(
+    'settings/ENABLE_ALL_DEX_GROUPS'
 );
 
 export const setThemeAction = createAction<Theme>('settings/SET_THEME');

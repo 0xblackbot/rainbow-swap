@@ -1,4 +1,4 @@
-import {BestRouteResponse} from 'rainbow-swap-sdk';
+import {BestRouteResponse, DexGroupIdEnum} from 'rainbow-swap-sdk';
 
 import {RiskTolerance} from '../../enums/risk-tolerance.enum';
 import {PayloadWithRequest} from '../interfaces/payload-with-request.interface';
@@ -13,6 +13,7 @@ export const loadSwapRoutesActions = createActions<
         riskTolerance: RiskTolerance;
         maxSplits: number;
         maxSlippage: number;
+        disabledDexGroups: DexGroupIdEnum[];
     } & PayloadWithRequest,
     BestRouteResponse & PayloadWithRequest,
     {error: string} & PayloadWithRequest

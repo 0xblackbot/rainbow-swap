@@ -1,4 +1,4 @@
-import {getQueryId} from 'rainbow-swap-sdk';
+import {DexGroupIdEnum, getQueryId} from 'rainbow-swap-sdk';
 import {useCallback, useEffect, useRef} from 'react';
 
 import {useWalletAddress} from './use-wallet-address.hook';
@@ -15,7 +15,8 @@ export const useRefreshRoutes = (
     outputAssetAddress: string,
     riskTolerance: RiskTolerance,
     maxSplits: number,
-    maxSlippage: string
+    maxSlippage: string,
+    disabledDexGroups: DexGroupIdEnum[]
 ) => {
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const walletAddress = useWalletAddress();
@@ -32,6 +33,7 @@ export const useRefreshRoutes = (
                     riskTolerance,
                     maxSplits,
                     maxSlippage: Number(maxSlippage),
+                    disabledDexGroups,
                     requestId: getQueryId().toString()
                 })
             );
@@ -50,6 +52,7 @@ export const useRefreshRoutes = (
         riskTolerance,
         maxSplits,
         maxSlippage,
+        disabledDexGroups,
         dispatch
     ]);
 

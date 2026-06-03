@@ -36,6 +36,26 @@
     gap: var(--step);
 }
 
+.settings_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--hint-color);
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+@media (hover: hover) {
+    .settings_button:hover {
+        color: var(--text-color);
+    }
+}
+
 .ident_container {
     height: var(--2-step);
 }

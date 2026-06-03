@@ -12,6 +12,8 @@ import {SwapDisabled} from './swap-disabled/swap-disabled';
 import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
+import {SettingsIcon} from '../../assets/icons/SettingsIcon/SettingsIcon';
+import {useModals} from '../../contexts/modals/modals.hook';
 import {useSwapForm} from '../../contexts/swap-form/swap-form.hook';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useIsMainButtonAvailable} from '../../hooks/use-is-main-button-available.hook';
@@ -23,6 +25,7 @@ import {useDispatch} from '../../store';
 import {useIsAssetsInitializedSelector} from '../../store/initialized/runtime-selectors';
 import {useAppStatusSelector} from '../../store/security/security-selectors';
 import {
+    useDisabledDexGroupsSelector,
     useMaxSlippageSelector,
     useMaxSplitsSelector,
     useRiskToleranceSelector
@@ -40,6 +43,7 @@ export const SwapScreen = () => {
     const walletAddress = useWalletAddress();
     const inputRef = useRef<HTMLInputElement>(null);
     const isMainButtonAvailable = useIsMainButtonAvailable();
+    const modals = useModals();
 
     const dispatch = useDispatch();
     const appStatus = useAppStatusSelector();
@@ -48,6 +52,7 @@ export const SwapScreen = () => {
     const riskTolerance = useRiskToleranceSelector();
     const maxSplits = useMaxSplitsSelector();
     const maxSlippage = useMaxSlippageSelector();
+    const disabledDexGroups = useDisabledDexGroupsSelector();
     const isRoutesLoading = useIsRoutesLoadingSelector();
 
     const {
@@ -78,14 +83,15 @@ export const SwapScreen = () => {
             ? ''
             : swapDisplayData.outputAssetAmount.toString();
 
-    const {intervalRef, handleManualRefresh} = useRefreshRoutes(
+    const {handleManualRefresh} = useRefreshRoutes(
         inputAssetAmount,
         nanoInputAssetAmount,
         inputAssetAddress,
         outputAssetAddress,
         riskTolerance,
         maxSplits,
-        maxSlippage
+        maxSlippage,
+        disabledDexGroups
     );
 
     useEffect(() => {
@@ -98,6 +104,7 @@ export const SwapScreen = () => {
                 riskTolerance,
                 maxSplits,
                 maxSlippage: Number(maxSlippage),
+                disabledDexGroups,
                 requestId: getQueryId().toString()
             })
         );
@@ -109,6 +116,7 @@ export const SwapScreen = () => {
         riskTolerance,
         maxSplits,
         maxSlippage,
+        disabledDexGroups,
         dispatch
     ]);
 
@@ -147,6 +155,10 @@ export const SwapScreen = () => {
         trackButtonClick('Enter amount');
         inputRef.current?.focus();
     }, []);
+    const handleSettingsClick = () => {
+        trackButtonClick('Swap Form Settings');
+        modals.openSettingsModal();
+    };
 
     return (
         <>
@@ -158,14 +170,21 @@ export const SwapScreen = () => {
                         </p>
                         <div className={styles.icons_div}>
                             <PendingSwap />
-                            {isValidInputAssetAmount && (
-                                <RefreshIcon
-                                    width="22px"
-                                    height="22px"
-                                    onClick={handleManualRefresh}
-                                    isAnimating={intervalRef.current !== null}
-                                />
-                            )}
+                            <RefreshIcon
+                                width="22px"
+                                height="22px"
+                                onClick={handleManualRefresh}
+                                disabled={!isValidInputAssetAmount}
+                                isAnimating={isValidInputAssetAmount}
+                            />
+                            <button
+                                type="button"
+                                className={styles.settings_button}
+                                aria-label="Open settings"
+                                onClick={handleSettingsClick}
+                            >
+                                <SettingsIcon width={22} height={22} />
+                            </button>
                         </div>
                     </div>
                     <div className={styles.input_asset_container}>
