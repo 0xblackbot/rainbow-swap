@@ -9,6 +9,4 @@ export const showSuccessToast = (text: string) =>
 export const showErrorToast = (text: string) =>
     toast.error(text, {icon: ToastErrorIcon});
 
-export const showLoadingToast = (text: string) => toast.loading(text);
-
 export const showInfoToast = (text: string) => toast.info(text, {});

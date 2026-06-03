@@ -1,6 +1,6 @@
 import {Asset} from 'rainbow-swap-sdk';
 import {ChangeEvent, FC, useEffect, useMemo, useRef} from 'react';
-import {FixedSizeList} from 'react-window';
+import {List, useListRef} from 'react-window';
 
 import {AssetListItem} from './asset-list-item/asset-list-item';
 import {AssetListItemProps} from './asset-list-item/asset-list-item.props';
@@ -32,7 +32,7 @@ export const AssetList: FC<Props> = ({isOpen, onChange}) => {
     const divHeight = useDivHeight();
 
     const inputRef = useRef<HTMLInputElement>(null);
-    const listRef = useRef<FixedSizeList>(null);
+    const listRef = useListRef(null);
 
     const searchValue = useAssetsSearchValueSelector();
     const assetsList = useAssetsListSelector();
@@ -92,9 +92,9 @@ export const AssetList: FC<Props> = ({isOpen, onChange}) => {
 
     useEffect(() => {
         if (!isAssetsLoading && listRef.current) {
-            listRef.current.scrollTo(0);
+            listRef.current.scrollToRow({index: 0, align: 'start'});
         }
-    }, [isAssetsLoading]);
+    }, [isAssetsLoading, listRef]);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
         dispatch(setAssetsSearchValue(event.target.value));
@@ -128,16 +128,17 @@ export const AssetList: FC<Props> = ({isOpen, onChange}) => {
                 {data.isListEmpty ? (
                     <AssetNoResult />
                 ) : (
-                    <FixedSizeList
-                        ref={listRef}
-                        itemSize={66}
-                        itemData={data.listProps}
-                        itemCount={itemCount}
-                        width="100%"
-                        height={divHeight.height}
-                    >
-                        {AssetListItem}
-                    </FixedSizeList>
+                    <List
+                        listRef={listRef}
+                        rowHeight={66}
+                        rowProps={data.listProps}
+                        rowCount={itemCount}
+                        rowComponent={AssetListItem}
+                        style={{
+                            width: '100%',
+                            height: divHeight.height
+                        }}
+                    />
                 )}
             </div>
         </>

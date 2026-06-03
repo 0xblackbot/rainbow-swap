@@ -1,5 +1,5 @@
-import {ComponentType} from 'react';
-import {ListChildComponentProps} from 'react-window';
+import {ReactElement} from 'react';
+import {RowComponentProps} from 'react-window';
 
 import styles from './asset-list-item.module.css';
 import {AssetListItemProps} from './asset-list-item.props';
@@ -7,10 +7,13 @@ import {AlertIcon} from '../../../../../../assets/icons/AlertIcon/AlertIcon';
 import {formatNumber} from '../../../../../../utils/format-number.utils';
 import {Skeleton} from '../../../../../skeleton/skeleton';
 
-export const AssetListItem: ComponentType<
-    ListChildComponentProps<AssetListItemProps>
-> = ({index, style, data}) => {
-    if (data.isLoading) {
+export const AssetListItem = ({
+    index,
+    style,
+    isLoading,
+    dataArray
+}: RowComponentProps<AssetListItemProps>): ReactElement | null => {
+    if (isLoading) {
         return (
             <div style={style}>
                 <div className={styles.container}>
@@ -39,7 +42,7 @@ export const AssetListItem: ComponentType<
     }
 
     // List end
-    if (index >= data.dataArray.length) {
+    if (index >= dataArray.length) {
         return (
             <div style={style}>
                 <p className={styles.search_hint_text}>
@@ -49,7 +52,7 @@ export const AssetListItem: ComponentType<
         );
     }
 
-    const item = data.dataArray[index];
+    const item = dataArray[index];
 
     const usdAmount = parseFloat(item.balance) * item.asset.usdExchangeRate;
 
