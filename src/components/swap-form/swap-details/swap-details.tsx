@@ -49,7 +49,7 @@ export const SwapDetails: FC<Props> = ({
             receiveAtLeast: receiveAtLeast,
             receiveAtLeastTooltipText: `If the price drops below ${receiveAtLeast}, your transaction will be partially or fully reverted.`,
             routingFee: `${formatNumber(swapDisplayData.routingFeePercent, 2)}%`,
-            gasFee: `~ ${formatNumber(swapDisplayData.roughGasFee, 2)} TON`
+            gasFee: `~ ${formatNumber(swapDisplayData.roughGasFee, 2)} GRAM`
         };
     }, [
         swapDisplayData.routes.length,

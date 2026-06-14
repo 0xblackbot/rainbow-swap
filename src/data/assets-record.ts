@@ -5,9 +5,9 @@ import {TON, USDT} from '../globals';
 export const DEFAULT_ASSETS_RECORD: AssetsRecord = {
     [TON]: {
         address: TON,
-        slug: 'TON',
-        symbol: 'TON',
-        name: 'Toncoin',
+        slug: 'GRAM',
+        symbol: 'GRAM',
+        name: 'Gram',
         image: 'https://raw.githubusercontent.com/0xblackbot/rainbow-swap/refs/heads/main/public/external-assets/ton.png',
         decimals: 9,
         verification: 'whitelist',

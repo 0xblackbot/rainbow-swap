@@ -37,16 +37,19 @@ Our user-friendly interface allows seamless swaps with the most efficient routes
 ### Getting Started
 
 1. Clone repository
+
 ```
 git clone https://github.com/0xblackbot/rainbow-swap.git && cd rainbow-swap
 ```
 
 2. Install dependencies
+
 ```
 yarn
 ```
 
 3. Start the development server
+
 ```
 yarn start
 ```
@@ -54,6 +57,7 @@ yarn start
 [Instructions for running the development application as TMA](docs/TMA-development.md)
 
 Before opening a pull request, ensure the code passes all pipeline checks. You can run:
+
 ```
 yarn ts
 yarn lint
@@ -62,16 +66,17 @@ yarn lint
 ### Smart contract
 
 `Rainbow routing wallet` smart contract acts as a middleman, enabling seamless swaps between two different decentralized exchanges (DEXes) in a single transaction.  
-To guard against asset loss (there have been no such cases yet), it also allows users to withdraw TON or jettons, similar to a Jetton Wallet contract.  
+To guard against asset loss (there have been no such cases yet), it also allows users to withdraw GRAM or jettons, similar to a Jetton Wallet contract.
 
 Events diagram:
 
 ![smart contract events diagram](docs/assets/smart-contract-events-diagram.svg)
 
 Smart contracts are written using [FunC](https://docs.ton.org/develop/func/overview).  
-All code can be found in the [contracts](contracts) folder.  
+All code can be found in the [contracts](contracts) folder.
 
 To build `Rainbow routing wallet` smart contract run
+
 ```
 yarn build:contract
 ```

@@ -34,7 +34,7 @@ export const useInputError = () => {
         const tonSendAmount = fromNano(nanoTonSendAmount, TON_DECIMALS);
 
         if (parseFloat(tonBalance) < parseFloat(tonSendAmount)) {
-            return `Not enough TON to pay gas fees`;
+            return `Not enough GRAM to pay gas fees`;
         }
 
         return undefined;

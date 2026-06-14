@@ -67,8 +67,8 @@ export const ReferrerStats = () => {
                 rewardsState.data.usersReferred +
                 rewardsState.data.walletsReferred,
             refereesVolume: `$${rewardsState.data.refereesVolume.toFixed(2)}`,
-            unclaimedRewards: `${parseFloat(tonUnclaimedRewards).toFixed(unclaimedRewardsFractionDigits)} TON`,
-            totalRewardsEarned: `${parseFloat(tonTotalRewardsEarned).toFixed(totalRewardsEarnedFractionDigits)} TON`
+            unclaimedRewards: `${parseFloat(tonUnclaimedRewards).toFixed(unclaimedRewardsFractionDigits)} GRAM`,
+            totalRewardsEarned: `${parseFloat(tonTotalRewardsEarned).toFixed(totalRewardsEarnedFractionDigits)} GRAM`
         };
     }, [walletAddress, rewardsState.data]);
 
@@ -96,7 +96,7 @@ export const ReferrerStats = () => {
                 );
                 showSuccessToast('Claim request sent! Wait up to 2 minutes.');
             } else {
-                showInfoToast('Minimum 0.1 TON required to claim rewards.');
+                showInfoToast('Minimum 0.1 GRAM required to claim rewards.');
             }
         }
     };

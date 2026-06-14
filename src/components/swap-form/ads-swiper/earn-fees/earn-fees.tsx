@@ -9,7 +9,7 @@ export const EarnFees = () => {
 
     return (
         <div className={styles.container} onClick={handleClick}>
-            <p className={styles.title}>Earn TON and farm points</p>
+            <p className={styles.title}>Earn GRAM and farm points</p>
             <div className={styles.inner_container}>
                 <div className={styles.list_container}>
                     <div className={styles.message_container}>
