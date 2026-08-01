@@ -11,9 +11,7 @@ import {useTonConnectUI} from './useTonConnectUI';
  * Use it to get user's current ton wallet. If wallet is not connected hook will return null.
  */
 export function useTonWallet():
-    | Wallet
-    | (Wallet & WalletInfoWithOpenMethod)
-    | null {
+    Wallet | (Wallet & WalletInfoWithOpenMethod) | null {
     const tonConnectUI = useTonConnectUI();
     const [wallet, setWallet] = useState<
         Wallet | (Wallet & WalletInfoWithOpenMethod) | null
