@@ -5,8 +5,6 @@ type AdsGramTaskAttributes = DetailedHTMLProps<
     HTMLElement
 > & {
     'data-block-id': `task-${number}`;
-    'data-debug'?: 'true';
-    'data-debug-console'?: 'false';
 };
 
 declare module 'react/jsx-runtime' {

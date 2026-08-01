@@ -1,9 +1,13 @@
+.eventsContainer {
+    display: contents;
+}
+
 .task {
     --adsgram-task-font-size: 14px;
     --adsgram-task-icon-size: var(--5-step);
     --adsgram-task-icon-title-gap: var(--step);
     --adsgram-task-icon-border-radius: var(--step);
-    --adsgram-task-button-width: 64px;
+    --adsgram-task-button-width: 56px;
 
     display: block;
     box-sizing: border-box;
@@ -22,21 +26,14 @@
     font-size: 14px;
 }
 
-.action,
-.done {
-    display: inline-flex;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    min-width: 64px;
-    height: 28px;
-    padding: 2px 10px;
-    border-radius: var(--step);
-    background-color: var(--secondary-bg-color);
-    color: var(--text-color);
-    font-size: 14px;
+.action {
+    min-width: 56px;
 }
 
 .done {
-    color: var(--hint-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 28px;
 }

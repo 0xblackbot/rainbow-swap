@@ -1,12 +1,14 @@
 import {useEffect, useRef, useState} from 'react';
 
 import styles from './adsgram-task-item.module.css';
-import {INIT_DATA, isProd, UNSAFE_INIT_DATA} from '../../../../globals';
+import {CheckmarkIcon} from '../../../../assets/icons/CheckmarkIcon/CheckmarkIcon';
+import {INIT_DATA, UNSAFE_INIT_DATA} from '../../../../globals';
 import {useWalletAddress} from '../../../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../../../store';
 import {loadWalletDataActions} from '../../../../store/wallet/wallet-actions';
 import {useAdsGramRewardClaimedTodaySelector} from '../../../../store/wallet/wallet-selectors';
 import {showInfoToast} from '../../../../utils/toast.utils';
+import {Button} from '../../../button/button';
 
 const ADSGRAM_SDK_URL = 'https://sad.adsgram.ai/js/sad.min.js';
 const ADSGRAM_TASK_ELEMENT = 'adsgram-task';
@@ -43,31 +45,16 @@ const loadAdsGramSdk = () => {
 
 export const AdsGramTaskItem = () => {
     const dispatch = useDispatch();
-    const taskRef = useRef<HTMLElement>(null);
+    const eventsRef = useRef<HTMLDivElement>(null);
     const walletAddress = useWalletAddress();
     const rewardClaimedToday = useAdsGramRewardClaimedTodaySelector();
-    const [isSdkReady, setIsSdkReady] = useState(
-        customElements.get(ADSGRAM_TASK_ELEMENT) !== undefined
-    );
+    const [isSdkReady, setIsSdkReady] = useState(false);
     const [isAvailable, setIsAvailable] = useState(true);
 
     useEffect(() => {
-        let isMounted = true;
+        const eventsContainer = eventsRef.current;
 
-        loadAdsGramSdk().then(
-            () => isMounted && setIsSdkReady(true),
-            () => isMounted && setIsAvailable(false)
-        );
-
-        return () => {
-            isMounted = false;
-        };
-    }, []);
-
-    useEffect(() => {
-        const task = taskRef.current;
-
-        if (!task) {
+        if (!eventsContainer) {
             return;
         }
 
@@ -99,46 +86,81 @@ export const AdsGramTaskItem = () => {
             showInfoToast('Please reopen the app to load new tasks');
         };
 
-        task.addEventListener('reward', handleReward);
-        task.addEventListener('onError', handleUnavailable);
-        task.addEventListener('onBannerNotFound', handleUnavailable);
-        task.addEventListener('onTooLongSession', handleTooLongSession);
+        eventsContainer.addEventListener('reward', handleReward);
+        eventsContainer.addEventListener('onError', handleUnavailable);
+        eventsContainer.addEventListener('onBannerNotFound', handleUnavailable);
+        eventsContainer.addEventListener(
+            'onTooLongSession',
+            handleTooLongSession
+        );
 
         return () => {
             for (const timer of refreshTimers) {
                 window.clearTimeout(timer);
             }
-            task.removeEventListener('reward', handleReward);
-            task.removeEventListener('onError', handleUnavailable);
-            task.removeEventListener('onBannerNotFound', handleUnavailable);
-            task.removeEventListener('onTooLongSession', handleTooLongSession);
+            eventsContainer.removeEventListener('reward', handleReward);
+            eventsContainer.removeEventListener('onError', handleUnavailable);
+            eventsContainer.removeEventListener(
+                'onBannerNotFound',
+                handleUnavailable
+            );
+            eventsContainer.removeEventListener(
+                'onTooLongSession',
+                handleTooLongSession
+            );
         };
-    }, [dispatch, isSdkReady, walletAddress]);
+    }, [dispatch, walletAddress]);
 
-    if (!isSdkReady || !isAvailable || rewardClaimedToday) {
+    useEffect(() => {
+        let isMounted = true;
+
+        loadAdsGramSdk().then(
+            () => isMounted && setIsSdkReady(true),
+            () => isMounted && setIsAvailable(false)
+        );
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    if (!isAvailable || rewardClaimedToday) {
         return null;
     }
 
     return (
-        <adsgram-task
-            ref={taskRef}
-            className={styles.task}
-            data-block-id={ADSGRAM_TASK_BLOCK_ID}
-            data-debug={isProd ? undefined : 'true'}
-            data-debug-console={isProd ? undefined : 'false'}
-        >
-            <span slot="reward" className={styles.reward}>
-                +250 XP
-            </span>
-            <span slot="button" className={styles.action}>
-                Start
-            </span>
-            <span slot="claim" className={styles.action}>
-                Claim
-            </span>
-            <span slot="done" className={styles.done}>
-                Done
-            </span>
-        </adsgram-task>
+        <div ref={eventsRef} className={styles.eventsContainer}>
+            {isSdkReady ? (
+                <adsgram-task
+                    className={styles.task}
+                    data-block-id={ADSGRAM_TASK_BLOCK_ID}
+                >
+                    <span slot="reward" className={styles.reward}>
+                        +250 XP
+                    </span>
+                    <Button
+                        Component="span"
+                        slot="button"
+                        size="xs"
+                        mode="bezeled"
+                        className={styles.action}
+                    >
+                        Start
+                    </Button>
+                    <Button
+                        Component="span"
+                        slot="claim"
+                        size="xs"
+                        mode="bezeled"
+                        className={styles.action}
+                    >
+                        Claim
+                    </Button>
+                    <span slot="done" className={styles.done}>
+                        <CheckmarkIcon />
+                    </span>
+                </adsgram-task>
+            ) : null}
+        </div>
     );
 };
