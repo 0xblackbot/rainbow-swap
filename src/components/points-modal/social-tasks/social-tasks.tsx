@@ -1,11 +1,11 @@
 import {EmptyFn} from '@rnw-community/shared';
 import {FC} from 'react';
 
+import {AdsGramTaskItem} from './adsgram-task-item/adsgram-task-item';
 import referralImage from './assets/referral.png';
 import telegramImage from './assets/telegram.png';
 import tonAppImage from './assets/ton-app.png';
 import twitterImage from './assets/twitter.png';
-import {AdsGramTaskItem} from './adsgram-task-item/adsgram-task-item';
 import {Divider} from './divider/divider';
 import {PartnerTaskItem} from './partner-task-item/partner-task-item';
 import styles from './social-tasks.module.css';

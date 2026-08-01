@@ -1,3 +1,4 @@
+import {fixupPluginRules} from '@eslint/compat';
 import js from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
@@ -26,7 +27,7 @@ export default [
             }
         },
         plugins: {
-            import: importPlugin,
+            import: fixupPluginRules(importPlugin),
             'react-hooks': reactHooks,
             'react-refresh': reactRefresh,
             prettier: prettierPlugin
