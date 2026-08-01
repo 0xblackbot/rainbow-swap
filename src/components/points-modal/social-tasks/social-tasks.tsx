@@ -5,6 +5,7 @@ import referralImage from './assets/referral.png';
 import telegramImage from './assets/telegram.png';
 import tonAppImage from './assets/ton-app.png';
 import twitterImage from './assets/twitter.png';
+import {AdsGramTaskItem} from './adsgram-task-item/adsgram-task-item';
 import {Divider} from './divider/divider';
 import {PartnerTaskItem} from './partner-task-item/partner-task-item';
 import styles from './social-tasks.module.css';
@@ -39,6 +40,7 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
 
             {IS_TMA ? (
                 <>
+                    <AdsGramTaskItem />
                     <PartnerTaskItem
                         isTelegram={true}
                         imageSrc={telegramImage}

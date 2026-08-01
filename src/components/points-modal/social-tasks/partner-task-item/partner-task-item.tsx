@@ -11,13 +11,15 @@ import {showInfoToast} from '../../../../utils/toast.utils';
 import {TaskItem} from '../task-item/task-item';
 import {TaskStatus} from '../task-status/task-status';
 
-const LinksRecord: Record<TaskTypeEnum, string> = {
+type PartnerTaskType = Exclude<TaskTypeEnum, TaskTypeEnum.AdsGram>;
+
+const LinksRecord: Record<PartnerTaskType, string> = {
     [TaskTypeEnum.Telegram]: TELEGRAM_CHANNEL_LINK,
     [TaskTypeEnum.Twitter]: 'https://x.com/rainbow_swap',
     [TaskTypeEnum.TonApp]: 'https://ton.app/dex/rainbow-swap?id=2525'
 };
 
-const RewardsRecord: Record<TaskTypeEnum, string> = {
+const RewardsRecord: Record<PartnerTaskType, string> = {
     [TaskTypeEnum.Telegram]: '2,000',
     [TaskTypeEnum.Twitter]: '2,000',
     [TaskTypeEnum.TonApp]: '10,000'
@@ -26,7 +28,7 @@ const RewardsRecord: Record<TaskTypeEnum, string> = {
 interface Props {
     imageSrc: string;
     title: string;
-    taskType: TaskTypeEnum;
+    taskType: PartnerTaskType;
     isTelegram?: boolean;
 }
 
