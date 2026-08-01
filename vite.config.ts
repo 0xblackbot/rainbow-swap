@@ -31,7 +31,7 @@ export default defineConfig(({mode}) => {
                                     matchesNodeModule(id, [
                                         'react',
                                         'react-dom',
-                                        'react-router-dom'
+                                        'react-router'
                                     ])
                             },
                             {

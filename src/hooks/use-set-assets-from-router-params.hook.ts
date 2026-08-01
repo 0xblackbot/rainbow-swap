@@ -1,7 +1,7 @@
 import {isDefined} from '@rnw-community/shared';
 import {Asset} from 'rainbow-swap-sdk';
 import {Dispatch, SetStateAction, useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router';
 
 import {useDispatch} from '../store';
 import {useAssetsRecordSelector} from '../store/assets/assets-selectors';

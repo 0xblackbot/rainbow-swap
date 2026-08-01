@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
-import {RouterProvider, createBrowserRouter} from 'react-router-dom';
+import {createBrowserRouter} from 'react-router';
+import {RouterProvider} from 'react-router/dom';
 
 import styles from './app.module.css';
 import {getErrorElement} from '../components/error-element/error-element';

@@ -1,6 +1,6 @@
 import {getQueryId} from 'rainbow-swap-sdk';
 import {useEffect, useRef} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams} from 'react-router';
 
 import {useDispatch} from '../store';
 import {loadAssetsListActions} from '../store/assets/assets-actions';

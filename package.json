@@ -30,7 +30,7 @@
         "react-ga4": "^3.0.1",
         "react-helmet": "^6.1.0",
         "react-redux": "^9.3.0",
-        "react-router-dom": "^7.18.2",
+        "react-router": "^8.3.0",
         "react-toastify": "^11.1.0",
         "react-window": "^2.3.0",
         "redux-observable": "^3.0.0-rc.2",
