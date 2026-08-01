@@ -1,20 +1,13 @@
 import {EmptyFn} from '@rnw-community/shared';
 import {FC} from 'react';
 
-import jvaultImage from './assets/jvault.jpeg';
-import kukuCoinImage from './assets/kuku-coin.jpeg';
-import parratonImage from './assets/parraton.jpeg';
 import referralImage from './assets/referral.png';
-import stakingImage from './assets/staking.png';
 import telegramImage from './assets/telegram.png';
 import tonAppImage from './assets/ton-app.png';
-import tonHedgeImage from './assets/ton-hedge.jpeg';
-import torchFinanceImage from './assets/torch-finance.jpeg';
 import twitterImage from './assets/twitter.png';
 import {Divider} from './divider/divider';
 import {PartnerTaskItem} from './partner-task-item/partner-task-item';
 import styles from './social-tasks.module.css';
-import {TaskHeader} from './task-header/task-header';
 import {TaskItem} from './task-item/task-item';
 import {TaskTypeEnum} from '../../../enums/task-type.enum';
 import {IS_TMA, TELEGRAM_APP_LINK} from '../../../globals';
@@ -61,86 +54,6 @@ export const SocialTasks: FC<Props> = ({onSwap}) => {
                         imageSrc={tonAppImage}
                         title="Leave a review"
                         taskType={TaskTypeEnum.TonApp}
-                    />
-
-                    <Divider withArrow={true} className={styles.divider} />
-
-                    <TaskHeader name="KuKuCoin" imageSrc={kukuCoinImage} />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Join Channel"
-                        taskType={TaskTypeEnum.KukuCoin_Telegram}
-                    />
-                    <PartnerTaskItem
-                        imageSrc={twitterImage}
-                        title="Follow X"
-                        taskType={TaskTypeEnum.KukuCoin_Twitter}
-                    />
-
-                    <Divider withArrow={true} className={styles.divider} />
-
-                    <TaskHeader
-                        name="Torch Finance"
-                        imageSrc={torchFinanceImage}
-                    />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Open app"
-                        taskType={TaskTypeEnum.TorchFinance_Telegram}
-                    />
-                    <PartnerTaskItem
-                        imageSrc={twitterImage}
-                        title="Follow X"
-                        taskType={TaskTypeEnum.TorchFinance_Twitter}
-                    />
-
-                    <Divider withArrow={true} className={styles.divider} />
-
-                    <TaskHeader name="Parraton" imageSrc={parratonImage} />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Join Channel"
-                        taskType={TaskTypeEnum.Parraton_Telegram}
-                    />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Explore app"
-                        taskType={TaskTypeEnum.Parraton_Bot}
-                    />
-
-                    <Divider withArrow={true} className={styles.divider} />
-
-                    <TaskHeader name="TON Hedge" imageSrc={tonHedgeImage} />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Join Channel"
-                        taskType={TaskTypeEnum.TonHedge_Telegram}
-                    />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Explore app"
-                        taskType={TaskTypeEnum.TonHedge_Bot}
-                    />
-
-                    <Divider withArrow={true} className={styles.divider} />
-
-                    <TaskHeader name="JVault" imageSrc={jvaultImage} />
-                    <PartnerTaskItem
-                        isTelegram={true}
-                        imageSrc={telegramImage}
-                        title="Join Channel"
-                        taskType={TaskTypeEnum.JVault_Telegram}
-                    />
-                    <PartnerTaskItem
-                        imageSrc={stakingImage}
-                        title="Stake any token"
-                        taskType={TaskTypeEnum.JVault_Staking}
                     />
                 </>
             ) : (
