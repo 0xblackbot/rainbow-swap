@@ -2,6 +2,54 @@
     display: contents;
 }
 
+.cooldownTask {
+    display: flex;
+    align-items: center;
+    padding: var(--step) var(--2-step);
+}
+
+.cooldownIcon {
+    display: inline-flex;
+    flex: 0 0 var(--5-step);
+    align-items: center;
+    justify-content: center;
+    width: var(--5-step);
+    height: var(--5-step);
+    margin-right: var(--step);
+    border-radius: var(--step);
+    background: var(--attention-bg);
+    color: var(--button-color);
+}
+
+.cooldownText {
+    min-width: 0;
+}
+
+.cooldownTitle,
+.cooldownDescription {
+    font-size: 14px;
+}
+
+.cooldownTitle {
+    color: var(--text-color);
+}
+
+.cooldownDescription {
+    overflow: hidden;
+    color: var(--hint-color);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cooldownStatus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 28px;
+    margin-left: auto;
+}
+
 .task {
     --adsgram-task-font-size: 14px;
     --adsgram-task-icon-size: var(--5-step);

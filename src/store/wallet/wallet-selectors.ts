@@ -54,10 +54,10 @@ export const useTaskSelector = (taskType: TaskTypeEnum) =>
         ({wallet}) => wallet.pointsState.tasks[taskType] ?? EMPTY_TASK_STATE
     );
 
-export const useAdsGramRewardClaimedTodaySelector = () =>
+export const useAdsGramRewardAvailableAtSelector = () =>
     useSelector(
         ({wallet}) =>
-            wallet.pointsState.walletPoints.data.adsGramRewardClaimedToday
+            wallet.pointsState.walletPoints.data.adsGramRewardAvailableAt
     );
 
 export const useRewardsStateSelector = () =>

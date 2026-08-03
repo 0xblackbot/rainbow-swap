@@ -5,6 +5,7 @@ export interface WalletPointsState {
     tapTapPoints: number;
     referralPoints: number;
     swapVolumePoints: number;
+    adsGramRewardAvailableAt: number | null;
     adsGramRewardClaimedToday: boolean;
     rewardsState: {
         usersReferred: number;
@@ -23,6 +24,7 @@ export const emptyWalletPoints: WalletPointsState = {
     tapTapPoints: 0,
     referralPoints: 0,
     swapVolumePoints: 0,
+    adsGramRewardAvailableAt: null,
     adsGramRewardClaimedToday: false,
     rewardsState: {
         usersReferred: 0,
