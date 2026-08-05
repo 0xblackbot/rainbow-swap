@@ -63,6 +63,5 @@ export default function geoBlock(request, context) {
 
 export const config = {
     path: '/*',
-    excludedPath: ['/terms.html', '/privacy.html', '/legal.css', '/fonts/*'],
-    method: ['GET', 'HEAD']
+    excludedPath: ['/terms.html', '/privacy.html', '/legal.css', '/fonts/*']
 };
