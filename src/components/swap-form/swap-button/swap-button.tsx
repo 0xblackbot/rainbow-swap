@@ -2,6 +2,7 @@ import {isDefined} from '@rnw-community/shared';
 import {Asset} from 'rainbow-swap-sdk';
 import {FC} from 'react';
 
+import {useCompliance} from '../../../compliance/use-compliance.hook';
 import {useModals} from '../../../contexts/modals/modals.hook';
 import {
     trackButtonClick,
@@ -25,6 +26,7 @@ interface Props {
 
 export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
     const modal = useModals();
+    const {requireAcceptance} = useCompliance();
     const dispatch = useDispatch();
     const sendTransaction = useSendTransaction();
 
@@ -33,6 +35,10 @@ export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
     const swapDisplayData = useSwapDisplayDataSelector();
 
     const handleClick = async () => {
+        if (!requireAcceptance()) {
+            return;
+        }
+
         if (swapMessages.length === 0) {
             return showErrorToast('Swap route not found. Please try again.');
         }

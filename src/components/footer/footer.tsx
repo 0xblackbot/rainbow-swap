@@ -4,6 +4,7 @@ import {GitbookIcon} from '../../assets/icons/GitbookIcon/GitbookIcon';
 import {GithubIcon} from '../../assets/icons/GithubIcon/GithubIcon';
 import {TelegramIcon} from '../../assets/icons/TelegramIcon/TelegramIcon';
 import {TwitterIcon} from '../../assets/icons/TwitterIcon/TwitterIcon';
+import {PRIVACY_LINK, TERMS_LINK} from '../../compliance/compliance.constants';
 import {
     BLACKBOT_LINK,
     GITBOOK_LINK,
@@ -85,7 +86,9 @@ export const Footer = () => (
                     Support
                 </a>
             </div>
-            <div className={styles.container_row}>
+            <div
+                className={getClassName(styles.container_row, styles.legal_row)}
+            >
                 <p className={styles.copyright_text}>
                     <a
                         className={styles.container_a}
@@ -97,6 +100,14 @@ export const Footer = () => (
                     </a>{' '}
                     © {currentYear}
                 </p>
+                <nav className={styles.legal_links} aria-label="Legal">
+                    <a className={styles.container_a} href={TERMS_LINK}>
+                        Terms
+                    </a>
+                    <a className={styles.container_a} href={PRIVACY_LINK}>
+                        Privacy
+                    </a>
+                </nav>
             </div>
         </div>
     </ContentContainer>

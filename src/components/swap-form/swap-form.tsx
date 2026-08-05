@@ -13,8 +13,10 @@ import styles from './swap-form.module.css';
 import {ToggleAssetsButton} from './toggle-assets-button/toggle-assets-button';
 import {RefreshIcon} from '../../assets/icons/RefreshIcon/RefreshIcon';
 import {SettingsIcon} from '../../assets/icons/SettingsIcon/SettingsIcon';
+import {useCompliance} from '../../compliance/use-compliance.hook';
 import {useModals} from '../../contexts/modals/modals.hook';
 import {useSwapForm} from '../../contexts/swap-form/swap-form.hook';
+import {IS_TMA} from '../../globals';
 import {trackButtonClick} from '../../hooks/use-analytics.hook';
 import {useIsMainButtonAvailable} from '../../hooks/use-is-main-button-available.hook';
 import {useRefreshRoutes} from '../../hooks/use-refresh-routes.hook';
@@ -41,6 +43,10 @@ import {swapAssets} from '../../utils/swap-assets.utils';
 
 export const SwapScreen = () => {
     const walletAddress = useWalletAddress();
+    const {
+        isAccepted: isComplianceAccepted,
+        requireAcceptance: requireComplianceAcceptance
+    } = useCompliance();
     const inputRef = useRef<HTMLInputElement>(null);
     const isMainButtonAvailable = useIsMainButtonAvailable();
     const modals = useModals();
@@ -67,6 +73,8 @@ export const SwapScreen = () => {
     } = useSwapForm();
 
     const isValidInputAssetAmount = Number(inputAssetAmount) !== 0;
+    const shouldReviewCompliance =
+        !isComplianceAccepted && (IS_TMA || Boolean(walletAddress));
 
     const nanoInputAssetAmount = useMemo(
         () =>
@@ -216,7 +224,12 @@ export const SwapScreen = () => {
                             }
                         />
                     </div>
-                    {walletAddress ? (
+                    {shouldReviewCompliance ? (
+                        <FormButton
+                            text="Review and confirm"
+                            onClick={requireComplianceAcceptance}
+                        />
+                    ) : walletAddress ? (
                         isValidInputAssetAmount ? (
                             <SwapButton
                                 inputAsset={inputAsset}

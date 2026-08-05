@@ -51,11 +51,17 @@
 
 .copyright_text {
     font-size: 10px;
-    margin: 0 auto;
 }
 
-@media (max-width: 480px) {
-    .copyright_text {
-        display: none;
-    }
+.legal_row {
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--2-step);
+    padding: var(--step);
+    font-size: 11px;
+}
+
+.legal_links {
+    display: flex;
+    gap: var(--2-step);
 }

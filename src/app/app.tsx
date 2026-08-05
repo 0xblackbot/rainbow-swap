@@ -3,6 +3,7 @@ import {createBrowserRouter} from 'react-router';
 import {RouterProvider} from 'react-router/dom';
 
 import styles from './app.module.css';
+import {ComplianceProvider} from '../compliance/compliance-provider';
 import {getErrorElement} from '../components/error-element/error-element';
 import {BASE_URL, IS_TMA} from '../globals';
 import {useDisableMainButton} from '../hooks/use-disable-main-button.hook';
@@ -60,7 +61,9 @@ export const App = () => {
 
     return (
         <main className={styles.App}>
-            <RouterProvider router={router} />
+            <ComplianceProvider>
+                <RouterProvider router={router} />
+            </ComplianceProvider>
         </main>
     );
 };
