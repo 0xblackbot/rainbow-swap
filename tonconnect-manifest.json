@@ -1,5 +1,7 @@
 {
     "url": "https://rainbow.ag",
     "name": "Rainbow Swap \uD83C\uDF08",
-    "iconUrl": "https://rainbow.ag/icons/small-icon-140x140.png"
+    "iconUrl": "https://rainbow.ag/icons/small-icon-140x140.png",
+    "termsOfUseUrl": "https://rainbow.ag/terms.html",
+    "privacyPolicyUrl": "https://rainbow.ag/privacy.html"
 }

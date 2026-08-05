@@ -1,0 +1,159 @@
+@font-face {
+    font-family: 'Basel';
+    src: url('/fonts/sf-pro-text-regular-webfont.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    color-scheme: dark;
+    font-family:
+        'Basel',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        sans-serif;
+    color: #f6f6f6;
+    background: #000;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background:
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(62, 136, 247, 0.2),
+            transparent 30rem
+        ),
+        #000;
+}
+
+a {
+    color: #66a3ff;
+}
+
+.legal-shell {
+    width: min(100% - 32px, 760px);
+    margin: 0 auto;
+    padding: 32px 0 64px;
+}
+
+.legal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.brand {
+    color: #f6f6f6;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.back-link {
+    color: #96969d;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.legal-card {
+    padding: clamp(24px, 5vw, 48px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    background: rgba(15, 15, 15, 0.92);
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+}
+
+.eyebrow {
+    margin: 0 0 12px;
+    color: #66a3ff;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(32px, 7vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+.effective-date {
+    margin: 14px 0 32px;
+    color: #96969d;
+    font-size: 14px;
+}
+
+h2 {
+    margin: 32px 0 10px;
+    font-size: 19px;
+    line-height: 1.3;
+}
+
+p,
+li {
+    color: #c8c8cc;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+p {
+    margin: 10px 0;
+}
+
+ul {
+    margin: 12px 0;
+    padding-left: 22px;
+}
+
+li + li {
+    margin-top: 8px;
+}
+
+.notice {
+    margin: 24px 0;
+    padding: 16px;
+    border: 1px solid rgba(62, 136, 247, 0.35);
+    border-radius: 14px;
+    background: rgba(62, 136, 247, 0.1);
+    color: #e5efff;
+}
+
+.legal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 24px;
+    color: #96969d;
+    font-size: 12px;
+}
+
+.legal-footer a {
+    color: #96969d;
+}
+
+@media (max-width: 520px) {
+    .legal-shell {
+        width: min(100% - 20px, 760px);
+        padding-top: 20px;
+    }
+
+    .legal-header {
+        margin-bottom: 24px;
+    }
+
+    .legal-card {
+        border-radius: 20px;
+    }
+}
