@@ -34,10 +34,36 @@ export const App = () => {
 
     useEffect(() => {
         if (IS_TMA) {
+            const restoreTelegramControls = (event: PageTransitionEvent) => {
+                if (!event.persisted) {
+                    return;
+                }
+
+                // The legal pages configure the same native Telegram controls.
+                // Force the SDK to resend this cached page's state after a
+                // back-forward cache restore.
+                const mainButton = window.Telegram.WebApp.MainButton;
+                const wasMainButtonVisible = mainButton.isVisible;
+                const backButton = window.Telegram.WebApp.BackButton;
+                const wasBackButtonVisible = backButton.isVisible;
+
+                mainButton.hide();
+                backButton.hide();
+
+                if (wasMainButtonVisible) {
+                    mainButton.show();
+                }
+
+                if (wasBackButtonVisible) {
+                    backButton.show();
+                }
+            };
+
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.enableClosingConfirmation();
             window.Telegram.WebApp.disableVerticalSwipes();
+            window.addEventListener('pageshow', restoreTelegramControls);
 
             try {
                 if (
@@ -56,6 +82,10 @@ export const App = () => {
                     window.Telegram.WebApp.enableClosingConfirmation();
                 }
             });
+
+            return () => {
+                window.removeEventListener('pageshow', restoreTelegramControls);
+            };
         }
     }, []);
 
