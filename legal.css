@@ -7,6 +7,34 @@
 }
 
 :root {
+    --legal-safe-area-inset-top: max(
+        env(safe-area-inset-top, 0px),
+        calc(
+            var(--tg-safe-area-inset-top, 0px) +
+                var(--tg-content-safe-area-inset-top, 0px)
+        )
+    );
+    --legal-safe-area-inset-bottom: max(
+        env(safe-area-inset-bottom, 0px),
+        calc(
+            var(--tg-safe-area-inset-bottom, 0px) +
+                var(--tg-content-safe-area-inset-bottom, 0px)
+        )
+    );
+    --legal-safe-area-inset-left: max(
+        env(safe-area-inset-left, 0px),
+        calc(
+            var(--tg-safe-area-inset-left, 0px) +
+                var(--tg-content-safe-area-inset-left, 0px)
+        )
+    );
+    --legal-safe-area-inset-right: max(
+        env(safe-area-inset-right, 0px),
+        calc(
+            var(--tg-safe-area-inset-right, 0px) +
+                var(--tg-content-safe-area-inset-right, 0px)
+        )
+    );
     color-scheme: dark;
     font-family:
         'Basel',
@@ -24,8 +52,10 @@
 
 body {
     min-width: 320px;
-    min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
+    padding-right: var(--legal-safe-area-inset-right);
+    padding-left: var(--legal-safe-area-inset-left);
     background:
         radial-gradient(
             circle at 15% 0%,
@@ -42,7 +72,8 @@ a {
 .legal-shell {
     width: min(100% - 32px, 760px);
     margin: 0 auto;
-    padding: 32px 0 64px;
+    padding: calc(32px + var(--legal-safe-area-inset-top)) 0
+        calc(64px + var(--legal-safe-area-inset-bottom));
 }
 
 .legal-header {
@@ -146,7 +177,7 @@ li + li {
 @media (max-width: 520px) {
     .legal-shell {
         width: min(100% - 20px, 760px);
-        padding-top: 20px;
+        padding-top: calc(20px + var(--legal-safe-area-inset-top));
     }
 
     .legal-header {
