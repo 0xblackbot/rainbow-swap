@@ -8,6 +8,10 @@ The [Rainbow Wallet](contract.fc) helps a user swap across different DEXes. It s
 - **Rainbow Wallet:** the routing contract belonging to that owner.
 - **Jetton wallet:** a separate contract holding one type of token for an address. The Rainbow Wallet has its own jetton wallet for each token it holds.
 
+## Why the addresses start alike
+
+When a Rainbow Wallet is created, the first 8 bits of its address are copied from its owner's address. TON uses these starting bits to place accounts into shards, so this keeps the wallets as close together as the network allows and can make messages between them faster. This is only a routing optimization; it does not change ownership or permissions.
+
 ## How requests are authorized
 
 ### Direct requests from the owner
