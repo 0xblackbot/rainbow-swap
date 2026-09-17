@@ -65,7 +65,8 @@ yarn lint
 
 ### Smart contract
 
-`Rainbow routing wallet` smart contract acts as a middleman, enabling seamless swaps between two different decentralized exchanges (DEXes) in a single transaction.  
+[Rainbow routing wallet](contracts/rainbow-wallet/README.md) smart contract acts as a middleman, enabling seamless swaps between two different decentralized exchanges (DEXes) in a single transaction.
+
 To guard against asset loss (there have been no such cases yet), it also allows users to withdraw GRAM or jettons, similar to a Jetton Wallet contract.
 
 Events diagram:

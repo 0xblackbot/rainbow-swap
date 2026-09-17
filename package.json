@@ -9,7 +9,7 @@
         "start": "vite --host",
         "build": "tsc && vite build",
         "build:analyze": "VITE_ANALYZE=true vite build",
-        "build:contract": "node --no-warnings=ExperimentalWarning --loader ts-node/esm contracts/build.ts",
+        "build:contract": "node contracts/build.ts",
         "preview": "vite preview",
         "find-deadcode": "ts-prune --error"
     },

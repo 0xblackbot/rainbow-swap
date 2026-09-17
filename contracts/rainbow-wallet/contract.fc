@@ -58,7 +58,7 @@
             slice jetton_sender = in_msg_body~load_msg_addr();
 
             if (equal_slices(storage::owner_address, jetton_sender)) {
-                handle_owner_jetton_transfer_notification(query_id, in_msg_body);
+                handle_owner_jetton_transfer_notification(query_id, msg_sender_address, in_msg_body);
                 return ();
             } else {
                 handle_jetton_transfer_notification(query_id, msg_sender_address, jetton_received_amount, jetton_sender);

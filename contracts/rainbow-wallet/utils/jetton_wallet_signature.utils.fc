@@ -1,0 +1,18 @@
+#include "../stdlib.fc";
+
+() verify_jetton_wallet_signature(slice jetton_wallet_address, slice signature) impure inline {
+    var (rainbow_wallet_workchain, rainbow_wallet_hash) = parse_std_addr(my_address());
+    var (jetton_wallet_workchain, jetton_wallet_hash) = parse_std_addr(jetton_wallet_address);
+
+    slice signed_data = begin_cell()
+        .store_int(rainbow_wallet_workchain, 8)
+        .store_uint(rainbow_wallet_hash, 256)
+        .store_int(jetton_wallet_workchain, 8)
+        .store_uint(jetton_wallet_hash, 256)
+        .end_cell()
+        .begin_parse();
+
+    if (check_data_signature(signed_data, signature, rainbow_jetton_wallet_signature_public_key) == 0) {
+        throw(error::invalid_jetton_wallet_signature);
+    }
+}

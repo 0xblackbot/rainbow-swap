@@ -1,5 +1,6 @@
 #include "stdlib.fc";
 #include "utils/dict.utils.fc";
+#include "utils/jetton_receive_effect_key.utils.fc";
 
 ;; storage variables
 
@@ -37,17 +38,16 @@ global cell storage::effects_dict;
     );
 }
 
-(slice, int) get_effect_dict(slice jetton_sender_address_to_listen, int query_id) method_id {
+(slice, int) get_effect_dict(slice jetton_wallet_address_to_listen, slice jetton_sender_address_to_listen, int query_id) method_id {
     load_storage();
 
-    int key_len = 267 + 64;
-    slice index = begin_cell()
-        .store_slice(jetton_sender_address_to_listen)
-        .store_uint(query_id, 64)
-        .end_cell()
-        .begin_parse();
+    slice index = build_jetton_receive_effect_key(
+        jetton_wallet_address_to_listen,
+        jetton_sender_address_to_listen,
+        query_id
+    );
 
-    var (value, success?) = storage::effects_dict.dict_get?(key_len, index);
+    var (value, success?) = storage::effects_dict.dict_get?(jetton_receive_effect_key_len, index);
 
     return (
         value,

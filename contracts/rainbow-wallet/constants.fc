@@ -9,5 +9,9 @@ const int op::withdraw_jetton = 430802;
 
 const int op::dedust_payout = 0x474f86cf;
 
+const int jetton_receive_effect_key_len = 598; ;; two std addresses (267 bits each) + query_id (64 bits)
+const int rainbow_jetton_wallet_signature_public_key = 0xff69f2f4a11579cc0081e90a1570233e948d6baaf2a23876399422e0808f1e43;
+
 const int error::unknown_op = 8800;
 const int error::unknown_jetton_receive_effect_body_type = 8801;
+const int error::invalid_jetton_wallet_signature = 8802;

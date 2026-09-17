@@ -1,0 +1,11 @@
+#include "../stdlib.fc";
+#include "../constants.fc";
+
+(slice) build_jetton_receive_effect_key(slice jetton_wallet_address, slice jetton_sender_address, int query_id) inline {
+    return begin_cell()
+        .store_slice(jetton_wallet_address)
+        .store_slice(jetton_sender_address)
+        .store_uint(query_id, 64)
+        .end_cell()
+        .begin_parse();
+}

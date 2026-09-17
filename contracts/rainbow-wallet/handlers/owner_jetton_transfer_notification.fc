@@ -1,22 +1,27 @@
 #include "../stdlib.fc";
 #include "../storage.fc";
+#include "../utils/jetton_wallet_signature.utils.fc";
+#include "../utils/jetton_receive_effect_key.utils.fc";
 
-() handle_owner_jetton_transfer_notification(int query_id, slice in_msg_body) impure inline {
+() handle_owner_jetton_transfer_notification(int query_id, slice jetton_wallet_address, slice in_msg_body) impure inline {
     slice forward_payload = in_msg_body~load_maybe_ref().begin_parse();
+    slice signature = forward_payload~load_ref().begin_parse();
+
+    verify_jetton_wallet_signature(jetton_wallet_address, signature);
 
     slice destination = forward_payload~load_msg_addr();
     cell body = forward_payload~load_ref();
+    slice jetton_wallet_address_to_listen = forward_payload~load_msg_addr();
     slice jetton_sender_address_to_listen = forward_payload~load_msg_addr();
     cell jetton_receive_effect = forward_payload~load_ref();
 
-    int key_len = 267 + 64;
-    slice index = begin_cell()
-        .store_slice(jetton_sender_address_to_listen)
-        .store_uint(query_id, 64)
-        .end_cell()
-        .begin_parse();
+    slice index = build_jetton_receive_effect_key(
+        jetton_wallet_address_to_listen,
+        jetton_sender_address_to_listen,
+        query_id
+    );
 
-    storage::effects_dict~dict_set(key_len, index, jetton_receive_effect.begin_parse());
+    storage::effects_dict~dict_set(jetton_receive_effect_key_len, index, jetton_receive_effect.begin_parse());
     save_storage();
 
     cell message = begin_cell()

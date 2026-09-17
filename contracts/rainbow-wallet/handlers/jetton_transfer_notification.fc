@@ -1,16 +1,16 @@
 #include "../stdlib.fc";
 #include "../storage.fc";
 #include "../utils/jetton_receive_effect.utils.fc";
+#include "../utils/jetton_receive_effect_key.utils.fc";
 
-() handle_jetton_transfer_notification(int query_id, slice jetton_address, int jetton_received_amount, slice jetton_sender) impure inline {
-    int key_len = 267 + 64;
-    slice index = begin_cell()
-        .store_slice(jetton_sender)
-        .store_uint(query_id, 64)
-        .end_cell()
-        .begin_parse();
+() handle_jetton_transfer_notification(int query_id, slice jetton_wallet_address, int jetton_received_amount, slice jetton_sender) impure inline {
+    slice index = build_jetton_receive_effect_key(
+        jetton_wallet_address,
+        jetton_sender,
+        query_id
+    );
 
-    var (jetton_receive_effect, success?) = storage::effects_dict.dict_get?(key_len, index);
+    var (jetton_receive_effect, success?) = storage::effects_dict.dict_get?(jetton_receive_effect_key_len, index);
 
     if (success?) {
         ;; Execute jetton_receive_effect
@@ -27,11 +27,11 @@
 
         send_raw_message(message, 64);
 
-        storage::effects_dict~dict_delete?(key_len, index);
+        storage::effects_dict~dict_delete?(jetton_receive_effect_key_len, index);
         save_storage();
     } else {
         ;; Forward jetton to the owner
-        slice destination = jetton_address;
+        slice destination = jetton_wallet_address;
         cell body = begin_cell()
             .store_uint(op::jetton_transfer, 32)
             .store_uint(query_id, 64)
