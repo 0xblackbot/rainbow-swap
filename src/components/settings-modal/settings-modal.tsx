@@ -5,6 +5,7 @@ import {DexFilterSetting} from './dex-filter/dex-filter';
 import {ExplorerSetting} from './explorer/explorer';
 import {MaxSlippage} from './max-slippage/max-slippage';
 import {MaxSplitsSetting} from './max-splits/max-splits';
+import {RainbowWalletSetting} from './rainbow-wallet/rainbow-wallet';
 import {RiskToleranceSetting} from './risk-tolerance/risk-tolerance';
 import styles from './settings-modal.module.css';
 import {ThemeSetting} from './theme/theme';
@@ -45,6 +46,7 @@ export const SettingsModal: FC<ModalProps> = ({
                 <MaxSplitsSetting />
                 <Divider />
                 <DexFilterSetting />
+                <RainbowWalletSetting />
             </div>
             <FormButton
                 text="Close"

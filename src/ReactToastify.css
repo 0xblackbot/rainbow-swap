@@ -16,6 +16,7 @@
 }
 
 .Toastify__toast-container {
+    --toastify-icon-color-info: white;
     --app-toast-width: min(
         calc(100vw - var(--4-step)),
         calc(var(--app-max-width) - var(--4-step))

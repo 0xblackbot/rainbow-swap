@@ -1,0 +1,46 @@
+.header {
+    gap: var(--step);
+    min-height: 28px;
+}
+
+.withdraw_button {
+    margin-top: var(--2-step);
+    flex-shrink: 0;
+}
+
+.header > button {
+    flex-shrink: 0;
+}
+
+.link_button {
+    height: unset;
+    padding: var(--half-step);
+    border-radius: var(--step);
+    font-size: 12px;
+    line-height: unset;
+}
+
+.link_icon {
+    width: var(--2-step);
+    height: var(--2-step);
+    fill: var(--button-color);
+}
+
+.status {
+    color: var(--hint-color);
+    font-size: 14px;
+    line-height: 20px;
+    overflow-wrap: anywhere;
+}
+
+.withdraw_button[aria-disabled="true"] {
+    opacity: 0.55;
+}
+
+.status:not(:empty) {
+    margin-top: var(--2-step);
+}
+
+.status a {
+    color: var(--button-color);
+}

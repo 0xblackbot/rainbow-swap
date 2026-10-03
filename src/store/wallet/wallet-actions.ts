@@ -21,7 +21,7 @@ export const loadUserAuthActions = createActions<GetUserAuthParams, boolean>(
 
 export const loadWalletDataActions = createActions<
     GetWalletDataParams,
-    WalletDataResponse
+    WalletDataResponse & {ownerAddress?: string}
 >('wallet/LOAD_WALLET_DATA');
 
 export const checkTaskActions = createActions<
@@ -42,3 +42,12 @@ export const setPendingSwapAction = createAction<
 export const setPendingSwapHistoryDataAction = createAction<SwapHistoryData>(
     'wallet/SET_PENDING_SWAP_HISTORY_DATA'
 );
+
+export const setRainbowWithdrawalAction = createAction<
+    import('../../types/rainbow-wallet.type').RainbowWithdrawal
+>('wallet/SET_RAINBOW_WITHDRAWAL');
+
+export const setRainbowWithdrawalCooldownAction = createAction<{
+    ownerAddress: string;
+    until: number;
+}>('wallet/SET_RAINBOW_WITHDRAWAL_COOLDOWN');

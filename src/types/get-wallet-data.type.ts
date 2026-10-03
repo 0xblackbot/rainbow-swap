@@ -1,3 +1,4 @@
+import {RainbowWalletInfo} from './rainbow-wallet.type';
 import {
     emptyWalletPoints,
     WalletPointsState
@@ -13,9 +14,11 @@ export type GetWalletDataParams = {
 export type WalletDataResponse = {
     pointsState: WalletPointsState;
     swapHistory: SwapHistoryData[];
+    rainbowWallet: RainbowWalletInfo | null;
 };
 
 export const EMPTY_WALLET_DATA: WalletDataResponse = {
     pointsState: emptyWalletPoints,
-    swapHistory: []
+    swapHistory: [],
+    rainbowWallet: null
 };

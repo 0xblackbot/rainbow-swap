@@ -76,7 +76,12 @@ const loadWalletDataEpic: Epic<Action> = action$ =>
         toPayload(),
         switchMap(payload =>
             from(getWalletData(payload)).pipe(
-                map(response => loadWalletDataActions.success(response)),
+                map(response =>
+                    loadWalletDataActions.success({
+                        ...response,
+                        ownerAddress: payload.address
+                    })
+                ),
                 sentryCatchError(err =>
                     of(loadWalletDataActions.fail(err.message))
                 )

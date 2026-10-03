@@ -12,6 +12,7 @@ import {
     GetWalletDataParams,
     WalletDataResponse
 } from '../types/get-wallet-data.type';
+import {RainbowWalletStateResponse} from '../types/rainbow-wallet.type';
 
 export const getUserAuth = (params: GetUserAuthParams) =>
     API.get<boolean>('/user-auth', {params}).then(response => response.data);
@@ -20,6 +21,13 @@ export const getWalletData = (params: GetWalletDataParams) =>
     API.get<WalletDataResponse>('/wallet-data', {params}).then(
         response => response.data
     );
+
+export const getRainbowWalletState = (address: string, signal: AbortSignal) =>
+    API.get<RainbowWalletStateResponse>('/rainbow-wallet', {
+        timeout: 20_000,
+        params: {address},
+        signal
+    }).then(response => response.data);
 
 export const getTaskCheck = (params: GetTaskCheckParams) =>
     API.get<number>('/task-check', {params}).then(response => response.data);

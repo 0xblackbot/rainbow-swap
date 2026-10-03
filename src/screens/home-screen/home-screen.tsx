@@ -10,6 +10,7 @@ import {INIT_DATA, IS_TMA, UNSAFE_INIT_DATA} from '../../globals';
 import {useTrackPageView} from '../../hooks/use-analytics.hook';
 import {useUpdateAssetsList} from '../../hooks/use-update-assets-list.hook';
 import {useUpdatePendingSwap} from '../../hooks/use-update-pending-swap.hook';
+import {useUpdateRainbowWithdrawal} from '../../hooks/use-update-rainbow-withdrawal.hook';
 import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useDispatch} from '../../store';
 import {
@@ -27,6 +28,7 @@ export const HomeScreen = memo(() => {
     useTrackPageView('Home');
     useUpdateAssetsList();
     useUpdatePendingSwap();
+    useUpdateRainbowWithdrawal();
 
     useEffect(() => {
         if (walletAddress) {

@@ -1,6 +1,17 @@
 import {TaskTypeEnum} from '../../enums/task-type.enum';
+import {useWalletAddress} from '../../hooks/use-wallet-address.hook';
 import {useSelector} from '../index';
 import {createEntity} from '../utils/create-entity';
+
+export const useRainbowWalletSelector = () => {
+    const ownerAddress = useWalletAddress();
+
+    return useSelector(({wallet}) =>
+        ownerAddress && wallet.rainbowWallet.ownerAddress === ownerAddress
+            ? wallet.rainbowWallet.data
+            : null
+    );
+};
 
 export const useBalancesRecordSelector = () =>
     useSelector(
@@ -65,3 +76,17 @@ export const useRewardsStateSelector = () =>
         isLoading: wallet.pointsState.walletPoints.isLoading,
         data: wallet.pointsState.walletPoints.data.rewardsState
     }));
+
+export const useRainbowWithdrawalSelector = () => {
+    const owner = useWalletAddress();
+    return useSelector(({wallet}) =>
+        owner ? wallet.rainbowWithdrawals?.[owner] : undefined
+    );
+};
+
+export const useRainbowWithdrawalCooldownSelector = () => {
+    const owner = useWalletAddress();
+    return useSelector(({wallet}) =>
+        owner ? (wallet.rainbowWithdrawalCooldowns?.[owner] ?? 0) : 0
+    );
+};

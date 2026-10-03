@@ -5,6 +5,10 @@ import {
 } from '../../interfaces/wallet-points-swate.interface';
 import {BalancesRecord} from '../../types/balances-record.type';
 import {
+    RainbowWithdrawal,
+    RainbowWalletInfo
+} from '../../types/rainbow-wallet.type';
+import {
     EMPTY_SWAP_HISTORY_DATA,
     SwapHistoryData
 } from '../interfaces/swap-history-data.interface';
@@ -15,6 +19,12 @@ type WalletPoints = Omit<WalletPointsState, 'tasksState'>;
 export type TasksState = Record<string, LoadableEntityState<number>>;
 
 export interface WalletState {
+    rainbowWithdrawals: Record<string, RainbowWithdrawal>;
+    rainbowWithdrawalCooldowns: Record<string, number>;
+    rainbowWallet: {
+        ownerAddress: string | null;
+        data: RainbowWalletInfo | null;
+    };
     balances: LoadableEntityState<BalancesRecord>;
     pointsState: {
         refWallet: string | null;
@@ -33,6 +43,9 @@ export interface WalletState {
 }
 
 export const walletInitialState: WalletState = {
+    rainbowWithdrawals: {},
+    rainbowWithdrawalCooldowns: {},
+    rainbowWallet: {ownerAddress: null, data: null},
     balances: createEntity({}),
     pointsState: {
         refWallet: UNSAFE_INIT_DATA.refWallet,

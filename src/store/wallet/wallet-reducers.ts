@@ -2,6 +2,8 @@ import {createReducer} from '@reduxjs/toolkit';
 
 import {
     checkTaskActions,
+    setRainbowWithdrawalAction,
+    setRainbowWithdrawalCooldownAction,
     loadBalancesActions,
     loadWalletDataActions,
     setPendingSwapAction,
@@ -14,6 +16,18 @@ import {createEntity} from '../utils/create-entity';
 export const walletReducers = createReducer<WalletState>(
     walletInitialState,
     builder => {
+        builder.addCase(setRainbowWithdrawalAction, (state, {payload}) => {
+            state.rainbowWithdrawals ??= {};
+            state.rainbowWithdrawals[payload.ownerAddress] = payload;
+        });
+        builder.addCase(
+            setRainbowWithdrawalCooldownAction,
+            (state, {payload}) => {
+                state.rainbowWithdrawalCooldowns ??= {};
+                state.rainbowWithdrawalCooldowns[payload.ownerAddress] =
+                    payload.until;
+            }
+        );
         builder.addCase(loadBalancesActions.submit, state => ({
             ...state,
             balances: createEntity(state.balances.data, true)
@@ -30,7 +44,7 @@ export const walletReducers = createReducer<WalletState>(
             })
         );
 
-        builder.addCase(loadWalletDataActions.submit, state => {
+        builder.addCase(loadWalletDataActions.submit, (state, {payload}) => {
             const tasks: TasksState = {};
 
             for (const [key, value] of Object.entries(
@@ -41,6 +55,13 @@ export const walletReducers = createReducer<WalletState>(
 
             return {
                 ...state,
+                rainbowWallet: {
+                    ownerAddress: payload.address,
+                    data:
+                        state.rainbowWallet.ownerAddress === payload.address
+                            ? state.rainbowWallet.data
+                            : null
+                },
                 pointsState: {
                     ...state.pointsState,
                     walletPoints: createEntity(
@@ -56,6 +77,12 @@ export const walletReducers = createReducer<WalletState>(
             };
         });
         builder.addCase(loadWalletDataActions.success, (state, {payload}) => {
+            if (
+                payload.ownerAddress &&
+                payload.ownerAddress !== state.rainbowWallet.ownerAddress
+            ) {
+                return state;
+            }
             const tasks: TasksState = {};
 
             for (const [key, value] of Object.entries(
@@ -66,6 +93,10 @@ export const walletReducers = createReducer<WalletState>(
 
             return {
                 ...state,
+                rainbowWallet: {
+                    ownerAddress: payload.ownerAddress ?? null,
+                    data: payload.rainbowWallet ?? null
+                },
                 pointsState: {
                     ...state.pointsState,
                     walletPoints: createEntity(payload.pointsState, false),

@@ -7,3 +7,7 @@ export const setAssetsSearchValue = createAction<string>(
 export const assetsInitializedAction = createAction(
     'runtime/ASSETS_INITIALIZED'
 );
+
+export const setRainbowWithdrawalApprovalAction = createAction<string | null>(
+    'runtime/RAINBOW_WITHDRAWAL_APPROVAL'
+);
