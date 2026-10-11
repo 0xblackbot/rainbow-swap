@@ -615,21 +615,21 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tonconnect/sdk@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-4.0.0.tgz#3d46dfe4e1692c548146a299cdb4a0996b46f194"
-  integrity sha512-2/vgrBFhIfBV2f8s11bo+VV+VwjElTi2dM2ZDP41VTXyjOmNgWxDw3vSqrS/puniPbm+4tqK6EXLfwvpBxlq5w==
+"@tonconnect/sdk@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-5.0.0.tgz#b7189ee436190a46490ba93e749933c2e106fde8"
+  integrity sha512-x+87Ruc+lCXkAZ8QleK3xjdNm44ZuYzfCJgqBPWJEQVibQzTLUvNEeqVB5aDu+x78z4E8oaJFH0OZyEd5ppCIg==
   dependencies:
     "@tonconnect/isomorphic-eventsource" "0.0.2"
     "@tonconnect/isomorphic-fetch" "0.0.3"
     "@tonconnect/protocol" "3.0.0"
 
-"@tonconnect/ui@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-3.0.0.tgz#ba7d5587de4e6596a3e44a49bb4ab075268a5cf8"
-  integrity sha512-vt/HAyEr7bMJgff38lDw9xV7ptS8bzdjkdnwJaFjSZth2vT/qbp3J/RDxxNMaX4q0VFuHafGh8SZe1JHhHFOgQ==
+"@tonconnect/ui@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-5.0.0.tgz#5787f8f56658c4a523bfc127416279cf22c28b84"
+  integrity sha512-qoTLtf0Q7NLxqy4KoDs+xF3r6iLa7pQDBdnJup0fo64Ru3EkmLjmSGeZPuzIDjycE1x7moH0V9+JcOmgr+wrEA==
   dependencies:
-    "@tonconnect/sdk" "4.0.0"
+    "@tonconnect/sdk" "5.0.0"
     classnames "^2.5.1"
     csstype "^3.1.3"
     deepmerge "^4.3.1"

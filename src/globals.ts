@@ -19,7 +19,7 @@ export const GAS_AMOUNT = toNano('0.255', 9);
 export const JETTON_TRANSFER_GAS_AMOUNT = toNano('0.065', 9);
 
 export const API = axios.create({
-    baseURL: 'https://api.rainbow.ag/api'
+    baseURL: import.meta.env.VITE_API_BASE_URL ?? 'https://api.rainbow.ag/api'
 });
 
 export const GA_MEASUREMENT_ID = isProd ? 'G-BY9LWCELFX' : 'G-GLSCG1EMDB';

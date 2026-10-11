@@ -18,7 +18,7 @@ export function useTonWallet():
     >(tonConnectUI.wallet);
 
     useEffect(() => {
-        tonConnectUI.onStatusChange((value: ConnectedWallet | null) => {
+        return tonConnectUI.onStatusChange((value: ConnectedWallet | null) => {
             setWallet(value);
         });
     }, [tonConnectUI]);

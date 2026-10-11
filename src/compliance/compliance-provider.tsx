@@ -105,7 +105,7 @@ export const ComplianceProvider: FC<PropsWithChildren> = ({children}) => {
                 }
             }
 
-            if (!tonProof) {
+            if (!tonProof || !wallet.account.publicKey) {
                 return undefined;
             }
 
@@ -119,6 +119,7 @@ export const ComplianceProvider: FC<PropsWithChildren> = ({children}) => {
                 account: {
                     address: wallet.account.address,
                     chain: wallet.account.chain,
+                    publicKey: wallet.account.publicKey,
                     walletStateInit: wallet.account.walletStateInit
                 },
                 proof: tonProof

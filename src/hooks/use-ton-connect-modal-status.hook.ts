@@ -7,7 +7,7 @@ export const useTonConnectModalStatus = () => {
     const [status, setStatus] = useState(tonConnectUI?.modal.state.status);
 
     useEffect(() => {
-        tonConnectUI?.onModalStateChange(value => {
+        return tonConnectUI?.onModalStateChange(value => {
             setStatus(value.status);
         });
     }, [tonConnectUI]);

@@ -11,9 +11,15 @@ const matchesNodeModule = (id: string, packages: string[]) =>
 export default defineConfig(({mode}) => {
     const isDev = mode === 'development';
     const shouldAnalyze = process.env.VITE_ANALYZE === 'true';
+    const apiProxyTarget = process.env.VITE_API_PROXY_TARGET;
 
     return {
         base: process.env.VITE_BASE_URL ?? '/',
+        server: {
+            proxy: apiProxyTarget
+                ? {'/api': {target: apiProxyTarget, changeOrigin: true}}
+                : undefined
+        },
         plugins: [
             react(),
             ...(isDev ? [mkcert({force: true}), Terminal()] : []),
