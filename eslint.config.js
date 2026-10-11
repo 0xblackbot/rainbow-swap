@@ -10,7 +10,7 @@ import tseslint from 'typescript-eslint';
 
 export default [
     {
-        ignores: ['dist/**', 'public/**']
+        ignores: ['dist/**', 'public/**', '.netlify/**']
     },
 
     js.configs.recommended,
