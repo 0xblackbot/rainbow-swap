@@ -378,17 +378,17 @@
   resolved "https://registry.yarnpkg.com/@keyv/serialize/-/serialize-1.1.1.tgz#0c01dd3a3483882af7cf3878d4e71d505c81fc4a"
   integrity sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==
 
-"@lottiefiles/dotlottie-react@^0.19.12":
-  version "0.19.12"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.19.12.tgz#306e6242e5c33597035e9ee0a81ac6aec47d9e4b"
-  integrity sha512-Onm0XUcfU8Io4E6zbNF23hW0AwHpwAWUhazII6z/mGAcGh8RFAqqrkFJW1sZ3Z6C9JXOiiud+MmrejNKikBShw==
+"@lottiefiles/dotlottie-react@^0.20.0":
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.20.0.tgz#51966e85125b892c735b7a22f5fee6df00f1ff4c"
+  integrity sha512-M4HLo6RxNTbYwByZw7ns2zaGgPx0PpGZU1xfyMdj8VEoTasSJ1uhsJZjl+l55TPQ7g0soF7JVHEJLTOv1TIeMA==
   dependencies:
-    "@lottiefiles/dotlottie-web" "0.78.2"
+    "@lottiefiles/dotlottie-web" "0.81.0"
 
-"@lottiefiles/dotlottie-web@0.78.2":
-  version "0.78.2"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.78.2.tgz#1cee4a51d6389c7e9cf2b60aeb48f2e29256335c"
-  integrity sha512-ERBw7qATlekpFnR1xwNoTeXsXqw0FzCiEgei0IwPiquT277m36/o0aSWZDK7CgkhVd1NYre3M9fH+6n4waUfHA==
+"@lottiefiles/dotlottie-web@0.81.0":
+  version "0.81.0"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.81.0.tgz#04d7313eb658d95376e9aa36dc86bfee6752ae2a"
+  integrity sha512-BmX/+0eaK2unVexuB0VZLvBsax2BS8fLwwIdUqF4AO9C7tFw97eTi90C//20QVK4q08SDhnnszysCGX0Qt7XPA==
 
 "@napi-rs/wasm-runtime@^1.1.4":
   version "1.2.2"
@@ -450,10 +450,10 @@
   resolved "https://registry.yarnpkg.com/@remix-run/route-pattern/-/route-pattern-0.22.1.tgz#4937466528a59a7c9d882f725aac92536d20e010"
   integrity sha512-czdGJWh09Lapvcqt7Vb09KlrU2PhRJ8xQaI+AItTuD9aDJ5MAgxnS38lnys6Ll+6RJEqPiaUqTwIQhVLwFvv+w==
 
-"@rnw-community/shared@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-2.2.0.tgz#f64c8aad350a1c946b9f56669726440692749b29"
-  integrity sha512-PZuvvB2kv4rCkZU2JMp2L/p4hOPEIfL7prRzfX4POuidFtmAQ8aM5y99DzmPNqHMmBgKTLCkrRMJNkQ7DuSpdw==
+"@rnw-community/shared@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@rnw-community/shared/-/shared-2.15.0.tgz#1f3c28303169bb91fb7319ca5e76af40e157d4ea"
+  integrity sha512-Evwd1Cn1/u2+ocjZlPnz9kXhYnDBgP37OVqa3vBRmN5b7Hqq47LiljBx00PnEI6bkFIfN7wNSQJXtijumnFFGQ==
 
 "@rolldown/binding-android-arm-eabi@1.2.13":
   version "1.2.13"
@@ -714,12 +714,12 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.25.tgz#69765ac7bcddb0eb072961cf292524a8f5b3c2c0"
   integrity sha512-+K1NIO8I+F9/wNulfVvu23QYd0Pe9/OCqRrim4NoYIf1VoEDL90Ve4ClzpyqBLc7NpGGWRvYNCKZ1BE/Jpf8dQ==
 
-"@types/node@^24.13.3":
-  version "24.13.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.13.3.tgz#49f18bd3c647866dcda51a0756c145e14590ce16"
-  integrity sha512-Dh8vAsV36ig5wa9OX4pXvMc9D3Veibfw2wix0CUwYODLD8nkj9UsLjASr49nPg+2eKzxhBV+v7L8pXvT4e639Q==
+"@types/node@^24.19.2":
+  version "24.19.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.19.2.tgz#8718eedbc0f89648de6525be9f4a9c61cdbaa502"
+  integrity sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==
   dependencies:
-    undici-types "~7.18.0"
+    undici-types ">=7.24.0 <7.24.7"
 
 "@types/parse-json@^4.0.0":
   version "4.0.2"
@@ -731,13 +731,6 @@
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-19.3.0.tgz#90294a9266efd928a5266f2110d60d5dba5015d2"
   integrity sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==
 
-"@types/react-window@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/react-window/-/react-window-2.0.0.tgz#9fe45015d6f98ec98a069362518c855fcc1fa8d0"
-  integrity sha512-E8hMDtImEpMk1SjswSvqoSmYvk7GEtyVaTa/GJV++FdDNuMVVEzpAClyJ0nqeKYBrMkGiyH6M1+rPLM0Nu1exQ==
-  dependencies:
-    react-window "*"
-
 "@types/react@^19.3.0":
   version "19.3.0"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-19.3.0.tgz#3b3ce8d8c1627fb5ccd4dadd57ef445c5a153b77"
@@ -745,10 +738,10 @@
   dependencies:
     csstype "^3.2.2"
 
-"@types/telegram-web-app@^9.6.0":
-  version "9.6.0"
-  resolved "https://registry.yarnpkg.com/@types/telegram-web-app/-/telegram-web-app-9.6.0.tgz#17f91839c582a442396948118d44807bf10010e9"
-  integrity sha512-t7/6NKZy0iJrE+U3kGhMI7lEkcA/44K2sQiTo25JRsFGC0vKiSl9GNv/1h3lAXYYhc0PX6iYlvTxnOBUzezU5w==
+"@types/telegram-web-app@^10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@types/telegram-web-app/-/telegram-web-app-10.1.0.tgz#9322208b807c6ba0af237aa0e6fccc55d570f066"
+  integrity sha512-g3AUv1lSUAFCg9tIfuEBBTy3Hs3+I6pI/BePWgFIunhREzqDL45jSeHjy66+/QDNxdCkVIfXVUC8N1a01PC3Lw==
 
 "@types/use-sync-external-store@^0.0.6":
   version "0.0.6"
@@ -2804,7 +2797,7 @@ picomatch@^4.0.2, picomatch@^4.0.4:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.5.tgz#51ea57a17d86f605f81039595fbc40ed06a55fab"
   integrity sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==
 
-picomatch@^4.0.7:
+picomatch@^4.0.5, picomatch@^4.0.7:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.7.tgz#6313360034ccb36b3dc61ecbdff78121f90fe21f"
   integrity sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==
@@ -2909,10 +2902,10 @@ react-toastify@^11.1.0:
   dependencies:
     clsx "^2.1.1"
 
-react-window@*, react-window@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/react-window/-/react-window-2.3.0.tgz#92fefee75b7de56a31204dfffc492b84136e4783"
-  integrity sha512-FW6TIpaOH646k51X7yE+LSCWGkt5Pfsnc1fVyq/sCI9h0pTqmMiBXM04pzFKg3Bt7NGkeV6kqbU8d/QjmFS7Ug==
+react-window@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/react-window/-/react-window-2.3.4.tgz#466ad5ce5e1bd899c6c9340f308c6f526c9190e8"
+  integrity sha512-CnRWoRg+ZnQkLcULSNdbgKJnfcexy9x+9ELOATmDlDv3ZoADyLJc22vN3JRvMV651A6gFwYBlxllU9X+H9dyhQ==
 
 react@^19.3.0:
   version "19.3.0"
@@ -3021,15 +3014,15 @@ rolldown@~1.2.12:
     "@rolldown/binding-win32-arm64-msvc" "1.2.13"
     "@rolldown/binding-win32-x64-msvc" "1.2.13"
 
-rollup-plugin-visualizer@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-7.0.1.tgz#291c10ff4a956d9b2483f8b4147b2bf0aacd3a6e"
-  integrity sha512-UJUT4+1Ho4OcWmPYU3sYXgUqI8B8Ayfe06MX7y0qCJ1K8aGoKtR/NDd/2nZqM7ADkrzny+I99Ul7GgyoiVNAgg==
+rollup-plugin-visualizer@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-7.1.1.tgz#92b5ca95ab882e1ac200dedc2a22b5c85bc31f4c"
+  integrity sha512-ThaGiHTU8XW02OkK80TrTHATraJmM9OAduU4otal+7gyXLpYEtmGBLfx5kW+EHvvLwn03YGW2NnwKUIqsYlJAA==
   dependencies:
     open "^11.0.0"
-    picomatch "^4.0.2"
-    source-map "^0.7.4"
-    yargs "^18.0.0"
+    picomatch "^4.0.5"
+    source-map "^0.8.0"
+    yargs "^18.1.0"
 
 run-applescript@^7.0.0:
   version "7.1.0"
@@ -3203,10 +3196,10 @@ source-map@^0.6.0:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-source-map@^0.7.4:
-  version "0.7.6"
-  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.6.tgz#a3658ab87e5b6429c8a1f3ba0083d4c61ca3ef02"
-  integrity sha512-i5uvt8C3ikiWeNZSVZNWcfZPItFQOsYTUAOkcUPGd8DqDy1uOUikjt5dG+uRlwyvR108Fb9DOd4GvXfT0N2/uQ==
+source-map@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.8.0.tgz#72b9006383bd9fc70d52e435c91c2d73249c60a4"
+  integrity sha512-d8EqvL+k/SOXCreS/SUzg2ciyHqBBLcN/yuRjFsbvVhHTE2pgei7oAhmPM7kWFbkX6OSMQfUq4KbkF3au9lhYQ==
 
 stable-hash-x@^0.2.0:
   version "0.2.0"
@@ -3293,10 +3286,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-swiper@^14.0.7:
-  version "14.0.7"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-14.0.7.tgz#cfdae71aec6174f01fc456d06f6e9703d6cf62a4"
-  integrity sha512-PDMY+8hNQBh4kAYdfKIF1GNS7u3hg4xl3NVKBey0rENnpUpTsiE/aCcbgpmm1PIf4RMI7loO3XhW9BdxLzQw0A==
+swiper@^14.3.0:
+  version "14.3.0"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-14.3.0.tgz#fa6cc16df408e2838979ebb4ea3a41b3b7987339"
+  integrity sha512-qw0Xv1+sylM8KCQxWxV2iYAK2G6XjFGPZ/8F1baEsY8DK4A3sTnLx6jUJ0G71rDbVQ05JHMWkcWmJ5NvlxZO0w==
 
 synckit@^0.11.13:
   version "0.11.13"
@@ -3521,10 +3514,10 @@ unbox-primitive@^1.1.0:
     has-symbols "^1.1.0"
     which-boxed-primitive "^1.1.1"
 
-undici-types@~7.18.0:
-  version "7.18.2"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.18.2.tgz#29357a89e7b7ca4aef3bf0fd3fd0cd73884229e9"
-  integrity sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==
+"undici-types@>=7.24.0 <7.24.7":
+  version "7.24.6"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.24.6.tgz#61275b485d7fd4e9d269c7cf04ec2873c9cc0f91"
+  integrity sha512-WRNW+sJgj5OBN4/0JpHFqtqzhpbnV0GuB+OozA9gCL7a993SmU+1JBZCzLNxYsbMfIeDL+lTsphD5jN5N+n0zg==
 
 undici@^8.3.0:
   version "8.11.2"
@@ -3734,10 +3727,10 @@ yargs-parser@^22.0.0:
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-22.0.0.tgz#87b82094051b0567717346ecd00fd14804b357c8"
   integrity sha512-rwu/ClNdSMpkSrUb+d6BRsSkLUq1fmfsY6TOpYzTwvwkg1/NRG85KBy3kq++A8LKQwX6lsu+aWad+2khvuXrqw==
 
-yargs@^18.0.0:
-  version "18.1.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-18.1.0.tgz#cd7e98c703ef51695bbbf062ed58f28e94291b56"
-  integrity sha512-2rAgRKu54VsHkqI0/tYkmluGXHD4KW7yZoycuqDQ15QOTnc2VVfy0nN/1eMhnQLO00A+dwtK20xuCnc1YGeUyg==
+yargs@^18.1.0:
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-18.2.0.tgz#c258276baa935fe8fb911d986067f6d0733e8608"
+  integrity sha512-9OpKOLeaoNFecEp7P6iYbzze/5CqWoH7N3SMs/6y1XF4nMvFMspEGZzJ6uFi9MmQwXhyzqYoSEKO3tvA3Z/o2w==
   dependencies:
     cliui "^9.0.1"
     escalade "^3.1.1"
