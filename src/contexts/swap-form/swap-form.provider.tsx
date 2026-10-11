@@ -1,5 +1,4 @@
-import {FC, PropsWithChildren, useState} from 'react';
-import {Helmet} from 'react-helmet';
+import {FC, PropsWithChildren, useLayoutEffect, useState} from 'react';
 
 import {SwapFormContext} from './swap-form.context';
 import {TON, USDT} from '../../globals';
@@ -13,6 +12,18 @@ export const SwapFormProvider: FC<PropsWithChildren> = ({children}) => {
 
     const inputAsset = useAssetSelector(inputAssetAddress);
     const outputAsset = useAssetSelector(outputAssetAddress);
+
+    useLayoutEffect(() => {
+        // Keep the HTML fallback until React takes ownership of page metadata.
+        const fallbackMetadata = Array.from(
+            document.head.querySelectorAll('[data-app-metadata-fallback]')
+        );
+        fallbackMetadata.forEach(element => element.remove());
+
+        return () => {
+            document.head.append(...fallbackMetadata);
+        };
+    }, []);
 
     useSyncSwapFormWithRouter(
         inputAsset,
@@ -36,17 +47,15 @@ export const SwapFormProvider: FC<PropsWithChildren> = ({children}) => {
                 outputAsset
             }}
         >
-            <Helmet>
-                <title>{`Swap ${inputAsset.symbol} to ${outputAsset.symbol} | Rainbow Swap`}</title>
-                <meta
-                    name="description"
-                    content={`Swap ${inputAsset.symbol} to ${outputAsset.symbol} at best rates and minimal price impact.`}
-                />
-                <link
-                    rel="canonical"
-                    href={`https://rainbow.ag/${inputAsset.slug}/${outputAsset.slug}`}
-                />
-            </Helmet>
+            <title>{`Swap ${inputAsset.symbol} to ${outputAsset.symbol} | Rainbow Swap`}</title>
+            <meta
+                name="description"
+                content={`Swap ${inputAsset.symbol} to ${outputAsset.symbol} at best rates and minimal price impact.`}
+            />
+            <link
+                rel="canonical"
+                href={`https://rainbow.ag/${inputAsset.slug}/${outputAsset.slug}`}
+            />
             {children}
         </SwapFormContext.Provider>
     );
