@@ -634,10 +634,10 @@
     "@tonconnect/isomorphic-fetch" "0.0.3"
     "@tonconnect/protocol" "3.0.0"
 
-"@tonconnect/ui@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-5.0.0.tgz#5787f8f56658c4a523bfc127416279cf22c28b84"
-  integrity sha512-qoTLtf0Q7NLxqy4KoDs+xF3r6iLa7pQDBdnJup0fo64Ru3EkmLjmSGeZPuzIDjycE1x7moH0V9+JcOmgr+wrEA==
+"@tonconnect/ui@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-5.0.1.tgz#0b42c4367aeedfefcf7ffd35555a3a2acd3b1c78"
+  integrity sha512-waG7fLA4Qozdf96kOwv8jkv68A+rjDrxk0bthVa0ezbwW2zXGVXciR41By2hbY6P0LetjOAiw6vLSvBRh+JJzQ==
   dependencies:
     "@tonconnect/sdk" "5.0.0"
     classnames "^2.5.1"

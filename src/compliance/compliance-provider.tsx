@@ -105,7 +105,7 @@ export const ComplianceProvider: FC<PropsWithChildren> = ({children}) => {
                 }
             }
 
-            if (!tonProof || !wallet.account.publicKey) {
+            if (!tonProof) {
                 return undefined;
             }
 

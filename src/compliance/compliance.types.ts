@@ -14,7 +14,7 @@ export interface TonProofVerificationRequest {
     account: {
         address: string;
         chain: string;
-        publicKey: string;
+        publicKey?: string;
         walletStateInit: string;
     };
     proof: {

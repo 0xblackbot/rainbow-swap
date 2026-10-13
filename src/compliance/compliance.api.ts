@@ -14,12 +14,18 @@ interface ComplianceCredentials {
 }
 
 export const getTonProofPayload = () =>
-    API.get<TonProofPayloadResponse>('/compliance/ton-proof-payload', {
-        timeout: COMPLIANCE_REQUEST_TIMEOUT_MS
-    }).then(response => response.data);
+    API.post<TonProofPayloadResponse>(
+        '/compliance/ton-proof-payload',
+        undefined,
+        {
+            withCredentials: true,
+            timeout: COMPLIANCE_REQUEST_TIMEOUT_MS
+        }
+    ).then(response => response.data);
 
 export const verifyTonProof = (request: TonProofVerificationRequest) =>
     API.post<TonProofVerificationResponse>('/compliance/ton-proof', request, {
+        withCredentials: true,
         timeout: COMPLIANCE_REQUEST_TIMEOUT_MS
     }).then(response => response.data);
 
