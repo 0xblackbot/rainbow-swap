@@ -37,6 +37,7 @@ export const trackSwapConfirmation = (params: {
     outputAssetAddress: string;
     outputAssetSymbol: string;
     outputAssetAmount: number;
+    nativeBaselineOutputAmount?: string;
 }) =>
     API.post('/track-event', {
         initData: INIT_DATA,
