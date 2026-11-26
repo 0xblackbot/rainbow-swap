@@ -58,7 +58,8 @@ export const SwapButton: FC<Props> = ({inputAsset, outputAsset}) => {
                 outputAssetSymbol: outputAsset.symbol,
                 outputAssetAmount: swapDisplayData.outputAssetAmount,
                 nativeBaselineOutputAmount:
-                    swapDisplayData.nativeBaselineOutputAmount
+                    swapDisplayData.nativeBaselineOutputAmount,
+                priceImprovementAmount: swapDisplayData.priceImprovementAmount
             });
 
             dispatch(
